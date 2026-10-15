@@ -14,7 +14,6 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const rawTextNodeMap = new WeakMap<Text, string>();
 const rawAttrMap = new WeakMap<Element, { placeholder?: string; title?: string }>();
-const HAS_ARABIC_RE = /[\u0600-\u06FF]/;
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [language, setLanguageState] = useState<Language>(() => {
@@ -81,15 +80,6 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
                                 const nextVal = normalizeBilingualString(raw, language);
                                 if (nextVal !== currentVal) {
                                     textNode.nodeValue = nextVal;
-                                }
-                                // Ensure proper BiDi isolation when Arabic text appears inside LTR mode
-                                const parentEl = textNode.parentElement;
-                                if (parentEl && !parentEl.hasAttribute('dir')) {
-                                    if (language === 'en' && HAS_ARABIC_RE.test(nextVal) && parentEl.children.length === 0) {
-                                        parentEl.setAttribute('dir', 'auto');
-                                    } else if (language === 'ar' && parentEl.getAttribute('dir') === 'auto') {
-                                        parentEl.removeAttribute('dir');
-                                    }
                                 }
                             }
                         }

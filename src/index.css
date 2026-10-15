@@ -110,19 +110,12 @@ code {
   unicode-bidi: isolate;
 }
 
-span,
-p,
-div,
-th,
-td,
-label,
-button,
-a,
-h1,
-h2,
-h3,
-h4 {
-  unicode-bidi: plaintext;
+[dir="rtl"] .text-left:not(.font-mono) {
+  text-align: right;
+}
+
+[dir="ltr"] .text-right:not(.font-mono) {
+  text-align: left;
 }
 
 @layer components {
