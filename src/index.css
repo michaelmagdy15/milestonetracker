@@ -1,6 +1,4 @@
-@import url('https://fonts.cdnfonts.com/css/alte-haas-grotesk');
-@import url('https://fonts.cdnfonts.com/css/aventa');
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -16,9 +14,6 @@
    Monochrome Color Palette:
    - Black:        #000000 (RGB: 0, 0, 0)
    - Light Gray:   #f5f5f5 (RGB: 245, 245, 245)
-   Typography:
-   - Primary Font:   Alte Haas Grotesk
-   - Secondary Font: Aventa
 */
 
 :root {
@@ -44,7 +39,7 @@
   --surface-bg: #f5f5f5;
   --surface-card: rgba(255, 255, 255, 0.78);
 
-  font-family: 'Alte Haas Grotesk', 'Plus Jakarta Sans', 'Cairo', system-ui, -apple-system, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', 'Cairo', system-ui, -apple-system, sans-serif;
   line-height: 1.55;
   font-weight: 400;
 
@@ -52,7 +47,6 @@
   color: #192631;
   background-color: #f5f5f5;
 
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -68,22 +62,26 @@ body {
     radial-gradient(at 50% 90%, rgba(255, 127, 80, 0.06) 0px, transparent 50%);
   background-attachment: fixed;
   color: #192631;
-  font-family: 'Alte Haas Grotesk', 'Plus Jakarta Sans', 'Cairo', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', 'Cairo', system-ui, -apple-system, sans-serif;
 }
 
-h1, h2, h3, h4, .font-black, .font-bold {
-  font-family: 'Alte Haas Grotesk', 'Plus Jakarta Sans', 'Cairo', sans-serif;
+h1, h2, h3, h4, button, input, select, textarea {
+  font-family: 'Plus Jakarta Sans', 'Inter', 'Cairo', system-ui, -apple-system, sans-serif;
 }
 
-.tracking-widest, .tracking-\[0\.2em\], .tracking-\[0\.18em\] {
-  font-family: 'Aventa', 'Alte Haas Grotesk', 'Plus Jakarta Sans', 'Cairo', sans-serif;
+/* Prevent negative letter-spacing from colliding letters & prevent positive tracking from breaking Arabic cursive */
+.tracking-tighter {
+  letter-spacing: -0.02em !important;
 }
 
-h1 {
-  font-size: 2.8em;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: #192631;
+.tracking-tight {
+  letter-spacing: -0.01em !important;
+}
+
+[dir="rtl"],
+[dir="rtl"] * {
+  font-family: 'Cairo', 'Plus Jakarta Sans', 'Inter', sans-serif;
+  letter-spacing: 0 !important;
 }
 
 @layer components {

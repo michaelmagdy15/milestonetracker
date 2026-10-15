@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Alte Haas Grotesk"', '"Plus Jakarta Sans"', 'Inter', 'Cairo', '"Fira Sans"', 'Manrope', 'sans-serif'],
-        display: ['"Aventa"', '"Plus Jakarta Sans"', 'Inter', 'Cairo', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', '"Cairo"', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Inter', '"Cairo"', 'system-ui', 'sans-serif'],
         mono: ['"Fira Code"', 'monospace'],
       },
       colors: {

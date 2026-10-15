@@ -1140,7 +1140,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
               منظومة المشتريات المربوطة بالاعتمادات، فواتير الموانين (OCR)، الحسابات واللوجستيات والمخازن الأربعة
             </h1>
             <p className="mt-1 text-sm text-[#192631]/70">
-              ربط مباشر بين اعتمادات الخامات (`MS Code A/B`) ⬅ أوامر الشراء (`NPO`) ⬅ طلبات الصرف (`أ. ميرنا ماجد PR/POP`) ⬅ لوجستيات وحركة النقل (`أ. ميلاد هارون`) ⬅ عهدة المخازن الأربعة ومهندسي الموقع.
+              ربط مباشر بين اعتمادات الخامات (MS Code A/B) ⬅ أوامر الشراء (NPO) ⬅ طلبات الصرف (أ. ميرنا ماجد PR/POP) ⬅ لوجستيات وحركة النقل (أ. ميلاد هارون) ⬅ عهدة المخازن الأربعة ومهندسي الموقع.
             </p>
           </div>
 
@@ -1150,7 +1150,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
               className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-500"
             >
               <Plus className="h-4 w-4" />
-              + إصدار أمر شراء (`NPO`) مربوط باعتماد
+              + إصدار أمر شراء (NPO) مربوط باعتماد
             </button>
             <button
               onClick={() => setShowTransferModal(true)}
@@ -1166,14 +1166,14 @@ export const ProcurementWarehouseHub: React.FC = () => {
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-[#192631]/70">إجمالي أوامر الشراء المعتمدة (`NPO`)</span>
+              <span className="text-xs text-[#192631]/70">إجمالي أوامر الشراء المعتمدة (NPO)</span>
               <ShoppingCart className="h-4 w-4 text-[#123524]" />
             </div>
             <div className="mt-2 text-xl font-bold text-[#192631]">
               {kpiStats.totalPOValue.toLocaleString()} <span className="text-xs font-normal text-[#192631]/70">ج.م</span>
             </div>
             <div className="mt-1 text-xs text-[#123524]">
-              100% مربوطة باعتمادات (`Code A` / `Code B`)
+              100% مربوطة باعتمادات (Code A / Code B)
             </div>
           </div>
 
@@ -1229,7 +1229,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
           }`}
         >
           <ShieldCheck className="h-4 w-4 shrink-0" />
-          <span>1. أوامر الشراء المربوطة بالاعتمادات (`NPO`)</span>
+          <span>1. أوامر الشراء المربوطة بالاعتمادات (NPO)</span>
         </button>
 
         <button
@@ -1241,7 +1241,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
           }`}
         >
           <ScanLine className="h-4 w-4 shrink-0" />
-          <span>2. ماسح فواتير الواتساب والموانين (`PO-OCR`)</span>
+          <span>2. ماسح فواتير الواتساب والموانين (PO-OCR)</span>
         </button>
 
         <button
@@ -1253,7 +1253,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
           }`}
         >
           <Truck className="h-4 w-4 shrink-0" />
-          <span>3. حسابات ميرنا (`PR/POP`) ولوجستيات ميلاد</span>
+          <span>3. حسابات ميرنا (PR/POP) ولوجستيات ميلاد</span>
         </button>
 
         <button
@@ -1286,9 +1286,9 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     قاعدة الحوكمة الصارمة (Eng. Pierre Procurement Gatekeeper Rule)
                   </h2>
                   <p className="mt-1 text-xs leading-relaxed text-[#192631]/85 md:text-sm">
-                    يُمنع النظام إصدار أي أمر شراء (`NPO`) إلا بعد ربطه باعتماد خامة (`Material Submittal - MS`) حاصل على كود اعتماد{' '}
+                    يُمنع النظام إصدار أي أمر شراء (NPO) إلا بعد ربطه باعتماد خامة (Material Submittal - MS) حاصل على كود اعتماد{' '}
                     <span className="font-bold text-[#123524]">Code A (Approved)</span> أو{' '}
-                    <span className="font-bold text-[#192631]">Code B (Approved as Noted)</span>. أي خامة تحت المراجعة أو مرفوضة (`Code C`) يتم حظر شرائها تلقائياً لمنع توريد خامات غير معتمدة للموقع.
+                    <span className="font-bold text-[#192631]">Code B (Approved as Noted)</span>. أي خامة تحت المراجعة أو مرفوضة (Code C) يتم حظر شرائها تلقائياً لمنع توريد خامات غير معتمدة للموقع.
                   </p>
                 </div>
               </div>
@@ -1326,7 +1326,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   سجل اعتمادات الخامات وحالة بوابة المشتريات (Submittal Register Gatekeeper Status)
                 </h3>
                 <p className="text-xs text-[#192631]/70">
-                  اضغط على أي اعتماد خامة لفتح نافذة إصدار أمر الشراء (`NPO`) أو اختبار الحظر التلقائي
+                  اضغط على أي اعتماد خامة لفتح نافذة إصدار أمر الشراء (NPO) أو اختبار الحظر التلقائي
                 </p>
               </div>
             </div>
@@ -1376,10 +1376,10 @@ export const ProcurementWarehouseHub: React.FC = () => {
             <div className="mb-4 flex flex-col justify-between gap-3 md:flex-row md:items-center">
               <div>
                 <h3 className="text-base font-bold text-[#192631]">
-                  سجل أوامر الشراء الرسمية المربوطة بالاعتمادات (`NPO Register`)
+                  سجل أوامر الشراء الرسمية المربوطة بالاعتمادات (NPO Register)
                 </h3>
                 <p className="text-xs text-[#192631]/70">
-                  يدعم مسار الشركات الموردة الرسمية (`Corporate NPO`) ومسار الموردين المحليين والموانين (`PO-OCR`)
+                  يدعم مسار الشركات الموردة الرسمية (Corporate NPO) ومسار الموردين المحليين والموانين (PO-OCR)
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -1398,7 +1398,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-3.5 py-2 text-xs font-bold text-white hover:bg-emerald-500"
                 >
                   <Plus className="h-4 w-4" />
-                  إصدار أمر شراء (`NPO`)
+                  إصدار أمر شراء (NPO)
                 </button>
               </div>
             </div>
@@ -1407,12 +1407,12 @@ export const ProcurementWarehouseHub: React.FC = () => {
               <table className="w-full text-right text-xs">
                 <thead>
                   <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70">
-                    <th className="px-3 py-3 font-semibold">كود أمر الشراء (`NPO`)</th>
-                    <th className="px-3 py-3 font-semibold">اعتماد الخامة (`MS`)</th>
+                    <th className="px-3 py-3 font-semibold">كود أمر الشراء (NPO)</th>
+                    <th className="px-3 py-3 font-semibold">اعتماد الخامة (MS)</th>
                     <th className="px-3 py-3 font-semibold">المورد ومسار التوريد</th>
                     <th className="px-3 py-3 font-semibold">الإجمالي والضريبة والخصم</th>
                     <th className="px-3 py-3 font-semibold">الصافي المستحق</th>
-                    <th className="px-3 py-3 font-semibold">حسابات ميرنا (`PR / POP`)</th>
+                    <th className="px-3 py-3 font-semibold">حسابات ميرنا (PR / POP)</th>
                     <th className="px-3 py-3 font-semibold">الوجهة واللوجستيات</th>
                   </tr>
                 </thead>
@@ -1511,7 +1511,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 </div>
                 <div>
                   <h2 className="text-base font-bold text-[#192631]">
-                    ماسح فواتير الواتساب والفواتير اليدوية للموانين (`AI / OCR WhatsApp & Handwritten Bill Scanner`)
+                    ماسح فواتير الواتساب والفواتير اليدوية للموانين (AI / OCR WhatsApp & Handwritten Bill Scanner)
                   </h2>
                   <p className="mt-1 text-xs leading-relaxed text-[#192631]/85 md:text-sm">
                     صُمم خصيصاً لتنفيذ متطلبات <span className="font-bold text-[#b45309]">م. بيير</span> مع الموردين المحليين وموانين الرمل والأسمنت والطوب والجبس الذين يرسلون فواتير ورقية مكتوبة بخط اليد أو رسائل حساب على الواتساب بدلاً من الفواتير الضريبية، مع تحكم كامل في{' '}
@@ -1586,7 +1586,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div>
                     <label className="mb-1 block text-xs font-semibold text-[#192631]/85">
-                      ربط باعتماد الخامة المعتمد (`MS`)
+                      ربط باعتماد الخامة المعتمد (MS)
                     </label>
                     <select
                       value={ocrSubmittalCode}
@@ -1620,7 +1620,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
                 <div>
                   <label className="mb-1 block text-xs font-semibold text-[#192631]/85">
-                    نص رسالة الواتساب أو محتوى الفاتورة الورقية المسحوبة ضوئياً (`OCR Raw Text`):
+                    نص رسالة الواتساب أو محتوى الفاتورة الورقية المسحوبة ضوئياً (OCR Raw Text):
                   </label>
                   <textarea
                     rows={7}
@@ -1631,9 +1631,9 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 </div>
 
                 <div className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-3 text-[11px] text-[#192631]/70">
-                  <div className="font-bold text-[#192631]">💡 كيف يعمل محرك الذكاء الاصطناعي (`PO-OCR`)؟</div>
+                  <div className="font-bold text-[#192631]">💡 كيف يعمل محرك الذكاء الاصطناعي (PO-OCR)؟</div>
                   <p className="mt-1">
-                    يقوم النظام بتحليل رسائل الموانين أو الصور الملتقطة بالموبايل من الموقع، وتفكيكها إلى جدول بنود رقمي (كمية × فئة = إجمالي) مع تطبيق الخصم المتفق عليه والضريبة الاختيارية لإصدار أمر شراء رسمي (`NPO`) لقسم الحسابات.
+                    يقوم النظام بتحليل رسائل الموانين أو الصور الملتقطة بالموبايل من الموقع، وتفكيكها إلى جدول بنود رقمي (كمية × فئة = إجمالي) مع تطبيق الخصم المتفق عليه والضريبة الاختيارية لإصدار أمر شراء رسمي (NPO) لقسم الحسابات.
                   </p>
                 </div>
               </div>
@@ -1644,7 +1644,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
                   <h3 className="text-sm font-bold text-[#192631]">
-                    جدول البنود المستخرجة القابل للتعديل (`Extracted Line Items Table`)
+                    جدول البنود المستخرجة القابل للتعديل (Extracted Line Items Table)
                   </h3>
                   <p className="text-xs text-[#192631]/70">
                     يمكنك تعديل أي كمية أو سعر وحدة أو إضافة بند جديد قبل الاعتماد النهائي
@@ -1872,7 +1872,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-3 text-xs font-bold text-white shadow-lg shadow-emerald-600/30 transition hover:bg-emerald-500 md:text-sm"
                 >
                   <Send className="h-4 w-4" />
-                  اعتماد وتحويل لأمر شراء رسمي (`NPO`) + إرسال لميرنا (الحسابات) لطلب صرف (`PR`)
+                  اعتماد وتحويل لأمر شراء رسمي (NPO) + إرسال لميرنا (الحسابات) لطلب صرف (PR)
                 </button>
               </div>
             </div>
@@ -1888,7 +1888,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
           {/* Pipeline Flow Header */}
           <div className="rounded-2xl border border-[#e04b2a]/25 bg-gradient-to-r from-indigo-950/40 via-slate-900 to-slate-900 p-5">
             <h2 className="text-base font-bold text-[#192631]">
-              مسار التكامل بين المكتب الفني ⬅ حسابات أ. ميرنا ماجد (`PR / POP`) ⬅ لوجستيات أ. ميلاد هارون
+              مسار التكامل بين المكتب الفني ⬅ حسابات أ. ميرنا ماجد (PR / POP) ⬅ لوجستيات أ. ميلاد هارون
             </h2>
             <div className="mt-4 grid grid-cols-2 gap-2 text-xs md:grid-cols-6">
               {[
@@ -1922,7 +1922,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
             <div className="rounded-2xl border border-amber-500/30 bg-white/80 backdrop-blur-md p-4">
               <div className="flex items-center gap-2.5 text-[#b45309]">
                 <Bike className="h-5 w-5" />
-                <h3 className="text-sm font-bold">🏍️ أوبر بايك / مرسول سريع (`Uber Bike`)</h3>
+                <h3 className="text-sm font-bold">🏍️ أوبر بايك / مرسول سريع (Uber Bike)</h3>
               </div>
               <p className="mt-1.5 text-xs text-[#192631]/70">
                 للخامات الخفيفة والعاجلة جداً (عينات دهانات، مسامير، سيليكون، لقم مفاتيح كهرباء) لتجنب تعطيل الصنايعية بالموقع.
@@ -1978,7 +1978,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-slate-950 shadow-lg shadow-amber-500/20 hover:bg-amber-400"
                         >
                           <CreditCard className="h-4 w-4" />
-                          إرفاق إثبات الدفع (`POP`) - أ. ميرنا ماجد
+                          إرفاق إثبات الدفع (POP) - أ. ميرنا ماجد
                         </button>
                       ) : (
                         <span className="inline-flex items-center gap-1.5 rounded-xl border border-[#123524]/25 bg-[#123524]/10 px-3.5 py-2 text-xs font-bold text-[#123524]">
@@ -2176,7 +2176,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
           {/* Inventory & Custody Table */}
           <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5">
             <h3 className="mb-4 text-base font-bold text-[#192631]">
-              سجل الأرصدة والعهدة بالمخازن الأربعة ومطابقة كميات أوامر الشراء (`Inventory & Site Custody Verification`)
+              سجل الأرصدة والعهدة بالمخازن الأربعة ومطابقة كميات أوامر الشراء (Inventory & Site Custody Verification)
             </h3>
 
             <div className="overflow-x-auto">
@@ -2184,12 +2184,12 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 <thead>
                   <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70">
                     <th className="px-3 py-3">كود الصنف والبيان</th>
-                    <th className="px-3 py-3">الموقع المخزني (`Warehouse`)</th>
+                    <th className="px-3 py-3">الموقع المخزني (Warehouse)</th>
                     <th className="px-3 py-3">المشروع المخصص</th>
                     <th className="px-3 py-3">الرصيد الفعلي مقابل PO</th>
                     <th className="px-3 py-3">إجمالي القيمة</th>
                     <th className="px-3 py-3">مستلم العهدة والتوقيت</th>
-                    <th className="px-3 py-3">حالة الفحص (`MIR`)</th>
+                    <th className="px-3 py-3">حالة الفحص (MIR)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#192631]/10">
@@ -2255,7 +2255,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
           {/* Custody Transfer Log */}
           <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5">
             <h3 className="mb-3 text-sm font-bold text-[#192631]">
-              سجل حركات التحويل بين المخازن وصرف العهدة للمواقع (`Custody Transfer & Dispatch Ledger`)
+              سجل حركات التحويل بين المخازن وصرف العهدة للمواقع (Custody Transfer & Dispatch Ledger)
             </h3>
             <div className="space-y-2.5">
               {transferLogs.map((log) => (
@@ -2300,7 +2300,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="h-6 w-6 text-[#123524]" />
                 <h3 className="text-lg font-bold text-[#192631]">
-                  إصدار أمر شراء جديد مربوط باعتماد خامة (`+ Create Submittal-Gated NPO`)
+                  إصدار أمر شراء جديد مربوط باعتماد خامة (+ Create Submittal-Gated NPO)
                 </h3>
               </div>
               <button
@@ -2315,7 +2315,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
               {/* Step 1: Select Material Submittal */}
               <div>
                 <label className="mb-1.5 block text-xs font-bold text-[#192631]/85">
-                  1. اختر اعتماد الخامة (`Material Submittal - MS`) من سجل المشروع:
+                  1. اختر اعتماد الخامة (Material Submittal - MS) من سجل المشروع:
                 </label>
                 <select
                   value={selectedSubmittalCode}
@@ -2340,7 +2340,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     </span>
                   </div>
                   <p className="mt-1 text-xs text-[#192631]/85">
-                    الخامة معتمدة رسمياً من الاستشاري ({selectedSubmittalObj.titleEn}) — يُسمح بإصدار أمر الشراء (`NPO`) وتحويله للحسابات.
+                    الخامة معتمدة رسمياً من الاستشاري ({selectedSubmittalObj.titleEn}) — يُسمح بإصدار أمر الشراء (NPO) وتحويله للحسابات.
                   </p>
                 </div>
               ) : (
@@ -2348,7 +2348,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   <div className="flex items-center gap-2 text-sm font-extrabold text-red-700">
                     <ShieldAlert className="h-6 w-6 shrink-0 text-red-700" />
                     <span>
-                      ⛔ Procurement Gatekeeper Blocked: Cannot issue Purchase Order (`NPO`) until Material Submittal is Approved (`Code A` or `Code B`) by the Consultant!
+                      ⛔ Procurement Gatekeeper Blocked: Cannot issue Purchase Order (NPO) until Material Submittal is Approved (`Code A` or Code B) by the Consultant!
                     </span>
                   </div>
                   <p className="mt-2 text-xs leading-relaxed text-red-700">
@@ -2362,7 +2362,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
               <div className={selectedSubmittalObj.approved ? 'space-y-4' : 'pointer-events-none opacity-40 space-y-4'}>
                 <div>
                   <label className="mb-1.5 block text-xs font-bold text-[#192631]/85">
-                    2. اختر مسار المورد (`Vendor Flow`):
+                    2. اختر مسار المورد (Vendor Flow):
                   </label>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <button
@@ -2374,9 +2374,9 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70'
                       }`}
                     >
-                      <div className="text-xs font-bold">🏢 شركة موردة رسمية (`Corporate Supplier`)</div>
+                      <div className="text-xs font-bold">🏢 شركة موردة رسمية (Corporate Supplier)</div>
                       <div className="mt-1 text-[11px] text-[#192631]/70">
-                        أمر شراء رسمي `NPO` ⬅ أ. ميرنا ماجد (`PR / POP`) ⬅ التصنيع والتوريد
+                        أمر شراء رسمي NPO ⬅ أ. ميرنا ماجد (PR / POP) ⬅ التصنيع والتوريد
                       </div>
                     </button>
 
@@ -2389,7 +2389,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70'
                       }`}
                     >
-                      <div className="text-xs font-bold">🧾 مورّد فردي / موّان (`Local Supplier / PO-OCR`)</div>
+                      <div className="text-xs font-bold">🧾 مورّد فردي / موّان (Local Supplier / PO-OCR)</div>
                       <div className="mt-1 text-[11px] text-[#192631]/70">
                         تحويل مباشر لماسح فواتير الواتساب والفواتير اليدوية للموانين
                       </div>
@@ -2526,7 +2526,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
               <div className="flex items-center gap-2.5">
                 <ArrowRightLeft className="h-5 w-5 text-[#192631]" />
                 <h3 className="text-base font-bold text-[#192631]">
-                  تحويل مخزون بين المخازن الأربعة أو صرف عهدة لموقع (`Stock Custody Transfer`)
+                  تحويل مخزون بين المخازن الأربعة أو صرف عهدة لموقع (Stock Custody Transfer)
                 </h3>
               </div>
               <button

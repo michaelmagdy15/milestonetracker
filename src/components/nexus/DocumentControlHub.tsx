@@ -1209,7 +1209,7 @@ ${transmittalRemarks}
               Document Control, Submittals Register & Auto-Transmittal Hub
             </h2>
             <p className="max-w-3xl text-sm text-[#192631]/70">
-              Unified 51-Clause Submittal Matrix (`MS / DR / MIR / SL / SIR`), Consultant Action Gatekeeper (`Code A & B`
+              Unified 51-Clause Submittal Matrix (MS / DR / MIR / SL / SIR), Consultant Action Gatekeeper (`Code A & B`
               Procurement PO Unlocker), Eng. Pierre’s Auto-Email Transmittal Generator, and Standard File Naming Engine.
             </p>
           </div>
@@ -1792,7 +1792,7 @@ ${transmittalRemarks}
                     2. Auto-Generated Formal Transmittal Email Preview
                   </h3>
                   <p className="text-xs text-[#192631]/70">
-                    جاهز للنسخ أو الإرسال المباشر مع الأرشفة التلقائية في فولدر `/emails` بالمشروع
+                    جاهز للنسخ أو الإرسال المباشر مع الأرشفة التلقائية في فولدر /emails بالمشروع
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -1859,7 +1859,7 @@ ${transmittalRemarks}
                 <div className="flex items-center gap-2">
                   <History className="h-4 w-4 text-[#123524]" />
                   <h4 className="text-sm font-bold text-[#192631]">
-                    Logged Project Correspondence & Sent Transmittals (`/emails`)
+                    Logged Project Correspondence & Sent Transmittals (/emails)
                   </h4>
                 </div>
                 <span className="text-xs text-[#192631]/70">{transmittalHistory.length} Archived Dispatches</span>
@@ -1908,8 +1908,8 @@ ${transmittalRemarks}
                   Interactive File & Folder Naming Builder (مولد تكويد الملفات والفولدرات القياسي)
                 </h3>
                 <p className="text-xs text-[#192631]/70">
-                  Enforces the uploaded spreadsheet coding rules across `01. TDC`, `02. DC`, `03. TC`, `04. C000`,
-                  `MC000`, and Financial Vouchers (`NPO`, `RCB`, `POP`, `CPO`, `ST`, `INV`).
+                  Enforces the uploaded spreadsheet coding rules across 01. TDC, 02. DC, 03. TC, 04. C000,
+                  MC000, and Financial Vouchers (`NPO`, RCB, POP, CPO, ST, INV).
                 </p>
               </div>
 

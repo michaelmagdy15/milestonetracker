@@ -839,7 +839,7 @@ export const ProjectDetails: React.FC = () => {
                                             <span className="text-[10px] font-black tracking-widest text-[#192631]/60 uppercase">Timeline</span>
                                         </div>
                                         {weeks.map((_, wIndex) => (
-                                            <div key={`week-${wIndex}`} className="border-b border-r border-[#192631]/10 bg-[#192631]/[0.05] p-2 text-center" style={{ gridColumn: `span 7` }}>
+                                            <div key={`week-${wIndex}`} className="border-b border-r border-[#192631]/10 bg-[#192631]/[0.05] p-2 text-center" style={{ gridColumn: 'span 7' }}>
                                                 <span className="text-[10px] font-black tracking-widest text-[#192631]/85 uppercase">Week {wIndex + 1}</span>
                                             </div>
                                         ))}

@@ -14,7 +14,6 @@ const NavSectionLabel = ({ label }: { label: string }) => (
     <div className="px-3 pt-3.5 pb-1 first:pt-0">
         <span
             className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#192631]/45"
-            style={{ fontFamily: "'Aventa', sans-serif" }}
         >
             {label}
         </span>
@@ -51,7 +50,6 @@ const NavItem = ({ to, icon: Icon, label, badge }: { to: string; icon: React.Ele
                         'relative z-10 text-[11px] tracking-[0.09em] uppercase truncate',
                         isActive ? 'font-bold text-[#192631]' : 'font-semibold text-[#192631]/80'
                     )}
-                    style={{ fontFamily: "'Alte Haas Grotesk', 'Plus Jakarta Sans', sans-serif" }}
                 >
                     {label}
                 </span>
@@ -252,7 +250,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         <div className="glass-card rounded-2xl p-3.5">
                             <p
                                 className="text-[10px] font-bold tracking-[0.22em] uppercase text-[#e04b2a] mb-0.5 truncate"
-                                style={{ fontFamily: "'Aventa', sans-serif" }}
                             >
                                 {activeOrg.name === 'Apex Contracting & Engineering' ? 'NEXUS CONTRACTING' : activeOrg.name}
                             </p>

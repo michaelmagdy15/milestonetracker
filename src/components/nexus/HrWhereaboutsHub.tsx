@@ -1834,7 +1834,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                   جدول إعدادات النطاقات الجغرافية لمواقع المشروعات (Project Sites GPS Geofence Configuration)
                 </h3>
                 <p className="text-xs text-[#192631]/70">
-                  إعدادات خطوط الطول والعرض (Latitude / Longitude) ونصف القطر المسموح به للتحقق من بصمة الـ GPS (`150m` / `200m`)
+                  إعدادات خطوط الطول والعرض (Latitude / Longitude) ونصف القطر المسموح به للتحقق من بصمة الـ GPS (150m / 200m)
                 </p>
               </div>
               <span className="text-xs font-mono text-[#e04b2a] bg-indigo-950/60 border border-indigo-800/50 px-3 py-1 rounded-lg">
@@ -2026,7 +2026,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                   سجل عمليات التمام المفاجئ وسرعة الاستجابة ودقة الـ GPS (Surprise Check Audit Log)
                 </h3>
                 <p className="text-xs text-[#192631]/70">
-                  يوضح زمن الاستجابة بالدقائق (`2 mins`, `4 mins`)، دقة التطابق الجغرافي، والجزاءات التلقائية للمتخلفين
+                  يوضح زمن الاستجابة بالدقائق (`2 mins`, 4 mins)، دقة التطابق الجغرافي، والجزاءات التلقائية للمتخلفين
                 </p>
               </div>
               <span className="text-xs text-[#192631]/70">
@@ -2346,7 +2346,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                 تسجيل طلب جديد / عهدة موقع RCB / قرار إداري
               </h2>
               <p className="text-xs text-[#192631]/70 mt-1">
-                يرتبط مباشرة بشيت رواتب دورة 21→20 ومنظومة تسويات عهد المواقع `RCB`
+                يرتبط مباشرة بشيت رواتب دورة 21→20 ومنظومة تسويات عهد المواقع RCB
               </p>
             </div>
 

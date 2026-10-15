@@ -331,7 +331,7 @@ const INITIAL_CREDIT_CARDS: CorporateCreditCard[] = [
   },
 ];
 
-// Initial Credit Card Installment Plans (`أقساط الكروت`)
+// Initial Credit Card Installment Plans (أقساط الكروت)
 const INITIAL_INSTALLMENT_PLANS: CardInstallmentPlan[] = [
   {
     id: 'INST-101',
@@ -734,7 +734,7 @@ const ALL_46_PROJECTS: ProjectCashflowRow[] = (() => {
   return rows;
 })();
 
-// E-Works Legacy ERP Migration Audit Records (`/eworks` & `/eworks/review`)
+// E-Works Legacy ERP Migration Audit Records (`/eworks` & /eworks/review)
 const INITIAL_EWORKS_AUDIT_RECORDS: EWorksMigrationRecord[] = [
   {
     id: 'EW-001',
@@ -939,7 +939,7 @@ export const TreasuryCashBankHub: React.FC = () => {
     return Number(creditCards.reduce((acc, c) => acc + c.usedAmount, 0).toFixed(2));
   }, [creditCards]);
 
-  // Reset to Exact Live Nexus Snapshot (`738,284.19 EGP`)
+  // Reset to Exact Live Nexus Snapshot (738,284.19 EGP)
   const handleResetToLiveNexusSnapshot = () => {
     setAccounts(INITIAL_CASH_BANK_ACCOUNTS);
     setCreditCards(INITIAL_CREDIT_CARDS);
@@ -1024,7 +1024,7 @@ export const TreasuryCashBankHub: React.FC = () => {
     showToast(`تم تسجيل الحركة المالية بنجاح بقيمة ${formatEGP(numericAmount)} في ${sourceAccount.nameAr}`);
   };
 
-  // Pay Monthly Credit Card Installment (`سداد القسط الشهري للكارت`)
+  // Pay Monthly Credit Card Installment (سداد القسط الشهري للكارت)
   const handlePayCardInstallment = (plan: CardInstallmentPlan) => {
     if (plan.status === 'completed' || plan.paidMonths >= plan.totalMonths) return;
 
@@ -1059,7 +1059,7 @@ export const TreasuryCashBankHub: React.FC = () => {
       )
     );
 
-    // 3. Deduct from CIB Corporate Account (`ACC-02`) and record in journal
+    // 3. Deduct from CIB Corporate Account (ACC-02) and record in journal
     setAccounts((prev) =>
       prev.map((acc) =>
         acc.id === 'ACC-02'
@@ -1395,7 +1395,7 @@ export const TreasuryCashBankHub: React.FC = () => {
       </div>
 
       {/* =====================================================================
-          SUB-TAB 1: CASH VAULTS & BANK ACCOUNTS (`أرصدة الخزن والبنوك والتحويلات`)
+          SUB-TAB 1: CASH VAULTS & BANK ACCOUNTS (أرصدة الخزن والبنوك والتحويلات)
          ===================================================================== */}
       {activeSubTab === 'vaults_banks' && (
         <div className="space-y-6">
@@ -1594,7 +1594,7 @@ export const TreasuryCashBankHub: React.FC = () => {
       )}
 
       {/* =====================================================================
-          SUB-TAB 2: CORPORATE CREDIT CARDS & INSTALLMENTS (`حدود كروت الائتمان الـ 7 وجدول الأقساط الشهرية`)
+          SUB-TAB 2: CORPORATE CREDIT CARDS & INSTALLMENTS (حدود كروت الائتمان الـ 7 وجدول الأقساط الشهرية)
          ===================================================================== */}
       {activeSubTab === 'credit_cards' && (
         <div className="space-y-6">
@@ -1697,7 +1697,7 @@ export const TreasuryCashBankHub: React.FC = () => {
             </div>
           </div>
 
-          {/* Credit Card Installments Tracker (`جدول أقساط المشتريات بالكروت`) */}
+          {/* Credit Card Installments Tracker (جدول أقساط المشتريات بالكروت) */}
           <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#192631]/10 pb-4">
               <div>
@@ -1954,7 +1954,7 @@ export const TreasuryCashBankHub: React.FC = () => {
       )}
 
       {/* =====================================================================
-          SUB-TAB 4: E-WORKS LEGACY ERP MIGRATION AUDIT (`/eworks` & `/eworks/review`)
+          SUB-TAB 4: E-WORKS LEGACY ERP MIGRATION AUDIT (`/eworks` & /eworks/review)
          ===================================================================== */}
       {activeSubTab === 'eworks_audit' && (
         <div className="space-y-5">
