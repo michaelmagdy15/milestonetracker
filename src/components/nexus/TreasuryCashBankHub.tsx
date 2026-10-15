@@ -1155,26 +1155,26 @@ export const TreasuryCashBankHub: React.FC = () => {
   };
 
   return (
-    <div dir="rtl" className="space-y-6 text-slate-100">
+    <div dir="rtl" className="space-y-6 text-[#192631]">
       {/* =====================================================================
           1. TOP EXECUTIVE LIQUIDITY BANNER (EXACT LIVE NEXUS NUMBERS)
          ===================================================================== */}
-      <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/40 p-6 shadow-2xl">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between border-b border-slate-800/80 pb-5">
+      <div className="relative overflow-hidden rounded-2xl border border-[#123524]/25 bg-white/80 backdrop-blur-xl p-6 shadow-2xl">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between border-b border-[#192631]/10 pb-5">
           <div>
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-300 border border-emerald-500/30">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#123524]/10 px-3 py-1 text-xs font-bold text-[#123524] border border-[#123524]/25">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                 LIVE ACTPERT NEXUS TREASURY &amp; LIQUIDITY ENGINE
               </span>
-              <span className="rounded-full bg-slate-800/90 px-3 py-1 text-xs font-medium text-slate-300 border border-slate-700">
+              <span className="rounded-full bg-[#192631]/[0.05] px-3 py-1 text-xs font-medium text-[#192631]/85 border border-[#192631]/10">
                 /cashbox • /cashbox/credit-cards • /eworks/review
               </span>
             </div>
-            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white">
+            <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-[#192631]">
               مركز قيادة السيولة التنفيذية، الخزن والبنوك، حدود وأقساط الكروت الـ 7، ومراجعة E-Works
             </h2>
-            <p className="mt-1 text-sm text-slate-400">
+            <p className="mt-1 text-sm text-[#192631]/70">
               مراقبة لحظية لإجمالي السيولة القابلة للصرف، أرصدة الـ 6 خزن وحسابات بنكية، حدود الـ 7 كروت ائتمانية، ومصفوفة ربحية الـ 46 مشروع نشط
             </p>
           </div>
@@ -1192,24 +1192,24 @@ export const TreasuryCashBankHub: React.FC = () => {
               type="button"
               onClick={handleResetToLiveNexusSnapshot}
               title="استعادة لقطة الأرقام الحية من Nexus"
-              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 px-3.5 py-2.5 text-xs font-semibold text-slate-300 transition"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-[#192631]/10 bg-[#192631]/[0.05] hover:bg-[#192631]/[0.12] px-3.5 py-2.5 text-xs font-semibold text-[#192631]/85 transition"
             >
-              <RefreshCw className="h-3.5 w-3.5 text-emerald-400" />
+              <RefreshCw className="h-3.5 w-3.5 text-[#123524]" />
               مزامنة اللقطة الحية
             </button>
           </div>
         </div>
 
         {actionBanner && (
-          <div className="mt-4 flex items-center justify-between rounded-xl border border-emerald-500/40 bg-emerald-500/15 px-4 py-2.5 text-sm font-medium text-emerald-200">
+          <div className="mt-4 flex items-center justify-between rounded-xl border border-[#123524]/25 bg-[#123524]/10 px-4 py-2.5 text-sm font-medium text-[#123524]">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+              <CheckCircle2 className="h-4 w-4 text-[#123524] shrink-0" />
               <span>{actionBanner}</span>
             </div>
             <button
               type="button"
               onClick={() => setActionBanner(null)}
-              className="text-emerald-300 hover:text-white"
+              className="text-[#123524] hover:text-[#192631]"
             >
               <X className="h-4 w-4" />
             </button>
@@ -1219,70 +1219,70 @@ export const TreasuryCashBankHub: React.FC = () => {
         {/* Primary Liquidity KPI Cards */}
         <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
           {/* Card 1: Total Spendable Liquidity */}
-          <div className="rounded-2xl border border-emerald-500/40 bg-slate-950/75 p-5 shadow-inner">
+          <div className="rounded-2xl border border-[#123524]/25 bg-[#f5f5f5]/90 p-5 shadow-inner">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#123524]">
                 إجمالي السيولة المتاحة للصرف (Total Spendable Liquidity)
               </span>
-              <div className="rounded-xl bg-emerald-500/20 p-2.5 text-emerald-300">
+              <div className="rounded-xl bg-[#123524]/10 p-2.5 text-[#123524]">
                 <Wallet className="h-5 w-5" />
               </div>
             </div>
             <div className="mt-3 flex items-baseline justify-between">
-              <p className="text-2xl sm:text-3xl font-black tracking-tight text-white font-mono" dir="ltr">
+              <p className="text-2xl sm:text-3xl font-black tracking-tight text-[#192631] font-mono" dir="ltr">
                 {formatEGP(totalSpendableLiquidity)}
               </p>
-              <span className="rounded-lg bg-emerald-500/20 px-2 py-0.5 text-xs font-semibold text-emerald-300">
+              <span className="rounded-lg bg-[#123524]/10 px-2 py-0.5 text-xs font-semibold text-[#123524]">
                 نقدية + ائتمان متاح
               </span>
             </div>
-            <p className="mt-2 text-xs text-slate-400">
+            <p className="mt-2 text-xs text-[#192631]/70">
               حاصل جمع النقدية الفعلية بالخزن والبنوك ({formatEGP(totalCashAndBankBalance)}) + الرصيد غير المستخدم بالكروت ({formatEGP(totalUnusedCreditCardLimit)})
             </p>
           </div>
 
           {/* Card 2: Actual Cash & Bank Balances */}
-          <div className="rounded-2xl border border-sky-500/35 bg-slate-950/75 p-5 shadow-inner">
+          <div className="rounded-2xl border border-sky-500/35 bg-[#f5f5f5]/90 p-5 shadow-inner">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-sky-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#192631]">
                 النقدية الفعلية بالخزن والبنوك (Actual Cash &amp; Banks)
               </span>
-              <div className="rounded-xl bg-sky-500/20 p-2.5 text-sky-300">
+              <div className="rounded-xl bg-sky-500/20 p-2.5 text-[#192631]">
                 <Landmark className="h-5 w-5" />
               </div>
             </div>
             <div className="mt-3 flex items-baseline justify-between">
-              <p className="text-2xl sm:text-3xl font-black tracking-tight text-white font-mono" dir="ltr">
+              <p className="text-2xl sm:text-3xl font-black tracking-tight text-[#192631] font-mono" dir="ltr">
                 {formatEGP(totalCashAndBankBalance)}
               </p>
-              <span className="rounded-lg bg-sky-500/20 px-2 py-0.5 text-xs font-semibold text-sky-300">
+              <span className="rounded-lg bg-sky-500/20 px-2 py-0.5 text-xs font-semibold text-[#192631]">
                 6 حسابات نشطة
               </span>
             </div>
-            <p className="mt-2 text-xs text-slate-400">
+            <p className="mt-2 text-xs text-[#192631]/70">
               موزعة على خزينة النزهة، بنك CIB، البنك الأهلي NBE (أفراد Debit)، بنك QNB، فودافون كاش، وعهدة المواقع
             </p>
           </div>
 
           {/* Card 3: Unused Credit Card Limits */}
-          <div className="rounded-2xl border border-amber-500/35 bg-slate-950/75 p-5 shadow-inner">
+          <div className="rounded-2xl border border-amber-500/35 bg-[#f5f5f5]/90 p-5 shadow-inner">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#b45309]">
                 الحد الائتماني المتاح بالكروت (Unused Credit Card Limits)
               </span>
-              <div className="rounded-xl bg-amber-500/20 p-2.5 text-amber-300">
+              <div className="rounded-xl bg-amber-500/20 p-2.5 text-[#b45309]">
                 <CreditCard className="h-5 w-5" />
               </div>
             </div>
             <div className="mt-3 flex items-baseline justify-between">
-              <p className="text-2xl sm:text-3xl font-black tracking-tight text-white font-mono" dir="ltr">
+              <p className="text-2xl sm:text-3xl font-black tracking-tight text-[#192631] font-mono" dir="ltr">
                 {formatEGP(totalUnusedCreditCardLimit)}
               </p>
-              <span className="rounded-lg bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-amber-300">
+              <span className="rounded-lg bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-[#b45309]">
                 7 كروت مشتريات
               </span>
             </div>
-            <p className="mt-2 text-xs text-slate-400">
+            <p className="mt-2 text-xs text-[#192631]/70">
               من إجمالي حدود ائتمانية {formatEGP(totalCardCreditLimit)} (المستخدم حالياً: {formatEGP(totalCardUsedAmount)})
             </p>
           </div>
@@ -1290,29 +1290,29 @@ export const TreasuryCashBankHub: React.FC = () => {
 
         {/* Portfolio Counters Strip: 46 Projects | 43 Clients | 63 Contractor Accounts */}
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3">
+          <div className="flex items-center justify-between rounded-xl border border-[#192631]/10 bg-white/80 backdrop-blur-md px-4 py-3">
             <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-indigo-500/20 p-2 text-indigo-300">
+              <div className="rounded-lg bg-[#e04b2a]/10 p-2 text-[#e04b2a]">
                 <Briefcase className="h-4 w-4" />
               </div>
               <div>
-                <div className="text-xs text-slate-400">محفظة المشاريع النشطة (Active Projects Portfolio)</div>
-                <div className="text-sm font-bold text-white">C096 Azad, C063 Madinaty, C091 MV...</div>
+                <div className="text-xs text-[#192631]/70">محفظة المشاريع النشطة (Active Projects Portfolio)</div>
+                <div className="text-sm font-bold text-[#192631]">C096 Azad, C063 Madinaty, C091 MV...</div>
               </div>
             </div>
-            <span className="rounded-lg bg-indigo-500/20 border border-indigo-500/30 px-3 py-1 text-sm font-black text-indigo-300 font-mono">
+            <span className="rounded-lg bg-[#e04b2a]/10 border border-[#e04b2a]/25 px-3 py-1 text-sm font-black text-[#e04b2a] font-mono">
               46 Projects
             </span>
           </div>
 
-          <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3">
+          <div className="flex items-center justify-between rounded-xl border border-[#192631]/10 bg-white/80 backdrop-blur-md px-4 py-3">
             <div className="flex items-center gap-3">
               <div className="rounded-lg bg-teal-500/20 p-2 text-teal-300">
                 <Users className="h-4 w-4" />
               </div>
               <div>
-                <div className="text-xs text-slate-400">حسابات العملاء الفعالة (Client Accounts)</div>
-                <div className="text-sm font-bold text-white">دفعات التعاقد والتمويل والمستخلصات</div>
+                <div className="text-xs text-[#192631]/70">حسابات العملاء الفعالة (Client Accounts)</div>
+                <div className="text-sm font-bold text-[#192631]">دفعات التعاقد والتمويل والمستخلصات</div>
               </div>
             </div>
             <span className="rounded-lg bg-teal-500/20 border border-teal-500/30 px-3 py-1 text-sm font-black text-teal-300 font-mono">
@@ -1320,17 +1320,17 @@ export const TreasuryCashBankHub: React.FC = () => {
             </span>
           </div>
 
-          <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900/90 px-4 py-3">
+          <div className="flex items-center justify-between rounded-xl border border-[#192631]/10 bg-white/80 backdrop-blur-md px-4 py-3">
             <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-rose-500/20 p-2 text-rose-300">
+              <div className="rounded-lg bg-rose-500/20 p-2 text-red-700">
                 <HardHat className="h-4 w-4" />
               </div>
               <div>
-                <div className="text-xs text-slate-400">حسابات المقاولين والمصنعيات (Contractor Accounts)</div>
-                <div className="text-sm font-bold text-white">مقاولي الباطن، اليوميات، وتأمين الأعمال</div>
+                <div className="text-xs text-[#192631]/70">حسابات المقاولين والمصنعيات (Contractor Accounts)</div>
+                <div className="text-sm font-bold text-[#192631]">مقاولي الباطن، اليوميات، وتأمين الأعمال</div>
               </div>
             </div>
-            <span className="rounded-lg bg-rose-500/20 border border-rose-500/30 px-3 py-1 text-sm font-black text-rose-300 font-mono">
+            <span className="rounded-lg bg-rose-500/20 border border-rose-500/30 px-3 py-1 text-sm font-black text-red-700 font-mono">
               63 Accounts
             </span>
           </div>
@@ -1340,14 +1340,14 @@ export const TreasuryCashBankHub: React.FC = () => {
       {/* =====================================================================
           SUB-NAVIGATION TABS (4 TABS)
          ===================================================================== */}
-      <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-slate-800 bg-slate-900/80 p-2">
+      <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-2">
         <button
           type="button"
           onClick={() => setActiveSubTab('vaults_banks')}
           className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition ${
             activeSubTab === 'vaults_banks'
               ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-900/40'
-              : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+              : 'text-[#192631]/85 hover:bg-[#192631]/[0.05] hover:text-[#192631]'
           }`}
         >
           <Building2 className="h-4 w-4" />
@@ -1360,7 +1360,7 @@ export const TreasuryCashBankHub: React.FC = () => {
           className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition ${
             activeSubTab === 'credit_cards'
               ? 'bg-amber-600 text-white shadow-lg shadow-amber-900/40'
-              : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+              : 'text-[#192631]/85 hover:bg-[#192631]/[0.05] hover:text-[#192631]'
           }`}
         >
           <CreditCard className="h-4 w-4" />
@@ -1372,8 +1372,8 @@ export const TreasuryCashBankHub: React.FC = () => {
           onClick={() => setActiveSubTab('projects_matrix')}
           className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition ${
             activeSubTab === 'projects_matrix'
-              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-900/40'
-              : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+              ? 'bg-[#e04b2a] text-[#192631] shadow-lg shadow-indigo-900/40'
+              : 'text-[#192631]/85 hover:bg-[#192631]/[0.05] hover:text-[#192631]'
           }`}
         >
           <TrendingUp className="h-4 w-4" />
@@ -1385,8 +1385,8 @@ export const TreasuryCashBankHub: React.FC = () => {
           onClick={() => setActiveSubTab('eworks_audit')}
           className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold transition ${
             activeSubTab === 'eworks_audit'
-              ? 'bg-purple-600 text-white shadow-lg shadow-purple-900/40'
-              : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+              ? 'bg-purple-600 text-[#192631] shadow-lg shadow-purple-900/40'
+              : 'text-[#192631]/85 hover:bg-[#192631]/[0.05] hover:text-[#192631]'
           }`}
         >
           <FileSpreadsheet className="h-4 w-4" />
@@ -1414,59 +1414,59 @@ export const TreasuryCashBankHub: React.FC = () => {
               return (
                 <div
                   key={acc.id}
-                  className="flex flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/90 p-5 hover:border-sky-500/40 transition shadow-lg"
+                  className="flex flex-col justify-between rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 hover:border-sky-500/40 transition shadow-lg"
                 >
                   <div>
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="rounded-xl bg-sky-500/15 p-3 text-sky-400 border border-sky-500/30">
+                        <div className="rounded-xl bg-sky-500/15 p-3 text-[#192631] border border-sky-500/30">
                           <IconComponent className="h-5 w-5" />
                         </div>
                         <div>
-                          <span className="text-xs font-mono text-slate-400">{acc.accountNumber}</span>
-                          <h3 className="text-base font-bold text-white leading-snug">{acc.nameAr}</h3>
-                          <p className="text-xs text-slate-400">{acc.bankName}</p>
+                          <span className="text-xs font-mono text-[#192631]/70">{acc.accountNumber}</span>
+                          <h3 className="text-base font-bold text-[#192631] leading-snug">{acc.nameAr}</h3>
+                          <p className="text-xs text-[#192631]/70">{acc.bankName}</p>
                         </div>
                       </div>
-                      <span className="rounded-md bg-slate-800 px-2 py-0.5 text-xs font-mono font-bold text-emerald-400 border border-slate-700">
+                      <span className="rounded-md bg-[#192631]/[0.05] px-2 py-0.5 text-xs font-mono font-bold text-[#123524] border border-[#192631]/10">
                         {acc.currency}
                       </span>
                     </div>
 
-                    <div className="mt-4 rounded-xl bg-slate-950/80 p-3.5 border border-slate-800/80">
-                      <div className="text-xs text-slate-400">الرصيد الفعلي المتاح حالياً</div>
-                      <div className="mt-1 text-2xl font-black text-emerald-400 font-mono" dir="ltr">
+                    <div className="mt-4 rounded-xl bg-[#f5f5f5]/90 p-3.5 border border-[#192631]/10">
+                      <div className="text-xs text-[#192631]/70">الرصيد الفعلي المتاح حالياً</div>
+                      <div className="mt-1 text-2xl font-black text-[#123524] font-mono" dir="ltr">
                         {formatEGP(acc.currentBalance)}
                       </div>
                     </div>
 
                     <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
-                      <div className="rounded-lg bg-slate-800/60 p-2">
-                        <div className="text-slate-400">رصيد افتتاحي</div>
-                        <div className="mt-0.5 font-mono font-semibold text-slate-200" dir="ltr">
+                      <div className="rounded-lg bg-[#192631]/[0.05] p-2">
+                        <div className="text-[#192631]/70">رصيد افتتاحي</div>
+                        <div className="mt-0.5 font-mono font-semibold text-[#192631]" dir="ltr">
                           {acc.openingBalance.toLocaleString('en-US')}
                         </div>
                       </div>
-                      <div className="rounded-lg bg-emerald-950/40 border border-emerald-500/20 p-2">
-                        <div className="text-emerald-400 flex items-center justify-center gap-0.5">
+                      <div className="rounded-lg bg-emerald-950/40 border border-[#123524]/25 p-2">
+                        <div className="text-[#123524] flex items-center justify-center gap-0.5">
                           <ArrowDownRight className="h-3 w-3" /> إجمالي الوارد
                         </div>
-                        <div className="mt-0.5 font-mono font-semibold text-emerald-300" dir="ltr">
+                        <div className="mt-0.5 font-mono font-semibold text-[#123524]" dir="ltr">
                           {acc.totalInflows.toLocaleString('en-US')}
                         </div>
                       </div>
                       <div className="rounded-lg bg-rose-950/40 border border-rose-500/20 p-2">
-                        <div className="text-rose-400 flex items-center justify-center gap-0.5">
+                        <div className="text-red-700 flex items-center justify-center gap-0.5">
                           <ArrowUpRight className="h-3 w-3" /> إجمالي المنصرف
                         </div>
-                        <div className="mt-0.5 font-mono font-semibold text-rose-300" dir="ltr">
+                        <div className="mt-0.5 font-mono font-semibold text-red-700" dir="ltr">
                           {acc.totalOutflows.toLocaleString('en-US')}
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs text-slate-400">
+                  <div className="mt-4 flex items-center justify-between border-t border-[#192631]/10 pt-3 text-xs text-[#192631]/70">
                     <span>المسؤول: {acc.custodianAr}</span>
                     <button
                       type="button"
@@ -1474,7 +1474,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                         setTxAccountId(acc.id);
                         setIsTxModalOpen(true);
                       }}
-                      className="text-sky-400 hover:text-sky-300 font-semibold"
+                      className="text-[#192631] hover:text-[#192631] font-semibold"
                     >
                       + حركة على الحساب
                     </button>
@@ -1487,25 +1487,25 @@ export const TreasuryCashBankHub: React.FC = () => {
           {/* Summary Bar for the 6 Accounts */}
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-sky-500/30 bg-sky-950/20 px-5 py-4">
             <div className="flex items-center gap-3">
-              <ShieldCheck className="h-5 w-5 text-sky-400" />
-              <span className="text-sm font-bold text-slate-200">
+              <ShieldCheck className="h-5 w-5 text-[#192631]" />
+              <span className="text-sm font-bold text-[#192631]">
                 إجمالي النقدية الفعلية المجمّعة بالخزن والبنوك الـ 6 (مطابق لشاشة /cashbox):
               </span>
             </div>
-            <span className="text-xl font-black text-sky-300 font-mono" dir="ltr">
+            <span className="text-xl font-black text-[#192631] font-mono" dir="ltr">
               {formatEGP(totalCashAndBankBalance)}
             </span>
           </div>
 
           {/* Live Treasury Transaction Journal */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#192631]/10 pb-4">
               <div>
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <Receipt className="h-5 w-5 text-emerald-400" />
+                <h3 className="text-lg font-bold text-[#192631] flex items-center gap-2">
+                  <Receipt className="h-5 w-5 text-[#123524]" />
                   دفتر يومية الخزينة والتحويلات البنكية الحية (Live Treasury Transaction Journal)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#192631]/70">
                   سجل الإيداعات، المدفوعات للموردين والمقاولين، والتحويلات الداخلية بين الحسابات الـ 6
                 </p>
               </div>
@@ -1522,7 +1522,7 @@ export const TreasuryCashBankHub: React.FC = () => {
             <div className="mt-4 overflow-x-auto">
               <table className="w-full text-right text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800 text-xs text-slate-400 bg-slate-950/60">
+                  <tr className="border-b border-[#192631]/10 text-xs text-[#192631]/70 bg-[#f5f5f5]/90">
                     <th className="py-3 px-3">رقم المرجع والتاريخ</th>
                     <th className="py-3 px-3">نوع الحركة</th>
                     <th className="py-3 px-3">الحساب البنكي / الخزينة</th>
@@ -1531,53 +1531,53 @@ export const TreasuryCashBankHub: React.FC = () => {
                     <th className="py-3 px-3 text-left">المبلغ (EGP)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/70">
+                <tbody className="divide-y divide-[#192631]/10">
                   {journalEntries.map((entry) => (
-                    <tr key={entry.id} className="hover:bg-slate-800/40 transition">
+                    <tr key={entry.id} className="hover:bg-[#192631]/[0.05] transition">
                       <td className="py-3 px-3">
-                        <div className="font-mono text-xs font-bold text-slate-200">{entry.referenceNo}</div>
-                        <div className="text-xs text-slate-500">{entry.date}</div>
+                        <div className="font-mono text-xs font-bold text-[#192631]">{entry.referenceNo}</div>
+                        <div className="text-xs text-[#192631]/60">{entry.date}</div>
                       </td>
                       <td className="py-3 px-3">
                         {entry.txType === 'deposit' && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-bold text-emerald-300 border border-emerald-500/30">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[#123524]/10 px-2.5 py-1 text-xs font-bold text-[#123524] border border-[#123524]/25">
                             <ArrowDownRight className="h-3.5 w-3.5" /> إيداع / تحصيل
                           </span>
                         )}
                         {entry.txType === 'payment' && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/15 px-2.5 py-1 text-xs font-bold text-rose-300 border border-rose-500/30">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-rose-500/15 px-2.5 py-1 text-xs font-bold text-red-700 border border-rose-500/30">
                             <ArrowUpRight className="h-3.5 w-3.5" /> صرف / سداد
                           </span>
                         )}
                         {entry.txType === 'transfer' && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-sky-500/15 px-2.5 py-1 text-xs font-bold text-sky-300 border border-sky-500/30">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-sky-500/15 px-2.5 py-1 text-xs font-bold text-[#192631] border border-sky-500/30">
                             <ArrowLeftRight className="h-3.5 w-3.5" /> تحويل داخلي
                           </span>
                         )}
                       </td>
                       <td className="py-3 px-3">
-                        <div className="font-semibold text-white">{entry.accountNameAr}</div>
+                        <div className="font-semibold text-[#192631]">{entry.accountNameAr}</div>
                         {entry.targetAccountNameAr && (
-                          <div className="text-xs text-sky-400">← إلى: {entry.targetAccountNameAr}</div>
+                          <div className="text-xs text-[#192631]">← إلى: {entry.targetAccountNameAr}</div>
                         )}
                       </td>
                       <td className="py-3 px-3">
-                        <span className="rounded-lg bg-indigo-500/15 border border-indigo-500/30 px-2.5 py-1 font-mono text-xs font-bold text-indigo-300">
+                        <span className="rounded-lg bg-[#e04b2a]/10 border border-[#e04b2a]/25 px-2.5 py-1 font-mono text-xs font-bold text-[#e04b2a]">
                           {entry.projectCode}
                         </span>
                       </td>
                       <td className="py-3 px-3">
-                        <div className="font-semibold text-slate-200">{entry.counterpartyAr}</div>
-                        <div className="text-xs text-slate-400">{entry.categoryAr} — {entry.notesAr}</div>
+                        <div className="font-semibold text-[#192631]">{entry.counterpartyAr}</div>
+                        <div className="text-xs text-[#192631]/70">{entry.categoryAr} — {entry.notesAr}</div>
                       </td>
                       <td className="py-3 px-3 text-left font-mono font-bold" dir="ltr">
                         <span
                           className={
                             entry.txType === 'deposit'
-                              ? 'text-emerald-400'
+                              ? 'text-[#123524]'
                               : entry.txType === 'payment'
-                              ? 'text-rose-400'
-                              : 'text-sky-400'
+                              ? 'text-red-700'
+                              : 'text-[#192631]'
                           }
                         >
                           {entry.txType === 'deposit' ? '+' : entry.txType === 'payment' ? '-' : ''}
@@ -1599,23 +1599,23 @@ export const TreasuryCashBankHub: React.FC = () => {
       {activeSubTab === 'credit_cards' && (
         <div className="space-y-6">
           {/* 7 Credit Cards Grid */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
-            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#192631]/10 pb-4">
               <div>
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <CreditCard className="h-5 w-5 text-amber-400" />
+                <h3 className="text-lg font-bold text-[#192631] flex items-center gap-2">
+                  <CreditCard className="h-5 w-5 text-[#b45309]" />
                   محفظة كروت الائتمان والمشتريات الـ 7 (/cashbox/credit-cards)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#192631]/70">
                   إجمالي الحدود الائتمانية: {formatEGP(totalCardCreditLimit)} | المسحوب: {formatEGP(totalCardUsedAmount)} |{' '}
-                  <span className="text-amber-300 font-bold">
+                  <span className="text-[#b45309] font-bold">
                     الحد الائتماني المتاح حالياً: {formatEGP(totalUnusedCreditCardLimit)}
                   </span>
                 </p>
               </div>
               <div className="rounded-xl bg-amber-500/15 border border-amber-500/30 px-4 py-2 text-right">
-                <div className="text-[11px] text-amber-300">الرصيد المتاح بالكروت الـ 7</div>
-                <div className="text-lg font-black text-white font-mono" dir="ltr">
+                <div className="text-[11px] text-[#b45309]">الرصيد المتاح بالكروت الـ 7</div>
+                <div className="text-lg font-black text-[#192631] font-mono" dir="ltr">
                   {formatEGP(totalUnusedCreditCardLimit)}
                 </div>
               </div>
@@ -1630,38 +1630,38 @@ export const TreasuryCashBankHub: React.FC = () => {
                 return (
                   <div
                     key={card.id}
-                    className="flex flex-col justify-between rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-5 hover:border-amber-500/40 transition shadow-md"
+                    className="flex flex-col justify-between rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-xl p-5 hover:border-amber-500/40 transition shadow-md"
                   >
                     <div>
                       <div className="flex items-start justify-between gap-2">
                         <div>
-                          <span className="inline-block rounded-md bg-amber-500/15 px-2 py-0.5 text-[11px] font-bold text-amber-300 border border-amber-500/30">
+                          <span className="inline-block rounded-md bg-amber-500/15 px-2 py-0.5 text-[11px] font-bold text-[#b45309] border border-amber-500/30">
                             كارت #{index + 1} • {card.bankName}
                           </span>
-                          <h4 className="mt-1.5 text-base font-bold text-white">{card.cardNameAr}</h4>
-                          <p className="text-xs font-mono text-slate-400 mt-0.5" dir="ltr">
+                          <h4 className="mt-1.5 text-base font-bold text-[#192631]">{card.cardNameAr}</h4>
+                          <p className="text-xs font-mono text-[#192631]/70 mt-0.5" dir="ltr">
                             {card.cardNumberMasked}
                           </p>
                         </div>
-                        <CreditCard className="h-6 w-6 text-amber-400 shrink-0" />
+                        <CreditCard className="h-6 w-6 text-[#b45309] shrink-0" />
                       </div>
 
-                      <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl bg-slate-900/90 p-3 border border-slate-800 text-xs">
+                      <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl bg-white/80 backdrop-blur-md p-3 border border-[#192631]/10 text-xs">
                         <div>
-                          <div className="text-slate-400">الحد الكلي</div>
-                          <div className="mt-0.5 font-mono font-bold text-slate-200" dir="ltr">
+                          <div className="text-[#192631]/70">الحد الكلي</div>
+                          <div className="mt-0.5 font-mono font-bold text-[#192631]" dir="ltr">
                             {card.totalLimit.toLocaleString('en-US')}
                           </div>
                         </div>
                         <div>
-                          <div className="text-rose-400">المستخدم</div>
-                          <div className="mt-0.5 font-mono font-bold text-rose-300" dir="ltr">
+                          <div className="text-red-700">المستخدم</div>
+                          <div className="mt-0.5 font-mono font-bold text-red-700" dir="ltr">
                             {card.usedAmount.toLocaleString('en-US')}
                           </div>
                         </div>
                         <div>
-                          <div className="text-emerald-400 font-bold">المتاح للصرف</div>
-                          <div className="mt-0.5 font-mono font-black text-emerald-300" dir="ltr">
+                          <div className="text-[#123524] font-bold">المتاح للصرف</div>
+                          <div className="mt-0.5 font-mono font-black text-[#123524]" dir="ltr">
                             {card.availableLimit.toLocaleString('en-US')}
                           </div>
                         </div>
@@ -1670,10 +1670,10 @@ export const TreasuryCashBankHub: React.FC = () => {
                       {/* Utilization Bar */}
                       <div className="mt-3">
                         <div className="flex items-center justify-between text-xs mb-1">
-                          <span className="text-slate-400">نسبة الاستخدام (Utilization)</span>
-                          <span className="font-mono font-bold text-amber-300">{utilizationPct}%</span>
+                          <span className="text-[#192631]/70">نسبة الاستخدام (Utilization)</span>
+                          <span className="font-mono font-bold text-[#b45309]">{utilizationPct}%</span>
                         </div>
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-[#192631]/[0.05]">
                           <div
                             className={`h-full rounded-full ${
                               utilizationPct > 50 ? 'bg-amber-500' : 'bg-emerald-500'
@@ -1684,10 +1684,10 @@ export const TreasuryCashBankHub: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="mt-4 border-t border-slate-800/80 pt-3 flex items-center justify-between text-xs text-slate-400">
+                    <div className="mt-4 border-t border-[#192631]/10 pt-3 flex items-center justify-between text-xs text-[#192631]/70">
                       <span>حامل الكارت: {card.cardholderAr}</span>
-                      <span className="inline-flex items-center gap-1 text-slate-300 font-mono">
-                        <Calendar className="h-3 w-3 text-amber-400" />
+                      <span className="inline-flex items-center gap-1 text-[#192631]/85 font-mono">
+                        <Calendar className="h-3 w-3 text-[#b45309]" />
                         تقفيل يوم {card.statementClosingDay} / سداد يوم {card.paymentDueDay}
                       </span>
                     </div>
@@ -1698,18 +1698,18 @@ export const TreasuryCashBankHub: React.FC = () => {
           </div>
 
           {/* Credit Card Installments Tracker (`جدول أقساط المشتريات بالكروت`) */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#192631]/10 pb-4">
               <div>
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <Layers className="h-5 w-5 text-emerald-400" />
+                <h3 className="text-lg font-bold text-[#192631] flex items-center gap-2">
+                  <Layers className="h-5 w-5 text-[#123524]" />
                   جدول أقساط المشتريات بالكروت (Credit Card Installment Plans - أقساط الكروت)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#192631]/70">
                   خطط التقسيط على 6 و12 شهراً بدون فوائد (0% لمشتريات الخامات، السيراميك، التكييفات، والعدد الهندسية) مع إمكانية سداد القسط الشهري وتعلية الحد المتاح فوراً
                 </p>
               </div>
-              <span className="rounded-xl bg-emerald-500/15 border border-emerald-500/30 px-3 py-1.5 text-xs font-bold text-emerald-300">
+              <span className="rounded-xl bg-[#123524]/10 border border-[#123524]/25 px-3 py-1.5 text-xs font-bold text-[#123524]">
                 إجمالي الأقساط الشهرية الجارية:{' '}
                 {formatEGP(
                   installmentPlans
@@ -1722,7 +1722,7 @@ export const TreasuryCashBankHub: React.FC = () => {
             <div className="mt-4 overflow-x-auto">
               <table className="w-full text-right text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800 bg-slate-950/60 text-xs text-slate-400">
+                  <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-xs text-[#192631]/70">
                     <th className="py-3 px-3">الكارت والبنك</th>
                     <th className="py-3 px-3">المورد / التاجر وبنود الخامات</th>
                     <th className="py-3 px-3">المشروع</th>
@@ -1733,49 +1733,49 @@ export const TreasuryCashBankHub: React.FC = () => {
                     <th className="py-3 px-3 text-center">إجراء السداد</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/70">
+                <tbody className="divide-y divide-[#192631]/10">
                   {installmentPlans.map((plan) => {
                     const remainingMonths = plan.totalMonths - plan.paidMonths;
                     return (
-                      <tr key={plan.id} className="hover:bg-slate-800/40 transition">
+                      <tr key={plan.id} className="hover:bg-[#192631]/[0.05] transition">
                         <td className="py-3.5 px-3">
-                          <div className="font-bold text-white">{plan.cardNameAr}</div>
-                          <span className="inline-block mt-0.5 rounded bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-300">
+                          <div className="font-bold text-[#192631]">{plan.cardNameAr}</div>
+                          <span className="inline-block mt-0.5 rounded bg-[#123524]/10 px-2 py-0.5 text-[11px] font-semibold text-[#123524]">
                             تقسيط {plan.totalMonths} شهور ({plan.interestRatePercent}% فوائد)
                           </span>
                         </td>
                         <td className="py-3.5 px-3">
-                          <div className="font-semibold text-slate-200">{plan.merchantAr}</div>
-                          <div className="text-xs text-slate-400">{plan.materialDescriptionAr}</div>
+                          <div className="font-semibold text-[#192631]">{plan.merchantAr}</div>
+                          <div className="text-xs text-[#192631]/70">{plan.materialDescriptionAr}</div>
                         </td>
                         <td className="py-3.5 px-3">
-                          <span className="rounded-lg bg-indigo-500/15 border border-indigo-500/30 px-2.5 py-1 font-mono text-xs font-bold text-indigo-300">
+                          <span className="rounded-lg bg-[#e04b2a]/10 border border-[#e04b2a]/25 px-2.5 py-1 font-mono text-xs font-bold text-[#e04b2a]">
                             {plan.projectCode}
                           </span>
                         </td>
-                        <td className="py-3.5 px-3 text-left font-mono font-semibold text-slate-200" dir="ltr">
+                        <td className="py-3.5 px-3 text-left font-mono font-semibold text-[#192631]" dir="ltr">
                           {formatEGP(plan.totalPurchaseAmount)}
                         </td>
-                        <td className="py-3.5 px-3 text-left font-mono font-bold text-amber-300" dir="ltr">
+                        <td className="py-3.5 px-3 text-left font-mono font-bold text-[#b45309]" dir="ltr">
                           {formatEGP(plan.monthlyInstallment)}
                         </td>
                         <td className="py-3.5 px-3">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono text-xs font-bold text-emerald-400">
+                            <span className="font-mono text-xs font-bold text-[#123524]">
                               {plan.paidMonths}/{plan.totalMonths} مدفوع
                             </span>
-                            <span className="text-xs text-slate-400">
+                            <span className="text-xs text-[#192631]/70">
                               (متبقي {remainingMonths} أقساط)
                             </span>
                           </div>
-                          <div className="mt-1 h-1.5 w-28 overflow-hidden rounded-full bg-slate-800">
+                          <div className="mt-1 h-1.5 w-28 overflow-hidden rounded-full bg-[#192631]/[0.05]">
                             <div
                               className="h-full bg-emerald-500"
                               style={{ width: `${(plan.paidMonths / plan.totalMonths) * 100}%` }}
                             />
                           </div>
                         </td>
-                        <td className="py-3.5 px-3 font-mono text-xs text-slate-300">{plan.nextDueDate}</td>
+                        <td className="py-3.5 px-3 font-mono text-xs text-[#192631]/85">{plan.nextDueDate}</td>
                         <td className="py-3.5 px-3 text-center">
                           {plan.status === 'active' ? (
                             <button
@@ -1787,7 +1787,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                               سداد القسط الشهري
                             </button>
                           ) : (
-                            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2.5 py-1 text-xs font-bold text-emerald-300">
+                            <span className="inline-flex items-center gap-1 rounded-full bg-[#123524]/10 px-2.5 py-1 text-xs font-bold text-[#123524]">
                               <CheckCircle2 className="h-3.5 w-3.5" /> مكتمل السداد
                             </span>
                           )}
@@ -1808,34 +1808,34 @@ export const TreasuryCashBankHub: React.FC = () => {
       {activeSubTab === 'projects_matrix' && (
         <div className="space-y-5">
           {/* Search & Filters Bar */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div>
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5 text-indigo-400" />
+                <h3 className="text-lg font-bold text-[#192631] flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-[#e04b2a]" />
                   مصفوفة ربحية وموقف السيولة للـ 46 مشروع نشط (46 Active Projects Profitability &amp; Cashflow Matrix)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#192631]/70">
                   متابعة قيمة التعاقد، إجمالي المتحصلات من العميل، المصروفات الفعلية (مشتريات + مقاولين + يوميات)، صافي سيولة كل مشروع، ونسبة الربح والإشراف
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-2.5">
                 <div className="relative">
-                  <Search className="h-4 w-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2" />
+                  <Search className="h-4 w-4 text-[#192631]/70 absolute right-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     value={projectSearch}
                     onChange={(e) => setProjectSearch(e.target.value)}
                     placeholder="ابحث بكود المشروع (C096 Azad, C063...)"
-                    className="rounded-xl border border-slate-700 bg-slate-950 pr-9 pl-3 py-2 text-xs text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none w-64"
+                    className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 pr-9 pl-3 py-2 text-xs text-[#192631] placeholder-[#192631]/40 focus:border-indigo-500 focus:outline-none w-64"
                   />
                 </div>
 
                 <select
                   value={projectZoneFilter}
                   onChange={(e) => setProjectZoneFilter(e.target.value)}
-                  className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-indigo-500 focus:outline-none"
+                  className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631] focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="ALL">جميع المناطق الجغرافية (46)</option>
                   <option value="التجمع الخامس">التجمع الخامس</option>
@@ -1850,7 +1850,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                 <select
                   value={projectStatusFilter}
                   onChange={(e) => setProjectStatusFilter(e.target.value)}
-                  className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-indigo-500 focus:outline-none"
+                  className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631] focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="ALL">كل الحالات التنفيذية</option>
                   <option value="active">قيد التنفيذ والتأسيس</option>
@@ -1862,36 +1862,36 @@ export const TreasuryCashBankHub: React.FC = () => {
 
             {/* Totals Summary Strip for Filtered Projects */}
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <div className="rounded-xl bg-slate-950/80 border border-slate-800 p-3">
-                <div className="text-xs text-slate-400">إجمالي قيم التعاقدات ({filteredProjects.length} مشروع)</div>
-                <div className="mt-1 font-mono text-base font-black text-white" dir="ltr">
+              <div className="rounded-xl bg-[#f5f5f5]/90 border border-[#192631]/10 p-3">
+                <div className="text-xs text-[#192631]/70">إجمالي قيم التعاقدات ({filteredProjects.length} مشروع)</div>
+                <div className="mt-1 font-mono text-base font-black text-[#192631]" dir="ltr">
                   {formatEGP(projectPortfolioTotals.contractValue)}
                 </div>
               </div>
-              <div className="rounded-xl bg-slate-950/80 border border-emerald-500/20 p-3">
-                <div className="text-xs text-emerald-400">إجمالي المتحصلات من العملاء</div>
-                <div className="mt-1 font-mono text-base font-black text-emerald-300" dir="ltr">
+              <div className="rounded-xl bg-[#f5f5f5]/90 border border-[#123524]/25 p-3">
+                <div className="text-xs text-[#123524]">إجمالي المتحصلات من العملاء</div>
+                <div className="mt-1 font-mono text-base font-black text-[#123524]" dir="ltr">
                   {formatEGP(projectPortfolioTotals.clientCollections)}
                 </div>
               </div>
-              <div className="rounded-xl bg-slate-950/80 border border-rose-500/20 p-3">
-                <div className="text-xs text-rose-400">إجمالي المصروفات الفعلية والتوريدات</div>
-                <div className="mt-1 font-mono text-base font-black text-rose-300" dir="ltr">
+              <div className="rounded-xl bg-[#f5f5f5]/90 border border-rose-500/20 p-3">
+                <div className="text-xs text-red-700">إجمالي المصروفات الفعلية والتوريدات</div>
+                <div className="mt-1 font-mono text-base font-black text-red-700" dir="ltr">
                   {formatEGP(projectPortfolioTotals.actualExpenses)}
                 </div>
               </div>
-              <div className="rounded-xl bg-slate-950/80 border border-indigo-500/30 p-3">
-                <div className="text-xs text-indigo-300">صافي فائض السيولة والربحية التشغيلية</div>
-                <div className="mt-1 font-mono text-base font-black text-indigo-300" dir="ltr">
+              <div className="rounded-xl bg-[#f5f5f5]/90 border border-[#e04b2a]/25 p-3">
+                <div className="text-xs text-[#e04b2a]">صافي فائض السيولة والربحية التشغيلية</div>
+                <div className="mt-1 font-mono text-base font-black text-[#e04b2a]" dir="ltr">
                   {formatEGP(projectPortfolioTotals.netCashPosition)}
                 </div>
               </div>
             </div>
 
             {/* 46 Projects Table */}
-            <div className="mt-4 overflow-x-auto max-h-[560px] overflow-y-auto rounded-xl border border-slate-800">
+            <div className="mt-4 overflow-x-auto max-h-[560px] overflow-y-auto rounded-xl border border-[#192631]/10">
               <table className="w-full text-right text-sm">
-                <thead className="sticky top-0 bg-slate-950 text-xs text-slate-400 border-b border-slate-800 z-10">
+                <thead className="sticky top-0 bg-[#f5f5f5]/90 text-xs text-[#192631]/70 border-b border-[#192631]/10 z-10">
                   <tr>
                     <th className="py-3 px-3">#</th>
                     <th className="py-3 px-3">كود واسم المشروع</th>
@@ -1904,43 +1904,43 @@ export const TreasuryCashBankHub: React.FC = () => {
                     <th className="py-3 px-3 text-center">نسبة الإشراف</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/70">
+                <tbody className="divide-y divide-[#192631]/10">
                   {filteredProjects.map((proj, index) => (
-                    <tr key={proj.id} className="hover:bg-slate-800/40 transition">
-                      <td className="py-3 px-3 font-mono text-xs text-slate-500">{index + 1}</td>
+                    <tr key={proj.id} className="hover:bg-[#192631]/[0.05] transition">
+                      <td className="py-3 px-3 font-mono text-xs text-[#192631]/60">{index + 1}</td>
                       <td className="py-3 px-3">
                         <div className="flex items-center gap-2">
-                          <span className="rounded-md bg-indigo-500/20 border border-indigo-500/30 px-2 py-0.5 font-mono text-xs font-bold text-indigo-300">
+                          <span className="rounded-md bg-[#e04b2a]/10 border border-[#e04b2a]/25 px-2 py-0.5 font-mono text-xs font-bold text-[#e04b2a]">
                             {proj.projectCode}
                           </span>
-                          <span className="font-bold text-white">{proj.compoundName}</span>
+                          <span className="font-bold text-[#192631]">{proj.compoundName}</span>
                         </div>
-                        <div className="text-xs text-slate-400 mt-0.5">{proj.projectNameAr}</div>
+                        <div className="text-xs text-[#192631]/70 mt-0.5">{proj.projectNameAr}</div>
                       </td>
                       <td className="py-3 px-3">
-                        <div className="font-medium text-slate-200">{proj.clientNameAr}</div>
-                        <div className="text-xs text-slate-500">{proj.zone}</div>
+                        <div className="font-medium text-[#192631]">{proj.clientNameAr}</div>
+                        <div className="text-xs text-[#192631]/60">{proj.zone}</div>
                       </td>
-                      <td className="py-3 px-3 text-left font-mono text-xs text-slate-300" dir="ltr">
+                      <td className="py-3 px-3 text-left font-mono text-xs text-[#192631]/85" dir="ltr">
                         {formatEGP(proj.contractValue)}
                       </td>
-                      <td className="py-3 px-3 text-left font-mono text-xs font-bold text-emerald-400" dir="ltr">
+                      <td className="py-3 px-3 text-left font-mono text-xs font-bold text-[#123524]" dir="ltr">
                         {formatEGP(proj.clientCollections)}
                       </td>
-                      <td className="py-3 px-3 text-left font-mono text-xs font-bold text-rose-400" dir="ltr">
+                      <td className="py-3 px-3 text-left font-mono text-xs font-bold text-red-700" dir="ltr">
                         {formatEGP(proj.actualExpenses)}
                       </td>
-                      <td className="py-3 px-3 text-left font-mono text-xs font-black text-sky-300" dir="ltr">
+                      <td className="py-3 px-3 text-left font-mono text-xs font-black text-[#192631]" dir="ltr">
                         +{formatEGP(proj.netCashPosition)}
                       </td>
                       <td className="py-3 px-3 text-center">
-                        <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 font-mono text-xs font-bold text-emerald-300">
+                        <span className="inline-flex items-center gap-0.5 rounded-full bg-[#123524]/10 border border-[#123524]/25 px-2.5 py-0.5 font-mono text-xs font-bold text-[#123524]">
                           <Percent className="h-3 w-3" />
                           {proj.actualProfitMarginPct}%
                         </span>
                       </td>
                       <td className="py-3 px-3 text-center">
-                        <span className="inline-flex items-center rounded-lg bg-slate-800 px-2.5 py-0.5 font-mono text-xs font-semibold text-amber-300">
+                        <span className="inline-flex items-center rounded-lg bg-[#192631]/[0.05] px-2.5 py-0.5 font-mono text-xs font-semibold text-[#b45309]">
                           {proj.supervisionFeePct}%
                         </span>
                       </td>
@@ -1958,16 +1958,16 @@ export const TreasuryCashBankHub: React.FC = () => {
          ===================================================================== */}
       {activeSubTab === 'eworks_audit' && (
         <div className="space-y-5">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-4">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between border-b border-[#192631]/10 pb-4">
               <div>
                 <div className="flex items-center gap-2">
-                  <FileSpreadsheet className="h-5 w-5 text-purple-400" />
-                  <h3 className="text-lg font-bold text-white">
+                  <FileSpreadsheet className="h-5 w-5 text-[#192631]" />
+                  <h3 className="text-lg font-bold text-[#192631]">
                     مراجعة ترحيل بيانات E-Works للنظام الجديد (E-Works Legacy ERP Migration Audit)
                   </h3>
                 </div>
-                <p className="mt-1 text-xs text-slate-400">
+                <p className="mt-1 text-xs text-[#192631]/70">
                   مطابقة الأرصدة المرحّلة من نظام E-Works القديم (/eworks &amp; /eworks/review) مع القيود الفعلية في Actpert Nexus للمستخلصات، أرصدة العملاء، أوامر الشراء، وكشوف المقاولين
                 </p>
               </div>
@@ -1978,8 +1978,8 @@ export const TreasuryCashBankHub: React.FC = () => {
                   onClick={() => setEworksFilter('ALL')}
                   className={`rounded-xl px-3.5 py-2 text-xs font-bold transition ${
                     eworksFilter === 'ALL'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-purple-600 text-[#192631]'
+                      : 'bg-[#192631]/[0.05] text-[#192631]/85 hover:bg-[#192631]/[0.12]'
                   }`}
                 >
                   كل السجلات ({eworksRecords.length})
@@ -1990,7 +1990,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                   className={`rounded-xl px-3.5 py-2 text-xs font-bold transition ${
                     eworksFilter === 'verified'
                       ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-800 text-emerald-300 hover:bg-slate-700'
+                      : 'bg-[#192631]/[0.05] text-[#123524] hover:bg-[#192631]/[0.12]'
                   }`}
                 >
                   Verified ✅ ({eworksRecords.filter((r) => r.auditStatus === 'verified').length})
@@ -2001,7 +2001,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                   className={`rounded-xl px-3.5 py-2 text-xs font-bold transition ${
                     eworksFilter === 'flagged'
                       ? 'bg-amber-600 text-white'
-                      : 'bg-slate-800 text-amber-300 hover:bg-slate-700'
+                      : 'bg-[#192631]/[0.05] text-[#b45309] hover:bg-[#192631]/[0.12]'
                   }`}
                 >
                   Flagged for Review ⚠️ ({eworksRecords.filter((r) => r.auditStatus === 'flagged').length})
@@ -2012,11 +2012,11 @@ export const TreasuryCashBankHub: React.FC = () => {
             {/* Secondary Filter Bar */}
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-2">
-                <Filter className="h-4 w-4 text-slate-400" />
+                <Filter className="h-4 w-4 text-[#192631]/70" />
                 <select
                   value={eworksModuleFilter}
                   onChange={(e) => setEworksModuleFilter(e.target.value)}
-                  className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-purple-500 focus:outline-none"
+                  className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631] focus:border-purple-500 focus:outline-none"
                 >
                   <option value="ALL">جميع وحدات E-Works المرحّلة</option>
                   <option value="extracts">المستخلصات (Legacy Extracts)</option>
@@ -2027,13 +2027,13 @@ export const TreasuryCashBankHub: React.FC = () => {
               </div>
 
               <div className="relative">
-                <Search className="h-4 w-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2" />
+                <Search className="h-4 w-4 text-[#192631]/70 absolute right-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   value={eworksSearch}
                   onChange={(e) => setEworksSearch(e.target.value)}
                   placeholder="ابحث بكود E-Works أو المشروع..."
-                  className="rounded-xl border border-slate-700 bg-slate-950 pr-9 pl-3 py-2 text-xs text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none w-64"
+                  className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 pr-9 pl-3 py-2 text-xs text-[#192631] placeholder-[#192631]/40 focus:border-purple-500 focus:outline-none w-64"
                 />
               </div>
             </div>
@@ -2042,7 +2042,7 @@ export const TreasuryCashBankHub: React.FC = () => {
             <div className="mt-4 overflow-x-auto">
               <table className="w-full text-right text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800 bg-slate-950/60 text-xs text-slate-400">
+                  <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-xs text-[#192631]/70">
                     <th className="py-3 px-3">مرجع E-Works / Nexus</th>
                     <th className="py-3 px-3">القسم والمشروع</th>
                     <th className="py-3 px-3">البيان والجهة</th>
@@ -2053,44 +2053,44 @@ export const TreasuryCashBankHub: React.FC = () => {
                     <th className="py-3 px-3 text-center">إجراء المراجعة</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/70">
+                <tbody className="divide-y divide-[#192631]/10">
                   {filteredEworksRecords.map((rec) => (
-                    <tr key={rec.id} className="hover:bg-slate-800/40 transition">
+                    <tr key={rec.id} className="hover:bg-[#192631]/[0.05] transition">
                       <td className="py-3.5 px-3">
-                        <div className="font-mono text-xs font-bold text-purple-300">{rec.legacyEworksCode}</div>
-                        <div className="font-mono text-[11px] text-slate-400">→ {rec.nexusTargetRef}</div>
+                        <div className="font-mono text-xs font-bold text-[#192631]">{rec.legacyEworksCode}</div>
+                        <div className="font-mono text-[11px] text-[#192631]/70">→ {rec.nexusTargetRef}</div>
                       </td>
                       <td className="py-3.5 px-3">
-                        <span className="rounded-md bg-indigo-500/15 border border-indigo-500/30 px-2 py-0.5 font-mono text-xs font-bold text-indigo-300">
+                        <span className="rounded-md bg-[#e04b2a]/10 border border-[#e04b2a]/25 px-2 py-0.5 font-mono text-xs font-bold text-[#e04b2a]">
                           {rec.projectCode}
                         </span>
-                        <div className="text-xs text-slate-400 mt-1">{rec.moduleLabelAr}</div>
+                        <div className="text-xs text-[#192631]/70 mt-1">{rec.moduleLabelAr}</div>
                       </td>
                       <td className="py-3.5 px-3 max-w-md">
-                        <div className="font-semibold text-white">{rec.entityNameAr}</div>
-                        <div className="text-xs text-slate-400 mt-0.5 flex items-center gap-1">
-                          <Info className="h-3.5 w-3.5 text-slate-500 shrink-0" />
+                        <div className="font-semibold text-[#192631]">{rec.entityNameAr}</div>
+                        <div className="text-xs text-[#192631]/70 mt-0.5 flex items-center gap-1">
+                          <Info className="h-3.5 w-3.5 text-[#192631]/60 shrink-0" />
                           <span>{rec.auditorNoteAr}</span>
                         </div>
                       </td>
-                      <td className="py-3.5 px-3 text-left font-mono text-xs text-slate-300" dir="ltr">
+                      <td className="py-3.5 px-3 text-left font-mono text-xs text-[#192631]/85" dir="ltr">
                         {formatEGP(rec.eworksLegacyBalance)}
                       </td>
-                      <td className="py-3.5 px-3 text-left font-mono text-xs font-bold text-white" dir="ltr">
+                      <td className="py-3.5 px-3 text-left font-mono text-xs font-bold text-[#192631]" dir="ltr">
                         {formatEGP(rec.nexusMigratedBalance)}
                       </td>
                       <td className="py-3.5 px-3 text-left font-mono text-xs font-bold" dir="ltr">
-                        <span className={rec.varianceAmount === 0 ? 'text-emerald-400' : 'text-amber-400'}>
+                        <span className={rec.varianceAmount === 0 ? 'text-[#123524]' : 'text-[#b45309]'}>
                           {rec.varianceAmount === 0 ? '0.00 EGP' : formatEGP(rec.varianceAmount)}
                         </span>
                       </td>
                       <td className="py-3.5 px-3">
                         {rec.auditStatus === 'verified' ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-1 text-xs font-bold text-emerald-300">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[#123524]/10 border border-[#123524]/25 px-2.5 py-1 text-xs font-bold text-[#123524]">
                             <CheckCircle2 className="h-3.5 w-3.5" /> Verified ✅
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/15 border border-amber-500/30 px-2.5 py-1 text-xs font-bold text-amber-300">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/15 border border-amber-500/30 px-2.5 py-1 text-xs font-bold text-[#b45309]">
                             <AlertTriangle className="h-3.5 w-3.5" /> Flagged for Review ⚠️
                           </span>
                         )}
@@ -2100,13 +2100,13 @@ export const TreasuryCashBankHub: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => handleVerifyEworksRecord(rec.id)}
-                            className="inline-flex items-center gap-1 rounded-xl bg-purple-600 hover:bg-purple-500 px-3 py-1.5 text-xs font-bold text-white shadow transition"
+                            className="inline-flex items-center gap-1 rounded-xl bg-purple-600 hover:bg-purple-500 px-3 py-1.5 text-xs font-bold text-[#192631] shadow transition"
                           >
                             <Check className="h-3.5 w-3.5" />
                             اعتماد التسوية
                           </button>
                         ) : (
-                          <span className="text-xs text-slate-500 font-medium">مُطابق ومُقفل</span>
+                          <span className="text-xs text-[#192631]/60 font-medium">مُطابق ومُقفل</span>
                         )}
                       </td>
                     </tr>
@@ -2122,20 +2122,20 @@ export const TreasuryCashBankHub: React.FC = () => {
           MODAL: RECORD DEPOSIT / PAYMENT / INTERNAL TRANSFER
          ===================================================================== */}
       {isTxModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192631]/40 backdrop-blur-sm p-4">
           <div
             dir="rtl"
-            className="w-full max-w-lg rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-2xl space-y-4"
+            className="w-full max-w-lg rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-6 shadow-2xl space-y-4"
           >
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <Wallet className="h-5 w-5 text-emerald-400" />
+            <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
+              <h3 className="text-lg font-bold text-[#192631] flex items-center gap-2">
+                <Wallet className="h-5 w-5 text-[#123524]" />
                 تسجيل حركة خزينة أو تحويل بنكي جديد
               </h3>
               <button
                 type="button"
                 onClick={() => setIsTxModalOpen(false)}
-                className="text-slate-400 hover:text-white"
+                className="text-[#192631]/70 hover:text-[#192631]"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -2149,7 +2149,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                   className={`rounded-xl py-2 text-xs font-bold border transition ${
                     txType === 'deposit'
                       ? 'bg-emerald-600 border-emerald-500 text-white'
-                      : 'bg-slate-800 border-slate-700 text-slate-300'
+                      : 'bg-[#192631]/[0.05] border-[#192631]/10 text-[#192631]/85'
                   }`}
                 >
                   إيداع / تحصيل عميل
@@ -2160,7 +2160,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                   className={`rounded-xl py-2 text-xs font-bold border transition ${
                     txType === 'payment'
                       ? 'bg-rose-600 border-rose-500 text-white'
-                      : 'bg-slate-800 border-slate-700 text-slate-300'
+                      : 'bg-[#192631]/[0.05] border-[#192631]/10 text-[#192631]/85'
                   }`}
                 >
                   صرف / سداد مورد أو مقاول
@@ -2171,7 +2171,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                   className={`rounded-xl py-2 text-xs font-bold border transition ${
                     txType === 'transfer'
                       ? 'bg-sky-600 border-sky-500 text-white'
-                      : 'bg-slate-800 border-slate-700 text-slate-300'
+                      : 'bg-[#192631]/[0.05] border-[#192631]/10 text-[#192631]/85'
                   }`}
                 >
                   تحويل داخلي بين الحسابات
@@ -2179,13 +2179,13 @@ export const TreasuryCashBankHub: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-[#192631]/85 mb-1">
                   {txType === 'transfer' ? 'من حساب (الخزينة / البنك المصدر)' : 'الحساب البنكي / الخزينة'}
                 </label>
                 <select
                   value={txAccountId}
                   onChange={(e) => setTxAccountId(e.target.value)}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                 >
                   {accounts.map((acc) => (
                     <option key={acc.id} value={acc.id}>
@@ -2197,13 +2197,13 @@ export const TreasuryCashBankHub: React.FC = () => {
 
               {txType === 'transfer' && (
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-[#192631]/85 mb-1">
                     إلى حساب (الخزينة / البنك المستلم)
                   </label>
                   <select
                     value={txTargetAccountId}
                     onChange={(e) => setTxTargetAccountId(e.target.value)}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                    className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                   >
                     {accounts
                       .filter((a) => a.id !== txAccountId)
@@ -2218,11 +2218,11 @@ export const TreasuryCashBankHub: React.FC = () => {
 
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">المشروع المرتبط</label>
+                  <label className="block text-xs font-semibold text-[#192631]/85 mb-1">المشروع المرتبط</label>
                   <select
                     value={txProjectCode}
                     onChange={(e) => setTxProjectCode(e.target.value)}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                    className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                   >
                     {ALL_46_PROJECTS.slice(0, 12).map((p) => (
                       <option key={p.id} value={p.projectCode}>
@@ -2233,7 +2233,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">المبلغ (EGP)</label>
+                  <label className="block text-xs font-semibold text-[#192631]/85 mb-1">المبلغ (EGP)</label>
                   <input
                     type="number"
                     step="0.01"
@@ -2241,13 +2241,13 @@ export const TreasuryCashBankHub: React.FC = () => {
                     value={txAmount}
                     onChange={(e) => setTxAmount(e.target.value)}
                     placeholder="مثال: 25000"
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white font-mono"
+                    className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-[#192631]/85 mb-1">
                   اسم العميل / المورد / المقاول المستفيد
                 </label>
                 <input
@@ -2255,36 +2255,36 @@ export const TreasuryCashBankHub: React.FC = () => {
                   value={txCounterparty}
                   onChange={(e) => setTxCounterparty(e.target.value)}
                   placeholder="مثال: د. طارق عز الدين / مؤسسة السلاب / م. شريف عبد العزيز"
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">التصنيف والبيان</label>
+                <label className="block text-xs font-semibold text-[#192631]/85 mb-1">التصنيف والبيان</label>
                 <input
                   type="text"
                   value={txCategory}
                   onChange={(e) => setTxCategory(e.target.value)}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">ملاحظات إضافية</label>
+                <label className="block text-xs font-semibold text-[#192631]/85 mb-1">ملاحظات إضافية</label>
                 <input
                   type="text"
                   value={txNotes}
                   onChange={(e) => setTxNotes(e.target.value)}
                   placeholder="رقم الشيك / مرجع تحويل إنستاباي أو رقم المستخلص..."
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-[#192631]/10">
                 <button
                   type="button"
                   onClick={() => setIsTxModalOpen(false)}
-                  className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-300 hover:bg-slate-700"
+                  className="rounded-xl border border-[#192631]/10 bg-[#192631]/[0.05] px-4 py-2 text-xs font-semibold text-[#192631]/85 hover:bg-[#192631]/[0.12]"
                 >
                   إلغاء
                 </button>

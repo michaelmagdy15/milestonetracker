@@ -1,56 +1,94 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Building2 } from 'lucide-react';
 import { useTenant } from '../context/TenantContext';
 
-export const Logo: React.FC<{ className?: string; showText?: boolean }> = ({ className, showText = true }) => {
+/**
+ * Official NEXUS CONTRACTING Brand Logo & Symbol
+ * Uses the exact transparent cropped PNGs extracted from the official Nexus Brand Guideline:
+ * - /nexus-logo.png   (468x140 full horizontal lockup: Orange N symbol + Squid Ink NEXUS + CONTRACTING)
+ * - /nexus-symbol.png (140x140 standalone Orange N symbol)
+ */
+export const NexusBrandSymbol: React.FC<{
+    size?: number;
+    variant?: 'orange-symbol' | 'squid-box' | 'orange-box';
+    className?: string;
+}> = ({ size = 42, variant = 'orange-symbol', className }) => {
+    if (variant === 'orange-symbol') {
+        return (
+            <img
+                src="/nexus-symbol.png"
+                alt="NEXUS Symbol"
+                style={{ width: size, height: size }}
+                className={clsx('object-contain shrink-0 select-none', className)}
+            />
+        );
+    }
+
+    const isOrangeBox = variant === 'orange-box';
+    return (
+        <div
+            style={{ width: size, height: size }}
+            className={clsx(
+                'rounded-xl flex items-center justify-center shrink-0 select-none shadow-sm p-2',
+                isOrangeBox
+                    ? 'bg-[#e04b2a] border border-[#e04b2a]/20'
+                    : 'bg-[#192631] border border-[#192631]/15',
+                className
+            )}
+        >
+            <img
+                src="/nexus-symbol.png"
+                alt="NEXUS Symbol"
+                className={clsx('w-full h-full object-contain', isOrangeBox && 'brightness-0 invert')}
+            />
+        </div>
+    );
+};
+
+export const Logo: React.FC<{
+    className?: string;
+    showText?: boolean;
+    variant?: 'orange-symbol' | 'squid-box' | 'orange-box';
+    darkText?: boolean;
+}> = ({ className, showText = true }) => {
     const { activeOrg } = useTenant();
 
-    if (activeOrg.logoUrl) {
+    // If a custom external logo URL was explicitly set in White-Label Studio
+    if (
+        activeOrg.logoUrl &&
+        !activeOrg.logoUrl.includes('nexus-default') &&
+        !activeOrg.logoUrl.includes('/logo.png')
+    ) {
         return (
             <div className={clsx('flex items-center gap-3', className)}>
                 <img
                     src={activeOrg.logoUrl}
                     alt={activeOrg.name}
-                    className="h-10 w-auto max-h-14 object-contain rounded-lg"
+                    className="h-11 w-auto max-h-14 object-contain"
                 />
-                {showText && (
-                    <div className="flex flex-col min-w-0">
-                        <span className="font-black text-white text-sm tracking-tight truncate leading-tight">
-                            {activeOrg.name}
-                        </span>
-                        <span className="text-[10px] text-orange-400 font-bold uppercase tracking-widest truncate">
-                            {activeOrg.plan || 'Enterprise'}
-                        </span>
-                    </div>
-                )}
             </div>
         );
     }
 
-    const initials = activeOrg.name
-        .split(/\s+/)
-        .map(w => w[0])
-        .join('')
-        .slice(0, 2)
-        .toUpperCase() || 'WL';
+    if (!showText) {
+        return (
+            <div className={clsx('inline-flex items-center justify-center select-none', className)}>
+                <img
+                    src="/nexus-symbol.png"
+                    alt="NEXUS Contracting"
+                    className="h-12 w-12 object-contain"
+                />
+            </div>
+        );
+    }
 
     return (
-        <div className={clsx('flex items-center gap-3', className)}>
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center text-white font-black text-base shadow-orange-glow border border-white/10 shrink-0 relative overflow-hidden">
-                <span>{initials}</span>
-                <Building2 className="w-3 h-3 absolute bottom-1 right-1 opacity-30" />
-            </div>
-            {showText && (
-                <div className="flex flex-col min-w-0 text-left">
-                    <span className="font-black text-white text-sm tracking-tight truncate leading-tight">
-                        {activeOrg.name}
-                    </span>
-                    <span className="text-[9px] text-orange-400 font-bold uppercase tracking-[0.18em] truncate mt-0.5">
-                        Contracting OS
-                    </span>
-                </div>
-            )}
+        <div className={clsx('inline-flex items-center select-none', className)}>
+            <img
+                src="/nexus-logo.png"
+                alt="NEXUS Contracting"
+                className="h-12 w-auto max-w-[210px] object-contain"
+            />
         </div>
     );
 };

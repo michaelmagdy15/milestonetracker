@@ -23,6 +23,8 @@ import { Meetings } from './pages/Meetings';
 import { HelpGuide } from './pages/HelpGuide';
 import { OrganizationSettings } from './pages/OrganizationSettings';
 import { ContractingERP } from './pages/ContractingERP';
+import { ExtractsStatementsHub } from './components/nexus/ExtractsStatementsHub';
+import { ProcurementWarehouseHub } from './components/nexus/ProcurementWarehouseHub';
 import { Toaster } from 'react-hot-toast';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
@@ -47,10 +49,10 @@ const ProtectedRoute = ({ children, requireAdmin, requireEngineerOrAdmin, skipDa
 
   if (isLoadingAuth || (!skipDataWait && user && isLoadingData)) {
     return (
-      <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-orange-500/20 border-t-orange-500 rounded-full animate-spin"></div>
-          <p className="text-slate-500 font-black uppercase tracking-[0.2em] text-[10px]">
+      <div className="min-h-screen bg-[#f5f5f5] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 glass-card px-8 py-6 rounded-2xl">
+          <div className="w-12 h-12 border-4 border-[#e04b2a]/20 border-t-[#e04b2a] rounded-full animate-spin"></div>
+          <p className="text-[#192631]/70 font-black uppercase tracking-[0.2em] text-[10px]">
             Synchronizing Session {isLoadingAuth ? '(Auth)' : '(Data)'}
           </p>
         </div>
@@ -79,9 +81,6 @@ const HomeRoute = () => {
   return <Dashboard />;
 };
 
-
-
-
 function App() {
   return (
     <ErrorBoundary>
@@ -94,10 +93,12 @@ function App() {
                   position="bottom-right"
                   toastOptions={{
                     style: {
-                      background: '#1a1a1a',
-                      color: '#fff',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      backdropFilter: 'blur(10px)',
+                      background: 'rgba(255, 255, 255, 0.92)',
+                      color: '#192631',
+                      border: '1px solid rgba(25, 38, 49, 0.12)',
+                      backdropFilter: 'blur(16px)',
+                      boxShadow: '0 12px 32px -8px rgba(25, 38, 49, 0.12)',
+                      fontWeight: 600,
                     },
                   }}
                 />
@@ -117,10 +118,15 @@ function App() {
                           <Route path="/reports" element={<ProtectedRoute requireAdmin><Reports /></ProtectedRoute>} />
                           <Route path="/projects" element={<ProtectedRoute requireEngineerOrAdmin><Projects /></ProtectedRoute>} />
                           <Route path="/projects/:id" element={<ProjectDetails />} />
-                          <Route path="/contracting-erp" element={<ProtectedRoute requireEngineerOrAdmin><ContractingERP /></ProtectedRoute>} />
                           <Route path="/boq" element={<ProtectedRoute requireEngineerOrAdmin><BOQViewer /></ProtectedRoute>} />
+                          <Route path="/submittals" element={<ProtectedRoute requireEngineerOrAdmin skipDataWait><Emails /></ProtectedRoute>} />
+                          <Route path="/variations-rfis" element={<ProtectedRoute requireEngineerOrAdmin><ContractingERP defaultTab="variations" /></ProtectedRoute>} />
+                          <Route path="/procurement" element={<ProtectedRoute requireEngineerOrAdmin><ProcurementWarehouseHub /></ProtectedRoute>} />
+                          <Route path="/subcontractors" element={<ProtectedRoute requireEngineerOrAdmin><Engineers /></ProtectedRoute>} />
+                          <Route path="/extracts" element={<ProtectedRoute requireEngineerOrAdmin><ExtractsStatementsHub /></ProtectedRoute>} />
+                          <Route path="/contracting-erp" element={<ProtectedRoute requireEngineerOrAdmin><ContractingERP /></ProtectedRoute>} />
                           <Route path="/meetings" element={<ProtectedRoute requireEngineerOrAdmin><Meetings /></ProtectedRoute>} />
-                          <Route path="/engineers" element={<ProtectedRoute requireAdmin><Engineers /></ProtectedRoute>} />
+                          <Route path="/engineers" element={<ProtectedRoute requireEngineerOrAdmin><Engineers /></ProtectedRoute>} />
                           <Route path="/emails/*" element={<ProtectedRoute requireEngineerOrAdmin skipDataWait><Emails /></ProtectedRoute>} />
                           <Route path="/financials" element={<ProtectedRoute requireAdmin><Financials /></ProtectedRoute>} />
                           <Route path="/settings" element={<ProtectedRoute requireAdmin><OrganizationSettings /></ProtectedRoute>} />

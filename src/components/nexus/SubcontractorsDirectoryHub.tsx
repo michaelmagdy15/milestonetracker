@@ -536,12 +536,12 @@ function computeOverallGrade(pillars: SubcontractorRecord['pillars']): GradeTier
 
 function getGradeBadgeClasses(grade: GradeTier) {
   if (grade === 'A') {
-    return 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
+    return 'bg-[#123524]/10 text-[#123524] border-[#123524]/25';
   }
   if (grade === 'B') {
-    return 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+    return 'bg-amber-500/15 text-[#b45309] border-amber-500/30';
   }
-  return 'bg-rose-500/15 text-rose-300 border-rose-500/30';
+  return 'bg-rose-500/15 text-red-700 border-rose-500/30';
 }
 
 export const SubcontractorsDirectoryHub: React.FC = () => {
@@ -877,14 +877,14 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
     <div dir="rtl" className="space-y-6 text-right">
       {/* Top Status Banner */}
       {statusBanner && (
-        <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold animate-fade-in">
+        <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-xs font-bold animate-fade-in">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <CheckCircle2 className="w-4 h-4 text-[#123524] shrink-0" />
             <span>{statusBanner}</span>
           </div>
           <button
             onClick={() => setStatusBanner(null)}
-            className="text-emerald-400 hover:text-white transition-colors"
+            className="text-[#123524] hover:text-[#192631] transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -892,23 +892,23 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
       )}
 
       {/* Header & Live ERP Sync Badge */}
-      <div className="bg-gradient-to-l from-[#171717] via-[#141414] to-[#111827] border border-white/10 rounded-2xl p-6 shadow-xl">
+      <div className="bg-white/80 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-6 shadow-xl">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-400 text-[11px] font-black tracking-wide mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-orange-500/25 text-[#e04b2a] text-[11px] font-black tracking-wide mb-2">
               <HardHat className="w-3.5 h-3.5" />
               <span>ACTPERT NEXUS LIVE · /subcontractors & /contractor-accounts</span>
             </div>
-            <h2 className="text-2xl lg:text-3xl font-black text-white">
+            <h2 className="text-2xl lg:text-3xl font-black text-[#192631]">
               دليل مقاولي الباطن والصنايعية وتقييم الإدارة{' '}
-              <span className="text-orange-400">(56 Subcontractors & ST/CPO Hub)</span>
+              <span className="text-[#e04b2a]">(56 Subcontractors & ST/CPO Hub)</span>
             </h2>
-            <p className="text-slate-400 text-xs sm:text-sm mt-1.5 max-w-3xl leading-relaxed">
+            <p className="text-[#192631]/70 text-xs sm:text-sm mt-1.5 max-w-3xl leading-relaxed">
               منظومة إدارة ومراقبة مقاولي الباطن والصنايعية (13 تخصص هندسي)، مصفوفة تقييم الإدارة الرباعية{' '}
-              <span className="text-slate-200 font-bold">(A / B / C)</span>، مستخلصات المقاولين{' '}
-              <span className="font-mono text-orange-300">(ST)</span> مع استقطاع 5% تأمين أعمال، وأوامر الدفع النقدي{' '}
-              <span className="font-mono text-emerald-300">(CPO)</span> وتسويات العهد{' '}
-              <span className="font-mono text-sky-300">(RCB)</span>.
+              <span className="text-[#192631] font-bold">(A / B / C)</span>، مستخلصات المقاولين{' '}
+              <span className="font-mono text-[#e04b2a]">(ST)</span> مع استقطاع 5% تأمين أعمال، وأوامر الدفع النقدي{' '}
+              <span className="font-mono text-[#123524]">(CPO)</span> وتسويات العهد{' '}
+              <span className="font-mono text-[#192631]">(RCB)</span>.
             </p>
           </div>
 
@@ -925,9 +925,9 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 setActiveSubTab('statements');
                 setShowCreateStModal(true);
               }}
-              className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 text-xs font-bold flex items-center gap-2 transition-all"
+              className="px-4 py-2.5 rounded-xl bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] border border-[#192631]/10 text-[#192631] text-xs font-bold flex items-center gap-2 transition-all"
             >
-              <FileCheck2 className="w-4 h-4 text-orange-400" />
+              <FileCheck2 className="w-4 h-4 text-[#e04b2a]" />
               <span>+ مستخلص مقاول (ST)</span>
             </button>
           </div>
@@ -935,58 +935,58 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
 
         {/* 1. Top KPI Summary Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-6">
-          <div className="bg-black/40 border border-white/10 rounded-xl p-4 flex items-center justify-between">
+          <div className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-4 flex items-center justify-between">
             <div>
-              <p className="text-[11px] font-bold text-slate-400">إجمالي المسجلين بالدليل الرسمي</p>
-              <p className="text-2xl font-black text-white mt-1">
+              <p className="text-[11px] font-bold text-[#192631]/70">إجمالي المسجلين بالدليل الرسمي</p>
+              <p className="text-2xl font-black text-[#192631] mt-1">
                 {kpiStats.registeredCount}{' '}
-                <span className="text-xs font-bold text-orange-400">مقاول باطن وصنايعي مسجل</span>
+                <span className="text-xs font-bold text-[#e04b2a]">مقاول باطن وصنايعي مسجل</span>
               </p>
-              <p className="text-[11px] text-slate-500 mt-1">موزعين على 13 تخصص تشطيبات و MEP</p>
+              <p className="text-[11px] text-[#192631]/60 mt-1">موزعين على 13 تخصص تشطيبات و MEP</p>
             </div>
-            <div className="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400">
+            <div className="w-11 h-11 rounded-xl bg-[#e04b2a]/10 border border-[#e04b2a]/25 flex items-center justify-center text-[#e04b2a]">
               <Users className="w-5 h-5" />
             </div>
           </div>
 
-          <div className="bg-black/40 border border-white/10 rounded-xl p-4 flex items-center justify-between">
+          <div className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-4 flex items-center justify-between">
             <div>
-              <p className="text-[11px] font-bold text-slate-400">حسابات الأستاذ النشطة للمقاولين</p>
-              <p className="text-2xl font-black text-emerald-400 mt-1">
+              <p className="text-[11px] font-bold text-[#192631]/70">حسابات الأستاذ النشطة للمقاولين</p>
+              <p className="text-2xl font-black text-[#123524] mt-1">
                 {kpiStats.ledgerAccountsCount}{' '}
-                <span className="text-xs font-bold text-emerald-300">حساب مقاول باطن</span>
+                <span className="text-xs font-bold text-[#123524]">حساب مقاول باطن</span>
               </p>
-              <p className="text-[11px] text-slate-500 mt-1">مربوطة بمراكز تكلفة المشاريع (C096, C063, C091)</p>
+              <p className="text-[11px] text-[#192631]/60 mt-1">مربوطة بمراكز تكلفة المشاريع (C096, C063, C091)</p>
             </div>
-            <div className="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+            <div className="w-11 h-11 rounded-xl bg-[#123524]/10 border border-[#123524]/25 flex items-center justify-center text-[#123524]">
               <Wallet className="w-5 h-5" />
             </div>
           </div>
 
-          <div className="bg-black/40 border border-white/10 rounded-xl p-4 flex items-center justify-between">
+          <div className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-4 flex items-center justify-between">
             <div>
-              <p className="text-[11px] font-bold text-slate-400">نخبة التصنيف الأول (CEO Grade A)</p>
-              <p className="text-2xl font-black text-sky-400 mt-1">
+              <p className="text-[11px] font-bold text-[#192631]/70">نخبة التصنيف الأول (CEO Grade A)</p>
+              <p className="text-2xl font-black text-[#192631] mt-1">
                 {kpiStats.gradeACount} / {subcontractors.length}{' '}
-                <span className="text-xs font-bold text-sky-300">Grade A - ممتاز</span>
+                <span className="text-xs font-bold text-[#192631]">Grade A - ممتاز</span>
               </p>
-              <p className="text-[11px] text-slate-500 mt-1">تقييم رباعي: الجودة · السعر · المواعيد · التعامل</p>
+              <p className="text-[11px] text-[#192631]/60 mt-1">تقييم رباعي: الجودة · السعر · المواعيد · التعامل</p>
             </div>
-            <div className="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+            <div className="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-[#192631]">
               <Award className="w-5 h-5" />
             </div>
           </div>
 
-          <div className="bg-black/40 border border-white/10 rounded-xl p-4 flex items-center justify-between">
+          <div className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-4 flex items-center justify-between">
             <div>
-              <p className="text-[11px] font-bold text-slate-400">إجمالي تأمين الأعمال المحتجز (5%)</p>
-              <p className="text-2xl font-black text-amber-400 mt-1">
+              <p className="text-[11px] font-bold text-[#192631]/70">إجمالي تأمين الأعمال المحتجز (5%)</p>
+              <p className="text-2xl font-black text-[#b45309] mt-1">
                 {kpiStats.totalRetentionEgp.toLocaleString()}{' '}
-                <span className="text-xs font-bold text-amber-300">ج.م (Retention)</span>
+                <span className="text-xs font-bold text-[#b45309]">ج.م (Retention)</span>
               </p>
-              <p className="text-[11px] text-slate-500 mt-1">يُرد بعد الاستلام النهائي وفترة الضمان</p>
+              <p className="text-[11px] text-[#192631]/60 mt-1">يُرد بعد الاستلام النهائي وفترة الضمان</p>
             </div>
-            <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+            <div className="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-[#b45309]">
               <ShieldCheck className="w-5 h-5" />
             </div>
           </div>
@@ -994,14 +994,14 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
       </div>
 
       {/* Sub-Navigation Tabs */}
-      <div className="flex flex-wrap items-center gap-2 bg-[#141414] p-1.5 rounded-2xl border border-white/10">
+      <div className="flex flex-wrap items-center gap-2 bg-white/85 backdrop-blur-xl p-1.5 rounded-2xl border border-[#192631]/10">
         <button
           onClick={() => setActiveSubTab('directory')}
           className={clsx(
             'flex-1 min-w-[220px] py-3 px-4 rounded-xl text-xs font-black flex items-center justify-center gap-2 transition-all',
             activeSubTab === 'directory'
               ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              : 'text-[#192631]/70 hover:text-[#192631] hover:bg-[#192631]/[0.05]'
           )}
         >
           <HardHat className="w-4 h-4" />
@@ -1014,7 +1014,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
             'flex-1 min-w-[220px] py-3 px-4 rounded-xl text-xs font-black flex items-center justify-center gap-2 transition-all',
             activeSubTab === 'statements'
               ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              : 'text-[#192631]/70 hover:text-[#192631] hover:bg-[#192631]/[0.05]'
           )}
         >
           <FileCheck2 className="w-4 h-4" />
@@ -1027,7 +1027,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
             'flex-1 min-w-[220px] py-3 px-4 rounded-xl text-xs font-black flex items-center justify-center gap-2 transition-all',
             activeSubTab === 'cpo_rcb'
               ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              : 'text-[#192631]/70 hover:text-[#192631] hover:bg-[#192631]/[0.05]'
           )}
         >
           <CreditCard className="w-4 h-4" />
@@ -1041,60 +1041,60 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
       {activeSubTab === 'directory' && (
         <div className="space-y-5">
           {/* Trade Specialty Chips + Work Nature + Overall Grade Filters */}
-          <div className="bg-[#141414] border border-white/10 rounded-2xl p-5 space-y-4">
+          <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 space-y-4">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div className="relative flex-1">
-                <Search className="w-4 h-4 text-slate-500 absolute right-3.5 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 text-[#192631]/60 absolute right-3.5 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="ابحث باسم المقاول، الكود (SUB-TILE-001)، رقم الهاتف، أو كود المشروع (C096)..."
-                  className="w-full bg-black/50 border border-white/10 rounded-xl pr-10 pl-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-orange-500"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl pr-10 pl-4 py-2.5 text-xs text-[#192631] placeholder-[#192631]/40 focus:outline-none focus:border-orange-500"
                 />
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
                 {/* Filter by Work Nature */}
-                <div className="flex items-center gap-1.5 bg-black/40 border border-white/10 rounded-xl px-3 py-1.5">
-                  <Wrench className="w-3.5 h-3.5 text-orange-400" />
-                  <span className="text-[11px] text-slate-400 font-bold">طبيعة العمل:</span>
+                <div className="flex items-center gap-1.5 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-1.5">
+                  <Wrench className="w-3.5 h-3.5 text-[#e04b2a]" />
+                  <span className="text-[11px] text-[#192631]/70 font-bold">طبيعة العمل:</span>
                   <select
                     value={selectedWorkNature}
                     onChange={(e) => setSelectedWorkNature(e.target.value as 'الكل' | WorkNatureType)}
-                    className="bg-transparent text-xs font-bold text-white focus:outline-none"
+                    className="bg-transparent text-xs font-bold text-[#192631] focus:outline-none"
                   >
-                    <option value="الكل" className="bg-[#141414]">
+                    <option value="الكل" className="bg-white/85 backdrop-blur-xl">
                       الكل (Labor & Supply)
                     </option>
-                    <option value="مصنعيات فقط" className="bg-[#141414]">
+                    <option value="مصنعيات فقط" className="bg-white/85 backdrop-blur-xl">
                       مصنعيات فقط (Labor Only)
                     </option>
-                    <option value="توريد وتركيب" className="bg-[#141414]">
+                    <option value="توريد وتركيب" className="bg-white/85 backdrop-blur-xl">
                       توريد وتركيب (Supply & Install)
                     </option>
                   </select>
                 </div>
 
                 {/* Filter by Overall Grade */}
-                <div className="flex items-center gap-1.5 bg-black/40 border border-white/10 rounded-xl px-3 py-1.5">
-                  <Filter className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-[11px] text-slate-400 font-bold">التقييم العام:</span>
+                <div className="flex items-center gap-1.5 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-1.5">
+                  <Filter className="w-3.5 h-3.5 text-[#123524]" />
+                  <span className="text-[11px] text-[#192631]/70 font-bold">التقييم العام:</span>
                   <select
                     value={selectedGrade}
                     onChange={(e) => setSelectedGrade(e.target.value as 'ALL' | GradeTier)}
-                    className="bg-transparent text-xs font-bold text-white focus:outline-none"
+                    className="bg-transparent text-xs font-bold text-[#192631] focus:outline-none"
                   >
-                    <option value="ALL" className="bg-[#141414]">
+                    <option value="ALL" className="bg-white/85 backdrop-blur-xl">
                       كل الفئات (A / B / C)
                     </option>
-                    <option value="A" className="bg-[#141414]">
+                    <option value="A" className="bg-white/85 backdrop-blur-xl">
                       Grade A - ممتاز
                     </option>
-                    <option value="B" className="bg-[#141414]">
+                    <option value="B" className="bg-white/85 backdrop-blur-xl">
                       Grade B - جيد جداً
                     </option>
-                    <option value="C" className="bg-[#141414]">
+                    <option value="C" className="bg-white/85 backdrop-blur-xl">
                       Grade C - مقبول / تحت الملاحظة
                     </option>
                   </select>
@@ -1113,8 +1113,8 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                     className={clsx(
                       'px-3 py-1.5 rounded-xl text-[11px] font-bold whitespace-nowrap border transition-all',
                       isActive
-                        ? 'bg-orange-500/20 border-orange-500 text-orange-300 shadow-sm'
-                        : 'bg-black/30 border-white/10 text-slate-400 hover:text-white hover:border-white/20'
+                        ? 'bg-[#e04b2a]/10 border-orange-500 text-[#e04b2a] shadow-sm'
+                        : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/70 hover:text-[#192631] hover:border-[#192631]/10'
                     )}
                   >
                     {trade.labelAr}
@@ -1126,50 +1126,50 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
 
           {/* 4-Pillar Evaluation Matrix Legend */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-            <div className="bg-[#141414] border border-white/10 rounded-xl p-3.5 flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-black text-xs">
+            <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-xl p-3.5 flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-[#123524]/10 border border-[#123524]/25 flex items-center justify-center text-[#123524] font-black text-xs">
                 1
               </span>
               <div>
-                <p className="text-xs font-black text-white">جودة التنفيذ والاستلام الهندسي</p>
-                <p className="text-[11px] text-slate-400">Quality of Execution & SIR Pass Rate</p>
+                <p className="text-xs font-black text-[#192631]">جودة التنفيذ والاستلام الهندسي</p>
+                <p className="text-[11px] text-[#192631]/70">Quality of Execution & SIR Pass Rate</p>
               </div>
             </div>
-            <div className="bg-[#141414] border border-white/10 rounded-xl p-3.5 flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 font-black text-xs">
+            <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-xl p-3.5 flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-[#192631] font-black text-xs">
                 2
               </span>
               <div>
-                <p className="text-xs font-black text-white">مناسبة الأسعار للسوق</p>
-                <p className="text-[11px] text-slate-400">Price Competitiveness vs BOQ Target</p>
+                <p className="text-xs font-black text-[#192631]">مناسبة الأسعار للسوق</p>
+                <p className="text-[11px] text-[#192631]/70">Price Competitiveness vs BOQ Target</p>
               </div>
             </div>
-            <div className="bg-[#141414] border border-white/10 rounded-xl p-3.5 flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 font-black text-xs">
+            <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-xl p-3.5 flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-[#b45309] font-black text-xs">
                 3
               </span>
               <div>
-                <p className="text-xs font-black text-white">الالتزام بالمواعيد والبرنامج الزمني</p>
-                <p className="text-[11px] text-slate-400">Schedule Commitment & Manpower</p>
+                <p className="text-xs font-black text-[#192631]">الالتزام بالمواعيد والبرنامج الزمني</p>
+                <p className="text-[11px] text-[#192631]/70">Schedule Commitment & Manpower</p>
               </div>
             </div>
-            <div className="bg-[#141414] border border-white/10 rounded-xl p-3.5 flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 font-black text-xs">
+            <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-xl p-3.5 flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-[#192631] font-black text-xs">
                 4
               </span>
               <div>
-                <p className="text-xs font-black text-white">التعامل والأخلاقيات بالموقع</p>
-                <p className="text-[11px] text-slate-400">Site Dealing, Safety & Material Care</p>
+                <p className="text-xs font-black text-[#192631]">التعامل والأخلاقيات بالموقع</p>
+                <p className="text-[11px] text-[#192631]/70">Site Dealing, Safety & Material Care</p>
               </div>
             </div>
           </div>
 
           {/* Subcontractors Matrix Table */}
-          <div className="bg-[#141414] border border-white/10 rounded-2xl overflow-hidden shadow-xl">
+          <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl overflow-hidden shadow-xl">
             <div className="overflow-x-auto">
               <table className="w-full text-right text-xs">
                 <thead>
-                  <tr className="bg-black/60 border-b border-white/10 text-slate-400 font-black">
+                  <tr className="bg-[#f5f5f5]/85 border-b border-[#192631]/10 text-[#192631]/70 font-black">
                     <th className="py-3.5 px-4">كود Nexus والتخصص</th>
                     <th className="py-3.5 px-4">اسم المقاول / الصنايعي</th>
                     <th className="py-3.5 px-4">طبيعة العمل</th>
@@ -1183,21 +1183,21 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                     <th className="py-3.5 px-4 text-left">تقييم الإدارة</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5">
+                <tbody className="divide-y divide-[#192631]/10">
                   {filteredSubcontractors.map((sub) => (
                     <tr key={sub.id} className="hover:bg-white/[0.02] transition-colors">
                       <td className="py-3.5 px-4">
-                        <span className="font-mono font-black text-orange-400 bg-orange-500/10 border border-orange-500/20 px-2.5 py-1 rounded-lg inline-block">
+                        <span className="font-mono font-black text-[#e04b2a] bg-[#e04b2a]/10 border border-[#e04b2a]/25 px-2.5 py-1 rounded-lg inline-block">
                           {sub.nexusCode}
                         </span>
-                        <p className="text-[11px] text-slate-400 mt-1">{sub.tradeLabelAr}</p>
+                        <p className="text-[11px] text-[#192631]/70 mt-1">{sub.tradeLabelAr}</p>
                       </td>
 
                       <td className="py-3.5 px-4">
-                        <p className="font-black text-white text-sm">{sub.name}</p>
-                        <p className="text-[11px] text-slate-400 mt-0.5">{sub.craftsmanTitle}</p>
-                        <div className="flex items-center gap-1.5 text-[11px] text-slate-500 mt-1 font-mono">
-                          <Phone className="w-3 h-3 text-emerald-400" />
+                        <p className="font-black text-[#192631] text-sm">{sub.name}</p>
+                        <p className="text-[11px] text-[#192631]/70 mt-0.5">{sub.craftsmanTitle}</p>
+                        <div className="flex items-center gap-1.5 text-[11px] text-[#192631]/60 mt-1 font-mono">
+                          <Phone className="w-3 h-3 text-[#123524]" />
                           <span>{sub.phone}</span>
                         </div>
                       </td>
@@ -1207,8 +1207,8 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                           className={clsx(
                             'px-2.5 py-1 rounded-full text-[11px] font-bold border inline-block',
                             sub.workNature === 'مصنعيات فقط'
-                              ? 'bg-sky-500/10 text-sky-300 border-sky-500/25'
-                              : 'bg-purple-500/10 text-purple-300 border-purple-500/25'
+                              ? 'bg-sky-500/10 text-[#192631] border-sky-500/25'
+                              : 'bg-purple-500/10 text-[#192631] border-purple-500/25'
                           )}
                         >
                           {sub.workNature}
@@ -1220,13 +1220,13 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                           {sub.assignedProjects.map((proj) => (
                             <span
                               key={proj}
-                              className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-200 font-mono text-[11px] font-bold"
+                              className="px-2 py-0.5 rounded-md bg-[#192631]/[0.05] border border-[#192631]/10 text-[#192631] font-mono text-[11px] font-bold"
                             >
                               {proj}
                             </span>
                           ))}
                         </div>
-                        <p className="text-[10px] text-slate-500 mt-1">
+                        <p className="text-[10px] text-[#192631]/60 mt-1">
                           {sub.ledgerAccountCount} حساب أستاذ مفتوح
                         </p>
                       </td>
@@ -1283,16 +1283,16 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                           <Star className="w-3.5 h-3.5 fill-current" />
                           <span>Grade {sub.overallGrade}</span>
                         </div>
-                        <p className="text-[10px] text-slate-400 mt-1 max-w-[180px] truncate" title={sub.ceoNotes}>
+                        <p className="text-[10px] text-[#192631]/70 mt-1 max-w-[180px] truncate" title={sub.ceoNotes}>
                           {sub.ceoNotes}
                         </p>
                       </td>
 
                       <td className="py-3.5 px-4">
-                        <p className="font-bold text-white">
-                          {sub.activeBalanceEgp.toLocaleString()} <span className="text-[10px] text-slate-400">ج.م</span>
+                        <p className="font-bold text-[#192631]">
+                          {sub.activeBalanceEgp.toLocaleString()} <span className="text-[10px] text-[#192631]/70">ج.م</span>
                         </p>
-                        <p className="text-[11px] text-amber-400 font-semibold mt-0.5">
+                        <p className="text-[11px] text-[#b45309] font-semibold mt-0.5">
                           تأمين 5%: {sub.retentionHeldEgp.toLocaleString()} ج.م
                         </p>
                       </td>
@@ -1300,7 +1300,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                       <td className="py-3.5 px-4 text-left">
                         <button
                           onClick={() => handleOpenEvaluation(sub)}
-                          className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-orange-500/20 border border-white/10 hover:border-orange-500/40 text-slate-200 hover:text-orange-300 text-[11px] font-bold inline-flex items-center gap-1.5 transition-all"
+                          className="px-3 py-1.5 rounded-xl bg-[#192631]/[0.05] hover:bg-[#e04b2a]/10 border border-[#192631]/10 hover:border-[#e04b2a]/25 text-[#192631] hover:text-[#e04b2a] text-[11px] font-bold inline-flex items-center gap-1.5 transition-all"
                         >
                           <Edit3 className="w-3.5 h-3.5" />
                           <span>تحديث التقييم A/B/C</span>
@@ -1321,17 +1321,17 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
       {activeSubTab === 'statements' && (
         <div className="space-y-5">
           {/* ST Formula & SIR Gate Explanation Banner */}
-          <div className="bg-[#141414] border border-white/10 rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div className="space-y-1">
-              <div className="inline-flex items-center gap-2 text-orange-400 text-xs font-black">
+              <div className="inline-flex items-center gap-2 text-[#e04b2a] text-xs font-black">
                 <Scale className="w-4 h-4" />
                 <span>معادلة المستخلص القياسية (Actpert ST Engine) + بوابة الاستلام الهندسي (SIR Gate)</span>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-[#192631]/85 leading-relaxed">
                 صافي المستحق للصرف = إجمالي قيمة الأعمال المنفذة (السابقة + الحالية) −{' '}
-                <span className="text-amber-400 font-bold">5% تأمين أعمال (Workmanship Retention)</span> −{' '}
-                <span className="text-rose-400 font-bold">خصومات خامات محملة على المقاول أو تلفيات</span> − الدفعات
-                السابقة. يشترط اعتماد <span className="font-mono text-emerald-400">SIR</span> من مهندس الموقع قبل الصرف.
+                <span className="text-[#b45309] font-bold">5% تأمين أعمال (Workmanship Retention)</span> −{' '}
+                <span className="text-red-700 font-bold">خصومات خامات محملة على المقاول أو تلفيات</span> − الدفعات
+                السابقة. يشترط اعتماد <span className="font-mono text-[#123524]">SIR</span> من مهندس الموقع قبل الصرف.
               </p>
             </div>
             <button
@@ -1350,26 +1350,26 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
               return (
                 <div
                   key={st.id}
-                  className="bg-[#141414] border border-white/10 rounded-2xl p-5 space-y-4 hover:border-white/20 transition-all"
+                  className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 space-y-4 hover:border-[#192631]/10 transition-all"
                 >
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-white/10 pb-4">
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-[#192631]/10 pb-4">
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-mono text-xs font-black px-3 py-1 rounded-lg bg-orange-500/15 border border-orange-500/30 text-orange-300">
+                        <span className="font-mono text-xs font-black px-3 py-1 rounded-lg bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a]">
                           {st.stCode}
                         </span>
-                        <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-bold text-slate-200">
+                        <span className="px-2.5 py-1 rounded-lg bg-[#192631]/[0.05] border border-[#192631]/10 text-xs font-bold text-[#192631]">
                           {st.projectName}
                         </span>
-                        <span className="px-2.5 py-1 rounded-lg bg-sky-500/10 border border-sky-500/25 text-xs font-bold text-sky-300">
+                        <span className="px-2.5 py-1 rounded-lg bg-sky-500/10 border border-sky-500/25 text-xs font-bold text-[#192631]">
                           {st.statementNumber}
                         </span>
                       </div>
-                      <h3 className="text-base font-black text-white mt-2">
+                      <h3 className="text-base font-black text-[#192631] mt-2">
                         {st.subcontractorName}{' '}
-                        <span className="text-xs font-mono text-slate-400">({st.subcontractorCode})</span>
+                        <span className="text-xs font-mono text-[#192631]/70">({st.subcontractorCode})</span>
                       </h3>
-                      <p className="text-xs text-slate-400 mt-0.5">{st.workDescription}</p>
+                      <p className="text-xs text-[#192631]/70 mt-0.5">{st.workDescription}</p>
                     </div>
 
                     {/* SIR Inspection Gate Badge */}
@@ -1379,18 +1379,18 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                         className={clsx(
                           'px-3.5 py-2 rounded-xl text-xs font-black border flex items-center gap-2 transition-all',
                           st.sirApproved
-                            ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300'
-                            : 'bg-rose-500/15 border-rose-500/30 text-rose-300 animate-pulse'
+                            ? 'bg-[#123524]/10 border-[#123524]/25 text-[#123524]'
+                            : 'bg-rose-500/15 border-rose-500/30 text-red-700 animate-pulse'
                         )}
                       >
                         {st.sirApproved ? (
                           <>
-                            <ClipboardCheck className="w-4 h-4 text-emerald-400" />
+                            <ClipboardCheck className="w-4 h-4 text-[#123524]" />
                             <span>SIR معتمد هندسياً ({st.sirCode})</span>
                           </>
                         ) : (
                           <>
-                            <AlertTriangle className="w-4 h-4 text-rose-400" />
+                            <AlertTriangle className="w-4 h-4 text-red-700" />
                             <span>بانتظار استلام مهندس الموقع (اضغط لاعتماد SIR)</span>
                           </>
                         )}
@@ -1403,14 +1403,14 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                             'px-4 py-2 rounded-xl text-xs font-black flex items-center gap-2 transition-all',
                             st.sirApproved
                               ? 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/20'
-                              : 'bg-white/5 text-slate-500 border border-white/10 cursor-not-allowed'
+                              : 'bg-[#192631]/[0.05] text-[#192631]/60 border border-[#192631]/10 cursor-not-allowed'
                           )}
                         >
                           <BadgeDollarSign className="w-4 h-4" />
                           <span>اعتماد المستخلص وإصدار أمر دفع (CPO)</span>
                         </button>
                       ) : (
-                        <span className="px-3.5 py-2 rounded-xl bg-sky-500/15 border border-sky-500/30 text-sky-300 text-xs font-black flex items-center gap-1.5">
+                        <span className="px-3.5 py-2 rounded-xl bg-sky-500/15 border border-sky-500/30 text-[#192631] text-xs font-black flex items-center gap-1.5">
                           <CheckCircle2 className="w-4 h-4" />
                           <span>تم إصدار أمر الدفع CPO للحسابات</span>
                         </span>
@@ -1420,58 +1420,58 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
 
                   {/* Detailed Quantities & Financial Breakdown Grid */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-3 text-xs">
-                    <div className="bg-black/40 border border-white/5 rounded-xl p-3">
-                      <p className="text-[10px] text-slate-400 font-bold">الكمية السابقة</p>
-                      <p className="text-sm font-black text-white mt-1">
-                        {st.previousQty} <span className="text-[10px] text-slate-400">{st.unit}</span>
+                    <div className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-3">
+                      <p className="text-[10px] text-[#192631]/70 font-bold">الكمية السابقة</p>
+                      <p className="text-sm font-black text-[#192631] mt-1">
+                        {st.previousQty} <span className="text-[10px] text-[#192631]/70">{st.unit}</span>
                       </p>
                     </div>
 
-                    <div className="bg-black/40 border border-white/5 rounded-xl p-3">
-                      <p className="text-[10px] text-slate-400 font-bold">الكمية الحالية المنفذة</p>
-                      <p className="text-sm font-black text-orange-400 mt-1">
-                        +{st.currentQty} <span className="text-[10px] text-slate-400">{st.unit}</span>
+                    <div className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-3">
+                      <p className="text-[10px] text-[#192631]/70 font-bold">الكمية الحالية المنفذة</p>
+                      <p className="text-sm font-black text-[#e04b2a] mt-1">
+                        +{st.currentQty} <span className="text-[10px] text-[#192631]/70">{st.unit}</span>
                       </p>
                     </div>
 
-                    <div className="bg-black/40 border border-white/5 rounded-xl p-3">
-                      <p className="text-[10px] text-slate-400 font-bold">إجمالي الكمية والفئة</p>
-                      <p className="text-sm font-black text-white mt-1">
+                    <div className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-3">
+                      <p className="text-[10px] text-[#192631]/70 font-bold">إجمالي الكمية والفئة</p>
+                      <p className="text-sm font-black text-[#192631] mt-1">
                         {calc.totalCumulativeQty} {st.unit} × {st.unitPrice} ج.م
                       </p>
                     </div>
 
-                    <div className="bg-black/40 border border-white/5 rounded-xl p-3">
-                      <p className="text-[10px] text-slate-400 font-bold">إجمالي قيمة الأعمال</p>
-                      <p className="text-sm font-black text-white mt-1">
-                        {calc.grossWorkValue.toLocaleString()} <span className="text-[10px] text-slate-400">ج.م</span>
+                    <div className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-3">
+                      <p className="text-[10px] text-[#192631]/70 font-bold">إجمالي قيمة الأعمال</p>
+                      <p className="text-sm font-black text-[#192631] mt-1">
+                        {calc.grossWorkValue.toLocaleString()} <span className="text-[10px] text-[#192631]/70">ج.م</span>
                       </p>
                     </div>
 
                     <div className="bg-amber-500/10 border border-amber-500/25 rounded-xl p-3">
-                      <p className="text-[10px] text-amber-300 font-bold">تأمين أعمال 5% (Retention)</p>
-                      <p className="text-sm font-black text-amber-400 mt-1">
+                      <p className="text-[10px] text-[#b45309] font-bold">تأمين أعمال 5% (Retention)</p>
+                      <p className="text-sm font-black text-[#b45309] mt-1">
                         −{calc.retention5Percent.toLocaleString()} <span className="text-[10px]">ج.م</span>
                       </p>
                     </div>
 
                     <div className="bg-rose-500/10 border border-rose-500/25 rounded-xl p-3">
-                      <p className="text-[10px] text-rose-300 font-bold">خصومات خامات / تلفيات</p>
-                      <p className="text-sm font-black text-rose-400 mt-1">
+                      <p className="text-[10px] text-red-700 font-bold">خصومات خامات / تلفيات</p>
+                      <p className="text-sm font-black text-red-700 mt-1">
                         −{st.deductionsMaterialsEgp.toLocaleString()} <span className="text-[10px]">ج.م</span>
                       </p>
                     </div>
 
-                    <div className="bg-black/40 border border-white/5 rounded-xl p-3">
-                      <p className="text-[10px] text-slate-400 font-bold">الدفعات السابقة المصروفة</p>
-                      <p className="text-sm font-black text-slate-300 mt-1">
+                    <div className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-3">
+                      <p className="text-[10px] text-[#192631]/70 font-bold">الدفعات السابقة المصروفة</p>
+                      <p className="text-sm font-black text-[#192631]/85 mt-1">
                         −{st.previousPaymentsEgp.toLocaleString()} <span className="text-[10px]">ج.م</span>
                       </p>
                     </div>
 
-                    <div className="bg-emerald-500/15 border border-emerald-500/35 rounded-xl p-3">
-                      <p className="text-[10px] text-emerald-300 font-black">صافي المستحق للصرف</p>
-                      <p className="text-base font-black text-emerald-400 mt-1">
+                    <div className="bg-[#123524]/10 border border-emerald-500/35 rounded-xl p-3">
+                      <p className="text-[10px] text-[#123524] font-black">صافي المستحق للصرف</p>
+                      <p className="text-base font-black text-[#123524] mt-1">
                         {calc.netPayable.toLocaleString()} <span className="text-[10px]">ج.م</span>
                       </p>
                     </div>
@@ -1489,23 +1489,23 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
       {activeSubTab === 'cpo_rcb' && (
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
           {/* One-Click Standardized CPO / RCB Generator */}
-          <div className="xl:col-span-5 bg-[#141414] border border-white/10 rounded-2xl p-5 space-y-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          <div className="xl:col-span-5 bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 space-y-4">
+            <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
               <div>
-                <span className="text-[11px] font-black text-orange-400 uppercase tracking-wider">
+                <span className="text-[11px] font-black text-[#e04b2a] uppercase tracking-wider">
                   STANDARDIZED CODING SHEET ENGINE
                 </span>
-                <h3 className="text-lg font-black text-white mt-0.5">
+                <h3 className="text-lg font-black text-[#192631] mt-0.5">
                   إصدار كود أمر دفع نقدي (CPO) أو تسوية عهدة (RCB)
                 </h3>
               </div>
-              <Sparkles className="w-5 h-5 text-orange-400" />
+              <Sparkles className="w-5 h-5 text-[#e04b2a]" />
             </div>
 
             <form onSubmit={handleEmitCashOrder} className="space-y-3.5 text-xs">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">نوع المستند المالي</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">نوع المستند المالي</label>
                   <select
                     value={genDocType}
                     onChange={(e) => {
@@ -1523,7 +1523,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                         setGenPurpose('أمر دفع نقدي عن مستخلص أعمال معتمد بعد خصم 5% تأمين أعمال');
                       }
                     }}
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     <option value="CPO">CPO - أمر دفع نقدي لمقاول باطن</option>
                     <option value="RCB">RCB - تسوية عهدة مهندس موقع</option>
@@ -1531,11 +1531,11 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">كود المشروع</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">كود المشروع</label>
                   <select
                     value={genProjectCode}
                     onChange={(e) => setGenProjectCode(e.target.value)}
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     <option value="C096">C096 - فيلا التجمع الخامس</option>
                     <option value="C063">C063 - شقة الشيخ زايد</option>
@@ -1547,54 +1547,54 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">الرقم التسلسلي (Seq)</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">الرقم التسلسلي (Seq)</label>
                   <input
                     type="text"
                     value={genSeqNumber}
                     onChange={(e) => setGenSeqNumber(e.target.value)}
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-white font-mono"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">الاسم المختصر بالكود (Tag)</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">الاسم المختصر بالكود (Tag)</label>
                   <input
                     type="text"
                     value={genShortTag}
                     onChange={(e) => setGenShortTag(e.target.value)}
                     placeholder="SayedTile أو EngPierre"
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-white font-mono"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-slate-400 font-bold mb-1">اسم المستفيد (مقاول باطن / مهندس عهدة)</label>
+                <label className="block text-[#192631]/70 font-bold mb-1">اسم المستفيد (مقاول باطن / مهندس عهدة)</label>
                 <input
                   type="text"
                   value={genBeneficiary}
                   onChange={(e) => setGenBeneficiary(e.target.value)}
-                  className="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">المبلغ الصافي (ج.م)</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">المبلغ الصافي (ج.م)</label>
                   <input
                     type="number"
                     value={genAmount}
                     onChange={(e) => setGenAmount(Number(e.target.value))}
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-emerald-400 font-black"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#123524] font-black"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">وسيلة الصرف (أ. ميرنا ماجد)</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">وسيلة الصرف (أ. ميرنا ماجد)</label>
                   <select
                     value={genChannel}
                     onChange={(e) =>
                       setGenChannel(e.target.value as 'InstaPay' | 'خزينة نقدية (Cash)' | 'تحويل بنكي')
                     }
-                    className="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     <option value="InstaPay">InstaPay (انستا باي فوري)</option>
                     <option value="خزينة نقدية (Cash)">خزينة نقدية (Cash)</option>
@@ -1604,39 +1604,39 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-slate-400 font-bold mb-1">المستخلص أو محضر الاستلام المرتبط (ST / SIR)</label>
+                <label className="block text-[#192631]/70 font-bold mb-1">المستخلص أو محضر الاستلام المرتبط (ST / SIR)</label>
                 <input
                   type="text"
                   value={genLinkedDoc}
                   onChange={(e) => setGenLinkedDoc(e.target.value)}
-                  className="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-orange-300 font-mono"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#e04b2a] font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-400 font-bold mb-1">البيان المحاسبي والغرض من الصرف</label>
+                <label className="block text-[#192631]/70 font-bold mb-1">البيان المحاسبي والغرض من الصرف</label>
                 <textarea
                   rows={2}
                   value={genPurpose}
                   onChange={(e) => setGenPurpose(e.target.value)}
-                  className="w-full bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-white"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                 />
               </div>
 
               {/* Live Generated Code Box */}
-              <div className="bg-black/60 border border-orange-500/30 rounded-xl p-3 flex items-center justify-between">
+              <div className="bg-[#f5f5f5]/85 border border-[#e04b2a]/25 rounded-xl p-3 flex items-center justify-between">
                 <div>
-                  <p className="text-[10px] text-slate-400 font-bold">الكود القياسي المولد تلقائياً (شيت التكويد):</p>
-                  <p className="font-mono text-xs font-black text-orange-400 mt-0.5">{generatedStandardCode}</p>
+                  <p className="text-[10px] text-[#192631]/70 font-bold">الكود القياسي المولد تلقائياً (شيت التكويد):</p>
+                  <p className="font-mono text-xs font-black text-[#e04b2a] mt-0.5">{generatedStandardCode}</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleCopyCode(generatedStandardCode)}
-                  className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[11px] font-bold flex items-center gap-1"
+                  className="px-2.5 py-1.5 rounded-lg bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] text-[#192631]/85 text-[11px] font-bold flex items-center gap-1"
                 >
                   {copiedCode === generatedStandardCode ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      <Check className="w-3.5 h-3.5 text-[#123524]" />
                       <span>تم النسخ</span>
                     </>
                   ) : (
@@ -1659,24 +1659,24 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
           </div>
 
           {/* CPO & RCB Ledger List */}
-          <div className="xl:col-span-7 bg-[#141414] border border-white/10 rounded-2xl p-5 space-y-4">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+          <div className="xl:col-span-7 bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 space-y-4">
+            <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
               <div>
-                <h3 className="text-lg font-black text-white">
+                <h3 className="text-lg font-black text-[#192631]">
                   سجل أوامر الدفع النقدي (CPO) وتسويات العهد (RCB)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#192631]/70">
                   مربوط مباشرة بدفتر أستاذ مقاولي الباطن (63 حساب) ومراجعة أ. ميرنا ماجد (الحسابات)
                 </p>
               </div>
-              <Receipt className="w-5 h-5 text-emerald-400" />
+              <Receipt className="w-5 h-5 text-[#123524]" />
             </div>
 
             <div className="space-y-3">
               {cashOrders.map((ord) => (
                 <div
                   key={ord.id}
-                  className="bg-black/40 border border-white/10 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-white/20 transition-all"
+                  className="bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-[#192631]/10 transition-all"
                 >
                   <div className="space-y-1.5">
                     <div className="flex flex-wrap items-center gap-2">
@@ -1684,55 +1684,55 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                         className={clsx(
                           'px-2.5 py-0.5 rounded-md font-mono text-[11px] font-black border',
                           ord.docType === 'CPO'
-                            ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
-                            : 'bg-sky-500/15 text-sky-300 border-sky-500/30'
+                            ? 'bg-[#123524]/10 text-[#123524] border-[#123524]/25'
+                            : 'bg-sky-500/15 text-[#192631] border-sky-500/30'
                         )}
                       >
                         {ord.docType}
                       </span>
-                      <span className="font-mono text-xs font-black text-white">{ord.officialCode}</span>
+                      <span className="font-mono text-xs font-black text-[#192631]">{ord.officialCode}</span>
                       <button
                         onClick={() => handleCopyCode(ord.officialCode)}
-                        className="text-slate-400 hover:text-orange-400 transition-colors"
+                        className="text-[#192631]/70 hover:text-[#e04b2a] transition-colors"
                         title="نسخ الكود الرسمي"
                       >
                         {copiedCode === ord.officialCode ? (
-                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <Check className="w-3.5 h-3.5 text-[#123524]" />
                         ) : (
                           <Copy className="w-3.5 h-3.5" />
                         )}
                       </button>
                     </div>
 
-                    <p className="text-xs font-bold text-slate-200">
+                    <p className="text-xs font-bold text-[#192631]">
                       المستفيد: {ord.beneficiaryName}{' '}
-                      <span className="font-mono text-[11px] text-orange-400">
+                      <span className="font-mono text-[11px] text-[#e04b2a]">
                         ({ord.subcontractorOrEngineerCode})
                       </span>
                     </p>
-                    <p className="text-xs text-slate-400">{ord.purposeAr}</p>
+                    <p className="text-xs text-[#192631]/70">{ord.purposeAr}</p>
 
-                    <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-400 pt-1">
+                    <div className="flex flex-wrap items-center gap-3 text-[11px] text-[#192631]/70 pt-1">
                       <span>
-                        المستند المرجعي: <strong className="font-mono text-slate-200">{ord.linkedStOrSirCode}</strong>
+                        المستند المرجعي: <strong className="font-mono text-[#192631]">{ord.linkedStOrSirCode}</strong>
                       </span>
                       <span>•</span>
                       <span>
-                        المسؤول المالي: <strong className="text-emerald-300">{ord.accountingOfficer}</strong>
+                        المسؤول المالي: <strong className="text-[#123524]">{ord.accountingOfficer}</strong>
                       </span>
                       <span>•</span>
                       <span>
-                        القناة: <strong className="text-orange-300">{ord.paymentChannel}</strong>
+                        القناة: <strong className="text-[#e04b2a]">{ord.paymentChannel}</strong>
                       </span>
                     </div>
                   </div>
 
                   <div className="flex sm:flex-col items-end justify-between gap-2 shrink-0">
                     <div className="text-left">
-                      <p className="text-lg font-black text-emerald-400">
+                      <p className="text-lg font-black text-[#123524]">
                         {ord.amountEgp.toLocaleString()} <span className="text-xs">ج.م</span>
                       </p>
-                      <p className="text-[10px] text-slate-500 font-mono">{ord.date}</p>
+                      <p className="text-[10px] text-[#192631]/60 font-mono">{ord.date}</p>
                     </div>
 
                     {ord.status === 'pending_merna' ? (
@@ -1749,7 +1749,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                         <span>تأكيد الصرف (أ. ميرنا)</span>
                       </button>
                     ) : (
-                      <span className="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[11px] font-bold flex items-center gap-1">
+                      <span className="px-2.5 py-1 rounded-lg bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-[11px] font-bold flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>تم الصرف والترحيل للأستاذ</span>
                       </span>
@@ -1766,20 +1766,20 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
           MODAL 1: CEO / TECHNICAL OFFICE 4-PILLAR A/B/C EVALUATION MODAL
          ===================================================================== */}
       {evaluatingSub && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#141414] border border-white/15 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
+        <div className="fixed inset-0 z-50 bg-[#192631]/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
               <div>
-                <span className="text-[11px] font-mono font-black text-orange-400">
+                <span className="text-[11px] font-mono font-black text-[#e04b2a]">
                   {evaluatingSub.nexusCode} · CEO 4-PILLAR MATRIX
                 </span>
-                <h3 className="text-lg font-black text-white mt-0.5">
+                <h3 className="text-lg font-black text-[#192631] mt-0.5">
                   تقييم الإدارة والمكتب الفني: {evaluatingSub.name}
                 </h3>
               </div>
               <button
                 onClick={() => setEvaluatingSub(null)}
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-[#192631]/70 hover:text-[#192631] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1788,13 +1788,13 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
             <form onSubmit={handleSaveEvaluation} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">
+                  <label className="block text-[#192631]/85 font-bold mb-1">
                     1. جودة التنفيذ والاستلام الهندسي
                   </label>
                   <select
                     value={evalQuality}
                     onChange={(e) => setEvalQuality(e.target.value as GradeTier)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     <option value="A">A - ممتاز (استلام من أول مرة)</option>
                     <option value="B">B - جيد جداً (ملاحظات طفيفة)</option>
@@ -1803,11 +1803,11 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">2. مناسبة الأسعار للسوق</label>
+                  <label className="block text-[#192631]/85 font-bold mb-1">2. مناسبة الأسعار للسوق</label>
                   <select
                     value={evalPricing}
                     onChange={(e) => setEvalPricing(e.target.value as GradeTier)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     <option value="A">A - منافس جداً ومطابق للموازنة</option>
                     <option value="B">B - مناسب لسعر السوق</option>
@@ -1816,13 +1816,13 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">
+                  <label className="block text-[#192631]/85 font-bold mb-1">
                     3. الالتزام بالمواعيد والبرنامج الزمني
                   </label>
                   <select
                     value={evalSchedule}
                     onChange={(e) => setEvalSchedule(e.target.value as GradeTier)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     <option value="A">A - التزام كامل وعمالة كافية</option>
                     <option value="B">B - التزام متوسط</option>
@@ -1831,13 +1831,13 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">
+                  <label className="block text-[#192631]/85 font-bold mb-1">
                     4. التعامل والأخلاقيات بالموقع
                   </label>
                   <select
                     value={evalEthics}
                     onChange={(e) => setEvalEthics(e.target.value as GradeTier)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     <option value="A">A - تعاون ممتاز وحفاظ على الخامات</option>
                     <option value="B">B - جيد</option>
@@ -1847,24 +1847,24 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-slate-300 font-bold mb-1">جهة التقييم المعتمدة</label>
+                <label className="block text-[#192631]/85 font-bold mb-1">جهة التقييم المعتمدة</label>
                 <input
                   type="text"
                   value={evalReviewer}
                   onChange={(e) => setEvalReviewer(e.target.value)}
-                  className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-bold mb-1">
+                <label className="block text-[#192631]/85 font-bold mb-1">
                   ملاحظات الإدارة التنفيذية والمكتب الفني
                 </label>
                 <textarea
                   rows={3}
                   value={evalNotes}
                   onChange={(e) => setEvalNotes(e.target.value)}
-                  className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                 />
               </div>
 
@@ -1872,7 +1872,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setEvaluatingSub(null)}
-                  className="px-4 py-2 rounded-xl bg-white/5 text-slate-300 font-bold"
+                  className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-[#192631]/85 font-bold"
                 >
                   إلغاء
                 </button>
@@ -1892,13 +1892,13 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
           MODAL 2: REGISTER NEW SUBCONTRACTOR MODAL
          ===================================================================== */}
       {showRegisterModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#141414] border border-white/15 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <h3 className="text-lg font-black text-white">تسجيل مقاول باطن / صنايعي جديد بالدليل</h3>
+        <div className="fixed inset-0 z-50 bg-[#192631]/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
+              <h3 className="text-lg font-black text-[#192631]">تسجيل مقاول باطن / صنايعي جديد بالدليل</h3>
               <button
                 onClick={() => setShowRegisterModal(false)}
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-[#192631]/70 hover:text-[#192631] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1907,11 +1907,11 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
             <form onSubmit={handleRegisterSubcontractor} className="space-y-3.5 text-xs">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">التخصص الهندسي (كود البادئة)</label>
+                  <label className="block text-[#192631]/85 font-bold mb-1">التخصص الهندسي (كود البادئة)</label>
                   <select
                     value={newSubTrade}
                     onChange={(e) => setNewSubTrade(e.target.value as Exclude<TradeSpecialtyCode, 'ALL'>)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     {TRADE_SPECIALTIES.filter((t) => t.code !== 'ALL').map((t) => (
                       <option key={t.code} value={t.code}>
@@ -1922,11 +1922,11 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">طبيعة العمل</label>
+                  <label className="block text-[#192631]/85 font-bold mb-1">طبيعة العمل</label>
                   <select
                     value={newSubNature}
                     onChange={(e) => setNewSubNature(e.target.value as WorkNatureType)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     <option value="مصنعيات فقط">مصنعيات فقط (Labor Only)</option>
                     <option value="توريد وتركيب">توريد وتركيب (Supply & Install)</option>
@@ -1935,57 +1935,57 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-slate-300 font-bold mb-1">اسم المقاول / الصنايعي أو الورشة</label>
+                <label className="block text-[#192631]/85 font-bold mb-1">اسم المقاول / الصنايعي أو الورشة</label>
                 <input
                   type="text"
                   required
                   value={newSubName}
                   onChange={(e) => setNewSubName(e.target.value)}
                   placeholder="مثال: الأسطى حسن عبد الرحمن للرخام..."
-                  className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">الوصف الفني الدقيق</label>
+                  <label className="block text-[#192631]/85 font-bold mb-1">الوصف الفني الدقيق</label>
                   <input
                     type="text"
                     value={newSubTitle}
                     onChange={(e) => setNewSubTitle(e.target.value)}
                     placeholder="تركيب أرضيات وحوائط..."
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">رقم الموبايل / InstaPay</label>
+                  <label className="block text-[#192631]/85 font-bold mb-1">رقم الموبايل / InstaPay</label>
                   <input
                     type="text"
                     value={newSubPhone}
                     onChange={(e) => setNewSubPhone(e.target.value)}
                     placeholder="010xxxxxxxx"
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-mono"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-slate-300 font-bold mb-1">أكواد المشاريع المسندة (مفصولة بفاصلة)</label>
+                <label className="block text-[#192631]/85 font-bold mb-1">أكواد المشاريع المسندة (مفصولة بفاصلة)</label>
                 <input
                   type="text"
                   value={newSubProjects}
                   onChange={(e) => setNewSubProjects(e.target.value)}
-                  className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-mono"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-bold mb-1">ملاحظات هندسية مبدئية</label>
+                <label className="block text-[#192631]/85 font-bold mb-1">ملاحظات هندسية مبدئية</label>
                 <textarea
                   rows={2}
                   value={newSubNotes}
                   onChange={(e) => setNewSubNotes(e.target.value)}
-                  className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                 />
               </div>
 
@@ -1993,7 +1993,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowRegisterModal(false)}
-                  className="px-4 py-2 rounded-xl bg-white/5 text-slate-300 font-bold"
+                  className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-[#192631]/85 font-bold"
                 >
                   إلغاء
                 </button>
@@ -2013,13 +2013,13 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
           MODAL 3: CREATE NEW SUBCONTRACTOR STATEMENT (ST) MODAL
          ===================================================================== */}
       {showCreateStModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#141414] border border-white/15 rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <h3 className="text-lg font-black text-white">تحرير مستخلص مقاول باطن جديد (كود ST)</h3>
+        <div className="fixed inset-0 z-50 bg-[#192631]/40 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
+              <h3 className="text-lg font-black text-[#192631]">تحرير مستخلص مقاول باطن جديد (كود ST)</h3>
               <button
                 onClick={() => setShowCreateStModal(false)}
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-[#192631]/70 hover:text-[#192631] transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -2028,11 +2028,11 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
             <form onSubmit={handleCreateStatement} className="space-y-3 text-xs">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">كود المشروع</label>
+                  <label className="block text-[#192631]/85 font-bold mb-1">كود المشروع</label>
                   <select
                     value={stProjectCode}
                     onChange={(e) => setStProjectCode(e.target.value)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     <option value="C096">C096 - فيلا التجمع الخامس</option>
                     <option value="C063">C063 - شقة الشيخ زايد</option>
@@ -2041,11 +2041,11 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">المقاول المسجل</label>
+                  <label className="block text-[#192631]/85 font-bold mb-1">المقاول المسجل</label>
                   <select
                     value={stSubCode}
                     onChange={(e) => setStSubCode(e.target.value)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                   >
                     {subcontractors.map((s) => (
                       <option key={s.id} value={s.nexusCode}>
@@ -2058,93 +2058,93 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">رقم المستخلص</label>
+                  <label className="block text-[#192631]/85 font-bold mb-1">رقم المستخلص</label>
                   <input
                     type="text"
                     value={stNumber}
                     onChange={(e) => setStNumber(e.target.value)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-bold mb-1">كود محضر الاستلام الهندسي (SIR)</label>
+                  <label className="block text-[#192631]/85 font-bold mb-1">كود محضر الاستلام الهندسي (SIR)</label>
                   <input
                     type="text"
                     value={stSirCode}
                     onChange={(e) => setStSirCode(e.target.value)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-emerald-300 font-mono"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#123524] font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-slate-300 font-bold mb-1">بيان الأعمال المنفذة بالمستخلص</label>
+                <label className="block text-[#192631]/85 font-bold mb-1">بيان الأعمال المنفذة بالمستخلص</label>
                 <input
                   type="text"
                   required
                   value={stWorkDesc}
                   onChange={(e) => setStWorkDesc(e.target.value)}
                   placeholder="مثال: تركيب بورسلين أرضيات مقاس 60×120..."
-                  className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                  className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                 />
               </div>
 
               <div className="grid grid-cols-4 gap-2.5">
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">الوحدة</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">الوحدة</label>
                   <input
                     type="text"
                     value={stUnit}
                     onChange={(e) => setStUnit(e.target.value)}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">كمية سابقة</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">كمية سابقة</label>
                   <input
                     type="number"
                     value={stPrevQty}
                     onChange={(e) => setStPrevQty(Number(e.target.value))}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">كمية حالية</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">كمية حالية</label>
                   <input
                     type="number"
                     value={stCurrQty}
                     onChange={(e) => setStCurrQty(Number(e.target.value))}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-orange-400 font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#e04b2a] font-bold"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">فئة الوحدة (ج.م)</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">فئة الوحدة (ج.م)</label>
                   <input
                     type="number"
                     value={stUnitPrice}
                     onChange={(e) => setStUnitPrice(Number(e.target.value))}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">خصومات خامات / هالك على المقاول (ج.م)</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">خصومات خامات / هالك على المقاول (ج.م)</label>
                   <input
                     type="number"
                     value={stDeductions}
                     onChange={(e) => setStDeductions(Number(e.target.value))}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-rose-400 font-bold"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-red-700 font-bold"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-400 font-bold mb-1">الدفعات السابقة المصروفة (ج.م)</label>
+                  <label className="block text-[#192631]/70 font-bold mb-1">الدفعات السابقة المصروفة (ج.م)</label>
                   <input
                     type="number"
                     value={stPrevPayments}
                     onChange={(e) => setStPrevPayments(Number(e.target.value))}
-                    className="w-full bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-white"
+                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                   />
                 </div>
               </div>
@@ -2154,9 +2154,9 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                   type="checkbox"
                   checked={stSirApproved}
                   onChange={(e) => setStSirApproved(e.target.checked)}
-                  className="rounded border-white/20 text-orange-500 focus:ring-orange-500"
+                  className="rounded border-[#192631]/10 text-orange-500 focus:ring-orange-500"
                 />
-                <span className="text-emerald-300 font-bold">
+                <span className="text-[#123524] font-bold">
                   محضر الاستلام الهندسي (SIR) موقع ومعتمد من مهندس الموقع (م. بيير / م. معتز)
                 </span>
               </label>
@@ -2165,7 +2165,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowCreateStModal(false)}
-                  className="px-4 py-2 rounded-xl bg-white/5 text-slate-300 font-bold"
+                  className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-[#192631]/85 font-bold"
                 >
                   إلغاء
                 </button>

@@ -46,20 +46,20 @@ export const LiveOperationsMonitor = () => {
     const onlineCount = activeEngineers.filter(e => e.isOnline).length;
 
     return (
-        <div className="bg-[#1a1a1a]/40 rounded-2xl md:rounded-[32px] border border-white/5 p-4 md:p-8 backdrop-blur-3xl relative overflow-hidden group mb-4 md:mb-8">
+        <div className="bg-[#1a1a1a]/40 rounded-2xl md:rounded-[32px] border border-[#192631]/10 p-4 md:p-8 backdrop-blur-3xl relative overflow-hidden group mb-4 md:mb-8">
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.03), transparent)' }} />
             
             <div className="relative z-10">
-                <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-6">
+                <div className="flex items-center justify-between mb-8 border-b border-[#192631]/10 pb-6">
                     <div>
-                        <h3 className="text-xl font-black text-white tracking-tight flex items-center gap-3 mb-2">
-                            <Activity className="w-6 h-6 text-emerald-400 animate-pulse" />
+                        <h3 className="text-xl font-black text-[#192631] tracking-tight flex items-center gap-3 mb-2">
+                            <Activity className="w-6 h-6 text-[#123524] animate-pulse" />
                             Live Operations Central
                         </h3>
-                        <p className="text-xs text-slate-500 font-medium">Real-time presence and active application monitoring via WebSockets.</p>
+                        <p className="text-xs text-[#192631]/60 font-medium">Real-time presence and active application monitoring via WebSockets.</p>
                     </div>
                     <div className="flex flex-col items-end">
-                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20 font-mono flex items-center gap-2">
+                        <span className="text-[10px] font-bold text-[#123524] uppercase tracking-widest bg-[#123524]/10 px-3 py-1.5 rounded-lg border border-[#123524]/25 font-mono flex items-center gap-2">
                             <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping shadow-[0_0_10px_rgba(52,211,153,0.8)]"></div>
                             {onlineCount} Online
                         </span>
@@ -78,26 +78,26 @@ export const LiveOperationsMonitor = () => {
                                     animate={{ opacity: 1, scale: 1 }}
                                     className={`p-4 rounded-2xl border transition-all duration-300 ${
                                         isOnline 
-                                        ? 'bg-emerald-500/5 border-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.05)]' 
-                                        : 'bg-white/5 border-white/5 opacity-60 hover:opacity-100'
+                                        ? 'bg-emerald-500/5 border-[#123524]/25 shadow-[0_0_20px_rgba(16,185,129,0.05)]' 
+                                        : 'bg-[#192631]/[0.05] border-[#192631]/10 opacity-60 hover:opacity-100'
                                     }`}
                                 >
                                     <div className="flex items-start justify-between mb-3">
                                         <div className="flex items-center gap-3">
                                             <div className="relative">
-                                                <div className="w-10 h-10 rounded-xl bg-[#2a2a2a] flex items-center justify-center text-white font-black text-sm border border-white/10">
+                                                <div className="w-10 h-10 rounded-xl bg-[#2a2a2a] flex items-center justify-center text-[#192631] font-black text-sm border border-[#192631]/10">
                                                     {eng.name.charAt(0)}
                                                 </div>
                                                 <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-[#1a1a1a] ${isOnline ? 'bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,0.8)]' : 'bg-slate-600'}`}></div>
                                             </div>
                                             <div>
-                                                <h4 className="text-sm font-black text-white truncate max-w-[120px]">{eng.name}</h4>
-                                                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{eng.role || 'Engineer'}</p>
+                                                <h4 className="text-sm font-black text-[#192631] truncate max-w-[120px]">{eng.name}</h4>
+                                                <p className="text-[10px] text-[#192631]/60 font-bold uppercase tracking-wider">{eng.role || 'Engineer'}</p>
                                             </div>
                                         </div>
                                         <div className="text-right">
                                             {eng.latestLog ? (
-                                                <p className="text-[10px] font-mono text-slate-400 flex items-center justify-end gap-1">
+                                                <p className="text-[10px] font-mono text-[#192631]/70 flex items-center justify-end gap-1">
                                                     <Clock className="w-3 h-3" />
                                                     {formatDistanceToNow(new Date(eng.latestLog.timestamp), { addSuffix: true })}
                                                 </p>
@@ -108,16 +108,16 @@ export const LiveOperationsMonitor = () => {
                                     </div>
 
                                     <div className="space-y-2 mt-4">
-                                        <div className="flex items-center gap-2 bg-black/40 p-2 rounded-lg border border-white/5">
-                                            <Monitor className={`w-3.5 h-3.5 ${isOnline ? 'text-emerald-400' : 'text-slate-500'}`} />
-                                            <p className="text-xs text-slate-300 truncate font-medium flex-1">
+                                        <div className="flex items-center gap-2 bg-[#f5f5f5]/85 p-2 rounded-lg border border-[#192631]/10">
+                                            <Monitor className={`w-3.5 h-3.5 ${isOnline ? 'text-[#123524]' : 'text-[#192631]/60'}`} />
+                                            <p className="text-xs text-[#192631]/85 truncate font-medium flex-1">
                                                 {eng.latestLog ? eng.latestLog.activeWindow : 'Offline'}
                                             </p>
                                         </div>
                                         
-                                        <div className="flex items-center gap-2 bg-black/40 p-2 rounded-lg border border-white/5 mt-1">
-                                            <Target className="w-3.5 h-3.5 text-orange-400" />
-                                            <p className="text-xs text-slate-400 truncate italic">
+                                        <div className="flex items-center gap-2 bg-[#f5f5f5]/85 p-2 rounded-lg border border-[#192631]/10 mt-1">
+                                            <Target className="w-3.5 h-3.5 text-[#e04b2a]" />
+                                            <p className="text-xs text-[#192631]/70 truncate italic">
                                                 {eng.currentTask ? eng.currentTask.taskDescription : 'No active milestone tracking'}
                                             </p>
                                         </div>

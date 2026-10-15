@@ -644,7 +644,7 @@ const WAREHOUSE_META: Record<
     badge: 'مخزن 1 (الدائري)',
     description: 'تشوينات السقالات المعدنية، العدد، البورسلين الاحتياطي، وفوائض المواقع.',
     manager: 'عم ربيع (أمين المخزن الرئيسي)',
-    colorClass: 'bg-blue-500/10 text-blue-300 border-blue-500/30',
+    colorClass: 'bg-blue-500/10 text-[#192631] border-blue-500/30',
     borderClass: 'border-blue-500/40'
   },
   ring_road_2: {
@@ -653,8 +653,8 @@ const WAREHOUSE_META: Record<
     badge: 'مخزن 2 (المجاور)',
     description: 'باليتات الجبس بورد، الصاج، لفات الصوف الصخري، ومواسير التغذية والصرف الطويلة.',
     manager: 'أمين مخزن الدائري 2',
-    colorClass: 'bg-indigo-500/10 text-indigo-300 border-indigo-500/30',
-    borderClass: 'border-indigo-500/40'
+    colorClass: 'bg-[#e04b2a]/10 text-[#e04b2a] border-[#e04b2a]/25',
+    borderClass: 'border-[#e04b2a]/25'
   },
   nozha_hq: {
     nameAr: 'مقر الشركة بالنزهة - مخزن الخامات الثمينة',
@@ -662,7 +662,7 @@ const WAREHOUSE_META: Record<
     badge: 'خزنة مقر النزهة HQ',
     description: 'حفظ الخامات الغالية والمعرضة للسرقة أو التلف بالموقع (خلاطات ونواكل جروهي، سمارت هوم، إضاءة).',
     manager: 'إدارة المشتريات - مقر النزهة + ميلاد هارون',
-    colorClass: 'bg-amber-500/10 text-amber-300 border-amber-500/30',
+    colorClass: 'bg-amber-500/10 text-[#b45309] border-amber-500/30',
     borderClass: 'border-amber-500/40'
   },
   site_custody: {
@@ -671,8 +671,8 @@ const WAREHOUSE_META: Record<
     badge: 'عهدة مهندس الموقع',
     description: 'الخامات المستلمة فعلياً داخل الموقع بعهدة مهندس الموقع وتوقيع الاستلام ومطابقة MIR.',
     manager: 'م. أحمد سامي / م. محمد طارق (مهندسي الموقع)',
-    colorClass: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30',
-    borderClass: 'border-emerald-500/40'
+    colorClass: 'bg-[#123524]/10 text-[#123524] border-[#123524]/25',
+    borderClass: 'border-[#123524]/25'
   }
 };
 
@@ -1109,37 +1109,37 @@ export const ProcurementWarehouseHub: React.FC = () => {
   }, [warehouseStock, selectedWarehouseFilter]);
 
   return (
-    <div dir="rtl" className="space-y-6 text-slate-100">
+    <div dir="rtl" className="space-y-6 text-[#192631]">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 left-6 z-50 flex items-center gap-3 rounded-xl border border-emerald-500/50 bg-slate-900/95 px-5 py-4 text-sm font-medium text-emerald-300 shadow-2xl backdrop-blur-md">
-          <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-400" />
+        <div className="fixed bottom-6 left-6 z-50 flex items-center gap-3 rounded-xl border border-[#123524]/25 bg-white/80 backdrop-blur-md px-5 py-4 text-sm font-medium text-[#123524] shadow-2xl backdrop-blur-md">
+          <CheckCircle2 className="h-5 w-5 shrink-0 text-[#123524]" />
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Top Executive Header */}
-      <div className="rounded-2xl border border-slate-800 bg-gradient-to-l from-slate-900 via-slate-900/95 to-indigo-950/50 p-6 shadow-xl">
+      <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-xl p-6 shadow-xl">
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-300">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#123524]/25 bg-[#123524]/10 px-3 py-1 text-xs font-semibold text-[#123524]">
                 <ShieldCheck className="h-3.5 w-3.5" />
                 Submittal-Gated Procurement (Eng. Pierre Rule)
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-300">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-[#b45309]">
                 <ScanLine className="h-3.5 w-3.5" />
                 ماسح فواتير الواتساب والموانين (PO-OCR)
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-cyan-300">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold text-[#192631]">
                 <Warehouse className="h-3.5 w-3.5" />
                 مخازن الدائري (1 & 2) + خزنة مقر النزهة + عهدة الموقع
               </span>
             </div>
-            <h1 className="mt-3 text-2xl font-bold text-white md:text-3xl">
+            <h1 className="mt-3 text-2xl font-bold text-[#192631] md:text-3xl">
               منظومة المشتريات المربوطة بالاعتمادات، فواتير الموانين (OCR)، الحسابات واللوجستيات والمخازن الأربعة
             </h1>
-            <p className="mt-1 text-sm text-slate-400">
+            <p className="mt-1 text-sm text-[#192631]/70">
               ربط مباشر بين اعتمادات الخامات (`MS Code A/B`) ⬅ أوامر الشراء (`NPO`) ⬅ طلبات الصرف (`أ. ميرنا ماجد PR/POP`) ⬅ لوجستيات وحركة النقل (`أ. ميلاد هارون`) ⬅ عهدة المخازن الأربعة ومهندسي الموقع.
             </p>
           </div>
@@ -1154,7 +1154,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
             </button>
             <button
               onClick={() => setShowTransferModal(true)}
-              className="inline-flex items-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-500/10 px-4 py-2.5 text-sm font-bold text-cyan-300 transition hover:bg-cyan-500/20"
+              className="inline-flex items-center gap-2 rounded-xl border border-cyan-500/40 bg-cyan-500/10 px-4 py-2.5 text-sm font-bold text-[#192631] transition hover:bg-cyan-500/20"
             >
               <ArrowRightLeft className="h-4 w-4" />
               + تحويل مخزون / صرف عهدة لموقع
@@ -1164,54 +1164,54 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
         {/* Executive KPI Strip */}
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
+          <div className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400">إجمالي أوامر الشراء المعتمدة (`NPO`)</span>
-              <ShoppingCart className="h-4 w-4 text-emerald-400" />
+              <span className="text-xs text-[#192631]/70">إجمالي أوامر الشراء المعتمدة (`NPO`)</span>
+              <ShoppingCart className="h-4 w-4 text-[#123524]" />
             </div>
-            <div className="mt-2 text-xl font-bold text-white">
-              {kpiStats.totalPOValue.toLocaleString()} <span className="text-xs font-normal text-slate-400">ج.م</span>
+            <div className="mt-2 text-xl font-bold text-[#192631]">
+              {kpiStats.totalPOValue.toLocaleString()} <span className="text-xs font-normal text-[#192631]/70">ج.م</span>
             </div>
-            <div className="mt-1 text-xs text-emerald-400">
+            <div className="mt-1 text-xs text-[#123524]">
               100% مربوطة باعتمادات (`Code A` / `Code B`)
             </div>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
+          <div className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400">وفورات الخصم المكتسب وجبر الفواتير</span>
-              <Percent className="h-4 w-4 text-amber-400" />
+              <span className="text-xs text-[#192631]/70">وفورات الخصم المكتسب وجبر الفواتير</span>
+              <Percent className="h-4 w-4 text-[#b45309]" />
             </div>
-            <div className="mt-2 text-xl font-bold text-amber-300">
-              {kpiStats.totalDiscountsSaved.toLocaleString()} <span className="text-xs font-normal text-slate-400">ج.م</span>
+            <div className="mt-2 text-xl font-bold text-[#b45309]">
+              {kpiStats.totalDiscountsSaved.toLocaleString()} <span className="text-xs font-normal text-[#192631]/70">ج.م</span>
             </div>
-            <div className="mt-1 text-xs text-slate-400">
+            <div className="mt-1 text-xs text-[#192631]/70">
               خصم مقطوع ونسب مئوية على فواتير الموردين والموانين
             </div>
           </div>
 
           <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-amber-300">خزنة مقر النزهة (الخامات الثمينة المؤمنة)</span>
-              <Lock className="h-4 w-4 text-amber-400" />
+              <span className="text-xs text-[#b45309]">خزنة مقر النزهة (الخامات الثمينة المؤمنة)</span>
+              <Lock className="h-4 w-4 text-[#b45309]" />
             </div>
-            <div className="mt-2 text-xl font-bold text-white">
-              {kpiStats.highValueVaultValue.toLocaleString()} <span className="text-xs font-normal text-slate-400">ج.م</span>
+            <div className="mt-2 text-xl font-bold text-[#192631]">
+              {kpiStats.highValueVaultValue.toLocaleString()} <span className="text-xs font-normal text-[#192631]/70">ج.م</span>
             </div>
-            <div className="mt-1 text-xs text-amber-300/90">
+            <div className="mt-1 text-xs text-[#b45309]/90">
               خلاطات ونواكل جروهي + سمارت هوم (حماية من السرقة)
             </div>
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
+          <div className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-4">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400">إجمالي تقييم المخازن الأربعة وعهدة المواقع</span>
-              <Warehouse className="h-4 w-4 text-cyan-400" />
+              <span className="text-xs text-[#192631]/70">إجمالي تقييم المخازن الأربعة وعهدة المواقع</span>
+              <Warehouse className="h-4 w-4 text-[#192631]" />
             </div>
-            <div className="mt-2 text-xl font-bold text-white">
-              {kpiStats.totalWarehouseValue.toLocaleString()} <span className="text-xs font-normal text-slate-400">ج.م</span>
+            <div className="mt-2 text-xl font-bold text-[#192631]">
+              {kpiStats.totalWarehouseValue.toLocaleString()} <span className="text-xs font-normal text-[#192631]/70">ج.م</span>
             </div>
-            <div className="mt-1 text-xs text-cyan-400">
+            <div className="mt-1 text-xs text-[#192631]">
               الدائري 1 + الدائري 2 + مقر النزهة + مواقع المشاريع
             </div>
           </div>
@@ -1219,13 +1219,13 @@ export const ProcurementWarehouseHub: React.FC = () => {
       </div>
 
       {/* Navigation Sub-Tabs */}
-      <div className="grid grid-cols-1 gap-2 rounded-2xl border border-slate-800 bg-slate-900/80 p-2 md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-2 rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-2 md:grid-cols-4">
         <button
           onClick={() => setActiveSubTab('npo')}
           className={`flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-xs font-bold transition md:text-sm ${
             activeSubTab === 'npo'
               ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25'
-              : 'text-slate-400 hover:bg-slate-800/70 hover:text-slate-200'
+              : 'text-[#192631]/70 hover:bg-[#192631]/[0.05] hover:text-[#192631]'
           }`}
         >
           <ShieldCheck className="h-4 w-4 shrink-0" />
@@ -1237,7 +1237,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
           className={`flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-xs font-bold transition md:text-sm ${
             activeSubTab === 'ocr'
               ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/25'
-              : 'text-slate-400 hover:bg-slate-800/70 hover:text-slate-200'
+              : 'text-[#192631]/70 hover:bg-[#192631]/[0.05] hover:text-[#192631]'
           }`}
         >
           <ScanLine className="h-4 w-4 shrink-0" />
@@ -1248,8 +1248,8 @@ export const ProcurementWarehouseHub: React.FC = () => {
           onClick={() => setActiveSubTab('accounting_logistics')}
           className={`flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-xs font-bold transition md:text-sm ${
             activeSubTab === 'accounting_logistics'
-              ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/25'
-              : 'text-slate-400 hover:bg-slate-800/70 hover:text-slate-200'
+              ? 'bg-[#e04b2a] text-[#192631] shadow-lg shadow-indigo-600/25'
+              : 'text-[#192631]/70 hover:bg-[#192631]/[0.05] hover:text-[#192631]'
           }`}
         >
           <Truck className="h-4 w-4 shrink-0" />
@@ -1260,8 +1260,8 @@ export const ProcurementWarehouseHub: React.FC = () => {
           onClick={() => setActiveSubTab('warehouses')}
           className={`flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-xs font-bold transition md:text-sm ${
             activeSubTab === 'warehouses'
-              ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/25'
-              : 'text-slate-400 hover:bg-slate-800/70 hover:text-slate-200'
+              ? 'bg-cyan-600 text-[#192631] shadow-lg shadow-cyan-600/25'
+              : 'text-[#192631]/70 hover:bg-[#192631]/[0.05] hover:text-[#192631]'
           }`}
         >
           <Warehouse className="h-4 w-4 shrink-0" />
@@ -1275,20 +1275,20 @@ export const ProcurementWarehouseHub: React.FC = () => {
       {activeSubTab === 'npo' && (
         <div className="space-y-6">
           {/* Strict Gatekeeper Rule Banner */}
-          <div className="rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-slate-900 p-5">
+          <div className="rounded-2xl border border-[#123524]/25 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-slate-900 p-5">
             <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
               <div className="flex items-start gap-3.5">
-                <div className="rounded-xl bg-emerald-500/20 p-3 text-emerald-400">
+                <div className="rounded-xl bg-[#123524]/10 p-3 text-[#123524]">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <div>
-                  <h2 className="text-base font-bold text-white">
+                  <h2 className="text-base font-bold text-[#192631]">
                     قاعدة الحوكمة الصارمة (Eng. Pierre Procurement Gatekeeper Rule)
                   </h2>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-300 md:text-sm">
+                  <p className="mt-1 text-xs leading-relaxed text-[#192631]/85 md:text-sm">
                     يُمنع النظام إصدار أي أمر شراء (`NPO`) إلا بعد ربطه باعتماد خامة (`Material Submittal - MS`) حاصل على كود اعتماد{' '}
-                    <span className="font-bold text-emerald-400">Code A (Approved)</span> أو{' '}
-                    <span className="font-bold text-cyan-400">Code B (Approved as Noted)</span>. أي خامة تحت المراجعة أو مرفوضة (`Code C`) يتم حظر شرائها تلقائياً لمنع توريد خامات غير معتمدة للموقع.
+                    <span className="font-bold text-[#123524]">Code A (Approved)</span> أو{' '}
+                    <span className="font-bold text-[#192631]">Code B (Approved as Noted)</span>. أي خامة تحت المراجعة أو مرفوضة (`Code C`) يتم حظر شرائها تلقائياً لمنع توريد خامات غير معتمدة للموقع.
                   </p>
                 </div>
               </div>
@@ -1309,7 +1309,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     handleSelectSubmittalInModal('MSELLT02');
                     setShowCreatePOModal(true);
                   }}
-                  className="inline-flex items-center gap-2 rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-2.5 text-xs font-bold text-rose-300 hover:bg-rose-500/20"
+                  className="inline-flex items-center gap-2 rounded-xl border border-rose-500/40 bg-rose-500/10 px-4 py-2.5 text-xs font-bold text-red-700 hover:bg-rose-500/20"
                 >
                   <Lock className="h-4 w-4" />
                   تجربة خامة محظورة (Gatekeeper Block)
@@ -1319,13 +1319,13 @@ export const ProcurementWarehouseHub: React.FC = () => {
           </div>
 
           {/* Submittal Gatekeeper Matrix Preview */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5">
             <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
               <div>
-                <h3 className="text-base font-bold text-white">
+                <h3 className="text-base font-bold text-[#192631]">
                   سجل اعتمادات الخامات وحالة بوابة المشتريات (Submittal Register Gatekeeper Status)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#192631]/70">
                   اضغط على أي اعتماد خامة لفتح نافذة إصدار أمر الشراء (`NPO`) أو اختبار الحظر التلقائي
                 </p>
               </div>
@@ -1341,28 +1341,28 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   }}
                   className={`cursor-pointer rounded-xl border p-3.5 transition ${
                     sub.approved
-                      ? 'border-emerald-500/30 bg-emerald-950/15 hover:border-emerald-500/60'
+                      ? 'border-[#123524]/25 bg-emerald-950/15 hover:border-emerald-500/60'
                       : 'border-rose-500/30 bg-rose-950/15 hover:border-rose-500/60'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-mono text-xs font-bold text-white">{sub.code}</span>
+                    <span className="font-mono text-xs font-bold text-[#192631]">{sub.code}</span>
                     <span
                       className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-bold ${
                         sub.approved
-                          ? 'bg-emerald-500/20 text-emerald-300'
-                          : 'bg-rose-500/20 text-rose-300'
+                          ? 'bg-[#123524]/10 text-[#123524]'
+                          : 'bg-rose-500/20 text-red-700'
                       }`}
                     >
                       {sub.approved ? <Unlock className="h-3 w-3" /> : <Lock className="h-3 w-3" />}
                       {sub.status}
                     </span>
                   </div>
-                  <div className="mt-2 text-xs font-bold text-slate-200 line-clamp-1">{sub.titleAr}</div>
-                  <div className="mt-0.5 text-[11px] text-slate-400 line-clamp-1">{sub.titleEn}</div>
-                  <div className="mt-2.5 flex items-center justify-between border-t border-slate-800/80 pt-2 text-[11px]">
-                    <span className="text-slate-400">{sub.brand}</span>
-                    <span className={sub.approved ? 'font-bold text-emerald-400' : 'font-bold text-rose-400'}>
+                  <div className="mt-2 text-xs font-bold text-[#192631] line-clamp-1">{sub.titleAr}</div>
+                  <div className="mt-0.5 text-[11px] text-[#192631]/70 line-clamp-1">{sub.titleEn}</div>
+                  <div className="mt-2.5 flex items-center justify-between border-t border-[#192631]/10 pt-2 text-[11px]">
+                    <span className="text-[#192631]/70">{sub.brand}</span>
+                    <span className={sub.approved ? 'font-bold text-[#123524]' : 'font-bold text-red-700'}>
                       {sub.approved ? 'مسموح بإصدار NPO ✓' : 'محظور الشراء ⛔'}
                     </span>
                   </div>
@@ -1372,25 +1372,25 @@ export const ProcurementWarehouseHub: React.FC = () => {
           </div>
 
           {/* Active NPO Register Table */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5">
             <div className="mb-4 flex flex-col justify-between gap-3 md:flex-row md:items-center">
               <div>
-                <h3 className="text-base font-bold text-white">
+                <h3 className="text-base font-bold text-[#192631]">
                   سجل أوامر الشراء الرسمية المربوطة بالاعتمادات (`NPO Register`)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#192631]/70">
                   يدعم مسار الشركات الموردة الرسمية (`Corporate NPO`) ومسار الموردين المحليين والموانين (`PO-OCR`)
                 </p>
               </div>
               <div className="flex items-center gap-2">
                 <div className="relative">
-                  <Search className="pointer-events-none absolute right-3 top-2.5 h-4 w-4 text-slate-500" />
+                  <Search className="pointer-events-none absolute right-3 top-2.5 h-4 w-4 text-[#192631]/60" />
                   <input
                     type="text"
                     value={searchPOQuery}
                     onChange={(e) => setSearchPOQuery(e.target.value)}
                     placeholder="بحث بكود NPO أو المورد أو الاعتماد..."
-                    className="w-64 rounded-xl border border-slate-700 bg-slate-950 py-2 pr-9 pl-3 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+                    className="w-64 rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 py-2 pr-9 pl-3 text-xs text-[#192631] placeholder-[#192631]/40 focus:border-emerald-500 focus:outline-none"
                   />
                 </div>
                 <button
@@ -1406,7 +1406,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-right text-xs">
                 <thead>
-                  <tr className="border-b border-slate-800 bg-slate-950/60 text-slate-400">
+                  <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70">
                     <th className="px-3 py-3 font-semibold">كود أمر الشراء (`NPO`)</th>
                     <th className="px-3 py-3 font-semibold">اعتماد الخامة (`MS`)</th>
                     <th className="px-3 py-3 font-semibold">المورد ومسار التوريد</th>
@@ -1416,30 +1416,30 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     <th className="px-3 py-3 font-semibold">الوجهة واللوجستيات</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/70">
+                <tbody className="divide-y divide-[#192631]/10">
                   {filteredPOs.map((po) => (
-                    <tr key={po.id} className="transition hover:bg-slate-800/40">
+                    <tr key={po.id} className="transition hover:bg-[#192631]/[0.05]">
                       <td className="px-3 py-3.5 align-top">
-                        <div className="font-mono text-xs font-bold text-emerald-300">{po.npoCode}</div>
-                        <div className="mt-1 text-[11px] text-slate-400">{po.projectName}</div>
-                        <div className="mt-0.5 text-[10px] text-slate-500">{po.createdAt}</div>
+                        <div className="font-mono text-xs font-bold text-[#123524]">{po.npoCode}</div>
+                        <div className="mt-1 text-[11px] text-[#192631]/70">{po.projectName}</div>
+                        <div className="mt-0.5 text-[10px] text-[#192631]/60">{po.createdAt}</div>
                       </td>
 
                       <td className="px-3 py-3.5 align-top">
-                        <div className="inline-flex items-center gap-1.5 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-bold text-emerald-300">
+                        <div className="inline-flex items-center gap-1.5 rounded-md border border-[#123524]/25 bg-[#123524]/10 px-2 py-0.5 font-mono text-xs font-bold text-[#123524]">
                           <ShieldCheck className="h-3.5 w-3.5" />
                           {po.submittalCode} ({po.submittalStatus})
                         </div>
-                        <div className="mt-1 text-xs text-slate-300">{po.submittalTitle}</div>
+                        <div className="mt-1 text-xs text-[#192631]/85">{po.submittalTitle}</div>
                       </td>
 
                       <td className="px-3 py-3.5 align-top">
-                        <div className="font-bold text-white">{po.vendorName}</div>
+                        <div className="font-bold text-[#192631]">{po.vendorName}</div>
                         <span
                           className={`mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold ${
                             po.vendorType === 'corporate'
-                              ? 'bg-blue-500/15 text-blue-300'
-                              : 'bg-amber-500/15 text-amber-300'
+                              ? 'bg-blue-500/15 text-[#192631]'
+                              : 'bg-amber-500/15 text-[#b45309]'
                           }`}
                         >
                           {po.vendorType === 'corporate'
@@ -1449,44 +1449,44 @@ export const ProcurementWarehouseHub: React.FC = () => {
                       </td>
 
                       <td className="px-3 py-3.5 align-top">
-                        <div className="text-slate-300">
+                        <div className="text-[#192631]/85">
                           قبل الخصم: <span className="font-semibold">{po.subtotal.toLocaleString()} ج.م</span>
                         </div>
-                        <div className="mt-0.5 text-[11px] text-amber-300">
+                        <div className="mt-0.5 text-[11px] text-[#b45309]">
                           خصم مكتسب: -{po.discountAmount.toLocaleString()} ج.م
                         </div>
-                        <div className="mt-0.5 text-[11px] text-slate-400">
+                        <div className="mt-0.5 text-[11px] text-[#192631]/70">
                           ضريبة 14%: {po.vatEnabled ? `+${po.vatAmount.toLocaleString()} ج.م` : 'بدون ضريبة (0 ج.م)'}
                         </div>
                       </td>
 
                       <td className="px-3 py-3.5 align-top">
-                        <div className="text-sm font-extrabold text-emerald-400">
+                        <div className="text-sm font-extrabold text-[#123524]">
                           {po.netPayable.toLocaleString()} ج.م
                         </div>
-                        <div className="mt-0.5 text-[11px] text-slate-400">{po.lines.length} بنود توريد</div>
+                        <div className="mt-0.5 text-[11px] text-[#192631]/70">{po.lines.length} بنود توريد</div>
                       </td>
 
                       <td className="px-3 py-3.5 align-top">
-                        <div className="font-mono text-xs font-semibold text-indigo-300">{po.prCode}</div>
+                        <div className="font-mono text-xs font-semibold text-[#e04b2a]">{po.prCode}</div>
                         <span
                           className={`mt-1 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold ${
                             po.prStatus === 'POP Attached (Paid)'
-                              ? 'bg-emerald-500/20 text-emerald-300'
-                              : 'bg-amber-500/20 text-amber-300'
+                              ? 'bg-[#123524]/10 text-[#123524]'
+                              : 'bg-amber-500/20 text-[#b45309]'
                           }`}
                         >
                           {po.prStatus === 'POP Attached (Paid)' ? 'تم السداد وإرفاق POP ✓' : 'بانتظار POP (أ. ميرنا)'}
                         </span>
-                        {po.popRef && <div className="mt-1 text-[10px] text-slate-400">{po.popRef}</div>}
+                        {po.popRef && <div className="mt-1 text-[10px] text-[#192631]/70">{po.popRef}</div>}
                       </td>
 
                       <td className="px-3 py-3.5 align-top">
-                        <div className="font-semibold text-cyan-300">
+                        <div className="font-semibold text-[#192631]">
                           {WAREHOUSE_META[po.destinationWarehouse].badge}
                         </div>
-                        <div className="mt-1 text-[11px] text-slate-300">{po.logisticsStatus}</div>
-                        <div className="mt-0.5 text-[10px] text-slate-400">{po.driverOrCourier}</div>
+                        <div className="mt-1 text-[11px] text-[#192631]/85">{po.logisticsStatus}</div>
+                        <div className="mt-0.5 text-[10px] text-[#192631]/70">{po.driverOrCourier}</div>
                       </td>
                     </tr>
                   ))}
@@ -1506,25 +1506,25 @@ export const ProcurementWarehouseHub: React.FC = () => {
           <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-r from-amber-950/40 via-slate-900 to-slate-900 p-5">
             <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
               <div className="flex items-start gap-3.5">
-                <div className="rounded-xl bg-amber-500/20 p-3 text-amber-400">
+                <div className="rounded-xl bg-amber-500/20 p-3 text-[#b45309]">
                   <ScanLine className="h-6 w-6" />
                 </div>
                 <div>
-                  <h2 className="text-base font-bold text-white">
+                  <h2 className="text-base font-bold text-[#192631]">
                     ماسح فواتير الواتساب والفواتير اليدوية للموانين (`AI / OCR WhatsApp & Handwritten Bill Scanner`)
                   </h2>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-300 md:text-sm">
-                    صُمم خصيصاً لتنفيذ متطلبات <span className="font-bold text-amber-300">م. بيير</span> مع الموردين المحليين وموانين الرمل والأسمنت والطوب والجبس الذين يرسلون فواتير ورقية مكتوبة بخط اليد أو رسائل حساب على الواتساب بدلاً من الفواتير الضريبية، مع تحكم كامل في{' '}
-                    <span className="font-bold text-emerald-300">ضريبة القيمة المضافة 14% (اختياري)</span> و
-                    <span className="font-bold text-cyan-300">الخصم المكتسب (مبلغ مقطوع لجبر الكسر أو نسبة %)</span> قبل التحويل إلى أ. ميرنا ماجد للصرف.
+                  <p className="mt-1 text-xs leading-relaxed text-[#192631]/85 md:text-sm">
+                    صُمم خصيصاً لتنفيذ متطلبات <span className="font-bold text-[#b45309]">م. بيير</span> مع الموردين المحليين وموانين الرمل والأسمنت والطوب والجبس الذين يرسلون فواتير ورقية مكتوبة بخط اليد أو رسائل حساب على الواتساب بدلاً من الفواتير الضريبية، مع تحكم كامل في{' '}
+                    <span className="font-bold text-[#123524]">ضريبة القيمة المضافة 14% (اختياري)</span> و
+                    <span className="font-bold text-[#192631]">الخصم المكتسب (مبلغ مقطوع لجبر الكسر أو نسبة %)</span> قبل التحويل إلى أ. ميرنا ماجد للصرف.
                   </p>
                 </div>
               </div>
             </div>
 
             {/* 3 One-Click Preset Templates */}
-            <div className="mt-4 border-t border-slate-800/80 pt-4">
-              <div className="mb-2 text-xs font-bold text-amber-300">
+            <div className="mt-4 border-t border-[#192631]/10 pt-4">
+              <div className="mb-2 text-xs font-bold text-[#b45309]">
                 اختر نموذج فاتورة جاهز للمحاكاة الفورية (3 قوالب عملية من الواقع) أو الصق رسالة واتساب / ارفع صورة الفاتورة:
               </div>
               <div className="flex flex-wrap gap-2.5">
@@ -1534,11 +1534,11 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     onClick={() => handleLoadOcrPreset(preset.id)}
                     className={`inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-bold transition ${
                       activePresetId === preset.id
-                        ? 'border-amber-400 bg-amber-500/20 text-amber-200 shadow-md'
-                        : 'border-slate-700 bg-slate-950/70 text-slate-300 hover:border-slate-600'
+                        ? 'border-amber-400 bg-amber-500/20 text-[#b45309] shadow-md'
+                        : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/85 hover:border-slate-600'
                     }`}
                   >
-                    <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+                    <Sparkles className="h-3.5 w-3.5 text-[#b45309]" />
                     {preset.badge}
                   </button>
                 ))}
@@ -1548,15 +1548,15 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
             {/* Right Column: WhatsApp / Handwritten Input Simulator (5 cols) */}
-            <div className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/70 p-5 lg:col-span-5">
+            <div className="space-y-4 rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 lg:col-span-5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <MessageSquare className="h-5 w-5 text-emerald-400" />
-                  <h3 className="text-sm font-bold text-white">
+                  <MessageSquare className="h-5 w-5 text-[#123524]" />
+                  <h3 className="text-sm font-bold text-[#192631]">
                     إدخال نص رسالة الواتساب أو صورة الفاتورة اليدوية
                   </h3>
                 </div>
-                <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-1.5 text-xs font-bold text-amber-300 hover:bg-amber-500/20">
+                <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-1.5 text-xs font-bold text-[#b45309] hover:bg-amber-500/20">
                   <Upload className="h-3.5 w-3.5" />
                   <span>رفع صورة فاتورة يدوية</span>
                   <input
@@ -1572,26 +1572,26 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
               <div className="space-y-3">
                 <div>
-                  <label className="mb-1 block text-xs font-semibold text-slate-300">
+                  <label className="mb-1 block text-xs font-semibold text-[#192631]/85">
                     اسم المورد الفردي / الموّان / المعرض
                   </label>
                   <input
                     type="text"
                     value={ocrSupplierName}
                     onChange={(e) => setOcrSupplierName(e.target.value)}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white focus:border-amber-500 focus:outline-none"
+                    className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631] focus:border-amber-500 focus:outline-none"
                   />
                 </div>
 
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1 block text-xs font-semibold text-slate-300">
+                    <label className="mb-1 block text-xs font-semibold text-[#192631]/85">
                       ربط باعتماد الخامة المعتمد (`MS`)
                     </label>
                     <select
                       value={ocrSubmittalCode}
                       onChange={(e) => setOcrSubmittalCode(e.target.value)}
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white focus:border-amber-500 focus:outline-none"
+                      className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631] focus:border-amber-500 focus:outline-none"
                     >
                       {SUBMITTAL_REGISTER.filter((s) => s.approved).map((s) => (
                         <option key={s.code} value={s.code}>
@@ -1602,13 +1602,13 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="mb-1 block text-xs font-semibold text-slate-300">
+                    <label className="mb-1 block text-xs font-semibold text-[#192631]/85">
                       مخزن الوجهة / استلام العهدة
                     </label>
                     <select
                       value={ocrDestination}
                       onChange={(e) => setOcrDestination(e.target.value as WarehouseId)}
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white focus:border-amber-500 focus:outline-none"
+                      className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631] focus:border-amber-500 focus:outline-none"
                     >
                       <option value="site_custody">تشوينات الموقع وعهدة مهندس الموقع</option>
                       <option value="ring_road_1">مخزن الدائري 1 - الرئيسي</option>
@@ -1619,19 +1619,19 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="mb-1 block text-xs font-semibold text-slate-300">
+                  <label className="mb-1 block text-xs font-semibold text-[#192631]/85">
                     نص رسالة الواتساب أو محتوى الفاتورة الورقية المسحوبة ضوئياً (`OCR Raw Text`):
                   </label>
                   <textarea
                     rows={7}
                     value={ocrRawText}
                     onChange={(e) => setOcrRawText(e.target.value)}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 p-3 text-xs leading-relaxed text-emerald-200 focus:border-amber-500 focus:outline-none"
+                    className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-3 text-xs leading-relaxed text-[#123524] focus:border-amber-500 focus:outline-none"
                   />
                 </div>
 
-                <div className="rounded-xl border border-slate-800 bg-slate-950/80 p-3 text-[11px] text-slate-400">
-                  <div className="font-bold text-slate-200">💡 كيف يعمل محرك الذكاء الاصطناعي (`PO-OCR`)؟</div>
+                <div className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-3 text-[11px] text-[#192631]/70">
+                  <div className="font-bold text-[#192631]">💡 كيف يعمل محرك الذكاء الاصطناعي (`PO-OCR`)؟</div>
                   <p className="mt-1">
                     يقوم النظام بتحليل رسائل الموانين أو الصور الملتقطة بالموبايل من الموقع، وتفكيكها إلى جدول بنود رقمي (كمية × فئة = إجمالي) مع تطبيق الخصم المتفق عليه والضريبة الاختيارية لإصدار أمر شراء رسمي (`NPO`) لقسم الحسابات.
                   </p>
@@ -1640,20 +1640,20 @@ export const ProcurementWarehouseHub: React.FC = () => {
             </div>
 
             {/* Left Column: Extracted Line Items & Eng. Pierre's Financial Controls (7 cols) */}
-            <div className="space-y-5 rounded-2xl border border-slate-800 bg-slate-900/70 p-5 lg:col-span-7">
+            <div className="space-y-5 rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 lg:col-span-7">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
-                  <h3 className="text-sm font-bold text-white">
+                  <h3 className="text-sm font-bold text-[#192631]">
                     جدول البنود المستخرجة القابل للتعديل (`Extracted Line Items Table`)
                   </h3>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-[#192631]/70">
                     يمكنك تعديل أي كمية أو سعر وحدة أو إضافة بند جديد قبل الاعتماد النهائي
                   </p>
                 </div>
 
                 <button
                   onClick={handleAddOcrLine}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-3 py-1.5 text-xs font-bold text-emerald-300 hover:bg-emerald-500/20"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[#123524]/25 bg-[#123524]/10 px-3 py-1.5 text-xs font-bold text-[#123524] hover:bg-[#123524]/10"
                 >
                   <Plus className="h-3.5 w-3.5" />
                   + إضافة بند للفاتورة
@@ -1661,17 +1661,17 @@ export const ProcurementWarehouseHub: React.FC = () => {
               </div>
 
               {isScanningOcr ? (
-                <div className="flex h-48 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/60">
-                  <div className="flex items-center gap-3 text-amber-300">
+                <div className="flex h-48 items-center justify-center rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90">
+                  <div className="flex items-center gap-3 text-[#b45309]">
                     <Sparkles className="h-5 w-5 animate-spin" />
                     <span className="text-sm font-bold">جاري قراءة الفاتورة وتحليل الكميات والأسعار...</span>
                   </div>
                 </div>
               ) : (
-                <div className="overflow-x-auto rounded-xl border border-slate-800">
+                <div className="overflow-x-auto rounded-xl border border-[#192631]/10">
                   <table className="w-full text-right text-xs">
                     <thead>
-                      <tr className="border-b border-slate-800 bg-slate-950 text-slate-400">
+                      <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70">
                         <th className="px-3 py-2.5">بيان الخامة / البند</th>
                         <th className="w-24 px-2 py-2.5">الوحدة</th>
                         <th className="w-24 px-2 py-2.5">الكمية</th>
@@ -1680,7 +1680,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                         <th className="w-10 px-2 py-2.5"></th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800 bg-slate-950/40">
+                    <tbody className="divide-y divide-[#192631]/10 bg-[#f5f5f5]/90">
                       {ocrLines.map((line) => {
                         const lineTotal = line.qty * line.unitPrice;
                         return (
@@ -1690,7 +1690,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                                 type="text"
                                 value={line.description}
                                 onChange={(e) => handleUpdateOcrLine(line.id, 'description', e.target.value)}
-                                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-2.5 py-1.5 text-xs text-white focus:border-amber-500 focus:outline-none"
+                                className="w-full rounded-lg border border-[#192631]/10 bg-white/80 backdrop-blur-md px-2.5 py-1.5 text-xs text-[#192631] focus:border-amber-500 focus:outline-none"
                               />
                             </td>
                             <td className="px-2 py-2">
@@ -1698,7 +1698,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                                 type="text"
                                 value={line.unit}
                                 onChange={(e) => handleUpdateOcrLine(line.id, 'unit', e.target.value)}
-                                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-2 py-1.5 text-center text-xs text-white focus:border-amber-500 focus:outline-none"
+                                className="w-full rounded-lg border border-[#192631]/10 bg-white/80 backdrop-blur-md px-2 py-1.5 text-center text-xs text-[#192631] focus:border-amber-500 focus:outline-none"
                               />
                             </td>
                             <td className="px-2 py-2">
@@ -1708,7 +1708,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                                 step="any"
                                 value={line.qty}
                                 onChange={(e) => handleUpdateOcrLine(line.id, 'qty', e.target.value)}
-                                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-2 py-1.5 text-center text-xs font-bold text-white focus:border-amber-500 focus:outline-none"
+                                className="w-full rounded-lg border border-[#192631]/10 bg-white/80 backdrop-blur-md px-2 py-1.5 text-center text-xs font-bold text-[#192631] focus:border-amber-500 focus:outline-none"
                               />
                             </td>
                             <td className="px-2 py-2">
@@ -1718,16 +1718,16 @@ export const ProcurementWarehouseHub: React.FC = () => {
                                 step="any"
                                 value={line.unitPrice}
                                 onChange={(e) => handleUpdateOcrLine(line.id, 'unitPrice', e.target.value)}
-                                className="w-full rounded-lg border border-slate-800 bg-slate-900 px-2 py-1.5 text-center text-xs font-bold text-amber-300 focus:border-amber-500 focus:outline-none"
+                                className="w-full rounded-lg border border-[#192631]/10 bg-white/80 backdrop-blur-md px-2 py-1.5 text-center text-xs font-bold text-[#b45309] focus:border-amber-500 focus:outline-none"
                               />
                             </td>
-                            <td className="px-3 py-2 font-mono text-xs font-bold text-emerald-300">
+                            <td className="px-3 py-2 font-mono text-xs font-bold text-[#123524]">
                               {lineTotal.toLocaleString()}
                             </td>
                             <td className="px-2 py-2 text-center">
                               <button
                                 onClick={() => handleRemoveOcrLine(line.id)}
-                                className="rounded p-1 text-slate-500 hover:bg-rose-500/10 hover:text-rose-400"
+                                className="rounded p-1 text-[#192631]/60 hover:bg-rose-500/10 hover:text-red-700"
                                 title="حذف البند"
                               >
                                 <Trash2 className="h-3.5 w-3.5" />
@@ -1742,15 +1742,15 @@ export const ProcurementWarehouseHub: React.FC = () => {
               )}
 
               {/* Eng. Pierre's Two Mandatory Financial Controls */}
-              <div className="grid grid-cols-1 gap-4 rounded-xl border border-amber-500/30 bg-slate-950/90 p-4 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 rounded-xl border border-amber-500/30 bg-[#f5f5f5]/90 p-4 md:grid-cols-2">
                 {/* Control 1: Optional 14% VAT Toggle */}
-                <div className="flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-900/90 p-3.5">
+                <div className="flex flex-col justify-between rounded-xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-3.5">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <div className="text-xs font-bold text-white">
+                      <div className="text-xs font-bold text-[#192631]">
                         1. إضافة ضريبة القيمة المضافة 14% (اختياري)
                       </div>
-                      <div className="mt-0.5 text-[11px] text-slate-400">
+                      <div className="mt-0.5 text-[11px] text-[#192631]/70">
                         تُفعّل في حال إصدار فاتورة ضريبية وتُغلق في فواتير الموانين النقدية
                       </div>
                     </div>
@@ -1769,9 +1769,9 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     </button>
                   </div>
 
-                  <div className="mt-3 flex items-center justify-between border-t border-slate-800 pt-2 text-xs">
-                    <span className="text-slate-400">حالة الضريبة (14% VAT):</span>
-                    <span className={ocrVatEnabled ? 'font-bold text-emerald-400' : 'font-bold text-slate-400'}>
+                  <div className="mt-3 flex items-center justify-between border-t border-[#192631]/10 pt-2 text-xs">
+                    <span className="text-[#192631]/70">حالة الضريبة (14% VAT):</span>
+                    <span className={ocrVatEnabled ? 'font-bold text-[#123524]' : 'font-bold text-[#192631]/70'}>
                       {ocrVatEnabled
                         ? `مفعّلة (+${ocrFinancials.vatAmount.toLocaleString()} ج.م)`
                         : 'غير مفعّلة (0 ج.م - فاتورة موّان بدون ضريبة)'}
@@ -1780,20 +1780,20 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 </div>
 
                 {/* Control 2: Lump-Sum or Percentage Discount Input */}
-                <div className="flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-900/90 p-3.5">
+                <div className="flex flex-col justify-between rounded-xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-3.5">
                   <div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-white">
+                      <span className="text-xs font-bold text-[#192631]">
                         2. خصم مكتسب (مبلغ مقطوع أو نسبة %)
                       </span>
-                      <div className="flex rounded-lg border border-slate-700 bg-slate-950 p-0.5 text-[11px]">
+                      <div className="flex rounded-lg border border-[#192631]/10 bg-[#f5f5f5]/90 p-0.5 text-[11px]">
                         <button
                           type="button"
                           onClick={() => setOcrDiscountType('lump_sum')}
                           className={`rounded-md px-2 py-0.5 font-bold ${
                             ocrDiscountType === 'lump_sum'
                               ? 'bg-amber-500 text-slate-950'
-                              : 'text-slate-400 hover:text-white'
+                              : 'text-[#192631]/70 hover:text-[#192631]'
                           }`}
                         >
                           مبلغ مقطوع (ج.م)
@@ -1804,7 +1804,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           className={`rounded-md px-2 py-0.5 font-bold ${
                             ocrDiscountType === 'percentage'
                               ? 'bg-amber-500 text-slate-950'
-                              : 'text-slate-400 hover:text-white'
+                              : 'text-[#192631]/70 hover:text-[#192631]'
                           }`}
                         >
                           نسبة %
@@ -1819,7 +1819,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                         step="any"
                         value={ocrDiscountValue}
                         onChange={(e) => setOcrDiscountValue(Number(e.target.value) || 0)}
-                        className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs font-bold text-amber-300 focus:border-amber-500 focus:outline-none"
+                        className="w-full rounded-lg border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-1.5 text-xs font-bold text-[#b45309] focus:border-amber-500 focus:outline-none"
                       />
                       <button
                         type="button"
@@ -1828,7 +1828,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           const remainder = ocrFinancials.subtotal % 1000;
                           setOcrDiscountValue(remainder > 0 ? remainder : 430);
                         }}
-                        className="shrink-0 rounded-lg border border-amber-500/40 bg-amber-500/10 px-2.5 py-1.5 text-[11px] font-bold text-amber-300 hover:bg-amber-500/20"
+                        className="shrink-0 rounded-lg border border-amber-500/40 bg-amber-500/10 px-2.5 py-1.5 text-[11px] font-bold text-[#b45309] hover:bg-amber-500/20"
                         title="جبر كسر الألف تلقائياً كما في مثال 20,430 إلى 20,000"
                       >
                         جبر الكسر تلقائياً
@@ -1836,9 +1836,9 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="mt-2 flex items-center justify-between border-t border-slate-800 pt-2 text-xs">
-                    <span className="text-slate-400">قيمة الخصم الفعلي:</span>
-                    <span className="font-bold text-amber-400">
+                  <div className="mt-2 flex items-center justify-between border-t border-[#192631]/10 pt-2 text-xs">
+                    <span className="text-[#192631]/70">قيمة الخصم الفعلي:</span>
+                    <span className="font-bold text-[#b45309]">
                       -{ocrFinancials.discountAmount.toLocaleString()} ج.م
                     </span>
                   </div>
@@ -1846,22 +1846,22 @@ export const ProcurementWarehouseHub: React.FC = () => {
               </div>
 
               {/* Net Payable Summary & Conversion CTA */}
-              <div className="flex flex-col justify-between gap-4 rounded-xl border border-emerald-500/40 bg-gradient-to-l from-emerald-950/40 to-slate-950 p-4 sm:flex-row sm:items-center">
+              <div className="flex flex-col justify-between gap-4 rounded-xl border border-[#123524]/25 bg-gradient-to-l from-emerald-950/40 to-slate-950 p-4 sm:flex-row sm:items-center">
                 <div className="space-y-1 text-xs">
-                  <div className="flex items-center gap-4 text-slate-300">
+                  <div className="flex items-center gap-4 text-[#192631]/85">
                     <span>إجمالي البنود: {ocrFinancials.subtotal.toLocaleString()} ج.م</span>
                     <span>•</span>
-                    <span className="text-amber-300">
+                    <span className="text-[#b45309]">
                       الخصم: -{ocrFinancials.discountAmount.toLocaleString()} ج.م
                     </span>
                     <span>•</span>
-                    <span className="text-cyan-300">
+                    <span className="text-[#192631]">
                       ضريبة 14%: +{ocrFinancials.vatAmount.toLocaleString()} ج.م
                     </span>
                   </div>
-                  <div className="text-base font-extrabold text-white">
+                  <div className="text-base font-extrabold text-[#192631]">
                     الصافي النهائي المستحق للصرف (Net Payable):{' '}
-                    <span className="text-xl text-emerald-400">
+                    <span className="text-xl text-[#123524]">
                       {ocrFinancials.netPayable.toLocaleString()} ج.م
                     </span>
                   </div>
@@ -1886,18 +1886,18 @@ export const ProcurementWarehouseHub: React.FC = () => {
       {activeSubTab === 'accounting_logistics' && (
         <div className="space-y-6">
           {/* Pipeline Flow Header */}
-          <div className="rounded-2xl border border-indigo-500/30 bg-gradient-to-r from-indigo-950/40 via-slate-900 to-slate-900 p-5">
-            <h2 className="text-base font-bold text-white">
+          <div className="rounded-2xl border border-[#e04b2a]/25 bg-gradient-to-r from-indigo-950/40 via-slate-900 to-slate-900 p-5">
+            <h2 className="text-base font-bold text-[#192631]">
               مسار التكامل بين المكتب الفني ⬅ حسابات أ. ميرنا ماجد (`PR / POP`) ⬅ لوجستيات أ. ميلاد هارون
             </h2>
             <div className="mt-4 grid grid-cols-2 gap-2 text-xs md:grid-cols-6">
               {[
-                { step: '1. اعتماد الخامة', sub: 'Submittal Approved (A/B)', color: 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300' },
-                { step: '2. أمر الشراء', sub: 'PO Issued (NPO)', color: 'border-cyan-500/40 bg-cyan-500/10 text-cyan-300' },
-                { step: '3. طلب صرف مالي', sub: 'Payment Request (PR - Merna)', color: 'border-indigo-500/40 bg-indigo-500/10 text-indigo-300' },
-                { step: '4. إثبات الدفع', sub: 'Proof of Payment (POP Attached)', color: 'border-amber-500/40 bg-amber-500/10 text-amber-300' },
-                { step: '5. توجيه اللوجستيات', sub: 'Logistics Dispatched (Milad)', color: 'border-purple-500/40 bg-purple-500/10 text-purple-300' },
-                { step: '6. استلام المخزن/الموقع', sub: 'Warehouse / Site Custody', color: 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300' }
+                { step: '1. اعتماد الخامة', sub: 'Submittal Approved (A/B)', color: 'border-[#123524]/25 bg-[#123524]/10 text-[#123524]' },
+                { step: '2. أمر الشراء', sub: 'PO Issued (NPO)', color: 'border-cyan-500/40 bg-cyan-500/10 text-[#192631]' },
+                { step: '3. طلب صرف مالي', sub: 'Payment Request (PR - Merna)', color: 'border-[#e04b2a]/25 bg-[#e04b2a]/10 text-[#e04b2a]' },
+                { step: '4. إثبات الدفع', sub: 'Proof of Payment (POP Attached)', color: 'border-amber-500/40 bg-amber-500/10 text-[#b45309]' },
+                { step: '5. توجيه اللوجستيات', sub: 'Logistics Dispatched (Milad)', color: 'border-purple-500/40 bg-purple-500/10 text-[#192631]' },
+                { step: '6. استلام المخزن/الموقع', sub: 'Warehouse / Site Custody', color: 'border-[#123524]/25 bg-[#123524]/10 text-[#123524]' }
               ].map((st, idx) => (
                 <div key={idx} className={`rounded-xl border p-2.5 text-center ${st.color}`}>
                   <div className="font-bold">{st.step}</div>
@@ -1909,32 +1909,32 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
           {/* Transport Modes Reference Cards (Milad Haroun Dispatcher) */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-cyan-500/30 bg-slate-900/80 p-4">
-              <div className="flex items-center gap-2.5 text-cyan-300">
+            <div className="rounded-2xl border border-cyan-500/30 bg-white/80 backdrop-blur-md p-4">
+              <div className="flex items-center gap-2.5 text-[#192631]">
                 <Car className="h-5 w-5" />
                 <h3 className="text-sm font-bold">🚗 سيارة الشركة - ميلاد هارون</h3>
               </div>
-              <p className="mt-1.5 text-xs text-slate-400">
+              <p className="mt-1.5 text-xs text-[#192631]/70">
                 تُستخدم لنقل الخامات الثمينة (خلاطات جروهي، سمارت هوم، إضاءة) إلى مقر النزهة أو المواقع مع تتبع عداد الكيلومتر وحصة البنزين وخط السير.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-amber-500/30 bg-slate-900/80 p-4">
-              <div className="flex items-center gap-2.5 text-amber-300">
+            <div className="rounded-2xl border border-amber-500/30 bg-white/80 backdrop-blur-md p-4">
+              <div className="flex items-center gap-2.5 text-[#b45309]">
                 <Bike className="h-5 w-5" />
                 <h3 className="text-sm font-bold">🏍️ أوبر بايك / مرسول سريع (`Uber Bike`)</h3>
               </div>
-              <p className="mt-1.5 text-xs text-slate-400">
+              <p className="mt-1.5 text-xs text-[#192631]/70">
                 للخامات الخفيفة والعاجلة جداً (عينات دهانات، مسامير، سيليكون، لقم مفاتيح كهرباء) لتجنب تعطيل الصنايعية بالموقع.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-purple-500/30 bg-slate-900/80 p-4">
-              <div className="flex items-center gap-2.5 text-purple-300">
+            <div className="rounded-2xl border border-purple-500/30 bg-white/80 backdrop-blur-md p-4">
+              <div className="flex items-center gap-2.5 text-[#192631]">
                 <Truck className="h-5 w-5" />
                 <h3 className="text-sm font-bold">🚛 سيارة نقل خارجي / جامبو / ونش تطليع</h3>
               </div>
-              <p className="mt-1.5 text-xs text-slate-400">
+              <p className="mt-1.5 text-xs text-[#192631]/70">
                 للحمولات الثقيلة (باليتات البورسلين، ألواح الجبس بورد، شكاير الأسمنت والرمل) مع تنسيق ونش التطليع للوحدات المرتفعة.
               </p>
             </div>
@@ -1947,26 +1947,26 @@ export const ProcurementWarehouseHub: React.FC = () => {
               return (
                 <div
                   key={po.id}
-                  className="rounded-2xl border border-slate-800 bg-slate-900/75 p-5 shadow-md transition hover:border-slate-700"
+                  className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-md transition hover:border-[#192631]/10"
                 >
-                  <div className="flex flex-col justify-between gap-4 border-b border-slate-800 pb-4 lg:flex-row lg:items-center">
+                  <div className="flex flex-col justify-between gap-4 border-b border-[#192631]/10 pb-4 lg:flex-row lg:items-center">
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="font-mono text-sm font-extrabold text-emerald-400">
+                        <span className="font-mono text-sm font-extrabold text-[#123524]">
                           {po.npoCode}
                         </span>
-                        <span className="rounded-md border border-slate-700 bg-slate-950 px-2 py-0.5 font-mono text-xs text-slate-300">
+                        <span className="rounded-md border border-[#192631]/10 bg-[#f5f5f5]/90 px-2 py-0.5 font-mono text-xs text-[#192631]/85">
                           اعتماد: {po.submittalCode} ({po.submittalStatus})
                         </span>
-                        <span className="rounded-md border border-indigo-500/30 bg-indigo-500/10 px-2.5 py-0.5 font-mono text-xs font-bold text-indigo-300">
+                        <span className="rounded-md border border-[#e04b2a]/25 bg-[#e04b2a]/10 px-2.5 py-0.5 font-mono text-xs font-bold text-[#e04b2a]">
                           {po.prCode}
                         </span>
                       </div>
-                      <div className="mt-1.5 text-sm font-bold text-white">
-                        {po.vendorName} — <span className="text-emerald-400">{po.netPayable.toLocaleString()} ج.م</span>
+                      <div className="mt-1.5 text-sm font-bold text-[#192631]">
+                        {po.vendorName} — <span className="text-[#123524]">{po.netPayable.toLocaleString()} ج.م</span>
                       </div>
-                      <div className="mt-0.5 text-xs text-slate-400">
-                        الوجهة المحددة: <span className="font-semibold text-cyan-300">{WAREHOUSE_META[po.destinationWarehouse].nameAr}</span> | المستلم: {po.siteReceiver}
+                      <div className="mt-0.5 text-xs text-[#192631]/70">
+                        الوجهة المحددة: <span className="font-semibold text-[#192631]">{WAREHOUSE_META[po.destinationWarehouse].nameAr}</span> | المستلم: {po.siteReceiver}
                       </div>
                     </div>
 
@@ -1981,7 +1981,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           إرفاق إثبات الدفع (`POP`) - أ. ميرنا ماجد
                         </button>
                       ) : (
-                        <span className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/15 px-3.5 py-2 text-xs font-bold text-emerald-300">
+                        <span className="inline-flex items-center gap-1.5 rounded-xl border border-[#123524]/25 bg-[#123524]/10 px-3.5 py-2 text-xs font-bold text-[#123524]">
                           <CheckCircle2 className="h-4 w-4" />
                           تم السداد وإرفاق POP ({po.popRef})
                         </span>
@@ -1990,7 +1990,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                       {isPaid && po.logisticsStatus !== 'Delivered & Verified' && (
                         <button
                           onClick={() => handleAdvanceLogisticsStage(po.id)}
-                          className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-indigo-600/20 hover:bg-indigo-500"
+                          className="inline-flex items-center gap-2 rounded-xl bg-[#e04b2a] px-4 py-2 text-xs font-bold text-[#192631] shadow-lg shadow-indigo-600/20 hover:bg-[#c83e1f]"
                         >
                           <Truck className="h-4 w-4" />
                           {po.logisticsStatus === 'Ready for Dispatch'
@@ -2004,7 +2004,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   {/* Logistics Dispatcher Row (Milad Haroun) */}
                   <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-12">
                     <div className="lg:col-span-5">
-                      <label className="mb-1.5 block text-xs font-bold text-slate-300">
+                      <label className="mb-1.5 block text-xs font-bold text-[#192631]/85">
                         توجيه اللوجستيات واختيار وسيلة النقل (أ. ميلاد هارون):
                       </label>
                       <div className="grid grid-cols-3 gap-2">
@@ -2013,11 +2013,11 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           onClick={() => handleChangeTransportMode(po.id, 'milad_car')}
                           className={`flex flex-col items-center justify-center rounded-xl border p-2.5 text-center text-[11px] font-bold transition ${
                             po.transportMode === 'milad_car'
-                              ? 'border-cyan-400 bg-cyan-500/20 text-cyan-200'
-                              : 'border-slate-800 bg-slate-950/60 text-slate-400 hover:border-slate-700'
+                              ? 'border-cyan-400 bg-cyan-500/20 text-[#192631]'
+                              : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70 hover:border-[#192631]/10'
                           }`}
                         >
-                          <Car className="mb-1 h-4 w-4 text-cyan-400" />
+                          <Car className="mb-1 h-4 w-4 text-[#192631]" />
                           <span>سيارة الشركة</span>
                           <span className="text-[9px] font-normal opacity-80">ميلاد هارون</span>
                         </button>
@@ -2027,11 +2027,11 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           onClick={() => handleChangeTransportMode(po.id, 'uber_bike')}
                           className={`flex flex-col items-center justify-center rounded-xl border p-2.5 text-center text-[11px] font-bold transition ${
                             po.transportMode === 'uber_bike'
-                              ? 'border-amber-400 bg-amber-500/20 text-amber-200'
-                              : 'border-slate-800 bg-slate-950/60 text-slate-400 hover:border-slate-700'
+                              ? 'border-amber-400 bg-amber-500/20 text-[#b45309]'
+                              : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70 hover:border-[#192631]/10'
                           }`}
                         >
-                          <Bike className="mb-1 h-4 w-4 text-amber-400" />
+                          <Bike className="mb-1 h-4 w-4 text-[#b45309]" />
                           <span>أوبر بايك سريع</span>
                           <span className="text-[9px] font-normal opacity-80">عينات / خفيف</span>
                         </button>
@@ -2041,37 +2041,37 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           onClick={() => handleChangeTransportMode(po.id, 'external_truck')}
                           className={`flex flex-col items-center justify-center rounded-xl border p-2.5 text-center text-[11px] font-bold transition ${
                             po.transportMode === 'external_truck'
-                              ? 'border-purple-400 bg-purple-500/20 text-purple-200'
-                              : 'border-slate-800 bg-slate-950/60 text-slate-400 hover:border-slate-700'
+                              ? 'border-purple-400 bg-purple-500/20 text-[#192631]'
+                              : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70 hover:border-[#192631]/10'
                           }`}
                         >
-                          <Truck className="mb-1 h-4 w-4 text-purple-400" />
+                          <Truck className="mb-1 h-4 w-4 text-[#192631]" />
                           <span>نقل خارجي / ونش</span>
                           <span className="text-[9px] font-normal opacity-80">حمولات ثقيلة</span>
                         </button>
                       </div>
                     </div>
 
-                    <div className="flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-950/70 p-3.5 text-xs lg:col-span-7">
+                    <div className="flex flex-col justify-between rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-3.5 text-xs lg:col-span-7">
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <span className="font-bold text-slate-200">
-                          مسؤول النقل: <span className="text-cyan-300">{po.driverOrCourier}</span>
+                        <span className="font-bold text-[#192631]">
+                          مسؤول النقل: <span className="text-[#192631]">{po.driverOrCourier}</span>
                         </span>
                         <span
                           className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold ${
                             po.logisticsStatus === 'Delivered & Verified'
-                              ? 'bg-emerald-500/20 text-emerald-300'
+                              ? 'bg-[#123524]/10 text-[#123524]'
                               : po.logisticsStatus === 'Dispatched (In Transit)'
-                              ? 'bg-indigo-500/20 text-indigo-300'
+                              ? 'bg-[#e04b2a]/10 text-[#e04b2a]'
                               : po.logisticsStatus === 'Ready for Dispatch'
-                              ? 'bg-cyan-500/20 text-cyan-300'
-                              : 'bg-amber-500/20 text-amber-300'
+                              ? 'bg-cyan-500/20 text-[#192631]'
+                              : 'bg-amber-500/20 text-[#b45309]'
                           }`}
                         >
                           {po.logisticsStatus}
                         </span>
                       </div>
-                      <div className="mt-2 text-slate-400">{po.tripDetails}</div>
+                      <div className="mt-2 text-[#192631]/70">{po.tripDetails}</div>
                     </div>
                   </div>
                 </div>
@@ -2100,8 +2100,8 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   onClick={() => setSelectedWarehouseFilter(isSelected ? 'ALL' : whId)}
                   className={`cursor-pointer rounded-2xl border p-4 transition ${
                     isSelected
-                      ? `${meta.borderClass} bg-slate-900 shadow-lg ring-2 ring-cyan-500/40`
-                      : 'border-slate-800 bg-slate-900/70 hover:border-slate-700'
+                      ? `${meta.borderClass} bg-white/85 backdrop-blur-xl shadow-lg ring-2 ring-cyan-500/40`
+                      : 'border-[#192631]/10 bg-white/80 backdrop-blur-md hover:border-[#192631]/10'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">
@@ -2109,25 +2109,25 @@ export const ProcurementWarehouseHub: React.FC = () => {
                       {meta.badge}
                     </span>
                     {whId === 'nozha_hq' ? (
-                      <Lock className="h-4 w-4 text-amber-400" />
+                      <Lock className="h-4 w-4 text-[#b45309]" />
                     ) : whId === 'site_custody' ? (
-                      <UserCheck className="h-4 w-4 text-emerald-400" />
+                      <UserCheck className="h-4 w-4 text-[#123524]" />
                     ) : (
-                      <Warehouse className="h-4 w-4 text-cyan-400" />
+                      <Warehouse className="h-4 w-4 text-[#192631]" />
                     )}
                   </div>
 
-                  <h3 className="mt-3 text-sm font-bold text-white">{meta.nameAr}</h3>
-                  <p className="mt-1 text-[11px] leading-relaxed text-slate-400">{meta.description}</p>
+                  <h3 className="mt-3 text-sm font-bold text-[#192631]">{meta.nameAr}</h3>
+                  <p className="mt-1 text-[11px] leading-relaxed text-[#192631]/70">{meta.description}</p>
 
-                  <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs">
+                  <div className="mt-4 flex items-center justify-between border-t border-[#192631]/10 pt-3 text-xs">
                     <div>
-                      <div className="text-[10px] text-slate-500">الأصناف المسجلة</div>
-                      <div className="font-bold text-white">{itemsInWh.length} أصناف</div>
+                      <div className="text-[10px] text-[#192631]/60">الأصناف المسجلة</div>
+                      <div className="font-bold text-[#192631]">{itemsInWh.length} أصناف</div>
                     </div>
                     <div className="text-left">
-                      <div className="text-[10px] text-slate-500">قيمة العهدة الحالية</div>
-                      <div className="font-bold text-emerald-400">{totalVal.toLocaleString()} ج.م</div>
+                      <div className="text-[10px] text-[#192631]/60">قيمة العهدة الحالية</div>
+                      <div className="font-bold text-[#123524]">{totalVal.toLocaleString()} ج.م</div>
                     </div>
                   </div>
                 </div>
@@ -2136,15 +2136,15 @@ export const ProcurementWarehouseHub: React.FC = () => {
           </div>
 
           {/* Filter Bar + Transfer CTA */}
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-4">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-bold text-slate-400">تصفية المخزن:</span>
+              <span className="text-xs font-bold text-[#192631]/70">تصفية المخزن:</span>
               <button
                 onClick={() => setSelectedWarehouseFilter('ALL')}
                 className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
                   selectedWarehouseFilter === 'ALL'
-                    ? 'bg-cyan-600 text-white'
-                    : 'bg-slate-950 text-slate-400 hover:text-white'
+                    ? 'bg-cyan-600 text-[#192631]'
+                    : 'bg-[#f5f5f5]/90 text-[#192631]/70 hover:text-[#192631]'
                 }`}
               >
                 كل المخازن الأربعة ({warehouseStock.length})
@@ -2155,8 +2155,8 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   onClick={() => setSelectedWarehouseFilter(whId)}
                   className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
                     selectedWarehouseFilter === whId
-                      ? 'bg-cyan-600 text-white'
-                      : 'bg-slate-950 text-slate-400 hover:text-white'
+                      ? 'bg-cyan-600 text-[#192631]'
+                      : 'bg-[#f5f5f5]/90 text-[#192631]/70 hover:text-[#192631]'
                   }`}
                 >
                   {WAREHOUSE_META[whId].badge}
@@ -2166,7 +2166,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
             <button
               onClick={() => setShowTransferModal(true)}
-              className="inline-flex items-center gap-2 rounded-xl bg-cyan-600 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-cyan-600/20 hover:bg-cyan-500"
+              className="inline-flex items-center gap-2 rounded-xl bg-cyan-600 px-4 py-2 text-xs font-bold text-[#192631] shadow-lg shadow-cyan-600/20 hover:bg-cyan-500"
             >
               <ArrowRightLeft className="h-4 w-4" />
               + تحويل مخزون بين المخازن / صرف للموقع
@@ -2174,15 +2174,15 @@ export const ProcurementWarehouseHub: React.FC = () => {
           </div>
 
           {/* Inventory & Custody Table */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
-            <h3 className="mb-4 text-base font-bold text-white">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5">
+            <h3 className="mb-4 text-base font-bold text-[#192631]">
               سجل الأرصدة والعهدة بالمخازن الأربعة ومطابقة كميات أوامر الشراء (`Inventory & Site Custody Verification`)
             </h3>
 
             <div className="overflow-x-auto">
               <table className="w-full text-right text-xs">
                 <thead>
-                  <tr className="border-b border-slate-800 bg-slate-950/60 text-slate-400">
+                  <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70">
                     <th className="px-3 py-3">كود الصنف والبيان</th>
                     <th className="px-3 py-3">الموقع المخزني (`Warehouse`)</th>
                     <th className="px-3 py-3">المشروع المخصص</th>
@@ -2192,54 +2192,54 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     <th className="px-3 py-3">حالة الفحص (`MIR`)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/70">
+                <tbody className="divide-y divide-[#192631]/10">
                   {filteredWarehouseItems.map((item) => {
                     const whMeta = WAREHOUSE_META[item.warehouseId];
                     return (
-                      <tr key={item.id} className="transition hover:bg-slate-800/40">
+                      <tr key={item.id} className="transition hover:bg-[#192631]/[0.05]">
                         <td className="px-3 py-3.5 align-top">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono text-xs font-bold text-cyan-300">{item.itemCode}</span>
-                            <span className="rounded bg-slate-800 px-2 py-0.5 text-[10px] text-slate-300">
+                            <span className="font-mono text-xs font-bold text-[#192631]">{item.itemCode}</span>
+                            <span className="rounded bg-[#192631]/[0.05] px-2 py-0.5 text-[10px] text-[#192631]/85">
                               {item.category}
                             </span>
                           </div>
-                          <div className="mt-1 font-bold text-white">{item.nameAr}</div>
-                          <div className="text-[11px] text-slate-400">{item.nameEn}</div>
+                          <div className="mt-1 font-bold text-[#192631]">{item.nameAr}</div>
+                          <div className="text-[11px] text-[#192631]/70">{item.nameEn}</div>
                         </td>
 
                         <td className="px-3 py-3.5 align-top">
                           <span className={`inline-flex rounded-full border px-2.5 py-0.5 text-[11px] font-bold ${whMeta.colorClass}`}>
                             {whMeta.badge}
                           </span>
-                          <div className="mt-1 text-[10px] text-slate-400">{item.securityLevel}</div>
+                          <div className="mt-1 text-[10px] text-[#192631]/70">{item.securityLevel}</div>
                         </td>
 
                         <td className="px-3 py-3.5 align-top">
-                          <div className="font-semibold text-slate-200">{item.projectAllocated}</div>
-                          <div className="mt-0.5 font-mono text-[10px] text-slate-400">مرجع: {item.npoRef}</div>
+                          <div className="font-semibold text-[#192631]">{item.projectAllocated}</div>
+                          <div className="mt-0.5 font-mono text-[10px] text-[#192631]/70">مرجع: {item.npoRef}</div>
                         </td>
 
                         <td className="px-3 py-3.5 align-top">
-                          <div className="text-sm font-extrabold text-white">
-                            {item.qty} <span className="text-xs font-normal text-slate-400">{item.unit}</span>
+                          <div className="text-sm font-extrabold text-[#192631]">
+                            {item.qty} <span className="text-xs font-normal text-[#192631]/70">{item.unit}</span>
                           </div>
-                          <div className="mt-0.5 text-[11px] text-slate-400">
+                          <div className="mt-0.5 text-[11px] text-[#192631]/70">
                             كمية أمر الشراء: {item.poQty} {item.unit}
                           </div>
                         </td>
 
-                        <td className="px-3 py-3.5 align-top font-mono text-xs font-bold text-emerald-400">
+                        <td className="px-3 py-3.5 align-top font-mono text-xs font-bold text-[#123524]">
                           {(item.qty * item.unitValue).toLocaleString()} ج.م
                         </td>
 
                         <td className="px-3 py-3.5 align-top">
-                          <div className="font-semibold text-white">{item.custodyReceiver}</div>
-                          <div className="mt-0.5 text-[11px] text-slate-400">{item.lastUpdated}</div>
+                          <div className="font-semibold text-[#192631]">{item.custodyReceiver}</div>
+                          <div className="mt-0.5 text-[11px] text-[#192631]/70">{item.lastUpdated}</div>
                         </td>
 
                         <td className="px-3 py-3.5 align-top">
-                          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2.5 py-0.5 text-[11px] font-bold text-emerald-300">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-[#123524]/10 px-2.5 py-0.5 text-[11px] font-bold text-[#123524]">
                             <FileCheck2 className="h-3 w-3" />
                             {item.mirStatus}
                           </span>
@@ -2253,30 +2253,30 @@ export const ProcurementWarehouseHub: React.FC = () => {
           </div>
 
           {/* Custody Transfer Log */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-5">
-            <h3 className="mb-3 text-sm font-bold text-white">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5">
+            <h3 className="mb-3 text-sm font-bold text-[#192631]">
               سجل حركات التحويل بين المخازن وصرف العهدة للمواقع (`Custody Transfer & Dispatch Ledger`)
             </h3>
             <div className="space-y-2.5">
               {transferLogs.map((log) => (
                 <div
                   key={log.id}
-                  className="flex flex-col justify-between gap-2 rounded-xl border border-slate-800 bg-slate-950/70 p-3.5 text-xs md:flex-row md:items-center"
+                  className="flex flex-col justify-between gap-2 rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-3.5 text-xs md:flex-row md:items-center"
                 >
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono font-bold text-cyan-400">{log.transferCode}</span>
-                    <span className="font-bold text-white">
+                    <span className="font-mono font-bold text-[#192631]">{log.transferCode}</span>
+                    <span className="font-bold text-[#192631]">
                       {log.itemTitle} ({log.qty} {log.unit})
                     </span>
-                    <span className="text-slate-400">
-                      من <strong className="text-amber-300">{WAREHOUSE_META[log.fromWarehouse].badge}</strong> ⬅ إلى{' '}
-                      <strong className="text-emerald-300">{WAREHOUSE_META[log.toWarehouse].badge}</strong>
+                    <span className="text-[#192631]/70">
+                      من <strong className="text-[#b45309]">{WAREHOUSE_META[log.fromWarehouse].badge}</strong> ⬅ إلى{' '}
+                      <strong className="text-[#123524]">{WAREHOUSE_META[log.toWarehouse].badge}</strong>
                     </span>
                   </div>
-                  <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-400">
+                  <div className="flex flex-wrap items-center gap-3 text-[11px] text-[#192631]/70">
                     <span>بواسطة: {log.dispatcher}</span>
                     <span>•</span>
-                    <span className="text-slate-200">المستلم: {log.receiverName}</span>
+                    <span className="text-[#192631]">المستلم: {log.receiverName}</span>
                     <span>•</span>
                     <span>{log.timestamp}</span>
                   </div>
@@ -2291,21 +2291,21 @@ export const ProcurementWarehouseHub: React.FC = () => {
           MODAL 1: + CREATE PURCHASE ORDER (NPO) WITH SUBMITTAL GATEKEEPER
          ===================================================================== */}
       {showCreatePOModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192631]/40 p-4 backdrop-blur-sm">
           <div
             dir="rtl"
-            className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-slate-700 bg-slate-900 p-6 text-slate-100 shadow-2xl"
+            className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-6 text-[#192631] shadow-2xl"
           >
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div className="flex items-center justify-between border-b border-[#192631]/10 pb-4">
               <div className="flex items-center gap-2.5">
-                <ShieldCheck className="h-6 w-6 text-emerald-400" />
-                <h3 className="text-lg font-bold text-white">
+                <ShieldCheck className="h-6 w-6 text-[#123524]" />
+                <h3 className="text-lg font-bold text-[#192631]">
                   إصدار أمر شراء جديد مربوط باعتماد خامة (`+ Create Submittal-Gated NPO`)
                 </h3>
               </div>
               <button
                 onClick={() => setShowCreatePOModal(false)}
-                className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white"
+                className="rounded-lg p-1.5 text-[#192631]/70 hover:bg-[#192631]/[0.05] hover:text-[#192631]"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -2314,13 +2314,13 @@ export const ProcurementWarehouseHub: React.FC = () => {
             <div className="mt-5 space-y-4">
               {/* Step 1: Select Material Submittal */}
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-slate-300">
+                <label className="mb-1.5 block text-xs font-bold text-[#192631]/85">
                   1. اختر اعتماد الخامة (`Material Submittal - MS`) من سجل المشروع:
                 </label>
                 <select
                   value={selectedSubmittalCode}
                   onChange={(e) => handleSelectSubmittalInModal(e.target.value)}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-xs font-bold text-white focus:border-emerald-500 focus:outline-none"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3.5 py-2.5 text-xs font-bold text-[#192631] focus:border-emerald-500 focus:outline-none"
                 >
                   {SUBMITTAL_REGISTER.map((sub) => (
                     <option key={sub.code} value={sub.code}>
@@ -2332,26 +2332,26 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
               {/* Gatekeeper Status Box */}
               {selectedSubmittalObj.approved ? (
-                <div className="rounded-xl border border-emerald-500/40 bg-emerald-950/30 p-4">
-                  <div className="flex items-center gap-2 text-sm font-bold text-emerald-300">
-                    <Unlock className="h-5 w-5 shrink-0 text-emerald-400" />
+                <div className="rounded-xl border border-[#123524]/25 bg-emerald-950/30 p-4">
+                  <div className="flex items-center gap-2 text-sm font-bold text-[#123524]">
+                    <Unlock className="h-5 w-5 shrink-0 text-[#123524]" />
                     <span>
                       ✅ بوابة المشتريات مفتوحة (UNLOCKED): الاعتماد ({selectedSubmittalObj.code}) حاصل على ({selectedSubmittalObj.status})
                     </span>
                   </div>
-                  <p className="mt-1 text-xs text-slate-300">
+                  <p className="mt-1 text-xs text-[#192631]/85">
                     الخامة معتمدة رسمياً من الاستشاري ({selectedSubmittalObj.titleEn}) — يُسمح بإصدار أمر الشراء (`NPO`) وتحويله للحسابات.
                   </p>
                 </div>
               ) : (
                 <div className="rounded-xl border-2 border-rose-500/70 bg-rose-950/40 p-4">
-                  <div className="flex items-center gap-2 text-sm font-extrabold text-rose-300">
-                    <ShieldAlert className="h-6 w-6 shrink-0 text-rose-400" />
+                  <div className="flex items-center gap-2 text-sm font-extrabold text-red-700">
+                    <ShieldAlert className="h-6 w-6 shrink-0 text-red-700" />
                     <span>
                       ⛔ Procurement Gatekeeper Blocked: Cannot issue Purchase Order (`NPO`) until Material Submittal is Approved (`Code A` or `Code B`) by the Consultant!
                     </span>
                   </div>
-                  <p className="mt-2 text-xs leading-relaxed text-rose-200">
+                  <p className="mt-2 text-xs leading-relaxed text-red-700">
                     حالة الاعتماد الحالية لـ <strong>{selectedSubmittalObj.code} ({selectedSubmittalObj.titleAr})</strong> هي{' '}
                     <span className="underline">{selectedSubmittalObj.status}</span>. طبقاً لتعليمات م. بيير، تم قفل زر إصدار أمر الشراء تلقائياً لحين الحصول على اعتماد الاستشاري.
                   </p>
@@ -2361,7 +2361,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
               {/* Step 2: Vendor Flow Selection */}
               <div className={selectedSubmittalObj.approved ? 'space-y-4' : 'pointer-events-none opacity-40 space-y-4'}>
                 <div>
-                  <label className="mb-1.5 block text-xs font-bold text-slate-300">
+                  <label className="mb-1.5 block text-xs font-bold text-[#192631]/85">
                     2. اختر مسار المورد (`Vendor Flow`):
                   </label>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -2370,12 +2370,12 @@ export const ProcurementWarehouseHub: React.FC = () => {
                       onClick={() => setNewPOVendorType('corporate')}
                       className={`rounded-xl border p-3 text-right transition ${
                         newPOVendorType === 'corporate'
-                          ? 'border-emerald-500 bg-emerald-500/15 text-white'
-                          : 'border-slate-800 bg-slate-950 text-slate-400'
+                          ? 'border-emerald-500 bg-[#123524]/10 text-[#192631]'
+                          : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70'
                       }`}
                     >
                       <div className="text-xs font-bold">🏢 شركة موردة رسمية (`Corporate Supplier`)</div>
-                      <div className="mt-1 text-[11px] text-slate-400">
+                      <div className="mt-1 text-[11px] text-[#192631]/70">
                         أمر شراء رسمي `NPO` ⬅ أ. ميرنا ماجد (`PR / POP`) ⬅ التصنيع والتوريد
                       </div>
                     </button>
@@ -2386,11 +2386,11 @@ export const ProcurementWarehouseHub: React.FC = () => {
                       className={`rounded-xl border p-3 text-right transition ${
                         newPOVendorType === 'local_mawan'
                           ? 'border-amber-500 bg-amber-500/15 text-white'
-                          : 'border-slate-800 bg-slate-950 text-slate-400'
+                          : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70'
                       }`}
                     >
                       <div className="text-xs font-bold">🧾 مورّد فردي / موّان (`Local Supplier / PO-OCR`)</div>
-                      <div className="mt-1 text-[11px] text-slate-400">
+                      <div className="mt-1 text-[11px] text-[#192631]/70">
                         تحويل مباشر لماسح فواتير الواتساب والفواتير اليدوية للموانين
                       </div>
                     </button>
@@ -2401,20 +2401,20 @@ export const ProcurementWarehouseHub: React.FC = () => {
                   <>
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div>
-                        <label className="mb-1 block text-xs text-slate-300">اسم الشركة الموردة</label>
+                        <label className="mb-1 block text-xs text-[#192631]/85">اسم الشركة الموردة</label>
                         <input
                           type="text"
                           value={newPOVendorName}
                           onChange={(e) => setNewPOVendorName(e.target.value)}
-                          className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white"
+                          className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631]"
                         />
                       </div>
                       <div>
-                        <label className="mb-1 block text-xs text-slate-300">مخزن الوجهة / استلام العهدة</label>
+                        <label className="mb-1 block text-xs text-[#192631]/85">مخزن الوجهة / استلام العهدة</label>
                         <select
                           value={newPODestination}
                           onChange={(e) => setNewPODestination(e.target.value as WarehouseId)}
-                          className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white"
+                          className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631]"
                         >
                           <option value="ring_road_2">مخزن الدائري 2 - المخزن المجاور</option>
                           <option value="ring_road_1">مخزن الدائري 1 - الرئيسي</option>
@@ -2426,7 +2426,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                       <div>
-                        <label className="mb-1 block text-xs text-slate-300">
+                        <label className="mb-1 block text-xs text-[#192631]/85">
                           الكمية المطلوبة ({selectedSubmittalObj.defaultUnit})
                         </label>
                         <input
@@ -2434,40 +2434,40 @@ export const ProcurementWarehouseHub: React.FC = () => {
                           min={1}
                           value={newPOQty}
                           onChange={(e) => setNewPOQty(Number(e.target.value) || 1)}
-                          className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs font-bold text-white"
+                          className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs font-bold text-[#192631]"
                         />
                       </div>
                       <div>
-                        <label className="mb-1 block text-xs text-slate-300">سعر الوحدة (ج.م)</label>
+                        <label className="mb-1 block text-xs text-[#192631]/85">سعر الوحدة (ج.م)</label>
                         <input
                           type="number"
                           min={1}
                           value={newPOUnitPrice}
                           onChange={(e) => setNewPOUnitPrice(Number(e.target.value) || 0)}
-                          className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs font-bold text-emerald-300"
+                          className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs font-bold text-[#123524]"
                         />
                       </div>
                       <div>
-                        <label className="mb-1 block text-xs text-slate-300">خصم مكتسب مقطوع (ج.م)</label>
+                        <label className="mb-1 block text-xs text-[#192631]/85">خصم مكتسب مقطوع (ج.م)</label>
                         <input
                           type="number"
                           min={0}
                           value={newPODiscountValue}
                           onChange={(e) => setNewPODiscountValue(Number(e.target.value) || 0)}
-                          className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs font-bold text-amber-300"
+                          className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs font-bold text-[#b45309]"
                         />
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs">
-                      <span className="text-slate-300">إضافة ضريبة القيمة المضافة 14% (VAT):</span>
+                    <div className="flex items-center justify-between rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3.5 py-2.5 text-xs">
+                      <span className="text-[#192631]/85">إضافة ضريبة القيمة المضافة 14% (VAT):</span>
                       <button
                         type="button"
                         onClick={() => setNewPOVatEnabled((prev) => !prev)}
                         className={`rounded-lg px-3 py-1 font-bold transition ${
                           newPOVatEnabled
-                            ? 'bg-emerald-500/20 text-emerald-300'
-                            : 'bg-slate-800 text-slate-400'
+                            ? 'bg-[#123524]/10 text-[#123524]'
+                            : 'bg-[#192631]/[0.05] text-[#192631]/70'
                         }`}
                       >
                         {newPOVatEnabled ? 'مفعّلة (14% VAT ✓)' : 'بدون ضريبة (0%)'}
@@ -2478,10 +2478,10 @@ export const ProcurementWarehouseHub: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-end gap-3 border-t border-slate-800 pt-4">
+            <div className="mt-6 flex items-center justify-end gap-3 border-t border-[#192631]/10 pt-4">
               <button
                 onClick={() => setShowCreatePOModal(false)}
-                className="rounded-xl border border-slate-700 px-4 py-2 text-xs font-bold text-slate-300 hover:bg-slate-800"
+                className="rounded-xl border border-[#192631]/10 px-4 py-2 text-xs font-bold text-[#192631]/85 hover:bg-[#192631]/[0.05]"
               >
                 إلغاء
               </button>
@@ -2491,7 +2491,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-xs font-bold transition ${
                   selectedSubmittalObj.approved
                     ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/25 hover:bg-emerald-500'
-                    : 'cursor-not-allowed bg-rose-950/60 text-rose-400 opacity-75'
+                    : 'cursor-not-allowed bg-rose-950/60 text-red-700 opacity-75'
                 }`}
               >
                 {selectedSubmittalObj.approved ? (
@@ -2517,21 +2517,21 @@ export const ProcurementWarehouseHub: React.FC = () => {
           MODAL 2: + TRANSFER STOCK BETWEEN WAREHOUSES / DISPATCH TO SITE
          ===================================================================== */}
       {showTransferModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192631]/40 p-4 backdrop-blur-sm">
           <div
             dir="rtl"
-            className="w-full max-w-xl rounded-2xl border border-slate-700 bg-slate-900 p-6 text-slate-100 shadow-2xl"
+            className="w-full max-w-xl rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-6 text-[#192631] shadow-2xl"
           >
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div className="flex items-center justify-between border-b border-[#192631]/10 pb-4">
               <div className="flex items-center gap-2.5">
-                <ArrowRightLeft className="h-5 w-5 text-cyan-400" />
-                <h3 className="text-base font-bold text-white">
+                <ArrowRightLeft className="h-5 w-5 text-[#192631]" />
+                <h3 className="text-base font-bold text-[#192631]">
                   تحويل مخزون بين المخازن الأربعة أو صرف عهدة لموقع (`Stock Custody Transfer`)
                 </h3>
               </div>
               <button
                 onClick={() => setShowTransferModal(false)}
-                className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white"
+                className="rounded-lg p-1.5 text-[#192631]/70 hover:bg-[#192631]/[0.05] hover:text-[#192631]"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -2539,7 +2539,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
             <div className="mt-4 space-y-4 text-xs">
               <div>
-                <label className="mb-1 block font-bold text-slate-300">
+                <label className="mb-1 block font-bold text-[#192631]/85">
                   اختر الصنف المراد نقله (ومخزن المصدر الحالي):
                 </label>
                 <select
@@ -2551,7 +2551,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                       setTransferQty(Math.min(4, found.qty));
                     }
                   }}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-xs font-bold text-white"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2.5 text-xs font-bold text-[#192631]"
                 >
                   {warehouseStock.map((item) => (
                     <option key={item.id} value={item.id}>
@@ -2563,11 +2563,11 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1 block font-bold text-slate-300">إلى مخزن الوجهة / الموقع:</label>
+                  <label className="mb-1 block font-bold text-[#192631]/85">إلى مخزن الوجهة / الموقع:</label>
                   <select
                     value={transferToWarehouse}
                     onChange={(e) => setTransferToWarehouse(e.target.value as WarehouseId)}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs font-bold text-cyan-300"
+                    className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs font-bold text-[#192631]"
                   >
                     <option value="site_custody">تشوينات الموقع وعهدة مهندس الموقع (مشروع C096 أزاد)</option>
                     <option value="nozha_hq">مقر الشركة بالنزهة - مخزن الخامات الثمينة</option>
@@ -2577,7 +2577,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="mb-1 block font-bold text-slate-300">
+                  <label className="mb-1 block font-bold text-[#192631]/85">
                     الكمية المحولة (المتاح: {selectedSourceStock?.qty} {selectedSourceStock?.unit})
                   </label>
                   <input
@@ -2586,18 +2586,18 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     max={selectedSourceStock?.qty || 1}
                     value={transferQty}
                     onChange={(e) => setTransferQty(Number(e.target.value) || 1)}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs font-bold text-white"
+                    className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs font-bold text-[#192631]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1 block font-bold text-slate-300">وسيلة النقل (توجيه أ. ميلاد هارون):</label>
+                  <label className="mb-1 block font-bold text-[#192631]/85">وسيلة النقل (توجيه أ. ميلاد هارون):</label>
                   <select
                     value={transferTransportMode}
                     onChange={(e) => setTransferTransportMode(e.target.value as TransportMode)}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white"
+                    className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631]"
                   >
                     <option value="milad_car">🚗 سيارة الشركة - ميلاد هارون</option>
                     <option value="uber_bike">🏍️ أوبر بايك / مرسول سريع</option>
@@ -2606,27 +2606,27 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="mb-1 block font-bold text-slate-300">اسم المهندس / أمين المخزن المستلم للعهدة:</label>
+                  <label className="mb-1 block font-bold text-[#192631]/85">اسم المهندس / أمين المخزن المستلم للعهدة:</label>
                   <input
                     type="text"
                     value={transferReceiverName}
                     onChange={(e) => setTransferReceiverName(e.target.value)}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-white"
+                    className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631]"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-end gap-3 border-t border-slate-800 pt-4">
+            <div className="mt-6 flex items-center justify-end gap-3 border-t border-[#192631]/10 pt-4">
               <button
                 onClick={() => setShowTransferModal(false)}
-                className="rounded-xl border border-slate-700 px-4 py-2 text-xs font-bold text-slate-300 hover:bg-slate-800"
+                className="rounded-xl border border-[#192631]/10 px-4 py-2 text-xs font-bold text-[#192631]/85 hover:bg-[#192631]/[0.05]"
               >
                 إلغاء
               </button>
               <button
                 onClick={handleExecuteStockTransfer}
-                className="inline-flex items-center gap-2 rounded-xl bg-cyan-600 px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-cyan-600/25 hover:bg-cyan-500"
+                className="inline-flex items-center gap-2 rounded-xl bg-cyan-600 px-5 py-2.5 text-xs font-bold text-[#192631] shadow-lg shadow-cyan-600/25 hover:bg-cyan-500"
               >
                 <CheckCircle2 className="h-4 w-4" />
                 تأكيد التحويل وتوقيع استلام العهدة

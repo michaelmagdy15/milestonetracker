@@ -24,7 +24,7 @@ export const RiskIndicator: React.FC<RiskIndicatorProps> = ({ milestone, entries
     else if (riskScore > 2) status = 'medium';
 
     const config = {
-        low: { icon: CheckCircle, color: 'text-emerald-500', bg: 'bg-emerald-500/10', label: 'Stable' },
+        low: { icon: CheckCircle, color: 'text-emerald-500', bg: 'bg-[#123524]/10', label: 'Stable' },
         medium: { icon: Clock, color: 'text-amber-500', bg: 'bg-amber-500/10', label: 'At Risk' },
         high: { icon: AlertTriangle, color: 'text-rose-500', bg: 'bg-rose-500/10', label: 'Critical' }
     };
@@ -36,7 +36,7 @@ export const RiskIndicator: React.FC<RiskIndicatorProps> = ({ milestone, entries
             <Icon className={clsx("w-3.5 h-3.5", color)} />
             <div className="text-left">
                 <p className={clsx("text-[10px] font-black uppercase tracking-widest", color)}>{label}</p>
-                <p className="text-[8px] text-slate-500 font-bold uppercase">{revisions} Revisions Identified</p>
+                <p className="text-[8px] text-[#192631]/60 font-bold uppercase">{revisions} Revisions Identified</p>
             </div>
         </div>
     );

@@ -53,16 +53,16 @@ export const ResetPassword: React.FC = () => {
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="max-w-md w-full space-y-6 md:space-y-8 bg-[#1a1a1a]/60 p-6 md:p-10 rounded-2xl md:rounded-[40px] border border-white/5 backdrop-blur-3xl shadow-2xl relative z-10"
+                className="max-w-md w-full space-y-6 md:space-y-8 bg-[#1a1a1a]/60 p-6 md:p-10 rounded-2xl md:rounded-[40px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl relative z-10"
             >
                 <div className="text-center">
-                    <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-[28px] bg-white/5 border border-white/5 shadow-inner">
-                        <KeyRound className="h-10 w-10 text-orange-400" />
+                    <div className="mx-auto flex items-center justify-center h-20 w-20 rounded-[28px] bg-[#192631]/[0.05] border border-[#192631]/10 shadow-inner">
+                        <KeyRound className="h-10 w-10 text-[#e04b2a]" />
                     </div>
-                    <h2 className="mt-8 text-4xl font-black text-white tracking-tighter uppercase">
-                        Secure <span className="text-orange-400">Re-key</span>
+                    <h2 className="mt-8 text-4xl font-black text-[#192631] tracking-tighter uppercase">
+                        Secure <span className="text-[#e04b2a]">Re-key</span>
                     </h2>
-                    <p className="mt-4 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
+                    <p className="mt-4 text-[10px] font-bold text-[#192631]/60 uppercase tracking-[0.2em]">
                         Establish new access protocol
                     </p>
                 </div>
@@ -70,13 +70,13 @@ export const ResetPassword: React.FC = () => {
                 <form className="mt-12 space-y-8" onSubmit={handleReset}>
                     <div className="space-y-6">
                         <div className="space-y-2">
-                            <label className="block text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">
+                            <label className="block text-[10px] font-black text-[#192631]/60 uppercase tracking-[0.2em] ml-1">
                                 New Access Key
                             </label>
                             <input
                                 type="password"
                                 required
-                                className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
+                                className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
                                 placeholder="Min 6 characters"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -84,13 +84,13 @@ export const ResetPassword: React.FC = () => {
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="block text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] ml-1">
+                            <label className="block text-[10px] font-black text-[#192631]/60 uppercase tracking-[0.2em] ml-1">
                                 Confirm Access Key
                             </label>
                             <input
                                 type="password"
                                 required
-                                className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
+                                className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
                                 placeholder="Confirm new password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -128,7 +128,7 @@ export const ResetPassword: React.FC = () => {
                         <button
                             type="button"
                             onClick={() => navigate('/login')}
-                            className="inline-flex items-center text-[10px] font-black text-slate-500 hover:text-white uppercase tracking-widest transition-colors"
+                            className="inline-flex items-center text-[10px] font-black text-[#192631]/60 hover:text-[#192631] uppercase tracking-widest transition-colors"
                         >
                             <ArrowLeft className="mr-3 h-4 w-4" />
                             Return to Interface

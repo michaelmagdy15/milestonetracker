@@ -13,7 +13,7 @@ import { Building2, ShieldCheck, Sparkles, ArrowRight } from 'lucide-react';
 import clsx from 'clsx';
 import { Logo } from '../components/Logo';
 
-const QUICK_COLORS = ['#f3822d', '#2563eb', '#10b981', '#d97706', '#e11d48', '#7c3aed'];
+const QUICK_COLORS = ['#e04b2a', '#192631', '#123524', '#ff7f50', '#000000'];
 
 export const Login: React.FC = () => {
     const { user, isLoadingAuth } = useAuth();
@@ -26,10 +26,10 @@ export const Login: React.FC = () => {
 
     // Self-Serve Contracting Company Registration fields
     const [companyName, setCompanyName] = useState('');
-    const tagline = 'Engineering & Contracting Milestone Tracker';
-    const [primaryColor, setPrimaryColor] = useState('#2563eb');
-    const [currency, setCurrency] = useState('AED');
-    const [branchesInput, setBranchesInput] = useState('Dubai, Abu Dhabi');
+    const tagline = 'Architecture, Turnkey Contracting & ERP Platform';
+    const [primaryColor, setPrimaryColor] = useState('#e04b2a');
+    const [currency, setCurrency] = useState('EGP');
+    const [branchesInput, setBranchesInput] = useState('El Nozha El Gedida HQ, New Cairo, Madinaty');
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -37,8 +37,8 @@ export const Login: React.FC = () => {
 
     if (isLoadingAuth) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f] py-12 px-4">
-                <div className="text-slate-400 font-mono text-xs uppercase tracking-widest">Loading session...</div>
+            <div className="min-h-screen flex items-center justify-center bg-[#f5f5f5] py-12 px-4">
+                <div className="text-[#192631]/60 font-mono text-xs uppercase tracking-widest">Loading session...</div>
             </div>
         );
     }
@@ -122,36 +122,36 @@ export const Login: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-dec-bg py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-            {/* Background elements */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-500/20 blur-[120px] rounded-full"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 blur-[120px] rounded-full"></div>
+        <div className="min-h-screen flex items-center justify-center bg-[#f5f5f5] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            {/* Ambient Glassmorphic Brand Orbs */}
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] bg-[#e04b2a]/12 blur-[120px] rounded-full"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] bg-[#192631]/10 blur-[120px] rounded-full"></div>
             </div>
 
-            <div className="max-w-lg w-full space-y-6 bg-[#1a1a1a]/60 backdrop-blur-2xl p-6 md:p-10 rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative z-10">
+            <div className="max-w-lg w-full space-y-6 glass-card p-6 md:p-10 rounded-3xl relative z-10">
                 <div className="flex flex-col items-center">
                     <div className="mb-5">
-                        <Logo showText={false} />
+                        <Logo showText={true} darkText={true} variant="orange-symbol" />
                     </div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] font-bold uppercase tracking-widest mb-2">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[10px] font-bold uppercase tracking-widest mb-2">
                         <Sparkles className="w-3 h-3" />
-                        White-Label Contracting Platform
+                        Actpert Nexus Contracting ERP
                     </div>
-                    <h2 className="text-center text-2xl md:text-3xl font-extrabold text-white tracking-tight">
+                    <h2 className="text-center text-2xl md:text-3xl font-extrabold text-[#192631] tracking-tight">
                         {mode === 'login'
-                            ? activeOrg.name
+                            ? activeOrg.name === 'Apex Contracting & Engineering' ? 'NEXUS CONTRACTING' : activeOrg.name
                             : mode === 'register-company'
                             ? 'Launch Your Company Workspace'
                             : mode === 'signup'
                             ? `Join ${activeOrg.name}`
                             : 'Reset Access'}
                     </h2>
-                    <p className="mt-1.5 text-center text-xs md:text-sm text-slate-400 font-medium">
+                    <p className="mt-1.5 text-center text-xs md:text-sm text-[#192631]/70 font-medium">
                         {mode === 'login'
-                            ? activeOrg.tagline
+                            ? 'Eng. Pierre Afifi · Architecture, Turnkey Contracting & ERP'
                             : mode === 'register-company'
-                            ? 'Set up a white-label workspace for your contracting company in seconds'
+                            ? 'Set up a workspace for your contracting company in seconds'
                             : mode === 'signup'
                             ? 'Create an operative account in this workspace'
                             : 'Enter your email to reset your password'}
@@ -159,13 +159,13 @@ export const Login: React.FC = () => {
                 </div>
 
                 {/* Mode Switch Tabs */}
-                <div className="grid grid-cols-3 gap-1.5 p-1.5 bg-black/40 rounded-2xl border border-white/5">
+                <div className="grid grid-cols-3 gap-1.5 p-1.5 bg-[#192631]/[0.05] backdrop-blur-md rounded-2xl border border-[#192631]/10">
                     <button
                         type="button"
                         onClick={() => { setMode('login'); setError(null); setMessage(null); }}
                         className={clsx(
                             'py-2 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all',
-                            mode === 'login' ? 'bg-orange-500 text-white shadow' : 'text-slate-400 hover:text-white'
+                            mode === 'login' ? 'bg-[#e04b2a] text-[#192631] shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/70 hover:text-[#192631] hover:bg-white/60'
                         )}
                     >
                         Sign In
@@ -175,7 +175,7 @@ export const Login: React.FC = () => {
                         onClick={() => { setMode('register-company'); setError(null); setMessage(null); }}
                         className={clsx(
                             'py-2 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all',
-                            mode === 'register-company' ? 'bg-orange-500 text-white shadow' : 'text-slate-400 hover:text-white'
+                            mode === 'register-company' ? 'bg-[#e04b2a] text-[#192631] shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/70 hover:text-[#192631] hover:bg-white/60'
                         )}
                     >
                         New Company
@@ -185,7 +185,7 @@ export const Login: React.FC = () => {
                         onClick={() => { setMode('signup'); setError(null); setMessage(null); }}
                         className={clsx(
                             'py-2 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all',
-                            mode === 'signup' ? 'bg-orange-500 text-white shadow' : 'text-slate-400 hover:text-white'
+                            mode === 'signup' ? 'bg-[#e04b2a] text-[#192631] shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/70 hover:text-[#192631] hover:bg-white/60'
                         )}
                     >
                         Join Team
@@ -193,13 +193,13 @@ export const Login: React.FC = () => {
                 </div>
 
                 {mode === 'login' && (
-                    <div className="p-3.5 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-between gap-3">
+                    <div className="p-3.5 rounded-2xl bg-[#e04b2a]/[0.08] backdrop-blur-md border border-[#e04b2a]/25 flex items-center justify-between gap-3">
                         <div className="text-xs">
-                            <p className="font-bold text-orange-300 flex items-center gap-1.5">
+                            <p className="font-bold text-[#e04b2a] flex items-center gap-1.5">
                                 <ShieldCheck className="w-4 h-4" />
                                 Default Platform Admin Account
                             </p>
-                            <p className="text-slate-300 font-mono text-[11px] mt-0.5">
+                            <p className="text-[#192631]/80 font-mono text-[11px] mt-0.5 font-semibold">
                                 {DEFAULT_ADMIN_EMAIL} &bull; {DEFAULT_ADMIN_PASSWORD}
                             </p>
                         </div>
@@ -207,7 +207,7 @@ export const Login: React.FC = () => {
                             type="button"
                             onClick={handleQuickAdminLogin}
                             disabled={loading}
-                            className="px-3.5 py-2 bg-orange-500 hover:bg-orange-400 text-white font-bold rounded-xl text-xs shrink-0 flex items-center gap-1 shadow-lg transition-all"
+                            className="px-3.5 py-2 bg-[#e04b2a] hover:bg-[#c83e1f] text-[#192631] font-bold rounded-xl text-xs shrink-0 flex items-center gap-1 shadow-md shadow-[#e04b2a]/20 transition-all"
                         >
                             1-Click Admin Login
                             <ArrowRight className="w-3.5 h-3.5" />
@@ -217,13 +217,13 @@ export const Login: React.FC = () => {
 
                 <form className="space-y-4" onSubmit={handleAuth}>
                     {mode === 'register-company' && (
-                        <div className="space-y-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                            <div className="flex items-center gap-2 text-xs font-bold text-orange-400 uppercase tracking-wider">
+                        <div className="space-y-4 p-4 rounded-2xl bg-white/70 border border-[#192631]/10 shadow-sm">
+                            <div className="flex items-center gap-2 text-xs font-bold text-[#e04b2a] uppercase tracking-wider">
                                 <Building2 className="w-4 h-4" />
                                 Step 1: Contracting Company Branding
                             </div>
                             <div>
-                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                <label className="block text-[10px] font-bold text-[#192631]/70 uppercase tracking-widest mb-1.5">
                                     Company Name *
                                 </label>
                                 <input
@@ -232,18 +232,18 @@ export const Login: React.FC = () => {
                                     placeholder="e.g., Horizon Contracting & Civil Works"
                                     value={companyName}
                                     onChange={e => setCompanyName(e.target.value)}
-                                    className="w-full px-4 py-2.5 bg-white/5 border border-white/10 text-white rounded-xl text-sm focus:outline-none focus:border-orange-500"
+                                    className="w-full px-4 py-2.5 bg-white/90 border border-[#192631]/15 text-[#192631] placeholder-[#192631]/40 rounded-xl text-sm focus:outline-none focus:border-[#e04b2a]"
                                 />
                             </div>
                             <div className="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                    <label className="block text-[10px] font-bold text-[#192631]/70 uppercase tracking-widest mb-1.5">
                                         Base Currency
                                     </label>
                                     <select
                                         value={currency}
                                         onChange={e => setCurrency(e.target.value)}
-                                        className="w-full px-3 py-2.5 bg-[#141414] border border-white/10 text-white rounded-xl text-sm"
+                                        className="w-full px-3 py-2.5 bg-white/90 border border-[#192631]/15 text-[#192631] rounded-xl text-sm"
                                     >
                                         {['AED', 'USD', 'SAR', 'EGP', 'EUR', 'GBP', 'QAR'].map(c => (
                                             <option key={c} value={c}>{c}</option>
@@ -251,7 +251,7 @@ export const Login: React.FC = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                    <label className="block text-[10px] font-bold text-[#192631]/70 uppercase tracking-widest mb-1.5">
                                         Brand Color
                                     </label>
                                     <div className="flex items-center gap-1.5 pt-1">
@@ -262,7 +262,7 @@ export const Login: React.FC = () => {
                                                 onClick={() => setPrimaryColor(c)}
                                                 className={clsx(
                                                     'w-6 h-6 rounded-lg border transition-transform',
-                                                    primaryColor === c ? 'border-white scale-110' : 'border-transparent opacity-70'
+                                                    primaryColor === c ? 'border-[#192631] scale-110 shadow-sm' : 'border-transparent opacity-70'
                                                 )}
                                                 style={{ backgroundColor: c }}
                                             />
@@ -271,7 +271,7 @@ export const Login: React.FC = () => {
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                <label className="block text-[10px] font-bold text-[#192631]/70 uppercase tracking-widest mb-1.5">
                                     Office Branches (Comma-separated)
                                 </label>
                                 <input
@@ -279,7 +279,7 @@ export const Login: React.FC = () => {
                                     value={branchesInput}
                                     onChange={e => setBranchesInput(e.target.value)}
                                     placeholder="Dubai, Riyadh, Cairo"
-                                    className="w-full px-4 py-2 bg-white/5 border border-white/10 text-white rounded-xl text-xs"
+                                    className="w-full px-4 py-2 bg-white/90 border border-[#192631]/15 text-[#192631] placeholder-[#192631]/40 rounded-xl text-xs"
                                 />
                             </div>
                         </div>
@@ -288,7 +288,7 @@ export const Login: React.FC = () => {
                     <div className="space-y-4">
                         {(mode === 'signup' || mode === 'register-company') && (
                             <div>
-                                <label htmlFor="full-name" className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 ml-1">
+                                <label htmlFor="full-name" className="block text-[11px] font-bold text-[#192631]/80 uppercase tracking-widest mb-1.5 ml-1">
                                     {mode === 'register-company' ? 'Company Admin Full Name *' : 'Full Name *'}
                                 </label>
                                 <input
@@ -296,7 +296,7 @@ export const Login: React.FC = () => {
                                     name="fullName"
                                     type="text"
                                     required
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 placeholder-slate-600 text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/50 text-sm font-medium"
+                                    className="w-full px-4 py-3 bg-white/85 border border-[#192631]/15 placeholder-[#192631]/40 text-[#192631] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#e04b2a]/30 focus:border-[#e04b2a] text-sm font-semibold shadow-sm"
                                     placeholder="Eng. Ahmed Al-Mansoor"
                                     value={fullName}
                                     onChange={e => setFullName(e.target.value)}
@@ -305,7 +305,7 @@ export const Login: React.FC = () => {
                         )}
 
                         <div>
-                            <label htmlFor="email-address" className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 ml-1">
+                            <label htmlFor="email-address" className="block text-[11px] font-bold text-[#192631]/80 uppercase tracking-widest mb-1.5 ml-1">
                                 Work Email Address *
                             </label>
                             <input
@@ -314,7 +314,7 @@ export const Login: React.FC = () => {
                                 type="email"
                                 autoComplete="email"
                                 required
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 placeholder-slate-600 text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/50 text-sm font-medium"
+                                className="w-full px-4 py-3 bg-white/85 border border-[#192631]/15 placeholder-[#192631]/40 text-[#192631] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#e04b2a]/30 focus:border-[#e04b2a] text-sm font-semibold shadow-sm"
                                 placeholder="admin@platform.com"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
@@ -324,14 +324,14 @@ export const Login: React.FC = () => {
                         {mode !== 'forgot-password' && (
                             <div>
                                 <div className="flex items-center justify-between mb-1.5 ml-1">
-                                    <label htmlFor="password" className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                                    <label htmlFor="password" className="block text-[11px] font-bold text-[#192631]/80 uppercase tracking-widest">
                                         Password *
                                     </label>
                                     {mode === 'login' && (
                                         <button
                                             type="button"
                                             onClick={() => setMode('forgot-password')}
-                                            className="text-[11px] font-bold text-orange-400 hover:text-orange-300 uppercase tracking-wider"
+                                            className="text-[11px] font-bold text-[#e04b2a] hover:text-[#c83e1f] uppercase tracking-wider"
                                         >
                                             Forgot?
                                         </button>
@@ -343,7 +343,7 @@ export const Login: React.FC = () => {
                                     type="password"
                                     autoComplete="current-password"
                                     required
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 placeholder-slate-600 text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/50 text-sm font-medium"
+                                    className="w-full px-4 py-3 bg-white/85 border border-[#192631]/15 placeholder-[#192631]/40 text-[#192631] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#e04b2a]/30 focus:border-[#e04b2a] text-sm font-semibold shadow-sm"
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
@@ -356,7 +356,7 @@ export const Login: React.FC = () => {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="p-3.5 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-semibold text-center"
+                            className="p-3.5 rounded-2xl bg-red-500/10 border border-red-500/25 text-red-700 text-xs font-semibold text-center"
                         >
                             {error}
                         </motion.div>
@@ -366,7 +366,7 @@ export const Login: React.FC = () => {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="p-3.5 rounded-2xl bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-semibold text-center"
+                            className="p-3.5 rounded-2xl bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-xs font-semibold text-center"
                         >
                             {message}
                         </motion.div>
@@ -376,7 +376,7 @@ export const Login: React.FC = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full flex justify-center py-4 px-4 text-sm font-bold rounded-2xl text-white bg-orange-600 hover:bg-orange-500 disabled:opacity-50 transition-all shadow-xl shadow-orange-600/20"
+                            className="w-full flex justify-center py-4 px-4 text-sm font-bold rounded-2xl text-[#192631] bg-[#192631] hover:bg-[#e04b2a] disabled:opacity-50 transition-all shadow-lg shadow-[#192631]/15"
                         >
                             {loading
                                 ? 'Authenticating with Firebase...'

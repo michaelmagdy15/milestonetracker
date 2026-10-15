@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { LayoutDashboard, FolderKanban, Users, FileText, PieChart, Menu, X, LogOut, CalendarCheck, Search, Bell, User, DollarSign, Mail, Calendar, Calculator, BookOpen, Palette, HardHat } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, Users, FileText, PieChart, Menu, X, LogOut, CalendarCheck, Search, Bell, User, DollarSign, Mail, Calendar, Calculator, BookOpen, Palette, HardHat, FileCheck2, Truck, Receipt, GitBranch } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Logo } from './Logo';
@@ -10,28 +10,62 @@ import { useLanguage } from '../context/LanguageContext';
 import { useTenant } from '../context/TenantContext';
 import { Globe } from 'lucide-react';
 
-const NavItem = ({ to, icon: Icon, label }: { to: string; icon: React.ElementType; label: string }) => {
+const NavSectionLabel = ({ label }: { label: string }) => (
+    <div className="px-3 pt-3.5 pb-1 first:pt-0">
+        <span
+            className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#192631]/45"
+            style={{ fontFamily: "'Aventa', sans-serif" }}
+        >
+            {label}
+        </span>
+    </div>
+);
+
+const NavItem = ({ to, icon: Icon, label, badge }: { to: string; icon: React.ElementType; label: string; badge?: string }) => {
     const location = useLocation();
-    const isActive = location.pathname === to;
+    const isActive = location.pathname === to || (to !== '/' && location.pathname.startsWith(to + '/'));
 
     return (
         <Link
             to={to}
             className={clsx(
-                'flex items-center space-x-3 px-4 py-3 rounded-xl border transition-all duration-500 relative overflow-hidden group',
+                'flex items-center justify-between px-3.5 py-2 rounded-xl border transition-all duration-300 relative overflow-hidden group',
                 isActive
-                    ? 'bg-orange-500/10 text-orange-400 border-orange-500/20 shadow-orange-glow'
-                    : 'bg-transparent border-transparent text-slate-400 hover:border-white/5 hover:text-white hover:bg-white/5'
+                    ? 'bg-[#e04b2a]/12 text-[#192631] border-[#e04b2a]/30 shadow-sm'
+                    : 'bg-transparent border-transparent text-[#192631]/75 hover:border-[#192631]/10 hover:text-[#192631] hover:bg-[#192631]/5'
             )}
         >
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(243, 130, 45, 0.05), transparent)' }} />
-            <div className={clsx(
-                "p-2 rounded-lg transition-all duration-300 relative z-10",
-                isActive ? "bg-orange-500/20 text-orange-400 shadow-orange-glow" : "bg-white/5 text-slate-400 group-hover:bg-white/10 group-hover:text-white"
-            )}>
-                <Icon className="w-5 h-5" />
+            <div className="flex items-center space-x-2.5 min-w-0">
+                <div
+                    className={clsx(
+                        'p-1.5 rounded-lg transition-all duration-300 relative z-10 shrink-0',
+                        isActive
+                            ? 'bg-[#e04b2a] text-white shadow-sm'
+                            : 'bg-[#192631]/5 text-[#192631]/70 group-hover:bg-[#e04b2a]/15 group-hover:text-[#e04b2a]'
+                    )}
+                >
+                    <Icon className="w-4 h-4" />
+                </div>
+                <span
+                    className={clsx(
+                        'relative z-10 text-[11px] tracking-[0.09em] uppercase truncate',
+                        isActive ? 'font-bold text-[#192631]' : 'font-semibold text-[#192631]/80'
+                    )}
+                    style={{ fontFamily: "'Alte Haas Grotesk', 'Plus Jakarta Sans', sans-serif" }}
+                >
+                    {label}
+                </span>
             </div>
-            <span className="relative z-10 font-mono text-sm font-medium tracking-wide uppercase">{label}</span>
+            {badge && (
+                <span className={clsx(
+                    'text-[9px] font-black px-1.5 py-0.5 rounded-md border shrink-0 ml-1.5',
+                    isActive
+                        ? 'bg-[#e04b2a] text-white border-[#e04b2a]'
+                        : 'bg-[#192631]/5 text-[#192631]/70 border-[#192631]/10'
+                )}>
+                    {badge}
+                </span>
+            )}
         </Link>
     );
 };
@@ -135,55 +169,76 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     }, [searchQuery, projects, engineers, tasks, entries]);
 
     return (
-        <div className="min-h-screen bg-[#0f0f0f] font-sans text-dec-text flex relative selection:bg-orange-500/30">
-            {/* Subtle glow background matching 'Intelligence in Action' */}
-            <div className="absolute inset-0 opacity-[0.02] pointer-events-none z-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.15) 1px, transparent 0)' }}></div>
+        <div className="min-h-screen bg-[#f5f5f5] font-sans text-[#192631] flex relative selection:bg-[#e04b2a]/20">
+            {/* Subtle Architectural Grid & Ambient Orbs (Nexus Brand Guideline Page 5 & 10) */}
+            <div
+                className="absolute inset-0 opacity-[0.35] pointer-events-none z-0"
+                style={{
+                    backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(25, 38, 49, 0.08) 1px, transparent 0)',
+                    backgroundSize: '24px 24px',
+                }}
+            />
 
-            {/* Sidebar */}
+            {/* Sidebar — Frosted Glassmorphic Light Panel */}
             <aside className={clsx(
-                "fixed inset-y-0 left-0 z-50 w-72 glass-morphism transform transition-all duration-500 ease-in-out lg:translate-x-0 lg:static lg:block h-full shadow-2xl",
+                "fixed inset-y-0 left-0 z-50 w-72 glass-morphism transform transition-all duration-500 ease-in-out lg:translate-x-0 lg:static lg:block h-full",
                 isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
             )}>
-                <div className="h-full flex flex-col p-6 overflow-y-auto no-scrollbar">
-                    <div className="mb-10 flex items-center justify-between lg:justify-start space-x-3 shrink-0">
-                        <div className="flex items-center justify-center lg:justify-start w-full mb-8">
-                            <Logo />
+                <div className="h-full flex flex-col p-5 overflow-y-auto no-scrollbar">
+                    <div className="mb-4 flex items-center justify-between lg:justify-start space-x-3 shrink-0">
+                        <div className="flex items-center justify-center lg:justify-start w-full pb-3.5 border-b border-[#192631]/10">
+                            <Logo darkText={true} variant="orange-symbol" />
                         </div>
                         <button
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="lg:hidden absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600"
+                            className="lg:hidden absolute top-4 right-4 p-2 text-[#192631]/60 hover:text-[#192631]"
                         >
                             <X className="w-6 h-6" />
                         </button>
                     </div>
 
-                    <nav className="space-y-2 flex-1">
+                    <nav className="space-y-1 flex-1">
+                        <NavSectionLabel label="Overview & Projects" />
                         <NavItem to="/" icon={LayoutDashboard} label="Dashboard" />
-                        {role !== 'client' && <NavItem to="/projects" icon={FolderKanban} label="Projects" />}
-                        {role !== 'client' && <NavItem to="/contracting-erp" icon={HardHat} label="Contracting ERP" />}
-                        {role !== 'client' && <NavItem to="/boq" icon={Calculator} label="BOQ Viewer" />}
+                        {role !== 'client' && <NavItem to="/projects" icon={FolderKanban} label="Projects" badge="46" />}
                         {role !== 'client' && <NavItem to="/meetings" icon={Calendar} label="Meetings" />}
-                        {role === 'admin' && <NavItem to="/engineers" icon={Users} label="Engineers" />}
                         {role !== 'client' && <NavItem to="/entries" icon={FileText} label="Daily Entries" />}
-                        {role !== 'client' && <NavItem to="/attendance" icon={CalendarCheck} label="Attendance" />}
-                        {role === 'admin' && <NavItem to="/financials" icon={DollarSign} label="Financials" />}
+
+                        {role !== 'client' && (
+                            <>
+                                <NavSectionLabel label="Engineering & Technical" />
+                                <NavItem to="/boq" icon={Calculator} label="BOQ & R02 Pricing" badge="839" />
+                                <NavItem to="/submittals" icon={FileCheck2} label="Submittals & Coding" badge="51" />
+                                <NavItem to="/variations-rfis" icon={GitBranch} label="Variations & RFIs" />
+                                <NavItem to="/emails" icon={Mail} label="Emails & Transmittals" />
+
+                                <NavSectionLabel label="Procurement & Field" />
+                                <NavItem to="/procurement" icon={Truck} label="Procurement & Stores" badge="4" />
+                                <NavItem to="/subcontractors" icon={HardHat} label="Subcontractors" badge="56" />
+                                <NavItem to="/engineers" icon={Users} label="Engineers & Team" />
+                                <NavItem to="/attendance" icon={CalendarCheck} label="Attendance & GPS" badge="21→20" />
+                            </>
+                        )}
+
+                        <NavSectionLabel label="Finance & System" />
+                        {role !== 'client' && <NavItem to="/extracts" icon={Receipt} label="Extracts & Ledger" badge="E#4" />}
+                        {role === 'admin' && <NavItem to="/financials" icon={DollarSign} label="Financials & Treasury" />}
                         {role === 'admin' && <NavItem to="/reports" icon={PieChart} label="Reports" />}
-                        {role !== 'client' && <NavItem to="/emails" icon={Mail} label="Emails" />}
                         {role === 'admin' && <NavItem to="/settings" icon={Palette} label="White-Label Studio" />}
                         <NavItem to="/help" icon={BookOpen} label="Help Guide" />
                         <NavItem to="/profile" icon={User} label="My Profile" />
                     </nav>
 
-                    <div className="pt-6 border-t border-white/5 flex flex-col space-y-4 shrink-0 mt-auto">
+                    <div className="pt-4 border-t border-[#192631]/10 flex flex-col space-y-3 shrink-0 mt-4">
                         {role === 'admin' && organizations.length > 1 && (
                             <div className="px-1">
-                                <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">
+                                <label className="block text-[9px] font-bold text-[#192631]/60 uppercase tracking-widest mb-1">
                                     Active Company Workspace
                                 </label>
                                 <select
                                     value={activeOrg.id}
                                     onChange={(e) => switchOrganization(e.target.value)}
-                                    className="w-full px-3 py-2 bg-[#141414] border border-white/10 rounded-xl text-white text-xs font-bold focus:outline-none focus:border-orange-500"
+                                    className="w-full px-3 py-2 bg-white/80 border border-[#192631]/15 rounded-xl text-[#192631] text-xs font-bold focus:outline-none focus:border-[#e04b2a]"
                                 >
                                     {organizations.map(org => (
                                         <option key={org.id} value={org.id}>
@@ -194,17 +249,24 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                             </div>
                         )}
 
-                        <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] border border-white/5 rounded-2xl p-4 text-white shadow-xl">
-                            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-orange-400 mb-1 truncate">{activeOrg.name}</p>
-                            <p className="text-xs font-medium tracking-tight text-slate-400 truncate">{activeOrg.tagline}</p>
+                        <div className="glass-card rounded-2xl p-3.5">
+                            <p
+                                className="text-[10px] font-bold tracking-[0.22em] uppercase text-[#e04b2a] mb-0.5 truncate"
+                                style={{ fontFamily: "'Aventa', sans-serif" }}
+                            >
+                                {activeOrg.name === 'Apex Contracting & Engineering' ? 'NEXUS CONTRACTING' : activeOrg.name}
+                            </p>
+                            <p className="text-xs font-medium tracking-tight text-[#192631]/75 truncate">
+                                Eng. Pierre Afifi · Cairo, Egypt
+                            </p>
                         </div>
 
-                        <div className="flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5">
+                        <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/70 border border-[#192631]/10">
                             <div className="flex flex-col min-w-0">
-                                <span className="font-bold text-white text-xs truncate uppercase tracking-wider">{user?.email?.split('@')[0] || 'User'}</span>
-                                <span className="text-[10px] text-orange-400 font-bold uppercase tracking-widest mt-0.5">{role || 'Engineer'}</span>
+                                <span className="font-bold text-[#192631] text-xs truncate uppercase tracking-wider">{user?.email?.split('@')[0] || 'User'}</span>
+                                <span className="text-[10px] text-[#e04b2a] font-bold uppercase tracking-widest mt-0.5">{role || 'Engineer'}</span>
                             </div>
-                            <button onClick={signOut} className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-colors group" title="Sign Out">
+                            <button onClick={signOut} className="p-2 text-[#e04b2a] hover:bg-[#e04b2a]/10 rounded-lg transition-colors group" title="Sign Out">
                                 <LogOut className="w-5 h-5 group-hover:scale-110 transition-transform" />
                             </button>
                         </div>
@@ -215,30 +277,30 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             {/* Main Content */}
             <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative z-10">
                 {/* Mobile Header */}
-                <div className="lg:hidden bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 p-4 flex items-center justify-between sticky top-0 z-40">
+                <div className="lg:hidden glass-morphism border-b border-[#192631]/10 p-4 flex items-center justify-between sticky top-0 z-40">
                     <div className="flex items-center">
-                        <Logo className="scale-75 origin-left opacity-90 brightness-150" />
+                        <Logo className="scale-90 origin-left" darkText={true} variant="orange-symbol" />
                     </div>
                     <div className="flex items-center gap-2">
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 p-2 px-3 text-slate-400 font-bold text-xs uppercase hover:bg-white/5 hover:text-white rounded-lg transition-colors border border-white/5"
+                            className="flex items-center gap-2 p-2 px-3 text-[#192631]/70 font-bold text-xs uppercase hover:bg-[#192631]/[0.05] hover:text-[#192631] rounded-lg transition-colors border border-[#192631]/10 bg-white/75"
                         >
                             <Globe className="w-4 h-4" />
                             {language === 'en' ? 'EN' : 'AR'}
                         </button>
                         <button
                             onClick={() => setIsNotifOpen(!isNotifOpen)}
-                            className="relative p-2 text-slate-500 hover:bg-slate-100 rounded-lg"
+                            className="relative p-2 text-[#192631]/60 hover:bg-white/80 rounded-lg"
                         >
                             <Bell className="w-6 h-6" />
                             {unreadCount > 0 && (
-                                <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                                <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-[#e04b2a] rounded-full border-2 border-white"></span>
                             )}
                         </button>
                         <button
                             onClick={() => setIsMobileMenuOpen(true)}
-                            className="p-2 text-slate-500 hover:bg-slate-100 rounded-lg"
+                            className="p-2 text-[#192631]/60 hover:bg-white/80 rounded-lg"
                         >
                             <Menu className="w-6 h-6" />
                         </button>
@@ -247,26 +309,26 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
                 {/* Mobile Notifications Dropdown (Absolute overlay) */}
                 {isNotifOpen && (
-                    <div className="lg:hidden absolute top-16 right-4 left-4 bg-[#0B1121]/95 backdrop-blur-xl border border-slate-800 shadow-2xl rounded-2xl overflow-hidden z-50">
-                        <div className="p-4 border-b border-slate-800 bg-slate-800/30 flex justify-between items-center">
-                            <h3 className="font-semibold text-slate-200">Notifications</h3>
-                            <span className="text-xs font-medium text-slate-400 px-2 py-1 bg-slate-800/50 rounded-full border border-slate-700">{unreadCount} unread</span>
+                    <div className="lg:hidden absolute top-16 right-4 left-4 bg-white/95 backdrop-blur-xl border border-[#192631]/12 shadow-2xl rounded-2xl overflow-hidden z-50">
+                        <div className="p-4 border-b border-[#192631]/10 bg-[#192631]/[0.03] flex justify-between items-center">
+                            <h3 className="font-semibold text-[#192631]">Notifications</h3>
+                            <span className="text-xs font-medium text-[#192631]/70 px-2 py-1 bg-[#192631]/[0.05] rounded-full border border-[#192631]/10">{unreadCount} unread</span>
                         </div>
                         <div className="max-h-[60vh] overflow-y-auto no-scrollbar">
                             {myNotifications.length === 0 ? (
-                                <div className="p-8 text-center text-slate-500 text-sm">No new notifications</div>
+                                <div className="p-8 text-center text-[#192631]/60 text-sm">No new notifications</div>
                             ) : (
                                 myNotifications.map(notif => (
                                     <div
                                         key={notif.id}
-                                        className={clsx("p-4 border-b border-slate-800/50 last:border-0 hover:bg-slate-800/50 transition-colors cursor-pointer", !notif.isRead && "bg-orange-500/10")}
+                                        className={clsx("p-4 border-b border-[#192631]/10 last:border-0 hover:bg-[#192631]/[0.04] transition-colors cursor-pointer", !notif.isRead && "bg-[#e04b2a]/10")}
                                         onClick={() => {
                                             if (!notif.isRead) markNotificationRead(notif.id);
                                             setIsNotifOpen(false);
                                         }}
                                     >
-                                        <p className={clsx("text-sm", notif.isRead ? "text-slate-400" : "text-slate-200 font-medium")}>{notif.message}</p>
-                                        <p className="text-xs text-slate-500 mt-1">{new Date(notif.createdAt || '').toLocaleString()}</p>
+                                        <p className={clsx("text-sm", notif.isRead ? "text-[#192631]/65" : "text-[#192631] font-semibold")}>{notif.message}</p>
+                                        <p className="text-xs text-[#192631]/55 mt-1">{new Date(notif.createdAt || '').toLocaleString()}</p>
                                     </div>
                                 ))
                             )}
@@ -277,12 +339,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 {/* Top Desktop Bar (Search & Notifications placeholder) */}
                 <div className="hidden lg:flex items-center justify-between p-8 pb-0">
                     <div ref={searchRef} className="relative w-full max-w-lg z-30">
-                        <div className="glass-morphism px-5 py-3 rounded-2xl text-slate-400 flex items-center w-full shadow-2xl focus-within:border-orange-500/50 focus-within:bg-white/5 transition-all duration-300 group">
-                            <Search className="w-5 h-5 mr-3 text-slate-500 group-focus-within:text-orange-400 transition-colors" />
+                        <div className="glass-morphism px-5 py-3 rounded-2xl text-[#192631]/70 flex items-center w-full shadow-sm focus-within:border-[#e04b2a]/35 focus-within:bg-white/95 transition-all duration-300 group">
+                            <Search className="w-5 h-5 mr-3 text-[#192631]/60 group-focus-within:text-[#e04b2a] transition-colors" />
                             <input
                                 type="text"
-                                placeholder="Search everything..."
-                                className="bg-transparent w-full outline-none text-white placeholder-slate-600 text-sm font-mono"
+                                placeholder="Search projects, BOQ items, submittals, engineers..."
+                                className="bg-transparent w-full outline-none text-[#192631] placeholder-[#192631]/45 text-sm"
                                 value={searchQuery}
                                 onChange={(e) => {
                                     setSearchQuery(e.target.value);
@@ -293,9 +355,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         </div>
 
                         {isSearchOpen && searchQuery.trim() && (
-                            <div className="absolute top-14 left-0 w-full bg-[#0B1121]/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-800 overflow-hidden">
+                            <div className="absolute top-14 left-0 w-full bg-white/95 backdrop-blur-xl rounded-xl shadow-2xl border border-[#192631]/12 overflow-hidden">
                                 {searchResults.length === 0 ? (
-                                    <div className="p-4 text-center text-slate-500 text-sm">No results found for "{searchQuery}"</div>
+                                    <div className="p-4 text-center text-[#192631]/60 text-sm">No results found for "{searchQuery}"</div>
                                 ) : (
                                     <div className="max-h-96 overflow-y-auto py-2 no-scrollbar">
                                         {searchResults.map((result, idx) => {
@@ -308,15 +370,15 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                                                         setIsSearchOpen(false);
                                                         setSearchQuery('');
                                                     }}
-                                                    className="w-full text-left px-4 py-3 hover:bg-slate-800/60 flex items-start transition-colors"
+                                                    className="w-full text-left px-4 py-3 hover:bg-[#192631]/[0.05] flex items-start transition-colors"
                                                 >
-                                                    <div className="bg-slate-800 p-2 rounded-lg mr-3 text-slate-400 border border-slate-700/50">
+                                                    <div className="bg-[#192631]/[0.05] p-2 rounded-lg mr-3 text-[#192631]/70 border border-[#192631]/10">
                                                         <Icon className="w-4 h-4" />
                                                     </div>
                                                     <div>
-                                                        <p className="font-medium text-slate-200 text-sm">{result.title}</p>
-                                                        <div className="flex items-center text-xs text-slate-500 mt-0.5">
-                                                            <span className="font-medium text-orange-400 mr-2">{result.type}</span>
+                                                        <p className="font-medium text-[#192631] text-sm">{result.title}</p>
+                                                        <div className="flex items-center text-xs text-[#192631]/60 mt-0.5">
+                                                            <span className="font-medium text-[#e04b2a] mr-2">{result.type}</span>
                                                             {result.subtitle && <span>• {result.subtitle}</span>}
                                                         </div>
                                                     </div>
@@ -333,44 +395,44 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     <div className="relative z-30 ml-4 hidden lg:flex items-center gap-4">
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-4 py-2 text-slate-400 font-bold text-xs uppercase hover:bg-white/5 hover:text-white rounded-xl transition-all border border-white/5 bg-[#1a1a1a]/50"
+                            className="flex items-center gap-2 px-4 py-2 text-[#192631]/80 font-bold text-xs uppercase hover:bg-white hover:text-[#192631] rounded-xl transition-all border border-[#192631]/12 bg-white/80 backdrop-blur-md shadow-sm"
                         >
-                            <Globe className="w-4 h-4" />
+                            <Globe className="w-4 h-4 text-[#e04b2a]" />
                             {language === 'en' ? 'English' : 'عربي'}
                         </button>
                         
                         <div ref={notifRef} className="relative">
                             <button
                                 onClick={() => setIsNotifOpen(!isNotifOpen)}
-                            className="relative p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+                            className="relative p-2.5 text-[#192631]/75 hover:text-[#192631] bg-white/80 hover:bg-white border border-[#192631]/10 rounded-xl transition-colors shadow-sm"
                         >
-                            <Bell className="w-6 h-6" />
+                            <Bell className="w-5 h-5" />
                             {unreadCount > 0 && (
-                                <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-slate-50"></span>
+                                <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#e04b2a] rounded-full border-2 border-white"></span>
                             )}
                         </button>
 
                         {isNotifOpen && (
-                            <div className="absolute top-12 right-0 w-80 bg-[#0B1121]/95 backdrop-blur-xl border border-slate-800 shadow-2xl rounded-2xl overflow-hidden">
-                                <div className="p-4 border-b border-slate-800 bg-slate-800/30 flex justify-between items-center">
-                                    <h3 className="font-semibold text-slate-200">Notifications</h3>
-                                    <span className="text-xs font-medium text-slate-400 px-2 py-1 bg-slate-800/50 rounded-full border border-slate-700">{unreadCount} unread</span>
+                            <div className="absolute top-12 right-0 w-80 bg-white/95 backdrop-blur-xl border border-[#192631]/12 shadow-2xl rounded-2xl overflow-hidden">
+                                <div className="p-4 border-b border-[#192631]/10 bg-[#192631]/[0.03] flex justify-between items-center">
+                                    <h3 className="font-semibold text-[#192631]">Notifications</h3>
+                                    <span className="text-xs font-medium text-[#192631]/70 px-2 py-1 bg-[#192631]/[0.05] rounded-full border border-[#192631]/10">{unreadCount} unread</span>
                                 </div>
                                 <div className="max-h-96 overflow-y-auto no-scrollbar">
                                     {myNotifications.length === 0 ? (
-                                        <div className="p-8 text-center text-slate-500 text-sm">No new notifications</div>
+                                        <div className="p-8 text-center text-[#192631]/60 text-sm">No new notifications</div>
                                     ) : (
                                         myNotifications.map(notif => (
                                             <div
                                                 key={notif.id}
-                                                className={clsx("p-4 border-b border-slate-800/50 last:border-0 hover:bg-slate-800/50 transition-colors cursor-pointer", !notif.isRead && "bg-orange-500/10")}
+                                                className={clsx("p-4 border-b border-[#192631]/10 last:border-0 hover:bg-[#192631]/[0.04] transition-colors cursor-pointer", !notif.isRead && "bg-[#e04b2a]/10")}
                                                 onClick={() => {
                                                     if (!notif.isRead) markNotificationRead(notif.id);
                                                     setIsNotifOpen(false);
                                                 }}
                                             >
-                                                <p className={clsx("text-sm", notif.isRead ? "text-slate-400" : "text-slate-200 font-medium")}>{notif.message}</p>
-                                                <p className="text-xs text-slate-500 mt-1">{new Date(notif.createdAt || '').toLocaleString()}</p>
+                                                <p className={clsx("text-sm", notif.isRead ? "text-[#192631]/65" : "text-[#192631] font-semibold")}>{notif.message}</p>
+                                                <p className="text-xs text-[#192631]/55 mt-1">{new Date(notif.createdAt || '').toLocaleString()}</p>
                                             </div>
                                         ))
                                     )}
@@ -388,7 +450,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
             {isMobileMenuOpen && (
                 <div
-                    className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden"
+                    className="fixed inset-0 bg-[#192631]/40 backdrop-blur-sm z-40 lg:hidden"
                     onClick={() => setIsMobileMenuOpen(false)}
                 />
             )}

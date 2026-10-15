@@ -141,35 +141,35 @@ export const LOG_TYPES: {
     code: 'MS',
     nameEn: 'Material Submittal',
     nameAr: 'اعتماد خامات وعينات',
-    badgeColor: 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30',
+    badgeColor: 'bg-[#e04b2a]/10 text-[#e04b2a] border-[#e04b2a]/25',
     desc: 'Technical datasheets, samples & compliance statement before PO',
   },
   {
     code: 'DR',
     nameEn: 'Shop Drawing',
     nameAr: 'رسومات تشغيلية (شوب دروينج)',
-    badgeColor: 'bg-sky-500/15 text-sky-400 border-sky-500/30',
+    badgeColor: 'bg-sky-500/15 text-[#192631] border-sky-500/30',
     desc: 'Detailed AutoCAD .dwg & .pdf coordination drawings',
   },
   {
     code: 'MIR',
     nameEn: 'Material Inspection Request',
     nameAr: 'طلب فحص واستلام تشوينات (MIR)',
-    badgeColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+    badgeColor: 'bg-[#123524]/10 text-[#123524] border-[#123524]/25',
     desc: 'On-site delivery inspection matching approved MS & delivery note',
   },
   {
     code: 'SL',
     nameEn: 'Supplier / Vendor List',
     nameAr: 'اعتماد قائمة موردين / مصنعين',
-    badgeColor: 'bg-purple-500/15 text-purple-400 border-purple-500/30',
+    badgeColor: 'bg-purple-500/15 text-[#192631] border-purple-500/30',
     desc: 'Prequalification & vendor approval dossier',
   },
   {
     code: 'SIR',
     nameEn: 'Site Inspection Request',
     nameAr: 'طلب استلام أعمال بالموقع (SIR/WIR)',
-    badgeColor: 'bg-amber-500/15 text-amber-400 border-amber-500/30',
+    badgeColor: 'bg-amber-500/15 text-[#b45309] border-amber-500/30',
     desc: 'Consultant inspection of executed site works for IPC',
   },
 ];
@@ -188,7 +188,7 @@ export const DISCIPLINES: {
     nameEn: 'Architectural & Finishes',
     nameAr: 'معماري وتشطيبات',
     clauseCount: 28,
-    color: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/30',
+    color: 'text-[#e04b2a] bg-[#e04b2a]/10 border-[#e04b2a]/25',
   },
   {
     key: 'CIVIL',
@@ -196,7 +196,7 @@ export const DISCIPLINES: {
     nameEn: 'Civil & Structural',
     nameAr: 'مدني وإنشائي',
     clauseCount: 8,
-    color: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+    color: 'text-[#b45309] bg-amber-500/10 border-amber-500/30',
   },
   {
     key: 'ELEC',
@@ -204,7 +204,7 @@ export const DISCIPLINES: {
     nameEn: 'Electrical & Light Current',
     nameAr: 'كهرباء وتيار خفيف',
     clauseCount: 7,
-    color: 'text-sky-400 bg-sky-500/10 border-sky-500/30',
+    color: 'text-[#192631] bg-sky-500/10 border-sky-500/30',
   },
   {
     key: 'MECH',
@@ -212,7 +212,7 @@ export const DISCIPLINES: {
     nameEn: 'Mechanical (HVAC, Plumb, Fire)',
     nameAr: 'ميكانيكا (تكييف، صحي، حريق)',
     clauseCount: 8,
-    color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
+    color: 'text-[#123524] bg-[#123524]/10 border-[#123524]/25',
   },
 ];
 
@@ -697,7 +697,7 @@ const getStatusBadge = (status: SubmittalStatusCode) => {
       return {
         label: 'Code A • Approved (معتمد بدون ملاحظات)',
         short: 'Code A - Approved',
-        classes: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+        classes: 'bg-[#123524]/10 text-[#123524] border-[#123524]/25',
         icon: CheckCircle2,
       };
     case 'B':
@@ -711,28 +711,28 @@ const getStatusBadge = (status: SubmittalStatusCode) => {
       return {
         label: 'Code C • Revise & Resubmit (يعاد التقديم)',
         short: 'Code C - Revise & Resubmit',
-        classes: 'bg-amber-500/15 text-amber-400 border-amber-500/30',
+        classes: 'bg-amber-500/15 text-[#b45309] border-amber-500/30',
         icon: AlertTriangle,
       };
     case 'D':
       return {
         label: 'Code D • Rejected (مرفوض)',
         short: 'Code D - Rejected',
-        classes: 'bg-rose-500/15 text-rose-400 border-rose-500/30',
+        classes: 'bg-rose-500/15 text-red-700 border-rose-500/30',
         icon: XCircle,
       };
     case 'Under Review':
       return {
         label: 'Under Consultant Review (قيد المراجعة لدى الاستشاري)',
         short: 'Under Review (قيد المراجعة)',
-        classes: 'bg-sky-500/15 text-sky-400 border-sky-500/30',
+        classes: 'bg-sky-500/15 text-[#192631] border-sky-500/30',
         icon: Clock,
       };
     case 'To Submit':
       return {
         label: 'Pending Submission (مطلوب تقديمه)',
         short: 'Pending (مطلوب تقديمه)',
-        classes: 'bg-slate-500/20 text-slate-300 border-slate-500/30',
+        classes: 'bg-slate-500/20 text-[#192631]/85 border-slate-500/30',
         icon: FileText,
       };
   }
@@ -1188,27 +1188,27 @@ ${transmittalRemarks}
   }, [matrixDisciplineFilter, matrixSearch]);
 
   return (
-    <div className="space-y-6 text-slate-100">
+    <div className="space-y-6 text-[#192631]">
       {/* Notification Toast */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl border border-emerald-500/40 bg-slate-900/95 px-4 py-3 text-sm font-medium text-emerald-300 shadow-2xl backdrop-blur-md">
-          <Sparkles className="h-4 w-4 shrink-0 text-emerald-400" />
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl border border-[#123524]/25 bg-white/80 backdrop-blur-md px-4 py-3 text-sm font-medium text-[#123524] shadow-2xl backdrop-blur-md">
+          <Sparkles className="h-4 w-4 shrink-0 text-[#123524]" />
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Module Header Banner */}
-      <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950/60 p-6 shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-xl p-6 shadow-xl">
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-300">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#e04b2a]/25 bg-[#e04b2a]/10 px-3 py-1 text-xs font-semibold text-[#e04b2a]">
               <FileCode2 className="h-3.5 w-3.5" />
               <span>ACTPERT NEXUS • DOCUMENT CONTROL & CODING ENGINE (02. DC)</span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            <h2 className="text-2xl font-bold tracking-tight text-[#192631] sm:text-3xl">
               Document Control, Submittals Register & Auto-Transmittal Hub
             </h2>
-            <p className="max-w-3xl text-sm text-slate-400">
+            <p className="max-w-3xl text-sm text-[#192631]/70">
               Unified 51-Clause Submittal Matrix (`MS / DR / MIR / SL / SIR`), Consultant Action Gatekeeper (`Code A & B`
               Procurement PO Unlocker), Eng. Pierre’s Auto-Email Transmittal Generator, and Standard File Naming Engine.
             </p>
@@ -1217,14 +1217,14 @@ ${transmittalRemarks}
           <div className="flex flex-wrap items-center gap-2.5">
             <button
               onClick={() => setIsNewModalOpen(true)}
-              className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-600/25 transition hover:bg-indigo-500"
+              className="inline-flex items-center gap-2 rounded-xl bg-[#e04b2a] px-4 py-2.5 text-sm font-semibold text-[#192631] shadow-lg shadow-indigo-600/25 transition hover:bg-[#c83e1f]"
             >
               <Plus className="h-4 w-4" />
               <span>+ New Submittal / Auto-Code</span>
             </button>
             <button
               onClick={() => setActiveTab('transmittal')}
-              className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-2.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-500/20"
+              className="inline-flex items-center gap-2 rounded-xl border border-[#123524]/25 bg-[#123524]/10 px-4 py-2.5 text-sm font-semibold text-[#123524] transition hover:bg-[#123524]/10"
             >
               <Mail className="h-4 w-4" />
               <span>Generate Consultant Email</span>
@@ -1233,24 +1233,24 @@ ${transmittalRemarks}
         </div>
 
         {/* 4 Interactive Sub-Tabs Navigation */}
-        <div className="mt-6 grid grid-cols-1 gap-2 border-t border-slate-800/80 pt-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-6 grid grid-cols-1 gap-2 border-t border-[#192631]/10 pt-5 sm:grid-cols-2 xl:grid-cols-4">
           <button
             onClick={() => setActiveTab('register')}
             className={`flex items-center gap-3 rounded-xl border p-3 text-left transition ${
               activeTab === 'register'
-                ? 'border-indigo-500 bg-indigo-500/15 text-white shadow-md shadow-indigo-500/10'
-                : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                ? 'border-indigo-500 bg-[#e04b2a]/10 text-[#192631] shadow-md shadow-indigo-500/10'
+                : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/70 hover:border-[#192631]/10 hover:text-[#192631]'
             }`}
           >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500/20 text-indigo-400">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#e04b2a]/10 text-[#e04b2a]">
               <FileText className="h-5 w-5" />
             </div>
             <div className="min-w-0">
-              <div className="truncate text-xs font-semibold uppercase tracking-wider text-indigo-400">
+              <div className="truncate text-xs font-semibold uppercase tracking-wider text-[#e04b2a]">
                 Tab 1 • MS / DR / MIR / SL / SIR
               </div>
-              <div className="truncate text-sm font-bold text-slate-100">Submittals & Inspection Register</div>
-              <div className="truncate text-xs text-slate-400">سجل الاعتمادات والاستلامات</div>
+              <div className="truncate text-sm font-bold text-[#192631]">Submittals & Inspection Register</div>
+              <div className="truncate text-xs text-[#192631]/70">سجل الاعتمادات والاستلامات</div>
             </div>
           </button>
 
@@ -1258,19 +1258,19 @@ ${transmittalRemarks}
             onClick={() => setActiveTab('transmittal')}
             className={`flex items-center gap-3 rounded-xl border p-3 text-left transition ${
               activeTab === 'transmittal'
-                ? 'border-emerald-500 bg-emerald-500/15 text-white shadow-md shadow-emerald-500/10'
-                : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                ? 'border-emerald-500 bg-[#123524]/10 text-[#192631] shadow-md shadow-emerald-500/10'
+                : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/70 hover:border-[#192631]/10 hover:text-[#192631]'
             }`}
           >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#123524]/10 text-[#123524]">
               <Send className="h-5 w-5" />
             </div>
             <div className="min-w-0">
-              <div className="truncate text-xs font-semibold uppercase tracking-wider text-emerald-400">
+              <div className="truncate text-xs font-semibold uppercase tracking-wider text-[#123524]">
                 Tab 2 • Eng. Pierre Workflow
               </div>
-              <div className="truncate text-sm font-bold text-slate-100">Auto-Email & Transmittal Engine</div>
-              <div className="truncate text-xs text-slate-400">مولد الإيميلات الرسمية والترانسميتال</div>
+              <div className="truncate text-sm font-bold text-[#192631]">Auto-Email & Transmittal Engine</div>
+              <div className="truncate text-xs text-[#192631]/70">مولد الإيميلات الرسمية والترانسميتال</div>
             </div>
           </button>
 
@@ -1279,18 +1279,18 @@ ${transmittalRemarks}
             className={`flex items-center gap-3 rounded-xl border p-3 text-left transition ${
               activeTab === 'filecoder'
                 ? 'border-amber-500 bg-amber-500/15 text-white shadow-md shadow-amber-500/10'
-                : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/70 hover:border-[#192631]/10 hover:text-[#192631]'
             }`}
           >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 text-amber-400">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 text-[#b45309]">
               <FolderGit2 className="h-5 w-5" />
             </div>
             <div className="min-w-0">
-              <div className="truncate text-xs font-semibold uppercase tracking-wider text-amber-400">
+              <div className="truncate text-xs font-semibold uppercase tracking-wider text-[#b45309]">
                 Tab 3 • TDC / DC / NPO / RCB
               </div>
-              <div className="truncate text-sm font-bold text-slate-100">File & Folder Naming Builder</div>
-              <div className="truncate text-xs text-slate-400">مولد تكويد الملفات والفولدرات القياسي</div>
+              <div className="truncate text-sm font-bold text-[#192631]">File & Folder Naming Builder</div>
+              <div className="truncate text-xs text-[#192631]/70">مولد تكويد الملفات والفولدرات القياسي</div>
             </div>
           </button>
 
@@ -1299,18 +1299,18 @@ ${transmittalRemarks}
             className={`flex items-center gap-3 rounded-xl border p-3 text-left transition ${
               activeTab === 'matrix'
                 ? 'border-sky-500 bg-sky-500/15 text-white shadow-md shadow-sky-500/10'
-                : 'border-slate-800 bg-slate-900/60 text-slate-400 hover:border-slate-700 hover:text-slate-200'
+                : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/70 hover:border-[#192631]/10 hover:text-[#192631]'
             }`}
           >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/20 text-sky-400">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-sky-500/20 text-[#192631]">
               <BookOpen className="h-5 w-5" />
             </div>
             <div className="min-w-0">
-              <div className="truncate text-xs font-semibold uppercase tracking-wider text-sky-400">
+              <div className="truncate text-xs font-semibold uppercase tracking-wider text-[#192631]">
                 Tab 4 • 28 AR / 8 CV / 7 EL / 8 MC
               </div>
-              <div className="truncate text-sm font-bold text-slate-100">51-Clause Matrix & Dictionary</div>
-              <div className="truncate text-xs text-slate-400">دليل الأكواد والـ 51 بند القياسي</div>
+              <div className="truncate text-sm font-bold text-[#192631]">51-Clause Matrix & Dictionary</div>
+              <div className="truncate text-xs text-[#192631]/70">دليل الأكواد والـ 51 بند القياسي</div>
             </div>
           </button>
         </div>
@@ -1323,78 +1323,78 @@ ${transmittalRemarks}
         <div className="space-y-6">
           {/* KPI Summary Cards */}
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-4">
-              <div className="flex items-center justify-between text-xs font-medium text-slate-400">
+            <div className="rounded-xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-4">
+              <div className="flex items-center justify-between text-xs font-medium text-[#192631]/70">
                 <span>Total Submittals</span>
-                <Layers className="h-4 w-4 text-indigo-400" />
+                <Layers className="h-4 w-4 text-[#e04b2a]" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-white">{kpiStats.total}</div>
-              <div className="mt-1 text-xs text-slate-400">إجمالي السجل الهندسي</div>
+              <div className="mt-2 text-2xl font-bold text-[#192631]">{kpiStats.total}</div>
+              <div className="mt-1 text-xs text-[#192631]/70">إجمالي السجل الهندسي</div>
             </div>
 
-            <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-4">
-              <div className="flex items-center justify-between text-xs font-medium text-emerald-300">
+            <div className="rounded-xl border border-[#123524]/25 bg-emerald-950/20 p-4">
+              <div className="flex items-center justify-between text-xs font-medium text-[#123524]">
                 <span>Approved (A & B)</span>
-                <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                <CheckCircle2 className="h-4 w-4 text-[#123524]" />
               </div>
               <div className="mt-2 flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-emerald-400">{kpiStats.approvedTotal}</span>
-                <span className="text-xs text-emerald-300/80">
+                <span className="text-2xl font-bold text-[#123524]">{kpiStats.approvedTotal}</span>
+                <span className="text-xs text-[#123524]/80">
                   (A: {kpiStats.codeA} | B: {kpiStats.codeB})
                 </span>
               </div>
-              <div className="mt-1 text-xs text-emerald-300/80">متاح لأوامر الشراء (PO Unlocked)</div>
+              <div className="mt-1 text-xs text-[#123524]/80">متاح لأوامر الشراء (PO Unlocked)</div>
             </div>
 
             <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4">
-              <div className="flex items-center justify-between text-xs font-medium text-amber-300">
+              <div className="flex items-center justify-between text-xs font-medium text-[#b45309]">
                 <span>Revise & Resubmit (C)</span>
-                <AlertTriangle className="h-4 w-4 text-amber-400" />
+                <AlertTriangle className="h-4 w-4 text-[#b45309]" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-amber-400">{kpiStats.codeC}</div>
-              <div className="mt-1 text-xs text-amber-300/80">Code C • يعاد التقديم بملاحظات</div>
+              <div className="mt-2 text-2xl font-bold text-[#b45309]">{kpiStats.codeC}</div>
+              <div className="mt-1 text-xs text-[#b45309]/80">Code C • يعاد التقديم بملاحظات</div>
             </div>
 
             <div className="rounded-xl border border-rose-500/30 bg-rose-950/20 p-4">
-              <div className="flex items-center justify-between text-xs font-medium text-rose-300">
+              <div className="flex items-center justify-between text-xs font-medium text-red-700">
                 <span>Rejected (Code D)</span>
-                <XCircle className="h-4 w-4 text-rose-400" />
+                <XCircle className="h-4 w-4 text-red-700" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-rose-400">{kpiStats.codeD}</div>
-              <div className="mt-1 text-xs text-rose-300/80">Code D • مرفوض من الاستشاري</div>
+              <div className="mt-2 text-2xl font-bold text-red-700">{kpiStats.codeD}</div>
+              <div className="mt-1 text-xs text-red-700/80">Code D • مرفوض من الاستشاري</div>
             </div>
 
             <div className="rounded-xl border border-sky-500/30 bg-sky-950/20 p-4">
-              <div className="flex items-center justify-between text-xs font-medium text-sky-300">
+              <div className="flex items-center justify-between text-xs font-medium text-[#192631]">
                 <span>Under Review</span>
-                <Clock className="h-4 w-4 text-sky-400" />
+                <Clock className="h-4 w-4 text-[#192631]" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-sky-400">{kpiStats.underReview}</div>
-              <div className="mt-1 text-xs text-sky-300/80">قيد المراجعة لدى الاستشاري</div>
+              <div className="mt-2 text-2xl font-bold text-[#192631]">{kpiStats.underReview}</div>
+              <div className="mt-1 text-xs text-[#192631]/80">قيد المراجعة لدى الاستشاري</div>
             </div>
 
-            <div className="rounded-xl border border-slate-700 bg-slate-800/40 p-4">
-              <div className="flex items-center justify-between text-xs font-medium text-slate-300">
+            <div className="rounded-xl border border-[#192631]/10 bg-[#192631]/[0.05] p-4">
+              <div className="flex items-center justify-between text-xs font-medium text-[#192631]/85">
                 <span>Pending Submission</span>
-                <FileText className="h-4 w-4 text-slate-400" />
+                <FileText className="h-4 w-4 text-[#192631]/70" />
               </div>
-              <div className="mt-2 text-2xl font-bold text-slate-200">{kpiStats.toSubmit}</div>
-              <div className="mt-1 text-xs text-slate-400">مطلوب تقديمه (جاهز للإرسال)</div>
+              <div className="mt-2 text-2xl font-bold text-[#192631]">{kpiStats.toSubmit}</div>
+              <div className="mt-1 text-xs text-[#192631]/70">مطلوب تقديمه (جاهز للإرسال)</div>
             </div>
           </div>
 
           {/* Filter Bar */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-4 shadow-lg">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-4 shadow-lg">
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-5">
               {/* Search */}
               <div className="relative">
-                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#192631]/70" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search code (MSARGP01), item, vendor..."
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 py-2 pl-9 pr-3 text-sm text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 py-2 pl-9 pr-3 text-sm text-[#192631] placeholder-[#192631]/40 focus:border-indigo-500 focus:outline-none"
                 />
               </div>
 
@@ -1403,7 +1403,7 @@ ${transmittalRemarks}
                 <select
                   value={filterProject}
                   onChange={(e) => setFilterProject(e.target.value)}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-indigo-500 focus:outline-none"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="ALL">All Projects (جميع المشاريع)</option>
                   {NEXUS_PROJECTS.map((p) => (
@@ -1419,7 +1419,7 @@ ${transmittalRemarks}
                 <select
                   value={filterLogType}
                   onChange={(e) => setFilterLogType(e.target.value)}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-indigo-500 focus:outline-none"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="ALL">All Log Types (MS / DR / MIR / SL / SIR)</option>
                   {LOG_TYPES.map((lt) => (
@@ -1435,7 +1435,7 @@ ${transmittalRemarks}
                 <select
                   value={filterDiscipline}
                   onChange={(e) => setFilterDiscipline(e.target.value)}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-indigo-500 focus:outline-none"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="ALL">All Disciplines (ARCH / CIVIL / ELEC / MECH)</option>
                   {DISCIPLINES.map((d) => (
@@ -1451,7 +1451,7 @@ ${transmittalRemarks}
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-indigo-500 focus:outline-none"
+                  className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-indigo-500 focus:outline-none"
                 >
                   <option value="ALL">All Status Codes (جميع الحالات)</option>
                   <option value="A">Code A - Approved (معتمد)</option>
@@ -1466,16 +1466,16 @@ ${transmittalRemarks}
           </div>
 
           {/* Submittals Register Table */}
-          <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 shadow-xl">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 px-5 py-3.5">
+          <div className="overflow-hidden rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md shadow-xl">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#192631]/10 px-5 py-3.5">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-indigo-400" />
-                <h3 className="text-sm font-bold uppercase tracking-wider text-slate-200">
+                <ShieldCheck className="h-5 w-5 text-[#e04b2a]" />
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#192631]">
                   Official Submittals & Inspections Log ({filteredSubmittals.length} Records)
                 </h3>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-400">
-                <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-emerald-300">
+              <div className="flex items-center gap-2 text-xs text-[#192631]/70">
+                <span className="inline-flex items-center gap-1 rounded-md border border-[#123524]/25 bg-[#123524]/10 px-2 py-0.5 text-[#123524]">
                   <Unlock className="h-3 w-3" /> Code A / Code B = Unlocks Material for Procurement PO (NPO)
                 </span>
               </div>
@@ -1484,7 +1484,7 @@ ${transmittalRemarks}
             <div className="overflow-x-auto">
               <table className="w-full border-collapse text-left text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800 bg-slate-950/60 text-xs uppercase tracking-wider text-slate-400">
+                  <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-xs uppercase tracking-wider text-[#192631]/70">
                     <th className="px-4 py-3">Nexus Code & Rev</th>
                     <th className="px-4 py-3">Project & Log</th>
                     <th className="px-4 py-3">Discipline & Clause</th>
@@ -1493,31 +1493,31 @@ ${transmittalRemarks}
                     <th className="px-4 py-3 text-right">Quick Actions (إجراءات سريعة)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/70">
+                <tbody className="divide-y divide-[#192631]/10">
                   {filteredSubmittals.map((item) => {
                     const statusMeta = getStatusBadge(item.status);
                     const StatusIcon = statusMeta.icon;
                     const logTypeMeta = LOG_TYPES.find((l) => l.code === item.logType);
                     return (
-                      <tr key={item.id} className="transition hover:bg-slate-800/40">
+                      <tr key={item.id} className="transition hover:bg-[#192631]/[0.05]">
                         {/* Code & Revision */}
                         <td className="whitespace-nowrap px-4 py-3.5 align-top">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono text-sm font-bold text-indigo-300">{item.code}</span>
-                            <span className="rounded border border-slate-700 bg-slate-800 px-1.5 py-0.5 font-mono text-[11px] text-slate-300">
+                            <span className="font-mono text-sm font-bold text-[#e04b2a]">{item.code}</span>
+                            <span className="rounded border border-[#192631]/10 bg-[#192631]/[0.05] px-1.5 py-0.5 font-mono text-[11px] text-[#192631]/85">
                               {item.revision}
                             </span>
                           </div>
-                          <div className="mt-1 text-[11px] text-slate-500">Submitted: {item.submittedDate}</div>
+                          <div className="mt-1 text-[11px] text-[#192631]/60">Submitted: {item.submittedDate}</div>
                           {item.responseDate && (
-                            <div className="text-[11px] text-emerald-400/80">Reply: {item.responseDate}</div>
+                            <div className="text-[11px] text-[#123524]/80">Reply: {item.responseDate}</div>
                           )}
                         </td>
 
                         {/* Project & Log Type */}
                         <td className="whitespace-nowrap px-4 py-3.5 align-top">
-                          <div className="font-semibold text-slate-200">{item.projectCode}</div>
-                          <div className="text-xs text-slate-400">{item.projectName.split(' - ')[1]}</div>
+                          <div className="font-semibold text-[#192631]">{item.projectCode}</div>
+                          <div className="text-xs text-[#192631]/70">{item.projectName.split(' - ')[1]}</div>
                           {logTypeMeta && (
                             <span
                               className={`mt-1.5 inline-flex items-center rounded-md border px-2 py-0.5 text-[11px] font-semibold ${logTypeMeta.badgeColor}`}
@@ -1529,36 +1529,36 @@ ${transmittalRemarks}
 
                         {/* Discipline & Clause */}
                         <td className="whitespace-nowrap px-4 py-3.5 align-top">
-                          <div className="inline-flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-800/80 px-2 py-0.5 text-xs font-semibold text-slate-200">
+                          <div className="inline-flex items-center gap-1.5 rounded-md border border-[#192631]/10 bg-[#192631]/[0.05] px-2 py-0.5 text-xs font-semibold text-[#192631]">
                             <span>{item.discipline}</span>
-                            <span className="text-slate-500">/</span>
-                            <span className="font-mono text-indigo-400">{item.clauseCode}</span>
+                            <span className="text-[#192631]/60">/</span>
+                            <span className="font-mono text-[#e04b2a]">{item.clauseCode}</span>
                           </div>
-                          <div className="mt-1 text-xs font-medium text-slate-300">{item.clauseNameEn}</div>
-                          <div className="text-xs text-slate-400">{item.clauseNameAr}</div>
+                          <div className="mt-1 text-xs font-medium text-[#192631]/85">{item.clauseNameEn}</div>
+                          <div className="text-xs text-[#192631]/70">{item.clauseNameAr}</div>
                         </td>
 
                         {/* Submittal Title, Attachments & Vendor */}
                         <td className="max-w-md px-4 py-3.5 align-top">
-                          <div className="font-medium text-slate-100">{item.titleEn}</div>
-                          <div className="mt-0.5 text-xs text-slate-300" dir="rtl">
+                          <div className="font-medium text-[#192631]">{item.titleEn}</div>
+                          <div className="mt-0.5 text-xs text-[#192631]/85" dir="rtl">
                             {item.titleAr}
                           </div>
-                          <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-slate-400">
-                            <span className="rounded bg-slate-800 px-2 py-0.5 text-slate-300">
+                          <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-[#192631]/70">
+                            <span className="rounded bg-[#192631]/[0.05] px-2 py-0.5 text-[#192631]/85">
                               🏭 {item.manufacturerOrSub}
                             </span>
                             {item.attachments.map((att, idx) => (
                               <span
                                 key={idx}
-                                className="inline-flex items-center gap-1 rounded border border-slate-700/80 bg-slate-950/60 px-2 py-0.5 font-mono text-[11px] text-slate-400"
+                                className="inline-flex items-center gap-1 rounded border border-[#192631]/10 bg-[#f5f5f5]/90 px-2 py-0.5 font-mono text-[11px] text-[#192631]/70"
                               >
-                                <Paperclip className="h-3 w-3 text-indigo-400" />
+                                <Paperclip className="h-3 w-3 text-[#e04b2a]" />
                                 {att.name} ({att.size})
                               </span>
                             ))}
                           </div>
-                          {item.notes && <div className="mt-1.5 text-xs italic text-slate-400">“{item.notes}”</div>}
+                          {item.notes && <div className="mt-1.5 text-xs italic text-[#192631]/70">“{item.notes}”</div>}
                         </td>
 
                         {/* Status Badge & Procurement PO Gate */}
@@ -1572,11 +1572,11 @@ ${transmittalRemarks}
 
                           <div className="mt-2">
                             {item.procurementUnlocked ? (
-                              <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-300">
+                              <span className="inline-flex items-center gap-1 rounded-md border border-[#123524]/25 bg-[#123524]/10 px-2 py-0.5 text-[11px] font-semibold text-[#123524]">
                                 <Unlock className="h-3 w-3" /> PO Creation Unlocked (متاح لأمر الشراء)
                               </span>
                             ) : (
-                              <span className="inline-flex items-center gap-1 rounded-md border border-rose-500/30 bg-rose-500/10 px-2 py-0.5 text-[11px] font-medium text-rose-300">
+                              <span className="inline-flex items-center gap-1 rounded-md border border-rose-500/30 bg-rose-500/10 px-2 py-0.5 text-[11px] font-medium text-red-700">
                                 <Lock className="h-3 w-3" /> PO Locked (يتطلب Code A/B)
                               </span>
                             )}
@@ -1588,14 +1588,14 @@ ${transmittalRemarks}
                           <div className="flex flex-col items-end gap-2">
                             <button
                               onClick={() => handleQuickEmailForRow(item)}
-                              className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500/40 bg-indigo-500/15 px-2.5 py-1.5 text-xs font-semibold text-indigo-300 transition hover:bg-indigo-500/25"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-[#e04b2a]/25 bg-[#e04b2a]/10 px-2.5 py-1.5 text-xs font-semibold text-[#e04b2a] transition hover:bg-[#c83e1f]/25"
                             >
                               <Mail className="h-3.5 w-3.5" />
                               <span>Generate Consultant Email (إرسال إيميل للاستشاري)</span>
                             </button>
 
                             <div className="flex items-center gap-1">
-                              <span className="mr-1 text-[11px] text-slate-400">Change Status:</span>
+                              <span className="mr-1 text-[11px] text-[#192631]/70">Change Status:</span>
                               {(['A', 'B', 'C', 'D', 'Under Review'] as SubmittalStatusCode[]).map((st) => (
                                 <button
                                   key={st}
@@ -1603,8 +1603,8 @@ ${transmittalRemarks}
                                   title={`Set status to ${st}`}
                                   className={`rounded px-2 py-0.5 text-xs font-bold transition ${
                                     item.status === st
-                                      ? 'bg-indigo-600 text-white shadow'
-                                      : 'border border-slate-700 bg-slate-800 text-slate-300 hover:border-slate-500'
+                                      ? 'bg-[#e04b2a] text-[#192631] shadow'
+                                      : 'border border-[#192631]/10 bg-[#192631]/[0.05] text-[#192631]/85 hover:border-slate-500'
                                   }`}
                                 >
                                   {st === 'Under Review' ? 'Rev' : st}
@@ -1630,22 +1630,22 @@ ${transmittalRemarks}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           {/* Left Column: Package Selector & Recipient Configuration */}
           <div className="space-y-5 lg:col-span-5">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
+              <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
                 <div>
-                  <h3 className="text-base font-bold text-white">1. Select Submittals & Consultant</h3>
-                  <p className="text-xs text-slate-400">
+                  <h3 className="text-base font-bold text-[#192631]">1. Select Submittals & Consultant</h3>
+                  <p className="text-xs text-[#192631]/70">
                     اختر الاعتمادات أو الشوب دروينج لتوليد إيميل الترانسميتال الرسمي أوتوماتيكياً
                   </p>
                 </div>
-                <span className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-bold text-emerald-300">
+                <span className="rounded-lg border border-[#123524]/25 bg-[#123524]/10 px-2.5 py-1 font-mono text-xs font-bold text-[#123524]">
                   {nextTransmittalNo}
                 </span>
               </div>
 
               <div className="mt-4 space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                     Project (المشروع)
                   </label>
                   <select
@@ -1659,7 +1659,7 @@ ${transmittalRemarks}
                         setCustomCcEmail(`${proj.ownerRepEmail}; tech.office@actpert-nexus.com`);
                       }
                     }}
-                    className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-emerald-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-emerald-500 focus:outline-none"
                   >
                     {NEXUS_PROJECTS.map((p) => (
                       <option key={p.code} value={p.code}>
@@ -1671,32 +1671,32 @@ ${transmittalRemarks}
 
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                       Consultant Email (To)
                     </label>
                     <input
                       type="text"
                       value={customRecipientEmail}
                       onChange={(e) => setCustomRecipientEmail(e.target.value)}
-                      className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
+                      className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631] focus:border-emerald-500 focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                       Owner Rep & Tech Office (CC)
                     </label>
                     <input
                       type="text"
                       value={customCcEmail}
                       onChange={(e) => setCustomCcEmail(e.target.value)}
-                      className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none"
+                      className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-xs text-[#192631] focus:border-emerald-500 focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* Language Mode */}
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                     Transmittal Template Language (لغة الإيميل الرسمي)
                   </label>
                   <div className="mt-1.5 grid grid-cols-3 gap-2">
@@ -1707,8 +1707,8 @@ ${transmittalRemarks}
                         onClick={() => setTransmittalLanguage(lang)}
                         className={`rounded-xl border py-2 text-xs font-semibold transition ${
                           transmittalLanguage === lang
-                            ? 'border-emerald-500 bg-emerald-500/20 text-emerald-300'
-                            : 'border-slate-700 bg-slate-950 text-slate-400 hover:border-slate-600'
+                            ? 'border-emerald-500 bg-[#123524]/10 text-[#123524]'
+                            : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70 hover:border-slate-600'
                         }`}
                       >
                         {lang === 'Bilingual' ? 'Bilingual (عربي + EN)' : lang}
@@ -1720,7 +1720,7 @@ ${transmittalRemarks}
                 {/* Checklist of Submittals */}
                 <div>
                   <div className="flex items-center justify-between">
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                       Attach Submittals / Shop Drawings ({selectedSubmittalIds.length} Selected)
                     </label>
                     <button
@@ -1730,13 +1730,13 @@ ${transmittalRemarks}
                           submittals.filter((s) => s.projectCode === transmittalProject).map((s) => s.id)
                         )
                       }
-                      className="text-xs font-medium text-indigo-400 hover:underline"
+                      className="text-xs font-medium text-[#e04b2a] hover:underline"
                     >
                       Select All Project Items
                     </button>
                   </div>
 
-                  <div className="mt-2 max-h-64 space-y-2 overflow-y-auto rounded-xl border border-slate-800 bg-slate-950 p-2.5">
+                  <div className="mt-2 max-h-64 space-y-2 overflow-y-auto rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-2.5">
                     {submittals.map((s) => {
                       const isChecked = selectedSubmittalIds.includes(s.id);
                       return (
@@ -1744,8 +1744,8 @@ ${transmittalRemarks}
                           key={s.id}
                           className={`flex cursor-pointer items-start gap-3 rounded-lg border p-2.5 transition ${
                             isChecked
-                              ? 'border-emerald-500/50 bg-emerald-500/10'
-                              : 'border-slate-800 bg-slate-900/60 hover:border-slate-700'
+                              ? 'border-[#123524]/25 bg-[#123524]/10'
+                              : 'border-[#192631]/10 bg-white/80 backdrop-blur-md hover:border-[#192631]/10'
                           }`}
                         >
                           <input
@@ -1762,15 +1762,15 @@ ${transmittalRemarks}
                           />
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center justify-between gap-2">
-                              <span className="font-mono text-xs font-bold text-indigo-300">
+                              <span className="font-mono text-xs font-bold text-[#e04b2a]">
                                 {s.code} ({s.revision})
                               </span>
-                              <span className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] text-slate-300">
+                              <span className="rounded bg-[#192631]/[0.05] px-1.5 py-0.5 text-[10px] text-[#192631]/85">
                                 {s.projectCode} • {s.logType}
                               </span>
                             </div>
-                            <div className="truncate text-xs text-slate-200">{s.titleEn}</div>
-                            <div className="truncate text-[11px] text-slate-400" dir="rtl">
+                            <div className="truncate text-xs text-[#192631]">{s.titleEn}</div>
+                            <div className="truncate text-[11px] text-[#192631]/70" dir="rtl">
                               {s.titleAr}
                             </div>
                           </div>
@@ -1785,13 +1785,13 @@ ${transmittalRemarks}
 
           {/* Right Column: Live Email Preview & Sent History */}
           <div className="space-y-5 lg:col-span-7">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+            <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#192631]/10 pb-3">
                 <div>
-                  <h3 className="text-base font-bold text-white">
+                  <h3 className="text-base font-bold text-[#192631]">
                     2. Auto-Generated Formal Transmittal Email Preview
                   </h3>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-[#192631]/70">
                     جاهز للنسخ أو الإرسال المباشر مع الأرشفة التلقائية في فولدر `/emails` بالمشروع
                   </p>
                 </div>
@@ -1803,12 +1803,12 @@ ${transmittalRemarks}
                         `Subject: ${generatedEmailContent.subject}\nTo: ${customRecipientEmail}\nCC: ${customCcEmail}\n\n${generatedEmailContent.body}`
                       )
                     }
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-800 px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:border-slate-600"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-[#192631]/10 bg-[#192631]/[0.05] px-3 py-1.5 text-xs font-semibold text-[#192631] transition hover:border-slate-600"
                   >
                     {copiedEmailField === 'full' ? (
                       <>
-                        <Check className="h-3.5 w-3.5 text-emerald-400" />
-                        <span className="text-emerald-300">Copied Full Email!</span>
+                        <Check className="h-3.5 w-3.5 text-[#123524]" />
+                        <span className="text-[#123524]">Copied Full Email!</span>
                       </>
                     ) : (
                       <>
@@ -1829,63 +1829,63 @@ ${transmittalRemarks}
               </div>
 
               {/* Subject Preview */}
-              <div className="mt-4 rounded-xl border border-slate-800 bg-slate-950 p-3">
-                <div className="flex items-center justify-between text-xs text-slate-400">
+              <div className="mt-4 rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-3">
+                <div className="flex items-center justify-between text-xs text-[#192631]/70">
                   <span className="font-semibold uppercase">Auto-Formatted Subject Line:</span>
                   <button
                     onClick={() => handleCopyText('subject', generatedEmailContent.subject)}
-                    className="inline-flex items-center gap-1 text-indigo-400 hover:underline"
+                    className="inline-flex items-center gap-1 text-[#e04b2a] hover:underline"
                   >
                     <Copy className="h-3 w-3" />
                     {copiedEmailField === 'subject' ? 'Copied!' : 'Copy Subject'}
                   </button>
                 </div>
-                <div className="mt-1 font-mono text-xs font-semibold text-emerald-300">
+                <div className="mt-1 font-mono text-xs font-semibold text-[#123524]">
                   {generatedEmailContent.subject}
                 </div>
               </div>
 
               {/* Body Preview */}
               <div className="mt-3">
-                <pre className="max-h-96 overflow-y-auto whitespace-pre-wrap rounded-xl border border-slate-800 bg-slate-950 p-4 font-sans text-xs leading-relaxed text-slate-200">
+                <pre className="max-h-96 overflow-y-auto whitespace-pre-wrap rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-4 font-sans text-xs leading-relaxed text-[#192631]">
                   {generatedEmailContent.body}
                 </pre>
               </div>
             </div>
 
             {/* Sent Transmittal History Log (/emails) */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
+              <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
                 <div className="flex items-center gap-2">
-                  <History className="h-4 w-4 text-emerald-400" />
-                  <h4 className="text-sm font-bold text-white">
+                  <History className="h-4 w-4 text-[#123524]" />
+                  <h4 className="text-sm font-bold text-[#192631]">
                     Logged Project Correspondence & Sent Transmittals (`/emails`)
                   </h4>
                 </div>
-                <span className="text-xs text-slate-400">{transmittalHistory.length} Archived Dispatches</span>
+                <span className="text-xs text-[#192631]/70">{transmittalHistory.length} Archived Dispatches</span>
               </div>
 
               <div className="mt-3 space-y-2.5">
                 {transmittalHistory.map((trn) => (
                   <div
                     key={trn.id}
-                    className="rounded-xl border border-slate-800/90 bg-slate-950/70 p-3 text-xs transition hover:border-slate-700"
+                    className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-3 text-xs transition hover:border-[#192631]/10"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="rounded bg-emerald-500/15 px-2 py-0.5 font-mono font-bold text-emerald-300">
+                        <span className="rounded bg-[#123524]/10 px-2 py-0.5 font-mono font-bold text-[#123524]">
                           {trn.transmittalNo}
                         </span>
-                        <span className="font-semibold text-slate-200">{trn.subject}</span>
+                        <span className="font-semibold text-[#192631]">{trn.subject}</span>
                       </div>
-                      <span className="font-mono text-[11px] text-slate-400">{trn.sentAt}</span>
+                      <span className="font-mono text-[11px] text-[#192631]/70">{trn.sentAt}</span>
                     </div>
-                    <div className="mt-1.5 flex flex-wrap items-center gap-3 text-[11px] text-slate-400">
+                    <div className="mt-1.5 flex flex-wrap items-center gap-3 text-[11px] text-[#192631]/70">
                       <span>To: {trn.recipientEmail}</span>
                       <span>•</span>
                       <span>Submittals: {trn.submittalCodes.join(', ')}</span>
                       <span>•</span>
-                      <span className="font-mono text-indigo-400">{trn.folderPath}</span>
+                      <span className="font-mono text-[#e04b2a]">{trn.folderPath}</span>
                     </div>
                   </div>
                 ))}
@@ -1902,12 +1902,12 @@ ${transmittalRemarks}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           {/* Interactive Builder Controls */}
           <div className="space-y-5 lg:col-span-7">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
-              <div className="border-b border-slate-800 pb-3">
-                <h3 className="text-base font-bold text-white">
+            <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
+              <div className="border-b border-[#192631]/10 pb-3">
+                <h3 className="text-base font-bold text-[#192631]">
                   Interactive File & Folder Naming Builder (مولد تكويد الملفات والفولدرات القياسي)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#192631]/70">
                   Enforces the uploaded spreadsheet coding rules across `01. TDC`, `02. DC`, `03. TC`, `04. C000`,
                   `MC000`, and Financial Vouchers (`NPO`, `RCB`, `POP`, `CPO`, `ST`, `INV`).
                 </p>
@@ -1916,7 +1916,7 @@ ${transmittalRemarks}
               <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {/* Category Selector */}
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                     1. Standard Document Category (فئة المستند / الفولدر الرئيسي)
                   </label>
                   <select
@@ -1929,7 +1929,7 @@ ${transmittalRemarks}
                         setCoderSubtype(rule.subtypes[0].code);
                       }
                     }}
-                    className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2.5 text-sm text-slate-100 focus:border-amber-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2.5 text-sm text-[#192631] focus:border-amber-500 focus:outline-none"
                   >
                     {FILE_CODING_RULES.map((rule) => (
                       <option key={rule.categoryCode} value={rule.categoryCode}>
@@ -1941,13 +1941,13 @@ ${transmittalRemarks}
 
                 {/* Project Code */}
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                     2. Project Code (كود المشروع)
                   </label>
                   <select
                     value={coderProject}
                     onChange={(e) => setCoderProject(e.target.value)}
-                    className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-amber-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-amber-500 focus:outline-none"
                   >
                     {NEXUS_PROJECTS.map((p) => (
                       <option key={p.code} value={p.code}>
@@ -1959,13 +1959,13 @@ ${transmittalRemarks}
 
                 {/* Document Subtype */}
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                     3. Document Subtype (النوع الفرعي)
                   </label>
                   <select
                     value={coderSubtype}
                     onChange={(e) => setCoderSubtype(e.target.value)}
-                    className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-amber-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-amber-500 focus:outline-none"
                   >
                     {activeCodingRule.subtypes.map((st) => (
                       <option key={st.code} value={st.code}>
@@ -1979,7 +1979,7 @@ ${transmittalRemarks}
                 {coderCategory === 'DC' && (
                   <>
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-indigo-300">
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-[#e04b2a]">
                         DC Discipline Code (AR / CV / EL / MC)
                       </label>
                       <select
@@ -1990,7 +1990,7 @@ ${transmittalRemarks}
                           const firstClause = FIFTY_ONE_CLAUSES.find((c) => c.disciplineShort === sh);
                           if (firstClause) setCoderClause(firstClause.code);
                         }}
-                        className="mt-1.5 w-full rounded-xl border border-indigo-500/40 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none"
+                        className="mt-1.5 w-full rounded-xl border border-[#e04b2a]/25 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-indigo-500 focus:outline-none"
                       >
                         {DISCIPLINES.map((d) => (
                           <option key={d.short} value={d.short}>
@@ -2001,13 +2001,13 @@ ${transmittalRemarks}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-indigo-300">
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-[#e04b2a]">
                         51-Clause Sub-Category (كود البند)
                       </label>
                       <select
                         value={coderClause}
                         onChange={(e) => setCoderClause(e.target.value)}
-                        className="mt-1.5 w-full rounded-xl border border-indigo-500/40 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none"
+                        className="mt-1.5 w-full rounded-xl border border-[#e04b2a]/25 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-indigo-500 focus:outline-none"
                       >
                         {FIFTY_ONE_CLAUSES.filter((c) => c.disciplineShort === coderDisciplineShort).map((c) => (
                           <option key={c.id} value={c.code}>
@@ -2021,7 +2021,7 @@ ${transmittalRemarks}
 
                 {/* Sequence & Revision */}
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                     4. Sequence Number (رقم المسلسل)
                   </label>
                   <input
@@ -2029,18 +2029,18 @@ ${transmittalRemarks}
                     value={coderSequence}
                     onChange={(e) => setCoderSequence(e.target.value)}
                     placeholder="0001"
-                    className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100 focus:border-amber-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 font-mono text-sm text-[#192631] focus:border-amber-500 focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                     5. Revision Code (رقم الإصدار)
                   </label>
                   <select
                     value={coderRevision}
                     onChange={(e) => setCoderRevision(e.target.value)}
-                    className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100 focus:border-amber-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 font-mono text-sm text-[#192631] focus:border-amber-500 focus:outline-none"
                   >
                     <option value="R00">R00 (First Issue)</option>
                     <option value="R01">R01 (Revision 1)</option>
@@ -2052,7 +2052,7 @@ ${transmittalRemarks}
 
                 {/* Vendor / Party / Description & Date */}
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                     6. Supplier / Party / Subject Tag (اسم المورد أو البيان)
                   </label>
                   <input
@@ -2060,30 +2060,30 @@ ${transmittalRemarks}
                     value={coderPartyOrDesc}
                     onChange={(e) => setCoderPartyOrDesc(e.target.value)}
                     placeholder="KnaufEgypt / AlNourPlastering"
-                    className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-amber-500 focus:outline-none"
+                    className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631] focus:border-amber-500 focus:outline-none"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                       Date (التاريخ)
                     </label>
                     <input
                       type="date"
                       value={coderDate}
                       onChange={(e) => setCoderDate(e.target.value)}
-                      className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-2.5 py-2 text-xs text-slate-100 focus:border-amber-500 focus:outline-none"
+                      className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-2.5 py-2 text-xs text-[#192631] focus:border-amber-500 focus:outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400">
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-[#192631]/70">
                       Ext (الامتداد)
                     </label>
                     <select
                       value={coderExtension}
                       onChange={(e) => setCoderExtension(e.target.value as 'pdf' | 'dwg' | 'xlsx')}
-                      className="mt-1.5 w-full rounded-xl border border-slate-700 bg-slate-950 px-2.5 py-2 font-mono text-xs text-slate-100 focus:border-amber-500 focus:outline-none"
+                      className="mt-1.5 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-2.5 py-2 font-mono text-xs text-[#192631] focus:border-amber-500 focus:outline-none"
                     >
                       <option value="pdf">.pdf</option>
                       <option value="dwg">.dwg (CAD)</option>
@@ -2097,15 +2097,15 @@ ${transmittalRemarks}
 
           {/* Output Panel: Standardized Filename & Folder Path */}
           <div className="space-y-5 lg:col-span-5">
-            <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/30 p-5 shadow-xl">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400">
+            <div className="rounded-2xl border border-amber-500/30 bg-white/80 backdrop-blur-xl p-5 shadow-xl">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#b45309]">
                 <Sparkles className="h-4 w-4" />
                 <span>Generated Standard Output (جاهز للنسخ الفوري)</span>
               </div>
 
               {/* Standardized Filename */}
-              <div className="mt-4 rounded-xl border border-slate-800 bg-slate-950 p-4">
-                <div className="flex items-center justify-between text-xs text-slate-400">
+              <div className="mt-4 rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-4">
+                <div className="flex items-center justify-between text-xs text-[#192631]/70">
                   <span>Official Standardized File Name (اسم الملف القياسي):</span>
                   <button
                     onClick={() => {
@@ -2113,20 +2113,20 @@ ${transmittalRemarks}
                       setCopiedPathKey('file');
                       setTimeout(() => setCopiedPathKey(null), 2000);
                     }}
-                    className="inline-flex items-center gap-1 rounded-lg bg-amber-500/20 px-2.5 py-1 text-xs font-semibold text-amber-300 hover:bg-amber-500/30"
+                    className="inline-flex items-center gap-1 rounded-lg bg-amber-500/20 px-2.5 py-1 text-xs font-semibold text-[#b45309] hover:bg-amber-500/30"
                   >
                     {copiedPathKey === 'file' ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
                     <span>{copiedPathKey === 'file' ? 'Copied!' : 'Copy Filename'}</span>
                   </button>
                 </div>
-                <div className="mt-2 break-all font-mono text-sm font-bold text-amber-300">
+                <div className="mt-2 break-all font-mono text-sm font-bold text-[#b45309]">
                   {generatedFileAndFolder.fileName}
                 </div>
               </div>
 
               {/* Standardized Server Folder Path */}
-              <div className="mt-3 rounded-xl border border-slate-800 bg-slate-950 p-4">
-                <div className="flex items-center justify-between text-xs text-slate-400">
+              <div className="mt-3 rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-4">
+                <div className="flex items-center justify-between text-xs text-[#192631]/70">
                   <span>Target Server / Cloud Folder Path (مسار الفولدر القياسي):</span>
                   <button
                     onClick={() => {
@@ -2134,20 +2134,20 @@ ${transmittalRemarks}
                       setCopiedPathKey('folder');
                       setTimeout(() => setCopiedPathKey(null), 2000);
                     }}
-                    className="inline-flex items-center gap-1 rounded-lg bg-indigo-500/20 px-2.5 py-1 text-xs font-semibold text-indigo-300 hover:bg-indigo-500/30"
+                    className="inline-flex items-center gap-1 rounded-lg bg-[#e04b2a]/10 px-2.5 py-1 text-xs font-semibold text-[#e04b2a] hover:bg-[#c83e1f]/30"
                   >
                     {copiedPathKey === 'folder' ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
                     <span>{copiedPathKey === 'folder' ? 'Copied!' : 'Copy Folder Path'}</span>
                   </button>
                 </div>
-                <div className="mt-2 break-all font-mono text-xs text-indigo-300">
+                <div className="mt-2 break-all font-mono text-xs text-[#e04b2a]">
                   {generatedFileAndFolder.folderPath}
                 </div>
               </div>
 
               {/* Complete URI */}
-              <div className="mt-3 rounded-xl border border-slate-800 bg-slate-950 p-4">
-                <div className="flex items-center justify-between text-xs text-slate-400">
+              <div className="mt-3 rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-4">
+                <div className="flex items-center justify-between text-xs text-[#192631]/70">
                   <span>Full Archive URI (المسار الكامل شامل الملف):</span>
                   <button
                     onClick={() => {
@@ -2155,20 +2155,20 @@ ${transmittalRemarks}
                       setCopiedPathKey('full');
                       setTimeout(() => setCopiedPathKey(null), 2000);
                     }}
-                    className="inline-flex items-center gap-1 text-xs text-emerald-400 hover:underline"
+                    className="inline-flex items-center gap-1 text-xs text-[#123524] hover:underline"
                   >
                     {copiedPathKey === 'full' ? 'Copied URI!' : 'Copy Full URI'}
                   </button>
                 </div>
-                <div className="mt-1.5 break-all font-mono text-[11px] text-slate-300">
+                <div className="mt-1.5 break-all font-mono text-[11px] text-[#192631]/85">
                   {generatedFileAndFolder.fullArchiveUri}
                 </div>
               </div>
             </div>
 
             {/* Quick Reference Card for All 11 Folder & Financial Categories */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-4">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-300">
+            <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-[#192631]/85">
                 Standard Folder & Voucher Coding Rules Summary
               </h4>
               <div className="mt-3 max-h-60 space-y-2 overflow-y-auto pr-1">
@@ -2182,14 +2182,14 @@ ${transmittalRemarks}
                     className={`cursor-pointer rounded-lg border p-2.5 text-xs transition ${
                       coderCategory === rule.categoryCode
                         ? 'border-amber-500/50 bg-amber-500/10'
-                        : 'border-slate-800 bg-slate-950/60 hover:border-slate-700'
+                        : 'border-[#192631]/10 bg-[#f5f5f5]/90 hover:border-[#192631]/10'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-mono font-bold text-amber-300">{rule.folderPrefix}</span>
-                      <span className="text-slate-400">{rule.nameAr}</span>
+                      <span className="font-mono font-bold text-[#b45309]">{rule.folderPrefix}</span>
+                      <span className="text-[#192631]/70">{rule.nameAr}</span>
                     </div>
-                    <div className="mt-1 font-mono text-[11px] text-slate-400">Example: {rule.example}</div>
+                    <div className="mt-1 font-mono text-[11px] text-[#192631]/70">Example: {rule.example}</div>
                   </div>
                 ))}
               </div>
@@ -2209,13 +2209,13 @@ ${transmittalRemarks}
               onClick={() => setMatrixDisciplineFilter('ALL')}
               className={`rounded-xl border p-3.5 text-left transition ${
                 matrixDisciplineFilter === 'ALL'
-                  ? 'border-indigo-500 bg-indigo-500/15 text-white'
-                  : 'border-slate-800 bg-slate-900/80 text-slate-300 hover:border-slate-700'
+                  ? 'border-indigo-500 bg-[#e04b2a]/10 text-[#192631]'
+                  : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/85 hover:border-[#192631]/10'
               }`}
             >
-              <div className="text-xs font-semibold uppercase text-indigo-400">All Disciplines</div>
+              <div className="text-xs font-semibold uppercase text-[#e04b2a]">All Disciplines</div>
               <div className="mt-1 text-2xl font-bold">51 Clauses</div>
-              <div className="text-xs text-slate-400">إجمالي البنود القياسية</div>
+              <div className="text-xs text-[#192631]/70">إجمالي البنود القياسية</div>
             </button>
 
             {DISCIPLINES.map((d) => (
@@ -2224,47 +2224,47 @@ ${transmittalRemarks}
                 onClick={() => setMatrixDisciplineFilter(d.key)}
                 className={`rounded-xl border p-3.5 text-left transition ${
                   matrixDisciplineFilter === d.key
-                    ? 'border-indigo-500 bg-indigo-500/15 text-white'
-                    : 'border-slate-800 bg-slate-900/80 text-slate-300 hover:border-slate-700'
+                    ? 'border-indigo-500 bg-[#e04b2a]/10 text-[#192631]'
+                    : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/85 hover:border-[#192631]/10'
                 }`}
               >
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-indigo-300">
+                  <span className="text-[#e04b2a]">
                     {d.key} ({d.short})
                   </span>
-                  <span className="rounded bg-slate-800 px-2 py-0.5 font-mono text-xs text-white">
+                  <span className="rounded bg-[#192631]/[0.05] px-2 py-0.5 font-mono text-xs text-[#192631]">
                     {d.clauseCount} Clauses
                   </span>
                 </div>
-                <div className="mt-1 text-sm font-bold text-white">{d.nameEn}</div>
-                <div className="text-xs text-slate-400">{d.nameAr}</div>
+                <div className="mt-1 text-sm font-bold text-[#192631]">{d.nameEn}</div>
+                <div className="text-xs text-[#192631]/70">{d.nameAr}</div>
               </button>
             ))}
           </div>
 
           {/* Search Bar for 51 Clauses */}
-          <div className="flex flex-col justify-between gap-3 rounded-2xl border border-slate-800 bg-slate-900/90 p-4 sm:flex-row sm:items-center">
+          <div className="flex flex-col justify-between gap-3 rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-4 sm:flex-row sm:items-center">
             <div className="relative flex-1">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#192631]/70" />
               <input
                 type="text"
                 value={matrixSearch}
                 onChange={(e) => setMatrixSearch(e.target.value)}
                 placeholder="Search 51 Clauses by code (GP, TL, LW, CS, RC) or Arabic/English name..."
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 py-2 pl-9 pr-4 text-sm text-slate-100 placeholder-slate-500 focus:border-sky-500 focus:outline-none"
+                className="w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 py-2 pl-9 pr-4 text-sm text-[#192631] placeholder-[#192631]/40 focus:border-sky-500 focus:outline-none"
               />
             </div>
-            <div className="text-xs text-slate-400">
-              Showing <span className="font-bold text-white">{filteredClauses.length}</span> of 51 Standard Clauses
+            <div className="text-xs text-[#192631]/70">
+              Showing <span className="font-bold text-[#192631]">{filteredClauses.length}</span> of 51 Standard Clauses
             </div>
           </div>
 
           {/* 51-Clause Matrix Table */}
-          <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 shadow-xl">
+          <div className="overflow-hidden rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md shadow-xl">
             <div className="overflow-x-auto">
               <table className="w-full border-collapse text-left text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800 bg-slate-950/70 text-xs uppercase tracking-wider text-slate-400">
+                  <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-xs uppercase tracking-wider text-[#192631]/70">
                     <th className="px-4 py-3">#</th>
                     <th className="px-4 py-3">Discipline</th>
                     <th className="px-4 py-3">Clause Code</th>
@@ -2274,23 +2274,23 @@ ${transmittalRemarks}
                     <th className="px-4 py-3 text-right">Use in Submittal</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/70">
+                <tbody className="divide-y divide-[#192631]/10">
                   {filteredClauses.map((clause) => {
                     const exampleCode = `MS${clause.disciplineShort}${clause.code}01`;
                     return (
-                      <tr key={clause.id} className="transition hover:bg-slate-800/40">
-                        <td className="px-4 py-2.5 font-mono text-xs text-slate-500">{clause.id}</td>
+                      <tr key={clause.id} className="transition hover:bg-[#192631]/[0.05]">
+                        <td className="px-4 py-2.5 font-mono text-xs text-[#192631]/60">{clause.id}</td>
                         <td className="px-4 py-2.5">
-                          <span className="rounded border border-slate-700 bg-slate-800 px-2 py-0.5 font-mono text-xs font-semibold text-slate-200">
+                          <span className="rounded border border-[#192631]/10 bg-[#192631]/[0.05] px-2 py-0.5 font-mono text-xs font-semibold text-[#192631]">
                             {clause.discipline} ({clause.disciplineShort})
                           </span>
                         </td>
-                        <td className="px-4 py-2.5 font-mono text-sm font-bold text-sky-400">{clause.code}</td>
-                        <td className="px-4 py-2.5 font-medium text-slate-100">{clause.nameEn}</td>
-                        <td className="px-4 py-2.5 text-right font-medium text-slate-200" dir="rtl">
+                        <td className="px-4 py-2.5 font-mono text-sm font-bold text-[#192631]">{clause.code}</td>
+                        <td className="px-4 py-2.5 font-medium text-[#192631]">{clause.nameEn}</td>
+                        <td className="px-4 py-2.5 text-right font-medium text-[#192631]" dir="rtl">
                           {clause.nameAr}
                         </td>
-                        <td className="px-4 py-2.5 font-mono text-xs text-indigo-300">{exampleCode}</td>
+                        <td className="px-4 py-2.5 font-mono text-xs text-[#e04b2a]">{exampleCode}</td>
                         <td className="px-4 py-2.5 text-right">
                           <button
                             onClick={() => {
@@ -2298,7 +2298,7 @@ ${transmittalRemarks}
                               setNewClauseCode(clause.code);
                               setIsNewModalOpen(true);
                             }}
-                            className="inline-flex items-center gap-1 rounded-lg border border-indigo-500/30 bg-indigo-500/10 px-2.5 py-1 text-xs font-semibold text-indigo-300 hover:bg-indigo-500/20"
+                            className="inline-flex items-center gap-1 rounded-lg border border-[#e04b2a]/25 bg-[#e04b2a]/10 px-2.5 py-1 text-xs font-semibold text-[#e04b2a] hover:bg-[#c83e1f]/20"
                           >
                             <Plus className="h-3 w-3" />
                             <span>Create {exampleCode}</span>
@@ -2313,24 +2313,24 @@ ${transmittalRemarks}
           </div>
 
           {/* Official Document Control & Finance Abbreviations Dictionary */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-xl">
-            <h3 className="text-base font-bold text-white">
+          <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-5 shadow-xl">
+            <h3 className="text-base font-bold text-[#192631]">
               Official Document Control & Financial Coding Dictionary (قاموس الاختصارات والأكواد القياسي)
             </h3>
             <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {ABBREVIATIONS_DICTIONARY.map((abbr) => (
                 <div
                   key={abbr.code}
-                  className="rounded-xl border border-slate-800 bg-slate-950/70 p-3.5 transition hover:border-slate-700"
+                  className="rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 p-3.5 transition hover:border-[#192631]/10"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="rounded bg-indigo-500/20 px-2 py-0.5 font-mono text-sm font-bold text-indigo-300">
+                    <span className="rounded bg-[#e04b2a]/10 px-2 py-0.5 font-mono text-sm font-bold text-[#e04b2a]">
                       {abbr.code}
                     </span>
-                    <span className="text-[11px] text-slate-400">{abbr.category}</span>
+                    <span className="text-[11px] text-[#192631]/70">{abbr.category}</span>
                   </div>
-                  <div className="mt-2 text-xs font-semibold text-slate-100">{abbr.en}</div>
-                  <div className="mt-1 text-xs text-slate-400" dir="rtl">
+                  <div className="mt-2 text-xs font-semibold text-[#192631]">{abbr.en}</div>
+                  <div className="mt-1 text-xs text-[#192631]/70" dir="rtl">
                     {abbr.ar}
                   </div>
                 </div>
@@ -2344,20 +2344,20 @@ ${transmittalRemarks}
           MODAL: + NEW SUBMITTAL / AUTO-GENERATE NEXUS CODE
          ===================================================================== */}
       {isNewModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm">
-          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192631]/40 p-4 backdrop-blur-sm">
+          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-6 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-[#192631]/10 pb-4">
               <div>
-                <h3 className="text-lg font-bold text-white">
+                <h3 className="text-lg font-bold text-[#192631]">
                   + New Submittal & Auto-Code Generator (توليد كود اعتماد جديد)
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-[#192631]/70">
                   Select Log Type + Discipline + 51-Clause Sub-Category to auto-build the official Nexus code.
                 </p>
               </div>
               <button
                 onClick={() => setIsNewModalOpen(false)}
-                className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-1 text-xs font-semibold text-slate-300 hover:bg-slate-700"
+                className="rounded-lg border border-[#192631]/10 bg-[#192631]/[0.05] px-3 py-1 text-xs font-semibold text-[#192631]/85 hover:bg-[#192631]/[0.12]"
               >
                 Close ✕
               </button>
@@ -2365,33 +2365,33 @@ ${transmittalRemarks}
 
             <form onSubmit={handleCreateSubmittal} className="mt-5 space-y-4">
               {/* Live Generated Code Preview Banner */}
-              <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-indigo-500/40 bg-indigo-950/40 p-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#e04b2a]/25 bg-indigo-950/40 p-4">
                 <div>
-                  <div className="text-xs font-semibold uppercase tracking-wider text-indigo-300">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#e04b2a]">
                     Official Auto-Generated Nexus Code
                   </div>
                   <div className="mt-1 flex items-center gap-2">
-                    <span className="font-mono text-2xl font-extrabold text-white">{autoGeneratedModalCode}</span>
-                    <span className="rounded bg-indigo-500/20 px-2 py-0.5 font-mono text-xs font-bold text-indigo-300">
+                    <span className="font-mono text-2xl font-extrabold text-[#192631]">{autoGeneratedModalCode}</span>
+                    <span className="rounded bg-[#e04b2a]/10 px-2 py-0.5 font-mono text-xs font-bold text-[#e04b2a]">
                       {newRevision}
                     </span>
                   </div>
                 </div>
-                <div className="text-right text-xs text-slate-300">
+                <div className="text-right text-xs text-[#192631]/85">
                   <div>
-                    Formula: <span className="font-mono text-indigo-300">[LogType][Disc][Clause][Seq]</span>
+                    Formula: <span className="font-mono text-[#e04b2a]">[LogType][Disc][Clause][Seq]</span>
                   </div>
-                  <div className="text-slate-400">Project: {newProjectCode}</div>
+                  <div className="text-[#192631]/70">Project: {newProjectCode}</div>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-400">Project (المشروع)</label>
+                  <label className="block text-xs font-semibold uppercase text-[#192631]/70">Project (المشروع)</label>
                   <select
                     value={newProjectCode}
                     onChange={(e) => setNewProjectCode(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                    className="mt-1 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                   >
                     {NEXUS_PROJECTS.map((p) => (
                       <option key={p.code} value={p.code}>
@@ -2402,13 +2402,13 @@ ${transmittalRemarks}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-400">
+                  <label className="block text-xs font-semibold uppercase text-[#192631]/70">
                     Log Type (نوع السجل: MS/DR/MIR/SL/SIR)
                   </label>
                   <select
                     value={newLogType}
                     onChange={(e) => setNewLogType(e.target.value as LogTypeCode)}
-                    className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                    className="mt-1 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                   >
                     {LOG_TYPES.map((lt) => (
                       <option key={lt.code} value={lt.code}>
@@ -2419,7 +2419,7 @@ ${transmittalRemarks}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-400">
+                  <label className="block text-xs font-semibold uppercase text-[#192631]/70">
                     Discipline (التخصص الهندسي)
                   </label>
                   <select
@@ -2430,7 +2430,7 @@ ${transmittalRemarks}
                       const firstClause = FIFTY_ONE_CLAUSES.find((c) => c.discipline === d);
                       if (firstClause) setNewClauseCode(firstClause.code);
                     }}
-                    className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                    className="mt-1 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                   >
                     {DISCIPLINES.map((d) => (
                       <option key={d.key} value={d.key}>
@@ -2441,13 +2441,13 @@ ${transmittalRemarks}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-400">
+                  <label className="block text-xs font-semibold uppercase text-[#192631]/70">
                     Sub-Category Clause (البند من الـ 51 بند)
                   </label>
                   <select
                     value={newClauseCode}
                     onChange={(e) => setNewClauseCode(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                    className="mt-1 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                   >
                     {availableModalClauses.map((c) => (
                       <option key={c.id} value={c.code}>
@@ -2458,11 +2458,11 @@ ${transmittalRemarks}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-400">Revision (الإصدار)</label>
+                  <label className="block text-xs font-semibold uppercase text-[#192631]/70">Revision (الإصدار)</label>
                   <select
                     value={newRevision}
                     onChange={(e) => setNewRevision(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-white"
+                    className="mt-1 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 font-mono text-sm text-[#192631]"
                   >
                     <option value="Rev 00">Rev 00 (Initial Submission)</option>
                     <option value="Rev 01">Rev 01 (Resubmission 1)</option>
@@ -2471,7 +2471,7 @@ ${transmittalRemarks}
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-400">
+                  <label className="block text-xs font-semibold uppercase text-[#192631]/70">
                     Manufacturer / Supplier / Origin (المورد / المصنع)
                   </label>
                   <input
@@ -2479,13 +2479,13 @@ ${transmittalRemarks}
                     value={newManufacturer}
                     onChange={(e) => setNewManufacturer(e.target.value)}
                     placeholder="e.g. Knauf Egypt / El-Swedy / Grohe"
-                    className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                    className="mt-1 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-400">
+                <label className="block text-xs font-semibold uppercase text-[#192631]/70">
                   Submittal Title (English Description)
                 </label>
                 <input
@@ -2493,12 +2493,12 @@ ${transmittalRemarks}
                   value={newTitleEn}
                   onChange={(e) => setNewTitleEn(e.target.value)}
                   placeholder="e.g. Acoustic Gypsum Board Ceiling System with Shadow Gap Profiles"
-                  className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                  className="mt-1 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase text-slate-400">
+                <label className="block text-xs font-semibold uppercase text-[#192631]/70">
                   وصف الاعتماد باللغة العربية
                 </label>
                 <input
@@ -2507,15 +2507,15 @@ ${transmittalRemarks}
                   value={newTitleAr}
                   onChange={(e) => setNewTitleAr(e.target.value)}
                   placeholder="مثال: اعتماد نظام الأسقف المعلقة الجبسية العازلة للصوت شاملة البروفايلات"
-                  className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white"
+                  className="mt-1 w-full rounded-xl border border-[#192631]/10 bg-[#f5f5f5]/90 px-3 py-2 text-sm text-[#192631]"
                 />
               </div>
 
               {/* Simulated File Attachment Upload (.pdf, .dwg) */}
-              <div className="rounded-xl border border-dashed border-slate-700 bg-slate-950/70 p-3.5">
+              <div className="rounded-xl border border-dashed border-[#192631]/10 bg-[#f5f5f5]/90 p-3.5">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                    <Upload className="h-4 w-4 text-indigo-400" />
+                  <div className="flex items-center gap-2 text-xs font-semibold text-[#192631]/85">
+                    <Upload className="h-4 w-4 text-[#e04b2a]" />
                     <span>Attached Submittal Package Files (.pdf Datasheets / .dwg Shop Drawings)</span>
                   </div>
                   <button
@@ -2530,7 +2530,7 @@ ${transmittalRemarks}
                         },
                       ])
                     }
-                    className="rounded-lg bg-slate-800 px-2.5 py-1 text-xs font-medium text-indigo-300 hover:bg-slate-700"
+                    className="rounded-lg bg-[#192631]/[0.05] px-2.5 py-1 text-xs font-medium text-[#e04b2a] hover:bg-[#192631]/[0.12]"
                   >
                     + Simulate Attach .PDF/.DWG
                   </button>
@@ -2539,26 +2539,26 @@ ${transmittalRemarks}
                   {newAttachments.map((att, idx) => (
                     <span
                       key={idx}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-800 bg-slate-900 px-2.5 py-1 font-mono text-xs text-slate-300"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-[#192631]/10 bg-white/80 backdrop-blur-md px-2.5 py-1 font-mono text-xs text-[#192631]/85"
                     >
-                      <Paperclip className="h-3 w-3 text-indigo-400" />
+                      <Paperclip className="h-3 w-3 text-[#e04b2a]" />
                       {newProjectCode}-DC-{autoGeneratedModalCode}-{newRevision.replace(' ', '')}_{att.name}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-3 border-t border-slate-800 pt-4">
+              <div className="flex items-center justify-end gap-3 border-t border-[#192631]/10 pt-4">
                 <button
                   type="button"
                   onClick={() => setIsNewModalOpen(false)}
-                  className="rounded-xl border border-slate-700 bg-slate-800 px-4 py-2 text-sm font-medium text-slate-300 hover:bg-slate-700"
+                  className="rounded-xl border border-[#192631]/10 bg-[#192631]/[0.05] px-4 py-2 text-sm font-medium text-[#192631]/85 hover:bg-[#192631]/[0.12]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="rounded-xl bg-indigo-600 px-5 py-2 text-sm font-bold text-white shadow-lg shadow-indigo-600/30 hover:bg-indigo-500"
+                  className="rounded-xl bg-[#e04b2a] px-5 py-2 text-sm font-bold text-[#192631] shadow-lg shadow-indigo-600/30 hover:bg-[#c83e1f]"
                 >
                   Register {autoGeneratedModalCode} ({newRevision})
                 </button>

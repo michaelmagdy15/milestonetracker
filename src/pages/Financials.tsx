@@ -1,11 +1,13 @@
 import React, { useState, useMemo } from 'react';
 import { useData } from '../context/DataContext';
-import { DollarSign, FileText, AlertCircle, Building2, TrendingUp, BarChart3, Download, Briefcase, Calculator, Calendar, ChevronLeft, ChevronRight, Plus, Trash2, CheckCircle2, Wallet, CreditCard } from 'lucide-react';
+import { DollarSign, FileText, AlertCircle, Building2, TrendingUp, BarChart3, Download, Briefcase, Calculator, Calendar, ChevronLeft, ChevronRight, Plus, Trash2, CheckCircle2, Wallet, CreditCard, Receipt } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { format, subMonths, addMonths, startOfMonth, endOfMonth, isWithinInterval } from 'date-fns';
 import clsx from 'clsx';
 import { EditableText } from '../components/EditableText';
 import { SystemHint } from '../components/SystemHint';
+import { TreasuryCashBankHub } from '../components/nexus/TreasuryCashBankHub';
+import { ExtractsStatementsHub } from '../components/nexus/ExtractsStatementsHub';
 
 const OfficeOperations: React.FC = () => {
     const { engineers, entries, officeExpenses, addOfficeExpense, deleteOfficeExpense } = useData();
@@ -237,7 +239,7 @@ const OfficeOperations: React.FC = () => {
             <div className={`bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden group hover:border-${locColor}-500/20 transition-all`}>
                 <div className={`absolute top-0 right-0 w-32 h-32 bg-${locColor}-500/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-${locColor}-500/10 transition-colors`}></div>
 
-                <h3 className="text-2xl font-black text-white tracking-tight mb-6 flex items-center justify-between gap-4">
+                <h3 className="text-2xl font-black text-[#192631] tracking-tight mb-6 flex items-center justify-between gap-4">
                     <EditableText
                         settingKey={`financials_${loc.toLowerCase().replace(' ', '_')}_office_title`}
                         defaultText={`${loc} Office`}
@@ -250,36 +252,36 @@ const OfficeOperations: React.FC = () => {
                 </h3>
 
                 <div className="grid grid-cols-2 gap-4 mb-8">
-                    <div className="p-5 bg-white/5 rounded-2xl border border-white/5">
+                    <div className="p-5 bg-[#192631]/[0.05] rounded-2xl border border-[#192631]/10">
                         <EditableText
                             settingKey="financials_total_salaries"
                             defaultText="Total Salaries"
                             as="p"
-                            className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1"
+                            className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-1"
                         />
-                        <p className="text-xl font-black text-white">
+                        <p className="text-xl font-black text-[#192631]">
                             {d.salaries.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                         </p>
                     </div>
-                    <div className="p-5 bg-white/5 rounded-2xl border border-white/5">
+                    <div className="p-5 bg-[#192631]/[0.05] rounded-2xl border border-[#192631]/10">
                         <EditableText
                             settingKey="financials_total_expenses"
                             defaultText="Total Expenses"
                             as="p"
-                            className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1"
+                            className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-1"
                         />
-                        <p className="text-xl font-black text-white">
+                        <p className="text-xl font-black text-[#192631]">
                             {d.expenses.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                         </p>
                     </div>
                 </div>
 
-                <div className="mb-8 p-5 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-between">
+                <div className="mb-8 p-5 bg-[#192631]/[0.05] rounded-2xl border border-[#192631]/10 flex items-center justify-between">
                     <EditableText
                         settingKey="financials_total_outgoings"
                         defaultText="Total Outgoings"
                         as="p"
-                        className="text-slate-400 text-[10px] font-bold uppercase tracking-widest"
+                        className="text-[#192631]/70 text-[10px] font-bold uppercase tracking-widest"
                     />
                     <p className={`text-2xl font-black text-${locColor}-400`}>
                         {d.currency} {totalOutgoings.toLocaleString(undefined, { maximumFractionDigits: 0 })}
@@ -289,19 +291,19 @@ const OfficeOperations: React.FC = () => {
                 <div className="space-y-6">
                     {/* Salaries Dropdown / List */}
                     <div>
-                        <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
                             <Wallet className="w-3.5 h-3.5" />
                             <EditableText settingKey="financials_salary_breakdown" defaultText="Salary Breakdown" as="span" />
                         </p>
                         {d.salaryDetails.length > 0 ? (
                             <div className="space-y-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
                                 {d.salaryDetails.map((s, i) => (
-                                    <div key={i} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
+                                    <div key={i} className="flex justify-between items-center py-2 border-b border-[#192631]/10 last:border-0">
                                         <div>
-                                            <p className="text-sm font-bold text-white">{s.name}</p>
-                                            <p className="text-[10px] text-slate-500 uppercase tracking-widest">{s.hours} hrs @ {s.rate}/h</p>
+                                            <p className="text-sm font-bold text-[#192631]">{s.name}</p>
+                                            <p className="text-[10px] text-[#192631]/60 uppercase tracking-widest">{s.hours} hrs @ {s.rate}/h</p>
                                         </div>
-                                        <p className="text-sm font-bold text-slate-300 gap-1 flex items-center">
+                                        <p className="text-sm font-bold text-[#192631]/85 gap-1 flex items-center">
                                             {s.total.toLocaleString()}
                                         </p>
                                     </div>
@@ -314,25 +316,25 @@ const OfficeOperations: React.FC = () => {
 
                     {/* Expenses List */}
                     <div>
-                        <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
+                        <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
                             <CreditCard className="w-3.5 h-3.5" />
                             <EditableText settingKey="financials_recent_expenses" defaultText="Recent Expenses" as="span" />
                         </p>
                         {d.expenseList.length > 0 ? (
                             <div className="space-y-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
                                 {d.expenseList.map((exp, i) => (
-                                    <div key={exp.id || i} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0 group/exp">
+                                    <div key={exp.id || i} className="flex justify-between items-center py-2 border-b border-[#192631]/10 last:border-0 group/exp">
                                         <div>
-                                            <p className="text-sm font-bold text-white">{exp.category}</p>
-                                            <p className="text-[10px] text-slate-500 capitalize">{exp.description || 'No description'} • {format(new Date(exp.date), 'MMM dd')}</p>
+                                            <p className="text-sm font-bold text-[#192631]">{exp.category}</p>
+                                            <p className="text-[10px] text-[#192631]/60 capitalize">{exp.description || 'No description'} • {format(new Date(exp.date), 'MMM dd')}</p>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <p className="text-sm font-bold text-slate-300">
+                                            <p className="text-sm font-bold text-[#192631]/85">
                                                 {exp.amount.toLocaleString()}
                                             </p>
                                             <button
                                                 onClick={() => deleteOfficeExpense(exp.id)}
-                                                className="opacity-0 group-hover/exp:opacity-100 text-red-400 hover:bg-red-500/10 p-1.5 rounded-lg transition-all"
+                                                className="opacity-0 group-hover/exp:opacity-100 text-red-700 hover:bg-red-500/10 p-1.5 rounded-lg transition-all"
                                                 title="Delete Expense"
                                             >
                                                 <Trash2 className="w-4 h-4" />
@@ -353,26 +355,26 @@ const OfficeOperations: React.FC = () => {
     return (
         <div className="space-y-6">
             {/* Header: Month Selector & Add Button */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-[#1a1a1a]/40 p-4 rounded-3xl border border-white/5 backdrop-blur-3xl shadow-xl">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-[#1a1a1a]/40 p-4 rounded-3xl border border-[#192631]/10 backdrop-blur-3xl shadow-xl">
                 <div className="flex items-center gap-4">
-                    <button onClick={handlePreviousMonth} className="p-2 bg-white/5 hover:bg-white/10 rounded-xl transition-colors">
-                        <ChevronLeft className="w-5 h-5 text-slate-400" />
+                    <button onClick={handlePreviousMonth} className="p-2 bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] rounded-xl transition-colors">
+                        <ChevronLeft className="w-5 h-5 text-[#192631]/70" />
                     </button>
-                    <div className="flex items-center gap-3 min-w-[200px] justify-center text-emerald-400">
+                    <div className="flex items-center gap-3 min-w-[200px] justify-center text-[#123524]">
                         <Calendar className="w-5 h-5 flex-shrink-0" />
                         <span className="text-lg font-black uppercase tracking-widest">
                             {format(selectedMonth, 'MMMM yyyy')}
                         </span>
                     </div>
-                    <button onClick={handleNextMonth} className="p-2 bg-white/5 hover:bg-white/10 rounded-xl transition-colors">
-                        <ChevronRight className="w-5 h-5 text-slate-400" />
+                    <button onClick={handleNextMonth} className="p-2 bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] rounded-xl transition-colors">
+                        <ChevronRight className="w-5 h-5 text-[#192631]/70" />
                     </button>
                 </div>
 
                 <div className="flex items-center gap-3">
                     <button
                         onClick={generateFinancialReport}
-                        className="flex items-center justify-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-emerald-400 border border-emerald-500/30 hover:border-emerald-500/60 rounded-xl font-bold uppercase tracking-wider text-xs transition-all"
+                        className="flex items-center justify-center gap-2 px-6 py-3 bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] text-[#123524] border border-[#123524]/25 hover:border-emerald-500/60 rounded-xl font-bold uppercase tracking-wider text-xs transition-all"
                     >
                         <Download className="w-4 h-4" />
                         Generate Report
@@ -392,33 +394,33 @@ const OfficeOperations: React.FC = () => {
                 <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
-                    className="bg-[#1a1a1a]/60 p-6 rounded-3xl border border-emerald-500/20 backdrop-blur-3xl shadow-2xl overflow-hidden"
+                    className="bg-[#1a1a1a]/60 p-6 rounded-3xl border border-[#123524]/25 backdrop-blur-3xl shadow-2xl overflow-hidden"
                 >
                     <form onSubmit={handleAddExpense} className="flex flex-col md:flex-row items-end gap-4">
                         <div className="flex-1 w-full grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div>
-                                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Location</label>
+                                <label className="block text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest mb-2">Location</label>
                                 <select
                                     value={expenseLoc}
                                     onChange={(e) => setExpenseLoc(e.target.value as any)}
-                                    className="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-3 text-[#192631] text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                                 >
                                     <option value="Abu Dhabi">Abu Dhabi (AED)</option>
                                     <option value="Cairo">Cairo (EGP)</option>
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Category</label>
+                                <label className="block text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest mb-2">Category</label>
                                 <select
                                     value={expenseCat}
                                     onChange={(e) => setExpenseCat(e.target.value)}
-                                    className="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-3 text-[#192631] text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                                 >
                                     {categories.map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Amount</label>
+                                <label className="block text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest mb-2">Amount</label>
                                 <input
                                     type="number"
                                     placeholder="0.00"
@@ -427,17 +429,17 @@ const OfficeOperations: React.FC = () => {
                                     required
                                     min="0"
                                     step="0.01"
-                                    className="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all placeholder:text-slate-700"
+                                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-3 text-[#192631] text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all placeholder:text-slate-700"
                                 />
                             </div>
                             <div>
-                                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Description</label>
+                                <label className="block text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest mb-2">Description</label>
                                 <input
                                     type="text"
                                     placeholder="Optional details..."
                                     value={expenseDesc}
                                     onChange={(e) => setExpenseDesc(e.target.value)}
-                                    className="w-full bg-black/40 border border-white/10 rounded-xl p-3 text-white text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all placeholder:text-slate-700"
+                                    className="w-full bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl p-3 text-[#192631] text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all placeholder:text-slate-700"
                                 />
                             </div>
                         </div>
@@ -445,7 +447,7 @@ const OfficeOperations: React.FC = () => {
                             <button
                                 type="button"
                                 onClick={() => setIsAddingExpense(false)}
-                                className="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/5 text-slate-300 rounded-xl font-bold uppercase tracking-wider text-xs transition-all flex-1 md:flex-none"
+                                className="px-6 py-3 bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] border border-[#192631]/10 text-[#192631]/85 rounded-xl font-bold uppercase tracking-wider text-xs transition-all flex-1 md:flex-none"
                             >
                                 Cancel
                             </button>
@@ -471,7 +473,7 @@ const OfficeOperations: React.FC = () => {
 
 export const Financials: React.FC = () => {
     const { projects, engineers, entries, updateProject } = useData();
-    const [activeTab, setActiveTab] = useState<'projects' | 'office'>('projects');
+    const [activeTab, setActiveTab] = useState<'treasury' | 'extracts' | 'projects' | 'office'>('treasury');
 
     const financialsData = useMemo(() => {
         return projects.map(project => {
@@ -650,9 +652,9 @@ export const Financials: React.FC = () => {
         >
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
                 <div>
-                    <h2 className="text-4xl lg:text-5xl font-black text-white tracking-tighter mb-2 flex items-center gap-3">
+                    <h2 className="text-4xl lg:text-5xl font-black text-[#192631] tracking-tighter mb-2 flex items-center gap-3">
                         <EditableText settingKey="financials_page_title_1" defaultText="Financial" as="span" />
-                        <span className="text-emerald-400">
+                        <span className="text-[#123524]">
                             <EditableText settingKey="financials_page_title_2" defaultText="Oversight" as="span" />
                         </span>
                     </h2>
@@ -661,7 +663,7 @@ export const Financials: React.FC = () => {
                         settingKey="financials_page_subtitle"
                         defaultText="Monitor project budgets, operational costs, and generate invoices."
                         as="p"
-                        className="text-slate-500 font-medium tracking-wide"
+                        className="text-[#192631]/60 font-medium tracking-wide"
                     />
                 </div>
             </div>
@@ -672,53 +674,75 @@ export const Financials: React.FC = () => {
             </SystemHint>
 
             {/* Inner Tabs */}
-            <div className="flex p-1 bg-[#1a1a1a]/40 backdrop-blur-xl border border-white/5 rounded-2xl w-max mb-8">
+            <div className="flex flex-wrap gap-1.5 p-1.5 bg-white/80 backdrop-blur-xl border border-[#192631]/10 rounded-2xl w-fit mb-8 shadow-sm">
+                <button
+                    onClick={() => setActiveTab('treasury')}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all ${activeTab === 'treasury' ? 'bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/75 hover:text-[#192631] hover:bg-[#192631]/[0.05]'}`}
+                >
+                    <Wallet className="w-4 h-4" />
+                    <span>Treasury, 7 Credit Cards & 46 Projects (738,284 EGP)</span>
+                </button>
+                <button
+                    onClick={() => setActiveTab('extracts')}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all ${activeTab === 'extracts' ? 'bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/75 hover:text-[#192631] hover:bg-[#192631]/[0.05]'}`}
+                >
+                    <Receipt className="w-4 h-4" />
+                    <span>Works Extracts & Client Ledger (PDF 1-3)</span>
+                </button>
                 <button
                     onClick={() => setActiveTab('projects')}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-xs transition-all ${activeTab === 'projects' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'}`}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all ${activeTab === 'projects' ? 'bg-[#192631] text-white shadow-md' : 'text-[#192631]/75 hover:text-[#192631] hover:bg-[#192631]/[0.05]'}`}
                 >
                     <Briefcase className="w-4 h-4" />
-                    <EditableText settingKey="financials_tab_projects" defaultText="Client Projects" as="span" />
+                    <EditableText settingKey="financials_tab_projects" defaultText="Client Projects & Invoicing" as="span" />
                 </button>
                 <button
                     onClick={() => setActiveTab('office')}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-xs transition-all ${activeTab === 'office' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'}`}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs transition-all ${activeTab === 'office' ? 'bg-[#192631] text-white shadow-md' : 'text-[#192631]/75 hover:text-[#192631] hover:bg-[#192631]/[0.05]'}`}
                 >
                     <Calculator className="w-4 h-4" />
                     <EditableText settingKey="financials_tab_office" defaultText="Office Operations" as="span" />
                 </button>
             </div>
 
+            {activeTab === 'treasury' && (
+                <TreasuryCashBankHub />
+            )}
+
+            {activeTab === 'extracts' && (
+                <ExtractsStatementsHub />
+            )}
+
             {activeTab === 'projects' && (
                 <>
                     {/* Global Metrics */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-emerald-500/10 transition-colors"></div>
+                        <div className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-[#123524]/10 transition-colors"></div>
                             <div className="relative z-10 flex items-center gap-6">
-                                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/5 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/20 transition-all duration-500">
-                                    <Building2 className="w-8 h-8 text-slate-500 group-hover:text-emerald-400" />
+                                <div className="w-16 h-16 bg-[#192631]/[0.05] rounded-2xl flex items-center justify-center border border-[#192631]/10 group-hover:bg-[#123524]/10 group-hover:border-[#123524]/25 transition-all duration-500">
+                                    <Building2 className="w-8 h-8 text-[#192631]/60 group-hover:text-[#123524]" />
                                 </div>
                                 <div>
-                                    <EditableText settingKey="financials_total_vault_title" defaultText="Total Vault Portfolio" as="p" className="text-slate-500 font-bold text-[10px] uppercase tracking-[0.2em] mb-1" />
-                                    <p className="text-4xl font-black text-white tracking-tighter">
-                                        <span className="text-xl text-slate-500 mr-1">AED</span>
+                                    <EditableText settingKey="financials_total_vault_title" defaultText="Total Vault Portfolio" as="p" className="text-[#192631]/60 font-bold text-[10px] uppercase tracking-[0.2em] mb-1" />
+                                    <p className="text-4xl font-black text-[#192631] tracking-tighter">
+                                        <span className="text-xl text-[#192631]/60 mr-1">AED</span>
                                         {globalStats.totalBudget.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-orange-500/10 transition-colors"></div>
+                        <div className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-[#e04b2a]/10 transition-colors"></div>
                             <div className="relative z-10 flex items-center gap-6">
-                                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/5 group-hover:bg-orange-500/10 group-hover:border-orange-500/20 transition-all duration-500">
-                                    <TrendingUp className="w-8 h-8 text-slate-500 group-hover:text-orange-400" />
+                                <div className="w-16 h-16 bg-[#192631]/[0.05] rounded-2xl flex items-center justify-center border border-[#192631]/10 group-hover:bg-[#e04b2a]/10 group-hover:border-[#e04b2a]/25 transition-all duration-500">
+                                    <TrendingUp className="w-8 h-8 text-[#192631]/60 group-hover:text-[#e04b2a]" />
                                 </div>
                                 <div>
-                                    <EditableText settingKey="financials_total_capital_title" defaultText="Total Capital Deployed" as="p" className="text-slate-500 font-bold text-[10px] uppercase tracking-[0.2em] mb-1" />
-                                    <p className="text-4xl font-black text-white tracking-tighter">
-                                        <span className="text-xl text-slate-500 mr-1">AED</span>
+                                    <EditableText settingKey="financials_total_capital_title" defaultText="Total Capital Deployed" as="p" className="text-[#192631]/60 font-bold text-[10px] uppercase tracking-[0.2em] mb-1" />
+                                    <p className="text-4xl font-black text-[#192631] tracking-tighter">
+                                        <span className="text-xl text-[#192631]/60 mr-1">AED</span>
                                         {globalStats.totalSpent.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                     </p>
                                 </div>
@@ -728,13 +752,13 @@ export const Financials: React.FC = () => {
 
                     {/* Project Financials Breakdown */}
                     <div className="space-y-6">
-                        <h3 className="text-xl font-black text-white tracking-tight uppercase flex items-center gap-3">
-                            <BarChart3 className="w-6 h-6 text-slate-500" />
+                        <h3 className="text-xl font-black text-[#192631] tracking-tight uppercase flex items-center gap-3">
+                            <BarChart3 className="w-6 h-6 text-[#192631]/60" />
                             <EditableText settingKey="financials_project_financials_title" defaultText="Project Financials" as="span" />
                         </h3>
 
                         {financialsData.length === 0 && (
-                            <div className="py-20 text-center bg-[#1a1a1a]/40 border-2 border-dashed border-white/5 rounded-[32px] backdrop-blur-3xl">
+                            <div className="py-20 text-center bg-[#1a1a1a]/40 border-2 border-dashed border-[#192631]/10 rounded-[32px] backdrop-blur-3xl">
                                 <DollarSign className="w-12 h-12 text-slate-800 mx-auto mb-4" />
                                 <p className="text-slate-600 font-black uppercase tracking-widest text-sm">No financial data available</p>
                             </div>
@@ -747,14 +771,14 @@ export const Financials: React.FC = () => {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: idx * 0.1 }}
-                                    className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden group hover:border-white/10 transition-all"
+                                    className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden group hover:border-[#192631]/10 transition-all"
                                 >
                                     <div className="flex justify-between items-start mb-6">
                                         <div>
                                             <EditableText
                                                 defaultText={project.name}
                                                 as="h4"
-                                                className="text-2xl font-black text-white tracking-tight"
+                                                className="text-2xl font-black text-[#192631] tracking-tight"
                                                 onSave={async (newName) => {
                                                     await updateProject({ ...project, name: newName });
                                                 }}
@@ -769,7 +793,7 @@ export const Financials: React.FC = () => {
                                         <button
                                             onClick={() => generateInvoice(project)}
                                             disabled={project.totalSpent === 0}
-                                            className="p-3 bg-white/5 hover:bg-orange-600 hover:text-white text-orange-400 rounded-2xl border border-white/5 hover:border-orange-500 transition-all shadow-xl disabled:opacity-50 disabled:hover:bg-white/5 disabled:text-slate-600"
+                                            className="p-3 bg-[#192631]/[0.05] hover:bg-orange-600 hover:text-white text-[#e04b2a] rounded-2xl border border-[#192631]/10 hover:border-orange-500 transition-all shadow-xl disabled:opacity-50 disabled:hover:bg-[#192631]/[0.05] disabled:text-slate-600"
                                             title="Generate Invoice PDF"
                                         >
                                             <Download className="w-5 h-5" />
@@ -777,29 +801,29 @@ export const Financials: React.FC = () => {
                                     </div>
 
                                     <div className="grid grid-cols-2 gap-4 mb-8">
-                                        <div className="p-5 bg-white/5 rounded-2xl border border-white/5">
-                                            <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Approved Budget</p>
-                                            <p className="text-xl font-black text-white">
+                                        <div className="p-5 bg-[#192631]/[0.05] rounded-2xl border border-[#192631]/10">
+                                            <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-1">Approved Budget</p>
+                                            <p className="text-xl font-black text-[#192631]">
                                                 {project.budget > 0 ? `AED ${project.budget.toLocaleString()}` : 'N/A'}
                                             </p>
                                         </div>
-                                        <div className="p-5 bg-white/5 rounded-2xl border border-white/5">
-                                            <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Total Cost (Logged)</p>
-                                            <p className="text-xl font-black text-orange-400">
+                                        <div className="p-5 bg-[#192631]/[0.05] rounded-2xl border border-[#192631]/10">
+                                            <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-1">Total Cost (Logged)</p>
+                                            <p className="text-xl font-black text-[#e04b2a]">
                                                 AED {project.totalSpent.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                             </p>
                                         </div>
                                     </div>
 
                                     {project.budget > 0 && (
-                                        <div className="mb-8 p-6 bg-gradient-to-br from-white/[0.03] to-transparent rounded-3xl border border-white/5">
+                                        <div className="mb-8 p-6 bg-gradient-to-br from-white/[0.03] to-transparent rounded-3xl border border-[#192631]/10">
                                             <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest mb-4">
-                                                <span className="text-slate-500">Capital Utilization</span>
-                                                <span className={project.percentUsed > 90 ? 'text-red-400' : 'text-emerald-400'}>
+                                                <span className="text-[#192631]/60">Capital Utilization</span>
+                                                <span className={project.percentUsed > 90 ? 'text-red-700' : 'text-[#123524]'}>
                                                     {project.percentUsed.toFixed(1)}%
                                                 </span>
                                             </div>
-                                            <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden mb-6">
+                                            <div className="h-2 w-full bg-[#192631]/[0.05] rounded-full overflow-hidden mb-6">
                                                 <div
                                                     className={`h-full rounded-full transition-all duration-1000 ${project.percentUsed > 90 ? 'bg-red-500' : project.percentUsed > 75 ? 'bg-amber-500' : 'bg-emerald-500'}`}
                                                     style={{ width: `${Math.min(project.percentUsed, 100)}%` }}
@@ -808,14 +832,14 @@ export const Financials: React.FC = () => {
 
                                             <div className="flex justify-between items-end">
                                                 <div>
-                                                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Profitability Mirror</p>
+                                                    <p className="text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest mb-1">Profitability Mirror</p>
                                                     <p className={clsx("text-xl font-black", project.profitability > 20 ? "text-emerald-400" : project.profitability > 0 ? "text-amber-400" : "text-rose-400")}>
                                                         {project.profitability.toFixed(1)}%
                                                     </p>
                                                 </div>
                                                 <div className="text-right">
-                                                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Projected Net</p>
-                                                    <p className="text-sm font-black text-white">
+                                                    <p className="text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest mb-1">Projected Net</p>
+                                                    <p className="text-sm font-black text-[#192631]">
                                                         AED {project.variance.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                                     </p>
                                                 </div>
@@ -824,19 +848,19 @@ export const Financials: React.FC = () => {
                                     )}
 
                                     <div>
-                                        <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
+                                        <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-3 flex items-center gap-2">
                                             <FileText className="w-3.5 h-3.5" />
                                             Resource Expenditure Breakdown
                                         </p>
                                         {project.expenseBreakdown.length > 0 ? (
                                             <div className="space-y-2">
                                                 {project.expenseBreakdown.map((eb, i) => (
-                                                    <div key={i} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
+                                                    <div key={i} className="flex justify-between items-center py-2 border-b border-[#192631]/10 last:border-0">
                                                         <div>
-                                                            <p className="text-sm font-bold text-white">{eb.engineerName}</p>
-                                                            <p className="text-[10px] text-slate-500 uppercase tracking-widest">{eb.hours} hrs @ {eb.rate} AED/h</p>
+                                                            <p className="text-sm font-bold text-[#192631]">{eb.engineerName}</p>
+                                                            <p className="text-[10px] text-[#192631]/60 uppercase tracking-widest">{eb.hours} hrs @ {eb.rate} AED/h</p>
                                                         </div>
-                                                        <p className="text-sm font-bold text-slate-300">
+                                                        <p className="text-sm font-bold text-[#192631]/85">
                                                             AED {eb.total.toLocaleString()}
                                                         </p>
                                                     </div>

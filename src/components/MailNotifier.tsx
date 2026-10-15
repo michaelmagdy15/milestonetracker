@@ -124,24 +124,24 @@ export const MailNotifier = () => {
                         <div className="flex-1 w-0 p-4">
                             <div className="flex items-start">
                                 <div className="flex-shrink-0 pt-0.5">
-                                    <div className="w-10 h-10 bg-orange-500/10 rounded-full flex items-center justify-center border border-orange-500/20">
-                                        <BellRing className="w-5 h-5 text-orange-400" />
+                                    <div className="w-10 h-10 bg-[#e04b2a]/10 rounded-full flex items-center justify-center border border-[#e04b2a]/25">
+                                        <BellRing className="w-5 h-5 text-[#e04b2a]" />
                                     </div>
                                 </div>
                                 <div className="ml-3 flex-1">
-                                    <p className="text-sm font-black text-white uppercase tracking-wider">New Email Received</p>
-                                    <p className="mt-1 text-sm text-slate-400 truncate w-[200px]">From: {sender}</p>
-                                    <p className="mt-1 text-xs text-slate-500 line-clamp-2">{subject || 'No Subject'}</p>
+                                    <p className="text-sm font-black text-[#192631] uppercase tracking-wider">New Email Received</p>
+                                    <p className="mt-1 text-sm text-[#192631]/70 truncate w-[200px]">From: {sender}</p>
+                                    <p className="mt-1 text-xs text-[#192631]/60 line-clamp-2">{subject || 'No Subject'}</p>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex border-l border-white/5">
+                        <div className="flex border-l border-[#192631]/10">
                             <button
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     toast.dismiss(t.id);
                                 }}
-                                className="w-full border border-transparent rounded-none rounded-r-2xl p-4 flex items-center justify-center text-sm font-bold text-slate-500 hover:text-white hover:bg-white/5 transition-colors focus:outline-none"
+                                className="w-full border border-transparent rounded-none rounded-r-2xl p-4 flex items-center justify-center text-sm font-bold text-[#192631]/60 hover:text-[#192631] hover:bg-[#192631]/[0.05] transition-colors focus:outline-none"
                             >
                                 <X className="w-5 h-5" />
                             </button>
@@ -162,13 +162,13 @@ export const MailNotifier = () => {
 
     if (showPrompt) {
         return (
-            <div className="fixed bottom-6 right-6 z-50 bg-[#141414] border border-orange-500/30 p-4 rounded-xl shadow-[0_10px_40px_rgba(249,115,22,0.15)] max-w-sm border-l-4 border-l-orange-500 flex items-start gap-3 animate-in fade-in slide-in-from-bottom-5">
-                <div className="bg-orange-500/10 p-2 rounded-lg text-orange-500 mt-1">
+            <div className="fixed bottom-6 right-6 z-50 bg-[#141414] border border-[#e04b2a]/25 p-4 rounded-xl shadow-[0_10px_40px_rgba(249,115,22,0.15)] max-w-sm border-l-4 border-l-orange-500 flex items-start gap-3 animate-in fade-in slide-in-from-bottom-5">
+                <div className="bg-[#e04b2a]/10 p-2 rounded-lg text-orange-500 mt-1">
                     <BellRing className="w-5 h-5" />
                 </div>
                 <div>
-                    <h4 className="font-semibold text-white mb-1">Enable Mail Notifications?</h4>
-                    <p className="text-sm text-slate-400 mb-3 leading-relaxed">
+                    <h4 className="font-semibold text-[#192631] mb-1">Enable Mail Notifications?</h4>
+                    <p className="text-sm text-[#192631]/70 mb-3 leading-relaxed">
                         Allow desktop notifications to instantly alert you when a new Zoho email arrives.
                     </p>
                     <div className="flex items-center gap-2">
@@ -180,13 +180,13 @@ export const MailNotifier = () => {
                         </button>
                         <button
                             onClick={() => setShowPrompt(false)}
-                            className="bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold px-4 py-2 rounded-lg transition-colors cursor-pointer"
+                            className="bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] text-[#192631]/85 text-xs font-semibold px-4 py-2 rounded-lg transition-colors cursor-pointer"
                         >
                             Dismiss
                         </button>
                     </div>
                 </div>
-                <button onClick={() => setShowPrompt(false)} className="absolute top-2 right-2 text-slate-500 hover:text-white cursor-pointer">
+                <button onClick={() => setShowPrompt(false)} className="absolute top-2 right-2 text-[#192631]/60 hover:text-[#192631] cursor-pointer">
                     <X className="w-4 h-4" />
                 </button>
             </div>

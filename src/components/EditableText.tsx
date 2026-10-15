@@ -80,17 +80,17 @@ export const EditableText: React.FC<EditableTextProps> = ({
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="bg-slate-800 text-white border border-slate-600 rounded px-2 py-1 focus:outline-none focus:border-blue-500 w-full max-w-sm"
+                    className="bg-[#192631]/[0.05] text-[#192631] border border-slate-600 rounded px-2 py-1 focus:outline-none focus:border-blue-500 w-full max-w-sm"
                 />
                 <button
                     onClick={handleSave}
-                    className="p-1 text-emerald-400 hover:text-emerald-300 hover:bg-slate-800 rounded transition-colors"
+                    className="p-1 text-[#123524] hover:text-[#123524] hover:bg-[#192631]/[0.05] rounded transition-colors"
                 >
                     <Check size={16} />
                 </button>
                 <button
                     onClick={handleCancel}
-                    className="p-1 text-rose-400 hover:text-rose-300 hover:bg-slate-800 rounded transition-colors"
+                    className="p-1 text-red-700 hover:text-red-700 hover:bg-[#192631]/[0.05] rounded transition-colors"
                 >
                     <X size={16} />
                 </button>
@@ -103,7 +103,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
             <Component className="border-b border-transparent group-hover:border-slate-500 border-dashed transition-colors">
                 {currentText}
             </Component>
-            <Edit2 size={14} className="text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <Edit2 size={14} className="text-[#192631]/60 opacity-0 group-hover:opacity-100 transition-opacity" />
         </div>
     );
 };

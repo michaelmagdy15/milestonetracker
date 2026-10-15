@@ -399,15 +399,15 @@ export const Reports: React.FC = () => {
         >
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
                 <div>
-                    <h2 className="text-4xl lg:text-5xl font-black text-white tracking-tighter mb-2">
-                        Intelligence <span className="text-orange-400">Reports</span>
+                    <h2 className="text-4xl lg:text-5xl font-black text-[#192631] tracking-tighter mb-2">
+                        Intelligence <span className="text-[#e04b2a]">Reports</span>
                     </h2>
                     <div className="h-1 w-20 bg-orange-500 rounded-full mb-4"></div>
-                    <p className="text-slate-500 font-medium tracking-wide">High-fidelity analytics and performance auditing.</p>
+                    <p className="text-[#192631]/60 font-medium tracking-wide">High-fidelity analytics and performance auditing.</p>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4">
-                    <div className="bg-white/5 p-1.5 rounded-2xl border border-white/5 flex backdrop-blur-3xl">
+                    <div className="bg-[#192631]/[0.05] p-1.5 rounded-2xl border border-[#192631]/10 flex backdrop-blur-3xl">
                         <button
                             onClick={() => setView('projects')}
                             className={clsx(
@@ -487,29 +487,29 @@ export const Reports: React.FC = () => {
 
             {/* CHARTS SECTION */}
             {view !== 'activity' && view !== 'audit' && view !== 'capacity' && view !== 'productivity' && (
-                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-white/5 p-8 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
+                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 p-8 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-orange-600/5 rounded-full -mr-32 -mt-32 blur-3xl group-hover:bg-orange-600/10 transition-colors"></div>
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 relative z-10 gap-4">
                         <div>
-                            <h3 className="text-xl font-black text-white tracking-tight flex items-center gap-4">
-                                <div className="p-3 bg-orange-500/10 rounded-2xl border border-orange-500/20">
-                                    <BarChart2 className="w-6 h-6 text-orange-400" />
+                            <h3 className="text-xl font-black text-[#192631] tracking-tight flex items-center gap-4">
+                                <div className="p-3 bg-[#e04b2a]/10 rounded-2xl border border-[#e04b2a]/25">
+                                    <BarChart2 className="w-6 h-6 text-[#e04b2a]" />
                                 </div>
                                 Performance Calibration
                             </h3>
-                            <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-2 ml-14">
+                            <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-[0.2em] mt-2 ml-14">
                                 Visualizing Resource Distribution
                             </p>
                         </div>
                         <div className="flex items-center gap-3">
                             <input type="date" value={filterFrom} onChange={(e) => setFilterFrom(e.target.value)}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
                             <span className="text-slate-600 text-xs font-bold">→</span>
                             <input type="date" value={filterTo} onChange={(e) => setFilterTo(e.target.value)}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
                             {(filterFrom || filterTo) && (
                                 <button onClick={() => { setFilterFrom(''); setFilterTo(''); }}
-                                    className="px-3 py-2 text-[10px] font-bold text-orange-400 hover:text-white bg-orange-500/10 border border-orange-500/20 rounded-xl uppercase tracking-widest transition-all">
+                                    className="px-3 py-2 text-[10px] font-bold text-[#e04b2a] hover:text-[#192631] bg-[#e04b2a]/10 border border-[#e04b2a]/25 rounded-xl uppercase tracking-widest transition-all">
                                     Clear
                                 </button>
                             )}
@@ -551,7 +551,7 @@ export const Reports: React.FC = () => {
                                 <Legend
                                     wrapperStyle={{ paddingTop: '40px' }}
                                     iconType="circle"
-                                    formatter={(value) => <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">{value}</span>}
+                                    formatter={(value) => <span className="text-[10px] font-black uppercase tracking-widest text-[#192631]/60">{value}</span>}
                                 />
                                 <Bar
                                     dataKey="totalHours"
@@ -577,25 +577,25 @@ export const Reports: React.FC = () => {
 
             {/* DATA CARDS/TABLE */}
             {view === 'audit' && (
-                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-white/5 overflow-hidden backdrop-blur-3xl shadow-2xl p-8 mt-8">
+                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 overflow-hidden backdrop-blur-3xl shadow-2xl p-8 mt-8">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-                        <h3 className="text-xl font-black text-white tracking-tight uppercase flex items-center gap-3">
+                        <h3 className="text-xl font-black text-[#192631] tracking-tight uppercase flex items-center gap-3">
                             <Shield className="w-5 h-5 text-orange-500" />
                             Audit Trail
                         </h3>
                         <div className="flex items-center gap-3 flex-wrap">
                             <input type="date" value={filterFrom} onChange={(e) => { setFilterFrom(e.target.value); setPage(1); }}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
                             <span className="text-slate-600 text-xs font-bold">→</span>
                             <input type="date" value={filterTo} onChange={(e) => { setFilterTo(e.target.value); setPage(1); }}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
                             {(filterFrom || filterTo) && (
                                 <button onClick={() => { setFilterFrom(''); setFilterTo(''); setPage(1); }}
-                                    className="px-3 py-2 text-[10px] font-bold text-orange-400 hover:text-white bg-orange-500/10 border border-orange-500/20 rounded-xl uppercase tracking-widest transition-all">
+                                    className="px-3 py-2 text-[10px] font-bold text-[#e04b2a] hover:text-[#192631] bg-[#e04b2a]/10 border border-[#e04b2a]/25 rounded-xl uppercase tracking-widest transition-all">
                                     Clear
                                 </button>
                             )}
-                            <div className="px-3 py-2 bg-white/5 rounded-full text-[10px] font-bold text-slate-500 uppercase tracking-widest border border-white/5">
+                            <div className="px-3 py-2 bg-[#192631]/[0.05] rounded-full text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest border border-[#192631]/10">
                                 {filteredAudit.length} Events
                             </div>
                         </div>
@@ -603,7 +603,7 @@ export const Reports: React.FC = () => {
                     <div className="overflow-x-auto max-h-[600px] overflow-y-auto pr-4 custom-scrollbar">
                         <table className="w-full text-left border-collapse">
                             <thead className="sticky top-0 bg-[#0a0a0a] z-10">
-                                <tr className="border-b border-white/5 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                                <tr className="border-b border-[#192631]/10 text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest">
                                     <th className="py-4 px-3">Timestamp</th>
                                     <th className="py-4 px-3">User</th>
                                     <th className="py-4 px-3">Action</th>
@@ -612,46 +612,46 @@ export const Reports: React.FC = () => {
                                     <th className="py-4 px-3">Details</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-white/5 text-sm text-slate-300 font-medium">
+                            <tbody className="divide-y divide-[#192631]/10 text-sm text-[#192631]/85 font-medium">
                                 {pagedAudit.map((log) => {
                                     const eng = engineers.find(e => e.id === log.userId);
                                     return (
                                         <tr key={log.id} className="hover:bg-white/[0.02] transition-colors">
-                                            <td className="py-4 px-3 text-white font-mono text-xs whitespace-nowrap">
+                                            <td className="py-4 px-3 text-[#192631] font-mono text-xs whitespace-nowrap">
                                                 {log.createdAt ? new Date(log.createdAt).toLocaleString() : '-'}
                                             </td>
-                                            <td className="py-4 px-3 font-bold text-white">{eng?.name || log.userId?.slice(0, 8) || 'System'}</td>
+                                            <td className="py-4 px-3 font-bold text-[#192631]">{eng?.name || log.userId?.slice(0, 8) || 'System'}</td>
                                             <td className="py-4 px-3">
                                                 <span className={clsx(
                                                     "px-2 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest border",
-                                                    log.action === 'created' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
-                                                        log.action === 'updated' ? 'bg-sky-500/10 text-sky-400 border-sky-500/20' :
-                                                            'bg-red-500/10 text-red-400 border-red-500/20'
+                                                    log.action === 'created' ? 'bg-[#123524]/10 text-[#123524] border-[#123524]/25' :
+                                                        log.action === 'updated' ? 'bg-sky-500/10 text-[#192631] border-sky-500/20' :
+                                                            'bg-red-500/10 text-red-700 border-red-500/20'
                                                 )}>{log.action}</span>
                                             </td>
-                                            <td className="py-4 px-3 text-slate-400 uppercase text-xs">{log.tableName}</td>
+                                            <td className="py-4 px-3 text-[#192631]/70 uppercase text-xs">{log.tableName}</td>
                                             <td className="py-4 px-3 text-slate-600 font-mono text-xs">{log.recordId?.slice(0, 8) || '—'}...</td>
-                                            <td className="py-4 px-3 text-indigo-400 text-xs max-w-[250px] truncate" title={JSON.stringify(log.changes)}>
+                                            <td className="py-4 px-3 text-[#e04b2a] text-xs max-w-[250px] truncate" title={JSON.stringify(log.changes)}>
                                                 {Object.keys(log.changes || {}).length > 0 ? JSON.stringify(log.changes).slice(0, 60) : '-'}
                                             </td>
                                         </tr>
                                     );
                                 })}
                                 {pagedAudit.length === 0 && (
-                                    <tr><td colSpan={6} className="py-8 text-center text-slate-500 font-medium italic">No audit records yet.</td></tr>
+                                    <tr><td colSpan={6} className="py-8 text-center text-[#192631]/60 font-medium italic">No audit records yet.</td></tr>
                                 )}
                             </tbody>
                         </table>
                     </div>
                     {totalAuditPages > 1 && (
-                        <div className="flex items-center justify-between mt-6 pt-6 border-t border-white/5">
+                        <div className="flex items-center justify-between mt-6 pt-6 border-t border-[#192631]/10">
                             <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page <= 1}
-                                className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white disabled:opacity-30 transition-all border border-white/5">
+                                className="flex items-center gap-2 px-4 py-2 bg-[#192631]/[0.05] rounded-xl text-[10px] font-bold uppercase tracking-widest text-[#192631]/70 hover:text-[#192631] disabled:opacity-30 transition-all border border-[#192631]/10">
                                 <ChevronLeft className="w-3.5 h-3.5" /> Previous
                             </button>
-                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Page {page} of {totalAuditPages}</span>
+                            <span className="text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest">Page {page} of {totalAuditPages}</span>
                             <button onClick={() => setPage(p => Math.min(totalAuditPages, p + 1))} disabled={page >= totalAuditPages}
-                                className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white disabled:opacity-30 transition-all border border-white/5">
+                                className="flex items-center gap-2 px-4 py-2 bg-[#192631]/[0.05] rounded-xl text-[10px] font-bold uppercase tracking-widest text-[#192631]/70 hover:text-[#192631] disabled:opacity-30 transition-all border border-[#192631]/10">
                                 Next <ChevronRight className="w-3.5 h-3.5" />
                             </button>
                         </div>
@@ -660,9 +660,9 @@ export const Reports: React.FC = () => {
             )}
 
             {view === 'activity' ? (
-                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-white/5 overflow-hidden backdrop-blur-3xl shadow-2xl p-8 mt-8">
+                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 overflow-hidden backdrop-blur-3xl shadow-2xl p-8 mt-8">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-                        <h3 className="text-xl font-black text-white tracking-tight flex items-center gap-3">
+                        <h3 className="text-xl font-black text-[#192631] tracking-tight flex items-center gap-3">
                             <Activity className="w-5 h-5 text-orange-500" />
                             APPLICATION ACTIVITY TIMELINE
                         </h3>
@@ -670,19 +670,19 @@ export const Reports: React.FC = () => {
                             <select
                                 value={filterEngineer}
                                 onChange={(e) => { setFilterEngineer(e.target.value); setPage(1); }}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all appearance-none"
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all appearance-none"
                             >
                                 <option value="" className="bg-[#1a1a1a]">All Engineers</option>
                                 {engineers.map(e => <option key={e.id} value={e.id} className="bg-[#1a1a1a]">{e.name}</option>)}
                             </select>
                             <input type="date" value={filterFrom} onChange={(e) => { setFilterFrom(e.target.value); setPage(1); }}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
                             <span className="text-slate-600 text-xs font-bold">→</span>
                             <input type="date" value={filterTo} onChange={(e) => { setFilterTo(e.target.value); setPage(1); }}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
                             {(filterEngineer || filterFrom || filterTo) && (
                                 <button onClick={() => { setFilterEngineer(''); setFilterFrom(''); setFilterTo(''); setPage(1); }}
-                                    className="px-3 py-2 text-[10px] font-bold text-orange-400 hover:text-white bg-orange-500/10 border border-orange-500/20 rounded-xl uppercase tracking-widest transition-all">
+                                    className="px-3 py-2 text-[10px] font-bold text-[#e04b2a] hover:text-[#192631] bg-[#e04b2a]/10 border border-[#e04b2a]/25 rounded-xl uppercase tracking-widest transition-all">
                                     Clear
                                 </button>
                             )}
@@ -691,7 +691,7 @@ export const Reports: React.FC = () => {
                     <div className="overflow-x-auto max-h-[600px] overflow-y-auto pr-4 custom-scrollbar">
                         <table className="w-full text-left border-collapse">
                             <thead className="sticky top-0 bg-[#0a0a0a] z-10">
-                                <tr className="border-b border-white/5 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                                <tr className="border-b border-[#192631]/10 text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest">
                                     <th className="py-4 font-bold text-left px-4">Date</th>
                                     <th className="py-4 font-bold text-left px-4">Time</th>
                                     <th className="py-4 font-bold text-left px-4">Engineer</th>
@@ -700,20 +700,20 @@ export const Reports: React.FC = () => {
                                     <th className="py-4 font-bold text-left px-4">Duration</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-white/5 text-sm text-slate-300 font-medium whitespace-nowrap">
+                            <tbody className="divide-y divide-[#192631]/10 text-sm text-[#192631]/85 font-medium whitespace-nowrap">
                                 {dailyActivityStats.map((stat, idx) => (
                                     <tr key={`${stat.id}_${idx}`} className="hover:bg-white/[0.02] transition-colors">
-                                        <td className="py-4 px-4 font-bold text-white">{stat.date}</td>
-                                        <td className="py-4 px-4 text-slate-400">{stat.timestamp}</td>
-                                        <td className="py-4 px-4 font-bold text-white">{stat.engineerName}</td>
-                                        <td className="py-4 px-4 text-indigo-400 max-w-[300px] truncate" title={stat.activeWindow}>{stat.activeWindow}</td>
-                                        <td className="py-4 px-4 text-orange-400 max-w-[200px] truncate">{stat.documentName || '-'}</td>
-                                        <td className="py-4 px-4 text-emerald-400 font-black">{stat.durationSeconds} s</td>
+                                        <td className="py-4 px-4 font-bold text-[#192631]">{stat.date}</td>
+                                        <td className="py-4 px-4 text-[#192631]/70">{stat.timestamp}</td>
+                                        <td className="py-4 px-4 font-bold text-[#192631]">{stat.engineerName}</td>
+                                        <td className="py-4 px-4 text-[#e04b2a] max-w-[300px] truncate" title={stat.activeWindow}>{stat.activeWindow}</td>
+                                        <td className="py-4 px-4 text-[#e04b2a] max-w-[200px] truncate">{stat.documentName || '-'}</td>
+                                        <td className="py-4 px-4 text-[#123524] font-black">{stat.durationSeconds} s</td>
                                     </tr>
                                 ))}
                                 {dailyActivityStats.length === 0 && (
                                     <tr>
-                                        <td colSpan={5} className="py-8 text-center text-slate-500 font-medium italic">No background activity tracked yet.</td>
+                                        <td colSpan={5} className="py-8 text-center text-[#192631]/60 font-medium italic">No background activity tracked yet.</td>
                                     </tr>
                                 )}
                             </tbody>
@@ -721,15 +721,15 @@ export const Reports: React.FC = () => {
                     </div>
                 </div>
             ) : view === 'capacity' ? (
-                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-white/5 overflow-hidden backdrop-blur-3xl shadow-2xl p-8 mt-8">
-                    <h3 className="text-xl font-black text-white tracking-tight flex items-center gap-3 mb-6">
+                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 overflow-hidden backdrop-blur-3xl shadow-2xl p-8 mt-8">
+                    <h3 className="text-xl font-black text-[#192631] tracking-tight flex items-center gap-3 mb-6">
                         <Calendar className="w-5 h-5 text-orange-500" />
                         RESOURCE CAPACITY HEATMAP (NEXT 4 WEEKS)
                     </h3>
                     <div className="overflow-x-auto max-h-[600px] overflow-y-auto pr-4 custom-scrollbar">
                         <table className="w-full text-left border-collapse">
                             <thead className="sticky top-0 bg-[#0a0a0a] z-10">
-                                <tr className="border-b border-white/5 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                                <tr className="border-b border-[#192631]/10 text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest">
                                     <th className="py-4 font-bold text-left px-4">Engineer</th>
                                     {capacityStats[0]?.allocations.map((_, i) => {
                                         const date = new Date();
@@ -738,19 +738,19 @@ export const Reports: React.FC = () => {
                                     })}
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-white/5 text-sm font-medium whitespace-nowrap">
+                            <tbody className="divide-y divide-[#192631]/10 text-sm font-medium whitespace-nowrap">
                                 {capacityStats.map(stat => (
                                     <tr key={stat.id} className="hover:bg-white/[0.02] transition-colors">
                                         <td className="py-4 px-4">
-                                            <p className="font-bold text-white">{stat.name}</p>
-                                            <p className="text-[10px] text-slate-500 uppercase">{stat.role}</p>
+                                            <p className="font-bold text-[#192631]">{stat.name}</p>
+                                            <p className="text-[10px] text-[#192631]/60 uppercase">{stat.role}</p>
                                         </td>
                                         {stat.allocations.map((hours, i) => {
                                             const percent = (hours / stat.weeklyGoal) * 100;
-                                            let bgColor = 'bg-white/5 text-slate-400';
+                                            let bgColor = 'bg-[#192631]/[0.05] text-[#192631]/70';
                                             if (percent > 100) bgColor = 'bg-red-500/20 text-red-500 border border-red-500/30';
                                             else if (percent > 75) bgColor = 'bg-amber-500/20 text-amber-500 border border-amber-500/30';
-                                            else if (hours > 0) bgColor = 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/30';
+                                            else if (hours > 0) bgColor = 'bg-[#123524]/10 text-emerald-500 border border-[#123524]/25';
 
                                             return (
                                                 <td key={i} className="py-4 px-4 text-center">
@@ -767,8 +767,8 @@ export const Reports: React.FC = () => {
                     </div>
 
                     <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="bg-white/5 rounded-3xl p-6 border border-white/5">
-                            <h4 className="text-xs font-black text-white uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <div className="bg-[#192631]/[0.05] rounded-3xl p-6 border border-[#192631]/10">
+                            <h4 className="text-xs font-black text-[#192631] uppercase tracking-widest mb-4 flex items-center gap-2">
                                 <AlertCircle className="w-4 h-4 text-rose-500" />
                                 Overloaded Resources
                             </h4>
@@ -780,14 +780,14 @@ export const Reports: React.FC = () => {
                                                 !
                                             </div>
                                             <div>
-                                                <p className="text-sm font-bold text-white">{s.name}</p>
-                                                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+                                                <p className="text-sm font-bold text-[#192631]">{s.name}</p>
+                                                <p className="text-[10px] text-[#192631]/60 font-bold uppercase tracking-widest">
                                                     Peak: {Math.max(...s.allocations)}H / {Math.round(s.weeklyGoal)}H
                                                 </p>
                                             </div>
                                         </div>
                                         <div className="text-right">
-                                            <p className="text-[10px] font-black text-rose-400 uppercase tracking-widest">Immediate Risk</p>
+                                            <p className="text-[10px] font-black text-red-700 uppercase tracking-widest">Immediate Risk</p>
                                         </div>
                                     </div>
                                 ))}
@@ -797,9 +797,9 @@ export const Reports: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="bg-orange-500/10 rounded-3xl p-6 border border-orange-500/10">
-                            <h4 className="text-xs font-black text-white uppercase tracking-widest mb-4 flex items-center gap-2">
-                                <Plus className="w-4 h-4 text-orange-400" />
+                        <div className="bg-[#e04b2a]/10 rounded-3xl p-6 border border-orange-500/10">
+                            <h4 className="text-xs font-black text-[#192631] uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <Plus className="w-4 h-4 text-[#e04b2a]" />
                                 Capacity Rebalance Suggestions
                             </h4>
                             <div className="space-y-4">
@@ -810,11 +810,11 @@ export const Reports: React.FC = () => {
                                     if (overloaded.length > 0 && available.length > 0) {
                                         return overloaded.map(o => (
                                             <div key={o.id} className="p-4 bg-orange-500/5 rounded-2xl border border-orange-500/10 border-dashed">
-                                                <p className="text-[11px] font-bold text-white leading-relaxed">
-                                                    Suggest delegating tasks from <span className="text-orange-400">{o.name}</span> to{' '}
-                                                    <span className="text-emerald-400">{available[0].name}</span>
+                                                <p className="text-[11px] font-bold text-[#192631] leading-relaxed">
+                                                    Suggest delegating tasks from <span className="text-[#e04b2a]">{o.name}</span> to{' '}
+                                                    <span className="text-[#123524]">{available[0].name}</span>
                                                 </p>
-                                                <p className="text-[9px] text-slate-500 font-bold uppercase tracking-tighter mt-1">Available bandwidth: {Math.round(available[0].weeklyGoal - Math.max(...available[0].allocations))}H</p>
+                                                <p className="text-[9px] text-[#192631]/60 font-bold uppercase tracking-tighter mt-1">Available bandwidth: {Math.round(available[0].weeklyGoal - Math.max(...available[0].allocations))}H</p>
                                             </div>
                                         ));
                                     }
@@ -825,21 +825,21 @@ export const Reports: React.FC = () => {
                     </div>
                 </div>
             ) : view === 'productivity' ? (
-                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-white/5 overflow-hidden backdrop-blur-3xl shadow-2xl p-8 mt-8">
+                <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 overflow-hidden backdrop-blur-3xl shadow-2xl p-8 mt-8">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-                        <h3 className="text-xl font-black text-white tracking-tight flex items-center gap-3">
-                            <BarChart2 className="w-5 h-5 text-indigo-500" />
+                        <h3 className="text-xl font-black text-[#192631] tracking-tight flex items-center gap-3">
+                            <BarChart2 className="w-5 h-5 text-[#192631] font-bold0" />
                             ACTUAL WORK VS NOT WORK TIME
                         </h3>
                         <div className="flex items-center gap-3 flex-wrap">
                             <input type="date" value={filterFrom} onChange={(e) => { setFilterFrom(e.target.value); setPage(1); }}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
                             <span className="text-slate-600 text-xs font-bold">→</span>
                             <input type="date" value={filterTo} onChange={(e) => { setFilterTo(e.target.value); setPage(1); }}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all" />
                             {(filterFrom || filterTo) && (
                                 <button onClick={() => { setFilterFrom(''); setFilterTo(''); setPage(1); }}
-                                    className="px-3 py-2 text-[10px] font-bold text-orange-400 hover:text-white bg-orange-500/10 border border-orange-500/20 rounded-xl uppercase tracking-widest transition-all">
+                                    className="px-3 py-2 text-[10px] font-bold text-[#e04b2a] hover:text-[#192631] bg-[#e04b2a]/10 border border-[#e04b2a]/25 rounded-xl uppercase tracking-widest transition-all">
                                     Clear
                                 </button>
                             )}
@@ -862,7 +862,7 @@ export const Reports: React.FC = () => {
                                     itemStyle={{ color: '#f3f3f3', fontSize: '12px', fontWeight: 'bold' }}
                                     labelStyle={{ color: '#6366f1', fontSize: '10px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}
                                 />
-                                <Legend wrapperStyle={{ paddingTop: '40px' }} iconType="circle" formatter={(value) => <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">{value}</span>} />
+                                <Legend wrapperStyle={{ paddingTop: '40px' }} iconType="circle" formatter={(value) => <span className="text-[10px] font-black uppercase tracking-widest text-[#192631]/60">{value}</span>} />
                                 <Bar dataKey="workHours" name="Total Work Time" stackId="a" fill="#10b981" radius={[0, 0, 0, 0]} maxBarSize={40} />
                                 <Bar dataKey="notWorkHours" name="Not Work Time" stackId="a" fill="#ef4444" radius={[0, 0, 0, 0]} maxBarSize={40} />
                                 <Bar dataKey="deepWorkHours" name="Deep Work Time" stackId="b" fill="#8b5cf6" radius={[10, 10, 0, 0]} maxBarSize={40} />
@@ -873,7 +873,7 @@ export const Reports: React.FC = () => {
                     <div className="overflow-x-auto max-h-[600px] overflow-y-auto pr-4 custom-scrollbar">
                         <table className="w-full text-left border-collapse">
                             <thead className="sticky top-0 bg-[#0a0a0a] z-10">
-                                <tr className="border-b border-white/5 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                                <tr className="border-b border-[#192631]/10 text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest">
                                     <th className="py-4 font-bold text-left px-4">Engineer</th>
                                     <th className="py-4 font-bold text-left px-4">Deep Work Time</th>
                                     <th className="py-4 font-bold text-left px-4">Total Work Time</th>
@@ -881,7 +881,7 @@ export const Reports: React.FC = () => {
                                     <th className="py-4 font-bold text-left px-4">Focus Score %</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-white/5 text-sm font-medium whitespace-nowrap">
+                            <tbody className="divide-y divide-[#192631]/10 text-sm font-medium whitespace-nowrap">
                                 {productivityStats.map(stat => {
                                     const percent = stat.focusScore;
                                     let pbColor = 'bg-purple-500';
@@ -897,40 +897,40 @@ export const Reports: React.FC = () => {
                                             >
                                                 <td className="py-4 px-4">
                                                     <div className="flex items-center gap-3">
-                                                        {expandedProductivity === stat.id ? <ChevronLeft className="w-4 h-4 text-orange-500 -rotate-90 transition-transform" /> : <ChevronRight className="w-4 h-4 text-slate-500 transition-transform" />}
+                                                        {expandedProductivity === stat.id ? <ChevronLeft className="w-4 h-4 text-orange-500 -rotate-90 transition-transform" /> : <ChevronRight className="w-4 h-4 text-[#192631]/60 transition-transform" />}
                                                         <div>
-                                                            <p className="font-bold text-white">{stat.name}</p>
-                                                            <p className="text-[10px] text-slate-500 uppercase">{stat.role}</p>
+                                                            <p className="font-bold text-[#192631]">{stat.name}</p>
+                                                            <p className="text-[10px] text-[#192631]/60 uppercase">{stat.role}</p>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className="py-4 px-4 text-purple-400 font-bold">{formatHours(stat.deepWorkHours)}</td>
-                                                <td className="py-4 px-4 text-emerald-400 font-bold">{formatHours(stat.workHours)}</td>
-                                                <td className="py-4 px-4 text-rose-400 font-bold">{formatHours(stat.notWorkHours)}</td>
+                                                <td className="py-4 px-4 text-[#192631] font-bold">{formatHours(stat.deepWorkHours)}</td>
+                                                <td className="py-4 px-4 text-[#123524] font-bold">{formatHours(stat.workHours)}</td>
+                                                <td className="py-4 px-4 text-red-700 font-bold">{formatHours(stat.notWorkHours)}</td>
                                                 <td className="py-4 px-4">
                                                     <div className="flex items-center gap-3">
                                                         <span className={clsx("font-black w-12 tracking-widest", "text-" + pbColor.split('-')[1] + "-400")}>{percent}%</span>
-                                                        <div className="w-32 h-2 bg-white/5 rounded-full overflow-hidden">
+                                                        <div className="w-32 h-2 bg-[#192631]/[0.05] rounded-full overflow-hidden">
                                                             <div className={`h-full ${pbColor}`} style={{ width: `${percent}%` }}></div>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
                                             {expandedProductivity === stat.id && (
-                                                <tr className="bg-black/20 border-b border-white/5">
+                                                <tr className="bg-[#f5f5f5]/85 border-b border-[#192631]/10">
                                                     <td colSpan={5} className="p-0">
                                                         <div className="p-6">
-                                                            <h4 className="text-xs font-black text-white uppercase tracking-widest mb-4 flex items-center gap-2">
-                                                                <FileText className="w-4 h-4 text-indigo-400" />
+                                                            <h4 className="text-xs font-black text-[#192631] uppercase tracking-widest mb-4 flex items-center gap-2">
+                                                                <FileText className="w-4 h-4 text-[#e04b2a]" />
                                                                 Detailed Application Breakdown
                                                             </h4>
                                                             {stat.detailedApps.length > 0 ? (
                                                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
                                                                     {stat.detailedApps.map((app, idx) => (
-                                                                        <div key={idx} className="p-3 bg-white/5 rounded-xl border border-white/5 flex flex-col justify-between hover:border-white/10 transition-colors">
-                                                                            <p className="text-xs font-medium text-white line-clamp-2 mb-3" title={app.title}>{app.title || 'Unknown Window'}</p>
+                                                                        <div key={idx} className="p-3 bg-[#192631]/[0.05] rounded-xl border border-[#192631]/10 flex flex-col justify-between hover:border-[#192631]/10 transition-colors">
+                                                                            <p className="text-xs font-medium text-[#192631] line-clamp-2 mb-3" title={app.title}>{app.title || 'Unknown Window'}</p>
                                                                             <div className="flex items-center justify-between mt-auto">
-                                                                                <span className="text-[10px] font-black text-slate-400">{formatHours(app.duration / 3600)}</span>
+                                                                                <span className="text-[10px] font-black text-[#192631]/70">{formatHours(app.duration / 3600)}</span>
                                                                                 <div className="flex items-center gap-2">
                                                                                     <span className={clsx(
                                                                                         "px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest",
@@ -949,7 +949,7 @@ export const Reports: React.FC = () => {
                                                                     ))}
                                                                 </div>
                                                             ) : (
-                                                                <p className="text-sm text-slate-500 italic">No application data recorded for this period.</p>
+                                                                <p className="text-sm text-[#192631]/60 italic">No application data recorded for this period.</p>
                                                             )}
                                                         </div>
                                                     </td>
@@ -970,13 +970,13 @@ export const Reports: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.05 }}
-                            className="group bg-[#1a1a1a]/40 p-8 rounded-[32px] border border-white/5 hover:border-orange-500/30 transition-all duration-500 backdrop-blur-3xl shadow-xl relative overflow-hidden"
+                            className="group bg-[#1a1a1a]/40 p-8 rounded-[32px] border border-[#192631]/10 hover:border-[#e04b2a]/25 transition-all duration-500 backdrop-blur-3xl shadow-xl relative overflow-hidden"
                         >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-orange-500/10 transition-colors"></div>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-[#e04b2a]/10 transition-colors"></div>
                             <div className="flex flex-col h-full relative z-10">
                                 <div className="flex justify-between items-start mb-6">
-                                    <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/5 group-hover:border-orange-500/20 group-hover:bg-orange-500/10 transition-all duration-500">
-                                        {view === 'projects' ? <LayoutGrid className="w-8 h-8 text-slate-500 group-hover:text-orange-400" /> : <Users className="w-8 h-8 text-slate-500 group-hover:text-orange-400" />}
+                                    <div className="w-16 h-16 bg-[#192631]/[0.05] rounded-2xl flex items-center justify-center border border-[#192631]/10 group-hover:border-[#e04b2a]/25 group-hover:bg-[#e04b2a]/10 transition-all duration-500">
+                                        {view === 'projects' ? <LayoutGrid className="w-8 h-8 text-[#192631]/60 group-hover:text-[#e04b2a]" /> : <Users className="w-8 h-8 text-[#192631]/60 group-hover:text-[#e04b2a]" />}
                                     </div>
                                     <button
                                         onClick={() => view === 'projects' ? handleDownloadInvoice(stat) : null}
@@ -993,22 +993,22 @@ export const Reports: React.FC = () => {
                                 </div>
 
                                 <div className="flex-1">
-                                    <h3 className="text-xl font-black text-white tracking-tight mb-2 group-hover:text-orange-400 transition-colors">{(stat as any).name}</h3>
+                                    <h3 className="text-xl font-black text-[#192631] tracking-tight mb-2 group-hover:text-[#e04b2a] transition-colors">{(stat as any).name}</h3>
                                     <div className="flex flex-wrap gap-2 mb-6">
-                                        <span className="px-3 py-1 bg-white/5 rounded-full text-[10px] font-black text-slate-500 border border-white/5 uppercase tracking-widest group-hover:border-orange-500/20 group-hover:text-orange-400">
+                                        <span className="px-3 py-1 bg-[#192631]/[0.05] rounded-full text-[10px] font-black text-[#192631]/60 border border-[#192631]/10 uppercase tracking-widest group-hover:border-[#e04b2a]/25 group-hover:text-[#e04b2a]">
                                             {view === 'projects' ? 'Project' : ((stat as any).role || 'Operative')}
                                         </span>
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-4 py-6 border-y border-white/5">
+                                    <div className="grid grid-cols-2 gap-4 py-6 border-y border-[#192631]/10">
                                         <div>
-                                            <div className="text-2xl font-black text-white">
+                                            <div className="text-2xl font-black text-[#192631]">
                                                 {formatHours((stat as any).totalHours)}
                                             </div>
                                             <div className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Total Hours</div>
                                         </div>
                                         <div>
-                                            <div className="text-2xl font-black text-white">
+                                            <div className="text-2xl font-black text-[#192631]">
                                                 {view === 'projects' ? (stat as any).cost.toLocaleString() : (stat as any).weeklyOvertime.toFixed(1)}
                                                 <span className="text-[10px] ml-1 text-slate-600">{view === 'projects' ? 'AED' : 'H'}</span>
                                             </div>
@@ -1018,7 +1018,7 @@ export const Reports: React.FC = () => {
                                 </div>
 
                                 <div className="mt-6 flex items-center justify-between">
-                                    <div className="flex items-center text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
+                                    <div className="flex items-center text-[10px] font-bold text-[#192631]/60 uppercase tracking-[0.2em]">
                                         <Calendar className="w-3.5 h-3.5 mr-2 text-orange-500" />
                                         {view === 'projects'
                                             ? `Audit: ${(stat as any).lastActivity ? (stat as any).lastActivity.toLocaleDateString() : 'Baseline'}`

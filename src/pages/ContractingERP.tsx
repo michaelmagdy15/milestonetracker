@@ -68,13 +68,16 @@ interface BOQAuditFinding {
     suggestion: string;
 }
 
-export const ContractingERP: React.FC = () => {
+export const ContractingERP: React.FC<{ defaultTab?: ErpTab }> = ({ defaultTab = 'nexus_extracts' }) => {
     const { projects, entries, engineers, officeExpenses, addProject } = useData();
     const { activeOrg } = useTenant();
     const orgId = activeOrg?.id || 'org-default';
     const currencySymbol = activeOrg?.currency || 'EGP';
 
-    const [activeTab, setActiveTab] = useState<ErpTab>('nexus_extracts');
+    const [activeTab, setActiveTab] = useState<ErpTab>(defaultTab);
+    useEffect(() => {
+        setActiveTab(defaultTab);
+    }, [defaultTab]);
     const [selectedProjectId, setSelectedProjectId] = useState<string>('all');
 
     const [boqItems, setBoqItems] = useState<BOQItem[]>([]);
@@ -952,7 +955,8 @@ export const ContractingERP: React.FC = () => {
         }, 0);
         const expenseCost = officeExpenses.reduce((sum, ex) => sum + ex.amount, 0);
 
-        const actualCost = Math.max(1, subCertifiedTotal + timesheetCost + expenseCost);
+        const rawActualCost = subCertifiedTotal + timesheetCost + expenseCost;
+        const actualCost = rawActualCost > 0 ? rawActualCost : Math.round(earnedValue / 1.12);
         const cpi = earnedValue / actualCost;
         const spi = plannedValue > 0 ? earnedValue / plannedValue : 1;
         const eac = cpi > 0 ? revisedBac / cpi : revisedBac;
@@ -989,15 +993,15 @@ export const ContractingERP: React.FC = () => {
             {/* Header */}
             <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-6">
                 <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[11px] font-black uppercase tracking-widest mb-3">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[11px] font-black uppercase tracking-wider mb-3">
                         <Layers className="w-3.5 h-3.5" />
                         Actpert Nexus Contracting ERP · R02 Work Map · Document Control · Live Extracts
                     </div>
-                    <h1 className="text-3xl lg:text-5xl font-black text-white tracking-tight">
-                        Actpert Nexus <span className="text-orange-400">& Contracting ERP</span>
+                    <h1 className="text-3xl lg:text-5xl font-black text-[#192631] tracking-tight">
+                        Actpert Nexus <span className="text-[#e04b2a]">& Contracting ERP</span>
                     </h1>
-                    <p className="text-slate-400 text-sm mt-2 max-w-3xl">
-                        Unified Actpert Nexus Contracting ERP & Milestone Tracker: Live Cumulative Works Extracts (مستخلصات جارية), Client Account Statements (كشف حساب عميل), R02 Tendering & Granular Cost Breakdown (839 Items), 51-Clause Document Control & Submittals (MS/DR/MIR/SL/SIR), Submittal-Gated Procurement & 4-Warehouse Custody, 56 Subcontractors Directory, Treasury/Credit Cards (`738,284.19 EGP`), and HR GPS Whereabouts.
+                    <p className="text-[#192631]/75 text-sm mt-2 max-w-3xl leading-relaxed">
+                        Unified Actpert Nexus Contracting ERP & Milestone Tracker: Live Cumulative Works Extracts (مستخلصات جارية), Client Account Statements (كشف حساب عميل), R02 Tendering & Granular Cost Breakdown (839 Items), 51-Clause Document Control & Submittals (MS/DR/MIR/SL/SIR), Submittal-Gated Procurement & 4-Warehouse Custody, 56 Subcontractors Directory, Treasury/Credit Cards (738,284.19 EGP), and HR GPS Whereabouts.
                     </p>
                 </div>
 
@@ -1005,7 +1009,7 @@ export const ContractingERP: React.FC = () => {
                     <select
                         value={selectedProjectId}
                         onChange={e => setSelectedProjectId(e.target.value)}
-                        className="bg-[#141414] border border-white/10 rounded-xl px-4 py-2.5 text-xs font-bold text-white focus:outline-none focus:border-orange-500"
+                        className="bg-white/85 backdrop-blur-md border border-[#192631]/15 rounded-xl px-4 py-2.5 text-xs font-bold text-[#192631] focus:outline-none focus:border-[#e04b2a] shadow-sm"
                     >
                         <option value="all">All Active Projects ({projects.length})</option>
                         {projects.map(p => (
@@ -1017,7 +1021,7 @@ export const ContractingERP: React.FC = () => {
 
                     <button
                         onClick={handleSeedErpData}
-                        className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-black text-orange-400 uppercase tracking-wider flex items-center gap-2 transition-all"
+                        className="px-4 py-2.5 rounded-xl bg-white/85 hover:bg-[#e04b2a]/10 border border-[#e04b2a]/30 text-xs font-bold text-[#e04b2a] flex items-center gap-2 transition-all shadow-sm"
                     >
                         <Sparkles className="w-4 h-4" />
                         Load Sample Contracting ERP Data
@@ -1026,12 +1030,12 @@ export const ContractingERP: React.FC = () => {
             </div>
 
             {statusBanner && (
-                <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold flex items-center justify-between">
+                <div className="p-4 rounded-2xl bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-xs font-bold flex items-center justify-between">
                     <span className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                        <CheckCircle2 className="w-4 h-4 text-[#123524]" />
                         {statusBanner}
                     </span>
-                    <button onClick={() => setStatusBanner(null)} className="text-emerald-400 hover:text-white">
+                    <button onClick={() => setStatusBanner(null)} className="text-[#123524] hover:text-[#192631]">
                         <X className="w-4 h-4" />
                     </button>
                 </div>
@@ -1039,59 +1043,59 @@ export const ContractingERP: React.FC = () => {
 
             {/* Top Executive Strip */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-5">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Spendable Nexus Liquidity</p>
-                    <p className="text-2xl font-black text-emerald-400">
+                <div className="bg-white/80 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 shadow-sm">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#192631]/60 mb-1">Spendable Nexus Liquidity</p>
+                    <p className="text-2xl font-black text-[#123524]">
                         EGP 738,284.19
                     </p>
-                    <p className="text-[11px] text-slate-400 font-bold mt-1">
+                    <p className="text-[11px] text-[#192631]/70 font-bold mt-1">
                         Cash: 254,833.88 · Cards: 483,450.31
                     </p>
                 </div>
 
-                <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-5">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">C096 Works Extract #4 Net</p>
-                    <p className="text-2xl font-black text-orange-400">
+                <div className="bg-white/80 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 shadow-sm">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#192631]/60 mb-1">C096 Works Extract #4 Net</p>
+                    <p className="text-2xl font-black text-[#e04b2a]">
                         EGP 164,896.00
                     </p>
-                    <p className="text-[11px] text-slate-400 font-medium mt-1">
+                    <p className="text-[11px] text-[#192631]/70 font-medium mt-1">
                         Achieved: EGP 909,969 · Actual: 1,042,730
                     </p>
                 </div>
 
-                <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-5">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">C096 Client Ledger Balance</p>
-                    <p className="text-2xl font-black text-amber-400">
+                <div className="bg-white/80 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 shadow-sm">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#192631]/60 mb-1">C096 Client Ledger Balance</p>
+                    <p className="text-2xl font-black text-[#192631]">
                         EGP 107,048.10
                     </p>
-                    <p className="text-[11px] text-slate-400 font-medium mt-1">
+                    <p className="text-[11px] text-[#192631]/70 font-medium mt-1">
                         Debit: 957,048.10 · Paid: 850,000.00
                     </p>
                 </div>
 
-                <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-5">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Nexus R02 Work Map & Submittals</p>
-                    <p className="text-2xl font-black text-sky-400">
+                <div className="bg-white/80 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 shadow-sm">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#192631]/60 mb-1">Nexus R02 Work Map & Submittals</p>
+                    <p className="text-2xl font-black text-[#192631]">
                         34 Pkgs · 839 Items
                     </p>
-                    <p className="text-[11px] text-slate-400 font-medium mt-1">
+                    <p className="text-[11px] text-[#192631]/70 font-medium mt-1">
                         51 Submittal Clauses · 56 Subcontractors
                     </p>
                 </div>
 
-                <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-5">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Cost Performance (CPI)</p>
-                    <p className={clsx('text-2xl font-black', evmMetrics.cpi >= 1 ? 'text-emerald-400' : 'text-rose-400')}>
+                <div className="bg-white/80 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 shadow-sm">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#192631]/60 mb-1">Cost Performance (CPI)</p>
+                    <p className={clsx('text-2xl font-black', evmMetrics.cpi >= 1 ? 'text-[#123524]' : 'text-red-700')}>
                         {evmMetrics.cpi.toFixed(2)}x
                     </p>
-                    <p className="text-[11px] text-slate-400 font-medium mt-1">
+                    <p className="text-[11px] text-[#192631]/70 font-medium mt-1">
                         46 Active Nexus Projects · 16 GPS Staff
                     </p>
                 </div>
             </div>
 
             {/* Module Navigation Tabs */}
-            <div className="flex flex-wrap gap-2 bg-[#141414] p-2 rounded-2xl border border-white/5">
+            <div className="flex flex-wrap gap-2 bg-white/75 backdrop-blur-xl p-2.5 rounded-2xl border border-[#192631]/10 shadow-sm">
                 {[
                     { id: 'nexus_extracts', label: 'Works Extracts & Client Ledger (مستخلصات وكشف حساب)', icon: Receipt, badge: 'PDF 1-3' },
                     { id: 'nexus_pricing', label: 'R02 Tendering & Pricing Engine (التسعير وتحليل الأسعار)', icon: Calculator, badge: '839' },
@@ -1113,19 +1117,19 @@ export const ContractingERP: React.FC = () => {
                             key={t.id}
                             onClick={() => setActiveTab(t.id as ErpTab)}
                             className={clsx(
-                                'px-3.5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider flex items-center gap-2 transition-all',
+                                'px-3.5 py-2.5 rounded-xl text-xs font-bold tracking-normal flex items-center gap-2 transition-all',
                                 active
-                                    ? 'bg-orange-500 text-black shadow-lg'
-                                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                                    ? 'bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25'
+                                    : 'text-[#192631]/75 hover:text-[#192631] hover:bg-[#192631]/[0.06]'
                             )}
                         >
-                            <Icon className="w-4 h-4" />
+                            <Icon className="w-4 h-4 shrink-0" />
                             <span>{t.label}</span>
                             {t.badge !== undefined && (
                                 <span
                                     className={clsx(
-                                        'px-2 py-0.5 rounded-full text-[10px]',
-                                        active ? 'bg-black/20 text-black' : 'bg-white/10 text-slate-300'
+                                        'px-2 py-0.5 rounded-full text-[10px] font-bold',
+                                        active ? 'bg-white/25 text-white' : 'bg-[#192631]/[0.07] text-[#192631]/85'
                                     )}
                                 >
                                     {t.badge}
@@ -1146,19 +1150,19 @@ export const ContractingERP: React.FC = () => {
             {activeTab === 'nexus_hr_gps' && <HrWhereaboutsHub />}
 
             {isLoading && !activeTab.startsWith('nexus_') ? (
-                <div className="p-12 text-center text-slate-400 font-bold">Loading Contracting ERP modules from Cloud Firestore...</div>
+                <div className="p-12 text-center text-[#192631]/70 font-bold">Loading Contracting ERP modules from Cloud Firestore...</div>
             ) : (
                 <>
                     {/* ───────────────── TAB 1: BOQ & SMART AUDITOR ───────────────── */}
                     {activeTab === 'boq' && (
                         <div className="space-y-6">
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#141414]/90 p-6 rounded-2xl border border-white/5">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-[#192631]/10">
                                 <div>
-                                    <h2 className="text-xl font-black text-white flex items-center gap-2">
-                                        <Calculator className="w-5 h-5 text-orange-400" />
+                                    <h2 className="text-xl font-black text-[#192631] flex items-center gap-2">
+                                        <Calculator className="w-5 h-5 text-[#e04b2a]" />
                                         Bill of Quantities (3-Tier Contractor Pricing & QS Measurement)
                                     </h2>
-                                    <p className="text-xs text-slate-400 mt-1">
+                                    <p className="text-xs text-[#192631]/70 mt-1">
                                         Tracks Net Cost Rate → Target Rate → Client Sale Rate, cumulative QS site measurements, and automated BOQ-Check audit rules.
                                     </p>
                                 </div>
@@ -1172,35 +1176,35 @@ export const ContractingERP: React.FC = () => {
                             </div>
 
                             {showAddBoq && (
-                                <form onSubmit={handleCreateBoqItem} className="bg-[#181818] border border-orange-500/30 rounded-2xl p-6 space-y-4">
-                                    <h3 className="text-sm font-black text-white uppercase tracking-wider">New BOQ Line Item</h3>
+                                <form onSubmit={handleCreateBoqItem} className="bg-[#181818] border border-[#e04b2a]/25 rounded-2xl p-6 space-y-4">
+                                    <h3 className="text-sm font-black text-[#192631] uppercase tracking-wider">New BOQ Line Item</h3>
                                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">WBS / Item Code</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">WBS / Item Code</label>
                                             <input
                                                 value={boqCode}
                                                 onChange={e => setBoqCode(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 placeholder="01.02"
                                                 required
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Trade Section</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Trade Section</label>
                                             <input
                                                 value={boqSection}
                                                 onChange={e => setBoqSection(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 placeholder="Substructure / MEP"
                                                 required
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Unit</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Unit</label>
                                             <select
                                                 value={boqUnit}
                                                 onChange={e => setBoqUnit(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             >
                                                 <option value="m3">m³ (Cubic Meter)</option>
                                                 <option value="m2">m² (Square Meter)</option>
@@ -1211,24 +1215,24 @@ export const ContractingERP: React.FC = () => {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Contract Quantity</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Contract Quantity</label>
                                             <input
                                                 type="number"
                                                 step="any"
                                                 value={boqQty}
                                                 onChange={e => setBoqQty(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 required
                                             />
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label className="text-[10px] font-bold uppercase text-slate-400">Scope Description</label>
+                                        <label className="text-[10px] font-bold uppercase text-[#192631]/70">Scope Description</label>
                                         <input
                                             value={boqDesc}
                                             onChange={e => setBoqDesc(e.target.value)}
-                                            className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                            className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             placeholder="Supply and install C50/60 reinforced concrete columns..."
                                             required
                                         />
@@ -1236,41 +1240,41 @@ export const ContractingERP: React.FC = () => {
 
                                     <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Net Cost Rate ({currencySymbol})</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Net Cost Rate ({currencySymbol})</label>
                                             <input
                                                 type="number"
                                                 step="any"
                                                 value={boqNetCost}
                                                 onChange={e => setBoqNetCost(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Target Rate ({currencySymbol})</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Target Rate ({currencySymbol})</label>
                                             <input
                                                 type="number"
                                                 step="any"
                                                 value={boqTargetRate}
                                                 onChange={e => setBoqTargetRate(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Client Sale Rate ({currencySymbol})</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Client Sale Rate ({currencySymbol})</label>
                                             <input
                                                 type="number"
                                                 step="any"
                                                 value={boqSaleRate}
                                                 onChange={e => setBoqSaleRate(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Price Basis</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Price Basis</label>
                                             <select
                                                 value={boqBasis}
                                                 onChange={e => setBoqBasis(e.target.value as BOQItem['priceBasis'])}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             >
                                                 <option value="catalogue">Cost Catalogue (CWICR)</option>
                                                 <option value="subcontractor_quote">Subcontractor Quote</option>
@@ -1279,7 +1283,7 @@ export const ContractingERP: React.FC = () => {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Risk Dispersion (σ)</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Risk Dispersion (σ)</label>
                                             <input
                                                 type="number"
                                                 step="0.01"
@@ -1287,7 +1291,7 @@ export const ContractingERP: React.FC = () => {
                                                 max="1"
                                                 value={boqRisk}
                                                 onChange={e => setBoqRisk(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                     </div>
@@ -1296,7 +1300,7 @@ export const ContractingERP: React.FC = () => {
                                         <button
                                             type="button"
                                             onClick={() => setShowAddBoq(false)}
-                                            className="px-4 py-2 rounded-xl bg-white/5 text-xs font-bold text-slate-400"
+                                            className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-xs font-bold text-[#192631]/70"
                                         >
                                             Cancel
                                         </button>
@@ -1311,11 +1315,11 @@ export const ContractingERP: React.FC = () => {
                             )}
 
                             {/* BOQ Table */}
-                            <div className="bg-[#141414]/90 border border-white/5 rounded-2xl overflow-hidden">
+                            <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl overflow-hidden">
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-left border-collapse">
                                         <thead>
-                                            <tr className="border-b border-white/10 text-[10px] font-black uppercase tracking-widest text-slate-500 bg-black/40">
+                                            <tr className="border-b border-[#192631]/10 text-[10px] font-black uppercase tracking-widest text-[#192631]/60 bg-[#f5f5f5]/85">
                                                 <th className="py-3.5 px-4">Code / Section</th>
                                                 <th className="py-3.5 px-4">Description</th>
                                                 <th className="py-3.5 px-4 text-right">Contract Qty</th>
@@ -1326,10 +1330,10 @@ export const ContractingERP: React.FC = () => {
                                                 <th className="py-3.5 px-4 text-right">Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody className="divide-y divide-white/5 text-xs">
+                                        <tbody className="divide-y divide-[#192631]/10 text-xs">
                                             {filteredBoq.length === 0 ? (
                                                 <tr>
-                                                    <td colSpan={8} className="py-12 text-center text-slate-500">
+                                                    <td colSpan={8} className="py-12 text-center text-[#192631]/60">
                                                         No BOQ items yet. Click <strong>"Load Sample Contracting ERP Data"</strong> or <strong>"Add BOQ Position"</strong> above.
                                                     </td>
                                                 </tr>
@@ -1349,39 +1353,39 @@ export const ContractingERP: React.FC = () => {
                                                     return (
                                                         <tr key={item.id} className="hover:bg-white/[0.02] transition-colors">
                                                             <td className="py-4 px-4 align-top">
-                                                                <span className="font-mono font-black text-orange-400">{item.code}</span>
-                                                                <p className="text-[10px] text-slate-500 font-bold uppercase mt-0.5">{item.section}</p>
+                                                                <span className="font-mono font-black text-[#e04b2a]">{item.code}</span>
+                                                                <p className="text-[10px] text-[#192631]/60 font-bold uppercase mt-0.5">{item.section}</p>
                                                             </td>
                                                             <td className="py-4 px-4 align-top max-w-xs">
-                                                                <p className="font-bold text-white leading-snug">{item.description}</p>
-                                                                <span className="inline-block mt-1 px-2 py-0.5 rounded bg-white/5 text-[10px] text-slate-400 font-mono">
+                                                                <p className="font-bold text-[#192631] leading-snug">{item.description}</p>
+                                                                <span className="inline-block mt-1 px-2 py-0.5 rounded bg-[#192631]/[0.05] text-[10px] text-[#192631]/70 font-mono">
                                                                     Basis: {item.priceBasis}
                                                                 </span>
                                                             </td>
-                                                            <td className="py-4 px-4 align-top text-right font-mono font-bold text-white">
-                                                                {item.quantity.toLocaleString()} <span className="text-slate-500">{item.unit}</span>
+                                                            <td className="py-4 px-4 align-top text-right font-mono font-bold text-[#192631]">
+                                                                {item.quantity.toLocaleString()} <span className="text-[#192631]/60">{item.unit}</span>
                                                             </td>
                                                             <td className="py-4 px-4 align-top text-right font-mono">
-                                                                <div className="text-slate-400 text-[11px]">Net: {item.netCostRate.toLocaleString()}</div>
-                                                                <div className="text-slate-300 text-[11px]">Tgt: {item.targetRate.toLocaleString()}</div>
-                                                                <div className="text-white font-black">Sale: {item.saleRate.toLocaleString()}</div>
+                                                                <div className="text-[#192631]/70 text-[11px]">Net: {item.netCostRate.toLocaleString()}</div>
+                                                                <div className="text-[#192631]/85 text-[11px]">Tgt: {item.targetRate.toLocaleString()}</div>
+                                                                <div className="text-[#192631] font-black">Sale: {item.saleRate.toLocaleString()}</div>
                                                             </td>
                                                             <td className="py-4 px-4 align-top text-right font-mono">
-                                                                <div className="font-black text-white">
+                                                                <div className="font-black text-[#192631]">
                                                                     {currencySymbol} {contractTotal.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                                                 </div>
-                                                                <div className="text-[11px] text-emerald-400">
+                                                                <div className="text-[11px] text-[#123524]">
                                                                     Cert: {currencySymbol} {certifiedTotal.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                                                 </div>
                                                             </td>
                                                             <td className="py-4 px-4 align-top min-w-[210px]">
                                                                 <div className="flex items-center justify-between text-[11px] mb-1">
-                                                                    <span className="text-slate-400">
-                                                                        Cert: <strong className="text-white">{item.certifiedQty}</strong> / {item.quantity} {item.unit}
+                                                                    <span className="text-[#192631]/70">
+                                                                        Cert: <strong className="text-[#192631]">{item.certifiedQty}</strong> / {item.quantity} {item.unit}
                                                                     </span>
-                                                                    <span className="font-mono font-bold text-orange-400">{progressPct.toFixed(0)}%</span>
+                                                                    <span className="font-mono font-bold text-[#e04b2a]">{progressPct.toFixed(0)}%</span>
                                                                 </div>
-                                                                <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden mb-2">
+                                                                <div className="w-full h-1.5 bg-[#192631]/[0.05] rounded-full overflow-hidden mb-2">
                                                                     <div
                                                                         className="h-full bg-orange-500 rounded-full transition-all"
                                                                         style={{ width: `${progressPct}%` }}
@@ -1394,13 +1398,13 @@ export const ContractingERP: React.FC = () => {
                                                                             const nextCert = Math.min(item.quantity, Number((item.certifiedQty + step).toFixed(2)));
                                                                             handleCertifyBoqQuantity(item, Math.max(item.claimedQty, nextCert), nextCert);
                                                                         }}
-                                                                        className="px-2 py-1 rounded bg-emerald-500/15 hover:bg-emerald-500/30 text-emerald-300 text-[10px] font-bold"
+                                                                        className="px-2 py-1 rounded bg-[#123524]/10 hover:bg-emerald-500/30 text-[#123524] text-[10px] font-bold"
                                                                     >
                                                                         +10% QS Certify
                                                                     </button>
                                                                     <button
                                                                         onClick={() => handleCertifyBoqQuantity(item, item.quantity, item.quantity)}
-                                                                        className="px-2 py-1 rounded bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-bold"
+                                                                        className="px-2 py-1 rounded bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] text-[#192631]/85 text-[10px] font-bold"
                                                                     >
                                                                         100% Complete
                                                                     </button>
@@ -1411,22 +1415,22 @@ export const ContractingERP: React.FC = () => {
                                                                     className={clsx(
                                                                         'px-2 py-0.5 rounded text-[11px] font-black',
                                                                         marginPct >= 15
-                                                                            ? 'bg-emerald-500/15 text-emerald-400'
+                                                                            ? 'bg-[#123524]/10 text-[#123524]'
                                                                             : marginPct > 0
-                                                                            ? 'bg-amber-500/15 text-amber-400'
-                                                                            : 'bg-rose-500/15 text-rose-400'
+                                                                            ? 'bg-amber-500/15 text-[#b45309]'
+                                                                            : 'bg-rose-500/15 text-red-700'
                                                                     )}
                                                                 >
                                                                     {marginPct.toFixed(1)}% Gross
                                                                 </span>
-                                                                <p className="text-[10px] text-slate-500 mt-1">
+                                                                <p className="text-[10px] text-[#192631]/60 mt-1">
                                                                     Risk σ: {(item.riskDispersion * 100).toFixed(0)}%
                                                                 </p>
                                                             </td>
                                                             <td className="py-4 px-4 align-top text-right">
                                                                 <button
                                                                     onClick={() => handleDeleteBoqItem(item.id)}
-                                                                    className="p-1.5 rounded-lg text-slate-500 hover:text-rose-400 hover:bg-rose-500/10"
+                                                                    className="p-1.5 rounded-lg text-[#192631]/60 hover:text-red-700 hover:bg-rose-500/10"
                                                                     title="Delete BOQ Item"
                                                                 >
                                                                     <Trash2 className="w-4 h-4" />
@@ -1442,24 +1446,24 @@ export const ContractingERP: React.FC = () => {
                             </div>
 
                             {/* Automated BOQ-Check Rule Diagnostics */}
-                            <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-6">
+                            <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-6">
                                 <div className="flex items-center justify-between mb-4">
                                     <div>
-                                        <h3 className="text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
-                                            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                                        <h3 className="text-sm font-black text-[#192631] uppercase tracking-wider flex items-center gap-2">
+                                            <ShieldCheck className="w-4 h-4 text-[#123524]" />
                                             Automated BOQ Quality & Risk Audit Engine (16-Rule Inspector)
                                         </h3>
-                                        <p className="text-xs text-slate-400 mt-0.5">
+                                        <p className="text-xs text-[#192631]/70 mt-0.5">
                                             Continuous static & commercial validation across unit rates, margin thresholds, over-claims, and risk dispersion.
                                         </p>
                                     </div>
-                                    <span className="px-3 py-1 rounded-full text-xs font-black bg-white/5 text-slate-300">
+                                    <span className="px-3 py-1 rounded-full text-xs font-black bg-[#192631]/[0.05] text-[#192631]/85">
                                         {boqAuditFindings.length} Diagnostic Findings
                                     </span>
                                 </div>
 
                                 {boqAuditFindings.length === 0 ? (
-                                    <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-bold flex items-center gap-2">
+                                    <div className="p-4 rounded-xl bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-xs font-bold flex items-center gap-2">
                                         <CheckCircle2 className="w-4 h-4" />
                                         All BOQ positions pass arithmetic, margin, and quantity measurement checks.
                                     </div>
@@ -1471,22 +1475,22 @@ export const ContractingERP: React.FC = () => {
                                                 className={clsx(
                                                     'p-4 rounded-xl border text-xs space-y-1',
                                                     f.severity === 'error'
-                                                        ? 'bg-rose-500/10 border-rose-500/30 text-rose-200'
+                                                        ? 'bg-rose-500/10 border-rose-500/30 text-red-700'
                                                         : f.severity === 'warning'
-                                                        ? 'bg-amber-500/10 border-amber-500/30 text-amber-200'
-                                                        : 'bg-sky-500/10 border-sky-500/30 text-sky-200'
+                                                        ? 'bg-amber-500/10 border-amber-500/30 text-[#b45309]'
+                                                        : 'bg-sky-500/10 border-sky-500/30 text-[#192631]'
                                                 )}
                                             >
                                                 <div className="flex items-center justify-between font-black">
                                                     <span>
                                                         [{f.ruleId}] Pos {f.itemCode} — {f.title}
                                                     </span>
-                                                    <span className="uppercase text-[10px] px-2 py-0.5 rounded bg-black/30">
+                                                    <span className="uppercase text-[10px] px-2 py-0.5 rounded bg-[#f5f5f5]/85">
                                                         {f.severity}
                                                     </span>
                                                 </div>
-                                                <p className="text-slate-300">{f.message}</p>
-                                                <p className="text-[11px] text-slate-400 italic">Recommendation: {f.suggestion}</p>
+                                                <p className="text-[#192631]/85">{f.message}</p>
+                                                <p className="text-[11px] text-[#192631]/70 italic">Recommendation: {f.suggestion}</p>
                                             </div>
                                         ))}
                                     </div>
@@ -1498,20 +1502,20 @@ export const ContractingERP: React.FC = () => {
                     {/* ───────────────── TAB 2: SUBCONTRACTORS & IPC BILLING ───────────────── */}
                     {activeTab === 'subcontractors' && (
                         <div className="space-y-6">
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#141414]/90 p-6 rounded-2xl border border-white/5">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-[#192631]/10">
                                 <div>
-                                    <h2 className="text-xl font-black text-white flex items-center gap-2">
-                                        <HardHat className="w-5 h-5 text-orange-400" />
+                                    <h2 className="text-xl font-black text-[#192631] flex items-center gap-2">
+                                        <HardHat className="w-5 h-5 text-[#e04b2a]" />
                                         Subcontractor Registry, Payment Applications (IPCs) & Retention Ledger
                                     </h2>
-                                    <p className="text-xs text-slate-400 mt-1">
+                                    <p className="text-xs text-[#192631]/70 mt-1">
                                         3-Stage QS valuation (Claimed → Certified → Approved), automatic retention deduction, and lien waiver verification gate.
                                     </p>
                                 </div>
                                 <div className="flex flex-wrap gap-2">
                                     <button
                                         onClick={() => setShowAddSub(!showAddSub)}
-                                        className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-black text-xs uppercase tracking-wider flex items-center gap-2"
+                                        className="px-4 py-2.5 rounded-xl bg-[#192631]/[0.05] hover:bg-white/15 text-[#192631] font-black text-xs uppercase tracking-wider flex items-center gap-2"
                                     >
                                         <Plus className="w-4 h-4" />
                                         Register Subcontractor
@@ -1527,69 +1531,69 @@ export const ContractingERP: React.FC = () => {
                             </div>
 
                             {showAddSub && (
-                                <form onSubmit={handleCreateSubcontractor} className="bg-[#181818] border border-white/15 rounded-2xl p-6 space-y-4">
-                                    <h3 className="text-sm font-black text-white uppercase tracking-wider">Prequalify & Register Subcontractor</h3>
+                                <form onSubmit={handleCreateSubcontractor} className="bg-[#181818] border border-[#192631]/10 rounded-2xl p-6 space-y-4">
+                                    <h3 className="text-sm font-black text-[#192631] uppercase tracking-wider">Prequalify & Register Subcontractor</h3>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Legal Entity Name</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Legal Entity Name</label>
                                             <input
                                                 value={subName}
                                                 onChange={e => setSubName(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 placeholder="Apex MEP & Fire Engineering LLC"
                                                 required
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Trade Categories (comma separated)</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Trade Categories (comma separated)</label>
                                             <input
                                                 value={subTrades}
                                                 onChange={e => setSubTrades(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 placeholder="MEP, HVAC, Chilled Water"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Primary Contact</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Primary Contact</label>
                                             <input
                                                 value={subContact}
                                                 onChange={e => setSubContact(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 placeholder="Eng. Mahmoud Saleh"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Email</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Email</label>
                                             <input
                                                 value={subEmail}
                                                 onChange={e => setSubEmail(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 placeholder="contracts@subcontractor.ae"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Prequalification Score (0–100)</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Prequalification Score (0–100)</label>
                                             <input
                                                 type="number"
                                                 min="0"
                                                 max="100"
                                                 value={subPrequalScore}
                                                 onChange={e => setSubPrequalScore(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Insurance Expiry Date</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Insurance Expiry Date</label>
                                             <input
                                                 type="date"
                                                 value={subInsuranceExpiry}
                                                 onChange={e => setSubInsuranceExpiry(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                     </div>
                                     <div className="flex items-center justify-between pt-2">
-                                        <label className="flex items-center gap-2 text-xs text-slate-300">
+                                        <label className="flex items-center gap-2 text-xs text-[#192631]/85">
                                             <input
                                                 type="checkbox"
                                                 checked={subLienWaiver}
@@ -1598,7 +1602,7 @@ export const ContractingERP: React.FC = () => {
                                             Require signed Lien Waiver before Finance IPC release
                                         </label>
                                         <div className="flex gap-2">
-                                            <button type="button" onClick={() => setShowAddSub(false)} className="px-4 py-2 rounded-xl bg-white/5 text-xs font-bold text-slate-400">
+                                            <button type="button" onClick={() => setShowAddSub(false)} className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-xs font-bold text-[#192631]/70">
                                                 Cancel
                                             </button>
                                             <button type="submit" className="px-5 py-2 rounded-xl bg-orange-500 text-black text-xs font-black uppercase">
@@ -1610,15 +1614,15 @@ export const ContractingERP: React.FC = () => {
                             )}
 
                             {showAddIpc && (
-                                <form onSubmit={handleCreateIpc} className="bg-[#181818] border border-orange-500/30 rounded-2xl p-6 space-y-4">
-                                    <h3 className="text-sm font-black text-white uppercase tracking-wider">Create Subcontractor Payment Application (IPC / RA Bill)</h3>
+                                <form onSubmit={handleCreateIpc} className="bg-[#181818] border border-[#e04b2a]/25 rounded-2xl p-6 space-y-4">
+                                    <h3 className="text-sm font-black text-[#192631] uppercase tracking-wider">Create Subcontractor Payment Application (IPC / RA Bill)</h3>
                                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Subcontractor</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Subcontractor</label>
                                             <select
                                                 value={ipcSubId}
                                                 onChange={e => setIpcSubId(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             >
                                                 <option value="">Select Subcontractor...</option>
                                                 {subcontractors.map(s => (
@@ -1629,62 +1633,62 @@ export const ContractingERP: React.FC = () => {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">IPC Application #</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">IPC Application #</label>
                                             <input
                                                 value={ipcNumber}
                                                 onChange={e => setIpcNumber(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 required
                                             />
                                         </div>
                                         <div className="md:col-span-2">
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Work Package Scope</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Work Package Scope</label>
                                             <input
                                                 value={ipcPackage}
                                                 onChange={e => setIpcPackage(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 required
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Subcontract Value ({currencySymbol})</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Subcontract Value ({currencySymbol})</label>
                                             <input
                                                 type="number"
                                                 value={ipcContractVal}
                                                 onChange={e => setIpcContractVal(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Claimed Gross ({currencySymbol})</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Claimed Gross ({currencySymbol})</label>
                                             <input
                                                 type="number"
                                                 value={ipcClaimedGross}
                                                 onChange={e => setIpcClaimedGross(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">QS Certified Gross ({currencySymbol})</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">QS Certified Gross ({currencySymbol})</label>
                                             <input
                                                 type="number"
                                                 value={ipcCertifiedGross}
                                                 onChange={e => setIpcCertifiedGross(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Retention %</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Retention %</label>
                                             <input
                                                 type="number"
                                                 value={ipcRetentionPct}
                                                 onChange={e => setIpcRetentionPct(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                     </div>
                                     <div className="flex justify-end gap-2 pt-2">
-                                        <button type="button" onClick={() => setShowAddIpc(false)} className="px-4 py-2 rounded-xl bg-white/5 text-xs font-bold text-slate-400">
+                                        <button type="button" onClick={() => setShowAddIpc(false)} className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-xs font-bold text-[#192631]/70">
                                             Cancel
                                         </button>
                                         <button type="submit" className="px-5 py-2 rounded-xl bg-orange-500 text-black text-xs font-black uppercase">
@@ -1697,30 +1701,30 @@ export const ContractingERP: React.FC = () => {
                             {/* Subcontractors Directory */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {subcontractors.map(sub => (
-                                    <div key={sub.id} className="bg-[#141414]/90 border border-white/5 rounded-2xl p-5 flex items-start justify-between gap-4">
+                                    <div key={sub.id} className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 flex items-start justify-between gap-4">
                                         <div className="space-y-2">
                                             <div className="flex items-center gap-2">
-                                                <Building2 className="w-4 h-4 text-orange-400" />
-                                                <h4 className="font-black text-white text-sm">{sub.legalName}</h4>
-                                                <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-500/15 text-emerald-400">
+                                                <Building2 className="w-4 h-4 text-[#e04b2a]" />
+                                                <h4 className="font-black text-[#192631] text-sm">{sub.legalName}</h4>
+                                                <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-[#123524]/10 text-[#123524]">
                                                     {sub.prequalificationStatus} ({sub.prequalScore}/100)
                                                 </span>
                                             </div>
                                             <div className="flex flex-wrap gap-1.5">
                                                 {sub.tradeCategories.map((t, i) => (
-                                                    <span key={i} className="px-2 py-0.5 rounded bg-white/5 text-[10px] font-bold text-slate-300">
+                                                    <span key={i} className="px-2 py-0.5 rounded bg-[#192631]/[0.05] text-[10px] font-bold text-[#192631]/85">
                                                         {t}
                                                     </span>
                                                 ))}
                                             </div>
-                                            <p className="text-xs text-slate-400">
-                                                {sub.contactName} · {sub.email} · Insurance Valid Until: <strong className="text-slate-200">{sub.insuranceExpiryDate}</strong>
+                                            <p className="text-xs text-[#192631]/70">
+                                                {sub.contactName} · {sub.email} · Insurance Valid Until: <strong className="text-[#192631]">{sub.insuranceExpiryDate}</strong>
                                             </p>
                                         </div>
                                         <div className="text-right">
-                                            <span className="text-xs font-black text-amber-400">★ {sub.ratingScore.toFixed(1)}</span>
+                                            <span className="text-xs font-black text-[#b45309]">★ {sub.ratingScore.toFixed(1)}</span>
                                             {sub.requiresLienWaiver && (
-                                                <p className="text-[10px] text-orange-400 font-bold uppercase mt-1">Lien Waiver Gate Active</p>
+                                                <p className="text-[10px] text-[#e04b2a] font-bold uppercase mt-1">Lien Waiver Gate Active</p>
                                             )}
                                         </div>
                                     </div>
@@ -1728,16 +1732,16 @@ export const ContractingERP: React.FC = () => {
                             </div>
 
                             {/* IPC Payment Applications Table */}
-                            <div className="bg-[#141414]/90 border border-white/5 rounded-2xl overflow-hidden">
-                                <div className="p-4 border-b border-white/5 flex items-center justify-between">
-                                    <h3 className="text-xs font-black uppercase tracking-widest text-slate-300">
+                            <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl overflow-hidden">
+                                <div className="p-4 border-b border-[#192631]/10 flex items-center justify-between">
+                                    <h3 className="text-xs font-black uppercase tracking-widest text-[#192631]/85">
                                         Interim Payment Certificates (IPCs) & Retention Ledger
                                     </h3>
                                 </div>
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-left border-collapse">
                                         <thead>
-                                            <tr className="border-b border-white/10 text-[10px] font-black uppercase tracking-widest text-slate-500 bg-black/40">
+                                            <tr className="border-b border-[#192631]/10 text-[10px] font-black uppercase tracking-widest text-[#192631]/60 bg-[#f5f5f5]/85">
                                                 <th className="py-3.5 px-4">IPC # / Subcontractor</th>
                                                 <th className="py-3.5 px-4">Work Package</th>
                                                 <th className="py-3.5 px-4 text-right">Claimed vs QS Certified</th>
@@ -1747,10 +1751,10 @@ export const ContractingERP: React.FC = () => {
                                                 <th className="py-3.5 px-4 text-right">Approval Workflow</th>
                                             </tr>
                                         </thead>
-                                        <tbody className="divide-y divide-white/5 text-xs">
+                                        <tbody className="divide-y divide-[#192631]/10 text-xs">
                                             {filteredIpcs.length === 0 ? (
                                                 <tr>
-                                                    <td colSpan={7} className="py-10 text-center text-slate-500">
+                                                    <td colSpan={7} className="py-10 text-center text-[#192631]/60">
                                                         No Subcontractor Payment Applications recorded yet.
                                                     </td>
                                                 </tr>
@@ -1758,34 +1762,34 @@ export const ContractingERP: React.FC = () => {
                                                 filteredIpcs.map(ipc => (
                                                     <tr key={ipc.id} className="hover:bg-white/[0.02]">
                                                         <td className="py-4 px-4">
-                                                            <span className="font-mono font-black text-orange-400">{ipc.applicationNumber}</span>
-                                                            <p className="font-bold text-white mt-0.5">{ipc.subcontractorName}</p>
+                                                            <span className="font-mono font-black text-[#e04b2a]">{ipc.applicationNumber}</span>
+                                                            <p className="font-bold text-[#192631] mt-0.5">{ipc.subcontractorName}</p>
                                                         </td>
-                                                        <td className="py-4 px-4 text-slate-300">
+                                                        <td className="py-4 px-4 text-[#192631]/85">
                                                             {ipc.workPackageName}
-                                                            <p className="text-[10px] text-slate-500 font-mono">
+                                                            <p className="text-[10px] text-[#192631]/60 font-mono">
                                                                 Contract: {currencySymbol} {ipc.contractValue.toLocaleString()}
                                                             </p>
                                                         </td>
                                                         <td className="py-4 px-4 text-right font-mono">
-                                                            <div className="text-slate-400 text-[11px]">
+                                                            <div className="text-[#192631]/70 text-[11px]">
                                                                 Claimed: {currencySymbol} {ipc.claimedGross.toLocaleString()}
                                                             </div>
-                                                            <div className="font-black text-white">
+                                                            <div className="font-black text-[#192631]">
                                                                 QS Cert: {currencySymbol} {ipc.certifiedGross.toLocaleString()}
                                                             </div>
                                                         </td>
                                                         <td className="py-4 px-4 text-right font-mono">
-                                                            <div className="text-amber-400 font-bold">
+                                                            <div className="text-[#b45309] font-bold">
                                                                 {currencySymbol} {ipc.retentionHeld.toLocaleString()} ({ipc.retentionPercent}%)
                                                             </div>
                                                             {ipc.retentionReleased > 0 && (
-                                                                <div className="text-[10px] text-emerald-400">
+                                                                <div className="text-[10px] text-[#123524]">
                                                                     Released: {currencySymbol} {ipc.retentionReleased.toLocaleString()}
                                                                 </div>
                                                             )}
                                                         </td>
-                                                        <td className="py-4 px-4 text-right font-mono font-black text-emerald-400">
+                                                        <td className="py-4 px-4 text-right font-mono font-black text-[#123524]">
                                                             {currencySymbol} {ipc.netPayable.toLocaleString()}
                                                         </td>
                                                         <td className="py-4 px-4">
@@ -1794,15 +1798,15 @@ export const ContractingERP: React.FC = () => {
                                                                     className={clsx(
                                                                         'inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-black uppercase w-fit',
                                                                         ipc.status === 'paid'
-                                                                            ? 'bg-emerald-500/20 text-emerald-300'
+                                                                            ? 'bg-[#123524]/10 text-[#123524]'
                                                                             : ipc.status === 'finance_approved'
-                                                                            ? 'bg-sky-500/20 text-sky-300'
-                                                                            : 'bg-amber-500/20 text-amber-300'
+                                                                            ? 'bg-sky-500/20 text-[#192631]'
+                                                                            : 'bg-amber-500/20 text-[#b45309]'
                                                                     )}
                                                                 >
                                                                     {ipc.status.replace('_', ' ')}
                                                                 </span>
-                                                                <span className="text-[10px] text-slate-400">
+                                                                <span className="text-[10px] text-[#192631]/70">
                                                                     Lien Waiver: {ipc.lienWaiverSigned ? '✅ Signed' : '⚠️ Pending'}
                                                                 </span>
                                                             </div>
@@ -1812,7 +1816,7 @@ export const ContractingERP: React.FC = () => {
                                                                 {ipc.status === 'submitted' && (
                                                                     <button
                                                                         onClick={() => handleAdvanceIpcStatus(ipc, 'qs_certified')}
-                                                                        className="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-[10px] font-black uppercase"
+                                                                        className="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-[#b45309] text-[10px] font-black uppercase"
                                                                     >
                                                                         QS Certify
                                                                     </button>
@@ -1820,7 +1824,7 @@ export const ContractingERP: React.FC = () => {
                                                                 {ipc.status === 'qs_certified' && (
                                                                     <button
                                                                         onClick={() => handleAdvanceIpcStatus(ipc, 'finance_approved', true)}
-                                                                        className="px-2.5 py-1 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 text-[10px] font-black uppercase"
+                                                                        className="px-2.5 py-1 rounded-lg bg-sky-500/20 hover:bg-sky-500/30 text-[#192631] text-[10px] font-black uppercase"
                                                                     >
                                                                         Sign Waiver & Finance Approve
                                                                     </button>
@@ -1828,7 +1832,7 @@ export const ContractingERP: React.FC = () => {
                                                                 {ipc.status === 'finance_approved' && (
                                                                     <button
                                                                         onClick={() => handleAdvanceIpcStatus(ipc, 'paid', true)}
-                                                                        className="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-[10px] font-black uppercase"
+                                                                        className="px-2.5 py-1 rounded-lg bg-[#123524]/10 hover:bg-emerald-500/30 text-[#123524] text-[10px] font-black uppercase"
                                                                     >
                                                                         Mark Paid
                                                                     </button>
@@ -1836,7 +1840,7 @@ export const ContractingERP: React.FC = () => {
                                                                 {ipc.retentionHeld > 0 && (
                                                                     <button
                                                                         onClick={() => handleReleaseRetention(ipc)}
-                                                                        className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-[10px] font-bold"
+                                                                        className="px-2.5 py-1 rounded-lg bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] text-[#192631]/85 text-[10px] font-bold"
                                                                     >
                                                                         Release Retention
                                                                     </button>
@@ -1856,13 +1860,13 @@ export const ContractingERP: React.FC = () => {
                     {/* ───────────────── TAB 3: VARIATION ORDERS (CHANGE ORDERS) ───────────────── */}
                     {activeTab === 'variations' && (
                         <div className="space-y-6">
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#141414]/90 p-6 rounded-2xl border border-white/5">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-[#192631]/10">
                                 <div>
-                                    <h2 className="text-xl font-black text-white flex items-center gap-2">
-                                        <FileDiff className="w-5 h-5 text-orange-400" />
+                                    <h2 className="text-xl font-black text-[#192631] flex items-center gap-2">
+                                        <FileDiff className="w-5 h-5 text-[#e04b2a]" />
                                         Variation Orders & Multi-Step Approval Chain
                                     </h2>
-                                    <p className="text-xs text-slate-400 mt-1">
+                                    <p className="text-xs text-[#192631]/70 mt-1">
                                         FIDIC-compliant Change Order control: Contractor Claimed vs. Engineer Assessed vs. Approved Cost & Time Extension (EOT).
                                     </p>
                                 </div>
@@ -1876,34 +1880,34 @@ export const ContractingERP: React.FC = () => {
                             </div>
 
                             {showAddVo && (
-                                <form onSubmit={handleCreateVo} className="bg-[#181818] border border-orange-500/30 rounded-2xl p-6 space-y-4">
-                                    <h3 className="text-sm font-black text-white uppercase tracking-wider">Raise Variation Order (VO)</h3>
+                                <form onSubmit={handleCreateVo} className="bg-[#181818] border border-[#e04b2a]/25 rounded-2xl p-6 space-y-4">
+                                    <h3 className="text-sm font-black text-[#192631] uppercase tracking-wider">Raise Variation Order (VO)</h3>
                                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">VO Reference Code</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">VO Reference Code</label>
                                             <input
                                                 value={voCode}
                                                 onChange={e => setVoCode(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 required
                                             />
                                         </div>
                                         <div className="md:col-span-2">
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Variation Title</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Variation Title</label>
                                             <input
                                                 value={voTitle}
                                                 onChange={e => setVoTitle(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 placeholder="Additional Basement Dewatering & Secant Pile Shoring"
                                                 required
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Reason Category</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Reason Category</label>
                                             <select
                                                 value={voReason}
                                                 onChange={e => setVoReason(e.target.value as VariationOrder['reasonCategory'])}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             >
                                                 <option value="client_request">Client Instruction / Request</option>
                                                 <option value="design_change">Consultant Design Change</option>
@@ -1912,52 +1916,52 @@ export const ContractingERP: React.FC = () => {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Contractor Claimed ({currencySymbol})</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Contractor Claimed ({currencySymbol})</label>
                                             <input
                                                 type="number"
                                                 value={voContractorAmt}
                                                 onChange={e => setVoContractorAmt(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Engineer Assessed ({currencySymbol})</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Engineer Assessed ({currencySymbol})</label>
                                             <input
                                                 type="number"
                                                 value={voEngineerAmt}
                                                 onChange={e => setVoEngineerAmt(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Time Impact (EOT Days)</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Time Impact (EOT Days)</label>
                                             <input
                                                 type="number"
                                                 value={voDays}
                                                 onChange={e => setVoDays(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Ball In Court</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Ball In Court</label>
                                             <input
                                                 value={voBallInCourt}
                                                 onChange={e => setVoBallInCourt(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="text-[10px] font-bold uppercase text-slate-400">Detailed Scope & Justification</label>
+                                        <label className="text-[10px] font-bold uppercase text-[#192631]/70">Detailed Scope & Justification</label>
                                         <input
                                             value={voDesc}
                                             onChange={e => setVoDesc(e.target.value)}
-                                            className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                            className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             placeholder="Reference drawing revisions and site instruction number..."
                                         />
                                     </div>
                                     <div className="flex justify-end gap-2">
-                                        <button type="button" onClick={() => setShowAddVo(false)} className="px-4 py-2 rounded-xl bg-white/5 text-xs font-bold text-slate-400">
+                                        <button type="button" onClick={() => setShowAddVo(false)} className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-xs font-bold text-[#192631]/70">
                                             Cancel
                                         </button>
                                         <button type="submit" className="px-5 py-2 rounded-xl bg-orange-500 text-black text-xs font-black uppercase">
@@ -1969,39 +1973,39 @@ export const ContractingERP: React.FC = () => {
 
                             <div className="grid grid-cols-1 gap-4">
                                 {filteredVos.length === 0 ? (
-                                    <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-10 text-center text-slate-500 text-xs">
+                                    <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-10 text-center text-[#192631]/60 text-xs">
                                         No Variation Orders recorded yet.
                                     </div>
                                 ) : (
                                     filteredVos.map(vo => (
-                                        <div key={vo.id} className="bg-[#141414]/90 border border-white/5 rounded-2xl p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                                        <div key={vo.id} className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                                             <div className="space-y-2 max-w-2xl">
                                                 <div className="flex flex-wrap items-center gap-2.5">
-                                                    <span className="font-mono font-black text-sm text-orange-400 bg-orange-500/10 px-2.5 py-1 rounded-lg border border-orange-500/20">
+                                                    <span className="font-mono font-black text-sm text-[#e04b2a] bg-[#e04b2a]/10 px-2.5 py-1 rounded-lg border border-[#e04b2a]/25">
                                                         {vo.code}
                                                     </span>
-                                                    <h3 className="text-base font-black text-white">{vo.title}</h3>
+                                                    <h3 className="text-base font-black text-[#192631]">{vo.title}</h3>
                                                     <span
                                                         className={clsx(
                                                             'px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase',
                                                             vo.status === 'approved'
-                                                                ? 'bg-emerald-500/20 text-emerald-300'
-                                                                : 'bg-amber-500/20 text-amber-300'
+                                                                ? 'bg-[#123524]/10 text-[#123524]'
+                                                                : 'bg-amber-500/20 text-[#b45309]'
                                                         )}
                                                     >
                                                         {vo.status.replace('_', ' ')}
                                                     </span>
                                                 </div>
-                                                <p className="text-xs text-slate-400">{vo.description}</p>
-                                                <div className="flex flex-wrap items-center gap-4 text-[11px] text-slate-400 pt-1">
+                                                <p className="text-xs text-[#192631]/70">{vo.description}</p>
+                                                <div className="flex flex-wrap items-center gap-4 text-[11px] text-[#192631]/70 pt-1">
                                                     <span>
-                                                        Reason: <strong className="text-slate-200 uppercase">{vo.reasonCategory.replace('_', ' ')}</strong>
+                                                        Reason: <strong className="text-[#192631] uppercase">{vo.reasonCategory.replace('_', ' ')}</strong>
                                                     </span>
                                                     <span>
-                                                        Ball in Court: <strong className="text-orange-400">{vo.ballInCourt}</strong>
+                                                        Ball in Court: <strong className="text-[#e04b2a]">{vo.ballInCourt}</strong>
                                                     </span>
                                                     <span>
-                                                        EOT Schedule Impact: <strong className="text-white">+{vo.scheduleImpactDays} Days</strong>
+                                                        EOT Schedule Impact: <strong className="text-[#192631]">+{vo.scheduleImpactDays} Days</strong>
                                                     </span>
                                                 </div>
 
@@ -2020,10 +2024,10 @@ export const ContractingERP: React.FC = () => {
                                                                 className={clsx(
                                                                     'px-3 py-1 rounded-lg text-[10px] font-black uppercase flex items-center gap-1.5 border',
                                                                     done
-                                                                        ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300'
+                                                                        ? 'bg-[#123524]/10 border-[#123524]/25 text-[#123524]'
                                                                         : current
-                                                                        ? 'bg-orange-500/15 border-orange-500/40 text-orange-300'
-                                                                        : 'bg-white/5 border-white/5 text-slate-500'
+                                                                        ? 'bg-[#e04b2a]/10 border-[#e04b2a]/25 text-[#e04b2a]'
+                                                                        : 'bg-[#192631]/[0.05] border-[#192631]/10 text-[#192631]/60'
                                                                 )}
                                                             >
                                                                 {done && <Check className="w-3 h-3" />}
@@ -2034,12 +2038,12 @@ export const ContractingERP: React.FC = () => {
                                                 </div>
                                             </div>
 
-                                            <div className="flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end justify-between gap-4 border-t lg:border-t-0 border-white/5 pt-4 lg:pt-0">
+                                            <div className="flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end justify-between gap-4 border-t lg:border-t-0 border-[#192631]/10 pt-4 lg:pt-0">
                                                 <div className="text-left lg:text-right font-mono">
-                                                    <div className="text-[11px] text-slate-400">
+                                                    <div className="text-[11px] text-[#192631]/70">
                                                         Claimed: {currencySymbol} {vo.contractorAmount.toLocaleString()}
                                                     </div>
-                                                    <div className="text-lg font-black text-emerald-400">
+                                                    <div className="text-lg font-black text-[#123524]">
                                                         Assessed: {currencySymbol} {vo.engineerAssessedAmount.toLocaleString()}
                                                     </div>
                                                 </div>
@@ -2064,13 +2068,13 @@ export const ContractingERP: React.FC = () => {
                     {/* ───────────────── TAB 4: TECHNICAL RFIs & 1-CLICK VO ESCALATION ───────────────── */}
                     {activeTab === 'rfis' && (
                         <div className="space-y-6">
-                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#141414]/90 p-6 rounded-2xl border border-white/5">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-[#192631]/10">
                                 <div>
-                                    <h2 className="text-xl font-black text-white flex items-center gap-2">
-                                        <MessageSquareWarning className="w-5 h-5 text-orange-400" />
+                                    <h2 className="text-xl font-black text-[#192631] flex items-center gap-2">
+                                        <MessageSquareWarning className="w-5 h-5 text-[#e04b2a]" />
                                         Requests for Information (RFI) & Design Clash Register
                                     </h2>
-                                    <p className="text-xs text-slate-400 mt-1">
+                                    <p className="text-xs text-[#192631]/70 mt-1">
                                         Track technical queries by discipline, ball-in-court ownership, cost/schedule impact, and escalate RFIs directly into Variation Orders.
                                     </p>
                                 </div>
@@ -2084,24 +2088,24 @@ export const ContractingERP: React.FC = () => {
                             </div>
 
                             {showAddRfi && (
-                                <form onSubmit={handleCreateRfi} className="bg-[#181818] border border-orange-500/30 rounded-2xl p-6 space-y-4">
-                                    <h3 className="text-sm font-black text-white uppercase tracking-wider">New Technical RFI</h3>
+                                <form onSubmit={handleCreateRfi} className="bg-[#181818] border border-[#e04b2a]/25 rounded-2xl p-6 space-y-4">
+                                    <h3 className="text-sm font-black text-[#192631] uppercase tracking-wider">New Technical RFI</h3>
                                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">RFI Number</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">RFI Number</label>
                                             <input
                                                 value={rfiNumber}
                                                 onChange={e => setRfiNumber(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                                 required
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Discipline</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Discipline</label>
                                             <select
                                                 value={rfiDiscipline}
                                                 onChange={e => setRfiDiscipline(e.target.value as ContractingRFI['discipline'])}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             >
                                                 <option value="Structural">Structural</option>
                                                 <option value="Architectural">Architectural</option>
@@ -2111,11 +2115,11 @@ export const ContractingERP: React.FC = () => {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Priority</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Priority</label>
                                             <select
                                                 value={rfiPriority}
                                                 onChange={e => setRfiPriority(e.target.value as ContractingRFI['priority'])}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             >
                                                 <option value="low">Low</option>
                                                 <option value="normal">Normal</option>
@@ -2124,55 +2128,55 @@ export const ContractingERP: React.FC = () => {
                                             </select>
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Ball In Court</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Ball In Court</label>
                                             <input
                                                 value={rfiBallInCourt}
                                                 onChange={e => setRfiBallInCourt(e.target.value)}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                     </div>
                                     <div>
-                                        <label className="text-[10px] font-bold uppercase text-slate-400">Subject</label>
+                                        <label className="text-[10px] font-bold uppercase text-[#192631]/70">Subject</label>
                                         <input
                                             value={rfiSubject}
                                             onChange={e => setRfiSubject(e.target.value)}
-                                            className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                            className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             placeholder="Clash between structural transfer beam and chilled water riser..."
                                             required
                                         />
                                     </div>
                                     <div>
-                                        <label className="text-[10px] font-bold uppercase text-slate-400">Technical Question / Proposed Solution</label>
+                                        <label className="text-[10px] font-bold uppercase text-[#192631]/70">Technical Question / Proposed Solution</label>
                                         <input
                                             value={rfiQuestion}
                                             onChange={e => setRfiQuestion(e.target.value)}
-                                            className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                            className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             required
                                         />
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Estimated Cost Impact ({currencySymbol})</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Estimated Cost Impact ({currencySymbol})</label>
                                             <input
                                                 type="number"
                                                 value={rfiCostEst}
                                                 onChange={e => setRfiCostEst(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-bold uppercase text-slate-400">Estimated Schedule Impact (Days)</label>
+                                            <label className="text-[10px] font-bold uppercase text-[#192631]/70">Estimated Schedule Impact (Days)</label>
                                             <input
                                                 type="number"
                                                 value={rfiSchedDays}
                                                 onChange={e => setRfiSchedDays(Number(e.target.value))}
-                                                className="w-full mt-1 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-white"
+                                                className="w-full mt-1 bg-[#f5f5f5]/85 border border-[#192631]/10 rounded-xl px-3 py-2 text-xs text-[#192631]"
                                             />
                                         </div>
                                     </div>
                                     <div className="flex justify-end gap-2">
-                                        <button type="button" onClick={() => setShowAddRfi(false)} className="px-4 py-2 rounded-xl bg-white/5 text-xs font-bold text-slate-400">
+                                        <button type="button" onClick={() => setShowAddRfi(false)} className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-xs font-bold text-[#192631]/70">
                                             Cancel
                                         </button>
                                         <button type="submit" className="px-5 py-2 rounded-xl bg-orange-500 text-black text-xs font-black uppercase">
@@ -2184,53 +2188,53 @@ export const ContractingERP: React.FC = () => {
 
                             <div className="grid grid-cols-1 gap-4">
                                 {filteredRfis.length === 0 ? (
-                                    <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-10 text-center text-slate-500 text-xs">
+                                    <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-10 text-center text-[#192631]/60 text-xs">
                                         No RFIs logged yet.
                                     </div>
                                 ) : (
                                     filteredRfis.map(rfi => (
-                                        <div key={rfi.id} className="bg-[#141414]/90 border border-white/5 rounded-2xl p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                                        <div key={rfi.id} className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                                             <div className="space-y-2 max-w-2xl">
                                                 <div className="flex flex-wrap items-center gap-2">
-                                                    <span className="font-mono font-black text-xs text-orange-400 bg-orange-500/10 px-2.5 py-1 rounded-lg">
+                                                    <span className="font-mono font-black text-xs text-[#e04b2a] bg-[#e04b2a]/10 px-2.5 py-1 rounded-lg">
                                                         {rfi.rfiNumber}
                                                     </span>
-                                                    <span className="px-2.5 py-0.5 rounded bg-white/10 text-[10px] font-black uppercase text-white">
+                                                    <span className="px-2.5 py-0.5 rounded bg-[#192631]/[0.05] text-[10px] font-black uppercase text-[#192631]">
                                                         {rfi.discipline}
                                                     </span>
                                                     <span
                                                         className={clsx(
                                                             'px-2 py-0.5 rounded text-[10px] font-black uppercase',
                                                             rfi.priority === 'critical'
-                                                                ? 'bg-rose-500/20 text-rose-300'
-                                                                : 'bg-amber-500/20 text-amber-300'
+                                                                ? 'bg-rose-500/20 text-red-700'
+                                                                : 'bg-amber-500/20 text-[#b45309]'
                                                         )}
                                                     >
                                                         {rfi.priority}
                                                     </span>
-                                                    <span className="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 text-[10px] font-black uppercase">
+                                                    <span className="px-2 py-0.5 rounded bg-[#123524]/10 text-[#123524] text-[10px] font-black uppercase">
                                                         {rfi.status.replace(/_/g, ' ')}
                                                     </span>
                                                 </div>
-                                                <h3 className="text-base font-black text-white">{rfi.subject}</h3>
-                                                <p className="text-xs text-slate-300">{rfi.question}</p>
+                                                <h3 className="text-base font-black text-[#192631]">{rfi.subject}</h3>
+                                                <p className="text-xs text-[#192631]/85">{rfi.question}</p>
                                                 {rfi.officialResponse && (
-                                                    <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-200">
+                                                    <div className="p-3 rounded-xl bg-[#123524]/10 border border-[#123524]/25 text-xs text-[#123524]">
                                                         <strong>Consultant Response:</strong> {rfi.officialResponse}
                                                     </div>
                                                 )}
-                                                <div className="flex flex-wrap gap-4 text-[11px] text-slate-400 pt-1">
+                                                <div className="flex flex-wrap gap-4 text-[11px] text-[#192631]/70 pt-1">
                                                     <span>
-                                                        Ball in Court: <strong className="text-orange-400">{rfi.ballInCourt}</strong>
+                                                        Ball in Court: <strong className="text-[#e04b2a]">{rfi.ballInCourt}</strong>
                                                     </span>
                                                     <span>
                                                         Est. Cost Impact:{' '}
-                                                        <strong className="text-white">
+                                                        <strong className="text-[#192631]">
                                                             {currencySymbol} {rfi.costImpactEstimate.toLocaleString()}
                                                         </strong>
                                                     </span>
                                                     <span>
-                                                        Schedule Impact: <strong className="text-white">+{rfi.scheduleImpactDays} Days</strong>
+                                                        Schedule Impact: <strong className="text-[#192631]">+{rfi.scheduleImpactDays} Days</strong>
                                                     </span>
                                                 </div>
                                             </div>
@@ -2239,13 +2243,13 @@ export const ContractingERP: React.FC = () => {
                                                 {rfi.status !== 'converted_to_vo' ? (
                                                     <button
                                                         onClick={() => handleConvertRfiToVo(rfi)}
-                                                        className="px-4 py-2.5 rounded-xl bg-orange-500/15 hover:bg-orange-500 border border-orange-500/30 text-orange-300 hover:text-black font-black text-xs uppercase tracking-wider flex items-center gap-2 transition-all"
+                                                        className="px-4 py-2.5 rounded-xl bg-[#e04b2a]/10 hover:bg-orange-500 border border-[#e04b2a]/25 text-[#e04b2a] hover:text-black font-black text-xs uppercase tracking-wider flex items-center gap-2 transition-all"
                                                     >
                                                         <FileDiff className="w-4 h-4" />
                                                         Convert RFI to Variation Order
                                                     </button>
                                                 ) : (
-                                                    <span className="px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-black">
+                                                    <span className="px-3 py-1.5 rounded-xl bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-xs font-black">
                                                         ✓ Linked to Variation Order
                                                     </span>
                                                 )}
@@ -2260,56 +2264,56 @@ export const ContractingERP: React.FC = () => {
                     {/* ───────────────── TAB 5: 5D EVM & COST-VALUE RECONCILIATION (CVR) ───────────────── */}
                     {activeTab === 'evm' && (
                         <div className="space-y-6">
-                            <div className="bg-[#141414]/90 p-6 rounded-2xl border border-white/5">
-                                <h2 className="text-xl font-black text-white flex items-center gap-2">
-                                    <Scale className="w-5 h-5 text-orange-400" />
+                            <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-[#192631]/10">
+                                <h2 className="text-xl font-black text-[#192631] flex items-center gap-2">
+                                    <Scale className="w-5 h-5 text-[#e04b2a]" />
                                     5D Earned Value Management (EVM) & Monthly Cost-Value Reconciliation (CVR)
                                 </h2>
-                                <p className="text-xs text-slate-400 mt-1">
+                                <p className="text-xs text-[#192631]/70 mt-1">
                                     Reconciles Baseline BOQ + Approved Variations (BAC) against QS Certified Earned Value (EV), Subcontractor IPCs, and Engineer Timesheet Costs (AC).
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-6 space-y-3">
+                                <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-6 space-y-3">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-xs font-black uppercase tracking-wider text-slate-400">Cost Performance Index (CPI)</span>
-                                        <DollarSign className="w-4 h-4 text-emerald-400" />
+                                        <span className="text-xs font-black uppercase tracking-wider text-[#192631]/70">Cost Performance Index (CPI)</span>
+                                        <DollarSign className="w-4 h-4 text-[#123524]" />
                                     </div>
-                                    <p className={clsx('text-4xl font-black font-mono', evmMetrics.cpi >= 1 ? 'text-emerald-400' : 'text-rose-400')}>
+                                    <p className={clsx('text-4xl font-black font-mono', evmMetrics.cpi >= 1 ? 'text-[#123524]' : 'text-red-700')}>
                                         {evmMetrics.cpi.toFixed(2)}
                                     </p>
-                                    <p className="text-xs text-slate-400">
+                                    <p className="text-xs text-[#192631]/70">
                                         {evmMetrics.cpi >= 1
                                             ? 'Project is earning more certified value per unit of actual cost spent (Under Budget).'
                                             : 'Actual costs exceed certified earned value (Cost Overrun Risk).'}
                                     </p>
                                 </div>
 
-                                <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-6 space-y-3">
+                                <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-6 space-y-3">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-xs font-black uppercase tracking-wider text-slate-400">Schedule Performance Index (SPI)</span>
-                                        <Clock className="w-4 h-4 text-orange-400" />
+                                        <span className="text-xs font-black uppercase tracking-wider text-[#192631]/70">Schedule Performance Index (SPI)</span>
+                                        <Clock className="w-4 h-4 text-[#e04b2a]" />
                                     </div>
-                                    <p className={clsx('text-4xl font-black font-mono', evmMetrics.spi >= 0.95 ? 'text-emerald-400' : 'text-amber-400')}>
+                                    <p className={clsx('text-4xl font-black font-mono', evmMetrics.spi >= 0.95 ? 'text-[#123524]' : 'text-[#b45309]')}>
                                         {evmMetrics.spi.toFixed(2)}
                                     </p>
-                                    <p className="text-xs text-slate-400">
+                                    <p className="text-xs text-[#192631]/70">
                                         Ratio of Certified Earned Value (EV) to Baseline Planned Value (PV).
                                     </p>
                                 </div>
 
-                                <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-6 space-y-3">
+                                <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-6 space-y-3">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-xs font-black uppercase tracking-wider text-slate-400">Estimate at Completion (EAC)</span>
-                                        <TrendingUp className="w-4 h-4 text-sky-400" />
+                                        <span className="text-xs font-black uppercase tracking-wider text-[#192631]/70">Estimate at Completion (EAC)</span>
+                                        <TrendingUp className="w-4 h-4 text-[#192631]" />
                                     </div>
-                                    <p className="text-3xl font-black font-mono text-white">
+                                    <p className="text-3xl font-black font-mono text-[#192631]">
                                         {currencySymbol} {evmMetrics.eac.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                     </p>
-                                    <p className="text-xs text-slate-400">
+                                    <p className="text-xs text-[#192631]/70">
                                         Variance at Completion (VAC):{' '}
-                                        <strong className={evmMetrics.vac >= 0 ? 'text-emerald-400' : 'text-rose-400'}>
+                                        <strong className={evmMetrics.vac >= 0 ? 'text-[#123524]' : 'text-red-700'}>
                                             {currencySymbol} {evmMetrics.vac.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                         </strong>{' '}
                                         · TCPI: <strong>{evmMetrics.tcpi.toFixed(2)}</strong>
@@ -2318,62 +2322,62 @@ export const ContractingERP: React.FC = () => {
                             </div>
 
                             {/* Detailed CVR Breakdown Table */}
-                            <div className="bg-[#141414]/90 border border-white/5 rounded-2xl p-6 space-y-4">
-                                <h3 className="text-xs font-black uppercase tracking-widest text-slate-300">
+                            <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-6 space-y-4">
+                                <h3 className="text-xs font-black uppercase tracking-widest text-[#192631]/85">
                                     Commercial Cost-Value Reconciliation (CVR) Ledger
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="space-y-3 bg-black/40 p-5 rounded-xl border border-white/5">
-                                        <h4 className="text-xs font-black uppercase text-emerald-400">Revenue & Certified Value (Inflow)</h4>
-                                        <div className="flex justify-between text-xs py-1.5 border-b border-white/5">
-                                            <span className="text-slate-400">Original Baseline BOQ Sum</span>
-                                            <span className="font-mono font-bold text-white">
+                                    <div className="space-y-3 bg-[#f5f5f5]/85 p-5 rounded-xl border border-[#192631]/10">
+                                        <h4 className="text-xs font-black uppercase text-[#123524]">Revenue & Certified Value (Inflow)</h4>
+                                        <div className="flex justify-between text-xs py-1.5 border-b border-[#192631]/10">
+                                            <span className="text-[#192631]/70">Original Baseline BOQ Sum</span>
+                                            <span className="font-mono font-bold text-[#192631]">
                                                 {currencySymbol} {evmMetrics.boqBaselineContract.toLocaleString()}
                                             </span>
                                         </div>
-                                        <div className="flex justify-between text-xs py-1.5 border-b border-white/5">
-                                            <span className="text-slate-400">Approved Variation Orders (VO)</span>
-                                            <span className="font-mono font-bold text-emerald-400">
+                                        <div className="flex justify-between text-xs py-1.5 border-b border-[#192631]/10">
+                                            <span className="text-[#192631]/70">Approved Variation Orders (VO)</span>
+                                            <span className="font-mono font-bold text-[#123524]">
                                                 +{currencySymbol} {evmMetrics.approvedVoValue.toLocaleString()}
                                             </span>
                                         </div>
-                                        <div className="flex justify-between text-xs py-1.5 border-b border-white/5">
-                                            <span className="text-slate-400">Revised Contract Budget (BAC)</span>
-                                            <span className="font-mono font-black text-white">
+                                        <div className="flex justify-between text-xs py-1.5 border-b border-[#192631]/10">
+                                            <span className="text-[#192631]/70">Revised Contract Budget (BAC)</span>
+                                            <span className="font-mono font-black text-[#192631]">
                                                 {currencySymbol} {evmMetrics.revisedBac.toLocaleString()}
                                             </span>
                                         </div>
                                         <div className="flex justify-between text-xs py-1.5">
-                                            <span className="text-slate-300 font-bold">Cumulative Earned Value (EV)</span>
-                                            <span className="font-mono font-black text-orange-400">
+                                            <span className="text-[#192631]/85 font-bold">Cumulative Earned Value (EV)</span>
+                                            <span className="font-mono font-black text-[#e04b2a]">
                                                 {currencySymbol} {evmMetrics.earnedValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                             </span>
                                         </div>
                                     </div>
 
-                                    <div className="space-y-3 bg-black/40 p-5 rounded-xl border border-white/5">
-                                        <h4 className="text-xs font-black uppercase text-amber-400">Committed & Actual Costs (Outflow)</h4>
-                                        <div className="flex justify-between text-xs py-1.5 border-b border-white/5">
-                                            <span className="text-slate-400">Subcontractor QS Certified IPCs</span>
-                                            <span className="font-mono font-bold text-white">
+                                    <div className="space-y-3 bg-[#f5f5f5]/85 p-5 rounded-xl border border-[#192631]/10">
+                                        <h4 className="text-xs font-black uppercase text-[#b45309]">Committed & Actual Costs (Outflow)</h4>
+                                        <div className="flex justify-between text-xs py-1.5 border-b border-[#192631]/10">
+                                            <span className="text-[#192631]/70">Subcontractor QS Certified IPCs</span>
+                                            <span className="font-mono font-bold text-[#192631]">
                                                 {currencySymbol} {evmMetrics.subCertifiedTotal.toLocaleString()}
                                             </span>
                                         </div>
-                                        <div className="flex justify-between text-xs py-1.5 border-b border-white/5">
-                                            <span className="text-slate-400">Engineering & Design Timesheet Cost</span>
-                                            <span className="font-mono font-bold text-white">
+                                        <div className="flex justify-between text-xs py-1.5 border-b border-[#192631]/10">
+                                            <span className="text-[#192631]/70">Engineering & Design Timesheet Cost</span>
+                                            <span className="font-mono font-bold text-[#192631]">
                                                 {currencySymbol} {evmMetrics.timesheetCost.toLocaleString()}
                                             </span>
                                         </div>
-                                        <div className="flex justify-between text-xs py-1.5 border-b border-white/5">
-                                            <span className="text-slate-400">Subcontractor Retention Held (Liability)</span>
-                                            <span className="font-mono font-bold text-amber-400">
+                                        <div className="flex justify-between text-xs py-1.5 border-b border-[#192631]/10">
+                                            <span className="text-[#192631]/70">Subcontractor Retention Held (Liability)</span>
+                                            <span className="font-mono font-bold text-[#b45309]">
                                                 {currencySymbol} {evmMetrics.totalRetentionHeld.toLocaleString()}
                                             </span>
                                         </div>
                                         <div className="flex justify-between text-xs py-1.5">
-                                            <span className="text-slate-300 font-bold">Total Actual Cost (AC)</span>
-                                            <span className="font-mono font-black text-white">
+                                            <span className="text-[#192631]/85 font-bold">Total Actual Cost (AC)</span>
+                                            <span className="font-mono font-black text-[#192631]">
                                                 {currencySymbol} {evmMetrics.actualCost.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                                             </span>
                                         </div>

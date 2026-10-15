@@ -20,10 +20,10 @@ export const GlowButton: React.FC<GlowButtonProps> = ({
 }) => {
     const variants = {
         primary: 'bg-orange-500 text-white shadow-orange-glow hover:shadow-orange-glow-strong hover:bg-orange-400',
-        secondary: 'bg-white/5 text-white border border-white/10 hover:bg-white/10',
-        outline: 'bg-transparent border border-orange-500/50 text-orange-400 hover:bg-orange-500/10 hover:border-orange-500',
-        ghost: 'bg-transparent text-slate-400 hover:text-white hover:bg-white/5',
-        danger: 'bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 hover:text-red-300',
+        secondary: 'bg-[#192631]/[0.05] text-[#192631] border border-[#192631]/10 hover:bg-[#192631]/[0.05]',
+        outline: 'bg-transparent border border-[#e04b2a]/25 text-[#e04b2a] hover:bg-[#e04b2a]/10 hover:border-orange-500',
+        ghost: 'bg-transparent text-[#192631]/70 hover:text-[#192631] hover:bg-[#192631]/[0.05]',
+        danger: 'bg-red-500/10 border border-red-500/20 text-red-700 hover:bg-red-500/20 hover:text-red-700',
     };
 
     const sizes = {

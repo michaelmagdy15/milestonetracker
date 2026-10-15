@@ -17,17 +17,17 @@ export const ResourceHeatmap: React.FC<ResourceHeatmapProps> = ({ engineers, tas
     });
 
     return (
-        <div className="bg-[#1a1a1a]/40 rounded-[32px] p-6 md:p-8 border border-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden mb-8">
+        <div className="bg-[#1a1a1a]/40 rounded-[32px] p-6 md:p-8 border border-[#192631]/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden mb-8">
             <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(243, 130, 45, 0.05), transparent)' }} />
             
             <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-6 border-b border-white/5 pb-4">
-                    <div className="p-2 bg-orange-500/10 rounded-xl border border-orange-500/20 text-orange-400">
+                <div className="flex items-center gap-3 mb-6 border-b border-[#192631]/10 pb-4">
+                    <div className="p-2 bg-[#e04b2a]/10 rounded-xl border border-[#e04b2a]/25 text-[#e04b2a]">
                         <Activity className="w-5 h-5" />
                     </div>
                     <div>
-                        <h3 className="font-black text-white text-lg tracking-tight">Resource Allocation Heatmap</h3>
-                        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">14-Day Capacity Forecast</p>
+                        <h3 className="font-black text-[#192631] text-lg tracking-tight">Resource Allocation Heatmap</h3>
+                        <p className="text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest mt-1">14-Day Capacity Forecast</p>
                     </div>
                 </div>
 
@@ -40,8 +40,8 @@ export const ResourceHeatmap: React.FC<ResourceHeatmapProps> = ({ engineers, tas
                             <div className="flex gap-1 flex-1">
                                 {days.map((day, i) => (
                                     <div key={i} className="w-10 flex flex-col items-center">
-                                        <span className="text-[8px] font-bold uppercase tracking-tighter text-slate-500">{format(day, 'EEE')}</span>
-                                        <span className={`text-[10px] font-black ${day.getDay() === 0 || day.getDay() === 6 ? 'text-slate-600' : 'text-slate-400'}`}>{format(day, 'dd')}</span>
+                                        <span className="text-[8px] font-bold uppercase tracking-tighter text-[#192631]/60">{format(day, 'EEE')}</span>
+                                        <span className={`text-[10px] font-black ${day.getDay() === 0 || day.getDay() === 6 ? 'text-slate-600' : 'text-[#192631]/70'}`}>{format(day, 'dd')}</span>
                                     </div>
                                 ))}
                             </div>
@@ -58,10 +58,10 @@ export const ResourceHeatmap: React.FC<ResourceHeatmapProps> = ({ engineers, tas
                                 );
 
                                 return (
-                                    <div key={engineer.id} className="flex items-center group/row hover:bg-white/5 p-1 rounded-xl transition-colors">
+                                    <div key={engineer.id} className="flex items-center group/row hover:bg-[#192631]/[0.05] p-1 rounded-xl transition-colors">
                                         <div className="w-48 shrink-0 pr-4 flex items-center justify-between">
-                                            <span className="text-xs font-bold text-slate-300 truncate w-32" title={engineer.name}>{engineer.name}</span>
-                                            <span className="text-[8px] font-black uppercase tracking-widest text-slate-600 bg-white/5 px-2 py-0.5 rounded-full">{engineer.role.substring(0, 3)}</span>
+                                            <span className="text-xs font-bold text-[#192631]/85 truncate w-32" title={engineer.name}>{engineer.name}</span>
+                                            <span className="text-[8px] font-black uppercase tracking-widest text-slate-600 bg-[#192631]/[0.05] px-2 py-0.5 rounded-full">{engineer.role.substring(0, 3)}</span>
                                         </div>
                                         <div className="flex gap-1 flex-1">
                                             {days.map((day, i) => {
@@ -79,19 +79,19 @@ export const ResourceHeatmap: React.FC<ResourceHeatmapProps> = ({ engineers, tas
                                                     }
                                                 });
 
-                                                let bgColor = 'bg-white/5 border-white/5';
+                                                let bgColor = 'bg-[#192631]/[0.05] border-[#192631]/10';
                                                 let textColor = 'text-transparent';
                                                 
                                                 if (load > 0) {
                                                     if (load < 3) {
-                                                        bgColor = 'bg-emerald-500/20 border-emerald-500/30';
-                                                        textColor = 'text-emerald-400';
+                                                        bgColor = 'bg-[#123524]/10 border-[#123524]/25';
+                                                        textColor = 'text-[#123524]';
                                                     } else if (load < 5) {
-                                                        bgColor = 'bg-orange-500/30 border-orange-500/40';
-                                                        textColor = 'text-orange-400';
+                                                        bgColor = 'bg-orange-500/30 border-[#e04b2a]/25';
+                                                        textColor = 'text-[#e04b2a]';
                                                     } else {
                                                         bgColor = 'bg-rose-500/40 border-rose-500/50';
-                                                        textColor = 'text-rose-400';
+                                                        textColor = 'text-red-700';
                                                     }
                                                 }
 
@@ -111,28 +111,28 @@ export const ResourceHeatmap: React.FC<ResourceHeatmapProps> = ({ engineers, tas
                             })}
                             
                             {engineers.length === 0 && (
-                                <p className="text-xs text-slate-500 italic py-4">No engineers available to generate heatmap.</p>
+                                <p className="text-xs text-[#192631]/60 italic py-4">No engineers available to generate heatmap.</p>
                             )}
                         </div>
                     </div>
                 </div>
                 
-                <div className="mt-4 flex items-center gap-6 justify-end border-t border-white/5 pt-4">
+                <div className="mt-4 flex items-center gap-6 justify-end border-t border-[#192631]/10 pt-4">
                     <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded bg-white/5 border border-white/10"></div>
-                        <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Available</span>
+                        <div className="w-3 h-3 rounded bg-[#192631]/[0.05] border border-[#192631]/10"></div>
+                        <span className="text-[9px] font-bold text-[#192631]/60 uppercase tracking-widest">Available</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded bg-emerald-500/20 border border-emerald-500/30"></div>
-                        <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Optimal (1-2)</span>
+                        <div className="w-3 h-3 rounded bg-[#123524]/10 border border-[#123524]/25"></div>
+                        <span className="text-[9px] font-bold text-[#192631]/60 uppercase tracking-widest">Optimal (1-2)</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded bg-orange-500/30 border border-orange-500/40"></div>
-                        <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Heavy (3-4)</span>
+                        <div className="w-3 h-3 rounded bg-orange-500/30 border border-[#e04b2a]/25"></div>
+                        <span className="text-[9px] font-bold text-[#192631]/60 uppercase tracking-widest">Heavy (3-4)</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded bg-rose-500/40 border border-rose-500/50"></div>
-                        <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Overloaded (5+)</span>
+                        <span className="text-[9px] font-bold text-[#192631]/60 uppercase tracking-widest">Overloaded (5+)</span>
                     </div>
                 </div>
             </div>

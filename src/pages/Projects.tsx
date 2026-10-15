@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Trash2, Edit2, Folder, X, Check, Users, Calendar, Target, RefreshCw, Settings, GripVertical, ChevronUp, ChevronDown } from 'lucide-react';
+import { Plus, Trash2, Edit2, Folder, X, Check, Users, Calendar, Target, RefreshCw, Settings, GripVertical, ChevronUp, ChevronDown, Receipt, Calculator, FileCheck2, PackageCheck, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
 import type { Project, ProjectPhase } from '../types';
@@ -7,6 +8,7 @@ import { motion } from 'framer-motion';
 import { RiskIndicator } from '../components/RiskIndicator';
 import { decWorkflowTemplate } from '../utils/workflowTemplate';
 import { SystemHint } from '../components/SystemHint';
+import { NEXUS_LIVE_PROJECTS } from '../data/nexusLiveSeedData';
 
 // --- Separate Component for Phase Management ---
 const PhaseConfigModal = ({
@@ -69,23 +71,23 @@ const PhaseConfigModal = ({
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4 animate-in fade-in duration-300">
-            <div className="bg-[#1a1a1a] w-full max-w-lg rounded-3xl border border-white/10 shadow-2xl p-8 relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192631]/40 backdrop-blur-md p-4 animate-in fade-in duration-300">
+            <div className="bg-[#1a1a1a] w-full max-w-lg rounded-3xl border border-[#192631]/10 shadow-2xl p-8 relative">
                 <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-2xl font-black text-white tracking-tight">Project Phases Config</h3>
-                    <button onClick={onClose} className="p-2 text-slate-500 hover:text-white hover:bg-white/5 rounded-full transition-all">
+                    <h3 className="text-2xl font-black text-[#192631] tracking-tight">Project Phases Config</h3>
+                    <button onClick={onClose} className="p-2 text-[#192631]/60 hover:text-[#192631] hover:bg-[#192631]/[0.05] rounded-full transition-all">
                         <X className="w-6 h-6" />
                     </button>
                 </div>
 
                 <div className="space-y-3 mb-6 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                     {localPhases.map((phase, index) => (
-                        <div key={phase.id} className="flex items-center gap-3 bg-white/5 p-3 rounded-2xl border border-white/5 group">
+                        <div key={phase.id} className="flex items-center gap-3 bg-[#192631]/[0.05] p-3 rounded-2xl border border-[#192631]/10 group">
                             <div className="flex flex-col">
-                                <button onClick={() => handlePhaseReorder(index, 'up')} disabled={index === 0} className="text-slate-600 hover:text-white disabled:opacity-30">
+                                <button onClick={() => handlePhaseReorder(index, 'up')} disabled={index === 0} className="text-slate-600 hover:text-[#192631] disabled:opacity-30">
                                     <ChevronUp className="w-4 h-4" />
                                 </button>
-                                <button onClick={() => handlePhaseReorder(index, 'down')} disabled={index === localPhases.length - 1} className="text-slate-600 hover:text-white disabled:opacity-30">
+                                <button onClick={() => handlePhaseReorder(index, 'down')} disabled={index === localPhases.length - 1} className="text-slate-600 hover:text-[#192631] disabled:opacity-30">
                                     <ChevronDown className="w-4 h-4" />
                                 </button>
                             </div>
@@ -96,24 +98,24 @@ const PhaseConfigModal = ({
                                     onChange={(e) => handleLocalNameChange(phase.id, e.target.value)}
                                     onBlur={() => handleNameBlur(phase)}
                                     onKeyDown={(e) => e.key === 'Enter' && handleNameBlur(phase)}
-                                    className="w-full bg-transparent border-none text-sm font-semibold text-white focus:ring-1 focus:ring-orange-500/50 rounded-lg px-2 py-1"
+                                    className="w-full bg-transparent border-none text-sm font-semibold text-[#192631] focus:ring-1 focus:ring-orange-500/50 rounded-lg px-2 py-1"
                                 />
                             </div>
-                            <button onClick={async () => await deleteProjectPhase(phase.id)} className="p-2 text-slate-600 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-all">
+                            <button onClick={async () => await deleteProjectPhase(phase.id)} className="p-2 text-slate-600 hover:text-red-700 opacity-0 group-hover:opacity-100 transition-all">
                                 <Trash2 className="w-4 h-4" />
                             </button>
                         </div>
                     ))}
-                    {localPhases.length === 0 && <p className="text-sm text-slate-500 py-4 text-center">No phases defined. Please add some.</p>}
+                    {localPhases.length === 0 && <p className="text-sm text-[#192631]/60 py-4 text-center">No phases defined. Please add some.</p>}
                 </div>
 
-                <div className="flex gap-3 pt-4 border-t border-white/10">
+                <div className="flex gap-3 pt-4 border-t border-[#192631]/10">
                     <input
                         type="text"
                         placeholder="New phase name..."
                         value={newPhaseName}
                         onChange={(e) => setNewPhaseName(e.target.value)}
-                        className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-medium focus:outline-none focus:ring-2 focus:ring-orange-500/50"
+                        className="flex-1 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl px-4 py-3 text-[#192631] font-medium focus:outline-none focus:ring-2 focus:ring-orange-500/50"
                         onKeyDown={(e) => e.key === 'Enter' && handleAddPhase()}
                     />
                     <button onClick={handleAddPhase} className="bg-orange-600 hover:bg-orange-500 text-white px-6 py-3 rounded-xl font-bold uppercase text-xs tracking-widest transition-all">
@@ -126,11 +128,13 @@ const PhaseConfigModal = ({
 };
 
 export const Projects: React.FC = () => {
+    const navigate = useNavigate();
     const { role, engineerId } = useAuth();
     const { projects, projectPhases, engineers, milestones, entries, addProject, updateProject, deleteProject, addMilestone, addTask, updateProjectOrder, addProjectPhase, updateProjectPhase, deleteProjectPhase, addNotification } = useData();
     const [isAdding, setIsAdding] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [isManagingPhases, setIsManagingPhases] = useState(false);
+    const [portfolioFilter, setPortfolioFilter] = useState<'all' | 'turnkey' | 'milestones'>('all');
 
     // Filter projects based on visibility
     const filteredProjects = projects.filter(p => {
@@ -327,17 +331,17 @@ export const Projects: React.FC = () => {
         >
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <h2 className="text-4xl lg:text-5xl font-black text-white tracking-tighter mb-2">
-                        Project <span className="text-orange-400">Library</span>
+                    <h2 className="text-4xl lg:text-5xl font-black text-[#192631] tracking-tighter mb-2">
+                        Project <span className="text-[#e04b2a]">Library</span>
                     </h2>
                     <div className="h-1 w-20 bg-orange-500 rounded-full mb-4"></div>
-                    <p className="text-slate-500 font-medium tracking-wide">Manage and monitor active DEC engineering ventures.</p>
+                    <p className="text-[#192631]/60 font-medium tracking-wide">Manage and monitor active DEC engineering ventures.</p>
                 </div>
                 {role === 'admin' && (
                     <div className="flex gap-4">
                         <button
                             onClick={() => setIsManagingPhases(true)}
-                            className="flex items-center justify-center space-x-2 bg-white/5 hover:bg-white/10 text-white px-6 py-4 rounded-2xl border border-white/5 transition-all text-xs font-bold uppercase tracking-widest"
+                            className="flex items-center justify-center space-x-2 bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] text-[#192631] px-6 py-4 rounded-2xl border border-[#192631]/10 transition-all text-xs font-bold uppercase tracking-widest"
                         >
                             <Settings className="w-4 h-4" />
                             <span>Manage Phases</span>
@@ -372,16 +376,16 @@ export const Projects: React.FC = () => {
             )}
 
             {isAdding && (
-                <div className="bg-[#1a1a1a]/60 p-10 rounded-[32px] border border-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-500">
+                <div className="bg-[#1a1a1a]/60 p-10 rounded-[32px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-500">
                     <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-orange-500"></div>
                     <div className="flex justify-between items-center mb-8">
                         <div>
-                            <h3 className="text-xl font-black text-white tracking-tight">
+                            <h3 className="text-xl font-black text-[#192631] tracking-tight">
                                 {editingId ? 'Refine Project Details' : 'Configure New Venture'}
                             </h3>
-                            <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">Strategic Planning</p>
+                            <p className="text-[#192631]/60 text-xs font-bold uppercase tracking-widest mt-1">Strategic Planning</p>
                         </div>
-                        <button onClick={resetForm} className="p-2 text-slate-500 hover:text-white hover:bg-white/5 rounded-full transition-all">
+                        <button onClick={resetForm} className="p-2 text-[#192631]/60 hover:text-[#192631] hover:bg-[#192631]/[0.05] rounded-full transition-all">
                             <X className="w-6 h-6" />
                         </button>
                     </div>
@@ -389,7 +393,7 @@ export const Projects: React.FC = () => {
                         {/* Row 1: Name + Budget */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-2">
-                                <label className="flex items-center justify-between text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">
+                                <label className="flex items-center justify-between text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">
                                     <span>Project Identity</span>
                                     {name.trim().length > 3 && (
                                         <button
@@ -458,7 +462,7 @@ export const Projects: React.FC = () => {
                                                 });
 
                                             }}
-                                            className="text-orange-400 hover:text-orange-300 transition-colors flex items-center gap-1 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20"
+                                            className="text-[#e04b2a] hover:text-[#e04b2a] transition-colors flex items-center gap-1 bg-[#e04b2a]/10 px-2 py-0.5 rounded border border-[#e04b2a]/25"
                                         >
                                             <RefreshCw className="w-3 h-3" />
                                             AI Estimate
@@ -469,18 +473,18 @@ export const Projects: React.FC = () => {
                                     type="text"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium"
                                     placeholder="e.g. Al Reem Tower Redesign"
                                     autoFocus
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Total Budget (AED)</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Total Budget (AED)</label>
                                 <input
                                     type="number"
                                     value={budget}
                                     onChange={(e) => setBudget(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium"
                                     placeholder="50000.00"
                                     min="0"
                                     step="0.01"
@@ -491,23 +495,23 @@ export const Projects: React.FC = () => {
                         {/* Row 2: Hourly Rate + Phase + Lead Designer */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Hourly Rate (USD)</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Hourly Rate (USD)</label>
                                 <input
                                     type="number"
                                     value={hourlyRate}
                                     onChange={(e) => setHourlyRate(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium"
                                     placeholder="85.00"
                                     min="0"
                                     step="0.01"
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Current Phase</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Current Phase</label>
                                 <select
                                     value={phase}
                                     onChange={(e) => setPhase(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium appearance-none"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium appearance-none"
                                 >
                                     {projectPhases.map(p => (
                                         <option key={p.id} value={p.name} className="bg-[#1a1a1a]">{p.name}</option>
@@ -515,11 +519,11 @@ export const Projects: React.FC = () => {
                                 </select>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Lead Designer</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Lead Designer</label>
                                 <select
                                     value={leadDesignerId}
                                     onChange={(e) => setLeadDesignerId(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium appearance-none"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium appearance-none"
                                 >
                                     <option value="" className="bg-[#1a1a1a]">None</option>
                                     {engineers.map(e => (
@@ -532,12 +536,12 @@ export const Projects: React.FC = () => {
                         {/* Row 3: Google Drive + Start Date + End Date */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Google Drive Folder URL</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Google Drive Folder URL</label>
                                 <input
                                     type="url"
                                     value={googleDriveLink}
                                     onChange={(e) => setGoogleDriveLink(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium"
                                     placeholder="https://drive.google.com/..."
                                 />
                             </div>
@@ -547,7 +551,7 @@ export const Projects: React.FC = () => {
                                     type="date"
                                     value={startDate}
                                     onChange={(e) => setStartDate(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium"
                                 />
                             </div>
                             <div className="space-y-2">
@@ -556,15 +560,15 @@ export const Projects: React.FC = () => {
                                     type="date"
                                     value={endDate}
                                     onChange={(e) => setEndDate(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium"
                                 />
                             </div>
                         </div>
 
                         {/* Row 4: Team Members */}
                         <div className="space-y-3">
-                            <label className="flex items-center gap-2 text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">
-                                <Users className="w-3.5 h-3.5 text-orange-400" />
+                            <label className="flex items-center gap-2 text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">
+                                <Users className="w-3.5 h-3.5 text-[#e04b2a]" />
                                 Delegate Team Members
                             </label>
                             <div className="flex flex-wrap gap-3">
@@ -576,8 +580,8 @@ export const Projects: React.FC = () => {
                                             type="button"
                                             onClick={() => toggleTeamMember(eng.id)}
                                             className={`px-4 py-3 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${isSelected
-                                                ? 'bg-orange-500/20 border-orange-500/40 text-orange-400 shadow-lg shadow-orange-500/10'
-                                                : 'bg-white/5 border-white/5 text-slate-500 hover:text-white hover:border-white/20'
+                                                ? 'bg-[#e04b2a]/10 border-[#e04b2a]/25 text-[#e04b2a] shadow-lg shadow-orange-500/10'
+                                                : 'bg-[#192631]/[0.05] border-[#192631]/10 text-[#192631]/60 hover:text-[#192631] hover:border-[#192631]/10'
                                                 }`}
                                         >
                                             {eng.name}
@@ -595,7 +599,7 @@ export const Projects: React.FC = () => {
 
                         {/* Row 5: Phase Milestones (only for new projects) */}
                         {!editingId && projectPhases.length > 0 && (
-                            <div className="space-y-3 border-t border-white/5 pt-6">
+                            <div className="space-y-3 border-t border-[#192631]/10 pt-6">
                                 <label className="flex items-center gap-3 cursor-pointer group mb-6">
                                     <div className="relative flex items-center justify-center">
                                         <input
@@ -604,29 +608,29 @@ export const Projects: React.FC = () => {
                                             onChange={(e) => setApplyDecWorkflow(e.target.checked)}
                                             className="sr-only"
                                         />
-                                        <div className={`w-5 h-5 rounded border transition-all ${applyDecWorkflow ? 'bg-orange-500 border-orange-500' : 'bg-white/5 border-white/20 group-hover:border-white/50'}`}>
-                                            {applyDecWorkflow && <Check className="w-3.5 h-3.5 text-white absolute top-0.5 left-0.5" />}
+                                        <div className={`w-5 h-5 rounded border transition-all ${applyDecWorkflow ? 'bg-orange-500 border-orange-500' : 'bg-[#192631]/[0.05] border-[#192631]/10 group-hover:border-white/50'}`}>
+                                            {applyDecWorkflow && <Check className="w-3.5 h-3.5 text-[#192631] absolute top-0.5 left-0.5" />}
                                         </div>
                                     </div>
-                                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.1em] group-hover:text-white transition-colors">
+                                    <span className="text-[11px] font-bold text-[#192631]/70 uppercase tracking-[0.1em] group-hover:text-[#192631] transition-colors">
                                         Apply DEC Architectural Workflow Template (Auto-generate phases & tasks)
                                     </span>
                                 </label>
 
-                                <label className="flex items-center gap-2 text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">
-                                    <Target className="w-3.5 h-3.5 text-orange-400" />
+                                <label className="flex items-center gap-2 text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">
+                                    <Target className="w-3.5 h-3.5 text-[#e04b2a]" />
                                     Phase Milestones — Set Deadlines
                                 </label>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {(applyDecWorkflow ? decWorkflowTemplate.map(p => ({ id: p.name, name: p.name })) : projectPhases).map(p => (
-                                        <div key={p.id} className="flex items-center gap-3 bg-white/5 p-4 rounded-2xl border border-white/5">
+                                        <div key={p.id} className="flex items-center gap-3 bg-[#192631]/[0.05] p-4 rounded-2xl border border-[#192631]/10">
                                             <div className="flex-1">
-                                                <div className="text-[10px] font-bold text-white tracking-tight mb-2 truncate leading-relaxed" title={p.name}>{p.name}</div>
+                                                <div className="text-[10px] font-bold text-[#192631] tracking-tight mb-2 truncate leading-relaxed" title={p.name}>{p.name}</div>
                                                 <input
                                                     type="date"
                                                     value={phaseMilestones[p.name] || ''}
                                                     onChange={(e) => setPhaseMilestones(prev => ({ ...prev, [p.name]: e.target.value }))}
-                                                    className="w-full px-3 py-2 bg-white/10 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all"
+                                                    className="w-full px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all"
                                                 />
                                             </div>
                                         </div>
@@ -635,11 +639,11 @@ export const Projects: React.FC = () => {
                             </div>
                         )}
 
-                        <div className="flex justify-end space-x-4 pt-4 border-t border-white/5">
+                        <div className="flex justify-end space-x-4 pt-4 border-t border-[#192631]/10">
                             <button
                                 type="button"
                                 onClick={resetForm}
-                                className="px-8 py-4 text-slate-500 hover:text-white font-bold uppercase tracking-widest text-[11px] transition-all"
+                                className="px-8 py-4 text-[#192631]/60 hover:text-[#192631] font-bold uppercase tracking-widest text-[11px] transition-all"
                             >
                                 Discard
                             </button>
@@ -657,11 +661,11 @@ export const Projects: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {orderedProjects.length === 0 && !isAdding && (
-                    <div className="col-span-full text-center py-32 bg-[#1a1a1a]/20 rounded-[40px] border-2 border-dashed border-white/5 flex flex-col items-center justify-center">
-                        <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6">
+                    <div className="col-span-full text-center py-32 bg-[#1a1a1a]/20 rounded-[40px] border-2 border-dashed border-[#192631]/10 flex flex-col items-center justify-center">
+                        <div className="w-20 h-20 bg-[#192631]/[0.05] rounded-full flex items-center justify-center mb-6">
                             <Folder className="w-10 h-10 text-slate-700" />
                         </div>
-                        <p className="text-slate-400 font-black text-xl tracking-tight mb-2">The library is empty</p>
+                        <p className="text-[#192631]/70 font-black text-xl tracking-tight mb-2">The library is empty</p>
                         <p className="text-slate-600 text-sm font-bold uppercase tracking-widest">Awaiting first venture initiation</p>
                     </div>
                 )}
@@ -681,9 +685,9 @@ export const Projects: React.FC = () => {
                             onDragOver={(e) => e.preventDefault()}
                             className={`group bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-white/5 hover:border-orange-500/30 backdrop-blur-3xl shadow-2xl transition-all duration-300 ${draggedProjectIndex === index ? 'opacity-40 scale-95' : 'opacity-100'} hover:-translate-y-2 relative overflow-hidden ${role === 'admin' ? 'cursor-grab active:cursor-grabbing' : ''}`}
                         >
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 blur-[60px] rounded-full -mr-16 -mt-16 group-hover:bg-orange-500/10 transition-all duration-500"></div>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 blur-[60px] rounded-full -mr-16 -mt-16 group-hover:bg-[#e04b2a]/10 transition-all duration-500"></div>
                             <div className="flex justify-between items-start mb-6 relative z-10">
-                                <div className="w-14 h-14 bg-white/5 text-white rounded-2xl flex items-center justify-center border border-white/10 group-hover:bg-orange-500 group-hover:text-white group-hover:border-orange-500 transition-all duration-500 shadow-lg">
+                                <div className="w-14 h-14 bg-[#192631]/[0.05] text-white rounded-2xl flex items-center justify-center border border-[#192631]/10 group-hover:bg-orange-500 group-hover:text-white group-hover:border-orange-500 transition-all duration-500 shadow-lg">
                                     <Folder className="w-6 h-6" />
                                 </div>
                                 {role === 'admin' && (
@@ -693,13 +697,13 @@ export const Projects: React.FC = () => {
                                         </div>
                                         <button
                                             onClick={() => startEdit(project)}
-                                            className="p-2.5 text-slate-500 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+                                            className="p-2.5 text-[#192631]/60 hover:text-[#192631] hover:bg-[#192631]/[0.05] rounded-xl transition-all"
                                         >
                                             <Edit2 className="w-4 h-4" />
                                         </button>
                                         <button
                                             onClick={() => handleDelete(project.id)}
-                                            className="p-2.5 text-slate-500 hover:text-red-400 hover:bg-red-400/10 rounded-xl transition-all"
+                                            className="p-2.5 text-[#192631]/60 hover:text-red-700 hover:bg-red-400/10 rounded-xl transition-all"
                                         >
                                             <Trash2 className="w-4 h-4" />
                                         </button>
@@ -707,12 +711,12 @@ export const Projects: React.FC = () => {
                                 )}
                             </div>
                             <div className="relative z-10 pointer-events-none">
-                                <h3 className="font-black text-xl text-white mb-2 tracking-tight group-hover:text-orange-400 transition-colors">{project.name}</h3>
+                                <h3 className="font-black text-xl text-[#192631] mb-2 tracking-tight group-hover:text-[#e04b2a] transition-colors">{project.name}</h3>
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="h-0.5 w-8 bg-orange-500/30 group-hover:w-12 transition-all duration-500"></div>
                                     {project.hourlyRate ? (
-                                        <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">
-                                            <span className="text-white">${project.hourlyRate.toFixed(0)}</span> / Hour
+                                        <p className="text-[#192631]/60 text-xs font-bold uppercase tracking-widest">
+                                            <span className="text-[#192631]">${project.hourlyRate.toFixed(0)}</span> / Hour
                                         </p>
                                     ) : (
                                         <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest">Rate not set</p>
@@ -722,13 +726,13 @@ export const Projects: React.FC = () => {
                                 <div className="grid grid-cols-2 gap-3 mb-6">
                                     {project.budget !== undefined && project.budget > 0 && (
                                         <div>
-                                            <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Budget</p>
-                                            <p className="text-lg font-black text-emerald-400">AED {project.budget.toLocaleString()}</p>
+                                            <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-1">Budget</p>
+                                            <p className="text-lg font-black text-[#123524]">AED {project.budget.toLocaleString()}</p>
                                         </div>
                                     )}
                                     <div>
-                                        <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Phase</p>
-                                        <div className="inline-block px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-bold tracking-widest uppercase">
+                                        <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-1">Phase</p>
+                                        <div className="inline-block px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-xs font-bold tracking-widest uppercase">
                                             {project.phase || 'Planning'}
                                         </div>
                                     </div>
@@ -736,16 +740,16 @@ export const Projects: React.FC = () => {
 
                                 {/* Team + Duration row */}
                                 <div className="flex items-center gap-4 mb-4 flex-wrap">
-                                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/5">
-                                        <Users className="w-3 h-3 text-orange-400" />
-                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#192631]/[0.05] border border-[#192631]/10">
+                                        <Users className="w-3 h-3 text-[#e04b2a]" />
+                                        <span className="text-[10px] font-black text-[#192631]/70 uppercase tracking-widest">
                                             {teamCount > 0 ? `${teamCount} Member${teamCount > 1 ? 's' : ''}` : 'No Team'}
                                         </span>
                                     </div>
                                     {duration && (
-                                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/5">
-                                            <Calendar className="w-3 h-3 text-orange-400" />
-                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{duration}</span>
+                                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#192631]/[0.05] border border-[#192631]/10">
+                                            <Calendar className="w-3 h-3 text-[#e04b2a]" />
+                                            <span className="text-[10px] font-black text-[#192631]/70 uppercase tracking-widest">{duration}</span>
                                         </div>
                                     )}
                                 </div>
@@ -753,12 +757,12 @@ export const Projects: React.FC = () => {
                                 {/* Milestones preview */}
                                 {projectMilestones.length > 0 && (
                                     <div className="mb-6 space-y-2">
-                                        <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">Milestones</p>
+                                        <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-2">Milestones</p>
                                         {projectMilestones.slice(0, 3).map(m => (
                                             <div key={m.id} className="space-y-2">
-                                                <div className="flex items-center justify-between bg-white/5 px-3 py-2 rounded-xl border border-white/5">
-                                                    <span className="text-xs font-bold text-white truncate" title={m.name}>{m.name}</span>
-                                                    <span className="text-[10px] text-slate-500 font-mono shrink-0">{m.targetDate || '-'}</span>
+                                                <div className="flex items-center justify-between bg-[#192631]/[0.05] px-3 py-2 rounded-xl border border-[#192631]/10">
+                                                    <span className="text-xs font-bold text-[#192631] truncate" title={m.name}>{m.name}</span>
+                                                    <span className="text-[10px] text-[#192631]/60 font-mono shrink-0">{m.targetDate || '-'}</span>
                                                 </div>
                                                 <RiskIndicator milestone={m} entries={entries} />
                                             </div>
@@ -767,19 +771,50 @@ export const Projects: React.FC = () => {
                                 )}
 
                                 <div className="mb-4">
-                                    <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Lead Designer</p>
-                                    <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white text-xs font-bold tracking-widest uppercase">
+                                    <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-widest mb-1">Lead Designer</p>
+                                    <div className="inline-block px-3 py-1 rounded-full bg-[#192631]/[0.05] border border-[#192631]/10 text-[#192631] text-xs font-bold tracking-widest uppercase">
                                         {engineers.find(e => e.id === project.leadDesignerId)?.name || 'Unassigned'}
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="flex gap-3 relative z-20 pointer-events-auto mt-4">
+                            <div className="grid grid-cols-4 gap-1.5 relative z-20 pointer-events-auto mt-3 pt-3 border-t border-[#192631]/10">
                                 <button
-                                    onClick={() => window.location.href = `/projects/${project.id}`}
-                                    className="flex-[2] py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white bg-white/5 hover:bg-orange-600 rounded-2xl transition-all duration-500 border border-white/5 hover:border-orange-500 shadow-xl"
+                                    type="button"
+                                    onClick={() => navigate('/extracts')}
+                                    className="py-2 px-2 rounded-xl bg-[#192631]/[0.05] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-[10px] font-bold flex items-center justify-center gap-1 transition-all"
                                 >
-                                    Inspect Venture
+                                    <Receipt className="w-3 h-3" /> Extracts
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => navigate('/boq')}
+                                    className="py-2 px-2 rounded-xl bg-[#192631]/[0.05] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-[10px] font-bold flex items-center justify-center gap-1 transition-all"
+                                >
+                                    <Calculator className="w-3 h-3" /> R02 BOQ
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => navigate('/submittals')}
+                                    className="py-2 px-2 rounded-xl bg-[#192631]/[0.05] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-[10px] font-bold flex items-center justify-center gap-1 transition-all"
+                                >
+                                    <FileCheck2 className="w-3 h-3" /> Submittals
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => navigate('/procurement')}
+                                    className="py-2 px-2 rounded-xl bg-[#192631]/[0.05] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-[10px] font-bold flex items-center justify-center gap-1 transition-all"
+                                >
+                                    <PackageCheck className="w-3 h-3" /> POs
+                                </button>
+                            </div>
+
+                            <div className="flex gap-3 relative z-20 pointer-events-auto mt-3">
+                                <button
+                                    onClick={() => navigate(`/projects/${project.id}`)}
+                                    className="flex-[2] py-3.5 text-[11px] font-black uppercase tracking-[0.16em] text-white bg-[#192631] hover:bg-[#e04b2a] rounded-2xl transition-all duration-300 shadow-md"
+                                >
+                                    Inspect Venture & Tasks
                                 </button>
                                 {role === 'admin' && (
                                     <button
@@ -790,7 +825,7 @@ export const Projects: React.FC = () => {
                                             btn.classList.remove('animate-spin-slow');
                                         }}
                                         title="Sync with Zoho CRM"
-                                        className="w-12 h-12 bg-white/5 hover:bg-white/10 text-slate-500 hover:text-white rounded-2xl border border-white/5 transition-all flex items-center justify-center shrink-0"
+                                        className="w-12 h-12 bg-[#192631]/[0.05] hover:bg-[#192631]/10 text-[#192631]/60 hover:text-[#192631] rounded-2xl border border-[#192631]/10 transition-all flex items-center justify-center shrink-0"
                                     >
                                         <RefreshCw className="w-4 h-4" />
                                     </button>
@@ -800,6 +835,131 @@ export const Projects: React.FC = () => {
                     );
                 })}
             </div>
+
+            {/* Active Turnkey Contracting Portfolio Section (C096, C063, C091, etc.) */}
+            {portfolioFilter !== 'milestones' && (
+                <div className="space-y-5 pt-4">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/80 backdrop-blur-xl p-5 rounded-2xl border border-[#192631]/10 shadow-sm">
+                        <div>
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[10px] font-bold uppercase tracking-wider mb-1.5">
+                                Turnkey Contracting Portfolio · Live Extracts, BOQ, Submittals & Site Custody
+                            </div>
+                            <h3 className="text-2xl font-black text-[#192631] tracking-tight">
+                                Active Contracting <span className="text-[#e04b2a]">Sites & Contracts ({NEXUS_LIVE_PROJECTS.length} Featured / 46 Total)</span>
+                            </h3>
+                        </div>
+                        <div className="flex items-center gap-2 bg-[#192631]/[0.05] p-1.5 rounded-xl border border-[#192631]/10 self-start md:self-auto">
+                            <button
+                                type="button"
+                                onClick={() => setPortfolioFilter('all')}
+                                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${portfolioFilter === 'all' ? 'bg-[#e04b2a] text-white shadow-sm' : 'text-[#192631]/70 hover:text-[#192631]'}`}
+                            >
+                                All Projects
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setPortfolioFilter('turnkey')}
+                                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${portfolioFilter === 'turnkey' ? 'bg-[#e04b2a] text-white shadow-sm' : 'text-[#192631]/70 hover:text-[#192631]'}`}
+                            >
+                                Contracting Portfolio
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {NEXUS_LIVE_PROJECTS.map(proj => (
+                            <div
+                                key={proj.id}
+                                className="bg-white/80 backdrop-blur-xl rounded-3xl border border-[#192631]/10 p-6 shadow-sm hover:border-[#e04b2a]/40 transition-all flex flex-col justify-between"
+                            >
+                                <div>
+                                    <div className="flex items-center justify-between gap-2 mb-3">
+                                        <span className="px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] font-mono text-xs font-black">
+                                            {proj.code} · Contract #{proj.contractNo}
+                                        </span>
+                                        <span className="px-2.5 py-1 rounded-full bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-[10px] font-bold">
+                                            {proj.status}
+                                        </span>
+                                    </div>
+                                    <h4 className="text-lg font-black text-[#192631] leading-snug mb-1">
+                                        {proj.name}
+                                    </h4>
+                                    <p className="text-xs text-[#192631]/70 font-medium flex items-center gap-1.5 mb-4">
+                                        <MapPin className="w-3.5 h-3.5 text-[#e04b2a]" />
+                                        {proj.location} · Client: <strong className="text-[#192631]">{proj.clientName}</strong>
+                                    </p>
+
+                                    <div className="grid grid-cols-2 gap-2.5 p-3.5 rounded-2xl bg-[#f5f5f5]/90 border border-[#192631]/10 mb-4">
+                                        <div>
+                                            <p className="text-[10px] font-bold uppercase text-[#192631]/60">Contract Value</p>
+                                            <p className="text-sm font-black text-[#192631]">EGP {proj.contractValue.toLocaleString()}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] font-bold uppercase text-[#192631]/60">Work Achieved</p>
+                                            <p className="text-sm font-black text-[#e04b2a]">EGP {proj.actualWorkAchieved.toLocaleString()}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] font-bold uppercase text-[#192631]/60">Collected</p>
+                                            <p className="text-sm font-black text-[#123524]">EGP {proj.totalCollected.toLocaleString()}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] font-bold uppercase text-[#192631]/60">Net Balance Due</p>
+                                            <p className="text-sm font-black text-[#192631]">EGP {proj.netReceivable.toLocaleString()}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <div className="flex items-center justify-between text-xs font-bold mb-1">
+                                            <span className="text-[#192631]/70">Execution Progress ({proj.extractsCount} Extracts)</span>
+                                            <span className="text-[#123524]">{proj.completionPercent}%</span>
+                                        </div>
+                                        <div className="w-full h-2 rounded-full bg-[#192631]/10 overflow-hidden">
+                                            <div
+                                                className="h-full bg-[#e04b2a] rounded-full transition-all"
+                                                style={{ width: `${Math.min(100, proj.completionPercent)}%` }}
+                                            />
+                                        </div>
+                                        <p className="text-[11px] text-[#192631]/65 mt-2">
+                                            Site Eng: <strong>{proj.siteEngineer}</strong> · Tech Office: <strong>{proj.leadEngineer}</strong>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-2 pt-3 border-t border-[#192631]/10">
+                                    <button
+                                        type="button"
+                                        onClick={() => navigate('/extracts')}
+                                        className="py-2.5 px-3 rounded-xl bg-[#e04b2a] hover:bg-[#c83e1f] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                                    >
+                                        <Receipt className="w-3.5 h-3.5" /> Works Extracts
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => navigate('/boq')}
+                                        className="py-2.5 px-3 rounded-xl bg-[#192631] hover:bg-[#e04b2a] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                                    >
+                                        <Calculator className="w-3.5 h-3.5" /> R02 BOQ & Rates
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => navigate('/submittals')}
+                                        className="py-2 px-3 rounded-xl bg-[#192631]/[0.06] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-xs font-bold flex items-center justify-center gap-1.5 transition-all"
+                                    >
+                                        <FileCheck2 className="w-3.5 h-3.5" /> 51 Submittals
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => navigate('/procurement')}
+                                        className="py-2 px-3 rounded-xl bg-[#192631]/[0.06] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-xs font-bold flex items-center justify-center gap-1.5 transition-all"
+                                    >
+                                        <PackageCheck className="w-3.5 h-3.5" /> POs & Custody
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
         </motion.div>
     );
 };

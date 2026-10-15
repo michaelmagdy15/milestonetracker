@@ -161,16 +161,16 @@ export const Entries: React.FC = () => {
         >
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <h2 className="text-4xl lg:text-5xl font-black text-white tracking-tighter mb-2">
-                        Activity <span className="text-orange-400">Ledger</span>
+                    <h2 className="text-4xl lg:text-5xl font-black text-[#192631] tracking-tighter mb-2">
+                        Activity <span className="text-[#e04b2a]">Ledger</span>
                     </h2>
                     <div className="h-1 w-20 bg-orange-500 rounded-full mb-4"></div>
-                    <p className="text-slate-500 font-medium tracking-wide">Historical log of all engineering operations and time allocation.</p>
+                    <p className="text-[#192631]/60 font-medium tracking-wide">Historical log of all engineering operations and time allocation.</p>
                 </div>
                 <div className="flex gap-4">
                     <button
                         onClick={() => window.print()}
-                        className="flex items-center justify-center space-x-3 bg-white/5 hover:bg-white/10 text-white px-6 py-4 rounded-2xl transition-all duration-300 border border-white/5 font-bold uppercase tracking-widest text-[11px]"
+                        className="flex items-center justify-center space-x-3 bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] text-[#192631] px-6 py-4 rounded-2xl transition-all duration-300 border border-[#192631]/10 font-bold uppercase tracking-widest text-[11px]"
                     >
                         <FileText className="w-4 h-4" />
                         <span>Export</span>
@@ -195,22 +195,22 @@ export const Entries: React.FC = () => {
                 <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
-                    className="bg-orange-500/10 border border-orange-500/20 rounded-3xl p-6 mb-4"
+                    className="bg-[#e04b2a]/10 border border-[#e04b2a]/25 rounded-3xl p-6 mb-4"
                 >
                     <div className="flex items-center gap-3 mb-4">
-                        <Wrench className="w-5 h-5 text-orange-400" />
-                        <h4 className="text-sm font-black text-white uppercase tracking-widest">Efficiency Engine Suggestions</h4>
+                        <Wrench className="w-5 h-5 text-[#e04b2a]" />
+                        <h4 className="text-sm font-black text-[#192631] uppercase tracking-widest">Efficiency Engine Suggestions</h4>
                     </div>
                     <div className="flex flex-wrap gap-3">
                         {suggestions.map((s, i) => (
                             <button
                                 key={i}
                                 onClick={() => applySuggestion(s)}
-                                className="flex items-center gap-3 px-4 py-2 bg-white/5 hover:bg-orange-500/20 border border-white/10 hover:border-orange-500/30 rounded-xl transition-all group"
+                                className="flex items-center gap-3 px-4 py-2 bg-[#192631]/[0.05] hover:bg-[#e04b2a]/10 border border-[#192631]/10 hover:border-[#e04b2a]/25 rounded-xl transition-all group"
                             >
                                 <div className="text-left">
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase">{s.appName}</p>
-                                    <p className="text-xs font-black text-white">{s.hours}H Identified</p>
+                                    <p className="text-[10px] font-bold text-[#192631]/70 uppercase">{s.appName}</p>
+                                    <p className="text-xs font-black text-[#192631]">{s.hours}H Identified</p>
                                 </div>
                                 <Plus className="w-4 h-4 text-orange-500 group-hover:scale-125 transition-transform" />
                             </button>
@@ -220,19 +220,19 @@ export const Entries: React.FC = () => {
             )}
 
             {isAdding && (
-                <div className="bg-[#1a1a1a]/60 p-10 rounded-[32px] border border-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-500">
+                <div className="bg-[#1a1a1a]/60 p-10 rounded-[32px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-500">
                     <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-orange-500"></div>
                     <div className="flex justify-between items-center mb-10">
                         <div>
-                            <h3 className="text-2xl font-black text-white tracking-tight flex items-center gap-4">
-                                <div className="p-3 bg-orange-500/10 rounded-2xl border border-orange-500/20">
-                                    <FileText className="w-6 h-6 text-orange-400" />
+                            <h3 className="text-2xl font-black text-[#192631] tracking-tight flex items-center gap-4">
+                                <div className="p-3 bg-[#e04b2a]/10 rounded-2xl border border-[#e04b2a]/25">
+                                    <FileText className="w-6 h-6 text-[#e04b2a]" />
                                 </div>
                                 Record Operation
                             </h3>
-                            <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-2 ml-14">Time Tracking & Resource Allocation</p>
+                            <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-[0.2em] mt-2 ml-14">Time Tracking & Resource Allocation</p>
                         </div>
-                        <button onClick={() => setIsAdding(false)} className="p-2 text-slate-500 hover:text-white hover:bg-white/5 rounded-full transition-all">
+                        <button onClick={() => setIsAdding(false)} className="p-2 text-[#192631]/60 hover:text-[#192631] hover:bg-[#192631]/[0.05] rounded-full transition-all">
                             <X className="w-6 h-6" />
                         </button>
                     </div>
@@ -240,22 +240,22 @@ export const Entries: React.FC = () => {
                     <form onSubmit={handleSubmit} className="space-y-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Date</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Date</label>
                                 <input
                                     type="date"
                                     value={date}
                                     onChange={(e) => setDate(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium"
                                     required
                                 />
                             </div>
                             {role === 'admin' && (
                                 <div className="space-y-2">
-                                    <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Engineer</label>
+                                    <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Engineer</label>
                                     <select
                                         value={engineerId}
                                         onChange={(e) => setEngineerId(e.target.value)}
-                                        className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium appearance-none"
+                                        className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium appearance-none"
                                         required
                                     >
                                         <option value="" className="bg-[#1a1a1a]">Select Engineer...</option>
@@ -264,11 +264,11 @@ export const Entries: React.FC = () => {
                                 </div>
                             )}
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Venture Selection</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Venture Selection</label>
                                 <select
                                     value={projectId}
                                     onChange={(e) => setProjectId(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium appearance-none"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium appearance-none"
                                     required
                                 >
                                     <option value="" className="bg-[#1a1a1a]">Select Venture...</option>
@@ -276,26 +276,26 @@ export const Entries: React.FC = () => {
                                 </select>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Duration (Hours)</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Duration (Hours)</label>
                                 <div className="relative">
-                                    <Clock className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                                    <Clock className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#192631]/60" />
                                     <input
                                         type="number"
                                         step="0.5"
                                         value={timeSpent}
                                         onChange={(e) => setTimeSpent(e.target.value)}
-                                        className="w-full pl-14 pr-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium"
+                                        className="w-full pl-14 pr-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium"
                                         placeholder="0.0"
                                         required
                                     />
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Type of Work</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Type of Work</label>
                                 <select
                                     value={entryType}
                                     onChange={(e) => setEntryType(e.target.value as any)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium appearance-none"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium appearance-none"
                                 >
                                     <option value="normal" className="bg-[#1a1a1a]">Standard Engineering</option>
                                     <option value="rfi" className="bg-[#1a1a1a]">RFI Response/Processing</option>
@@ -305,7 +305,7 @@ export const Entries: React.FC = () => {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Software Arsenal</label>
+                            <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Software Arsenal</label>
                             <div className="flex flex-wrap gap-3">
                                 {COMMON_SOFTWARE.map(sw => (
                                     <button
@@ -326,11 +326,11 @@ export const Entries: React.FC = () => {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Operational Description</label>
+                            <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Operational Description</label>
                             <textarea
                                 value={taskDescription}
                                 onChange={(e) => setTaskDescription(e.target.value)}
-                                className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium min-h-[120px]"
+                                className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium min-h-[120px]"
                                 placeholder="Detail the engineering operations performed..."
                                 required
                             />
@@ -338,22 +338,22 @@ export const Entries: React.FC = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Status / Phase</label>
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Status / Phase</label>
                                 <input
                                     type="text"
                                     value={milestone}
                                     onChange={(e) => setMilestone(e.target.value)}
-                                    className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all font-medium"
+                                    className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] placeholder-slate-700 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-[#192631]/[0.05] transition-all font-medium"
                                     placeholder="e.g. 50% Schematic Design"
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] ml-1">Tags (Enter to Add)</label>
-                                <div className="flex flex-wrap gap-2 p-2 bg-white/5 border border-white/5 rounded-2xl min-h-[58px]">
+                                <label className="block text-[11px] font-bold text-[#192631]/60 uppercase tracking-[0.2em] ml-1">Tags (Enter to Add)</label>
+                                <div className="flex flex-wrap gap-2 p-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl min-h-[58px]">
                                     {tags.map(tag => (
-                                        <span key={tag} className="flex items-center gap-2 bg-orange-500/10 text-orange-400 px-3 py-1 rounded-xl text-[10px] font-bold uppercase tracking-widest border border-orange-500/20">
+                                        <span key={tag} className="flex items-center gap-2 bg-[#e04b2a]/10 text-[#e04b2a] px-3 py-1 rounded-xl text-[10px] font-bold uppercase tracking-widest border border-[#e04b2a]/25">
                                             #{tag}
-                                            <button type="button" onClick={() => removeTag(tag)} className="hover:text-white transition-colors"><X className="w-3.5 h-3.5" /></button>
+                                            <button type="button" onClick={() => removeTag(tag)} className="hover:text-[#192631] transition-colors"><X className="w-3.5 h-3.5" /></button>
                                         </span>
                                     ))}
                                     <input
@@ -361,18 +361,18 @@ export const Entries: React.FC = () => {
                                         value={tagInput}
                                         onChange={(e) => setTagInput(e.target.value)}
                                         onKeyDown={handleTagInput}
-                                        className="flex-1 min-w-[120px] bg-transparent outline-none px-3 text-white placeholder-slate-700 text-sm font-medium"
+                                        className="flex-1 min-w-[120px] bg-transparent outline-none px-3 text-[#192631] placeholder-slate-700 text-sm font-medium"
                                         placeholder="e.g. urgent, rfi..."
                                     />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex justify-end space-x-6 pt-8 border-t border-white/5">
+                        <div className="flex justify-end space-x-6 pt-8 border-t border-[#192631]/10">
                             <button
                                 type="button"
                                 onClick={() => setIsAdding(false)}
-                                className="px-8 py-4 text-slate-500 hover:text-white font-bold uppercase tracking-widest text-[11px] transition-all"
+                                className="px-8 py-4 text-[#192631]/60 hover:text-[#192631] font-bold uppercase tracking-widest text-[11px] transition-all"
                             >
                                 Discard
                             </button>
@@ -388,16 +388,16 @@ export const Entries: React.FC = () => {
                 </div>
             )}
 
-            <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-white/5 overflow-hidden backdrop-blur-3xl shadow-2xl">
-                <div className="p-8 border-b border-white/5 bg-white/0">
+            <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 overflow-hidden backdrop-blur-3xl shadow-2xl">
+                <div className="p-8 border-b border-[#192631]/10 bg-white/0">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                        <h3 className="text-xl font-black text-white tracking-tight uppercase">Operational Logs</h3>
+                        <h3 className="text-xl font-black text-[#192631] tracking-tight uppercase">Operational Logs</h3>
                         <div className="flex items-center gap-3 flex-wrap">
                             <input
                                 type="date"
                                 value={filterFrom}
                                 onChange={(e) => setFilterFrom(e.target.value)}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all"
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all"
                                 placeholder="From"
                             />
                             <span className="text-slate-600 text-xs font-bold">→</span>
@@ -405,24 +405,24 @@ export const Entries: React.FC = () => {
                                 type="date"
                                 value={filterTo}
                                 onChange={(e) => setFilterTo(e.target.value)}
-                                className="px-3 py-2 bg-white/5 border border-white/5 rounded-xl text-white text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all"
+                                className="px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all"
                                 placeholder="To"
                             />
                             {(filterFrom || filterTo) && (
                                 <button
                                     onClick={() => { setFilterFrom(''); setFilterTo(''); }}
-                                    className="px-3 py-2 text-[10px] font-bold text-orange-400 hover:text-white bg-orange-500/10 border border-orange-500/20 rounded-xl uppercase tracking-widest transition-all"
+                                    className="px-3 py-2 text-[10px] font-bold text-[#e04b2a] hover:text-[#192631] bg-[#e04b2a]/10 border border-[#e04b2a]/25 rounded-xl uppercase tracking-widest transition-all"
                                 >
                                     Clear
                                 </button>
                             )}
-                            <div className="px-4 py-2 bg-white/5 rounded-full text-[10px] font-bold text-slate-500 uppercase tracking-widest border border-white/5">
+                            <div className="px-4 py-2 bg-[#192631]/[0.05] rounded-full text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest border border-[#192631]/10">
                                 {sortedEntries.length} Records
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="divide-y divide-white/5">
+                <div className="divide-y divide-[#192631]/10">
                     {(() => {
                         const totalPages = Math.max(1, Math.ceil(sortedEntries.length / PAGE_SIZE));
                         const pagedEntries = sortedEntries.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
@@ -442,15 +442,15 @@ export const Entries: React.FC = () => {
                                             <div className="absolute left-0 top-0 bottom-0 w-1 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
                                                 <div className="flex items-start gap-6 flex-1 min-w-0">
-                                                    <div className="w-16 h-16 bg-white/5 rounded-[20px] flex items-center justify-center border border-white/5 group-hover:bg-orange-500/10 group-hover:border-orange-500/20 transition-all duration-500 flex-shrink-0">
-                                                        <Calendar className="w-7 h-7 text-slate-500 group-hover:text-orange-400" />
+                                                    <div className="w-16 h-16 bg-[#192631]/[0.05] rounded-[20px] flex items-center justify-center border border-[#192631]/10 group-hover:bg-[#e04b2a]/10 group-hover:border-[#e04b2a]/25 transition-all duration-500 flex-shrink-0">
+                                                        <Calendar className="w-7 h-7 text-[#192631]/60 group-hover:text-[#e04b2a]" />
                                                     </div>
                                                     <div className="flex-1 min-w-0">
                                                         <div className="flex items-center gap-3 mb-2 flex-wrap">
-                                                            <h4 className="font-black text-white text-xl tracking-tight group-hover:text-orange-400 transition-colors">
+                                                            <h4 className="font-black text-[#192631] text-xl tracking-tight group-hover:text-[#e04b2a] transition-colors">
                                                                 {project?.name || 'Unidentified Venture'}
                                                             </h4>
-                                                            <span className="px-3 py-1 bg-white/5 rounded-full text-[10px] font-black text-slate-500 border border-white/5 group-hover:border-orange-500/20 group-hover:text-orange-400">
+                                                            <span className="px-3 py-1 bg-[#192631]/[0.05] rounded-full text-[10px] font-black text-[#192631]/60 border border-[#192631]/10 group-hover:border-[#e04b2a]/25 group-hover:text-[#e04b2a]">
                                                                 {format(new Date(entry.date), 'MMMM d, yyyy')}
                                                             </span>
                                                             {entry.milestone && (
@@ -464,19 +464,19 @@ export const Entries: React.FC = () => {
                                                                 </span>
                                                             )}
                                                         </div>
-                                                        <p className="text-slate-400 font-medium leading-relaxed max-w-3xl mb-4">{entry.taskDescription}</p>
+                                                        <p className="text-[#192631]/70 font-medium leading-relaxed max-w-3xl mb-4">{entry.taskDescription}</p>
                                                         <div className="flex flex-wrap gap-2">
                                                             <div className="flex items-center text-[10px] font-bold text-slate-600 uppercase tracking-widest mr-4">
                                                                 <Wrench className="w-3.5 h-3.5 mr-2 opacity-40" />
                                                                 {engineer?.name || 'Unknown'}
                                                             </div>
                                                             {entry.softwareUsed.map(sw => (
-                                                                <span key={sw} className="px-3 py-1 bg-white/5 rounded-lg text-[10px] font-bold text-slate-500 border border-white/5">
+                                                                <span key={sw} className="px-3 py-1 bg-[#192631]/[0.05] rounded-lg text-[10px] font-bold text-[#192631]/60 border border-[#192631]/10">
                                                                     {sw}
                                                                 </span>
                                                             ))}
                                                             {(entry.tags || []).map(tag => (
-                                                                <span key={tag} className="px-3 py-1 bg-orange-500/5 rounded-lg text-[10px] font-bold text-orange-400/60 border border-orange-500/10">
+                                                                <span key={tag} className="px-3 py-1 bg-orange-500/5 rounded-lg text-[10px] font-bold text-[#e04b2a]/60 border border-orange-500/10">
                                                                     #{tag}
                                                                 </span>
                                                             ))}
@@ -485,13 +485,13 @@ export const Entries: React.FC = () => {
                                                 </div>
                                                 <div className="flex items-center gap-8 justify-between lg:justify-end">
                                                     <div className="text-right">
-                                                        <div className="text-4xl font-black text-white group-hover:text-orange-400 transition-colors">{entry.timeSpent}h</div>
+                                                        <div className="text-4xl font-black text-[#192631] group-hover:text-[#e04b2a] transition-colors">{entry.timeSpent}h</div>
                                                         <div className="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Efficiency Logged</div>
                                                     </div>
                                                     {role === 'admin' && (
                                                         <button
                                                             onClick={() => handleDelete(entry.id)}
-                                                            className="p-4 bg-white/5 text-slate-600 hover:bg-red-500/10 hover:text-red-500 rounded-2xl border border-white/5 hover:border-red-500/20 transition-all"
+                                                            className="p-4 bg-[#192631]/[0.05] text-slate-600 hover:bg-red-500/10 hover:text-red-500 rounded-2xl border border-[#192631]/10 hover:border-red-500/20 transition-all"
                                                         >
                                                             <Trash2 className="w-5 h-5" />
                                                         </button>
@@ -503,24 +503,24 @@ export const Entries: React.FC = () => {
                                 })}
                                 {sortedEntries.length === 0 && (
                                     <div className="py-32 text-center">
-                                        <div className="w-24 h-24 bg-white/5 rounded-[40px] flex items-center justify-center mx-auto mb-8 border border-white/5">
+                                        <div className="w-24 h-24 bg-[#192631]/[0.05] rounded-[40px] flex items-center justify-center mx-auto mb-8 border border-[#192631]/10">
                                             <FileText className="w-12 h-12 text-slate-700" />
                                         </div>
-                                        <h3 className="text-2xl font-black text-white tracking-tight">No operations on record</h3>
-                                        <p className="text-slate-500 mt-2 font-medium">Initialize your first engineering log to see activity here.</p>
+                                        <h3 className="text-2xl font-black text-[#192631] tracking-tight">No operations on record</h3>
+                                        <p className="text-[#192631]/60 mt-2 font-medium">Initialize your first engineering log to see activity here.</p>
                                     </div>
                                 )}
                                 {totalPages > 1 && (
-                                    <div className="flex items-center justify-between p-6 border-t border-white/5">
+                                    <div className="flex items-center justify-between p-6 border-t border-[#192631]/10">
                                         <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page <= 1}
-                                            className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white disabled:opacity-30 transition-all border border-white/5">
+                                            className="flex items-center gap-2 px-4 py-2 bg-[#192631]/[0.05] rounded-xl text-[10px] font-bold uppercase tracking-widest text-[#192631]/70 hover:text-[#192631] disabled:opacity-30 transition-all border border-[#192631]/10">
                                             <ChevronLeft className="w-3.5 h-3.5" /> Previous
                                         </button>
-                                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                                        <span className="text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest">
                                             Page {page} of {totalPages}
                                         </span>
                                         <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages}
-                                            className="flex items-center gap-2 px-4 py-2 bg-white/5 rounded-xl text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white disabled:opacity-30 transition-all border border-white/5">
+                                            className="flex items-center gap-2 px-4 py-2 bg-[#192631]/[0.05] rounded-xl text-[10px] font-bold uppercase tracking-widest text-[#192631]/70 hover:text-[#192631] disabled:opacity-30 transition-all border border-[#192631]/10">
                                             Next <ChevronRight className="w-3.5 h-3.5" />
                                         </button>
                                     </div>

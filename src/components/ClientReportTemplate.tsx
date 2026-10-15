@@ -33,8 +33,8 @@ export const ClientReportTemplate = forwardRef<HTMLDivElement, ClientReportTempl
                     <div>
                         <h1 className="text-3xl font-black tracking-tight text-slate-800 mb-1">PROJECT STATUS REPORT</h1>
                         <h2 className="text-xl font-bold text-orange-600 mb-2">{project.name}</h2>
-                        <p className="text-slate-500 font-medium text-sm">Report Date: {format(new Date(), 'MMMM d, yyyy')}</p>
-                        <p className="text-slate-500 font-medium text-sm">Project Phase: {getLocalizedText(project.phase || 'Planning', language)}</p>
+                        <p className="text-[#192631]/60 font-medium text-sm">Report Date: {format(new Date(), 'MMMM d, yyyy')}</p>
+                        <p className="text-[#192631]/60 font-medium text-sm">Project Phase: {getLocalizedText(project.phase || 'Planning', language)}</p>
                     </div>
                     <div className="text-right flex flex-col items-end">
                         <img src={logo} alt="DEC Logo" className="h-16 w-auto object-contain" />
@@ -44,20 +44,20 @@ export const ClientReportTemplate = forwardRef<HTMLDivElement, ClientReportTempl
                 {/* Overall Status */}
                 <div className="mb-10 p-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between">
                     <div>
-                        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Overall Progress</h3>
+                        <h3 className="text-sm font-bold text-[#192631]/70 uppercase tracking-widest mb-1">Overall Progress</h3>
                         <p className="text-slate-600 text-sm max-w-sm">
                             The project is currently advancing through the {getLocalizedText(project.phase || 'Planning', language)} phase with {activeTasks.length} operations actively in progress.
                         </p>
                     </div>
                     <div className="text-right">
                         <p className="text-5xl font-black text-orange-600 mb-1">{projectProgress}%</p>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Completion Rating</p>
+                        <p className="text-[10px] font-bold text-[#192631]/70 uppercase tracking-widest">Completion Rating</p>
                     </div>
                 </div>
 
                 {/* Milestones Summary */}
                 <div className="mb-12">
-                    <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200 pb-2 mb-4">Milestone Tracker</h3>
+                    <h3 className="text-sm font-bold text-[#192631]/70 uppercase tracking-widest border-b border-slate-200 pb-2 mb-4">Milestone Tracker</h3>
                     <div className="space-y-4">
                         {sortedMilestones.map((milestone) => {
                             const mTasks = tasks.filter(t => t.milestoneId === milestone.id);
@@ -68,7 +68,7 @@ export const ClientReportTemplate = forwardRef<HTMLDivElement, ClientReportTempl
                                 <div key={milestone.id} className="flex items-center justify-between p-4 border border-slate-100 rounded-xl">
                                     <div className="w-1/2">
                                         <p className="font-bold text-slate-800">{getLocalizedText(milestone.name, language)}</p>
-                                        <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest mt-1">
+                                        <p className="text-[10px] text-[#192631]/60 uppercase font-bold tracking-widest mt-1">
                                             Target: {milestone.targetDate ? format(new Date(milestone.targetDate), 'MMM d, yyyy') : 'TBD'}
                                         </p>
                                     </div>
@@ -84,7 +84,7 @@ export const ClientReportTemplate = forwardRef<HTMLDivElement, ClientReportTempl
                             );
                         })}
                         {sortedMilestones.length === 0 && (
-                            <p className="text-slate-500 text-sm italic">No milestones defined yet.</p>
+                            <p className="text-[#192631]/60 text-sm italic">No milestones defined yet.</p>
                         )}
                     </div>
                 </div>
@@ -102,7 +102,7 @@ export const ClientReportTemplate = forwardRef<HTMLDivElement, ClientReportTempl
                                 </li>
                             ))}
                             {recentDoneTasks.length === 0 && (
-                                <p className="text-slate-400 text-sm italic">Awaiting completed deliverables.</p>
+                                <p className="text-[#192631]/70 text-sm italic">Awaiting completed deliverables.</p>
                             )}
                         </ul>
                     </div>
@@ -117,17 +117,17 @@ export const ClientReportTemplate = forwardRef<HTMLDivElement, ClientReportTempl
                                 </li>
                             ))}
                             {activeTasks.length > 5 && (
-                                <p className="text-slate-400 text-sm italic">...and {activeTasks.length - 5} more active tasks.</p>
+                                <p className="text-[#192631]/70 text-sm italic">...and {activeTasks.length - 5} more active tasks.</p>
                             )}
                             {activeTasks.length === 0 && (
-                                <p className="text-slate-400 text-sm italic">All current operations are idle.</p>
+                                <p className="text-[#192631]/70 text-sm italic">All current operations are idle.</p>
                             )}
                         </ul>
                     </div>
                 </div>
 
                 {/* Footer */}
-                <div className="text-center text-slate-400 text-xs mt-auto pt-8 border-t border-slate-100">
+                <div className="text-center text-[#192631]/70 text-xs mt-auto pt-8 border-t border-slate-100">
                     <p className="font-medium tracking-wide">CONFIDENTIAL & PROPRIETARY</p>
                     <p className="mt-1">Generated by DEC Project Management Intelligence</p>
                 </div>

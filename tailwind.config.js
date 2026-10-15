@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Fira Sans', 'Manrope', 'sans-serif'],
-        mono: ['Fira Code', 'monospace'],
+        sans: ['"Alte Haas Grotesk"', '"Plus Jakarta Sans"', 'Inter', 'Cairo', '"Fira Sans"', 'Manrope', 'sans-serif'],
+        display: ['"Aventa"', '"Plus Jakarta Sans"', 'Inter', 'Cairo', 'sans-serif'],
+        mono: ['"Fira Code"', 'monospace'],
       },
       colors: {
         orange: {
@@ -24,18 +25,27 @@ export default {
           900: 'rgb(var(--brand-900) / <alpha-value>)',
           950: 'rgb(var(--brand-950) / <alpha-value>)',
         },
+        nexus: {
+          squid: '#192631',
+          elevated: '#1f2f3d',
+          panel: '#243746',
+          orange: '#e04b2a',
+          phthalo: '#123524',
+          coral: '#ff7f50',
+          light: '#f5f5f5',
+        },
         dec: {
-          bg: 'var(--surface-bg, #0f0f0f)',
-          text: '#f3f3f3',
-          card: 'var(--surface-card, #1a1a1a)',
-          border: '#2a2a2a',
+          bg: 'var(--surface-bg, #192631)',
+          text: '#f5f5f5',
+          card: 'var(--surface-card, #1f2f3d)',
+          border: '#2c4052',
           accent: 'rgb(var(--brand-500) / <alpha-value>)',
         }
       },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.8)',
-        'orange-glow': '0 0 20px rgb(var(--brand-500) / 0.18)',
-        'orange-glow-strong': '0 0 30px rgb(var(--brand-500) / 0.30)',
+        'glass': '0 10px 30px -5px rgba(12, 20, 27, 0.45)',
+        'orange-glow': '0 0 20px rgb(var(--brand-500) / 0.22)',
+        'orange-glow-strong': '0 0 30px rgb(var(--brand-500) / 0.35)',
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.5s ease-out forwards',

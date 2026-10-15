@@ -1239,22 +1239,22 @@ export const ExtractsStatementsHub: React.FC = () => {
             {/* ========================================================================
                 TOP EXECUTIVE HEADER & SUB-TAB NAVIGATION (HIDDEN ON WINDOW.PRINT)
                ======================================================================== */}
-            <div className="print:hidden bg-gradient-to-r from-[#071a2f] via-[#0b2545] to-[#0f172a] border border-[#C5A059]/30 rounded-2xl p-6 shadow-2xl">
+            <div className="print:hidden bg-white/80 backdrop-blur-xl border border-[#e04b2a]/30 rounded-2xl p-6 shadow-2xl">
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-2.5">
-                            <span className="px-2.5 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-[#C5A059]/20 text-[#C5A059] border border-[#C5A059]/40">
+                            <span className="px-2.5 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-[#e04b2a]/20 text-[#e04b2a] border border-[#e04b2a]/40">
                                 Actpert Nexus · e-Works Financial Core
                             </span>
-                            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
                                 ContractNo: 000055 · C096 Azad
                             </span>
                         </div>
-                        <h2 className="text-2xl font-black text-white mt-2 flex items-center gap-3">
-                            <FileSpreadsheet className="w-7 h-7 text-[#C5A059]" />
+                        <h2 className="text-2xl font-black text-[#192631] mt-2 flex items-center gap-3">
+                            <FileSpreadsheet className="w-7 h-7 text-[#e04b2a]" />
                             <span>مستخلصات الأعمال الجارية وكشف حساب العميل وطلبات الصرف</span>
                         </h2>
-                        <p className="text-slate-300 text-sm mt-1">
+                        <p className="text-[#192631]/85 text-sm mt-1">
                             Cumulative Works Extracts (PDF 1) · Client Account Statement Ledger (PDF 2) · Official Payment Request Vouchers (PDF 3)
                         </p>
                     </div>
@@ -1264,8 +1264,8 @@ export const ExtractsStatementsHub: React.FC = () => {
                             onClick={() => setPrintPreviewMode(!printPreviewMode)}
                             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-extrabold transition-all border ${
                                 printPreviewMode
-                                    ? 'bg-[#C5A059] text-[#071a2f] border-[#C5A059] shadow-lg'
-                                    : 'bg-white/5 text-slate-200 border-white/15 hover:bg-white/10'
+                                    ? 'bg-[#e04b2a] text-[#071a2f] border-[#e04b2a] shadow-lg'
+                                    : 'bg-[#192631]/[0.05] text-[#192631] border-[#192631]/10 hover:bg-[#192631]/[0.05]'
                             }`}
                         >
                             <Eye className="w-4 h-4" />
@@ -1287,45 +1287,45 @@ export const ExtractsStatementsHub: React.FC = () => {
                 </div>
 
                 {/* KPI Strip across all 3 PDFs */}
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-5 pt-5 border-t border-white/10">
-                    <div className="bg-slate-900/70 border border-white/10 rounded-xl p-3.5">
-                        <div className="text-[11px] text-slate-400 font-bold">إجمالي الأعمال الفعلية (Actual Work)</div>
-                        <div className="text-lg font-black text-white font-mono mt-1">
-                            {formatCurrency(computedExtract.totalActualWork, 2)} <span className="text-xs text-[#C5A059]">EGP</span>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-5 pt-5 border-t border-[#192631]/10">
+                    <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-xl p-3.5">
+                        <div className="text-[11px] text-[#192631]/70 font-bold">إجمالي الأعمال الفعلية (Actual Work)</div>
+                        <div className="text-lg font-black text-[#192631] font-mono mt-1">
+                            {formatCurrency(computedExtract.totalActualWork, 2)} <span className="text-xs text-[#e04b2a]">EGP</span>
                         </div>
-                        <div className="text-[10px] text-slate-400 mt-0.5">شامل 28 بند + أوامر التغيير VO</div>
+                        <div className="text-[10px] text-[#192631]/70 mt-0.5">شامل 28 بند + أوامر التغيير VO</div>
                     </div>
 
-                    <div className="bg-slate-900/70 border border-white/10 rounded-xl p-3.5">
-                        <div className="text-[11px] text-slate-400 font-bold">إجمالي الأعمال المنجزة (Work Achieved)</div>
-                        <div className="text-lg font-black text-amber-300 font-mono mt-1">
+                    <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-xl p-3.5">
+                        <div className="text-[11px] text-[#192631]/70 font-bold">إجمالي الأعمال المنجزة (Work Achieved)</div>
+                        <div className="text-lg font-black text-[#b45309] font-mono mt-1">
                             {formatCurrency(computedExtract.totalWorkAchieved, 2)} <span className="text-xs">EGP</span>
                         </div>
-                        <div className="text-[10px] text-slate-400 mt-0.5">+ أوامر شراء: {formatCurrency(computedExtract.purchasingOrdersTotal, 0)} ج.م</div>
+                        <div className="text-[10px] text-[#192631]/70 mt-0.5">+ أوامر شراء: {formatCurrency(computedExtract.purchasingOrdersTotal, 0)} ج.م</div>
                     </div>
 
-                    <div className="bg-slate-900/70 border border-rose-500/30 rounded-xl p-3.5">
-                        <div className="text-[11px] text-rose-300 font-bold">صافي مستخلص جاري رقم {activeExtract.extractNo} (Total Net)</div>
-                        <div className="text-lg font-black text-rose-400 font-mono mt-1">
+                    <div className="bg-white/80 backdrop-blur-md border border-rose-500/30 rounded-xl p-3.5">
+                        <div className="text-[11px] text-red-700 font-bold">صافي مستخلص جاري رقم {activeExtract.extractNo} (Total Net)</div>
+                        <div className="text-lg font-black text-red-700 font-mono mt-1">
                             {formatCurrency(computedExtract.totalNetPayable, 2)} <span className="text-xs">EGP</span>
                         </div>
-                        <div className="text-[10px] text-slate-400 mt-0.5">بعد خصم سابق الصرف ({formatCurrency(computedExtract.previousWorksReceived, 0)})</div>
+                        <div className="text-[10px] text-[#192631]/70 mt-0.5">بعد خصم سابق الصرف ({formatCurrency(computedExtract.previousWorksReceived, 0)})</div>
                     </div>
 
-                    <div className="bg-slate-900/70 border border-emerald-500/30 rounded-xl p-3.5">
-                        <div className="text-[11px] text-emerald-300 font-bold">إجمالي دفعات العميل (Total Credits)</div>
-                        <div className="text-lg font-black text-emerald-400 font-mono mt-1">
+                    <div className="bg-white/80 backdrop-blur-md border border-[#123524]/25 rounded-xl p-3.5">
+                        <div className="text-[11px] text-[#123524] font-bold">إجمالي دفعات العميل (Total Credits)</div>
+                        <div className="text-lg font-black text-[#123524] font-mono mt-1">
                             {formatCurrency(computedLedger.totalCredit, 2)} <span className="text-xs">EGP</span>
                         </div>
-                        <div className="text-[10px] text-slate-400 mt-0.5">إجمالي المدين: {formatCurrency(computedLedger.totalDebit, 2)} ج.م</div>
+                        <div className="text-[10px] text-[#192631]/70 mt-0.5">إجمالي المدين: {formatCurrency(computedLedger.totalDebit, 2)} ج.م</div>
                     </div>
 
-                    <div className="bg-slate-900/70 border border-[#C5A059]/50 rounded-xl p-3.5">
-                        <div className="text-[11px] text-[#C5A059] font-bold">رصيد العميل المستحق (Net Balance)</div>
-                        <div className="text-lg font-black text-white font-mono mt-1">
-                            {formatCurrency(computedLedger.finalBalance, 2)} <span className="text-xs text-[#C5A059]">EGP</span>
+                    <div className="bg-white/80 backdrop-blur-md border border-[#e04b2a]/50 rounded-xl p-3.5">
+                        <div className="text-[11px] text-[#e04b2a] font-bold">رصيد العميل المستحق (Net Balance)</div>
+                        <div className="text-lg font-black text-[#192631] font-mono mt-1">
+                            {formatCurrency(computedLedger.finalBalance, 2)} <span className="text-xs text-[#e04b2a]">EGP</span>
                         </div>
-                        <div className="text-[10px] text-slate-400 mt-0.5">كود الحساب: 101020069 · Michael Saber</div>
+                        <div className="text-[10px] text-[#192631]/70 mt-0.5">كود الحساب: 101020069 · Michael Saber</div>
                     </div>
                 </div>
 
@@ -1335,26 +1335,26 @@ export const ExtractsStatementsHub: React.FC = () => {
                         onClick={() => setActiveSubTab('extracts')}
                         className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-xs font-extrabold transition-all ${
                             activeSubTab === 'extracts'
-                                ? 'bg-[#C5A059] text-[#071a2f] shadow-lg'
-                                : 'bg-slate-900/80 text-slate-300 hover:bg-slate-800 border border-white/10'
+                                ? 'bg-[#e04b2a] text-[#071a2f] shadow-lg'
+                                : 'bg-white/80 backdrop-blur-md text-[#192631]/85 hover:bg-[#192631]/[0.05] border border-[#192631]/10'
                         }`}
                     >
                         <FileSpreadsheet className="w-4 h-4" />
                         <span>1. مستخلص أعمال جاري (PDF 1: Works Extract 4)</span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] bg-black/20 font-mono">28 Items</span>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] bg-[#f5f5f5]/85 font-mono">28 Items</span>
                     </button>
 
                     <button
                         onClick={() => setActiveSubTab('statement')}
                         className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-xs font-extrabold transition-all ${
                             activeSubTab === 'statement'
-                                ? 'bg-[#C5A059] text-[#071a2f] shadow-lg'
-                                : 'bg-slate-900/80 text-slate-300 hover:bg-slate-800 border border-white/10'
+                                ? 'bg-[#e04b2a] text-[#071a2f] shadow-lg'
+                                : 'bg-white/80 backdrop-blur-md text-[#192631]/85 hover:bg-[#192631]/[0.05] border border-[#192631]/10'
                         }`}
                     >
                         <Receipt className="w-4 h-4" />
                         <span>2. كشف حساب عميل (PDF 2: Michael Saber · 101020069)</span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] bg-black/20 font-mono">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] bg-[#f5f5f5]/85 font-mono">
                             {formatCurrency(computedLedger.finalBalance, 2)} EGP
                         </span>
                     </button>
@@ -1363,13 +1363,13 @@ export const ExtractsStatementsHub: React.FC = () => {
                         onClick={() => setActiveSubTab('payment_request')}
                         className={`flex items-center gap-2.5 px-4 py-3 rounded-xl text-xs font-extrabold transition-all ${
                             activeSubTab === 'payment_request'
-                                ? 'bg-[#C5A059] text-[#071a2f] shadow-lg'
-                                : 'bg-slate-900/80 text-slate-300 hover:bg-slate-800 border border-white/10'
+                                ? 'bg-[#e04b2a] text-[#071a2f] shadow-lg'
+                                : 'bg-white/80 backdrop-blur-md text-[#192631]/85 hover:bg-[#192631]/[0.05] border border-[#192631]/10'
                         }`}
                     >
                         <CreditCard className="w-4 h-4" />
                         <span>3. طلب صرف / سداد رسمي (PDF 3: Serial {activePr.serial} · 150,000 EGP)</span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] bg-black/20 font-mono">NBE Debit</span>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] bg-[#f5f5f5]/85 font-mono">NBE Debit</span>
                     </button>
                 </div>
             </div>
@@ -1381,17 +1381,17 @@ export const ExtractsStatementsHub: React.FC = () => {
                 <div className="space-y-6">
                     {/* Interactive Controls Bar (Hidden in Print) */}
                     {!printPreviewMode && (
-                        <div className="print:hidden bg-slate-900/90 border border-slate-800 rounded-2xl p-5 space-y-4">
+                        <div className="print:hidden bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 space-y-4">
                             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                                 <div className="flex flex-wrap items-center gap-3">
                                     <div>
-                                        <label className="block text-[11px] font-bold text-slate-400 mb-1">
+                                        <label className="block text-[11px] font-bold text-[#192631]/70 mb-1">
                                             المشروع (Project / Cost Center)
                                         </label>
                                         <select
                                             value={selectedProjectCode}
                                             onChange={(e) => setSelectedProjectCode(e.target.value)}
-                                            className="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-xs font-bold text-white focus:border-[#C5A059] outline-none"
+                                            className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3.5 py-2 text-xs font-bold text-[#192631] focus:border-[#e04b2a] outline-none"
                                         >
                                             <option value="C096_Michael & Mona_2026_02_16_Azad-5th settlement">
                                                 C096_Michael & Mona_2026_02_16_Azad-5th settlement (Contract 000055)
@@ -1406,7 +1406,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                     </div>
 
                                     <div>
-                                        <label className="block text-[11px] font-bold text-slate-400 mb-1">
+                                        <label className="block text-[11px] font-bold text-[#192631]/70 mb-1">
                                             اختر المستخلص التراكمي (Cumulative Extract Selector)
                                         </label>
                                         <div className="flex flex-wrap items-center gap-1.5">
@@ -1416,8 +1416,8 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                     onClick={() => setActiveExtractNo(ext.extractNo)}
                                                     className={`px-3 py-2 rounded-xl text-xs font-extrabold transition-all border ${
                                                         activeExtractNo === ext.extractNo
-                                                            ? 'bg-[#C5A059] text-[#071a2f] border-[#C5A059]'
-                                                            : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-600'
+                                                            ? 'bg-[#e04b2a] text-[#071a2f] border-[#e04b2a]'
+                                                            : 'bg-[#f5f5f5]/90 text-[#192631]/85 border-[#192631]/10 hover:border-slate-600'
                                                     }`}
                                                 >
                                                     Extract {ext.extractNo} ({ext.worksDuringDate})
@@ -1425,7 +1425,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             ))}
                                             <button
                                                 onClick={handleCreateNextExtract}
-                                                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold bg-blue-600/20 text-blue-300 border border-blue-500/40 hover:bg-blue-600/30 transition-all"
+                                                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold bg-blue-600/20 text-[#192631] border border-blue-500/40 hover:bg-blue-600/30 transition-all"
                                                 title="ترحيل إجمالي الكميات الحالية لتصبح كميات سابقة في المستخلص الجديد"
                                             >
                                                 <Plus className="w-3.5 h-3.5" />
@@ -1440,8 +1440,8 @@ export const ExtractsStatementsHub: React.FC = () => {
                                         onClick={handleToggleExtractApproval}
                                         className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold border transition-all ${
                                             activeExtract.status === 'Approved (معتمد)'
-                                                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                                                : 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                                                ? 'bg-[#123524]/10 text-[#123524] border-[#123524]/25'
+                                                : 'bg-amber-500/20 text-[#b45309] border-amber-500/40'
                                         }`}
                                     >
                                         <CheckCircle2 className="w-4 h-4" />
@@ -1450,7 +1450,7 @@ export const ExtractsStatementsHub: React.FC = () => {
 
                                     <button
                                         onClick={() => setPrintPreviewMode(true)}
-                                        className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#C5A059]/20 text-[#C5A059] border border-[#C5A059]/40 hover:bg-[#C5A059]/30"
+                                        className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#e04b2a]/20 text-[#e04b2a] border border-[#e04b2a]/40 hover:bg-[#e04b2a]/30"
                                     >
                                         <Printer className="w-4 h-4" />
                                         <span>طباعة المستخلص بالتصميم الرسمي</span>
@@ -1459,7 +1459,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                             </div>
 
                             {/* Filter by Division & Search */}
-                            <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 pt-3 border-t border-slate-800">
+                            <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 pt-3 border-t border-[#192631]/10">
                                 <div className="flex flex-wrap items-center gap-1.5">
                                     {[
                                         { code: 'ALL', label: 'كل الأقسام (28)' },
@@ -1480,7 +1480,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             className={`px-2.5 py-1.5 rounded-lg text-[11px] font-bold transition-all ${
                                                 divisionFilter === div.code
                                                     ? 'bg-blue-600 text-white'
-                                                    : 'bg-slate-950 text-slate-400 hover:text-white border border-slate-800'
+                                                    : 'bg-[#f5f5f5]/90 text-[#192631]/70 hover:text-[#192631] border border-[#192631]/10'
                                             }`}
                                         >
                                             {div.label}
@@ -1489,13 +1489,13 @@ export const ExtractsStatementsHub: React.FC = () => {
                                 </div>
 
                                 <div className="relative min-w-[240px]">
-                                    <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                                    <Search className="w-4 h-4 text-[#192631]/70 absolute left-3 top-1/2 -translate-y-1/2" />
                                     <input
                                         type="text"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                         placeholder="بحث بالكود أو البند (مثال: DIV.07 أو Gypsum)..."
-                                        className="w-full bg-slate-950 border border-slate-700 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white focus:border-[#C5A059] outline-none"
+                                        className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl pl-9 pr-3 py-1.5 text-xs text-[#192631] focus:border-[#e04b2a] outline-none"
                                     />
                                 </div>
                             </div>
@@ -1506,38 +1506,38 @@ export const ExtractsStatementsHub: React.FC = () => {
                         INTERACTIVE DARK VIEW vs OFFICIAL WHITE PAPER PRINT VIEW (PDF 1)
                        ==================================================================== */}
                     {!printPreviewMode ? (
-                        <div className="bg-slate-900/95 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                        <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl overflow-hidden shadow-xl">
                             {/* Interactive Table Header Banner */}
-                            <div className="bg-slate-950/90 px-5 py-4 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                            <div className="bg-[#f5f5f5]/90 px-5 py-4 border-b border-[#192631]/10 flex flex-wrap items-center justify-between gap-4">
                                 <div>
                                     <div className="flex items-center gap-3">
-                                        <span className="text-sm font-black text-white">
+                                        <span className="text-sm font-black text-[#192631]">
                                             Project {selectedProjectCode}
                                         </span>
-                                        <span className="px-2.5 py-0.5 rounded-md bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-extrabold">
+                                        <span className="px-2.5 py-0.5 rounded-md bg-rose-500/20 text-red-700 border border-rose-500/30 text-xs font-extrabold">
                                             {activeExtract.titleEn} {activeExtract.titleAr}
                                         </span>
                                     </div>
-                                    <div className="text-xs text-slate-400 mt-1 flex flex-wrap items-center gap-4">
+                                    <div className="text-xs text-[#192631]/70 mt-1 flex flex-wrap items-center gap-4">
                                         <span>
-                                            <strong className="text-slate-200">Owner:</strong> Michael Saber
+                                            <strong className="text-[#192631]">Owner:</strong> Michael Saber
                                         </span>
                                         <span>
-                                            <strong className="text-slate-200">ContractNo:</strong> 000055
+                                            <strong className="text-[#192631]">ContractNo:</strong> 000055
                                         </span>
                                         <span>
-                                            <strong className="text-slate-200">ContractDate:</strong> 23/06/2026
+                                            <strong className="text-[#192631]">ContractDate:</strong> 23/06/2026
                                         </span>
                                         <span>
-                                            <strong className="text-slate-200">Works During Date:</strong>{' '}
+                                            <strong className="text-[#192631]">Works During Date:</strong>{' '}
                                             {activeExtract.worksDuringDate}
                                         </span>
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <span className="text-[11px] text-slate-400 block">
-                                        يمكنك تعديل <strong className="text-[#C5A059]">Current Quantity</strong> و{' '}
-                                        <strong className="text-[#C5A059]">Rate %</strong> مباشرة لإعادة حساب المستخلص لحظياً
+                                    <span className="text-[11px] text-[#192631]/70 block">
+                                        يمكنك تعديل <strong className="text-[#e04b2a]">Current Quantity</strong> و{' '}
+                                        <strong className="text-[#e04b2a]">Rate %</strong> مباشرة لإعادة حساب المستخلص لحظياً
                                     </span>
                                 </div>
                             </div>
@@ -1546,36 +1546,36 @@ export const ExtractsStatementsHub: React.FC = () => {
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left border-collapse">
                                     <thead>
-                                        <tr className="bg-[#2c529d] text-white text-[11px] font-extrabold uppercase tracking-wider">
-                                            <th className="py-3 px-3 border-r border-white/15">Code</th>
-                                            <th className="py-3 px-3 border-r border-white/15 min-w-[260px]">Item Description</th>
-                                            <th className="py-3 px-2.5 border-r border-white/15 text-center">Unit</th>
-                                            <th className="py-3 px-2.5 border-r border-white/15 text-right">Contract Qty</th>
-                                            <th className="py-3 px-2.5 border-r border-white/15 text-right">Price</th>
-                                            <th className="py-3 px-2.5 border-r border-white/15 text-right bg-slate-900/30">
+                                        <tr className="bg-[#2c529d] text-[#192631] text-[11px] font-extrabold uppercase tracking-wider">
+                                            <th className="py-3 px-3 border-r border-[#192631]/10">Code</th>
+                                            <th className="py-3 px-3 border-r border-[#192631]/10 min-w-[260px]">Item Description</th>
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-center">Unit</th>
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right">Contract Qty</th>
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right">Price</th>
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right bg-white/80 backdrop-blur-md">
                                                 Previous Qty
                                             </th>
-                                            <th className="py-3 px-2.5 border-r border-white/15 text-right bg-amber-500/25 text-amber-200">
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right bg-amber-500/25 text-[#b45309]">
                                                 Current Qty (جاري)
                                             </th>
-                                            <th className="py-3 px-2.5 border-r border-white/15 text-right bg-slate-900/30">
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right bg-white/80 backdrop-blur-md">
                                                 Total Qty
                                             </th>
-                                            <th className="py-3 px-3 border-r border-white/15 text-right">TillNowSales</th>
-                                            <th className="py-3 px-3 border-r border-white/15 text-right">Qty*Price</th>
-                                            <th className="py-3 px-2.5 border-r border-white/15 text-center bg-amber-500/25 text-amber-200">
+                                            <th className="py-3 px-3 border-r border-[#192631]/10 text-right">TillNowSales</th>
+                                            <th className="py-3 px-3 border-r border-[#192631]/10 text-right">Qty*Price</th>
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-center bg-amber-500/25 text-[#b45309]">
                                                 Rate %
                                             </th>
-                                            <th className="py-3 px-3 text-right bg-emerald-900/40 text-emerald-200">Net</th>
+                                            <th className="py-3 px-3 text-right bg-emerald-900/40 text-[#123524]">Net</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-slate-800 text-xs">
+                                    <tbody className="divide-y divide-[#192631]/10 text-xs">
                                         {groupedDivisions.map(([divTitle, items]) => (
                                             <React.Fragment key={divTitle}>
-                                                <tr className="bg-slate-950/90 border-y border-slate-800">
+                                                <tr className="bg-[#f5f5f5]/90 border-y border-[#192631]/10">
                                                     <td
                                                         colSpan={12}
-                                                        className="py-2 px-4 text-xs font-extrabold text-[#C5A059] tracking-wide"
+                                                        className="py-2 px-4 text-xs font-extrabold text-[#e04b2a] tracking-wide"
                                                     >
                                                         {divTitle}
                                                     </td>
@@ -1588,38 +1588,38 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                             className={`transition-colors ${
                                                                 isCurrentActive
                                                                     ? 'bg-amber-500/5 hover:bg-amber-500/10'
-                                                                    : 'hover:bg-slate-800/60'
+                                                                    : 'hover:bg-[#192631]/[0.05]'
                                                             }`}
                                                         >
-                                                            <td className="py-2.5 px-3 font-mono font-bold text-blue-300 border-r border-slate-800/80 whitespace-nowrap">
+                                                            <td className="py-2.5 px-3 font-mono font-bold text-[#192631] border-r border-[#192631]/10 whitespace-nowrap">
                                                                 {row.code}
                                                             </td>
-                                                            <td className="py-2.5 px-3 border-r border-slate-800/80">
-                                                                <div className="font-semibold text-slate-100 leading-snug">
+                                                            <td className="py-2.5 px-3 border-r border-[#192631]/10">
+                                                                <div className="font-semibold text-[#192631] leading-snug">
                                                                     {row.item}
                                                                 </div>
                                                                 {row.itemAr && (
                                                                     <div
-                                                                        className="text-[11px] text-slate-400 mt-0.5"
+                                                                        className="text-[11px] text-[#192631]/70 mt-0.5"
                                                                         dir="rtl"
                                                                     >
                                                                         {row.itemAr}
                                                                     </div>
                                                                 )}
                                                             </td>
-                                                            <td className="py-2.5 px-2.5 text-center font-mono font-bold text-slate-300 border-r border-slate-800/80">
+                                                            <td className="py-2.5 px-2.5 text-center font-mono font-bold text-[#192631]/85 border-r border-[#192631]/10">
                                                                 {row.unit}
                                                             </td>
-                                                            <td className="py-2.5 px-2.5 text-right font-mono text-slate-300 border-r border-slate-800/80">
+                                                            <td className="py-2.5 px-2.5 text-right font-mono text-[#192631]/85 border-r border-[#192631]/10">
                                                                 {formatCurrency(row.contractQty, 2)}
                                                             </td>
-                                                            <td className="py-2.5 px-2.5 text-right font-mono text-slate-200 border-r border-slate-800/80 whitespace-nowrap">
+                                                            <td className="py-2.5 px-2.5 text-right font-mono text-[#192631] border-r border-[#192631]/10 whitespace-nowrap">
                                                                 {formatIntEGP(row.displayPrice)}
                                                             </td>
-                                                            <td className="py-2.5 px-2.5 text-right font-mono text-slate-400 border-r border-slate-800/80 bg-slate-950/40">
+                                                            <td className="py-2.5 px-2.5 text-right font-mono text-[#192631]/70 border-r border-[#192631]/10 bg-[#f5f5f5]/90">
                                                                 {formatCurrency(row.previousQty, 2)}
                                                             </td>
-                                                            <td className="py-2 px-2 text-right border-r border-slate-800/80 bg-amber-500/10">
+                                                            <td className="py-2 px-2 text-right border-r border-[#192631]/10 bg-amber-500/10">
                                                                 <input
                                                                     type="number"
                                                                     step="0.5"
@@ -1634,21 +1634,21 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                                     }
                                                                     className={`w-20 text-right font-mono font-extrabold text-xs px-2 py-1 rounded-lg border outline-none ${
                                                                         row.currentQty > 0
-                                                                            ? 'bg-amber-500/20 text-amber-200 border-amber-400/50'
-                                                                            : 'bg-slate-950 text-slate-300 border-slate-700'
+                                                                            ? 'bg-amber-500/20 text-[#b45309] border-amber-400/50'
+                                                                            : 'bg-[#f5f5f5]/90 text-[#192631]/85 border-[#192631]/10'
                                                                     }`}
                                                                 />
                                                             </td>
-                                                            <td className="py-2.5 px-2.5 text-right font-mono font-bold text-white border-r border-slate-800/80 bg-slate-950/40">
+                                                            <td className="py-2.5 px-2.5 text-right font-mono font-bold text-[#192631] border-r border-[#192631]/10 bg-[#f5f5f5]/90">
                                                                 {formatCurrency(row.totalQty, 2)}
                                                             </td>
-                                                            <td className="py-2.5 px-3 text-right font-mono font-semibold text-slate-200 border-r border-slate-800/80 whitespace-nowrap">
+                                                            <td className="py-2.5 px-3 text-right font-mono font-semibold text-[#192631] border-r border-[#192631]/10 whitespace-nowrap">
                                                                 {formatIntEGP(row.tillNowSales)}
                                                             </td>
-                                                            <td className="py-2.5 px-3 text-right font-mono text-slate-400 border-r border-slate-800/80 whitespace-nowrap">
+                                                            <td className="py-2.5 px-3 text-right font-mono text-[#192631]/70 border-r border-[#192631]/10 whitespace-nowrap">
                                                                 {formatIntEGP(row.qtyTimesPrice)}
                                                             </td>
-                                                            <td className="py-2 px-2 text-center border-r border-slate-800/80 bg-amber-500/10">
+                                                            <td className="py-2 px-2 text-center border-r border-[#192631]/10 bg-amber-500/10">
                                                                 <div className="flex items-center justify-center gap-1">
                                                                     <input
                                                                         type="number"
@@ -1663,12 +1663,12 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                                                 parseFloat(e.target.value) || 0
                                                                             )
                                                                         }
-                                                                        className="w-14 text-center font-mono font-extrabold text-xs px-1.5 py-1 rounded-lg bg-slate-950 text-[#C5A059] border border-slate-700 outline-none"
+                                                                        className="w-14 text-center font-mono font-extrabold text-xs px-1.5 py-1 rounded-lg bg-[#f5f5f5]/90 text-[#e04b2a] border border-[#192631]/10 outline-none"
                                                                     />
-                                                                    <span className="text-[10px] text-slate-400">%</span>
+                                                                    <span className="text-[10px] text-[#192631]/70">%</span>
                                                                 </div>
                                                             </td>
-                                                            <td className="py-2.5 px-3 text-right font-mono font-extrabold text-emerald-300 bg-emerald-950/20 whitespace-nowrap">
+                                                            <td className="py-2.5 px-3 text-right font-mono font-extrabold text-[#123524] bg-emerald-950/20 whitespace-nowrap">
                                                                 {formatIntEGP(row.net)}
                                                             </td>
                                                         </tr>
@@ -1681,20 +1681,20 @@ export const ExtractsStatementsHub: React.FC = () => {
                             </div>
 
                             {/* Bottom Grid: Purchasing Orders Breakdown + Official PDF 1 Summary Box */}
-                            <div className="p-6 bg-slate-950/80 border-t border-slate-800 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                            <div className="p-6 bg-[#f5f5f5]/90 border-t border-[#192631]/10 grid grid-cols-1 lg:grid-cols-12 gap-6">
                                 {/* Left 7 Cols: Client Purchasing Orders (47,079 EGP) & Approval Signatures */}
                                 <div className="lg:col-span-7 space-y-4">
-                                    <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+                                    <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-xl p-4">
                                         <div className="flex items-center justify-between mb-3">
                                             <div>
-                                                <h4 className="text-xs font-extrabold text-[#C5A059] uppercase tracking-wider">
+                                                <h4 className="text-xs font-extrabold text-[#e04b2a] uppercase tracking-wider">
                                                     PURCHASING ORDERS (أوامر شراء لصالح العميل محملة على المستخلص)
                                                 </h4>
-                                                <p className="text-[11px] text-slate-400">
+                                                <p className="text-[11px] text-[#192631]/70">
                                                     إجمالي المشتريات المحملة على المستخلص: {formatIntEGP(computedExtract.purchasingOrdersTotal)}
                                                 </p>
                                             </div>
-                                            <span className="px-2.5 py-1 rounded-lg bg-blue-500/15 text-blue-300 text-xs font-mono font-bold">
+                                            <span className="px-2.5 py-1 rounded-lg bg-blue-500/15 text-[#192631] text-xs font-mono font-bold">
                                                 47,079.00 EGP
                                             </span>
                                         </div>
@@ -1702,16 +1702,16 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             {purchasingOrders.map((po) => (
                                                 <div
                                                     key={po.id}
-                                                    className="flex items-center justify-between bg-slate-950/80 border border-slate-800/80 rounded-lg px-3 py-2 text-xs"
+                                                    className="flex items-center justify-between bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-lg px-3 py-2 text-xs"
                                                 >
                                                     <div>
-                                                        <span className="font-mono font-bold text-blue-300 mr-2">
+                                                        <span className="font-mono font-bold text-[#192631] mr-2">
                                                             {po.poCode}
                                                         </span>
-                                                        <span className="text-slate-200 font-semibold">{po.vendor}</span>
-                                                        <p className="text-[11px] text-slate-400 mt-0.5">{po.description}</p>
+                                                        <span className="text-[#192631] font-semibold">{po.vendor}</span>
+                                                        <p className="text-[11px] text-[#192631]/70 mt-0.5">{po.description}</p>
                                                     </div>
-                                                    <div className="text-right font-mono font-bold text-white">
+                                                    <div className="text-right font-mono font-bold text-[#192631]">
                                                         {formatIntEGP(po.amount)}
                                                     </div>
                                                 </div>
@@ -1721,98 +1721,98 @@ export const ExtractsStatementsHub: React.FC = () => {
 
                                     {/* Signature Blocks */}
                                     <div className="grid grid-cols-3 gap-3">
-                                        <div className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 text-center">
-                                            <div className="text-[11px] text-slate-400 font-bold">Technical Office</div>
-                                            <div className="text-xs font-extrabold text-white mt-1">Eng. Pierre Safwat</div>
-                                            <div className="text-[10px] text-emerald-400 mt-1">Printed By: Pierre Afifi</div>
+                                        <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-xl p-3.5 text-center">
+                                            <div className="text-[11px] text-[#192631]/70 font-bold">Technical Office</div>
+                                            <div className="text-xs font-extrabold text-[#192631] mt-1">Eng. Pierre Safwat</div>
+                                            <div className="text-[10px] text-[#123524] mt-1">Printed By: Pierre Afifi</div>
                                         </div>
-                                        <div className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 text-center">
-                                            <div className="text-[11px] text-slate-400 font-bold">General Manager</div>
-                                            <div className="text-xs font-extrabold text-white mt-1">Nexus Contracting</div>
-                                            <div className="text-[10px] text-amber-300 mt-1">{activeExtract.status}</div>
+                                        <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-xl p-3.5 text-center">
+                                            <div className="text-[11px] text-[#192631]/70 font-bold">General Manager</div>
+                                            <div className="text-xs font-extrabold text-[#192631] mt-1">Nexus Contracting</div>
+                                            <div className="text-[10px] text-[#b45309] mt-1">{activeExtract.status}</div>
                                         </div>
-                                        <div className="bg-slate-900 border border-slate-800 rounded-xl p-3.5 text-center">
-                                            <div className="text-[11px] text-slate-400 font-bold">Owner / Client Approval</div>
-                                            <div className="text-xs font-extrabold text-rose-400 mt-1">Michael Saber</div>
-                                            <div className="text-[10px] text-slate-400 mt-1">ContractNo: 000055</div>
+                                        <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-xl p-3.5 text-center">
+                                            <div className="text-[11px] text-[#192631]/70 font-bold">Owner / Client Approval</div>
+                                            <div className="text-xs font-extrabold text-red-700 mt-1">Michael Saber</div>
+                                            <div className="text-[10px] text-[#192631]/70 mt-1">ContractNo: 000055</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* Right 5 Cols: Exact 10-Row Summary Table from PDF 1 Page 2 & Page 3 */}
                                 <div className="lg:col-span-5">
-                                    <div className="rounded-xl overflow-hidden border border-slate-700 shadow-lg">
-                                        <div className="bg-[#2c529d] text-white px-4 py-2.5 text-xs font-extrabold flex items-center justify-between">
+                                    <div className="rounded-xl overflow-hidden border border-[#192631]/10 shadow-lg">
+                                        <div className="bg-[#2c529d] text-[#192631] px-4 py-2.5 text-xs font-extrabold flex items-center justify-between">
                                             <span>ملخص المستخلص التراكمي (PDF 1 Summary)</span>
                                             <span className="font-mono">{activeExtract.titleEn}</span>
                                         </div>
-                                        <div className="divide-y divide-slate-800 bg-slate-900 text-xs">
+                                        <div className="divide-y divide-[#192631]/10 bg-white/80 backdrop-blur-md text-xs">
                                             <div className="flex justify-between items-center px-4 py-2.5">
-                                                <span className="font-bold text-blue-300">Total Actual Work</span>
-                                                <span className="font-mono font-extrabold text-white">
+                                                <span className="font-bold text-[#192631]">Total Actual Work</span>
+                                                <span className="font-mono font-extrabold text-[#192631]">
                                                     {formatIntEGP(computedExtract.totalActualWork)}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center px-4 py-2.5">
-                                                <span className="font-bold text-blue-300">Purchaising Orders</span>
-                                                <span className="font-mono font-extrabold text-white">
+                                                <span className="font-bold text-[#192631]">Purchaising Orders</span>
+                                                <span className="font-mono font-extrabold text-[#192631]">
                                                     {formatIntEGP(computedExtract.purchasingOrdersTotal)}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center px-4 py-2.5">
-                                                <span className="font-bold text-blue-300">Ded Value Price</span>
-                                                <span className="font-mono font-bold text-slate-300">
+                                                <span className="font-bold text-[#192631]">Ded Value Price</span>
+                                                <span className="font-mono font-bold text-[#192631]/85">
                                                     {formatIntEGP(computedExtract.dedValuePrice)}
                                                 </span>
                                             </div>
-                                            <div className="flex justify-between items-center px-4 py-2.5 bg-slate-950/60">
-                                                <span className="font-extrabold text-[#C5A059]">Total Work Achieved</span>
-                                                <span className="font-mono font-black text-[#C5A059] text-sm">
+                                            <div className="flex justify-between items-center px-4 py-2.5 bg-[#f5f5f5]/90">
+                                                <span className="font-extrabold text-[#e04b2a]">Total Work Achieved</span>
+                                                <span className="font-mono font-black text-[#e04b2a] text-sm">
                                                     {formatIntEGP(computedExtract.totalWorkAchieved)}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center px-4 py-2">
-                                                <span className="font-bold text-blue-300">Advanced Amount</span>
-                                                <span className="font-mono text-slate-400">
+                                                <span className="font-bold text-[#192631]">Advanced Amount</span>
+                                                <span className="font-mono text-[#192631]/70">
                                                     {formatIntEGP(computedExtract.advancedAmount)}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center px-4 py-2">
-                                                <span className="font-bold text-blue-300">TotalWorkGuarantee</span>
-                                                <span className="font-mono text-slate-400">
+                                                <span className="font-bold text-[#192631]">TotalWorkGuarantee</span>
+                                                <span className="font-mono text-[#192631]/70">
                                                     {formatIntEGP(computedExtract.workGuarantee)}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center px-4 py-2">
-                                                <span className="font-bold text-blue-300">Total Guarantee Final</span>
-                                                <span className="font-mono text-slate-400">
+                                                <span className="font-bold text-[#192631]">Total Guarantee Final</span>
+                                                <span className="font-mono text-[#192631]/70">
                                                     {formatIntEGP(computedExtract.guaranteeFinal)}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center px-4 py-2">
-                                                <span className="font-bold text-blue-300">Vat</span>
-                                                <span className="font-mono text-slate-400">
+                                                <span className="font-bold text-[#192631]">Vat</span>
+                                                <span className="font-mono text-[#192631]/70">
                                                     {formatIntEGP(computedExtract.vatAmount)}
                                                 </span>
                                             </div>
-                                            <div className="flex justify-between items-center px-4 py-2.5 bg-slate-950/40">
+                                            <div className="flex justify-between items-center px-4 py-2.5 bg-[#f5f5f5]/90">
                                                 <div>
-                                                    <span className="font-bold text-blue-300 block">
+                                                    <span className="font-bold text-[#192631] block">
                                                         Total Received Payment (Previous Extracts)
                                                     </span>
-                                                    <span className="text-[10px] text-slate-400">
+                                                    <span className="text-[10px] text-[#192631]/70">
                                                         سابق أعمال مستخلصات (1–3): 745,073 ج.م
                                                     </span>
                                                 </div>
-                                                <span className="font-mono font-bold text-amber-300">
+                                                <span className="font-mono font-bold text-[#b45309]">
                                                     {formatIntEGP(computedExtract.previousWorksReceived)}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between items-center px-4 py-3.5 bg-rose-950/40 border-t border-rose-500/30">
-                                                <span className="font-black text-white text-sm">
+                                                <span className="font-black text-[#192631] text-sm">
                                                     Total Net (صافي المستخلص الحالي)
                                                 </span>
-                                                <span className="font-mono font-black text-rose-400 text-base">
+                                                <span className="font-mono font-black text-red-700 text-base">
                                                     {formatIntEGP(computedExtract.totalNetPayable)}
                                                 </span>
                                             </div>
@@ -1831,7 +1831,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                 {/* Left: NEXUS Logo & Address */}
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-3">
-                                        <div className="w-12 h-12 bg-[#e64a3b] text-white font-black text-3xl flex items-center justify-center rounded-sm tracking-tighter">
+                                        <div className="w-12 h-12 bg-[#e64a3b] text-[#192631] font-black text-3xl flex items-center justify-center rounded-sm tracking-tighter">
                                             N
                                         </div>
                                         <div>
@@ -1877,7 +1877,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                             {/* PDF 1 12-Column Table */}
                             <table className="w-full border-collapse border border-neutral-600 text-[11px] text-black">
                                 <thead>
-                                    <tr className="bg-[#3b62b8] text-white font-bold">
+                                    <tr className="bg-[#3b62b8] text-[#192631] font-bold">
                                         <th rowSpan={2} className="border border-neutral-500 px-1.5 py-2 text-left w-14">
                                             Code
                                         </th>
@@ -1909,7 +1909,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             Net
                                         </th>
                                     </tr>
-                                    <tr className="bg-[#3b62b8] text-white font-bold">
+                                    <tr className="bg-[#3b62b8] text-[#192631] font-bold">
                                         <th className="border border-neutral-500 px-1.5 py-1 text-center w-16 font-normal">
                                             previous Quantity
                                         </th>
@@ -1970,7 +1970,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                 <table className="w-[340px] border-collapse border border-neutral-600 text-xs">
                                     <tbody>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right w-44">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right w-44">
                                                 Total Actual Work
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
@@ -1978,7 +1978,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
                                                 Purchaising Orders
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
@@ -1986,7 +1986,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
                                                 Ded Value Price
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
@@ -1994,7 +1994,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
                                                 Total Work Achieved
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
@@ -2002,7 +2002,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
                                                 Advanced Amount
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
@@ -2010,7 +2010,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
                                                 TotalWorkGuarantee
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
@@ -2018,7 +2018,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
                                                 Total Guarantee Final
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
@@ -2026,7 +2026,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
                                                 Vat
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
@@ -2034,7 +2034,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
                                                 Total Received Payment
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
@@ -2042,7 +2042,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-white font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
                                                 Total Net
                                             </td>
                                             <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-black text-[#e62e25]">
@@ -2083,40 +2083,40 @@ export const ExtractsStatementsHub: React.FC = () => {
                 <div className="space-y-6">
                     {/* Interactive Filter & Action Bar */}
                     {!printPreviewMode && (
-                        <div className="print:hidden bg-slate-900/90 border border-slate-800 rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div className="print:hidden bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             <div className="flex flex-wrap items-center gap-4">
-                                <div className="bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5">
-                                    <span className="text-[10px] text-slate-400 block font-bold">Account Code & Name</span>
-                                    <span className="text-sm font-black text-white">
-                                        101020069 — <span className="text-[#C5A059]">Michael Saber</span>
+                                <div className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-4 py-2.5">
+                                    <span className="text-[10px] text-[#192631]/70 block font-bold">Account Code & Name</span>
+                                    <span className="text-sm font-black text-[#192631]">
+                                        101020069 — <span className="text-[#e04b2a]">Michael Saber</span>
                                     </span>
                                 </div>
 
-                                <div className="bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5">
-                                    <span className="text-[10px] text-slate-400 block font-bold">مركز التكلفة (Cost Center)</span>
-                                    <span className="text-xs font-extrabold text-blue-300">
+                                <div className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-4 py-2.5">
+                                    <span className="text-[10px] text-[#192631]/70 block font-bold">مركز التكلفة (Cost Center)</span>
+                                    <span className="text-xs font-extrabold text-[#192631]">
                                         C096_Michael & Mona_2026_02_16_Azad-5th settlement
                                     </span>
                                 </div>
 
-                                <div className="flex items-center gap-2 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2">
-                                    <Calendar className="w-4 h-4 text-[#C5A059]" />
+                                <div className="flex items-center gap-2 bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2">
+                                    <Calendar className="w-4 h-4 text-[#e04b2a]" />
                                     <div className="text-xs">
-                                        <span className="text-slate-400 mr-1">من:</span>
+                                        <span className="text-[#192631]/70 mr-1">من:</span>
                                         <input
                                             type="date"
                                             value={dateFromFilter}
                                             onChange={(e) => setDateFromFilter(e.target.value)}
-                                            className="bg-transparent text-white font-mono outline-none"
+                                            className="bg-transparent text-[#192631] font-mono outline-none"
                                         />
                                     </div>
-                                    <div className="text-xs border-l border-slate-800 pl-2">
-                                        <span className="text-slate-400 mr-1">إلى:</span>
+                                    <div className="text-xs border-l border-[#192631]/10 pl-2">
+                                        <span className="text-[#192631]/70 mr-1">إلى:</span>
                                         <input
                                             type="date"
                                             value={dateToFilter}
                                             onChange={(e) => setDateToFilter(e.target.value)}
-                                            className="bg-transparent text-white font-mono outline-none"
+                                            className="bg-transparent text-[#192631] font-mono outline-none"
                                         />
                                     </div>
                                 </div>
@@ -2125,7 +2125,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                             <div className="flex flex-wrap items-center gap-2.5">
                                 <button
                                     onClick={() => setShowAddLedgerModal(true)}
-                                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-[#C5A059] text-[#071a2f] hover:bg-[#d4b06a] shadow-lg transition-all"
+                                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-[#e04b2a] text-[#071a2f] hover:bg-[#d4b06a] shadow-lg transition-all"
                                 >
                                     <Plus className="w-4 h-4" />
                                     <span>+ تسجيل دفعة عميل / ترحيل مستخلص للكشف</span>
@@ -2133,7 +2133,7 @@ export const ExtractsStatementsHub: React.FC = () => {
 
                                 <button
                                     onClick={() => setPrintPreviewMode(true)}
-                                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-white/10 text-white hover:bg-white/15 border border-white/15"
+                                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-[#192631]/[0.05] text-[#192631] hover:bg-white/15 border border-[#192631]/10"
                                 >
                                     <Printer className="w-4 h-4" />
                                     <span>طباعة كشف الحساب الرسمي (PDF 2)</span>
@@ -2143,24 +2143,24 @@ export const ExtractsStatementsHub: React.FC = () => {
                     )}
 
                     {!printPreviewMode ? (
-                        <div className="bg-slate-900/95 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-                            <div className="bg-slate-950 px-6 py-4 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
+                        <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl overflow-hidden shadow-xl">
+                            <div className="bg-[#f5f5f5]/90 px-6 py-4 border-b border-[#192631]/10 flex flex-wrap items-center justify-between gap-4">
                                 <div>
-                                    <h3 className="text-base font-black text-white">
+                                    <h3 className="text-base font-black text-[#192631]">
                                         كشف حساب عميل تفصيلي — Client Account Statement (PDF 2)
                                     </h3>
-                                    <p className="text-xs text-slate-400 mt-0.5">
+                                    <p className="text-xs text-[#192631]/70 mt-0.5">
                                         العميل: Michael Saber (كود الحساب: 101020069) · مركز التكلفة: C096_Michael & Mona_2026_02_16_Azad-5th settlement
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-4 text-xs font-mono">
-                                    <span className="px-3 py-1.5 rounded-lg bg-rose-500/15 text-rose-300 border border-rose-500/30 font-bold">
+                                    <span className="px-3 py-1.5 rounded-lg bg-rose-500/15 text-red-700 border border-rose-500/30 font-bold">
                                         إجمالي مدين (مستخلصات): {formatCurrency(computedLedger.totalDebit, 2)} EGP
                                     </span>
-                                    <span className="px-3 py-1.5 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold">
+                                    <span className="px-3 py-1.5 rounded-lg bg-[#123524]/10 text-[#123524] border border-[#123524]/25 font-bold">
                                         إجمالي دائن (دفعات): {formatCurrency(computedLedger.totalCredit, 2)} EGP
                                     </span>
-                                    <span className="px-3 py-1.5 rounded-lg bg-[#C5A059]/20 text-[#C5A059] border border-[#C5A059]/40 font-black">
+                                    <span className="px-3 py-1.5 rounded-lg bg-[#e04b2a]/20 text-[#e04b2a] border border-[#e04b2a]/40 font-black">
                                         الرصيد المستحق: {formatCurrency(computedLedger.finalBalance, 2)} EGP
                                     </span>
                                 </div>
@@ -2169,61 +2169,61 @@ export const ExtractsStatementsHub: React.FC = () => {
                             <div className="overflow-x-auto">
                                 <table className="w-full text-right border-collapse" dir="rtl">
                                     <thead>
-                                        <tr className="bg-[#3b62b8] text-white text-xs font-extrabold">
-                                            <th className="py-3.5 px-4 border-l border-white/15">التاريخ (Date)</th>
-                                            <th className="py-3.5 px-4 border-l border-white/15">نوع السند (Document Type)</th>
-                                            <th className="py-3.5 px-4 border-l border-white/15">رقم السند (Serial)</th>
-                                            <th className="py-3.5 px-4 border-l border-white/15">مدين (Debit — مستخلصات)</th>
-                                            <th className="py-3.5 px-4 border-l border-white/15">دائن (Credit — دفعات العميل)</th>
-                                            <th className="py-3.5 px-4 border-l border-white/15">الرصيد (Running Balance)</th>
+                                        <tr className="bg-[#3b62b8] text-[#192631] text-xs font-extrabold">
+                                            <th className="py-3.5 px-4 border-l border-[#192631]/10">التاريخ (Date)</th>
+                                            <th className="py-3.5 px-4 border-l border-[#192631]/10">نوع السند (Document Type)</th>
+                                            <th className="py-3.5 px-4 border-l border-[#192631]/10">رقم السند (Serial)</th>
+                                            <th className="py-3.5 px-4 border-l border-[#192631]/10">مدين (Debit — مستخلصات)</th>
+                                            <th className="py-3.5 px-4 border-l border-[#192631]/10">دائن (Credit — دفعات العميل)</th>
+                                            <th className="py-3.5 px-4 border-l border-[#192631]/10">الرصيد (Running Balance)</th>
                                             <th className="py-3.5 px-4">البيان / ملاحظات (Description)</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-slate-800 text-xs">
+                                    <tbody className="divide-y divide-[#192631]/10 text-xs">
                                         {computedLedger.rows.map((row, index) => (
                                             <tr
                                                 key={row.id}
                                                 className={
                                                     index % 2 === 1
                                                         ? 'bg-sky-950/25 hover:bg-sky-900/30'
-                                                        : 'bg-slate-900/60 hover:bg-slate-800/60'
+                                                        : 'bg-white/80 backdrop-blur-md hover:bg-[#192631]/[0.05]'
                                                 }
                                             >
-                                                <td className="py-3 px-4 font-mono font-bold text-slate-200 border-l border-slate-800">
+                                                <td className="py-3 px-4 font-mono font-bold text-[#192631] border-l border-[#192631]/10">
                                                     {row.date}
                                                 </td>
-                                                <td className="py-3 px-4 font-bold border-l border-slate-800">
+                                                <td className="py-3 px-4 font-bold border-l border-[#192631]/10">
                                                     <span
                                                         className={`px-2.5 py-1 rounded-md text-[11px] font-mono ${
                                                             row.docType === 'Contract'
-                                                                ? 'bg-amber-500/15 text-amber-300 border border-amber-500/30'
-                                                                : 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/30'
+                                                                ? 'bg-amber-500/15 text-[#b45309] border border-amber-500/30'
+                                                                : 'bg-[#123524]/10 text-[#123524] border border-[#123524]/25'
                                                         }`}
                                                     >
                                                         {row.docType}
                                                     </span>
                                                 </td>
-                                                <td className="py-3 px-4 font-mono font-extrabold text-blue-400 border-l border-slate-800">
+                                                <td className="py-3 px-4 font-mono font-extrabold text-[#192631] border-l border-[#192631]/10">
                                                     {row.serial}
                                                 </td>
-                                                <td className="py-3 px-4 font-mono font-bold text-rose-300 border-l border-slate-800">
+                                                <td className="py-3 px-4 font-mono font-bold text-red-700 border-l border-[#192631]/10">
                                                     {formatCurrency(row.debit, 2)}
                                                 </td>
-                                                <td className="py-3 px-4 font-mono font-bold text-emerald-300 border-l border-slate-800">
+                                                <td className="py-3 px-4 font-mono font-bold text-[#123524] border-l border-[#192631]/10">
                                                     {formatCurrency(row.credit, 2)}
                                                 </td>
                                                 <td
                                                     className={`py-3 px-4 font-mono font-black border-l border-slate-800 ${
-                                                        row.runningBalance < 0 ? 'text-emerald-400' : 'text-amber-300'
+                                                        row.runningBalance < 0 ? 'text-[#123524]' : 'text-[#b45309]'
                                                     }`}
                                                     dir="ltr"
                                                 >
                                                     {formatLedgerBalance(row.runningBalance)}
                                                 </td>
-                                                <td className="py-3 px-4 text-slate-200">
+                                                <td className="py-3 px-4 text-[#192631]">
                                                     <div className="font-bold">{row.description || '—'}</div>
                                                     {row.notes && (
-                                                        <div className="text-[11px] text-slate-400 mt-0.5">{row.notes}</div>
+                                                        <div className="text-[11px] text-[#192631]/70 mt-0.5">{row.notes}</div>
                                                     )}
                                                 </td>
                                             </tr>
@@ -2272,7 +2272,7 @@ export const ExtractsStatementsHub: React.FC = () => {
 
                                 <div className="text-right space-y-1">
                                     <div className="flex items-center justify-end gap-2.5 mb-2">
-                                        <div className="w-9 h-9 bg-[#e64a3b] text-white font-black text-xl flex items-center justify-center rounded-sm">
+                                        <div className="w-9 h-9 bg-[#e64a3b] text-[#192631] font-black text-xl flex items-center justify-center rounded-sm">
                                             N
                                         </div>
                                         <div className="text-left">
@@ -2291,7 +2291,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                             {/* PDF 2 Table */}
                             <table className="w-full border-collapse border border-neutral-400 text-xs text-black" dir="rtl">
                                 <thead>
-                                    <tr className="bg-[#3b62b8] text-white font-bold text-sm">
+                                    <tr className="bg-[#3b62b8] text-[#192631] font-bold text-sm">
                                         <th className="border border-neutral-400 py-2 px-3 text-right w-28">التاريخ</th>
                                         <th className="border border-neutral-400 py-2 px-3 text-right w-44">نوع السند</th>
                                         <th className="border border-neutral-400 py-2 px-3 text-right w-28">رقم السند</th>
@@ -2361,17 +2361,17 @@ export const ExtractsStatementsHub: React.FC = () => {
                 <div className="space-y-6">
                     {/* Top Action Bar */}
                     {!printPreviewMode && (
-                        <div className="print:hidden bg-slate-900/90 border border-slate-800 rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div className="print:hidden bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                             <div className="flex flex-wrap items-center gap-2.5">
-                                <span className="text-xs font-bold text-slate-400 mr-1">سجل طلبات الصرف (PR Vouchers):</span>
+                                <span className="text-xs font-bold text-[#192631]/70 mr-1">سجل طلبات الصرف (PR Vouchers):</span>
                                 {paymentRequests.map((pr) => (
                                     <button
                                         key={pr.id}
                                         onClick={() => setSelectedPrId(pr.id)}
                                         className={`px-3.5 py-2 rounded-xl text-xs font-extrabold transition-all border ${
                                             selectedPrId === pr.id
-                                                ? 'bg-[#C5A059] text-[#071a2f] border-[#C5A059]'
-                                                : 'bg-slate-950 text-slate-300 border-slate-800 hover:border-slate-600'
+                                                ? 'bg-[#e04b2a] text-[#071a2f] border-[#e04b2a]'
+                                                : 'bg-[#f5f5f5]/90 text-[#192631]/85 border-[#192631]/10 hover:border-slate-600'
                                         }`}
                                     >
                                         مسلسل {pr.serial} · {formatCurrency(pr.amount, 0)} {pr.currencyCode} ({pr.dateIso})
@@ -2382,7 +2382,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                             <div className="flex flex-wrap items-center gap-2.5">
                                 <button
                                     onClick={() => setShowNewPrModal(true)}
-                                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-[#C5A059] text-[#071a2f] hover:bg-[#d4b06a] shadow-lg"
+                                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-[#e04b2a] text-[#071a2f] hover:bg-[#d4b06a] shadow-lg"
                                 >
                                     <Plus className="w-4 h-4" />
                                     <span>+ إنشاء طلب صرف جديد (New PR)</span>
@@ -2390,7 +2390,7 @@ export const ExtractsStatementsHub: React.FC = () => {
 
                                 <button
                                     onClick={() => setPrintPreviewMode(true)}
-                                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-white/10 text-white hover:bg-white/15 border border-white/15"
+                                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-extrabold bg-[#192631]/[0.05] text-[#192631] hover:bg-white/15 border border-[#192631]/10"
                                 >
                                     <Printer className="w-4 h-4" />
                                     <span>معاينة وطباعة مستند الصرف الرسمي (PDF 3)</span>
@@ -2410,7 +2410,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                 {/* Logo & Address on Left */}
                                 <div className="mb-8">
                                     <div className="flex items-center gap-2.5 mb-2">
-                                        <div className="w-10 h-10 bg-[#e64a3b] text-white font-black text-2xl flex items-center justify-center rounded-sm">
+                                        <div className="w-10 h-10 bg-[#e64a3b] text-[#192631] font-black text-2xl flex items-center justify-center rounded-sm">
                                             N
                                         </div>
                                         <div>
@@ -2510,59 +2510,59 @@ export const ExtractsStatementsHub: React.FC = () => {
                         {/* Right Column: Approval Chain & POP Attachment Panel (Hidden in Print) */}
                         {!printPreviewMode && (
                             <div className="lg:col-span-4 space-y-4 print:hidden">
-                                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+                                <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 space-y-4">
                                     <div className="flex items-center justify-between">
-                                        <h3 className="text-sm font-black text-white flex items-center gap-2">
-                                            <ShieldCheck className="w-4 h-4 text-[#C5A059]" />
+                                        <h3 className="text-sm font-black text-[#192631] flex items-center gap-2">
+                                            <ShieldCheck className="w-4 h-4 text-[#e04b2a]" />
                                             <span>دورة اعتماد طلب الصرف & POP</span>
                                         </h3>
-                                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
                                             Serial #{activePr.serial}
                                         </span>
                                     </div>
 
                                     <div className="space-y-3 text-xs">
-                                        <div className="p-3 rounded-xl bg-slate-950 border border-emerald-500/30 flex items-start gap-3">
-                                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                        <div className="p-3 rounded-xl bg-[#f5f5f5]/90 border border-[#123524]/25 flex items-start gap-3">
+                                            <CheckCircle2 className="w-4 h-4 text-[#123524] shrink-0 mt-0.5" />
                                             <div>
-                                                <div className="font-bold text-white">1. إعداد الحسابات والمشتريات</div>
-                                                <div className="text-slate-400 mt-0.5">{activePr.preparedBy}</div>
+                                                <div className="font-bold text-[#192631]">1. إعداد الحسابات والمشتريات</div>
+                                                <div className="text-[#192631]/70 mt-0.5">{activePr.preparedBy}</div>
                                             </div>
                                         </div>
 
-                                        <div className="p-3 rounded-xl bg-slate-950 border border-emerald-500/30 flex items-start gap-3">
-                                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                        <div className="p-3 rounded-xl bg-[#f5f5f5]/90 border border-[#123524]/25 flex items-start gap-3">
+                                            <CheckCircle2 className="w-4 h-4 text-[#123524] shrink-0 mt-0.5" />
                                             <div>
-                                                <div className="font-bold text-white">2. مراجعة المكتب الفني والمشروعات</div>
-                                                <div className="text-slate-400 mt-0.5">{activePr.reviewedBy}</div>
+                                                <div className="font-bold text-[#192631]">2. مراجعة المكتب الفني والمشروعات</div>
+                                                <div className="text-[#192631]/70 mt-0.5">{activePr.reviewedBy}</div>
                                             </div>
                                         </div>
 
-                                        <div className="p-3 rounded-xl bg-slate-950 border border-emerald-500/30 flex items-start gap-3">
-                                            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                        <div className="p-3 rounded-xl bg-[#f5f5f5]/90 border border-[#123524]/25 flex items-start gap-3">
+                                            <CheckCircle2 className="w-4 h-4 text-[#123524] shrink-0 mt-0.5" />
                                             <div>
-                                                <div className="font-bold text-white">3. اعتماد الإدارة العليا والصرف البنكي</div>
-                                                <div className="text-slate-400 mt-0.5">{activePr.approvedBy}</div>
+                                                <div className="font-bold text-[#192631]">3. اعتماد الإدارة العليا والصرف البنكي</div>
+                                                <div className="text-[#192631]/70 mt-0.5">{activePr.approvedBy}</div>
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* POP (Proof of Payment) Section */}
-                                    <div className="pt-4 border-t border-slate-800 space-y-3">
-                                        <div className="text-xs font-extrabold text-[#C5A059]">
+                                    <div className="pt-4 border-t border-[#192631]/10 space-y-3">
+                                        <div className="text-xs font-extrabold text-[#e04b2a]">
                                             مستند إثبات التحويل البنكي (POP — Proof of Payment)
                                         </div>
                                         {activePr.popFileName ? (
-                                            <div className="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-500/40 space-y-1.5">
+                                            <div className="p-3.5 rounded-xl bg-emerald-950/30 border border-[#123524]/25 space-y-1.5">
                                                 <div className="flex items-center justify-between">
-                                                    <span className="text-xs font-mono font-bold text-emerald-300">
+                                                    <span className="text-xs font-mono font-bold text-[#123524]">
                                                         {activePr.popFileName}
                                                     </span>
-                                                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold">
+                                                    <span className="text-[10px] px-2 py-0.5 rounded bg-[#123524]/10 text-[#123524] font-bold">
                                                         Verified POP
                                                     </span>
                                                 </div>
-                                                <div className="text-[11px] text-slate-400">
+                                                <div className="text-[11px] text-[#192631]/70">
                                                     تم إرفاق إشعار التحويل البنكي من حساب ({activePr.bankAccount}) بتاريخ{' '}
                                                     {activePr.popUploadedAt}
                                                 </div>
@@ -2570,7 +2570,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                         ) : (
                                             <button
                                                 onClick={() => handleAttachPop(activePr.id)}
-                                                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/40 text-xs font-extrabold transition-all"
+                                                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 text-[#192631] border border-blue-500/40 text-xs font-extrabold transition-all"
                                             >
                                                 <Upload className="w-4 h-4" />
                                                 <span>إرفاق إشعار التحويل البنكي (Attach POP)</span>
@@ -2588,15 +2588,15 @@ export const ExtractsStatementsHub: React.FC = () => {
                 MODAL: RECORD CLIENT PAYMENT / POST EXTRACT TO LEDGER
                ======================================================================== */}
             {showAddLedgerModal && (
-                <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-                    <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h3 className="text-base font-black text-white">
+                <div className="fixed inset-0 z-50 bg-[#192631]/40 backdrop-blur-sm flex items-center justify-center p-4">
+                    <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+                        <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
+                            <h3 className="text-base font-black text-[#192631]">
                                 تسجيل حركة جديدة بكشف حساب العميل
                             </h3>
                             <button
                                 onClick={() => setShowAddLedgerModal(false)}
-                                className="text-slate-400 hover:text-white"
+                                className="text-[#192631]/70 hover:text-[#192631]"
                             >
                                 <X className="w-5 h-5" />
                             </button>
@@ -2604,11 +2604,11 @@ export const ExtractsStatementsHub: React.FC = () => {
 
                         <form onSubmit={handleAddLedgerEntry} className="space-y-4 text-xs">
                             <div>
-                                <label className="block text-slate-300 font-bold mb-1">نوع السند (Document Type)</label>
+                                <label className="block text-[#192631]/85 font-bold mb-1">نوع السند (Document Type)</label>
                                 <select
                                     value={newLedgerType}
                                     onChange={(e) => setNewLedgerType(e.target.value as any)}
-                                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-bold"
+                                    className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2.5 text-[#192631] font-bold"
                                 >
                                     <option value="Bank Transfer From Customer">
                                         Bank Transfer From Customer (دائن — دفعة من العميل)
@@ -2621,57 +2621,57 @@ export const ExtractsStatementsHub: React.FC = () => {
 
                             <div className="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label className="block text-slate-300 font-bold mb-1">التاريخ (DD/MM/YYYY)</label>
+                                    <label className="block text-[#192631]/85 font-bold mb-1">التاريخ (DD/MM/YYYY)</label>
                                     <input
                                         type="text"
                                         value={newLedgerDate}
                                         onChange={(e) => setNewLedgerDate(e.target.value)}
-                                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono"
+                                        className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-slate-300 font-bold mb-1">رقم السند (Serial)</label>
+                                    <label className="block text-[#192631]/85 font-bold mb-1">رقم السند (Serial)</label>
                                     <input
                                         type="text"
                                         value={newLedgerSerial}
                                         onChange={(e) => setNewLedgerSerial(e.target.value)}
-                                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono"
+                                        className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-slate-300 font-bold mb-1">القيمة بالجنيه المصري (Amount EGP)</label>
+                                <label className="block text-[#192631]/85 font-bold mb-1">القيمة بالجنيه المصري (Amount EGP)</label>
                                 <input
                                     type="number"
                                     step="0.01"
                                     value={newLedgerAmount}
                                     onChange={(e) => setNewLedgerAmount(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-mono font-bold text-sm"
+                                    className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2.5 text-[#192631] font-mono font-bold text-sm"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-slate-300 font-bold mb-1">البيان / ملاحظات</label>
+                                <label className="block text-[#192631]/85 font-bold mb-1">البيان / ملاحظات</label>
                                 <input
                                     type="text"
                                     value={newLedgerNotes}
                                     onChange={(e) => setNewLedgerNotes(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white"
+                                    className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                                 />
                             </div>
 
-                            <div className="flex justify-end gap-2 pt-3 border-t border-slate-800">
+                            <div className="flex justify-end gap-2 pt-3 border-t border-[#192631]/10">
                                 <button
                                     type="button"
                                     onClick={() => setShowAddLedgerModal(false)}
-                                    className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-bold"
+                                    className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-[#192631]/85 font-bold"
                                 >
                                     إلغاء
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-5 py-2 rounded-xl bg-[#C5A059] text-[#071a2f] font-extrabold"
+                                    className="px-5 py-2 rounded-xl bg-[#e04b2a] text-[#071a2f] font-extrabold"
                                 >
                                     حفظ وترحيل للكشف
                                 </button>
@@ -2685,15 +2685,15 @@ export const ExtractsStatementsHub: React.FC = () => {
                 MODAL: CREATE NEW OFFICIAL PAYMENT REQUEST VOUCHER (طلب صرف جديد)
                ======================================================================== */}
             {showNewPrModal && (
-                <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-                    <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h3 className="text-base font-black text-white">
+                <div className="fixed inset-0 z-50 bg-[#192631]/40 backdrop-blur-sm flex items-center justify-center p-4">
+                    <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+                        <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">
+                            <h3 className="text-base font-black text-[#192631]">
                                 إنشاء طلب صرف رسمي (Official Payment Request)
                             </h3>
                             <button
                                 onClick={() => setShowNewPrModal(false)}
-                                className="text-slate-400 hover:text-white"
+                                className="text-[#192631]/70 hover:text-[#192631]"
                             >
                                 <X className="w-5 h-5" />
                             </button>
@@ -2702,11 +2702,11 @@ export const ExtractsStatementsHub: React.FC = () => {
                         <form onSubmit={handleCreatePaymentRequest} className="space-y-3.5 text-xs">
                             <div className="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label className="block text-slate-300 font-bold mb-1">طريقة الدفع</label>
+                                    <label className="block text-[#192631]/85 font-bold mb-1">طريقة الدفع</label>
                                     <select
                                         value={newPrPaymentType}
                                         onChange={(e) => setNewPrPaymentType(e.target.value as any)}
-                                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold"
+                                        className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                                     >
                                         <option value="Bank Transfer">Bank Transfer</option>
                                         <option value="InstaPay">InstaPay</option>
@@ -2715,57 +2715,57 @@ export const ExtractsStatementsHub: React.FC = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-slate-300 font-bold mb-1">البنك / الخزينة</label>
+                                    <label className="block text-[#192631]/85 font-bold mb-1">البنك / الخزينة</label>
                                     <input
                                         type="text"
                                         value={newPrBank}
                                         onChange={(e) => setNewPrBank(e.target.value)}
-                                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold"
+                                        className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-bold"
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-slate-300 font-bold mb-1">المبلغ (EGP)</label>
+                                <label className="block text-[#192631]/85 font-bold mb-1">المبلغ (EGP)</label>
                                 <input
                                     type="number"
                                     value={newPrAmount}
                                     onChange={(e) => setNewPrAmount(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono font-bold text-sm"
+                                    className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono font-bold text-sm"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-slate-300 font-bold mb-1">المبلغ بالحروف (تفقيط)</label>
+                                <label className="block text-[#192631]/85 font-bold mb-1">المبلغ بالحروف (تفقيط)</label>
                                 <input
                                     type="text"
                                     value={newPrWords}
                                     onChange={(e) => setNewPrWords(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white"
+                                    className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631]"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-slate-300 font-bold mb-1">لأمر / المشروع (Order Of)</label>
+                                <label className="block text-[#192631]/85 font-bold mb-1">لأمر / المشروع (Order Of)</label>
                                 <input
                                     type="text"
                                     value={newPrProject}
                                     onChange={(e) => setNewPrProject(e.target.value)}
-                                    className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono"
+                                    className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
                                 />
                             </div>
 
-                            <div className="flex justify-end gap-2 pt-3 border-t border-slate-800">
+                            <div className="flex justify-end gap-2 pt-3 border-t border-[#192631]/10">
                                 <button
                                     type="button"
                                     onClick={() => setShowNewPrModal(false)}
-                                    className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-bold"
+                                    className="px-4 py-2 rounded-xl bg-[#192631]/[0.05] text-[#192631]/85 font-bold"
                                 >
                                     إلغاء
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-5 py-2 rounded-xl bg-[#C5A059] text-[#071a2f] font-extrabold"
+                                    className="px-5 py-2 rounded-xl bg-[#e04b2a] text-[#071a2f] font-extrabold"
                                 >
                                     إصدار طلب الصرف
                                 </button>

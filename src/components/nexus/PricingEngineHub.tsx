@@ -960,29 +960,29 @@ export const PricingEngineHub: React.FC = () => {
         new Intl.NumberFormat('en-EG', { maximumFractionDigits: 1 }).format(val);
 
     return (
-        <div className="space-y-6 text-slate-100">
+        <div className="space-y-6 text-[#192631]">
             {/* ====================================================================
                 1. TOP TENDER HEADER & CONTRACT LOCK BANNER
                ==================================================================== */}
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#14171f] via-[#101218] to-[#0d0f14] p-5 shadow-2xl">
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-5 border-b border-white/10">
+            <div className="rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-xl p-5 shadow-2xl">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-5 border-b border-[#192631]/10">
                     <div className="space-y-1">
                         <div className="flex items-center gap-2.5 flex-wrap">
-                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-orange-500/15 text-orange-400 border border-orange-500/30">
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-[#e04b2a]/10 text-[#e04b2a] border border-[#e04b2a]/25">
                                 <Calculator className="w-3.5 h-3.5" />
                                 Actpert Nexus R02 Pricing Engine
                             </span>
-                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-500/15 text-blue-300 border border-blue-500/30">
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-500/15 text-[#192631] border border-blue-500/30">
                                 34 Work Packages • 839 Standard Items
                             </span>
-                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
                                 Eng. Pierre Unit Rate Methodology
                             </span>
                         </div>
-                        <h2 className="text-xl md:text-2xl font-black text-white tracking-tight mt-1">
+                        <h2 className="text-xl md:text-2xl font-black text-[#192631] tracking-tight mt-1">
                             محرك التسعير الهندسي والتحليل التفصيلي للبنود والمقايسات (Nexus R02 Tender Hub)
                         </h2>
-                        <p className="text-xs text-slate-400">
+                        <p className="text-xs text-[#192631]/70">
                             تحليل أسعار الوحدات (خامات + هالك + سيتوكس + رمل + تشوين + مصنعيات + حماية) مع التوزيع النسبي التلقائي للمصاريف غير المباشرة ومحاكي التفاوض التجاري
                         </p>
                     </div>
@@ -992,7 +992,7 @@ export const PricingEngineHub: React.FC = () => {
                         {!isContractLocked ? (
                             <button
                                 onClick={handleLockContract}
-                                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs shadow-lg shadow-emerald-900/40 border border-emerald-400/30 transition-all cursor-pointer"
+                                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-[#192631] font-bold text-xs shadow-lg shadow-emerald-900/40 border border-emerald-400/30 transition-all cursor-pointer"
                             >
                                 <Lock className="w-4 h-4" />
                                 <span>Convert to Locked Contract (تحويل لمقايسة تعاقدية مشفرة ومغلقة)</span>
@@ -1000,7 +1000,7 @@ export const PricingEngineHub: React.FC = () => {
                         ) : (
                             <button
                                 onClick={handleUnlockContractOverride}
-                                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 font-bold text-xs border border-amber-500/40 transition-all cursor-pointer"
+                                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-[#b45309] font-bold text-xs border border-amber-500/40 transition-all cursor-pointer"
                             >
                                 <Unlock className="w-4 h-4" />
                                 <span>CEO Override / Create New Revision (فك القفل لإصدار مراجعة جديدة)</span>
@@ -1013,17 +1013,17 @@ export const PricingEngineHub: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-4">
                     {/* Project / Tender Selector */}
                     <div className="md:col-span-2">
-                        <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                        <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-wider mb-1.5">
                             Select Tender / Project (المشروع / العطاء)
                         </label>
                         <select
                             disabled={isContractLocked}
                             value={selectedTenderId}
                             onChange={(e) => handleSelectTender(e.target.value)}
-                            className="w-full rounded-xl bg-black/50 border border-white/15 px-3.5 py-2.5 text-sm font-bold text-white focus:outline-none focus:border-orange-500 disabled:opacity-60"
+                            className="w-full rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 px-3.5 py-2.5 text-sm font-bold text-[#192631] focus:outline-none focus:border-orange-500 disabled:opacity-60"
                         >
                             {TENDER_PROJECTS.map((proj) => (
-                                <option key={proj.id} value={proj.id} className="bg-[#14171f] text-white">
+                                <option key={proj.id} value={proj.id} className="bg-white/80 backdrop-blur-xl text-[#192631]">
                                     {proj.projectNameEn} — ({proj.projectNameAr})
                                 </option>
                             ))}
@@ -1032,24 +1032,24 @@ export const PricingEngineHub: React.FC = () => {
 
                     {/* Revision Selector */}
                     <div>
-                        <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                        <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-wider mb-1.5">
                             Tender Revision (رقم المراجعة)
                         </label>
                         <select
                             disabled={isContractLocked}
                             value={selectedRevision}
                             onChange={(e) => setSelectedRevision(e.target.value as 'R00' | 'R01' | 'R02 - Final')}
-                            className="w-full rounded-xl bg-black/50 border border-white/15 px-3.5 py-2.5 text-sm font-bold text-orange-400 focus:outline-none focus:border-orange-500 disabled:opacity-60"
+                            className="w-full rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 px-3.5 py-2.5 text-sm font-bold text-[#e04b2a] focus:outline-none focus:border-orange-500 disabled:opacity-60"
                         >
-                            <option value="R00" className="bg-[#14171f] text-slate-200">R00 — Initial Concept Estimate</option>
-                            <option value="R01" className="bg-[#14171f] text-slate-200">R01 — Value Engineered BOQ</option>
-                            <option value="R02 - Final" className="bg-[#14171f] text-orange-400">R02 - Final — Nexus Standard Baseline</option>
+                            <option value="R00" className="bg-white/80 backdrop-blur-xl text-[#192631]">R00 — Initial Concept Estimate</option>
+                            <option value="R01" className="bg-white/80 backdrop-blur-xl text-[#192631]">R01 — Value Engineered BOQ</option>
+                            <option value="R02 - Final" className="bg-white/80 backdrop-blur-xl text-[#e04b2a]">R02 - Final — Nexus Standard Baseline</option>
                         </select>
                     </div>
 
                     {/* Project Duration (Months) */}
                     <div>
-                        <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                        <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-wider mb-1.5">
                             Project Duration (مدة التنفيذ بالشهور)
                         </label>
                         <div className="flex items-center gap-2">
@@ -1060,39 +1060,39 @@ export const PricingEngineHub: React.FC = () => {
                                 disabled={isContractLocked}
                                 value={projectDurationMonths}
                                 onChange={(e) => setProjectDurationMonths(Math.max(1, Number(e.target.value) || 1))}
-                                className="w-full rounded-xl bg-black/50 border border-white/15 px-3.5 py-2.5 text-sm font-black text-emerald-400 focus:outline-none focus:border-emerald-500 disabled:opacity-60"
+                                className="w-full rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 px-3.5 py-2.5 text-sm font-black text-[#123524] focus:outline-none focus:border-emerald-500 disabled:opacity-60"
                             />
-                            <span className="text-xs font-bold text-slate-400 whitespace-nowrap">Months (شهور)</span>
+                            <span className="text-xs font-bold text-[#192631]/70 whitespace-nowrap">Months (شهور)</span>
                         </div>
                     </div>
                 </div>
 
                 {/* Locked Contract Baseline Security Banner */}
                 {isContractLocked && (
-                    <div className="mt-4 rounded-xl bg-gradient-to-r from-emerald-950/80 via-emerald-900/40 to-amber-950/60 border border-emerald-500/40 p-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div className="mt-4 rounded-xl bg-gradient-to-r from-emerald-950/80 via-emerald-900/40 to-amber-950/60 border border-[#123524]/25 p-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
                         <div className="flex items-start gap-3">
-                            <div className="p-2 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 mt-0.5">
+                            <div className="p-2 rounded-lg bg-[#123524]/10 border border-emerald-400/40 text-[#123524] mt-0.5">
                                 <Lock className="w-5 h-5" />
                             </div>
                             <div>
                                 <div className="flex items-center gap-2 flex-wrap">
-                                    <span className="text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                    <span className="text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
                                         Contract Baseline Locked (ContractNo: {activeTender.contractNo})
                                     </span>
-                                    <span className="text-xs font-bold text-amber-300">
+                                    <span className="text-xs font-bold text-[#b45309]">
                                         Revision: {selectedRevision} • Locked at {lockedTimestamp}
                                     </span>
                                 </div>
-                                <p className="text-xs text-slate-200 mt-1 leading-relaxed">
+                                <p className="text-xs text-[#192631] mt-1 leading-relaxed">
                                     Original BOQ quantities & unit rates are immutable. Any post-contract changes must be issued via{' '}
-                                    <span className="font-bold text-amber-300 underline">Variation Orders (VO / أوامر التغيير)</span> or{' '}
-                                    <span className="font-bold text-rose-300 underline">Deductions (خصومات الأعمال)</span>.
+                                    <span className="font-bold text-[#b45309] underline">Variation Orders (VO / أوامر التغيير)</span> or{' '}
+                                    <span className="font-bold text-red-700 underline">Deductions (خصومات الأعمال)</span>.
                                 </p>
                             </div>
                         </div>
                         <div className="text-right shrink-0">
-                            <div className="text-[10px] uppercase tracking-wider text-slate-400">Locked Contract Value</div>
-                            <div className="text-lg font-black text-emerald-300">
+                            <div className="text-[10px] uppercase tracking-wider text-[#192631]/70">Locked Contract Value</div>
+                            <div className="text-lg font-black text-[#123524]">
                                 {formatEgp(tenderTotals.netSellingAfterDiscount)} EGP
                             </div>
                         </div>
@@ -1101,52 +1101,52 @@ export const PricingEngineHub: React.FC = () => {
 
                 {/* Executive Live KPI Strip */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-5">
-                    <div className="rounded-xl bg-white/[0.03] border border-white/10 p-3">
-                        <div className="text-[10px] font-bold text-slate-400 uppercase">Direct Cost (M + L + S)</div>
-                        <div className="text-base font-black text-white mt-0.5">
-                            {formatEgp(tenderTotals.directCost)} <span className="text-[10px] text-slate-400">EGP</span>
+                    <div className="rounded-xl bg-white/[0.03] border border-[#192631]/10 p-3">
+                        <div className="text-[10px] font-bold text-[#192631]/70 uppercase">Direct Cost (M + L + S)</div>
+                        <div className="text-base font-black text-[#192631] mt-0.5">
+                            {formatEgp(tenderTotals.directCost)} <span className="text-[10px] text-[#192631]/70">EGP</span>
                         </div>
-                        <div className="text-[10px] text-slate-500 mt-0.5">التكلفة المباشرة للبنود</div>
+                        <div className="text-[10px] text-[#192631]/60 mt-0.5">التكلفة المباشرة للبنود</div>
                     </div>
 
                     <div className="rounded-xl bg-blue-500/[0.07] border border-blue-500/20 p-3">
-                        <div className="text-[10px] font-bold text-blue-300 uppercase">
+                        <div className="text-[10px] font-bold text-[#192631] uppercase">
                             Site Overheads ({projectDurationMonths} mos)
                         </div>
-                        <div className="text-base font-black text-blue-200 mt-0.5">
-                            {formatEgp(tenderTotals.indirectSiteOverhead)} <span className="text-[10px] text-blue-300">EGP</span>
+                        <div className="text-base font-black text-[#192631] mt-0.5">
+                            {formatEgp(tenderTotals.indirectSiteOverhead)} <span className="text-[10px] text-[#192631]">EGP</span>
                         </div>
-                        <div className="text-[10px] text-blue-400 font-semibold mt-0.5">
+                        <div className="text-[10px] text-[#192631] font-semibold mt-0.5">
                             +{proportionalOverheadPct.toFixed(2)}% تحميل نسبي/بند
                         </div>
                     </div>
 
                     <div className="rounded-xl bg-purple-500/[0.07] border border-purple-500/20 p-3">
-                        <div className="text-[10px] font-bold text-purple-300 uppercase">Risk + Admin + Inflation</div>
-                        <div className="text-base font-black text-purple-200 mt-0.5">
+                        <div className="text-[10px] font-bold text-[#192631] uppercase">Risk + Admin + Inflation</div>
+                        <div className="text-base font-black text-[#192631] mt-0.5">
                             {(riskContingencyPct + adminGaPct + cumulativeInflationPct).toFixed(1)}%
                         </div>
-                        <div className="text-[10px] text-purple-400 mt-0.5">
+                        <div className="text-[10px] text-[#192631] mt-0.5">
                             تضخم {cumulativeInflationPct}% + مخاطر {riskContingencyPct}% + إدارة {adminGaPct}%
                         </div>
                     </div>
 
                     <div className="rounded-xl bg-amber-500/[0.07] border border-amber-500/20 p-3">
-                        <div className="text-[10px] font-bold text-amber-300 uppercase">Gross Tender Price</div>
-                        <div className="text-base font-black text-amber-200 mt-0.5">
-                            {formatEgp(tenderTotals.grossSellingBeforeTax)} <span className="text-[10px] text-amber-300">EGP</span>
+                        <div className="text-[10px] font-bold text-[#b45309] uppercase">Gross Tender Price</div>
+                        <div className="text-base font-black text-[#b45309] mt-0.5">
+                            {formatEgp(tenderTotals.grossSellingBeforeTax)} <span className="text-[10px] text-[#b45309]">EGP</span>
                         </div>
-                        <div className="text-[10px] text-amber-400 mt-0.5">قبل خصم التفاوض والضرائب</div>
+                        <div className="text-[10px] text-[#b45309] mt-0.5">قبل خصم التفاوض والضرائب</div>
                     </div>
 
                     <div className="rounded-xl bg-emerald-500/[0.08] border border-emerald-500/25 p-3">
-                        <div className="text-[10px] font-bold text-emerald-300 uppercase">
+                        <div className="text-[10px] font-bold text-[#123524] uppercase">
                             Net Selling (-{clientDiscountPct}% Disc.)
                         </div>
-                        <div className="text-base font-black text-emerald-300 mt-0.5">
+                        <div className="text-base font-black text-[#123524] mt-0.5">
                             {formatEgp(tenderTotals.netSellingAfterDiscount)} <span className="text-[10px]">EGP</span>
                         </div>
-                        <div className="text-[10px] text-emerald-400 mt-0.5">
+                        <div className="text-[10px] text-[#123524] mt-0.5">
                             شامل الضريبة: {formatEgp(tenderTotals.finalContractPayableIncTax)} ج.م
                         </div>
                     </div>
@@ -1154,15 +1154,15 @@ export const PricingEngineHub: React.FC = () => {
                     <div
                         className={`rounded-xl p-3 border ${
                             tenderTotals.zone === 'GREEN'
-                                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
+                                ? 'bg-[#123524]/10 border-[#123524]/25 text-[#123524]'
                                 : tenderTotals.zone === 'AMBER'
-                                ? 'bg-amber-500/10 border-amber-500/30 text-amber-300'
-                                : 'bg-rose-500/15 border-rose-500/40 text-rose-300'
+                                ? 'bg-amber-500/10 border-amber-500/30 text-[#b45309]'
+                                : 'bg-rose-500/15 border-rose-500/40 text-red-700'
                         }`}
                     >
                         <div className="text-[10px] font-bold uppercase flex items-center justify-between">
                             <span>Negotiation Safety</span>
-                            <span className="px-1.5 py-0.2 rounded text-[9px] font-black bg-black/30">
+                            <span className="px-1.5 py-0.2 rounded text-[9px] font-black bg-[#f5f5f5]/85">
                                 {tenderTotals.zone} ZONE
                             </span>
                         </div>
@@ -1184,16 +1184,16 @@ export const PricingEngineHub: React.FC = () => {
                     onClick={() => setActiveSubTab('boq_map')}
                     className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
                         activeSubTab === 'boq_map'
-                            ? 'bg-orange-500/15 border-orange-500/50 text-white shadow-lg shadow-orange-950/30'
-                            : 'bg-[#12151c] border-white/10 text-slate-400 hover:text-white hover:border-white/20'
+                            ? 'bg-[#e04b2a]/10 border-[#e04b2a]/25 text-[#192631] shadow-lg shadow-orange-950/30'
+                            : 'bg-white/85 backdrop-blur-xl border-[#192631]/10 text-[#192631]/70 hover:text-[#192631] hover:border-[#192631]/10'
                     }`}
                 >
-                    <div className="p-2 rounded-lg bg-orange-500/20 text-orange-400 shrink-0">
+                    <div className="p-2 rounded-lg bg-[#e04b2a]/10 text-[#e04b2a] shrink-0">
                         <Layers className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
                         <div className="text-xs font-black truncate">1. R02 Work Map & BOQ Builder</div>
-                        <div className="text-[11px] text-slate-400 truncate">خريطة الأعمال R02 (34 باقة / 839 بند)</div>
+                        <div className="text-[11px] text-[#192631]/70 truncate">خريطة الأعمال R02 (34 باقة / 839 بند)</div>
                     </div>
                 </button>
 
@@ -1201,16 +1201,16 @@ export const PricingEngineHub: React.FC = () => {
                     onClick={() => setActiveSubTab('deep_analyzer')}
                     className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
                         activeSubTab === 'deep_analyzer'
-                            ? 'bg-emerald-500/15 border-emerald-500/50 text-white shadow-lg shadow-emerald-950/30'
-                            : 'bg-[#12151c] border-white/10 text-slate-400 hover:text-white hover:border-white/20'
+                            ? 'bg-[#123524]/10 border-[#123524]/25 text-[#192631] shadow-lg shadow-emerald-950/30'
+                            : 'bg-white/85 backdrop-blur-xl border-[#192631]/10 text-[#192631]/70 hover:text-[#192631] hover:border-[#192631]/10'
                     }`}
                 >
-                    <div className="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 shrink-0">
+                    <div className="p-2 rounded-lg bg-[#123524]/10 text-[#123524] shrink-0">
                         <Wrench className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
                         <div className="text-xs font-black truncate">2. Eng. Pierre's Deep Unit Analyzer</div>
-                        <div className="text-[11px] text-slate-400 truncate">تحليل سعر الوحدة التفصيلي (11 مركب)</div>
+                        <div className="text-[11px] text-[#192631]/70 truncate">تحليل سعر الوحدة التفصيلي (11 مركب)</div>
                     </div>
                 </button>
 
@@ -1219,15 +1219,15 @@ export const PricingEngineHub: React.FC = () => {
                     className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
                         activeSubTab === 'site_overheads'
                             ? 'bg-blue-500/15 border-blue-500/50 text-white shadow-lg shadow-blue-950/30'
-                            : 'bg-[#12151c] border-white/10 text-slate-400 hover:text-white hover:border-white/20'
+                            : 'bg-white/85 backdrop-blur-xl border-[#192631]/10 text-[#192631]/70 hover:text-[#192631] hover:border-[#192631]/10'
                     }`}
                 >
-                    <div className="p-2 rounded-lg bg-blue-500/20 text-blue-400 shrink-0">
+                    <div className="p-2 rounded-lg bg-blue-500/20 text-[#192631] shrink-0">
                         <HardHat className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
                         <div className="text-xs font-black truncate">3. Site Overheads & Allocation</div>
-                        <div className="text-[11px] text-slate-400 truncate">التكاليف غير المباشرة وتوزيعها النسبي</div>
+                        <div className="text-[11px] text-[#192631]/70 truncate">التكاليف غير المباشرة وتوزيعها النسبي</div>
                     </div>
                 </button>
 
@@ -1235,16 +1235,16 @@ export const PricingEngineHub: React.FC = () => {
                     onClick={() => setActiveSubTab('commercial_sim')}
                     className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
                         activeSubTab === 'commercial_sim'
-                            ? 'bg-purple-500/15 border-purple-500/50 text-white shadow-lg shadow-purple-950/30'
-                            : 'bg-[#12151c] border-white/10 text-slate-400 hover:text-white hover:border-white/20'
+                            ? 'bg-purple-500/15 border-purple-500/50 text-[#192631] shadow-lg shadow-purple-950/30'
+                            : 'bg-white/85 backdrop-blur-xl border-[#192631]/10 text-[#192631]/70 hover:text-[#192631] hover:border-[#192631]/10'
                     }`}
                 >
-                    <div className="p-2 rounded-lg bg-purple-500/20 text-purple-400 shrink-0">
+                    <div className="p-2 rounded-lg bg-purple-500/20 text-[#192631] shrink-0">
                         <Sliders className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
                         <div className="text-xs font-black truncate">4. Markups, Inflation & Negotiation</div>
-                        <div className="text-[11px] text-slate-400 truncate">الهوامش والتضخم ومحاكي التفاوض والخصم</div>
+                        <div className="text-[11px] text-[#192631]/70 truncate">الهوامش والتضخم ومحاكي التفاوض والخصم</div>
                     </div>
                 </button>
             </div>
@@ -1255,14 +1255,14 @@ export const PricingEngineHub: React.FC = () => {
             {activeSubTab === 'boq_map' && (
                 <div className="space-y-6">
                     {/* 34 Work Packages Browser */}
-                    <div className="rounded-2xl border border-white/10 bg-[#12151c] p-5 space-y-4">
+                    <div className="rounded-2xl border border-[#192631]/10 bg-white/85 backdrop-blur-xl p-5 space-y-4">
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
                             <div>
-                                <h3 className="text-base font-black text-white flex items-center gap-2">
-                                    <Package className="w-4 h-4 text-orange-400" />
+                                <h3 className="text-base font-black text-[#192631] flex items-center gap-2">
+                                    <Package className="w-4 h-4 text-[#e04b2a]" />
                                     <span>خريطة الأعمال القياسية R02 (34 Work Packages • 839 Standard Items)</span>
                                 </h3>
-                                <p className="text-xs text-slate-400 mt-0.5">
+                                <p className="text-xs text-[#192631]/70 mt-0.5">
                                     اختر قسم الأعمال أو الباقة لتصفية بنود المقايسة أو اضغط على أي بند لفتح شاشة تحليل السعر التفصيلي (11 عنصر تكلفة)
                                 </p>
                             </div>
@@ -1280,7 +1280,7 @@ export const PricingEngineHub: React.FC = () => {
                                             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                                                 selectedDivision === div
                                                     ? 'bg-orange-500 text-white'
-                                                    : 'bg-white/5 text-slate-300 hover:bg-white/10'
+                                                    : 'bg-[#192631]/[0.05] text-[#192631]/85 hover:bg-[#192631]/[0.05]'
                                             }`}
                                         >
                                             {div === 'ALL' ? 'كل الأقسام (34 باقة)' : div}
@@ -1296,16 +1296,16 @@ export const PricingEngineHub: React.FC = () => {
                                 onClick={() => setSelectedPackageCode('ALL')}
                                 className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                                     selectedPackageCode === 'ALL'
-                                        ? 'bg-orange-500/20 border-orange-500 text-white'
-                                        : 'bg-black/30 border-white/10 text-slate-300 hover:border-white/25'
+                                        ? 'bg-[#e04b2a]/10 border-orange-500 text-[#192631]'
+                                        : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/85 hover:border-white/25'
                                 }`}
                             >
-                                <div className="flex items-center justify-between text-[10px] font-black text-orange-400">
+                                <div className="flex items-center justify-between text-[10px] font-black text-[#e04b2a]">
                                     <span>ALL R02</span>
                                     <span>839 Items</span>
                                 </div>
                                 <div className="text-xs font-bold mt-1 truncate">عرض كل باقات المقايسة</div>
-                                <div className="text-[10px] text-slate-400 mt-0.5">34 Work Packages</div>
+                                <div className="text-[10px] text-[#192631]/70 mt-0.5">34 Work Packages</div>
                             </button>
 
                             {NEXUS_R02_34_PACKAGES.filter(
@@ -1318,111 +1318,111 @@ export const PricingEngineHub: React.FC = () => {
                                     }
                                     className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
                                         selectedPackageCode === pkg.code
-                                            ? 'bg-orange-500/20 border-orange-500 text-white'
-                                            : 'bg-black/30 border-white/10 text-slate-300 hover:border-white/25'
+                                            ? 'bg-[#e04b2a]/10 border-orange-500 text-[#192631]'
+                                            : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/85 hover:border-white/25'
                                     }`}
                                 >
                                     <div className="flex items-center justify-between text-[10px] font-black">
-                                        <span className="text-orange-400">{pkg.code}</span>
-                                        <span className="text-slate-400">{pkg.standardItemCount} بند</span>
+                                        <span className="text-[#e04b2a]">{pkg.code}</span>
+                                        <span className="text-[#192631]/70">{pkg.standardItemCount} بند</span>
                                     </div>
                                     <div className="text-xs font-bold mt-1 line-clamp-1" title={pkg.nameAr}>
                                         {pkg.nameAr}
                                     </div>
-                                    <div className="text-[10px] text-slate-500 truncate mt-0.5">{pkg.nameEn}</div>
+                                    <div className="text-[10px] text-[#192631]/60 truncate mt-0.5">{pkg.nameEn}</div>
                                 </button>
                             ))}
                         </div>
                     </div>
 
                     {/* Search & Quick Add BOQ Item Row */}
-                    <div className="rounded-2xl border border-white/10 bg-[#12151c] p-5 space-y-4">
+                    <div className="rounded-2xl border border-[#192631]/10 bg-white/85 backdrop-blur-xl p-5 space-y-4">
                         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
                             <div className="relative flex-1">
-                                <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                                <Search className="w-4 h-4 text-[#192631]/70 absolute left-3.5 top-1/2 -translate-y-1/2" />
                                 <input
                                     type="text"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     placeholder="ابحث بكود البند أو الوصف (مثال: بورسلين، جبس بورد، محارة، جروهي، سيتوكس، R02-09)..."
-                                    className="w-full rounded-xl bg-black/50 border border-white/15 pl-10 pr-4 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-orange-500"
+                                    className="w-full rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 pl-10 pr-4 py-2.5 text-xs text-[#192631] placeholder:text-[#192631]/60 focus:outline-none focus:border-orange-500"
                                 />
                             </div>
 
-                            <div className="flex items-center gap-2 text-xs text-slate-300 bg-white/5 px-3.5 py-2 rounded-xl border border-white/10">
-                                <Info className="w-4 h-4 text-blue-400 shrink-0" />
+                            <div className="flex items-center gap-2 text-xs text-[#192631]/85 bg-[#192631]/[0.05] px-3.5 py-2 rounded-xl border border-[#192631]/10">
+                                <Info className="w-4 h-4 text-[#192631] shrink-0" />
                                 <span>
                                     نسبة التحميل غير المباشر للموقع تُحسب تلقائياً:{' '}
-                                    <strong className="text-blue-300">+{proportionalOverheadPct.toFixed(2)}%</strong> | الهوامش والتضخم والربح:{' '}
-                                    <strong className="text-purple-300">+{totalCommercialMarkupPct.toFixed(1)}%</strong>
+                                    <strong className="text-[#192631]">+{proportionalOverheadPct.toFixed(2)}%</strong> | الهوامش والتضخم والربح:{' '}
+                                    <strong className="text-[#192631]">+{totalCommercialMarkupPct.toFixed(1)}%</strong>
                                 </span>
                             </div>
                         </div>
 
                         {/* Quick Add Row (Disabled when Contract is Locked) */}
                         {!isContractLocked && (
-                            <div className="grid grid-cols-2 sm:grid-cols-8 gap-2 pt-2 border-t border-white/10 items-end">
+                            <div className="grid grid-cols-2 sm:grid-cols-8 gap-2 pt-2 border-t border-[#192631]/10 items-end">
                                 <div>
-                                    <label className="block text-[10px] text-slate-400 mb-1">Code (كود)</label>
+                                    <label className="block text-[10px] text-[#192631]/70 mb-1">Code (كود)</label>
                                     <input
                                         type="text"
                                         value={newCode}
                                         onChange={(e) => setNewCode(e.target.value)}
-                                        className="w-full rounded-lg bg-black/40 border border-white/15 px-2.5 py-1.5 text-xs text-white"
+                                        className="w-full rounded-lg bg-[#f5f5f5]/85 border border-[#192631]/10 px-2.5 py-1.5 text-xs text-[#192631]"
                                     />
                                 </div>
                                 <div className="sm:col-span-2">
-                                    <label className="block text-[10px] text-slate-400 mb-1">BOQ Item Title (بيان الأعمال)</label>
+                                    <label className="block text-[10px] text-[#192631]/70 mb-1">BOQ Item Title (بيان الأعمال)</label>
                                     <input
                                         type="text"
                                         value={newTitleAr}
                                         onChange={(e) => setNewTitleAr(e.target.value)}
                                         placeholder="أضف بند جديد للمقايسة..."
-                                        className="w-full rounded-lg bg-black/40 border border-white/15 px-2.5 py-1.5 text-xs text-white"
+                                        className="w-full rounded-lg bg-[#f5f5f5]/85 border border-[#192631]/10 px-2.5 py-1.5 text-xs text-[#192631]"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] text-slate-400 mb-1">Unit / Qty</label>
+                                    <label className="block text-[10px] text-[#192631]/70 mb-1">Unit / Qty</label>
                                     <div className="flex gap-1">
                                         <input
                                             type="text"
                                             value={newUnit}
                                             onChange={(e) => setNewUnit(e.target.value)}
-                                            className="w-14 rounded-lg bg-black/40 border border-white/15 px-2 py-1.5 text-xs text-white"
+                                            className="w-14 rounded-lg bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1.5 text-xs text-[#192631]"
                                         />
                                         <input
                                             type="number"
                                             value={newQty}
                                             onChange={(e) => setNewQty(Number(e.target.value) || 0)}
-                                            className="w-full rounded-lg bg-black/40 border border-white/15 px-2 py-1.5 text-xs text-white"
+                                            className="w-full rounded-lg bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1.5 text-xs text-[#192631]"
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] text-slate-400 mb-1">Material (M خامات)</label>
+                                    <label className="block text-[10px] text-[#192631]/70 mb-1">Material (M خامات)</label>
                                     <input
                                         type="number"
                                         value={newM}
                                         onChange={(e) => setNewM(Number(e.target.value) || 0)}
-                                        className="w-full rounded-lg bg-black/40 border border-white/15 px-2.5 py-1.5 text-xs text-emerald-300"
+                                        className="w-full rounded-lg bg-[#f5f5f5]/85 border border-[#192631]/10 px-2.5 py-1.5 text-xs text-[#123524]"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] text-slate-400 mb-1">Labor (L مصنعيات)</label>
+                                    <label className="block text-[10px] text-[#192631]/70 mb-1">Labor (L مصنعيات)</label>
                                     <input
                                         type="number"
                                         value={newL}
                                         onChange={(e) => setNewL(Number(e.target.value) || 0)}
-                                        className="w-full rounded-lg bg-black/40 border border-white/15 px-2.5 py-1.5 text-xs text-amber-300"
+                                        className="w-full rounded-lg bg-[#f5f5f5]/85 border border-[#192631]/10 px-2.5 py-1.5 text-xs text-[#b45309]"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] text-slate-400 mb-1">Subcontract (S باطن)</label>
+                                    <label className="block text-[10px] text-[#192631]/70 mb-1">Subcontract (S باطن)</label>
                                     <input
                                         type="number"
                                         value={newS}
                                         onChange={(e) => setNewS(Number(e.target.value) || 0)}
-                                        className="w-full rounded-lg bg-black/40 border border-white/15 px-2.5 py-1.5 text-xs text-cyan-300"
+                                        className="w-full rounded-lg bg-[#f5f5f5]/85 border border-[#192631]/10 px-2.5 py-1.5 text-xs text-[#192631]"
                                     />
                                 </div>
                                 <div>
@@ -1438,45 +1438,45 @@ export const PricingEngineHub: React.FC = () => {
                         )}
 
                         {/* Interactive BOQ Pricing Table */}
-                        <div className="overflow-x-auto rounded-xl border border-white/10">
+                        <div className="overflow-x-auto rounded-xl border border-[#192631]/10">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-black/60 text-[11px] font-black uppercase text-slate-400 border-b border-white/10">
+                                    <tr className="bg-[#f5f5f5]/85 text-[11px] font-black uppercase text-[#192631]/70 border-b border-[#192631]/10">
                                         <th className="py-3 px-3">Code</th>
                                         <th className="py-3 px-3 min-w-[260px]">BOQ Item Description (بيان الأعمال)</th>
                                         <th className="py-3 px-2 text-center">Unit</th>
                                         <th className="py-3 px-2 text-right">Qty</th>
-                                        <th className="py-3 px-2 text-right text-emerald-400">Material (M)</th>
-                                        <th className="py-3 px-2 text-right text-amber-400">Labor (L)</th>
-                                        <th className="py-3 px-2 text-right text-cyan-400">Sub (S)</th>
-                                        <th className="py-3 px-2 text-right text-white">Direct Unit</th>
-                                        <th className="py-3 px-2 text-right text-blue-300">
+                                        <th className="py-3 px-2 text-right text-[#123524]">Material (M)</th>
+                                        <th className="py-3 px-2 text-right text-[#b45309]">Labor (L)</th>
+                                        <th className="py-3 px-2 text-right text-[#192631]">Sub (S)</th>
+                                        <th className="py-3 px-2 text-right text-[#192631]">Direct Unit</th>
+                                        <th className="py-3 px-2 text-right text-[#192631]">
                                             Site Ovh (+{proportionalOverheadPct.toFixed(1)}%)
                                         </th>
-                                        <th className="py-3 px-2 text-right text-purple-300">
+                                        <th className="py-3 px-2 text-right text-[#192631]">
                                             Markups (+{totalCommercialMarkupPct.toFixed(1)}%)
                                         </th>
-                                        <th className="py-3 px-3 text-right text-orange-300">
+                                        <th className="py-3 px-3 text-right text-[#e04b2a]">
                                             Selling Rate (سعر البيع)
                                         </th>
-                                        <th className="py-3 px-3 text-right text-emerald-300">Total Selling (EGP)</th>
+                                        <th className="py-3 px-3 text-right text-[#123524]">Total Selling (EGP)</th>
                                         <th className="py-3 px-3 text-center">Granular Analysis</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-white/10 text-xs">
+                                <tbody className="divide-y divide-[#192631]/10 text-xs">
                                     {filteredBoqRows.map((row) => (
                                         <tr
                                             key={row.id}
                                             className="hover:bg-white/[0.03] transition-colors"
                                         >
-                                            <td className="py-3 px-3 font-mono font-bold text-orange-400 whitespace-nowrap">
+                                            <td className="py-3 px-3 font-mono font-bold text-[#e04b2a] whitespace-nowrap">
                                                 {row.code}
                                             </td>
                                             <td className="py-3 px-3">
-                                                <div className="font-bold text-white leading-snug">{row.titleAr}</div>
-                                                <div className="text-[11px] text-slate-400">{row.titleEn}</div>
+                                                <div className="font-bold text-[#192631] leading-snug">{row.titleAr}</div>
+                                                <div className="text-[11px] text-[#192631]/70">{row.titleEn}</div>
                                             </td>
-                                            <td className="py-3 px-2 text-center font-semibold text-slate-300">
+                                            <td className="py-3 px-2 text-center font-semibold text-[#192631]/85">
                                                 {row.unit}
                                             </td>
                                             <td className="py-3 px-2 text-right">
@@ -1487,7 +1487,7 @@ export const PricingEngineHub: React.FC = () => {
                                                     onChange={(e) =>
                                                         handleUpdateBoqField(row.id, 'qty', Number(e.target.value) || 0)
                                                     }
-                                                    className="w-16 text-right rounded bg-black/50 border border-white/15 px-1.5 py-1 text-xs font-bold text-white disabled:opacity-60"
+                                                    className="w-16 text-right rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-1.5 py-1 text-xs font-bold text-[#192631] disabled:opacity-60"
                                                 />
                                             </td>
                                             <td className="py-3 px-2 text-right">
@@ -1502,7 +1502,7 @@ export const PricingEngineHub: React.FC = () => {
                                                             Number(e.target.value) || 0
                                                         )
                                                     }
-                                                    className="w-20 text-right rounded bg-black/50 border border-emerald-500/30 px-1.5 py-1 text-xs font-bold text-emerald-300 disabled:opacity-60"
+                                                    className="w-20 text-right rounded bg-[#f5f5f5]/85 border border-[#123524]/25 px-1.5 py-1 text-xs font-bold text-[#123524] disabled:opacity-60"
                                                 />
                                             </td>
                                             <td className="py-3 px-2 text-right">
@@ -1517,7 +1517,7 @@ export const PricingEngineHub: React.FC = () => {
                                                             Number(e.target.value) || 0
                                                         )
                                                     }
-                                                    className="w-18 text-right rounded bg-black/50 border border-amber-500/30 px-1.5 py-1 text-xs font-bold text-amber-300 disabled:opacity-60"
+                                                    className="w-18 text-right rounded bg-[#f5f5f5]/85 border border-amber-500/30 px-1.5 py-1 text-xs font-bold text-[#b45309] disabled:opacity-60"
                                                 />
                                             </td>
                                             <td className="py-3 px-2 text-right">
@@ -1532,28 +1532,28 @@ export const PricingEngineHub: React.FC = () => {
                                                             Number(e.target.value) || 0
                                                         )
                                                     }
-                                                    className="w-20 text-right rounded bg-black/50 border border-cyan-500/30 px-1.5 py-1 text-xs font-bold text-cyan-300 disabled:opacity-60"
+                                                    className="w-20 text-right rounded bg-[#f5f5f5]/85 border border-cyan-500/30 px-1.5 py-1 text-xs font-bold text-[#192631] disabled:opacity-60"
                                                 />
                                             </td>
-                                            <td className="py-3 px-2 text-right font-black text-white whitespace-nowrap">
+                                            <td className="py-3 px-2 text-right font-black text-[#192631] whitespace-nowrap">
                                                 {formatEgp(row.unitDirectCost)}
                                             </td>
-                                            <td className="py-3 px-2 text-right font-semibold text-blue-300 whitespace-nowrap">
+                                            <td className="py-3 px-2 text-right font-semibold text-[#192631] whitespace-nowrap">
                                                 +{formatEgp(row.allocatedUnitOverhead)}
                                             </td>
-                                            <td className="py-3 px-2 text-right font-semibold text-purple-300 whitespace-nowrap">
+                                            <td className="py-3 px-2 text-right font-semibold text-[#192631] whitespace-nowrap">
                                                 +{formatEgp(row.unitCommercialMarkup)}
                                             </td>
-                                            <td className="py-3 px-3 text-right font-black text-orange-300 bg-orange-500/[0.06] whitespace-nowrap">
+                                            <td className="py-3 px-3 text-right font-black text-[#e04b2a] bg-orange-500/[0.06] whitespace-nowrap">
                                                 {formatEgp(row.finalSellingUnitPrice)}
                                             </td>
-                                            <td className="py-3 px-3 text-right font-black text-emerald-300 bg-emerald-500/[0.06] whitespace-nowrap">
+                                            <td className="py-3 px-3 text-right font-black text-[#123524] bg-emerald-500/[0.06] whitespace-nowrap">
                                                 {formatEgp(row.totalLineSellingPrice)}
                                             </td>
                                             <td className="py-3 px-3 text-center">
                                                 <button
                                                     onClick={() => handleOpenDeepAnalyzerForBoqRow(row)}
-                                                    className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold whitespace-nowrap transition-all cursor-pointer"
+                                                    className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-[#123524]/10 hover:bg-emerald-500/25 text-[#123524] border border-[#123524]/25 text-[11px] font-bold whitespace-nowrap transition-all cursor-pointer"
                                                 >
                                                     <Sparkles className="w-3.5 h-3.5" />
                                                     <span>Deep Breakdown (تحليل السعر)</span>
@@ -1563,24 +1563,24 @@ export const PricingEngineHub: React.FC = () => {
                                     ))}
                                 </tbody>
                                 <tfoot>
-                                    <tr className="bg-black/70 border-t-2 border-white/20 text-xs font-black">
-                                        <td colSpan={7} className="py-3.5 px-3 text-right text-slate-300">
+                                    <tr className="bg-[#f5f5f5]/85 border-t-2 border-[#192631]/10 text-xs font-black">
+                                        <td colSpan={7} className="py-3.5 px-3 text-right text-[#192631]/85">
                                             إجمالي بنود المقايسة المعروضة (Totals Before Negotiation Discount):
                                         </td>
-                                        <td className="py-3.5 px-2 text-right text-white">
+                                        <td className="py-3.5 px-2 text-right text-[#192631]">
                                             {formatEgp(tenderTotals.directCost)} EGP
                                         </td>
-                                        <td className="py-3.5 px-2 text-right text-blue-300">
+                                        <td className="py-3.5 px-2 text-right text-[#192631]">
                                             +{formatEgp(tenderTotals.indirectSiteOverhead)} EGP
                                         </td>
-                                        <td className="py-3.5 px-2 text-right text-purple-300">
+                                        <td className="py-3.5 px-2 text-right text-[#192631]">
                                             +{formatEgp(
                                                 tenderTotals.grossSellingBeforeTax - tenderTotals.totalPrimeCost
                                             )}{' '}
                                             EGP
                                         </td>
-                                        <td className="py-3.5 px-3 text-right text-orange-300">—</td>
-                                        <td className="py-3.5 px-3 text-right text-emerald-300 text-sm">
+                                        <td className="py-3.5 px-3 text-right text-[#e04b2a]">—</td>
+                                        <td className="py-3.5 px-3 text-right text-[#123524] text-sm">
                                             {formatEgp(tenderTotals.grossSellingBeforeTax)} EGP
                                         </td>
                                         <td />
@@ -1598,16 +1598,16 @@ export const PricingEngineHub: React.FC = () => {
             {activeSubTab === 'deep_analyzer' && (
                 <div className="space-y-6">
                     {/* Preset Selector & Target BOQ Link */}
-                    <div className="rounded-2xl border border-white/10 bg-[#12151c] p-5 space-y-4">
-                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/10 pb-4">
+                    <div className="rounded-2xl border border-[#192631]/10 bg-white/85 backdrop-blur-xl p-5 space-y-4">
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#192631]/10 pb-4">
                             <div>
-                                <h3 className="text-base font-black text-white flex items-center gap-2">
-                                    <Wrench className="w-5 h-5 text-emerald-400" />
+                                <h3 className="text-base font-black text-[#192631] flex items-center gap-2">
+                                    <Wrench className="w-5 h-5 text-[#123524]" />
                                     <span>
                                         تحليل أسعار البنود التفصيلي — منهجية م. بيير (11 مركب تكلفة للوحدة)
                                     </span>
                                 </h3>
-                                <p className="text-xs text-slate-400 mt-1">
+                                <p className="text-xs text-[#192631]/70 mt-1">
                                     اختر أحد النماذج القياسية (البورسلين 60×120، الجبس بورد كناوف، المحارة على بؤج وأوتار، أو صندوق الطرد المدفون) أو عدّل أي عنصر لترحيله فوراً للمقايسة
                                 </p>
                             </div>
@@ -1627,8 +1627,8 @@ export const PricingEngineHub: React.FC = () => {
                                         }}
                                         className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                                             activePresetKey === preset.id
-                                                ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 shadow-lg'
-                                                : 'bg-black/40 border-white/10 text-slate-300 hover:border-white/25'
+                                                ? 'bg-[#123524]/10 border-emerald-500 text-[#123524] shadow-lg'
+                                                : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/85 hover:border-white/25'
                                         }`}
                                     >
                                         {preset.boqCode} — {preset.nameAr.split(' ').slice(0, 4).join(' ')}
@@ -1639,15 +1639,15 @@ export const PricingEngineHub: React.FC = () => {
 
                         {/* Eng. Pierre's Audio Rule Callout */}
                         <div className="rounded-xl bg-amber-500/10 border border-amber-500/30 p-3.5 flex items-start gap-3">
-                            <Sparkles className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                            <Sparkles className="w-5 h-5 text-[#b45309] shrink-0 mt-0.5" />
                             <div className="text-xs text-amber-100 leading-relaxed">
-                                <span className="font-black text-amber-300">ملاحظة المكتب الفني (Eng. Pierre Audio Methodology): </span>
+                                <span className="font-black text-[#b45309]">ملاحظة المكتب الفني (Eng. Pierre Audio Methodology): </span>
                                 {analyzerState.engineerNoteAr}
                             </div>
                         </div>
 
                         {pushSuccessMessage && (
-                            <div className="rounded-xl bg-emerald-500/15 border border-emerald-500/40 p-3 text-xs font-bold text-emerald-300 flex items-center gap-2">
+                            <div className="rounded-xl bg-[#123524]/10 border border-[#123524]/25 p-3 text-xs font-bold text-[#123524] flex items-center gap-2">
                                 <CheckCircle2 className="w-4 h-4 shrink-0" />
                                 <span>{pushSuccessMessage}</span>
                             </div>
@@ -1656,12 +1656,12 @@ export const PricingEngineHub: React.FC = () => {
                         {/* 10/11 Interactive Granular Inputs Grid */}
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 pt-2">
                             {/* Column 1: Raw Materials, Waste, Adhesive & Backfill (Components 1 to 4) */}
-                            <div className="rounded-xl bg-black/40 border border-white/10 p-4 space-y-4">
-                                <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
-                                    <span className="text-xs font-black text-emerald-400 uppercase tracking-wider">
+                            <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 p-4 space-y-4">
+                                <div className="flex items-center justify-between border-b border-[#192631]/10 pb-2.5">
+                                    <span className="text-xs font-black text-[#123524] uppercase tracking-wider">
                                         أولاً: الخامات والهالك والمون (Materials & Waste)
                                     </span>
-                                    <span className="text-xs font-black text-emerald-300">
+                                    <span className="text-xs font-black text-[#123524]">
                                         {formatEgp(granularBreakdown.computedDirectMaterialM)} ج.م/{analyzerState.unit}
                                     </span>
                                 </div>
@@ -1669,10 +1669,10 @@ export const PricingEngineHub: React.FC = () => {
                                 {/* 1. Base Material Cost */}
                                 <div>
                                     <div className="flex justify-between text-xs mb-1">
-                                        <span className="font-bold text-slate-200">
+                                        <span className="font-bold text-[#192631]">
                                             1. سعر المتر التوريد الأساسي (Base Material)
                                         </span>
-                                        <span className="font-black text-emerald-300">
+                                        <span className="font-black text-[#123524]">
                                             {formatEgp(granularBreakdown.c1_baseMaterial)} EGP
                                         </span>
                                     </div>
@@ -1685,17 +1685,17 @@ export const PricingEngineHub: React.FC = () => {
                                                 baseMaterialSupply: Math.max(0, Number(e.target.value) || 0),
                                             }))
                                         }
-                                        className="w-full rounded-lg bg-[#14171f] border border-white/15 px-3 py-2 text-xs font-bold text-white"
+                                        className="w-full rounded-lg bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-3 py-2 text-xs font-bold text-[#192631]"
                                     />
                                 </div>
 
                                 {/* 2. Material Waste % (10% - 15% for cuts/closers) */}
                                 <div>
                                     <div className="flex justify-between text-xs mb-1">
-                                        <span className="font-bold text-slate-200">
+                                        <span className="font-bold text-[#192631]">
                                             2. نسبة الهالك والتقطيع والغلايق (Waste %: {analyzerState.wastePct}%)
                                         </span>
-                                        <span className="font-black text-amber-300">
+                                        <span className="font-black text-[#b45309]">
                                             +{formatEgp(granularBreakdown.c2_wasteCost)} EGP
                                         </span>
                                     </div>
@@ -1723,7 +1723,7 @@ export const PricingEngineHub: React.FC = () => {
                                                 className={`px-2 py-1 rounded text-[10px] font-black cursor-pointer ${
                                                     analyzerState.wastePct === pct
                                                         ? 'bg-amber-500 text-black'
-                                                        : 'bg-white/10 text-slate-300'
+                                                        : 'bg-[#192631]/[0.05] text-[#192631]/85'
                                                 }`}
                                             >
                                                 {pct}%
@@ -1733,18 +1733,18 @@ export const PricingEngineHub: React.FC = () => {
                                 </div>
 
                                 {/* 3. Adhesive / Mortar (CETOX U + Screed) */}
-                                <div className="space-y-2 pt-1 border-t border-white/10">
+                                <div className="space-y-2 pt-1 border-t border-[#192631]/10">
                                     <div className="flex justify-between text-xs">
-                                        <span className="font-bold text-slate-200">
+                                        <span className="font-bold text-[#192631]">
                                             3. مادة اللصق (سيتوكس U) ومونة اللياسة
                                         </span>
-                                        <span className="font-black text-emerald-300">
+                                        <span className="font-black text-[#123524]">
                                             +{formatEgp(granularBreakdown.c3a_adhesivePerM2 + granularBreakdown.c3b_mortarScreed)} EGP
                                         </span>
                                     </div>
                                     <div className="grid grid-cols-3 gap-2">
                                         <div>
-                                            <label className="block text-[10px] text-slate-400">سعر الشكارة</label>
+                                            <label className="block text-[10px] text-[#192631]/70">سعر الشكارة</label>
                                             <input
                                                 type="number"
                                                 value={analyzerState.adhesiveBagPrice}
@@ -1754,11 +1754,11 @@ export const PricingEngineHub: React.FC = () => {
                                                         adhesiveBagPrice: Math.max(0, Number(e.target.value) || 0),
                                                     }))
                                                 }
-                                                className="w-full rounded bg-[#14171f] border border-white/15 px-2 py-1.5 text-xs font-bold text-white"
+                                                className="w-full rounded bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2 py-1.5 text-xs font-bold text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] text-slate-400">معدل الفرد (م²)</label>
+                                            <label className="block text-[10px] text-[#192631]/70">معدل الفرد (م²)</label>
                                             <input
                                                 type="number"
                                                 value={analyzerState.adhesiveBagCoverageM2}
@@ -1768,11 +1768,11 @@ export const PricingEngineHub: React.FC = () => {
                                                         adhesiveBagCoverageM2: Math.max(0.1, Number(e.target.value) || 1),
                                                     }))
                                                 }
-                                                className="w-full rounded bg-[#14171f] border border-white/15 px-2 py-1.5 text-xs font-bold text-white"
+                                                className="w-full rounded bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2 py-1.5 text-xs font-bold text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] text-slate-400">مونة لياسة/م²</label>
+                                            <label className="block text-[10px] text-[#192631]/70">مونة لياسة/م²</label>
                                             <input
                                                 type="number"
                                                 value={analyzerState.mortarScreedCost}
@@ -1782,25 +1782,25 @@ export const PricingEngineHub: React.FC = () => {
                                                         mortarScreedCost: Math.max(0, Number(e.target.value) || 0),
                                                     }))
                                                 }
-                                                className="w-full rounded bg-[#14171f] border border-white/15 px-2 py-1.5 text-xs font-bold text-white"
+                                                className="w-full rounded bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2 py-1.5 text-xs font-bold text-[#192631]"
                                             />
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* 4. Sand Backfilling (رمل رديم نظيف سمك 10-15 سم) */}
-                                <div className="space-y-2 pt-1 border-t border-white/10">
+                                <div className="space-y-2 pt-1 border-t border-[#192631]/10">
                                     <div className="flex justify-between text-xs">
-                                        <span className="font-bold text-slate-200">
+                                        <span className="font-bold text-[#192631]">
                                             4. رمل رديم نظيف (سمك 10-15 سم)
                                         </span>
-                                        <span className="font-black text-emerald-300">
+                                        <span className="font-black text-[#123524]">
                                             +{formatEgp(granularBreakdown.c4_sandBackfill)} EGP
                                         </span>
                                     </div>
                                     <div className="grid grid-cols-2 gap-2">
                                         <div>
-                                            <label className="block text-[10px] text-slate-400">السمك/الكمية (م³/م²)</label>
+                                            <label className="block text-[10px] text-[#192631]/70">السمك/الكمية (م³/م²)</label>
                                             <input
                                                 type="number"
                                                 step="0.01"
@@ -1811,11 +1811,11 @@ export const PricingEngineHub: React.FC = () => {
                                                         sandThicknessM3PerM2: Math.max(0, Number(e.target.value) || 0),
                                                     }))
                                                 }
-                                                className="w-full rounded bg-[#14171f] border border-white/15 px-2 py-1.5 text-xs font-bold text-white"
+                                                className="w-full rounded bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2 py-1.5 text-xs font-bold text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] text-slate-400">سعر م³ الرمل (EGP)</label>
+                                            <label className="block text-[10px] text-[#192631]/70">سعر م³ الرمل (EGP)</label>
                                             <input
                                                 type="number"
                                                 value={analyzerState.sandPricePerM3}
@@ -1825,7 +1825,7 @@ export const PricingEngineHub: React.FC = () => {
                                                         sandPricePerM3: Math.max(0, Number(e.target.value) || 0),
                                                     }))
                                                 }
-                                                className="w-full rounded bg-[#14171f] border border-white/15 px-2 py-1.5 text-xs font-bold text-white"
+                                                className="w-full rounded bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2 py-1.5 text-xs font-bold text-[#192631]"
                                             />
                                         </div>
                                     </div>
@@ -1833,12 +1833,12 @@ export const PricingEngineHub: React.FC = () => {
                             </div>
 
                             {/* Column 2: Logistics, Installation, 45° Miter, Grout & Protection (Components 5 to 10) */}
-                            <div className="rounded-xl bg-black/40 border border-white/10 p-4 space-y-3.5">
-                                <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
-                                    <span className="text-xs font-black text-amber-400 uppercase tracking-wider">
+                            <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 p-4 space-y-3.5">
+                                <div className="flex items-center justify-between border-b border-[#192631]/10 pb-2.5">
+                                    <span className="text-xs font-black text-[#b45309] uppercase tracking-wider">
                                         ثانياً: النولون والتشوين والمصنعيات والحماية
                                     </span>
-                                    <span className="text-xs font-black text-amber-300">
+                                    <span className="text-xs font-black text-[#b45309]">
                                         {formatEgp(granularBreakdown.computedDirectLaborL)} ج.م/{analyzerState.unit}
                                     </span>
                                 </div>
@@ -1847,8 +1847,8 @@ export const PricingEngineHub: React.FC = () => {
                                 <div className="grid grid-cols-2 gap-2.5">
                                     <div>
                                         <div className="flex justify-between text-[11px] mb-1">
-                                            <span className="font-bold text-slate-300">5. نولون نقل للموقع</span>
-                                            <span className="font-black text-cyan-300">+{analyzerState.transportNolonPerUnit}</span>
+                                            <span className="font-bold text-[#192631]/85">5. نولون نقل للموقع</span>
+                                            <span className="font-black text-[#192631]">+{analyzerState.transportNolonPerUnit}</span>
                                         </div>
                                         <input
                                             type="number"
@@ -1859,13 +1859,13 @@ export const PricingEngineHub: React.FC = () => {
                                                     transportNolonPerUnit: Math.max(0, Number(e.target.value) || 0),
                                                 }))
                                             }
-                                            className="w-full rounded-lg bg-[#14171f] border border-white/15 px-2.5 py-1.5 text-xs font-bold text-white"
+                                            className="w-full rounded-lg bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2.5 py-1.5 text-xs font-bold text-[#192631]"
                                         />
                                     </div>
                                     <div>
                                         <div className="flex justify-between text-[11px] mb-1">
-                                            <span className="font-bold text-slate-300">6. تطليع وتشوين للدور</span>
-                                            <span className="font-black text-cyan-300">+{analyzerState.liftingTashweenPerUnit}</span>
+                                            <span className="font-bold text-[#192631]/85">6. تطليع وتشوين للدور</span>
+                                            <span className="font-black text-[#192631]">+{analyzerState.liftingTashweenPerUnit}</span>
                                         </div>
                                         <input
                                             type="number"
@@ -1876,7 +1876,7 @@ export const PricingEngineHub: React.FC = () => {
                                                     liftingTashweenPerUnit: Math.max(0, Number(e.target.value) || 0),
                                                 }))
                                             }
-                                            className="w-full rounded-lg bg-[#14171f] border border-white/15 px-2.5 py-1.5 text-xs font-bold text-white"
+                                            className="w-full rounded-lg bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2.5 py-1.5 text-xs font-bold text-[#192631]"
                                         />
                                     </div>
                                 </div>
@@ -1884,10 +1884,10 @@ export const PricingEngineHub: React.FC = () => {
                                 {/* 7. Direct Installation Labor */}
                                 <div>
                                     <div className="flex justify-between text-xs mb-1">
-                                        <span className="font-bold text-slate-200">
+                                        <span className="font-bold text-[#192631]">
                                             7. مصنعية التركيب بالصلايب والكلبسات (Install Labor)
                                         </span>
-                                        <span className="font-black text-amber-300">
+                                        <span className="font-black text-[#b45309]">
                                             +{formatEgp(granularBreakdown.c7_directInstallLabor)} EGP
                                         </span>
                                     </div>
@@ -1900,23 +1900,23 @@ export const PricingEngineHub: React.FC = () => {
                                                 directInstallLabor: Math.max(0, Number(e.target.value) || 0),
                                             }))
                                         }
-                                        className="w-full rounded-lg bg-[#14171f] border border-white/15 px-3 py-1.5 text-xs font-bold text-white"
+                                        className="w-full rounded-lg bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-3 py-1.5 text-xs font-bold text-[#192631]"
                                     />
                                 </div>
 
                                 {/* 8. Linear Cutting & 45° Miter Edge Trimming */}
-                                <div className="space-y-1.5 pt-1 border-t border-white/10">
+                                <div className="space-y-1.5 pt-1 border-t border-[#192631]/10">
                                     <div className="flex justify-between text-xs">
-                                        <span className="font-bold text-slate-200">
+                                        <span className="font-bold text-[#192631]">
                                             8. تقطيع وزوايا شطف 45 درجة ووزرات (بالمتر الطولي)
                                         </span>
-                                        <span className="font-black text-amber-300">
+                                        <span className="font-black text-[#b45309]">
                                             +{formatEgp(granularBreakdown.c8_miter45Linear)} EGP
                                         </span>
                                     </div>
                                     <div className="grid grid-cols-2 gap-2">
                                         <div>
-                                            <label className="block text-[10px] text-slate-400">معامل م.ط لكل م²</label>
+                                            <label className="block text-[10px] text-[#192631]/70">معامل م.ط لكل م²</label>
                                             <input
                                                 type="number"
                                                 step="0.05"
@@ -1927,11 +1927,11 @@ export const PricingEngineHub: React.FC = () => {
                                                         miter45RatioMlPerM2: Math.max(0, Number(e.target.value) || 0),
                                                     }))
                                                 }
-                                                className="w-full rounded bg-[#14171f] border border-white/15 px-2 py-1.5 text-xs font-bold text-white"
+                                                className="w-full rounded bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2 py-1.5 text-xs font-bold text-[#192631]"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-[10px] text-slate-400">فئة المتر الطولي شطف</label>
+                                            <label className="block text-[10px] text-[#192631]/70">فئة المتر الطولي شطف</label>
                                             <input
                                                 type="number"
                                                 value={analyzerState.miter45RatePerMl}
@@ -1941,18 +1941,18 @@ export const PricingEngineHub: React.FC = () => {
                                                         miter45RatePerMl: Math.max(0, Number(e.target.value) || 0),
                                                     }))
                                                 }
-                                                className="w-full rounded bg-[#14171f] border border-white/15 px-2 py-1.5 text-xs font-bold text-white"
+                                                className="w-full rounded bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2 py-1.5 text-xs font-bold text-[#192631]"
                                             />
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* 9 & 10: Grout/Cleaning & Floor Protection Layers */}
-                                <div className="grid grid-cols-2 gap-2.5 pt-1 border-t border-white/10">
+                                <div className="grid grid-cols-2 gap-2.5 pt-1 border-t border-[#192631]/10">
                                     <div>
                                         <div className="flex justify-between text-[11px] mb-1">
-                                            <span className="font-bold text-slate-300">9. سقية الفواصل والتنظيف</span>
-                                            <span className="font-black text-amber-300">+{analyzerState.groutAndCleaningPerUnit}</span>
+                                            <span className="font-bold text-[#192631]/85">9. سقية الفواصل والتنظيف</span>
+                                            <span className="font-black text-[#b45309]">+{analyzerState.groutAndCleaningPerUnit}</span>
                                         </div>
                                         <input
                                             type="number"
@@ -1963,13 +1963,13 @@ export const PricingEngineHub: React.FC = () => {
                                                     groutAndCleaningPerUnit: Math.max(0, Number(e.target.value) || 0),
                                                 }))
                                             }
-                                            className="w-full rounded-lg bg-[#14171f] border border-white/15 px-2.5 py-1.5 text-xs font-bold text-white"
+                                            className="w-full rounded-lg bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2.5 py-1.5 text-xs font-bold text-[#192631]"
                                         />
                                     </div>
                                     <div>
                                         <div className="flex justify-between text-[11px] mb-1">
-                                            <span className="font-bold text-slate-300">10. مشمع وكرتون وجبس حماية</span>
-                                            <span className="font-black text-rose-300">+{analyzerState.protectionLayersPerUnit}</span>
+                                            <span className="font-bold text-[#192631]/85">10. مشمع وكرتون وجبس حماية</span>
+                                            <span className="font-black text-red-700">+{analyzerState.protectionLayersPerUnit}</span>
                                         </div>
                                         <input
                                             type="number"
@@ -1980,30 +1980,30 @@ export const PricingEngineHub: React.FC = () => {
                                                     protectionLayersPerUnit: Math.max(0, Number(e.target.value) || 0),
                                                 }))
                                             }
-                                            className="w-full rounded-lg bg-[#14171f] border border-white/15 px-2.5 py-1.5 text-xs font-bold text-white"
+                                            className="w-full rounded-lg bg-white/80 backdrop-blur-xl border border-[#192631]/10 px-2.5 py-1.5 text-xs font-bold text-[#192631]"
                                         />
                                     </div>
                                 </div>
                             </div>
 
                             {/* Column 3: Live Unit Rate Summary, Composition Bar & Push to BOQ */}
-                            <div className="rounded-xl bg-gradient-to-b from-emerald-950/40 via-black/50 to-black/60 border border-emerald-500/30 p-4 flex flex-col justify-between space-y-4">
+                            <div className="rounded-xl bg-gradient-to-b from-emerald-950/40 via-black/50 to-black/60 border border-[#123524]/25 p-4 flex flex-col justify-between space-y-4">
                                 <div className="space-y-3">
-                                    <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
-                                        <span className="text-xs font-black text-white uppercase">
+                                    <div className="flex items-center justify-between border-b border-[#192631]/10 pb-2.5">
+                                        <span className="text-xs font-black text-[#192631] uppercase">
                                             ملخص تكلفة وسعر بيع الوحدة ({analyzerState.unit})
                                         </span>
-                                        <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-black">
+                                        <span className="px-2 py-0.5 rounded bg-[#123524]/10 text-[#123524] text-[10px] font-black">
                                             {analyzerState.boqCode}
                                         </span>
                                     </div>
 
                                     {/* Visual Cost Composition Bar */}
                                     <div className="space-y-1.5">
-                                        <div className="text-[11px] font-bold text-slate-300">
+                                        <div className="text-[11px] font-bold text-[#192631]/85">
                                             Visual Cost Composition (توزيع عناصر التكلفة المباشرة):
                                         </div>
-                                        <div className="h-4 w-full rounded-full overflow-hidden flex bg-black/60 border border-white/10">
+                                        <div className="h-4 w-full rounded-full overflow-hidden flex bg-[#f5f5f5]/85 border border-[#192631]/10">
                                             <div
                                                 style={{
                                                     width: `${
@@ -2060,7 +2060,7 @@ export const PricingEngineHub: React.FC = () => {
                                                 title="Floor Protection Layers"
                                             />
                                         </div>
-                                        <div className="grid grid-cols-2 gap-1 text-[10px] text-slate-300 pt-1">
+                                        <div className="grid grid-cols-2 gap-1 text-[10px] text-[#192631]/85 pt-1">
                                             <span className="flex items-center gap-1.5">
                                                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                                                 خامات ومون: {formatEgp(granularBreakdown.bucketRawAndBonding)} ج.م
@@ -2085,26 +2085,26 @@ export const PricingEngineHub: React.FC = () => {
                                     </div>
 
                                     {/* Waterfall Price Buildup */}
-                                    <div className="rounded-xl bg-black/50 border border-white/10 p-3 space-y-2 text-xs">
+                                    <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 p-3 space-y-2 text-xs">
                                         <div className="flex justify-between">
-                                            <span className="text-slate-400">إجمالي التكلفة المباشرة للوحدة (M + L):</span>
-                                            <span className="font-black text-white">
+                                            <span className="text-[#192631]/70">إجمالي التكلفة المباشرة للوحدة (M + L):</span>
+                                            <span className="font-black text-[#192631]">
                                                 {formatEgp(granularBreakdown.totalDirectUnitRate)} EGP/{analyzerState.unit}
                                             </span>
                                         </div>
-                                        <div className="flex justify-between text-blue-300">
+                                        <div className="flex justify-between text-[#192631]">
                                             <span>+ نصيب الوحدة من مصاريف الموقع (+{proportionalOverheadPct.toFixed(1)}%):</span>
                                             <span className="font-bold">+{formatEgp(granularBreakdown.allocatedUnitOverhead)} EGP</span>
                                         </div>
-                                        <div className="flex justify-between border-t border-white/10 pt-1.5 font-bold text-slate-200">
+                                        <div className="flex justify-between border-t border-[#192631]/10 pt-1.5 font-bold text-[#192631]">
                                             <span>= تكلفة التعادل الفعلي (Break-Even Unit Cost):</span>
                                             <span>{formatEgp(granularBreakdown.breakEvenUnitCost)} EGP</span>
                                         </div>
-                                        <div className="flex justify-between text-purple-300">
+                                        <div className="flex justify-between text-[#192631]">
                                             <span>+ المخاطر والإدارة والتضخم والربح (+{totalCommercialMarkupPct.toFixed(1)}%):</span>
                                             <span className="font-bold">+{formatEgp(granularBreakdown.commercialMarkupUnit)} EGP</span>
                                         </div>
-                                        <div className="flex justify-between border-t border-emerald-500/30 pt-2 text-sm font-black text-emerald-300">
+                                        <div className="flex justify-between border-t border-[#123524]/25 pt-2 text-sm font-black text-[#123524]">
                                             <span>سعر الوحدة البيعي النهائي (Selling Rate):</span>
                                             <span>
                                                 {formatEgp(granularBreakdown.finalSellingUnitPrice)} EGP/{analyzerState.unit}
@@ -2114,17 +2114,17 @@ export const PricingEngineHub: React.FC = () => {
                                 </div>
 
                                 {/* Push Rate to BOQ Item Control */}
-                                <div className="space-y-2 pt-2 border-t border-white/10">
-                                    <label className="block text-[10px] font-bold text-slate-400 uppercase">
+                                <div className="space-y-2 pt-2 border-t border-[#192631]/10">
+                                    <label className="block text-[10px] font-bold text-[#192631]/70 uppercase">
                                         اختر بند المقايسة لترحيل هذا السعر المحلل إليه:
                                     </label>
                                     <select
                                         value={targetBoqItemIdForPush}
                                         onChange={(e) => setTargetBoqItemIdForPush(e.target.value)}
-                                        className="w-full rounded-lg bg-black/60 border border-white/15 px-2.5 py-2 text-xs font-bold text-white"
+                                        className="w-full rounded-lg bg-[#f5f5f5]/85 border border-[#192631]/10 px-2.5 py-2 text-xs font-bold text-[#192631]"
                                     >
                                         {boqItems.map((b) => (
-                                            <option key={b.id} value={b.id} className="bg-[#14171f]">
+                                            <option key={b.id} value={b.id} className="bg-white/80 backdrop-blur-xl">
                                                 {b.code} — {b.titleAr.slice(0, 55)}...
                                             </option>
                                         ))}
@@ -2132,7 +2132,7 @@ export const PricingEngineHub: React.FC = () => {
                                     <button
                                         disabled={isContractLocked}
                                         onClick={handlePushAnalyzerToBoq}
-                                        className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-xs shadow-lg disabled:opacity-50 cursor-pointer"
+                                        className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-[#192631] font-black text-xs shadow-lg disabled:opacity-50 cursor-pointer"
                                     >
                                         <ArrowRight className="w-4 h-4" />
                                         <span>Push Rate to BOQ Item (ترحيل السعر المحلل إلى بند المقايسة)</span>
@@ -2149,35 +2149,35 @@ export const PricingEngineHub: React.FC = () => {
                ==================================================================== */}
             {activeSubTab === 'site_overheads' && (
                 <div className="space-y-6">
-                    <div className="rounded-2xl border border-white/10 bg-[#12151c] p-5 space-y-5">
-                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/10 pb-4">
+                    <div className="rounded-2xl border border-[#192631]/10 bg-white/85 backdrop-blur-xl p-5 space-y-5">
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#192631]/10 pb-4">
                             <div>
-                                <h3 className="text-base font-black text-white flex items-center gap-2">
-                                    <HardHat className="w-5 h-5 text-blue-400" />
+                                <h3 className="text-base font-black text-[#192631] flex items-center gap-2">
+                                    <HardHat className="w-5 h-5 text-[#192631]" />
                                     <span>
                                         التكاليف غير المباشرة للموقع وتوزيعها النسبي على البنود (Site Overheads & Allocation)
                                     </span>
                                 </h3>
-                                <p className="text-xs text-slate-400 mt-1">
+                                <p className="text-xs text-[#192631]/70 mt-1">
                                     تُحسب التكاليف الشهرية لطاقم الإشراف والعمالة الدائمة والسلامة والانتقالات × مدة المشروع ({projectDurationMonths} شهور) وتُحمل نسبياً على كل بند في المقايسة
                                 </p>
                             </div>
 
                             <div className="flex items-center gap-3 bg-blue-500/10 border border-blue-500/30 rounded-xl px-4 py-2.5">
                                 <div>
-                                    <div className="text-[10px] font-bold text-blue-300 uppercase">
+                                    <div className="text-[10px] font-bold text-[#192631] uppercase">
                                         Monthly Overhead × {projectDurationMonths} Months
                                     </div>
-                                    <div className="text-sm font-black text-white">
+                                    <div className="text-sm font-black text-[#192631]">
                                         {formatEgp(monthlySiteOverheadEgp)} EGP/mo × {projectDurationMonths} ={' '}
-                                        <span className="text-blue-300">{formatEgp(totalSiteOverheadsEgp)} EGP</span>
+                                        <span className="text-[#192631]">{formatEgp(totalSiteOverheadsEgp)} EGP</span>
                                     </div>
                                 </div>
                                 <div className="pl-3 border-l border-blue-500/30 text-right">
-                                    <div className="text-[10px] font-bold text-emerald-300 uppercase">
+                                    <div className="text-[10px] font-bold text-[#123524] uppercase">
                                         Proportional Multiplier
                                     </div>
-                                    <div className="text-base font-black text-emerald-300">
+                                    <div className="text-base font-black text-[#123524]">
                                         +{proportionalOverheadPct.toFixed(2)}%
                                     </div>
                                 </div>
@@ -2185,22 +2185,22 @@ export const PricingEngineHub: React.FC = () => {
                         </div>
 
                         {/* Editable Monthly Site Overheads Table */}
-                        <div className="overflow-x-auto rounded-xl border border-white/10">
+                        <div className="overflow-x-auto rounded-xl border border-[#192631]/10">
                             <table className="w-full text-left border-collapse">
                                 <thead>
-                                    <tr className="bg-black/60 text-[11px] font-black uppercase text-slate-400 border-b border-white/10">
+                                    <tr className="bg-[#f5f5f5]/85 text-[11px] font-black uppercase text-[#192631]/70 border-b border-[#192631]/10">
                                         <th className="py-3 px-3">Resource / Role (البيان / الوظيفة بالموقع)</th>
                                         <th className="py-3 px-3">Category</th>
                                         <th className="py-3 px-2 text-center">Count (العدد)</th>
                                         <th className="py-3 px-3 text-right">Base Salary / Cost (أساسي شهري)</th>
                                         <th className="py-3 px-3 text-right">Allowance (بدل انتقالات/مهمات)</th>
-                                        <th className="py-3 px-3 text-right text-blue-300">Monthly Total (شهري)</th>
-                                        <th className="py-3 px-3 text-right text-emerald-300">
+                                        <th className="py-3 px-3 text-right text-[#192631]">Monthly Total (شهري)</th>
+                                        <th className="py-3 px-3 text-right text-[#123524]">
                                             Total for {projectDurationMonths} Months (إجمالي المدة)
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-white/10 text-xs">
+                                <tbody className="divide-y divide-[#192631]/10 text-xs">
                                     {siteOverheads.map((row) => {
                                         const monthlyRow =
                                             row.count * (row.baseMonthlyEgp + row.allowanceMonthlyEgp);
@@ -2208,11 +2208,11 @@ export const PricingEngineHub: React.FC = () => {
                                         return (
                                             <tr key={row.id} className="hover:bg-white/[0.03]">
                                                 <td className="py-3 px-3">
-                                                    <div className="font-bold text-white">{row.roleAr}</div>
-                                                    <div className="text-[11px] text-slate-400">{row.descriptionAr}</div>
+                                                    <div className="font-bold text-[#192631]">{row.roleAr}</div>
+                                                    <div className="text-[11px] text-[#192631]/70">{row.descriptionAr}</div>
                                                 </td>
                                                 <td className="py-3 px-3">
-                                                    <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[11px] text-slate-300">
+                                                    <span className="px-2 py-0.5 rounded bg-[#192631]/[0.05] border border-[#192631]/10 text-[11px] text-[#192631]/85">
                                                         {row.category}
                                                     </span>
                                                 </td>
@@ -2229,7 +2229,7 @@ export const PricingEngineHub: React.FC = () => {
                                                                 Number(e.target.value) || 0
                                                             )
                                                         }
-                                                        className="w-16 text-center rounded bg-black/50 border border-white/15 px-2 py-1 text-xs font-bold text-white"
+                                                        className="w-16 text-center rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1 text-xs font-bold text-[#192631]"
                                                     />
                                                 </td>
                                                 <td className="py-3 px-3 text-right">
@@ -2244,7 +2244,7 @@ export const PricingEngineHub: React.FC = () => {
                                                                 Number(e.target.value) || 0
                                                             )
                                                         }
-                                                        className="w-24 text-right rounded bg-black/50 border border-white/15 px-2 py-1 text-xs font-bold text-white"
+                                                        className="w-24 text-right rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1 text-xs font-bold text-[#192631]"
                                                     />
                                                 </td>
                                                 <td className="py-3 px-3 text-right">
@@ -2259,13 +2259,13 @@ export const PricingEngineHub: React.FC = () => {
                                                                 Number(e.target.value) || 0
                                                             )
                                                         }
-                                                        className="w-24 text-right rounded bg-black/50 border border-white/15 px-2 py-1 text-xs font-bold text-amber-300"
+                                                        className="w-24 text-right rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1 text-xs font-bold text-[#b45309]"
                                                     />
                                                 </td>
-                                                <td className="py-3 px-3 text-right font-black text-blue-300">
+                                                <td className="py-3 px-3 text-right font-black text-[#192631]">
                                                     {formatEgp(monthlyRow)} EGP
                                                 </td>
-                                                <td className="py-3 px-3 text-right font-black text-emerald-300 bg-emerald-500/[0.05]">
+                                                <td className="py-3 px-3 text-right font-black text-[#123524] bg-emerald-500/[0.05]">
                                                     {formatEgp(durationRow)} EGP
                                                 </td>
                                             </tr>
@@ -2273,14 +2273,14 @@ export const PricingEngineHub: React.FC = () => {
                                     })}
                                 </tbody>
                                 <tfoot>
-                                    <tr className="bg-black/70 border-t-2 border-white/20 text-xs font-black">
-                                        <td colSpan={5} className="py-3.5 px-3 text-right text-slate-300">
+                                    <tr className="bg-[#f5f5f5]/85 border-t-2 border-[#192631]/10 text-xs font-black">
+                                        <td colSpan={5} className="py-3.5 px-3 text-right text-[#192631]/85">
                                             إجمالي المصاريف غير المباشرة للموقع (Total Indirect Site Overheads):
                                         </td>
-                                        <td className="py-3.5 px-3 text-right text-blue-300 text-sm">
+                                        <td className="py-3.5 px-3 text-right text-[#192631] text-sm">
                                             {formatEgp(monthlySiteOverheadEgp)} EGP/mo
                                         </td>
-                                        <td className="py-3.5 px-3 text-right text-emerald-300 text-sm">
+                                        <td className="py-3.5 px-3 text-right text-[#123524] text-sm">
                                             {formatEgp(totalSiteOverheadsEgp)} EGP
                                         </td>
                                     </tr>
@@ -2291,22 +2291,22 @@ export const PricingEngineHub: React.FC = () => {
                         {/* Mathematical Formula Explanation Card */}
                         <div className="rounded-xl bg-blue-950/30 border border-blue-500/30 p-4 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
                             <div className="md:col-span-2 space-y-1">
-                                <div className="text-xs font-black text-blue-300 uppercase">
+                                <div className="text-xs font-black text-[#192631] uppercase">
                                     معادلة التوزيع النسبي التلقائي على البنود (Proportional Overhead Distribution Formula)
                                 </div>
-                                <p className="text-xs text-slate-300 leading-relaxed">
+                                <p className="text-xs text-[#192631]/85 leading-relaxed">
                                     بدلاً من وضع المصاريف غير المباشرة كبند منفصل يرفضه العميل عند التفاوض، يقوم محرك Nexus R02 بقسمة إجمالي مصاريف الموقع غير المباشرة (
                                     <strong>{formatEgp(totalSiteOverheadsEgp)} ج.م</strong>) على إجمالي التكلفة المباشرة للمقايسة (
                                     <strong>{formatEgp(totalDirectBoqCostEgp)} ج.م</strong>) فينتج معامل تحميل نسبي قدره{' '}
-                                    <strong className="text-emerald-300">+{proportionalOverheadPct.toFixed(2)}%</strong> يُضاف تلقائياً داخل تكلفة كل وحدة في المقايسة.
+                                    <strong className="text-[#123524]">+{proportionalOverheadPct.toFixed(2)}%</strong> يُضاف تلقائياً داخل تكلفة كل وحدة في المقايسة.
                                 </p>
                             </div>
-                            <div className="rounded-xl bg-black/50 border border-white/10 p-3 text-center">
-                                <div className="text-[11px] text-slate-400">معامل التحميل غير المباشر لكل بند</div>
-                                <div className="text-2xl font-black text-emerald-400 mt-1">
+                            <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 p-3 text-center">
+                                <div className="text-[11px] text-[#192631]/70">معامل التحميل غير المباشر لكل بند</div>
+                                <div className="text-2xl font-black text-[#123524] mt-1">
                                     +{proportionalOverheadPct.toFixed(2)}%
                                 </div>
-                                <div className="text-[10px] text-slate-400 mt-0.5">
+                                <div className="text-[10px] text-[#192631]/70 mt-0.5">
                                     ({formatEgp(totalSiteOverheadsEgp)} ÷ {formatEgp(totalDirectBoqCostEgp)})
                                 </div>
                             </div>
@@ -2321,25 +2321,25 @@ export const PricingEngineHub: React.FC = () => {
             {activeSubTab === 'commercial_sim' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     {/* Left 7 Columns: Markups, Inflation & Taxes Controls */}
-                    <div className="lg:col-span-7 rounded-2xl border border-white/10 bg-[#12151c] p-5 space-y-5">
-                        <div className="border-b border-white/10 pb-3">
-                            <h3 className="text-base font-black text-white flex items-center gap-2">
-                                <Sliders className="w-5 h-5 text-purple-400" />
+                    <div className="lg:col-span-7 rounded-2xl border border-[#192631]/10 bg-white/85 backdrop-blur-xl p-5 space-y-5">
+                        <div className="border-b border-[#192631]/10 pb-3">
+                            <h3 className="text-base font-black text-[#192631] flex items-center gap-2">
+                                <Sliders className="w-5 h-5 text-[#192631]" />
                                 <span>الهوامش التجارية، معامل التضخم، والضرائب (Markups, Inflation & Taxes)</span>
                             </h3>
-                            <p className="text-xs text-slate-400 mt-1">
+                            <p className="text-xs text-[#192631]/70 mt-1">
                                 ضبط نسب المخاطر والمصاريف الإدارية ومعامل التضخم الشهري وهامش الربح المستهدف
                             </p>
                         </div>
 
                         <div className="space-y-4">
                             {/* Risk Contingency % */}
-                            <div className="rounded-xl bg-black/40 border border-white/10 p-3.5">
+                            <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 p-3.5">
                                 <div className="flex justify-between text-xs mb-1.5">
-                                    <span className="font-bold text-white">
+                                    <span className="font-bold text-[#192631]">
                                         1. نسبة المخاطر الفنية والتنفيذية (Risk Contingency %)
                                     </span>
-                                    <span className="font-black text-amber-300">
+                                    <span className="font-black text-[#b45309]">
                                         {riskContingencyPct.toFixed(1)}% (+{formatEgp(tenderTotals.riskValue)} EGP)
                                     </span>
                                 </div>
@@ -2356,12 +2356,12 @@ export const PricingEngineHub: React.FC = () => {
                             </div>
 
                             {/* Admin / Head Office G&A % */}
-                            <div className="rounded-xl bg-black/40 border border-white/10 p-3.5">
+                            <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 p-3.5">
                                 <div className="flex justify-between text-xs mb-1.5">
-                                    <span className="font-bold text-white">
+                                    <span className="font-bold text-[#192631]">
                                         2. المصاريف الإدارية والعمومية للمقر الرئيسي (Admin / Head Office G&A %)
                                     </span>
-                                    <span className="font-black text-blue-300">
+                                    <span className="font-black text-[#192631]">
                                         {adminGaPct.toFixed(1)}% (+{formatEgp(tenderTotals.adminGaValue)} EGP)
                                     </span>
                                 </div>
@@ -2378,12 +2378,12 @@ export const PricingEngineHub: React.FC = () => {
                             </div>
 
                             {/* Inflation Impact % (Monthly Rate × Project Duration) */}
-                            <div className="rounded-xl bg-black/40 border border-purple-500/30 p-3.5">
+                            <div className="rounded-xl bg-[#f5f5f5]/85 border border-purple-500/30 p-3.5">
                                 <div className="flex justify-between text-xs mb-1.5">
-                                    <span className="font-bold text-white">
+                                    <span className="font-bold text-[#192631]">
                                         3. معامل التضخم خلال مدة المشروع ({monthlyInflationRatePct}%/شهر × {projectDurationMonths} شهور)
                                     </span>
-                                    <span className="font-black text-purple-300">
+                                    <span className="font-black text-[#192631]">
                                         {cumulativeInflationPct.toFixed(1)}% (+{formatEgp(tenderTotals.inflationValue)} EGP)
                                     </span>
                                 </div>
@@ -2397,17 +2397,17 @@ export const PricingEngineHub: React.FC = () => {
                                     onChange={(e) => setMonthlyInflationRatePct(Number(e.target.value))}
                                     className="w-full accent-purple-400"
                                 />
-                                <div className="text-[11px] text-slate-400 mt-1">
+                                <div className="text-[11px] text-[#192631]/70 mt-1">
                                     يغطي زيادات أسعار الخامات والوقود المتوقعة طوال فترة التنفيذ ({projectDurationMonths} شهور)
                                 </div>
                             </div>
 
                             {/* Target Profit Margin % & Negotiation Buffer % */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <div className="rounded-xl bg-black/40 border border-emerald-500/30 p-3.5">
+                                <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#123524]/25 p-3.5">
                                     <div className="flex justify-between text-xs mb-1.5">
-                                        <span className="font-bold text-white">4. هامش الربح المستهدف (Target Profit)</span>
-                                        <span className="font-black text-emerald-300">
+                                        <span className="font-bold text-[#192631]">4. هامش الربح المستهدف (Target Profit)</span>
+                                        <span className="font-black text-[#123524]">
                                             {targetProfitPct.toFixed(1)}% (+{formatEgp(tenderTotals.targetProfitValue)} EGP)
                                         </span>
                                     </div>
@@ -2423,9 +2423,9 @@ export const PricingEngineHub: React.FC = () => {
                                     />
                                 </div>
 
-                                <div className="rounded-xl bg-black/40 border border-teal-500/30 p-3.5">
+                                <div className="rounded-xl bg-[#f5f5f5]/85 border border-teal-500/30 p-3.5">
                                     <div className="flex justify-between text-xs mb-1.5">
-                                        <span className="font-bold text-white">5. هامش أمان التفاوض (Buffer %)</span>
+                                        <span className="font-bold text-[#192631]">5. هامش أمان التفاوض (Buffer %)</span>
                                         <span className="font-black text-teal-300">
                                             {negotiationBufferPct.toFixed(1)}% (+{formatEgp(tenderTotals.negotiationBufferValue)} EGP)
                                         </span>
@@ -2444,8 +2444,8 @@ export const PricingEngineHub: React.FC = () => {
                             </div>
 
                             {/* Tax Structure Selector */}
-                            <div className="rounded-xl bg-black/40 border border-white/10 p-3.5 space-y-2.5">
-                                <div className="text-xs font-bold text-white">
+                            <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 p-3.5 space-y-2.5">
+                                <div className="text-xs font-bold text-[#192631]">
                                     6. المعاملة الضريبية للعقد (Taxes: VAT {vatTaxPct}% | Table Tax {tableTaxPct}% | Withholding {withholdingTaxPct}%)
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -2453,8 +2453,8 @@ export const PricingEngineHub: React.FC = () => {
                                         onClick={() => setActiveTaxMode('contracting_5')}
                                         className={`p-2.5 rounded-lg border text-xs font-bold text-left cursor-pointer ${
                                             activeTaxMode === 'contracting_5'
-                                                ? 'bg-orange-500/20 border-orange-500 text-orange-300'
-                                                : 'bg-black/40 border-white/10 text-slate-400'
+                                                ? 'bg-[#e04b2a]/10 border-orange-500 text-[#e04b2a]'
+                                                : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/70'
                                         }`}
                                     >
                                         <div>ضريبة جدول مقاولات ({tableTaxPct}%)</div>
@@ -2464,8 +2464,8 @@ export const PricingEngineHub: React.FC = () => {
                                         onClick={() => setActiveTaxMode('vat_14')}
                                         className={`p-2.5 rounded-lg border text-xs font-bold text-left cursor-pointer ${
                                             activeTaxMode === 'vat_14'
-                                                ? 'bg-orange-500/20 border-orange-500 text-orange-300'
-                                                : 'bg-black/40 border-white/10 text-slate-400'
+                                                ? 'bg-[#e04b2a]/10 border-orange-500 text-[#e04b2a]'
+                                                : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/70'
                                         }`}
                                     >
                                         <div>ضريبة قيمة مضافة كاملة ({vatTaxPct}%)</div>
@@ -2475,8 +2475,8 @@ export const PricingEngineHub: React.FC = () => {
                                         onClick={() => setActiveTaxMode('net_untaxed')}
                                         className={`p-2.5 rounded-lg border text-xs font-bold text-left cursor-pointer ${
                                             activeTaxMode === 'net_untaxed'
-                                                ? 'bg-orange-500/20 border-orange-500 text-orange-300'
-                                                : 'bg-black/40 border-white/10 text-slate-400'
+                                                ? 'bg-[#e04b2a]/10 border-orange-500 text-[#e04b2a]'
+                                                : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/70'
                                         }`}
                                     >
                                         <div>تعاقد أهلي صافي (بدون ضرائب)</div>
@@ -2488,25 +2488,25 @@ export const PricingEngineHub: React.FC = () => {
                     </div>
 
                     {/* Right 5 Columns: Interactive Client Negotiation Discount Simulator (Eng. Pierre's Traffic-Light Rule) */}
-                    <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-[#12151c] p-5 flex flex-col justify-between space-y-5">
+                    <div className="lg:col-span-5 rounded-2xl border border-[#192631]/10 bg-white/85 backdrop-blur-xl p-5 flex flex-col justify-between space-y-5">
                         <div className="space-y-4">
-                            <div className="border-b border-white/10 pb-3">
-                                <h3 className="text-base font-black text-white flex items-center gap-2">
-                                    <Scale className="w-5 h-5 text-emerald-400" />
+                            <div className="border-b border-[#192631]/10 pb-3">
+                                <h3 className="text-base font-black text-[#192631] flex items-center gap-2">
+                                    <Scale className="w-5 h-5 text-[#123524]" />
                                     <span>محاكي التفاوض والخصم التجاري مع العميل</span>
                                 </h3>
-                                <p className="text-xs text-slate-400 mt-1">
+                                <p className="text-xs text-[#192631]/70 mt-1">
                                     اختبر تأثير الخصم المطلوب من العميل قبل الموافقة عليه لحماية التكلفة المباشرة وغير المباشرة
                                 </p>
                             </div>
 
                             {/* Client Discount Slider */}
-                            <div className="rounded-xl bg-black/50 border border-white/15 p-4 space-y-3">
+                            <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 p-4 space-y-3">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-xs font-bold text-slate-200">
+                                    <span className="text-xs font-bold text-[#192631]">
                                         خصم التفاوض المطلوب من العميل (Client Discount %):
                                     </span>
-                                    <span className="text-lg font-black text-orange-400">
+                                    <span className="text-lg font-black text-[#e04b2a]">
                                         {clientDiscountPct.toFixed(1)}% (-{formatEgp(tenderTotals.discountValueEgp)} EGP)
                                     </span>
                                 </div>
@@ -2519,7 +2519,7 @@ export const PricingEngineHub: React.FC = () => {
                                     onChange={(e) => setClientDiscountPct(Number(e.target.value))}
                                     className="w-full accent-orange-500"
                                 />
-                                <div className="flex justify-between text-[10px] text-slate-400">
+                                <div className="flex justify-between text-[10px] text-[#192631]/70">
                                     <span>0% (بدون خصم)</span>
                                     <span>حد الأمان ({negotiationBufferPct}%)</span>
                                     <span>حد التعادل بدون ربح</span>
@@ -2529,8 +2529,8 @@ export const PricingEngineHub: React.FC = () => {
 
                             {/* Live Traffic-Light Indicator (GREEN / AMBER / RED ZONE) */}
                             {tenderTotals.zone === 'GREEN' && (
-                                <div className="rounded-xl bg-emerald-500/15 border-2 border-emerald-500 p-4 space-y-2">
-                                    <div className="flex items-center gap-2 text-emerald-300 font-black text-sm">
+                                <div className="rounded-xl bg-[#123524]/10 border-2 border-emerald-500 p-4 space-y-2">
+                                    <div className="flex items-center gap-2 text-[#123524] font-black text-sm">
                                         <CheckCircle2 className="w-5 h-5 shrink-0" />
                                         <span>GREEN ZONE — آمن للموافقة (Within Negotiation Buffer)</span>
                                     </div>
@@ -2542,7 +2542,7 @@ export const PricingEngineHub: React.FC = () => {
 
                             {tenderTotals.zone === 'AMBER' && (
                                 <div className="rounded-xl bg-amber-500/15 border-2 border-amber-500 p-4 space-y-2">
-                                    <div className="flex items-center gap-2 text-amber-300 font-black text-sm">
+                                    <div className="flex items-center gap-2 text-[#b45309] font-black text-sm">
                                         <AlertTriangle className="w-5 h-5 shrink-0" />
                                         <span>AMBER ZONE — تآكل هامش الربح الصافي (Profit Erosion Warning)</span>
                                     </div>
@@ -2555,7 +2555,7 @@ export const PricingEngineHub: React.FC = () => {
 
                             {tenderTotals.zone === 'RED' && (
                                 <div className="rounded-xl bg-rose-500/20 border-2 border-rose-500 p-4 space-y-2 animate-pulse">
-                                    <div className="flex items-center gap-2 text-rose-300 font-black text-sm">
+                                    <div className="flex items-center gap-2 text-red-700 font-black text-sm">
                                         <ShieldAlert className="w-5 h-5 shrink-0" />
                                         <span>RED ZONE (DANGER) — خطر: الخصم يمس التكلفة الفعلية والمصاريف غير المباشرة!</span>
                                     </div>
@@ -2567,46 +2567,46 @@ export const PricingEngineHub: React.FC = () => {
                             )}
 
                             {/* Financial Waterfall Summary */}
-                            <div className="rounded-xl bg-black/50 border border-white/10 p-4 space-y-2 text-xs">
+                            <div className="rounded-xl bg-[#f5f5f5]/85 border border-[#192631]/10 p-4 space-y-2 text-xs">
                                 <div className="flex justify-between">
-                                    <span className="text-slate-400">1. إجمالي التكلفة المباشرة للبنود (Direct M+L+S):</span>
-                                    <span className="font-bold text-white">{formatEgp(tenderTotals.directCost)} EGP</span>
+                                    <span className="text-[#192631]/70">1. إجمالي التكلفة المباشرة للبنود (Direct M+L+S):</span>
+                                    <span className="font-bold text-[#192631]">{formatEgp(tenderTotals.directCost)} EGP</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-slate-400">2. المصاريف غير المباشرة للموقع ({projectDurationMonths} شهور):</span>
-                                    <span className="font-bold text-blue-300">+{formatEgp(tenderTotals.indirectSiteOverhead)} EGP</span>
+                                    <span className="text-[#192631]/70">2. المصاريف غير المباشرة للموقع ({projectDurationMonths} شهور):</span>
+                                    <span className="font-bold text-[#192631]">+{formatEgp(tenderTotals.indirectSiteOverhead)} EGP</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-slate-400">3. المخاطر + الإدارة + التضخم ({riskContingencyPct + adminGaPct + cumulativeInflationPct}%):</span>
-                                    <span className="font-bold text-purple-300">
+                                    <span className="text-[#192631]/70">3. المخاطر + الإدارة + التضخم ({riskContingencyPct + adminGaPct + cumulativeInflationPct}%):</span>
+                                    <span className="font-bold text-[#192631]">
                                         +{formatEgp(tenderTotals.riskValue + tenderTotals.adminGaValue + tenderTotals.inflationValue)} EGP
                                     </span>
                                 </div>
-                                <div className="flex justify-between border-t border-white/10 pt-1.5 font-black text-slate-200">
+                                <div className="flex justify-between border-t border-[#192631]/10 pt-1.5 font-black text-[#192631]">
                                     <span>= الحد الأدنى للتكلفة قبل الربح (Cost Floor):</span>
                                     <span>{formatEgp(tenderTotals.costFloorBeforeProfit)} EGP</span>
                                 </div>
-                                <div className="flex justify-between text-emerald-300">
+                                <div className="flex justify-between text-[#123524]">
                                     <span>+ الربح المستهدف وهامش التفاوض ({targetProfitPct + negotiationBufferPct}%):</span>
                                     <span className="font-bold">
                                         +{formatEgp(tenderTotals.targetProfitValue + tenderTotals.negotiationBufferValue)} EGP
                                     </span>
                                 </div>
-                                <div className="flex justify-between border-t border-white/10 pt-1.5 font-black text-amber-300">
+                                <div className="flex justify-between border-t border-[#192631]/10 pt-1.5 font-black text-[#b45309]">
                                     <span>= إجمالي العطاء قبل الخصم (Gross Tender):</span>
                                     <span>{formatEgp(tenderTotals.grossSellingBeforeTax)} EGP</span>
                                 </div>
-                                <div className="flex justify-between text-rose-300">
+                                <div className="flex justify-between text-red-700">
                                     <span>- خصم التفاوض الممنوح للعميل (-{clientDiscountPct}%):</span>
                                     <span className="font-bold">-{formatEgp(tenderTotals.discountValueEgp)} EGP</span>
                                 </div>
-                                <div className="flex justify-between border-t border-emerald-500/30 pt-2 text-sm font-black text-emerald-300">
+                                <div className="flex justify-between border-t border-[#123524]/25 pt-2 text-sm font-black text-[#123524]">
                                     <span>= صافي قيمة التعاقد بعد الخصم (Net Contract):</span>
                                     <span>{formatEgp(tenderTotals.netSellingAfterDiscount)} EGP</span>
                                 </div>
-                                <div className="flex justify-between text-[11px] text-slate-400 pt-1">
+                                <div className="flex justify-between text-[11px] text-[#192631]/70 pt-1">
                                     <span>الإجمالي المستحق شامل الضريبة وخصم المنبع:</span>
-                                    <span className="font-bold text-white">
+                                    <span className="font-bold text-[#192631]">
                                         {formatEgp(tenderTotals.finalContractPayableIncTax)} EGP
                                     </span>
                                 </div>

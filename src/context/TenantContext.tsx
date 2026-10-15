@@ -15,20 +15,20 @@ interface TenantContextType {
 
 const DEFAULT_ORG: Organization = {
     id: DEFAULT_ORG_ID,
-    name: 'Apex Contracting & Engineering',
-    slug: 'apex-contracting',
-    tagline: 'White-Label Contracting & Milestone Management Platform',
+    name: 'NEXUS CONTRACTING',
+    slug: 'nexus-contracting',
+    tagline: 'Eng. Pierre Afifi · Architecture, Turnkey Contracting & ERP',
     logoUrl: '',
     faviconUrl: '',
-    primaryColor: '#f3822d',
-    themeSurface: 'obsidian',
-    currency: 'AED',
-    branches: ['Abu Dhabi', 'Cairo', 'Dubai', 'Riyadh'],
-    email: 'admin@platform.com',
-    phone: '+971 2 555 0100',
-    address: 'Corporate Tower, Suite 400',
-    city: 'Abu Dhabi',
-    country: 'United Arab Emirates',
+    primaryColor: '#e04b2a',
+    themeSurface: 'slate',
+    currency: 'EGP',
+    branches: ['El Nozha El Gedida HQ', 'New Cairo - 5th Settlement', 'Madinaty', 'Ring Road Warehouses'],
+    email: 'info@newdeg.com',
+    phone: '+2 26221570 / +2 0122 2278 696',
+    address: 'Building 6 Ibrahim El Orabi St, El Nozha El Gedida',
+    city: 'Cairo',
+    country: 'Egypt',
     plan: 'Enterprise',
 };
 
@@ -39,13 +39,13 @@ const hexToRgb = (hex: string): [number, number, number] => {
     const clean = hex.replace('#', '').trim();
     if (clean.length === 3) {
         return [
-            parseInt(clean[0] + clean[0], 16) || 243,
-            parseInt(clean[1] + clean[1], 16) || 130,
-            parseInt(clean[2] + clean[2], 16) || 45,
+            parseInt(clean[0] + clean[0], 16) || 224,
+            parseInt(clean[1] + clean[1], 16) || 75,
+            parseInt(clean[2] + clean[2], 16) || 42,
         ];
     }
     const num = parseInt(clean, 16);
-    if (isNaN(num)) return [243, 130, 45];
+    if (isNaN(num)) return [224, 75, 42];
     return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
 };
 
@@ -61,38 +61,37 @@ const mixRgb = (rgb1: [number, number, number], rgb2: [number, number, number], 
 const applyBrandThemeToDom = (org: Organization) => {
     if (typeof document === 'undefined') return;
     const root = document.documentElement;
-    const baseRgb = hexToRgb(org.primaryColor || '#f3822d');
+    // Normalize legacy default orange (#f3822d) to official Nexus Brand Orange (#e04b2a)
+    const effectiveHex =
+        !org.primaryColor || org.primaryColor.toLowerCase() === '#f3822d'
+            ? '#e04b2a'
+            : org.primaryColor;
+    const baseRgb = hexToRgb(effectiveHex);
     const white: [number, number, number] = [255, 255, 255];
-    const black: [number, number, number] = [10, 10, 12];
+    const squidInk: [number, number, number] = [25, 38, 49];
 
     root.style.setProperty('--brand-50', mixRgb(baseRgb, white, 0.92));
     root.style.setProperty('--brand-100', mixRgb(baseRgb, white, 0.82));
     root.style.setProperty('--brand-200', mixRgb(baseRgb, white, 0.65));
     root.style.setProperty('--brand-300', mixRgb(baseRgb, white, 0.42));
-    root.style.setProperty('--brand-400', mixRgb(baseRgb, white, 0.18));
-    root.style.setProperty('--brand-500', baseRgb.join(' '));
-    root.style.setProperty('--brand-600', mixRgb(baseRgb, black, 0.14));
-    root.style.setProperty('--brand-700', mixRgb(baseRgb, black, 0.30));
-    root.style.setProperty('--brand-800', mixRgb(baseRgb, black, 0.46));
-    root.style.setProperty('--brand-900', mixRgb(baseRgb, black, 0.60));
-    root.style.setProperty('--brand-950', mixRgb(baseRgb, black, 0.78));
+    root.style.setProperty('--brand-400', '255 127 80'); // Official Nexus Coral #ff7f50
+    root.style.setProperty('--brand-500', baseRgb.join(' ')); // Official Nexus Orange #e04b2a
+    root.style.setProperty('--brand-600', mixRgb(baseRgb, squidInk, 0.14));
+    root.style.setProperty('--brand-700', mixRgb(baseRgb, squidInk, 0.28));
+    root.style.setProperty('--brand-800', mixRgb(baseRgb, squidInk, 0.44));
+    root.style.setProperty('--brand-900', mixRgb(baseRgb, squidInk, 0.60));
+    root.style.setProperty('--brand-950', mixRgb(baseRgb, squidInk, 0.76));
 
-    const surface = org.themeSurface || 'obsidian';
-    if (surface === 'midnight') {
-        root.style.setProperty('--surface-bg', '#080d1a');
-        root.style.setProperty('--surface-card', '#111827');
-    } else if (surface === 'slate') {
-        root.style.setProperty('--surface-bg', '#0f1419');
-        root.style.setProperty('--surface-card', '#1b222c');
-    } else {
-        root.style.setProperty('--surface-bg', '#0f0f0f');
-        root.style.setProperty('--surface-card', '#1a1a1a');
-    }
+    // Strictly apply Nexus Brand Guideline Light Mode (#f5f5f5 Light Gray + Glassmorphic surfaces)
+    root.classList.add('nexus-light-mode');
+    root.style.setProperty('--surface-bg', '#f5f5f5');
+    root.style.setProperty('--surface-card', 'rgba(255, 255, 255, 0.78)');
 
     // Update browser document title
-    document.title = `${org.name} — ${org.tagline || 'Milestone Tracker'}`;
+    const displayOrgName = org.name === 'Apex Contracting & Engineering' ? 'NEXUS CONTRACTING' : org.name;
+    document.title = `${displayOrgName} — ${org.tagline || 'Contracting ERP & Milestone Platform'}`;
 
-    // Update favicon dynamically
+    // Update favicon dynamically to the official Nexus Geometric N symbol on Squid Ink (#192631)
     let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement | null;
     if (!link) {
         link = document.createElement('link');
@@ -103,13 +102,7 @@ const applyBrandThemeToDom = (org: Organization) => {
     if (org.faviconUrl || org.logoUrl) {
         link.href = org.faviconUrl || org.logoUrl || '/logo.png';
     } else {
-        const initials = org.name
-            .split(/\s+/)
-            .map(w => w[0])
-            .join('')
-            .slice(0, 2)
-            .toUpperCase() || 'WL';
-        const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="${org.primaryColor || '#f3822d'}"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="26">${initials}</text></svg>`;
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#192631"/><g transform="translate(18,18) scale(0.64)" fill="${effectiveHex}"><polygon points="0,63 0,100 37,100"/><polygon points="0,4 0,43 57,100 96,100"/><polygon points="46,0 100,0 100,54"/></g></svg>`;
         link.href = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
     }
 };

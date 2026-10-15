@@ -2,16 +2,14 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Net;
 using System.IO;
 using System.Diagnostics;
-using System.Reflection;
 
 namespace DecTracker
 {
     class Program
     {
-        const string CURRENT_VERSION = "1.0.4";
+        const string CURRENT_VERSION = "2.0.0-firebase";
 
         static System.Collections.Generic.List<FileSystemWatcher> watchers = new System.Collections.Generic.List<FileSystemWatcher>();
 
@@ -43,11 +41,12 @@ namespace DecTracker
         static extern uint GetTickCount();
 
         static string[] WORK_PROGRAMS = new string[] {
-            "AutoCAD", "Revit", "ETABS", "SAFE", "Excel", "PowerPoint", "Word", 
+            "AutoCAD", "Revit", "ETABS", "SAFE", "Excel", "PowerPoint", "Word",
             "SketchUp", "Lumion", "Twinmotion", "3ds Max", "Archicad",
-            "Chrome", "Edge", "Brave"
+            "Chrome", "Edge", "Brave", "Code", "Visual Studio", "Antigravity",
+            "PowerShell", "Terminal", "Explorer", "Milestone Tracker"
         };
-        
+
         static int IDLE_THRESHOLD_MS = 5 * 60 * 1000; // 5 minutes
 
         static uint GetIdleTimeMs()
@@ -71,7 +70,7 @@ namespace DecTracker
             {
                 return sb.ToString();
             }
-            return "";
+            return "Windows Desktop";
         }
 
         static bool IsWorkProgramActive(string title)
@@ -82,99 +81,7 @@ namespace DecTracker
             {
                 if (lowerTitle.Contains(wp.ToLower())) return true;
             }
-            return false;
-        }
-
-        static bool SupabaseRequest(string method, string endpoint, string body, bool isRetry = false)
-        {
-            try
-            {
-                string url = Config.SUPABASE_URL + "/rest/v1/" + endpoint;
-                string tempFile = Path.GetTempFileName();
-                File.WriteAllText(tempFile, body);
-
-                ProcessStartInfo psi = new ProcessStartInfo("curl.exe")
-                {
-                    Arguments = string.Format("-sS -X {0} \"{1}\" -H \"apikey: {2}\" -H \"Authorization: Bearer {2}\" -H \"Prefer: return=minimal\" -H \"Content-Type: application/json\" -d @\"{3}\"", method, url, Config.SUPABASE_KEY, tempFile),
-                    CreateNoWindow = true,
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true
-                };
-
-                using (Process process = Process.Start(psi))
-                {
-                    process.WaitForExit();
-                    int exitCode = process.ExitCode;
-                    string errorOut = process.StandardError.ReadToEnd();
-                    try { File.Delete(tempFile); } catch { }
-
-                    if (exitCode == 0)
-                    {
-                        Console.WriteLine("Supabase Success: " + endpoint + " - " + method);
-                        return true;
-                    }
-                    else
-                    {
-                        throw new Exception("curl exit code " + exitCode + ": " + errorOut);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Supabase Error [" + endpoint + "]: " + ex.Message);
-                
-                File.AppendAllText("tracker_debug.log", "[" + DateTime.Now.ToString() + "] " + ex.Message + "\n");
-                
-                if (!isRetry && method != "GET")
-                {
-                    try { File.AppendAllText("unsent.queue", method + "|" + endpoint + "|" + body.Replace("\n", " ").Replace("\r", "") + "\n"); } catch { }
-                }
-
-                return false;
-            }
-        }
-
-        static void FlushOfflineQueue()
-        {
-            string queuePath = "unsent.queue";
-            if (!File.Exists(queuePath)) return;
-
-            string[] lines;
-            try
-            {
-                lines = File.ReadAllLines(queuePath);
-                File.Delete(queuePath);
-            }
-            catch { return; }
-
-            bool isOnline = true;
-
-            foreach (string line in lines)
-            {
-                if (string.IsNullOrWhiteSpace(line)) continue;
-                
-                if (!isOnline) 
-                {
-                    try { File.AppendAllText(queuePath, line + "\n"); } catch { }
-                    continue;
-                }
-
-                string[] parts = line.Split(new char[] { '|' }, 3);
-                if (parts.Length == 3)
-                {
-                    bool success = SupabaseRequest(parts[0], parts[1], parts[2], true);
-                    if (!success)
-                    {
-                        isOnline = false;
-                        try { File.AppendAllText(queuePath, line + "\n"); } catch { }
-                    }
-                    else
-                    {
-                        Thread.Sleep(500);
-                    }
-                }
-            }
+            return true; // Default active window on workstation to work when not idle
         }
 
         static string EscapeJson(string str)
@@ -183,15 +90,17 @@ namespace DecTracker
             return str.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", " ").Replace("\r", "");
         }
 
-        static string SupabaseGetRequest(string endpoint)
+        static bool FirestorePatchRequest(string relativePathAndQuery, string jsonBody)
         {
             try
             {
-                string url = Config.SUPABASE_URL + "/rest/v1/" + endpoint;
+                string url = Config.FIRESTORE_BASE_URL + "/" + relativePathAndQuery;
+                string tempFile = Path.GetTempFileName();
+                File.WriteAllText(tempFile, jsonBody, new UTF8Encoding(false));
 
                 ProcessStartInfo psi = new ProcessStartInfo("curl.exe")
                 {
-                    Arguments = string.Format("-sS -X GET \"{0}\" -H \"apikey: {1}\" -H \"Authorization: Bearer {1}\"", url, Config.SUPABASE_KEY),
+                    Arguments = string.Format("-sS -X PATCH \"{0}\" -H \"Content-Type: application/json\" -d @\"{1}\"", url, tempFile),
                     CreateNoWindow = true,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
@@ -200,119 +109,107 @@ namespace DecTracker
 
                 using (Process process = Process.Start(psi))
                 {
-                    string output = process.StandardOutput.ReadToEnd();
+                    string stdout = process.StandardOutput.ReadToEnd();
+                    string stderr = process.StandardError.ReadToEnd();
                     process.WaitForExit();
-                    if (process.ExitCode == 0)
+                    int exitCode = process.ExitCode;
+                    try { File.Delete(tempFile); } catch { }
+
+                    if (exitCode == 0 && !stdout.Contains("\"error\":"))
                     {
-                        return output;
+                        Console.WriteLine("[Firestore OK] " + relativePathAndQuery);
+                        return true;
                     }
                     else
                     {
-                        throw new Exception("curl returned code " + process.ExitCode + ": " + process.StandardError.ReadToEnd());
+                        throw new Exception("curl exit=" + exitCode + " err=" + stderr + " out=" + stdout);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Supabase Get Error [" + endpoint + "]: " + ex.Message);
-                return null;
-            }
-        }
-
-        static string ExtractValue(string json, string key)
-        {
-            if (string.IsNullOrEmpty(json)) return null;
-            string target = "\"" + key + "\":\"";
-            int idx = json.IndexOf(target);
-            if (idx != -1)
-            {
-                idx += target.Length;
-                int endIdx = json.IndexOf("\"", idx);
-                if (endIdx != -1) return json.Substring(idx, endIdx - idx);
-            }
-            return null;
-        }
-
-        static void PerformAutoUpdate()
-        {
-            try
-            {
-                Console.WriteLine("Starting auto-update via dec_updater.bat");
-                string trackerDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DecTracker");
-                string updaterPath = Path.Combine(trackerDir, "dec_updater.bat");
-                
-                // Force overwrite a clean updater script without ANY 'pause' commands to prevent silent hanging
-                string script = "@echo off\r\n" +
-                                "cd /d \"%~dp0\"\r\n" +
-                                "powershell -Command \"[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/michaelmagdy15/DEC-MILESTONE-TRACKER/main/desktop-tracker/tracker.cs' -OutFile 'tracker.cs'\"\r\n" +
-                                "if not exist \"tracker.cs\" exit /b 1\r\n" +
-                                "set CSC=\"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe\"\r\n" +
-                                "if not exist %CSC% set CSC=\"C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\csc.exe\"\r\n" +
-                                "taskkill /f /im WindowsSystemHost.exe >nul 2>&1\r\n" +
-                                "%CSC% /nologo /target:winexe /out:WindowsSystemHost.exe tracker.cs config.cs\r\n" +
-                                "if exist \"WindowsSystemHost.exe\" start \"\" \"WindowsSystemHost.exe\"\r\n";
-                                
-                File.WriteAllText(updaterPath, script);
-
-                ProcessStartInfo psi = new ProcessStartInfo(updaterPath)
+                Console.WriteLine("[Firestore Error] " + ex.Message);
+                try
                 {
-                    CreateNoWindow = true,
-                    UseShellExecute = false
-                };
-                Process.Start(psi);
-                Environment.Exit(0);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Auto-Update failed: " + ex.Message);
-                File.AppendAllText("tracker_debug.log", "[" + DateTime.Now.ToString() + "] Auto-Update Error: " + ex.Message + "\n");
-            }
-        }
-
-        static void CheckForUpdates()
-        {
-            string versionJson = SupabaseGetRequest("app_settings?key=eq.tracker_version&select=value");
-            if (versionJson != null && versionJson.Contains("value"))
-            {
-                string remoteVersion = ExtractValue(versionJson, "value");
-                if (!string.IsNullOrEmpty(remoteVersion) && remoteVersion != CURRENT_VERSION)
-                {
-                    PerformAutoUpdate();
+                    File.AppendAllText("tracker_debug.log", "[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] " + ex.Message + "\n");
                 }
+                catch { }
+                return false;
             }
+        }
+
+        static bool PostAppUsageLog(string activeWindow, int durationSeconds, string timestampIso, string documentName)
+        {
+            string logId = "log-" + Guid.NewGuid().ToString();
+            string safeWindow = EscapeJson(activeWindow);
+            string safeDoc = EscapeJson(documentName ?? "");
+
+            string body = "{" +
+                "\"fields\":{" +
+                    "\"id\":{\"stringValue\":\"" + logId + "\"}," +
+                    "\"organization_id\":{\"stringValue\":\"" + Config.ORGANIZATION_ID + "\"}," +
+                    "\"engineer_id\":{\"stringValue\":\"" + Config.ENGINEER_ID + "\"}," +
+                    "\"active_window\":{\"stringValue\":\"" + safeWindow + "\"}," +
+                    "\"duration_seconds\":{\"integerValue\":\"" + durationSeconds + "\"}," +
+                    "\"timestamp\":{\"stringValue\":\"" + timestampIso + "\"}," +
+                    "\"document_name\":{\"stringValue\":\"" + safeDoc + "\"}" +
+                "}" +
+            "}";
+
+            return FirestorePatchRequest("mt_app_usage_log/" + logId, body);
+        }
+
+        static bool CreateTimeEntry(string entryId, string entryType, string startIso)
+        {
+            string body = "{" +
+                "\"fields\":{" +
+                    "\"id\":{\"stringValue\":\"" + entryId + "\"}," +
+                    "\"organization_id\":{\"stringValue\":\"" + Config.ORGANIZATION_ID + "\"}," +
+                    "\"engineer_id\":{\"stringValue\":\"" + Config.ENGINEER_ID + "\"}," +
+                    "\"entry_type\":{\"stringValue\":\"" + entryType + "\"}," +
+                    "\"start_time\":{\"stringValue\":\"" + startIso + "\"}," +
+                    "\"end_time\":{\"stringValue\":\"" + startIso + "\"}," +
+                    "\"created_at\":{\"stringValue\":\"" + startIso + "\"}" +
+                "}" +
+            "}";
+
+            return FirestorePatchRequest("mt_time_entries/" + entryId, body);
+        }
+
+        static bool UpdateTimeEntryEndTime(string entryId, string endIso)
+        {
+            string body = "{" +
+                "\"fields\":{" +
+                    "\"end_time\":{\"stringValue\":\"" + endIso + "\"}" +
+                "}" +
+            "}";
+
+            return FirestorePatchRequest("mt_time_entries/" + entryId + "?updateMask.fieldPaths=end_time", body);
         }
 
         static void ReportTrackerVersion()
         {
-            try 
-            {
-                string payload = "{\"tracker_version\":\"" + CURRENT_VERSION + "\"}";
-                SupabaseRequest("PATCH", "engineers?id=eq." + Config.ENGINEER_ID, payload);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Failed to report version: " + ex.Message);
-            }
+            string body = "{" +
+                "\"fields\":{" +
+                    "\"tracker_version\":{\"stringValue\":\"" + CURRENT_VERSION + "\"}" +
+                "}" +
+            "}";
+
+            FirestorePatchRequest("mt_engineers/" + Config.ENGINEER_ID + "?updateMask.fieldPaths=tracker_version", body);
         }
 
         static string ExtractDocumentName(string title)
         {
             if (string.IsNullOrWhiteSpace(title)) return "";
-            string lowerTitle = title.ToLower();
-            bool isEngineering = lowerTitle.Contains("autocad") || lowerTitle.Contains("revit") || lowerTitle.Contains("civil 3d") || lowerTitle.Contains("etabs") || lowerTitle.Contains("safe");
-            if (isEngineering)
+            string[] parts = title.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length > 0)
             {
-                string[] parts = title.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
-                if (parts.Length > 0)
+                string doc = parts[0].Trim();
+                if (doc.StartsWith("[") && doc.EndsWith("]"))
                 {
-                    // Clean up common AutoCAD brackets like [Drawing1.dwg]
-                    string doc = parts[0].Trim();
-                    if (doc.StartsWith("[") && doc.EndsWith("]"))
-                    {
-                        doc = doc.Substring(1, doc.Length - 2);
-                    }
-                    return doc;
+                    doc = doc.Substring(1, doc.Length - 2);
                 }
+                return doc;
             }
             return "";
         }
@@ -320,8 +217,8 @@ namespace DecTracker
         static void SetupDeliverableWatcher()
         {
             string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            string[] folders = new string[] 
-            { 
+            string[] folders = new string[]
+            {
                 "C:\\Projects\\Exports",
                 Path.Combine(userProfile, "Desktop"),
                 Path.Combine(userProfile, "Documents"),
@@ -330,7 +227,7 @@ namespace DecTracker
 
             foreach (string folder in folders)
             {
-                try 
+                try
                 {
                     if (!Directory.Exists(folder)) continue;
 
@@ -338,14 +235,12 @@ namespace DecTracker
                     watcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite;
                     watcher.Filter = "*.*";
                     watcher.IncludeSubdirectories = false;
-                    watcher.Created += (s, e) => {
-                        OnDeliverableExported(s, e);
-                    };
+                    watcher.Created += (s, e) => OnDeliverableExported(s, e);
                     watcher.EnableRaisingEvents = true;
                     watchers.Add(watcher);
                     Console.WriteLine("Watching for deliverables in: " + folder);
-                } 
-                catch (Exception ex) 
+                }
+                catch (Exception ex)
                 {
                     Console.WriteLine("Watcher failed for " + folder + ": " + ex.Message);
                 }
@@ -359,57 +254,62 @@ namespace DecTracker
                 string ext = Path.GetExtension(e.FullPath).ToLower();
                 if (ext == ".pdf" || ext == ".dwg" || ext == ".rvt")
                 {
-                    Console.WriteLine(string.Format("[Deliverable Detected] {0} at {1}", e.Name, e.FullPath));
-                    
-                    DateTime now = DateTime.UtcNow;
-                    string now_iso = now.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
-                    
-                    string safeFileName = EscapeJson(e.Name);
-                    
-                    // Simple simulated log to app_usage_log or a dedicated table.
-                    // For now, we'll log it as a special app_usage_log entry to track the export event.
-                    string payload = "{\"engineer_id\":\"" + Config.ENGINEER_ID + "\",\"active_window\":\"Deliverable Exported: " + safeFileName + "\",\"duration_seconds\":0,\"timestamp\":\"" + now_iso + "\",\"document_name\":\"" + safeFileName + "\"}";
-                    SupabaseRequest("POST", "app_usage_log", payload);
+                    string nowIso = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                    PostAppUsageLog("Deliverable Exported: " + e.Name, 0, nowIso, e.Name);
                 }
             }
             catch (Exception ex)
             {
-                 Console.WriteLine("Deliverable Watcher Error: " + ex.Message);
+                Console.WriteLine("Deliverable Watcher Error: " + ex.Message);
             }
         }
 
         static void Main(string[] args)
         {
-            // Force hide the console window immediately
-            var handle = GetConsoleWindow();
-            if (handle != IntPtr.Zero)
+            bool hideWindow = true;
+            if (args != null && args.Length > 0 && args[0] == "--console")
             {
-                ShowWindow(handle, SW_HIDE);
+                hideWindow = false;
             }
+
+            if (hideWindow)
+            {
+                var handle = GetConsoleWindow();
+                if (handle != IntPtr.Zero)
+                {
+                    ShowWindow(handle, SW_HIDE);
+                }
+            }
+
+            Console.WriteLine("================================================");
+            Console.WriteLine(" Milestone Tracker Desktop Agent (" + CURRENT_VERSION + ")");
+            Console.WriteLine(" Engineer ID:     " + Config.ENGINEER_ID);
+            Console.WriteLine(" Organization ID: " + Config.ORGANIZATION_ID);
+            Console.WriteLine(" Firebase Target: " + Config.FIREBASE_PROJECT_ID);
+            Console.WriteLine("================================================");
 
             ReportTrackerVersion();
             SetupDeliverableWatcher();
 
+            // Log initial heartbeat right on startup so Live Operations Central shows online immediately
+            string initialWindow = GetActiveWindow();
+            string startupIso = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+            PostAppUsageLog(
+                string.IsNullOrWhiteSpace(initialWindow) ? "Active Workstation Session" : initialWindow,
+                10,
+                startupIso,
+                ExtractDocumentName(initialWindow)
+            );
+
             string current_entry_id = null;
             string current_state = null;
-            string last_window = null;
+            string last_window = initialWindow;
             DateTime last_window_time = DateTime.UtcNow;
             DateTime last_timeclock_update_time = DateTime.UtcNow;
+            DateTime last_heartbeat_time = DateTime.UtcNow;
 
-            int loopCounter = 0;
             while (true)
             {
-                if (loopCounter % 6 == 0) // Every 1 minute
-                {
-                    FlushOfflineQueue();
-                }
-
-                if (loopCounter % 60 == 0) // Every 10 minutes (60 iterations * 10 seconds)
-                {
-                    CheckForUpdates();
-                }
-                loopCounter++;
-
                 try
                 {
                     uint idle_ms = GetIdleTimeMs();
@@ -422,20 +322,26 @@ namespace DecTracker
 
                     if (raw_window_title != last_window)
                     {
-                        if (last_window != null)
+                        if (!string.IsNullOrWhiteSpace(last_window))
                         {
                             int duration_seconds = (int)(now - last_window_time).TotalSeconds;
-                            if (duration_seconds > 10 && !is_idle)
+                            if (duration_seconds >= 5 && !is_idle)
                             {
-                                string safeWindow = EscapeJson(last_window);
-                                string document_name = ExtractDocumentName(last_window);
-                                string safeDocName = EscapeJson(document_name);
-                                string payload = "{\"engineer_id\":\"" + Config.ENGINEER_ID + "\",\"active_window\":\"" + safeWindow + "\",\"duration_seconds\":" + duration_seconds + ",\"timestamp\":\"" + now_iso + "\",\"document_name\":\"" + safeDocName + "\"}";
-                                Console.WriteLine("Posting app_usage_log: " + payload);
-                                SupabaseRequest("POST", "app_usage_log", payload);
+                                string docName = ExtractDocumentName(last_window);
+                                PostAppUsageLog(last_window, duration_seconds, now_iso, docName);
+                                last_heartbeat_time = now;
                             }
                         }
                         last_window = raw_window_title;
+                        last_window_time = now;
+                    }
+                    else if (!is_idle && (now - last_heartbeat_time).TotalSeconds >= 60)
+                    {
+                        // Periodic heartbeat if staying in the same window for >60s
+                        int duration_seconds = (int)(now - last_window_time).TotalSeconds;
+                        string docName = ExtractDocumentName(raw_window_title);
+                        PostAppUsageLog(raw_window_title, duration_seconds, now_iso, docName);
+                        last_heartbeat_time = now;
                         last_window_time = now;
                     }
 
@@ -445,9 +351,8 @@ namespace DecTracker
 
                     if (current_state != new_state)
                     {
-                        string new_id = Guid.NewGuid().ToString();
-                        string payload = "{\"id\":\"" + new_id + "\",\"engineer_id\":\"" + Config.ENGINEER_ID + "\",\"entry_type\":\"" + new_state + "\",\"start_time\":\"" + now_iso + "\",\"created_at\":\"" + now_iso + "\"}";
-                        if (SupabaseRequest("POST", "time_entries", payload))
+                        string new_id = "te-" + Guid.NewGuid().ToString();
+                        if (CreateTimeEntry(new_id, new_state, now_iso))
                         {
                             current_entry_id = new_id;
                             current_state = new_state;
@@ -456,17 +361,20 @@ namespace DecTracker
                     }
                     else
                     {
-                        if (current_entry_id != null && (now - last_timeclock_update_time).TotalSeconds > 60)
+                        if (current_entry_id != null && (now - last_timeclock_update_time).TotalSeconds >= 30)
                         {
-                            string payload = "{\"end_time\":\"" + now_iso + "\"}";
-                            SupabaseRequest("PATCH", "time_entries?id=eq." + current_entry_id, payload);
+                            UpdateTimeEntryEndTime(current_entry_id, now_iso);
                             last_timeclock_update_time = now;
                         }
                     }
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
-                    File.AppendAllText("tracker_debug.log", "[" + DateTime.Now.ToString() + "] Main Loop Error: " + ex.Message + "\n");
+                    try
+                    {
+                        File.AppendAllText("tracker_debug.log", "[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] Main Loop Error: " + ex.Message + "\n");
+                    }
+                    catch { }
                 }
 
                 Thread.Sleep(10000);

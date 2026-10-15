@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
-import { Calendar as CalendarIcon, CheckCircle2, XCircle, Clock, ChevronRight, Plus, ChevronLeft, UserCheck, X, AlertCircle, FileText, Check } from 'lucide-react';
+import { Calendar as CalendarIcon, CheckCircle2, XCircle, Clock, ChevronRight, Plus, ChevronLeft, UserCheck, X, AlertCircle, FileText, Check, MapPin } from 'lucide-react';
 import { format, startOfWeek, addDays, isSameDay } from 'date-fns';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
+import { HrWhereaboutsHub } from '../components/nexus/HrWhereaboutsHub';
 
 export const Attendance = () => {
     const { engineers, attendance, addAttendance, updateAttendance, leaveRequests, addLeaveRequest, updateLeaveRequest, timeEntries } = useData();
     const { role, engineerId: currentEngineerId } = useAuth();
-    const [activeTab, setActiveTab] = useState<'attendance' | 'leave'>('attendance');
+    const [activeTab, setActiveTab] = useState<'gps_whereabouts' | 'attendance' | 'leave'>('gps_whereabouts');
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
     // Leave Request Form State
@@ -81,32 +82,44 @@ export const Attendance = () => {
             animate={{ opacity: 1, y: 0 }}
             className="space-y-8"
         >
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
                 <div>
-                    <h2 className="text-4xl lg:text-5xl font-black text-white tracking-tighter mb-2">
-                        Operational <span className="text-orange-400">Presence</span>
+                    <h2 className="text-4xl lg:text-5xl font-black text-[#192631] tracking-tighter mb-2">
+                        Attendance & <span className="text-[#e04b2a]">Field GPS</span>
                     </h2>
-                    <div className="h-1 w-20 bg-orange-500 rounded-full mb-4"></div>
-                    <p className="text-slate-500 font-medium tracking-wide">Tracking operative availability and mission readiness.</p>
+                    <div className="h-1 w-20 bg-[#e04b2a] rounded-full mb-4"></div>
+                    <p className="text-[#192631]/70 font-medium tracking-wide">
+                        Live GPS Staff Whereabouts · Surprise Roll Call (تمام مفاجئ) · 21→20 Payroll Cycle · Weekly Roster & Leave Bank
+                    </p>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4">
-                    <div className="bg-white/5 p-1.5 rounded-2xl border border-white/5 flex backdrop-blur-3xl">
+                    <div className="bg-white/80 p-1.5 rounded-2xl border border-[#192631]/10 flex flex-wrap gap-1.5 backdrop-blur-xl shadow-sm">
+                        <button
+                            onClick={() => setActiveTab('gps_whereabouts')}
+                            className={clsx(
+                                "px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 flex items-center gap-2",
+                                activeTab === 'gps_whereabouts' ? "bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25" : "text-[#192631]/75 hover:text-[#192631] hover:bg-[#192631]/[0.05]"
+                            )}
+                        >
+                            <MapPin className="w-4 h-4" />
+                            Live GPS, Surprise Check & 21→20 Cycle
+                        </button>
                         <button
                             onClick={() => setActiveTab('attendance')}
                             className={clsx(
-                                "px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3",
-                                activeTab === 'attendance' ? "bg-white text-black shadow-xl" : "text-slate-500 hover:text-white"
+                                "px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 flex items-center gap-2",
+                                activeTab === 'attendance' ? "bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25" : "text-[#192631]/75 hover:text-[#192631] hover:bg-[#192631]/[0.05]"
                             )}
                         >
                             <UserCheck className="w-4 h-4" />
-                            Attendance
+                            Weekly Roster
                         </button>
                         <button
                             onClick={() => setActiveTab('leave')}
                             className={clsx(
-                                "px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3",
-                                activeTab === 'leave' ? "bg-white text-black shadow-xl" : "text-slate-500 hover:text-white"
+                                "px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 flex items-center gap-2",
+                                activeTab === 'leave' ? "bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25" : "text-[#192631]/75 hover:text-[#192631] hover:bg-[#192631]/[0.05]"
                             )}
                         >
                             <CalendarIcon className="w-4 h-4" />
@@ -116,30 +129,34 @@ export const Attendance = () => {
                 </div>
             </div>
 
+            {activeTab === 'gps_whereabouts' && (
+                <HrWhereaboutsHub />
+            )}
+
             {activeTab === 'attendance' && (
                 <div className="space-y-8">
                     {/* Week Selector */}
-                    <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-white/5 p-8 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
+                    <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 p-8 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-orange-600/5 rounded-full -mr-32 -mt-32 blur-3xl group-hover:bg-orange-600/10 transition-colors"></div>
                         <div className="flex items-center justify-between mb-8 relative z-10">
                             <div>
-                                <h3 className="text-xl font-black text-white tracking-tight flex items-center gap-4">
-                                    <div className="p-3 bg-orange-500/10 rounded-2xl border border-orange-500/20">
-                                        <CalendarIcon className="w-6 h-6 text-orange-400" />
+                                <h3 className="text-xl font-black text-[#192631] tracking-tight flex items-center gap-4">
+                                    <div className="p-3 bg-[#e04b2a]/10 rounded-2xl border border-[#e04b2a]/25">
+                                        <CalendarIcon className="w-6 h-6 text-[#e04b2a]" />
                                     </div>
                                     Timeline Navigation
                                 </h3>
-                                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-2 ml-14">Synchronizing Operative Logs</p>
+                                <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-[0.2em] mt-2 ml-14">Synchronizing Operative Logs</p>
                             </div>
-                            <div className="bg-white/5 border border-white/5 rounded-2xl p-2 flex items-center gap-4">
-                                <button onClick={() => setSelectedDate(addDays(selectedDate, -7))} className="p-2 text-slate-500 hover:text-white transition-all"><ChevronLeft className="w-5 h-5" /></button>
+                            <div className="bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl p-2 flex items-center gap-4">
+                                <button onClick={() => setSelectedDate(addDays(selectedDate, -7))} className="p-2 text-[#192631]/60 hover:text-[#192631] transition-all"><ChevronLeft className="w-5 h-5" /></button>
                                 <input
                                     type="date"
                                     value={format(selectedDate, 'yyyy-MM-dd')}
                                     onChange={(e) => setSelectedDate(new Date(e.target.value))}
-                                    className="bg-transparent text-white font-black uppercase tracking-widest text-[10px] focus:outline-none cursor-pointer"
+                                    className="bg-transparent text-[#192631] font-black uppercase tracking-widest text-[10px] focus:outline-none cursor-pointer"
                                 />
-                                <button onClick={() => setSelectedDate(addDays(selectedDate, 7))} className="p-2 text-slate-500 hover:text-white transition-all"><ChevronRight className="w-5 h-5" /></button>
+                                <button onClick={() => setSelectedDate(addDays(selectedDate, 7))} className="p-2 text-[#192631]/60 hover:text-[#192631] transition-all"><ChevronRight className="w-5 h-5" /></button>
                             </div>
                         </div>
 
@@ -166,14 +183,14 @@ export const Attendance = () => {
                     </div>
 
                     {/* Attendance Logs */}
-                    <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-white/5 overflow-hidden backdrop-blur-3xl shadow-2xl">
-                        <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/0">
-                            <h3 className="text-xl font-black text-white tracking-tight uppercase">Presence Registry</h3>
-                            <div className="px-4 py-2 bg-white/5 rounded-full text-[10px] font-bold text-slate-500 uppercase tracking-widest border border-white/5">
+                    <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 overflow-hidden backdrop-blur-3xl shadow-2xl">
+                        <div className="p-8 border-b border-[#192631]/10 flex justify-between items-center bg-white/0">
+                            <h3 className="text-xl font-black text-[#192631] tracking-tight uppercase">Presence Registry</h3>
+                            <div className="px-4 py-2 bg-[#192631]/[0.05] rounded-full text-[10px] font-bold text-[#192631]/60 uppercase tracking-widest border border-[#192631]/10">
                                 {format(selectedDate, 'MMMM d, yyyy')}
                             </div>
                         </div>
-                        <div className="divide-y divide-white/5">
+                        <div className="divide-y divide-[#192631]/10">
                             {engineers.map((engineer, idx) => {
                                 const record = getAttendanceStatus(engineer.id, selectedDate);
 
@@ -258,27 +275,27 @@ export const Attendance = () => {
                                         <div className="absolute left-0 top-0 bottom-0 w-1 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 relative z-10">
                                             <div className="flex items-center gap-6">
-                                                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/5 group-hover:bg-orange-500/10 group-hover:border-orange-500/20 transition-all duration-500">
-                                                    <span className="text-lg font-black text-slate-500 group-hover:text-orange-400">{engineer.name?.charAt(0)}</span>
+                                                <div className="w-14 h-14 bg-[#192631]/[0.05] rounded-2xl flex items-center justify-center border border-[#192631]/10 group-hover:bg-[#e04b2a]/10 group-hover:border-[#e04b2a]/25 transition-all duration-500">
+                                                    <span className="text-lg font-black text-[#192631]/60 group-hover:text-[#e04b2a]">{engineer.name?.charAt(0)}</span>
                                                 </div>
                                                 <div>
-                                                    <h4 className="font-black text-white text-lg tracking-tight group-hover:text-orange-400 transition-colors uppercase">{engineer.name}</h4>
+                                                    <h4 className="font-black text-[#192631] text-lg tracking-tight group-hover:text-[#e04b2a] transition-colors uppercase">{engineer.name}</h4>
                                                     <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest">{engineer.role || 'Specialist'}</p>
 
                                                     {/* Display Auto Attendance Metrics */}
                                                     {hasAutoAttendance && entryTime && exitTime && (
                                                         <div className="flex items-center gap-4 mt-2">
-                                                            <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-400 bg-white/5 px-2 py-1 rounded-md border border-white/5">
-                                                                <Clock className="w-3 h-3 text-emerald-400" />
+                                                            <div className="flex items-center gap-1.5 text-[10px] font-medium text-[#192631]/70 bg-[#192631]/[0.05] px-2 py-1 rounded-md border border-[#192631]/10">
+                                                                <Clock className="w-3 h-3 text-[#123524]" />
                                                                 <span>In: {format(entryTime, 'hh:mm a')}</span>
                                                             </div>
                                                             {totalSeconds > 60 && (
-                                                                <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-400 bg-white/5 px-2 py-1 rounded-md border border-white/5">
-                                                                    <Clock className="w-3 h-3 text-orange-400" />
+                                                                <div className="flex items-center gap-1.5 text-[10px] font-medium text-[#192631]/70 bg-[#192631]/[0.05] px-2 py-1 rounded-md border border-[#192631]/10">
+                                                                    <Clock className="w-3 h-3 text-[#e04b2a]" />
                                                                     <span>Out: {format(exitTime, 'hh:mm a')}</span>
                                                                 </div>
                                                             )}
-                                                            <div className="flex items-center justify-center min-w-[3rem] text-[10px] font-bold text-white bg-white/10 px-2 py-1 rounded-md">
+                                                            <div className="flex items-center justify-center min-w-[3rem] text-[10px] font-bold text-[#192631] bg-[#192631]/[0.05] px-2 py-1 rounded-md">
                                                                 {formatDuration(totalSeconds)}
                                                             </div>
                                                         </div>
@@ -305,18 +322,18 @@ export const Attendance = () => {
                                                 )}
 
                                                 {(role === 'admin' || currentEngineerId === engineer.id) && (
-                                                    <div className="flex gap-2 p-1.5 bg-white/5 rounded-2xl border border-white/5">
+                                                    <div className="flex gap-2 p-1.5 bg-[#192631]/[0.05] rounded-2xl border border-[#192631]/10">
                                                         <button
                                                             onClick={() => handleStatusChange(engineer.id, 'Present')}
-                                                            className="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all text-slate-500 hover:text-emerald-400 hover:bg-emerald-500/10"
+                                                            className="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all text-[#192631]/60 hover:text-[#123524] hover:bg-[#123524]/10"
                                                         >Present</button>
                                                         <button
                                                             onClick={() => handleStatusChange(engineer.id, 'Half-Day')}
-                                                            className="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all text-slate-500 hover:text-amber-400 hover:bg-amber-500/10"
+                                                            className="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all text-[#192631]/60 hover:text-[#b45309] hover:bg-amber-500/10"
                                                         >Half</button>
                                                         <button
                                                             onClick={() => handleStatusChange(engineer.id, 'Absent')}
-                                                            className="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all text-slate-500 hover:text-red-400 hover:bg-red-500/10"
+                                                            className="px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all text-[#192631]/60 hover:text-red-700 hover:bg-red-500/10"
                                                         >Absent</button>
                                                     </div>
                                                 )}
@@ -335,13 +352,13 @@ export const Attendance = () => {
                     {/* LEAVE STATS/FORM */}
                     <div className="xl:col-span-1 space-y-8">
                         {role !== 'admin' && (
-                            <div className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-white/5 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
-                                <div className="absolute top-0 left-0 w-32 h-32 bg-orange-500/5 rounded-full -ml-16 -mt-16 blur-3xl group-hover:bg-orange-500/10 transition-colors"></div>
+                            <div className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden group">
+                                <div className="absolute top-0 left-0 w-32 h-32 bg-orange-500/5 rounded-full -ml-16 -mt-16 blur-3xl group-hover:bg-[#e04b2a]/10 transition-colors"></div>
                                 <div className="flex justify-between items-center mb-8 relative z-10">
-                                    <h3 className="text-xl font-black text-white tracking-tight uppercase">Leave Request</h3>
+                                    <h3 className="text-xl font-black text-[#192631] tracking-tight uppercase">Leave Request</h3>
                                     <button
                                         onClick={() => setShowLeaveForm(!showLeaveForm)}
-                                        className="p-3 bg-white/5 text-slate-500 hover:text-white rounded-xl border border-white/5 transition-all"
+                                        className="p-3 bg-[#192631]/[0.05] text-[#192631]/60 hover:text-[#192631] rounded-xl border border-[#192631]/10 transition-all"
                                     >
                                         {showLeaveForm ? <X className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                                     </button>
@@ -350,33 +367,33 @@ export const Attendance = () => {
                                 {showLeaveForm ? (
                                     <form onSubmit={handleLeaveSubmit} className="space-y-6 relative z-10 animate-in fade-in slide-in-from-top-4 duration-500">
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Mission Stand-down Start</label>
+                                            <label className="text-[10px] font-black text-[#192631]/60 uppercase tracking-widest ml-1">Mission Stand-down Start</label>
                                             <input
                                                 type="date"
                                                 required
                                                 value={leaveStartDate}
                                                 onChange={(e) => setLeaveStartDate(e.target.value)}
-                                                className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
+                                                className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">End Duration</label>
+                                            <label className="text-[10px] font-black text-[#192631]/60 uppercase tracking-widest ml-1">End Duration</label>
                                             <input
                                                 type="date"
                                                 required
                                                 value={leaveEndDate}
                                                 onChange={(e) => setLeaveEndDate(e.target.value)}
-                                                className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
+                                                className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-1">Deployment Reason</label>
+                                            <label className="text-[10px] font-black text-[#192631]/60 uppercase tracking-widest ml-1">Deployment Reason</label>
                                             <textarea
                                                 required
                                                 value={leaveReason}
                                                 onChange={(e) => setLeaveReason(e.target.value)}
                                                 rows={3}
-                                                className="w-full px-5 py-4 bg-white/5 border border-white/5 rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium resize-none shadow-inner"
+                                                className="w-full px-5 py-4 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-2xl text-[#192631] focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all font-medium resize-none shadow-inner"
                                                 placeholder="State the objective for leave..."
                                             />
                                         </div>
@@ -388,7 +405,7 @@ export const Attendance = () => {
                                         </button>
                                     </form>
                                 ) : (
-                                    <div className="py-12 text-center border-2 border-dashed border-white/5 rounded-[32px]">
+                                    <div className="py-12 text-center border-2 border-dashed border-[#192631]/10 rounded-[32px]">
                                         <AlertCircle className="w-12 h-12 text-slate-800 mx-auto mb-4" />
                                         <p className="text-slate-600 text-[10px] font-black uppercase tracking-widest">Awaiting New Intel</p>
                                     </div>
@@ -396,8 +413,8 @@ export const Attendance = () => {
                             </div>
                         )}
 
-                        <div className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-white/5 backdrop-blur-3xl shadow-2xl">
-                            <h3 className="text-xl font-black text-white tracking-tight uppercase mb-6">Leave Allocation</h3>
+                        <div className="bg-[#1a1a1a]/40 p-8 rounded-[40px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl">
+                            <h3 className="text-xl font-black text-[#192631] tracking-tight uppercase mb-6">Leave Allocation</h3>
                             {(() => {
                                 const ANNUAL_TOTAL = 24;
                                 const SICK_TOTAL = 12;
@@ -417,21 +434,21 @@ export const Attendance = () => {
 
                                 return (
                                     <div className="space-y-4">
-                                        <div className="p-6 bg-white/5 rounded-[24px] border border-white/5">
+                                        <div className="p-6 bg-[#192631]/[0.05] rounded-[24px] border border-[#192631]/10">
                                             <div className="flex justify-between items-end mb-2">
-                                                <div className="text-3xl font-black text-white">{String(annualRemaining).padStart(2, '0')}</div>
+                                                <div className="text-3xl font-black text-[#192631]">{String(annualRemaining).padStart(2, '0')}</div>
                                                 <div className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">Annual Balance</div>
                                             </div>
-                                            <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                                            <div className="h-2 bg-[#192631]/[0.05] rounded-full overflow-hidden">
                                                 <div className="h-full bg-emerald-500 transition-all duration-500" style={{ width: `${annualPct}%` }}></div>
                                             </div>
                                         </div>
-                                        <div className="p-6 bg-white/5 rounded-[24px] border border-white/5">
+                                        <div className="p-6 bg-[#192631]/[0.05] rounded-[24px] border border-[#192631]/10">
                                             <div className="flex justify-between items-end mb-2">
-                                                <div className="text-3xl font-black text-white">{String(sickUsed).padStart(2, '0')}</div>
+                                                <div className="text-3xl font-black text-[#192631]">{String(sickUsed).padStart(2, '0')}</div>
                                                 <div className="text-[10px] font-black text-amber-500 uppercase tracking-widest">Sick Leave Used</div>
                                             </div>
-                                            <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                                            <div className="h-2 bg-[#192631]/[0.05] rounded-full overflow-hidden">
                                                 <div className="h-full bg-amber-500 transition-all duration-500" style={{ width: `${sickPct}%` }}></div>
                                             </div>
                                         </div>
@@ -443,11 +460,11 @@ export const Attendance = () => {
 
                     {/* LEAVE LOGS/APPROVAL */}
                     <div className="xl:col-span-2">
-                        <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-white/5 overflow-hidden backdrop-blur-3xl shadow-2xl">
-                            <div className="p-8 border-b border-white/5 bg-white/0 flex justify-between items-center">
-                                <h3 className="text-xl font-black text-white tracking-tight uppercase">Operational Stand-downs</h3>
+                        <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 overflow-hidden backdrop-blur-3xl shadow-2xl">
+                            <div className="p-8 border-b border-[#192631]/10 bg-white/0 flex justify-between items-center">
+                                <h3 className="text-xl font-black text-[#192631] tracking-tight uppercase">Operational Stand-downs</h3>
                             </div>
-                            <div className="divide-y divide-white/5">
+                            <div className="divide-y divide-[#192631]/10">
                                 {leaveRequests.sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime()).map((request, idx) => {
                                     const eng = engineers.find(e => e.id === request.engineerId);
                                     return (
@@ -461,19 +478,19 @@ export const Attendance = () => {
                                             <div className="absolute left-0 top-0 bottom-0 w-1 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                             <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 relative z-10">
                                                 <div className="flex items-start gap-6 flex-1">
-                                                    <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center border border-white/5 group-hover:bg-orange-500/10 group-hover:border-orange-500/20 transition-all duration-500 flex-shrink-0">
-                                                        <FileText className="w-6 h-6 text-slate-500" />
+                                                    <div className="w-14 h-14 bg-[#192631]/[0.05] rounded-2xl flex items-center justify-center border border-[#192631]/10 group-hover:bg-[#e04b2a]/10 group-hover:border-[#e04b2a]/25 transition-all duration-500 flex-shrink-0">
+                                                        <FileText className="w-6 h-6 text-[#192631]/60" />
                                                     </div>
                                                     <div>
                                                         <div className="flex items-center gap-3 mb-2 flex-wrap">
-                                                            <h4 className="font-black text-white text-lg tracking-tight group-hover:text-orange-400 transition-colors uppercase leading-none">
+                                                            <h4 className="font-black text-[#192631] text-lg tracking-tight group-hover:text-[#e04b2a] transition-colors uppercase leading-none">
                                                                 {eng?.name || 'Unknown Specialist'}
                                                             </h4>
-                                                            <span className="px-3 py-1 bg-white/5 rounded-full text-[10px] font-black text-slate-500 border border-white/5 uppercase tracking-widest">
+                                                            <span className="px-3 py-1 bg-[#192631]/[0.05] rounded-full text-[10px] font-black text-[#192631]/60 border border-[#192631]/10 uppercase tracking-widest">
                                                                 {format(new Date(request.startDate), 'MMM d')} - {format(new Date(request.endDate), 'MMM d, yyyy')}
                                                             </span>
                                                         </div>
-                                                        <p className="text-slate-500 font-medium text-sm line-clamp-2 max-w-xl">{request.reason}</p>
+                                                        <p className="text-[#192631]/60 font-medium text-sm line-clamp-2 max-w-xl">{request.reason}</p>
                                                     </div>
                                                 </div>
 
@@ -489,8 +506,8 @@ export const Attendance = () => {
 
                                                     {role === 'admin' && request.status === 'pending' && (
                                                         <div className="flex gap-2">
-                                                            <button onClick={() => handleLeaveAction(request.id, 'approved')} className="p-3 bg-white/5 text-emerald-500 hover:bg-emerald-500/10 rounded-xl border border-white/5 transition-all"><Check className="w-5 h-5" /></button>
-                                                            <button onClick={() => handleLeaveAction(request.id, 'rejected')} className="p-3 bg-white/5 text-red-500 hover:bg-red-500/10 rounded-xl border border-white/5 transition-all"><X className="w-5 h-5" /></button>
+                                                            <button onClick={() => handleLeaveAction(request.id, 'approved')} className="p-3 bg-[#192631]/[0.05] text-emerald-500 hover:bg-[#123524]/10 rounded-xl border border-[#192631]/10 transition-all"><Check className="w-5 h-5" /></button>
+                                                            <button onClick={() => handleLeaveAction(request.id, 'rejected')} className="p-3 bg-[#192631]/[0.05] text-red-500 hover:bg-red-500/10 rounded-xl border border-[#192631]/10 transition-all"><X className="w-5 h-5" /></button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -501,7 +518,7 @@ export const Attendance = () => {
                                 {leaveRequests.length === 0 && (
                                     <div className="py-32 text-center">
                                         <AlertCircle className="w-16 h-16 text-slate-800 mx-auto mb-6" />
-                                        <h3 className="text-2xl font-black text-white tracking-tight uppercase">No deployment changes</h3>
+                                        <h3 className="text-2xl font-black text-[#192631] tracking-tight uppercase">No deployment changes</h3>
                                         <p className="text-slate-600 font-medium mt-2">All specialists are current at their assigned posts.</p>
                                     </div>
                                 )}

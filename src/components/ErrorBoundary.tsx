@@ -32,19 +32,19 @@ export class ErrorBoundary extends React.Component<
         if (this.state.hasError) {
             return (
                 <div className="min-h-screen bg-[#0f0f0f] flex items-center justify-center p-8">
-                    <div className="max-w-lg w-full bg-[#1a1a1a]/60 rounded-[32px] border border-white/5 backdrop-blur-3xl shadow-2xl p-10 text-center">
+                    <div className="max-w-lg w-full bg-[#1a1a1a]/60 rounded-[32px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl p-10 text-center">
                         <div className="w-16 h-16 bg-red-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-red-500/20">
-                            <AlertTriangle className="w-8 h-8 text-red-400" />
+                            <AlertTriangle className="w-8 h-8 text-red-700" />
                         </div>
-                        <h2 className="text-2xl font-black text-white tracking-tight mb-3">
+                        <h2 className="text-2xl font-black text-[#192631] tracking-tight mb-3">
                             Something went wrong
                         </h2>
-                        <p className="text-slate-500 font-medium mb-6 text-sm leading-relaxed">
+                        <p className="text-[#192631]/60 font-medium mb-6 text-sm leading-relaxed">
                             An unexpected error occurred. This has been logged for investigation.
                         </p>
                         {this.state.error && (
                             <div className="bg-red-500/5 border border-red-500/10 rounded-2xl p-4 mb-6 text-left">
-                                <p className="text-red-400 text-xs font-mono break-all">
+                                <p className="text-red-700 text-xs font-mono break-all">
                                     {this.state.error.message}
                                 </p>
                             </div>

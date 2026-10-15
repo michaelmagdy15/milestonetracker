@@ -256,27 +256,27 @@ export const OrganizationSettings: React.FC = () => {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] font-bold uppercase tracking-widest mb-3">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[10px] font-bold uppercase tracking-widest mb-3">
                         <Sparkles className="w-3.5 h-3.5" />
                         Multi-Tenant White-Label SaaS Engine
                     </div>
-                    <h2 className="text-3xl lg:text-5xl font-black text-white tracking-tighter">
-                        White-Label <span className="text-orange-400">Studio</span>
+                    <h2 className="text-3xl lg:text-5xl font-black text-[#192631] tracking-tighter">
+                        White-Label <span className="text-[#e04b2a]">Studio</span>
                     </h2>
-                    <p className="text-slate-400 text-sm mt-2">
+                    <p className="text-[#192631]/70 text-sm mt-2">
                         Customize contracting company branding, manage multi-tenant workspaces, and control platform accounts on Firebase.
                     </p>
                 </div>
 
                 {/* Tab Switcher */}
-                <div className="flex items-center bg-[#1a1a1a]/80 p-1.5 rounded-2xl border border-white/10 self-start">
+                <div className="flex items-center bg-[#1a1a1a]/80 p-1.5 rounded-2xl border border-[#192631]/10 self-start">
                     <button
                         onClick={() => setActiveTab('branding')}
                         className={clsx(
                             'flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all',
                             activeTab === 'branding'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
-                                : 'text-slate-400 hover:text-white'
+                                : 'text-[#192631]/70 hover:text-[#192631]'
                         )}
                     >
                         <Palette className="w-4 h-4" />
@@ -288,7 +288,7 @@ export const OrganizationSettings: React.FC = () => {
                             'flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all',
                             activeTab === 'tenants'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
-                                : 'text-slate-400 hover:text-white'
+                                : 'text-[#192631]/70 hover:text-[#192631]'
                         )}
                     >
                         <Layers className="w-4 h-4" />
@@ -303,7 +303,7 @@ export const OrganizationSettings: React.FC = () => {
                             'flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all',
                             activeTab === 'accounts'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
-                                : 'text-slate-400 hover:text-white'
+                                : 'text-[#192631]/70 hover:text-[#192631]'
                         )}
                     >
                         <Users className="w-4 h-4" />
@@ -318,19 +318,19 @@ export const OrganizationSettings: React.FC = () => {
                     <div className="xl:col-span-2 space-y-8">
                         {/* Company Identity Card */}
                         <div className="glass-card p-8 rounded-[32px] space-y-6">
-                            <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                                <div className="p-3 rounded-2xl bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                            <div className="flex items-center gap-3 border-b border-[#192631]/10 pb-4">
+                                <div className="p-3 rounded-2xl bg-[#e04b2a]/10 text-[#e04b2a] border border-[#e04b2a]/25">
                                     <Building2 className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-black text-white">Contracting Company Identity</h3>
-                                    <p className="text-xs text-slate-400">Appears in the sidebar, login portal, client dashboard, invoices, and PDF/Excel reports.</p>
+                                    <h3 className="text-xl font-black text-[#192631]">Contracting Company Identity</h3>
+                                    <p className="text-xs text-[#192631]/70">Appears in the sidebar, login portal, client dashboard, invoices, and PDF/Excel reports.</p>
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         Company Name *
                                     </label>
                                     <input
@@ -339,17 +339,17 @@ export const OrganizationSettings: React.FC = () => {
                                         value={name}
                                         onChange={e => setName(e.target.value)}
                                         placeholder="e.g., Al-Futtaim Contracting LLC"
-                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-orange-500"
+                                        className="w-full px-4 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] focus:outline-none focus:border-orange-500"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         Subscription Tier / Badge
                                     </label>
                                     <select
                                         value={plan}
                                         onChange={e => setPlan(e.target.value as any)}
-                                        className="w-full px-4 py-3 bg-[#141414] border border-white/10 rounded-xl text-white focus:outline-none focus:border-orange-500"
+                                        className="w-full px-4 py-3 bg-[#141414] border border-[#192631]/10 rounded-xl text-[#192631] focus:outline-none focus:border-orange-500"
                                     >
                                         <option value="Starter">Starter</option>
                                         <option value="Professional">Professional</option>
@@ -357,7 +357,7 @@ export const OrganizationSettings: React.FC = () => {
                                     </select>
                                 </div>
                                 <div className="md:col-span-2">
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         Platform Tagline / Subtitle
                                     </label>
                                     <input
@@ -365,15 +365,15 @@ export const OrganizationSettings: React.FC = () => {
                                         value={tagline}
                                         onChange={e => setTagline(e.target.value)}
                                         placeholder="e.g., Engineering & Construction Milestone Intelligence"
-                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-orange-500"
+                                        className="w-full px-4 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] focus:outline-none focus:border-orange-500"
                                     />
                                 </div>
                             </div>
 
                             {/* Logo & Favicon Upload */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/5">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-[#192631]/10">
                                 <div>
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         Company Logo (Upload or Image URL)
                                     </label>
                                     <div className="flex gap-2">
@@ -382,9 +382,9 @@ export const OrganizationSettings: React.FC = () => {
                                             value={logoUrl}
                                             onChange={e => setLogoUrl(e.target.value)}
                                             placeholder="https://... or upload file"
-                                            className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-orange-500"
+                                            className="flex-1 px-4 py-2.5 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:border-orange-500"
                                         />
-                                        <label className="px-4 py-2.5 bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/20 rounded-xl text-xs font-bold cursor-pointer flex items-center gap-1.5 shrink-0">
+                                        <label className="px-4 py-2.5 bg-[#e04b2a]/10 hover:bg-[#e04b2a]/10 text-[#e04b2a] border border-[#e04b2a]/25 rounded-xl text-xs font-bold cursor-pointer flex items-center gap-1.5 shrink-0">
                                             <Upload className="w-4 h-4" />
                                             Upload
                                             <input type="file" accept="image/*" className="hidden" onChange={e => handleLogoUpload(e, 'logo')} />
@@ -393,7 +393,7 @@ export const OrganizationSettings: React.FC = () => {
                                             <button
                                                 type="button"
                                                 onClick={() => setLogoUrl('')}
-                                                className="px-3 py-2.5 bg-red-500/10 text-red-400 rounded-xl text-xs font-bold"
+                                                className="px-3 py-2.5 bg-red-500/10 text-red-700 rounded-xl text-xs font-bold"
                                             >
                                                 Clear
                                             </button>
@@ -402,7 +402,7 @@ export const OrganizationSettings: React.FC = () => {
                                 </div>
 
                                 <div>
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         Browser Favicon (Upload or URL)
                                     </label>
                                     <div className="flex gap-2">
@@ -411,9 +411,9 @@ export const OrganizationSettings: React.FC = () => {
                                             value={faviconUrl}
                                             onChange={e => setFaviconUrl(e.target.value)}
                                             placeholder="Auto-generated if blank"
-                                            className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-xs focus:outline-none focus:border-orange-500"
+                                            className="flex-1 px-4 py-2.5 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs focus:outline-none focus:border-orange-500"
                                         />
-                                        <label className="px-4 py-2.5 bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 rounded-xl text-xs font-bold cursor-pointer flex items-center gap-1.5 shrink-0">
+                                        <label className="px-4 py-2.5 bg-[#192631]/[0.05] hover:bg-[#192631]/[0.05] text-[#192631]/85 border border-[#192631]/10 rounded-xl text-xs font-bold cursor-pointer flex items-center gap-1.5 shrink-0">
                                             <Upload className="w-4 h-4" />
                                             Icon
                                             <input type="file" accept="image/*" className="hidden" onChange={e => handleLogoUpload(e, 'favicon')} />
@@ -423,61 +423,61 @@ export const OrganizationSettings: React.FC = () => {
                             </div>
 
                             {/* Contact & Invoice Details */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/5">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-[#192631]/10">
                                 <div>
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         <Mail className="w-3.5 h-3.5 inline mr-1" /> Corporate Email (For Invoices)
                                     </label>
                                     <input
                                         type="email"
                                         value={email}
                                         onChange={e => setEmail(e.target.value)}
-                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-orange-500"
+                                        className="w-full px-4 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm focus:outline-none focus:border-orange-500"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         <Phone className="w-3.5 h-3.5 inline mr-1" /> Corporate Phone
                                     </label>
                                     <input
                                         type="text"
                                         value={phone}
                                         onChange={e => setPhone(e.target.value)}
-                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-orange-500"
+                                        className="w-full px-4 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm focus:outline-none focus:border-orange-500"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         <MapPin className="w-3.5 h-3.5 inline mr-1" /> Street Address / Tower
                                     </label>
                                     <input
                                         type="text"
                                         value={address}
                                         onChange={e => setAddress(e.target.value)}
-                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-orange-500"
+                                        className="w-full px-4 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm focus:outline-none focus:border-orange-500"
                                     />
                                 </div>
                                 <div className="grid grid-cols-2 gap-3">
                                     <div>
-                                        <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                        <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                             City
                                         </label>
                                         <input
                                             type="text"
                                             value={city}
                                             onChange={e => setCity(e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-orange-500"
+                                            className="w-full px-4 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm focus:outline-none focus:border-orange-500"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                        <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                             Country
                                         </label>
                                         <input
                                             type="text"
                                             value={country}
                                             onChange={e => setCountry(e.target.value)}
-                                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-orange-500"
+                                            className="w-full px-4 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm focus:outline-none focus:border-orange-500"
                                         />
                                     </div>
                                 </div>
@@ -486,18 +486,18 @@ export const OrganizationSettings: React.FC = () => {
 
                         {/* Color & Surface Theme Card */}
                         <div className="glass-card p-8 rounded-[32px] space-y-6">
-                            <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                                <div className="p-3 rounded-2xl bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                            <div className="flex items-center gap-3 border-b border-[#192631]/10 pb-4">
+                                <div className="p-3 rounded-2xl bg-[#e04b2a]/10 text-[#e04b2a] border border-[#e04b2a]/25">
                                     <Palette className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-black text-white">Dynamic Brand Color & Theme Engine</h3>
-                                    <p className="text-xs text-slate-400">Re-themes all buttons, active highlights, glows, and charts across the platform in real time.</p>
+                                    <h3 className="text-xl font-black text-[#192631]">Dynamic Brand Color & Theme Engine</h3>
+                                    <p className="text-xs text-[#192631]/70">Re-themes all buttons, active highlights, glows, and charts across the platform in real time.</p>
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+                                <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-3">
                                     Curated Contracting Brand Presets
                                 </label>
                                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -509,41 +509,41 @@ export const OrganizationSettings: React.FC = () => {
                                             className={clsx(
                                                 'flex items-center gap-3 p-3 rounded-2xl border text-left transition-all',
                                                 primaryColor.toLowerCase() === preset.color.toLowerCase()
-                                                    ? 'border-white bg-white/10 shadow-lg'
-                                                    : 'border-white/5 bg-white/5 hover:border-white/20'
+                                                    ? 'border-white bg-[#192631]/[0.05] shadow-lg'
+                                                    : 'border-[#192631]/10 bg-[#192631]/[0.05] hover:border-[#192631]/10'
                                             )}
                                         >
                                             <span
-                                                className="w-6 h-6 rounded-lg shrink-0 shadow-inner border border-white/20"
+                                                className="w-6 h-6 rounded-lg shrink-0 shadow-inner border border-[#192631]/10"
                                                 style={{ backgroundColor: preset.color }}
                                             />
-                                            <span className="text-xs font-bold text-white truncate">{preset.name}</span>
+                                            <span className="text-xs font-bold text-[#192631] truncate">{preset.name}</span>
                                         </button>
                                     ))}
                                 </div>
                             </div>
 
                             <div className="flex items-center gap-4 pt-2">
-                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                                <label className="text-xs font-bold text-[#192631]/70 uppercase tracking-widest">
                                     Custom Hex Color:
                                 </label>
                                 <input
                                     type="color"
                                     value={primaryColor}
                                     onChange={e => setPrimaryColor(e.target.value)}
-                                    className="w-12 h-10 rounded-lg bg-transparent cursor-pointer border border-white/10"
+                                    className="w-12 h-10 rounded-lg bg-transparent cursor-pointer border border-[#192631]/10"
                                 />
                                 <input
                                     type="text"
                                     value={primaryColor}
                                     onChange={e => setPrimaryColor(e.target.value)}
-                                    className="w-32 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white font-mono text-sm"
+                                    className="w-32 px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] font-mono text-sm"
                                 />
                             </div>
 
                             {/* Surface Selector */}
-                            <div className="pt-4 border-t border-white/5">
-                                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">
+                            <div className="pt-4 border-t border-[#192631]/10">
+                                <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-3">
                                     Background Surface Mode
                                 </label>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -555,30 +555,30 @@ export const OrganizationSettings: React.FC = () => {
                                             className={clsx(
                                                 'p-4 rounded-2xl border text-left transition-all',
                                                 themeSurface === s.id
-                                                    ? 'border-orange-500 bg-orange-500/10'
-                                                    : 'border-white/5 bg-white/5 hover:border-white/20'
+                                                    ? 'border-orange-500 bg-[#e04b2a]/10'
+                                                    : 'border-[#192631]/10 bg-[#192631]/[0.05] hover:border-[#192631]/10'
                                             )}
                                         >
                                             <div className="flex items-center justify-between mb-2">
-                                                <span className="font-bold text-white text-sm">{s.name}</span>
-                                                <span className="w-5 h-5 rounded-full border border-white/20" style={{ backgroundColor: s.bg }} />
+                                                <span className="font-bold text-[#192631] text-sm">{s.name}</span>
+                                                <span className="w-5 h-5 rounded-full border border-[#192631]/10" style={{ backgroundColor: s.bg }} />
                                             </div>
-                                            <p className="text-xs text-slate-400">{s.desc}</p>
+                                            <p className="text-xs text-[#192631]/70">{s.desc}</p>
                                         </button>
                                     ))}
                                 </div>
                             </div>
 
                             {/* Currency & Branches */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/5">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-[#192631]/10">
                                 <div>
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         <Globe className="w-3.5 h-3.5 inline mr-1" /> Primary Currency
                                     </label>
                                     <select
                                         value={currency}
                                         onChange={e => setCurrency(e.target.value)}
-                                        className="w-full px-4 py-3 bg-[#141414] border border-white/10 rounded-xl text-white focus:outline-none focus:border-orange-500"
+                                        className="w-full px-4 py-3 bg-[#141414] border border-[#192631]/10 rounded-xl text-[#192631] focus:outline-none focus:border-orange-500"
                                     >
                                         {CURRENCIES.map(c => (
                                             <option key={c} value={c}>{c}</option>
@@ -587,7 +587,7 @@ export const OrganizationSettings: React.FC = () => {
                                 </div>
 
                                 <div>
-                                    <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                    <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                         Office Branches & Project Sites
                                     </label>
                                     <div className="flex gap-2 mb-3">
@@ -596,7 +596,7 @@ export const OrganizationSettings: React.FC = () => {
                                             value={newBranch}
                                             onChange={e => setNewBranch(e.target.value)}
                                             placeholder="Add branch (e.g., Riyadh)"
-                                            className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-xl text-white text-xs"
+                                            className="flex-1 px-3 py-2 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-xs"
                                         />
                                         <button
                                             type="button"
@@ -610,13 +610,13 @@ export const OrganizationSettings: React.FC = () => {
                                         {branches.map(b => (
                                             <span
                                                 key={b}
-                                                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-slate-200 font-semibold"
+                                                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#192631]/[0.05] border border-[#192631]/10 text-xs text-[#192631] font-semibold"
                                             >
                                                 {b}
                                                 <button
                                                     type="button"
                                                     onClick={() => handleRemoveBranch(b)}
-                                                    className="text-slate-400 hover:text-red-400"
+                                                    className="text-[#192631]/70 hover:text-red-700"
                                                 >
                                                     ×
                                                 </button>
@@ -631,10 +631,10 @@ export const OrganizationSettings: React.FC = () => {
                     {/* RIGHT COLUMN: Live Preview & Save */}
                     <div className="space-y-6">
                         <div className="glass-card p-8 rounded-[32px] space-y-6 sticky top-8">
-                            <h3 className="text-lg font-black text-white uppercase tracking-wider">Live Brand Preview</h3>
+                            <h3 className="text-lg font-black text-[#192631] uppercase tracking-wider">Live Brand Preview</h3>
 
                             <div
-                                className="p-6 rounded-2xl border border-white/10 space-y-5 shadow-2xl"
+                                className="p-6 rounded-2xl border border-[#192631]/10 space-y-5 shadow-2xl"
                                 style={{
                                     backgroundColor:
                                         themeSurface === 'midnight'
@@ -649,7 +649,7 @@ export const OrganizationSettings: React.FC = () => {
                                         <img src={logoUrl} alt={name} className="h-12 w-auto object-contain rounded-lg" />
                                     ) : (
                                         <div
-                                            className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-lg"
+                                            className="w-12 h-12 rounded-2xl flex items-center justify-center text-[#192631] font-black text-lg shadow-lg"
                                             style={{ backgroundColor: primaryColor }}
                                         >
                                             {name
@@ -661,28 +661,28 @@ export const OrganizationSettings: React.FC = () => {
                                         </div>
                                     )}
                                     <div>
-                                        <p className="font-black text-white text-base leading-tight">{name || 'Company Name'}</p>
-                                        <p className="text-xs text-slate-400 mt-0.5">{tagline || 'Milestone Tracker'}</p>
+                                        <p className="font-black text-[#192631] text-base leading-tight">{name || 'Company Name'}</p>
+                                        <p className="text-xs text-[#192631]/70 mt-0.5">{tagline || 'Milestone Tracker'}</p>
                                     </div>
                                 </div>
 
-                                <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2 text-xs text-slate-300">
+                                <div className="p-4 rounded-xl bg-[#192631]/[0.05] border border-[#192631]/10 space-y-2 text-xs text-[#192631]/85">
                                     <div className="flex justify-between">
-                                        <span className="text-slate-500">Primary Currency:</span>
-                                        <span className="font-bold text-white">{currency}</span>
+                                        <span className="text-[#192631]/60">Primary Currency:</span>
+                                        <span className="font-bold text-[#192631]">{currency}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-slate-500">Headquarters:</span>
-                                        <span className="font-bold text-white">{city || 'N/A'}, {country || ''}</span>
+                                        <span className="text-[#192631]/60">Headquarters:</span>
+                                        <span className="font-bold text-[#192631]">{city || 'N/A'}, {country || ''}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-slate-500">Branches:</span>
-                                        <span className="font-bold text-white">{branches.join(', ')}</span>
+                                        <span className="text-[#192631]/60">Branches:</span>
+                                        <span className="font-bold text-[#192631]">{branches.join(', ')}</span>
                                     </div>
                                 </div>
 
                                 <div
-                                    className="w-full py-3 rounded-xl text-center text-white font-bold text-xs uppercase tracking-widest shadow-lg"
+                                    className="w-full py-3 rounded-xl text-center text-[#192631] font-bold text-xs uppercase tracking-widest shadow-lg"
                                     style={{ backgroundColor: primaryColor }}
                                 >
                                     Sample Branded Action Button
@@ -705,7 +705,7 @@ export const OrganizationSettings: React.FC = () => {
             {activeTab === 'tenants' && (
                 <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                     <div className="xl:col-span-2 space-y-4">
-                        <h3 className="text-xl font-black text-white mb-4">Registered Contracting Companies</h3>
+                        <h3 className="text-xl font-black text-[#192631] mb-4">Registered Contracting Companies</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {organizations.map(org => {
                                 const isCurrent = org.id === activeOrg.id;
@@ -714,7 +714,7 @@ export const OrganizationSettings: React.FC = () => {
                                         key={org.id}
                                         className={clsx(
                                             'glass-card p-6 rounded-3xl border transition-all flex flex-col justify-between gap-4',
-                                            isCurrent ? 'border-orange-500 bg-orange-500/5' : 'border-white/5'
+                                            isCurrent ? 'border-orange-500 bg-orange-500/5' : 'border-[#192631]/10'
                                         )}
                                     >
                                         <div className="flex items-start justify-between gap-3">
@@ -723,7 +723,7 @@ export const OrganizationSettings: React.FC = () => {
                                                     <img src={org.logoUrl} alt={org.name} className="w-12 h-12 object-contain rounded-xl" />
                                                 ) : (
                                                     <div
-                                                        className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-black text-base shrink-0"
+                                                        className="w-12 h-12 rounded-2xl flex items-center justify-center text-[#192631] font-black text-base shrink-0"
                                                         style={{ backgroundColor: org.primaryColor || '#f3822d' }}
                                                     >
                                                         {org.name.slice(0, 2).toUpperCase()}
@@ -731,45 +731,45 @@ export const OrganizationSettings: React.FC = () => {
                                                 )}
                                                 <div>
                                                     <div className="flex items-center gap-2">
-                                                        <h4 className="font-black text-white text-base">{org.name}</h4>
+                                                        <h4 className="font-black text-[#192631] text-base">{org.name}</h4>
                                                         {isCurrent && (
-                                                            <span className="px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 text-[10px] font-bold uppercase">
+                                                            <span className="px-2 py-0.5 rounded-full bg-[#e04b2a]/10 text-[#e04b2a] text-[10px] font-bold uppercase">
                                                                 Active
                                                             </span>
                                                         )}
                                                     </div>
-                                                    <p className="text-xs text-slate-400 mt-0.5">{org.tagline}</p>
+                                                    <p className="text-xs text-[#192631]/70 mt-0.5">{org.tagline}</p>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="text-xs text-slate-400 flex flex-wrap gap-2">
-                                            <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5 text-white font-mono">
+                                        <div className="text-xs text-[#192631]/70 flex flex-wrap gap-2">
+                                            <span className="px-2.5 py-1 rounded-lg bg-[#192631]/[0.05] border border-[#192631]/10 text-[#192631] font-mono">
                                                 {org.currency}
                                             </span>
-                                            <span className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/5">
+                                            <span className="px-2.5 py-1 rounded-lg bg-[#192631]/[0.05] border border-[#192631]/10">
                                                 {org.branches?.join(' • ')}
                                             </span>
                                         </div>
 
-                                        <div className="flex items-center gap-2 pt-2 border-t border-white/5">
+                                        <div className="flex items-center gap-2 pt-2 border-t border-[#192631]/10">
                                             {!isCurrent ? (
                                                 <button
                                                     onClick={() => switchOrganization(org.id)}
-                                                    className="flex-1 py-2.5 px-4 bg-orange-500/10 hover:bg-orange-500 text-orange-400 hover:text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all"
+                                                    className="flex-1 py-2.5 px-4 bg-[#e04b2a]/10 hover:bg-orange-500 text-[#e04b2a] hover:text-white rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all"
                                                 >
                                                     <ArrowRightLeft className="w-4 h-4" />
                                                     Switch to Workspace
                                                 </button>
                                             ) : (
-                                                <span className="flex-1 py-2.5 px-4 bg-emerald-500/10 text-emerald-400 rounded-xl text-xs font-bold text-center">
+                                                <span className="flex-1 py-2.5 px-4 bg-[#123524]/10 text-[#123524] rounded-xl text-xs font-bold text-center">
                                                     Currently Viewing Workspace
                                                 </span>
                                             )}
                                             {organizations.length > 1 && (
                                                 <button
                                                     onClick={() => deleteOrganization(org.id)}
-                                                    className="p-2.5 text-red-400 hover:bg-red-500/10 rounded-xl transition-colors"
+                                                    className="p-2.5 text-red-700 hover:bg-red-500/10 rounded-xl transition-colors"
                                                     title="Delete Workspace"
                                                 >
                                                     <Trash2 className="w-4 h-4" />
@@ -784,16 +784,16 @@ export const OrganizationSettings: React.FC = () => {
 
                     {/* Provision New Contracting Company */}
                     <form onSubmit={handleCreateTenant} className="glass-card p-8 rounded-[32px] space-y-5 h-fit">
-                        <h3 className="text-xl font-black text-white flex items-center gap-2">
-                            <Plus className="w-5 h-5 text-orange-400" />
+                        <h3 className="text-xl font-black text-[#192631] flex items-center gap-2">
+                            <Plus className="w-5 h-5 text-[#e04b2a]" />
                             Provision New Company
                         </h3>
-                        <p className="text-xs text-slate-400">
+                        <p className="text-xs text-[#192631]/70">
                             Create a new isolated workspace for a contracting client company.
                         </p>
 
                         <div>
-                            <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                            <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                 Contracting Company Name *
                             </label>
                             <input
@@ -802,31 +802,31 @@ export const OrganizationSettings: React.FC = () => {
                                 value={newTenantName}
                                 onChange={e => setNewTenantName(e.target.value)}
                                 placeholder="e.g., Arabtec Construction"
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm"
+                                className="w-full px-4 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                            <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                 Tagline
                             </label>
                             <input
                                 type="text"
                                 value={newTenantTagline}
                                 onChange={e => setNewTenantTagline(e.target.value)}
-                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm"
+                                className="w-full px-4 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm"
                             />
                         </div>
 
                         <div className="grid grid-cols-2 gap-3">
                             <div>
-                                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                     Currency
                                 </label>
                                 <select
                                     value={newTenantCurrency}
                                     onChange={e => setNewTenantCurrency(e.target.value)}
-                                    className="w-full px-3 py-3 bg-[#141414] border border-white/10 rounded-xl text-white text-sm"
+                                    className="w-full px-3 py-3 bg-[#141414] border border-[#192631]/10 rounded-xl text-[#192631] text-sm"
                                 >
                                     {CURRENCIES.map(c => (
                                         <option key={c} value={c}>{c}</option>
@@ -834,20 +834,20 @@ export const OrganizationSettings: React.FC = () => {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                                <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                     Primary City
                                 </label>
                                 <input
                                     type="text"
                                     value={newTenantCity}
                                     onChange={e => setNewTenantCity(e.target.value)}
-                                    className="w-full px-3 py-3 bg-white/5 border border-white/10 rounded-xl text-white text-sm"
+                                    className="w-full px-3 py-3 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm"
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                            <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-2">
                                 Brand Accent Color
                             </label>
                             <div className="flex gap-2">
@@ -881,14 +881,14 @@ export const OrganizationSettings: React.FC = () => {
                 <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                     <div className="xl:col-span-2 space-y-6">
                         {/* Default Admin Credentials Banner */}
-                        <div className="p-6 rounded-3xl bg-gradient-to-r from-orange-500/15 to-transparent border border-orange-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div className="p-6 rounded-3xl bg-gradient-to-r from-orange-500/15 to-transparent border border-[#e04b2a]/25 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <div className="space-y-1">
-                                <div className="flex items-center gap-2 text-orange-400 font-black text-xs uppercase tracking-widest">
+                                <div className="flex items-center gap-2 text-[#e04b2a] font-black text-xs uppercase tracking-widest">
                                     <Key className="w-4 h-4" />
                                     Master Platform Admin Credentials (Firebase Auth)
                                 </div>
-                                <p className="text-white font-mono text-sm">
-                                    Email: <strong className="text-orange-300">{DEFAULT_ADMIN_EMAIL}</strong> &nbsp;|&nbsp; Password: <strong className="text-orange-300">{DEFAULT_ADMIN_PASSWORD}</strong>
+                                <p className="text-[#192631] font-mono text-sm">
+                                    Email: <strong className="text-[#e04b2a]">{DEFAULT_ADMIN_EMAIL}</strong> &nbsp;|&nbsp; Password: <strong className="text-[#e04b2a]">{DEFAULT_ADMIN_PASSWORD}</strong>
                                 </p>
                             </div>
                             <button
@@ -897,7 +897,7 @@ export const OrganizationSettings: React.FC = () => {
                                     navigator.clipboard.writeText(`${DEFAULT_ADMIN_EMAIL} / ${DEFAULT_ADMIN_PASSWORD}`);
                                     toast.success('Copied Admin credentials!');
                                 }}
-                                className="px-4 py-2 bg-white/10 hover:bg-white/15 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shrink-0"
+                                className="px-4 py-2 bg-[#192631]/[0.05] hover:bg-white/15 text-[#192631] rounded-xl text-xs font-bold flex items-center gap-1.5 shrink-0"
                             >
                                 <Copy className="w-3.5 h-3.5" /> Copy
                             </button>
@@ -906,12 +906,12 @@ export const OrganizationSettings: React.FC = () => {
                         {/* Active Accounts Table */}
                         <div className="glass-card p-6 rounded-[32px] space-y-4">
                             <div className="flex items-center justify-between">
-                                <h3 className="text-xl font-black text-white">Platform Accounts ({accounts.length})</h3>
+                                <h3 className="text-xl font-black text-[#192631]">Platform Accounts ({accounts.length})</h3>
                                 <button
                                     type="button"
                                     onClick={handleResetAll}
                                     disabled={isResetting}
-                                    className="px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-xl text-xs font-bold flex items-center gap-2 transition-all"
+                                    className="px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-700 border border-red-500/20 rounded-xl text-xs font-bold flex items-center gap-2 transition-all"
                                 >
                                     <RefreshCw className={clsx('w-3.5 h-3.5', isResetting && 'animate-spin')} />
                                     Reset All Accounts & Data
@@ -921,7 +921,7 @@ export const OrganizationSettings: React.FC = () => {
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left border-collapse text-sm">
                                     <thead>
-                                        <tr className="border-b border-white/10 text-slate-400 text-[11px] uppercase tracking-wider">
+                                        <tr className="border-b border-[#192631]/10 text-[#192631]/70 text-[11px] uppercase tracking-wider">
                                             <th className="py-3 px-4">User</th>
                                             <th className="py-3 px-4">Role</th>
                                             <th className="py-3 px-4">Company Workspace</th>
@@ -929,29 +929,29 @@ export const OrganizationSettings: React.FC = () => {
                                             <th className="py-3 px-4 text-right">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-white/5">
+                                    <tbody className="divide-y divide-[#192631]/10">
                                         {accounts.map(acc => (
-                                            <tr key={acc.id} className="hover:bg-white/5">
+                                            <tr key={acc.id} className="hover:bg-[#192631]/[0.05]">
                                                 <td className="py-3.5 px-4">
-                                                    <p className="font-bold text-white">{acc.name}</p>
-                                                    <p className="text-xs text-slate-400 font-mono">{acc.email}</p>
+                                                    <p className="font-bold text-[#192631]">{acc.name}</p>
+                                                    <p className="text-xs text-[#192631]/70 font-mono">{acc.email}</p>
                                                 </td>
                                                 <td className="py-3.5 px-4">
-                                                    <span className="px-2.5 py-1 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20 text-[10px] font-bold uppercase tracking-wider">
+                                                    <span className="px-2.5 py-1 rounded-full bg-[#e04b2a]/10 text-[#e04b2a] border border-[#e04b2a]/25 text-[10px] font-bold uppercase tracking-wider">
                                                         {acc.role}
                                                     </span>
                                                 </td>
-                                                <td className="py-3.5 px-4 text-slate-300 text-xs font-semibold">
+                                                <td className="py-3.5 px-4 text-[#192631]/85 text-xs font-semibold">
                                                     {acc.organizationName}
                                                 </td>
-                                                <td className="py-3.5 px-4 text-slate-400 text-xs">
+                                                <td className="py-3.5 px-4 text-[#192631]/70 text-xs">
                                                     {acc.location}
                                                 </td>
                                                 <td className="py-3.5 px-4 text-right">
                                                     {acc.email !== DEFAULT_ADMIN_EMAIL && (
                                                         <button
                                                             onClick={() => handleDeleteAccount(acc.id, acc.email)}
-                                                            className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg"
+                                                            className="p-2 text-red-700 hover:bg-red-500/10 rounded-lg"
                                                             title="Delete Account"
                                                         >
                                                             <Trash2 className="w-4 h-4" />
@@ -968,16 +968,16 @@ export const OrganizationSettings: React.FC = () => {
 
                     {/* Provision New User Account */}
                     <form onSubmit={handleCreateAccount} className="glass-card p-8 rounded-[32px] space-y-4 h-fit">
-                        <h3 className="text-xl font-black text-white flex items-center gap-2">
-                            <ShieldCheck className="w-5 h-5 text-orange-400" />
+                        <h3 className="text-xl font-black text-[#192631] flex items-center gap-2">
+                            <ShieldCheck className="w-5 h-5 text-[#e04b2a]" />
                             Create User Account
                         </h3>
-                        <p className="text-xs text-slate-400">
+                        <p className="text-xs text-[#192631]/70">
                             Creates a Firebase Auth & Firestore account in <strong>{activeOrg.name}</strong>.
                         </p>
 
                         <div>
-                            <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                            <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-1.5">
                                 Full Name *
                             </label>
                             <input
@@ -986,12 +986,12 @@ export const OrganizationSettings: React.FC = () => {
                                 value={accName}
                                 onChange={e => setAccName(e.target.value)}
                                 placeholder="Eng. Tariq Mansour"
-                                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm"
+                                className="w-full px-4 py-2.5 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                            <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-1.5">
                                 Email Address *
                             </label>
                             <input
@@ -1000,12 +1000,12 @@ export const OrganizationSettings: React.FC = () => {
                                 value={accEmail}
                                 onChange={e => setAccEmail(e.target.value)}
                                 placeholder="tariq@company.com"
-                                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm"
+                                className="w-full px-4 py-2.5 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                            <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-1.5">
                                 Initial Password *
                             </label>
                             <input
@@ -1013,19 +1013,19 @@ export const OrganizationSettings: React.FC = () => {
                                 required
                                 value={accPassword}
                                 onChange={e => setAccPassword(e.target.value)}
-                                className="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white font-mono text-sm"
+                                className="w-full px-4 py-2.5 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] font-mono text-sm"
                             />
                         </div>
 
                         <div className="grid grid-cols-2 gap-3">
                             <div>
-                                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-1.5">
                                     System Role
                                 </label>
                                 <select
                                     value={accRole}
                                     onChange={e => setAccRole(e.target.value as any)}
-                                    className="w-full px-3 py-2.5 bg-[#141414] border border-white/10 rounded-xl text-white text-sm"
+                                    className="w-full px-3 py-2.5 bg-[#141414] border border-[#192631]/10 rounded-xl text-[#192631] text-sm"
                                 >
                                     <option value="admin">Admin</option>
                                     <option value="engineer">Engineer</option>
@@ -1033,14 +1033,14 @@ export const OrganizationSettings: React.FC = () => {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
+                                <label className="block text-[11px] font-bold text-[#192631]/70 uppercase tracking-widest mb-1.5">
                                     Hourly Rate ({activeOrg.currency})
                                 </label>
                                 <input
                                     type="number"
                                     value={accRate}
                                     onChange={e => setAccRate(e.target.value)}
-                                    className="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white text-sm"
+                                    className="w-full px-3 py-2.5 bg-[#192631]/[0.05] border border-[#192631]/10 rounded-xl text-[#192631] text-sm"
                                 />
                             </div>
                         </div>
