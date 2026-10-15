@@ -34,7 +34,7 @@ const NavItem = ({ to, icon: Icon, label, badge }: { to: string; icon: React.Ele
                     : 'bg-transparent border-transparent text-[#192631]/75 hover:border-[#192631]/10 hover:text-[#192631] hover:bg-[#192631]/5'
             )}
         >
-            <div className="flex items-center space-x-2.5 min-w-0">
+            <div className="flex items-center gap-2.5 min-w-0">
                 <div
                     className={clsx(
                         'p-1.5 rounded-lg transition-all duration-300 relative z-10 shrink-0',
@@ -55,12 +55,15 @@ const NavItem = ({ to, icon: Icon, label, badge }: { to: string; icon: React.Ele
                 </span>
             </div>
             {badge && (
-                <span className={clsx(
-                    'text-[9px] font-black px-1.5 py-0.5 rounded-md border shrink-0 ml-1.5',
-                    isActive
-                        ? 'bg-[#e04b2a] text-white border-[#e04b2a]'
-                        : 'bg-[#192631]/5 text-[#192631]/70 border-[#192631]/10'
-                )}>
+                <span
+                    dir="ltr"
+                    className={clsx(
+                        'text-[9px] font-black px-1.5 py-0.5 rounded-md border shrink-0 ms-1.5',
+                        isActive
+                            ? 'bg-[#e04b2a] text-white border-[#e04b2a]'
+                            : 'bg-[#192631]/5 text-[#192631]/70 border-[#192631]/10'
+                    )}
+                >
                     {badge}
                 </span>
             )}
@@ -179,17 +182,18 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
             {/* Sidebar — Frosted Glassmorphic Light Panel */}
             <aside className={clsx(
-                "fixed inset-y-0 left-0 z-50 w-72 glass-morphism transform transition-all duration-500 ease-in-out lg:translate-x-0 lg:static lg:block h-full",
-                isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+                "fixed inset-y-0 z-50 w-72 glass-morphism transform transition-all duration-500 ease-in-out lg:translate-x-0 lg:static lg:block h-full",
+                language === 'ar' ? "right-0" : "left-0",
+                isMobileMenuOpen ? "translate-x-0" : (language === 'ar' ? "translate-x-full" : "-translate-x-full")
             )}>
                 <div className="h-full flex flex-col p-5 overflow-y-auto no-scrollbar">
-                    <div className="mb-4 flex items-center justify-between lg:justify-start space-x-3 shrink-0">
+                    <div className="mb-4 flex items-center justify-between lg:justify-start gap-3 shrink-0">
                         <div className="flex items-center justify-center lg:justify-start w-full pb-3.5 border-b border-[#192631]/10">
                             <Logo darkText={true} variant="orange-symbol" />
                         </div>
                         <button
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="lg:hidden absolute top-4 right-4 p-2 text-[#192631]/60 hover:text-[#192631]"
+                            className="lg:hidden absolute top-4 end-4 p-2 text-[#192631]/60 hover:text-[#192631]"
                         >
                             <X className="w-6 h-6" />
                         </button>
@@ -198,7 +202,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     <nav className="space-y-1 flex-1">
                         <NavSectionLabel label="Overview & Projects" />
                         <NavItem to="/" icon={LayoutDashboard} label="Dashboard" />
-                        {role !== 'client' && <NavItem to="/projects" icon={FolderKanban} label="Projects" badge="46" />}
+                        {role !== 'client' && <NavItem to="/projects" icon={FolderKanban} label="Projects" badge="77" />}
                         {role !== 'client' && <NavItem to="/meetings" icon={Calendar} label="Meetings" />}
                         {role !== 'client' && <NavItem to="/entries" icon={FileText} label="Daily Entries" />}
 
@@ -213,14 +217,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                                 <NavSectionLabel label="Procurement & Field" />
                                 <NavItem to="/procurement" icon={Truck} label="Procurement & Stores" badge="4" />
                                 <NavItem to="/subcontractors" icon={HardHat} label="Subcontractors" badge="56" />
-                                <NavItem to="/engineers" icon={Users} label="Engineers & Team" />
+                                <NavItem to="/engineers" icon={Users} label="Engineers & Team" badge="16" />
                                 <NavItem to="/attendance" icon={CalendarCheck} label="Attendance & GPS" badge="21→20" />
                             </>
                         )}
 
                         <NavSectionLabel label="Finance & System" />
-                        {role !== 'client' && <NavItem to="/extracts" icon={Receipt} label="Extracts & Ledger" badge="E#4" />}
-                        {role === 'admin' && <NavItem to="/financials" icon={DollarSign} label="Financials & Treasury" />}
+                        {role !== 'client' && <NavItem to="/extracts" icon={Receipt} label="Extracts & Ledger" badge="80" />}
+                        {role === 'admin' && <NavItem to="/financials" icon={DollarSign} label="Financials & Treasury" badge="16" />}
                         {role === 'admin' && <NavItem to="/reports" icon={PieChart} label="Reports" />}
                         {role === 'admin' && <NavItem to="/settings" icon={Palette} label="White-Label Studio" />}
                         <NavItem to="/help" icon={BookOpen} label="Help Guide" />

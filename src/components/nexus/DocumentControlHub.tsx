@@ -1236,7 +1236,7 @@ ${transmittalRemarks}
         <div className="mt-6 grid grid-cols-1 gap-2 border-t border-[#192631]/10 pt-5 sm:grid-cols-2 xl:grid-cols-4">
           <button
             onClick={() => setActiveTab('register')}
-            className={`flex items-center gap-3 rounded-xl border p-3 text-left transition ${
+            className={`flex items-center gap-3 rounded-xl border p-3 text-start transition ${
               activeTab === 'register'
                 ? 'border-indigo-500 bg-[#e04b2a]/10 text-[#192631] shadow-md shadow-indigo-500/10'
                 : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/70 hover:border-[#192631]/10 hover:text-[#192631]'
@@ -1256,7 +1256,7 @@ ${transmittalRemarks}
 
           <button
             onClick={() => setActiveTab('transmittal')}
-            className={`flex items-center gap-3 rounded-xl border p-3 text-left transition ${
+            className={`flex items-center gap-3 rounded-xl border p-3 text-start transition ${
               activeTab === 'transmittal'
                 ? 'border-emerald-500 bg-[#123524]/10 text-[#192631] shadow-md shadow-emerald-500/10'
                 : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/70 hover:border-[#192631]/10 hover:text-[#192631]'
@@ -1276,7 +1276,7 @@ ${transmittalRemarks}
 
           <button
             onClick={() => setActiveTab('filecoder')}
-            className={`flex items-center gap-3 rounded-xl border p-3 text-left transition ${
+            className={`flex items-center gap-3 rounded-xl border p-3 text-start transition ${
               activeTab === 'filecoder'
                 ? 'border-amber-500 bg-amber-500/15 text-white shadow-md shadow-amber-500/10'
                 : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/70 hover:border-[#192631]/10 hover:text-[#192631]'
@@ -1296,7 +1296,7 @@ ${transmittalRemarks}
 
           <button
             onClick={() => setActiveTab('matrix')}
-            className={`flex items-center gap-3 rounded-xl border p-3 text-left transition ${
+            className={`flex items-center gap-3 rounded-xl border p-3 text-start transition ${
               activeTab === 'matrix'
                 ? 'border-sky-500 bg-sky-500/15 text-white shadow-md shadow-sky-500/10'
                 : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/70 hover:border-[#192631]/10 hover:text-[#192631]'
@@ -1482,7 +1482,7 @@ ${transmittalRemarks}
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse text-left text-sm">
+              <table className="w-full border-collapse text-start text-sm">
                 <thead>
                   <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-xs uppercase tracking-wider text-[#192631]/70">
                     <th className="px-4 py-3">Nexus Code & Rev</th>
@@ -1490,7 +1490,7 @@ ${transmittalRemarks}
                     <th className="px-4 py-3">Discipline & Clause</th>
                     <th className="px-4 py-3">Submittal Description & Vendor</th>
                     <th className="px-4 py-3">Consultant Status & PO Gate</th>
-                    <th className="px-4 py-3 text-right">Quick Actions (إجراءات سريعة)</th>
+                    <th className="px-4 py-3 text-start">Quick Actions (إجراءات سريعة)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#192631]/10">
@@ -1541,7 +1541,7 @@ ${transmittalRemarks}
                         {/* Submittal Title, Attachments & Vendor */}
                         <td className="max-w-md px-4 py-3.5 align-top">
                           <div className="font-medium text-[#192631]">{item.titleEn}</div>
-                          <div className="mt-0.5 text-xs text-[#192631]/85" dir="rtl">
+                          <div className="mt-0.5 text-xs text-[#192631]/85">
                             {item.titleAr}
                           </div>
                           <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-[#192631]/70">
@@ -1584,7 +1584,7 @@ ${transmittalRemarks}
                         </td>
 
                         {/* Quick Actions */}
-                        <td className="whitespace-nowrap px-4 py-3.5 text-right align-top">
+                        <td className="whitespace-nowrap px-4 py-3.5 text-start align-top">
                           <div className="flex flex-col items-end gap-2">
                             <button
                               onClick={() => handleQuickEmailForRow(item)}
@@ -1770,7 +1770,7 @@ ${transmittalRemarks}
                               </span>
                             </div>
                             <div className="truncate text-xs text-[#192631]">{s.titleEn}</div>
-                            <div className="truncate text-[11px] text-[#192631]/70" dir="rtl">
+                            <div className="truncate text-[11px] text-[#192631]/70">
                               {s.titleAr}
                             </div>
                           </div>
@@ -2207,7 +2207,7 @@ ${transmittalRemarks}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
             <button
               onClick={() => setMatrixDisciplineFilter('ALL')}
-              className={`rounded-xl border p-3.5 text-left transition ${
+              className={`rounded-xl border p-3.5 text-start transition ${
                 matrixDisciplineFilter === 'ALL'
                   ? 'border-indigo-500 bg-[#e04b2a]/10 text-[#192631]'
                   : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/85 hover:border-[#192631]/10'
@@ -2222,7 +2222,7 @@ ${transmittalRemarks}
               <button
                 key={d.key}
                 onClick={() => setMatrixDisciplineFilter(d.key)}
-                className={`rounded-xl border p-3.5 text-left transition ${
+                className={`rounded-xl border p-3.5 text-start transition ${
                   matrixDisciplineFilter === d.key
                     ? 'border-indigo-500 bg-[#e04b2a]/10 text-[#192631]'
                     : 'border-[#192631]/10 bg-white/80 backdrop-blur-md text-[#192631]/85 hover:border-[#192631]/10'
@@ -2262,16 +2262,16 @@ ${transmittalRemarks}
           {/* 51-Clause Matrix Table */}
           <div className="overflow-hidden rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md shadow-xl">
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse text-left text-sm">
+              <table className="w-full border-collapse text-start text-sm">
                 <thead>
                   <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-xs uppercase tracking-wider text-[#192631]/70">
                     <th className="px-4 py-3">#</th>
                     <th className="px-4 py-3">Discipline</th>
                     <th className="px-4 py-3">Clause Code</th>
                     <th className="px-4 py-3">Clause Name (English)</th>
-                    <th className="px-4 py-3 text-right">اسم البند (عربي)</th>
+                    <th className="px-4 py-3 text-start">اسم البند (عربي)</th>
                     <th className="px-4 py-3">Example Nexus Submittal Code</th>
-                    <th className="px-4 py-3 text-right">Use in Submittal</th>
+                    <th className="px-4 py-3 text-start">Use in Submittal</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#192631]/10">
@@ -2287,11 +2287,11 @@ ${transmittalRemarks}
                         </td>
                         <td className="px-4 py-2.5 font-mono text-sm font-bold text-[#192631]">{clause.code}</td>
                         <td className="px-4 py-2.5 font-medium text-[#192631]">{clause.nameEn}</td>
-                        <td className="px-4 py-2.5 text-right font-medium text-[#192631]" dir="rtl">
+                        <td className="px-4 py-2.5 text-start font-medium text-[#192631]">
                           {clause.nameAr}
                         </td>
                         <td className="px-4 py-2.5 font-mono text-xs text-[#e04b2a]">{exampleCode}</td>
-                        <td className="px-4 py-2.5 text-right">
+                        <td className="px-4 py-2.5 text-start">
                           <button
                             onClick={() => {
                               setNewDiscipline(clause.discipline);
@@ -2330,7 +2330,7 @@ ${transmittalRemarks}
                     <span className="text-[11px] text-[#192631]/70">{abbr.category}</span>
                   </div>
                   <div className="mt-2 text-xs font-semibold text-[#192631]">{abbr.en}</div>
-                  <div className="mt-1 text-xs text-[#192631]/70" dir="rtl">
+                  <div className="mt-1 text-xs text-[#192631]/70">
                     {abbr.ar}
                   </div>
                 </div>
@@ -2377,7 +2377,7 @@ ${transmittalRemarks}
                     </span>
                   </div>
                 </div>
-                <div className="text-right text-xs text-[#192631]/85">
+                <div className="text-start text-xs text-[#192631]/85">
                   <div>
                     Formula: <span className="font-mono text-[#e04b2a]">[LogType][Disc][Clause][Seq]</span>
                   </div>
@@ -2503,7 +2503,6 @@ ${transmittalRemarks}
                 </label>
                 <input
                   type="text"
-                  dir="rtl"
                   value={newTitleAr}
                   onChange={(e) => setNewTitleAr(e.target.value)}
                   placeholder="مثال: اعتماد نظام الأسقف المعلقة الجبسية العازلة للصوت شاملة البروفايلات"

@@ -10,11 +10,12 @@ import { startOfMonth, endOfMonth, isWithinInterval } from 'date-fns';
 import { EvaluationsModal } from '../components/EvaluationsModal';
 import { ResourceHeatmap } from '../components/ResourceHeatmap';
 import { SubcontractorsDirectoryHub } from '../components/nexus/SubcontractorsDirectoryHub';
+import { NEXUS_HR_STAFF, NEXUS_CONTRACTOR_ACCOUNTS } from '../data/nexusLiveSeedData';
 
 export const Engineers = () => {
     const locationRoute = useLocation();
     const { engineers, projects, tasks, entries, addEngineer, updateEngineer, deleteEngineer } = useData();
-    const [activeRosterTab, setActiveRosterTab] = useState<'engineers' | 'subcontractors'>(
+    const [activeRosterTab, setActiveRosterTab] = useState<'engineers' | 'subcontractors' | 'contractor_accounts'>(
         locationRoute.pathname === '/subcontractors' ? 'subcontractors' : 'engineers'
     );
     useEffect(() => {
@@ -169,19 +170,23 @@ export const Engineers = () => {
                     <h2 className="text-4xl lg:text-5xl font-black text-[#192631] tracking-tighter mb-2">
                         {activeRosterTab === 'subcontractors' ? (
                             <>Subcontractors & <span className="text-[#e04b2a]">Craftsmen (56)</span></>
+                        ) : activeRosterTab === 'contractor_accounts' ? (
+                            <>Contractor Ledger <span className="text-[#e04b2a]">Accounts (63)</span></>
                         ) : (
-                            <>Engineering <span className="text-[#e04b2a]">Roster</span></>
+                            <>Engineering & Staff <span className="text-[#e04b2a]">Roster (16)</span></>
                         )}
                     </h2>
                     <div className="h-1 w-20 bg-[#e04b2a] rounded-full mb-4"></div>
                     <p className="text-[#192631]/70 font-medium tracking-wide">
                         {activeRosterTab === 'subcontractors'
                             ? '56 Registered Subcontractors & Craftsmen · CEO 4-Pillar A/B/C Evaluation Matrix · Subcontractor Statements (ST) & Cash Payment Orders (CPO)'
-                            : 'Command and control for your specialist engineering teams and 56 registered trade subcontractors.'}
+                            : activeRosterTab === 'contractor_accounts'
+                            ? '63 Live Contractor Ledger Accounts migrated from Actpert Nexus ERP (/contractor-accounts) with exact EGP balances'
+                            : '16 In-House Actpert Nexus Staff (IDs 1001–1030), Site Engineers, Technical Office, and 56 Trade Subcontractors.'}
                     </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
-                    <div className="bg-white/80 p-1.5 rounded-2xl border border-[#192631]/10 flex gap-1.5 backdrop-blur-xl shadow-sm">
+                    <div className="bg-white/80 p-1.5 rounded-2xl border border-[#192631]/10 flex flex-wrap gap-1.5 backdrop-blur-xl shadow-sm">
                         <button
                             type="button"
                             onClick={() => setActiveRosterTab('engineers')}
@@ -192,7 +197,7 @@ export const Engineers = () => {
                             }`}
                         >
                             <Users className="w-4 h-4" />
-                            <span>In-House Engineers ({engineers.length})</span>
+                            <span>In-House Staff ({NEXUS_HR_STAFF.length})</span>
                         </button>
                         <button
                             type="button"
@@ -206,12 +211,24 @@ export const Engineers = () => {
                             <HardHat className="w-4 h-4" />
                             <span>56 Subcontractors & CPO/ST</span>
                         </button>
+                        <button
+                            type="button"
+                            onClick={() => setActiveRosterTab('contractor_accounts')}
+                            className={`px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 transition-all ${
+                                activeRosterTab === 'contractor_accounts'
+                                    ? 'bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25'
+                                    : 'text-[#192631]/75 hover:text-[#192631] hover:bg-[#192631]/[0.05]'
+                            }`}
+                        >
+                            <DollarSign className="w-4 h-4" />
+                            <span>63 Contractor Accounts</span>
+                        </button>
                     </div>
                     {activeRosterTab === 'engineers' && (currentUserRole === 'admin' || currentUserRole === 'project_manager') && (
                         <button
                             onClick={() => setIsAdding(true)}
                             disabled={isAdding}
-                            className="flex items-center justify-center space-x-2 bg-[#192631] hover:bg-[#e04b2a] text-white px-5 py-3 rounded-2xl transition-all duration-300 shadow-md disabled:opacity-50 font-bold uppercase tracking-wider text-xs"
+                            className="flex items-center justify-center gap-2 bg-[#192631] hover:bg-[#e04b2a] text-white px-5 py-3 rounded-2xl transition-all duration-300 shadow-md disabled:opacity-50 font-bold uppercase tracking-wider text-xs"
                         >
                             <Plus className="w-4 h-4" />
                             <span>Recruit Specialist</span>
@@ -222,8 +239,104 @@ export const Engineers = () => {
 
             {activeRosterTab === 'subcontractors' ? (
                 <SubcontractorsDirectoryHub />
+            ) : activeRosterTab === 'contractor_accounts' ? (
+                <div className="glass-card rounded-3xl p-6 border border-[#192631]/10 space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#192631]/10 pb-4">
+                        <div>
+                            <h3 className="text-lg font-black text-[#192631]">
+                                Actpert Nexus Contractor Ledger Accounts (63 Accounts)
+                            </h3>
+                            <p className="text-xs text-[#192631]/70">
+                                Complete chart of contractor & subcontractor financial accounts migrated from https://nexus.actpert.com/contractor-accounts
+                            </p>
+                        </div>
+                        <span className="px-3 py-1.5 rounded-xl bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-xs font-black">
+                            63 Active Ledger Accounts
+                        </span>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-xs text-left border-collapse">
+                            <thead>
+                                <tr className="border-b border-[#192631]/10 text-[#192631]/65 uppercase text-[10px] tracking-wider bg-[#192631]/[0.03]">
+                                    <th className="py-3 px-4 font-black">#</th>
+                                    <th className="py-3 px-4 font-black">Contractor / Account Name</th>
+                                    <th className="py-3 px-4 font-black">Trade</th>
+                                    <th className="py-3 px-4 font-black text-end">Total Extracts (EGP)</th>
+                                    <th className="py-3 px-4 font-black text-end">Total Paid (EGP)</th>
+                                    <th className="py-3 px-4 font-black text-end">Net Balance (EGP)</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[#192631]/10">
+                                {NEXUS_CONTRACTOR_ACCOUNTS.map((acc, idx) => (
+                                    <tr key={acc.id} className="hover:bg-[#e04b2a]/[0.05] transition-colors">
+                                        <td className="py-2.5 px-4 font-mono text-[#192631]/60">{idx + 1}</td>
+                                        <td className="py-2.5 px-4 font-bold text-[#192631]">{acc.contractorName}</td>
+                                        <td className="py-2.5 px-4 text-[#192631]/75">{acc.tradeAr}</td>
+                                        <td className="py-2.5 px-4 font-mono font-bold text-end text-[#192631]">
+                                            {acc.totalExtracts.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                        </td>
+                                        <td className="py-2.5 px-4 font-mono font-bold text-end text-[#123524]">
+                                            {acc.totalPaid.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                        </td>
+                                        <td className={`py-2.5 px-4 font-mono font-black text-end ${acc.balance < 0 ? 'text-[#e04b2a]' : acc.balance > 0 ? 'text-[#123524]' : 'text-[#192631]/60'}`}>
+                                            {acc.balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} EGP
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             ) : (
                 <>
+                    {/* 16 Live Actpert Nexus Personnel Roster (1001 to 1030) */}
+                    <div className="glass-card rounded-3xl p-6 border border-[#192631]/10 space-y-5">
+                        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#192631]/10 pb-4">
+                            <div>
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[10px] font-black uppercase tracking-widest mb-1.5">
+                                    Live Actpert Nexus Roster · IDs 1001–1030
+                                </div>
+                                <h3 className="text-xl font-black text-[#192631]">
+                                    16 Registered Actpert Nexus Engineers & Staff
+                                </h3>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs font-bold text-[#123524] bg-[#123524]/10 px-3.5 py-2 rounded-xl border border-[#123524]/20">
+                                <ShieldCheck className="w-4 h-4" />
+                                <span>Synced with GPS Whereabouts & 21→20 Payroll</span>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {NEXUS_HR_STAFF.map((member) => (
+                                <div key={member.id} className="p-4 rounded-2xl bg-white/85 border border-[#192631]/10 hover:border-[#e04b2a]/40 transition-all shadow-sm flex flex-col justify-between gap-3">
+                                    <div>
+                                        <div className="flex items-center justify-between gap-2 mb-2">
+                                            <span className="font-mono text-[11px] font-black px-2 py-0.5 rounded-md bg-[#192631] text-white">
+                                                #{member.empCode}
+                                            </span>
+                                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#123524]/10 text-[#123524] border border-[#123524]/20">
+                                                Check-in: {member.checkInTime}
+                                            </span>
+                                        </div>
+                                        <h4 className="font-black text-[#192631] text-sm">{member.nameEn}</h4>
+                                        <p className="text-xs font-bold text-[#e04b2a] mt-0.5">{member.role}</p>
+                                        <p className="text-[11px] text-[#192631]/65 mt-1 truncate" title={member.gpsCoordinates.label}>
+                                            📍 {member.gpsCoordinates.label}
+                                        </p>
+                                    </div>
+                                    <div className="pt-2.5 border-t border-[#192631]/10 flex items-center justify-between text-[11px]">
+                                        <span className="text-[#192631]/65 font-semibold">
+                                            Cycle Days: <strong className="text-[#192631]">{member.attendanceCycle21To20.daysPresent}/{member.attendanceCycle21To20.workingDaysInCycle}</strong>
+                                        </span>
+                                        <span className="font-mono font-bold text-[#123524]">
+                                            {member.attendanceCycle21To20.attendanceRatePercent}% Attendance
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
                     <SystemHint>
                         <p><strong>Roster:</strong> Manage engineering talent and monitor current workloads.</p>
                         <p><strong>Resource Allocation:</strong> Use the Resource Heatmap to identify over-utilized or available engineers across different projects and tasks.</p>

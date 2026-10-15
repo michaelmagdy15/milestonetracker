@@ -84,6 +84,47 @@ h1, h2, h3, h4, button, input, select, textarea {
   letter-spacing: 0 !important;
 }
 
+/* Bidirectional (RTL / LTR) Logical Alignment & BiDi Isolation */
+[dir="ltr"] th.text-right,
+[dir="ltr"] td.text-right:not(.font-mono) {
+  text-align: left !important;
+}
+
+[dir="rtl"] th.text-left,
+[dir="rtl"] td.text-left:not(.font-mono) {
+  text-align: right !important;
+}
+
+[dir="rtl"] .space-x-1 > :not([hidden]) ~ :not([hidden]),
+[dir="rtl"] .space-x-1\.5 > :not([hidden]) ~ :not([hidden]),
+[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]),
+[dir="rtl"] .space-x-2\.5 > :not([hidden]) ~ :not([hidden]),
+[dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]),
+[dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1 !important;
+}
+
+.font-mono,
+.tabular-nums,
+code {
+  unicode-bidi: isolate;
+}
+
+span,
+p,
+div,
+th,
+td,
+label,
+button,
+a,
+h1,
+h2,
+h3,
+h4 {
+  unicode-bidi: plaintext;
+}
+
 @layer components {
   .glass-card {
     background: rgba(255, 255, 255, 0.76) !important;

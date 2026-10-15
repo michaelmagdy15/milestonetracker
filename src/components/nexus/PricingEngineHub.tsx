@@ -1090,7 +1090,7 @@ export const PricingEngineHub: React.FC = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="text-right shrink-0">
+                        <div className="text-start shrink-0">
                             <div className="text-[10px] uppercase tracking-wider text-[#192631]/70">Locked Contract Value</div>
                             <div className="text-lg font-black text-[#123524]">
                                 {formatEgp(tenderTotals.netSellingAfterDiscount)} EGP
@@ -1182,7 +1182,7 @@ export const PricingEngineHub: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
                 <button
                     onClick={() => setActiveSubTab('boq_map')}
-                    className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                    className={`flex items-center gap-3 p-3.5 rounded-xl border text-start transition-all cursor-pointer ${
                         activeSubTab === 'boq_map'
                             ? 'bg-[#e04b2a]/10 border-[#e04b2a]/25 text-[#192631] shadow-lg shadow-orange-950/30'
                             : 'bg-white/85 backdrop-blur-xl border-[#192631]/10 text-[#192631]/70 hover:text-[#192631] hover:border-[#192631]/10'
@@ -1199,7 +1199,7 @@ export const PricingEngineHub: React.FC = () => {
 
                 <button
                     onClick={() => setActiveSubTab('deep_analyzer')}
-                    className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                    className={`flex items-center gap-3 p-3.5 rounded-xl border text-start transition-all cursor-pointer ${
                         activeSubTab === 'deep_analyzer'
                             ? 'bg-[#123524]/10 border-[#123524]/25 text-[#192631] shadow-lg shadow-emerald-950/30'
                             : 'bg-white/85 backdrop-blur-xl border-[#192631]/10 text-[#192631]/70 hover:text-[#192631] hover:border-[#192631]/10'
@@ -1216,7 +1216,7 @@ export const PricingEngineHub: React.FC = () => {
 
                 <button
                     onClick={() => setActiveSubTab('site_overheads')}
-                    className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                    className={`flex items-center gap-3 p-3.5 rounded-xl border text-start transition-all cursor-pointer ${
                         activeSubTab === 'site_overheads'
                             ? 'bg-blue-500/15 border-blue-500/50 text-white shadow-lg shadow-blue-950/30'
                             : 'bg-white/85 backdrop-blur-xl border-[#192631]/10 text-[#192631]/70 hover:text-[#192631] hover:border-[#192631]/10'
@@ -1233,7 +1233,7 @@ export const PricingEngineHub: React.FC = () => {
 
                 <button
                     onClick={() => setActiveSubTab('commercial_sim')}
-                    className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                    className={`flex items-center gap-3 p-3.5 rounded-xl border text-start transition-all cursor-pointer ${
                         activeSubTab === 'commercial_sim'
                             ? 'bg-purple-500/15 border-purple-500/50 text-[#192631] shadow-lg shadow-purple-950/30'
                             : 'bg-white/85 backdrop-blur-xl border-[#192631]/10 text-[#192631]/70 hover:text-[#192631] hover:border-[#192631]/10'
@@ -1294,7 +1294,7 @@ export const PricingEngineHub: React.FC = () => {
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 max-h-56 overflow-y-auto pr-1">
                             <button
                                 onClick={() => setSelectedPackageCode('ALL')}
-                                className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                                className={`p-2.5 rounded-xl border text-start transition-all cursor-pointer ${
                                     selectedPackageCode === 'ALL'
                                         ? 'bg-[#e04b2a]/10 border-orange-500 text-[#192631]'
                                         : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/85 hover:border-white/25'
@@ -1316,7 +1316,7 @@ export const PricingEngineHub: React.FC = () => {
                                     onClick={() =>
                                         setSelectedPackageCode(pkg.code === selectedPackageCode ? 'ALL' : pkg.code)
                                     }
-                                    className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                                    className={`p-2.5 rounded-xl border text-start transition-all cursor-pointer ${
                                         selectedPackageCode === pkg.code
                                             ? 'bg-[#e04b2a]/10 border-orange-500 text-[#192631]'
                                             : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/85 hover:border-white/25'
@@ -1439,27 +1439,27 @@ export const PricingEngineHub: React.FC = () => {
 
                         {/* Interactive BOQ Pricing Table */}
                         <div className="overflow-x-auto rounded-xl border border-[#192631]/10">
-                            <table className="w-full text-left border-collapse">
+                            <table className="w-full text-start border-collapse">
                                 <thead>
                                     <tr className="bg-[#f5f5f5]/85 text-[11px] font-black uppercase text-[#192631]/70 border-b border-[#192631]/10">
                                         <th className="py-3 px-3">Code</th>
                                         <th className="py-3 px-3 min-w-[260px]">BOQ Item Description (بيان الأعمال)</th>
                                         <th className="py-3 px-2 text-center">Unit</th>
-                                        <th className="py-3 px-2 text-right">Qty</th>
-                                        <th className="py-3 px-2 text-right text-[#123524]">Material (M)</th>
-                                        <th className="py-3 px-2 text-right text-[#b45309]">Labor (L)</th>
-                                        <th className="py-3 px-2 text-right text-[#192631]">Sub (S)</th>
-                                        <th className="py-3 px-2 text-right text-[#192631]">Direct Unit</th>
-                                        <th className="py-3 px-2 text-right text-[#192631]">
+                                        <th className="py-3 px-2 text-start">Qty</th>
+                                        <th className="py-3 px-2 text-start text-[#123524]">Material (M)</th>
+                                        <th className="py-3 px-2 text-start text-[#b45309]">Labor (L)</th>
+                                        <th className="py-3 px-2 text-start text-[#192631]">Sub (S)</th>
+                                        <th className="py-3 px-2 text-start text-[#192631]">Direct Unit</th>
+                                        <th className="py-3 px-2 text-start text-[#192631]">
                                             Site Ovh (+{proportionalOverheadPct.toFixed(1)}%)
                                         </th>
-                                        <th className="py-3 px-2 text-right text-[#192631]">
+                                        <th className="py-3 px-2 text-start text-[#192631]">
                                             Markups (+{totalCommercialMarkupPct.toFixed(1)}%)
                                         </th>
-                                        <th className="py-3 px-3 text-right text-[#e04b2a]">
+                                        <th className="py-3 px-3 text-start text-[#e04b2a]">
                                             Selling Rate (سعر البيع)
                                         </th>
-                                        <th className="py-3 px-3 text-right text-[#123524]">Total Selling (EGP)</th>
+                                        <th className="py-3 px-3 text-start text-[#123524]">Total Selling (EGP)</th>
                                         <th className="py-3 px-3 text-center">Granular Analysis</th>
                                     </tr>
                                 </thead>
@@ -1479,7 +1479,7 @@ export const PricingEngineHub: React.FC = () => {
                                             <td className="py-3 px-2 text-center font-semibold text-[#192631]/85">
                                                 {row.unit}
                                             </td>
-                                            <td className="py-3 px-2 text-right">
+                                            <td className="py-3 px-2 text-start">
                                                 <input
                                                     type="number"
                                                     disabled={isContractLocked}
@@ -1487,10 +1487,10 @@ export const PricingEngineHub: React.FC = () => {
                                                     onChange={(e) =>
                                                         handleUpdateBoqField(row.id, 'qty', Number(e.target.value) || 0)
                                                     }
-                                                    className="w-16 text-right rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-1.5 py-1 text-xs font-bold text-[#192631] disabled:opacity-60"
+                                                    className="w-16 text-start rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-1.5 py-1 text-xs font-bold text-[#192631] disabled:opacity-60"
                                                 />
                                             </td>
-                                            <td className="py-3 px-2 text-right">
+                                            <td className="py-3 px-2 text-start">
                                                 <input
                                                     type="number"
                                                     disabled={isContractLocked}
@@ -1502,10 +1502,10 @@ export const PricingEngineHub: React.FC = () => {
                                                             Number(e.target.value) || 0
                                                         )
                                                     }
-                                                    className="w-20 text-right rounded bg-[#f5f5f5]/85 border border-[#123524]/25 px-1.5 py-1 text-xs font-bold text-[#123524] disabled:opacity-60"
+                                                    className="w-20 text-start rounded bg-[#f5f5f5]/85 border border-[#123524]/25 px-1.5 py-1 text-xs font-bold text-[#123524] disabled:opacity-60"
                                                 />
                                             </td>
-                                            <td className="py-3 px-2 text-right">
+                                            <td className="py-3 px-2 text-start">
                                                 <input
                                                     type="number"
                                                     disabled={isContractLocked}
@@ -1517,10 +1517,10 @@ export const PricingEngineHub: React.FC = () => {
                                                             Number(e.target.value) || 0
                                                         )
                                                     }
-                                                    className="w-18 text-right rounded bg-[#f5f5f5]/85 border border-amber-500/30 px-1.5 py-1 text-xs font-bold text-[#b45309] disabled:opacity-60"
+                                                    className="w-18 text-start rounded bg-[#f5f5f5]/85 border border-amber-500/30 px-1.5 py-1 text-xs font-bold text-[#b45309] disabled:opacity-60"
                                                 />
                                             </td>
-                                            <td className="py-3 px-2 text-right">
+                                            <td className="py-3 px-2 text-start">
                                                 <input
                                                     type="number"
                                                     disabled={isContractLocked}
@@ -1532,22 +1532,22 @@ export const PricingEngineHub: React.FC = () => {
                                                             Number(e.target.value) || 0
                                                         )
                                                     }
-                                                    className="w-20 text-right rounded bg-[#f5f5f5]/85 border border-cyan-500/30 px-1.5 py-1 text-xs font-bold text-[#192631] disabled:opacity-60"
+                                                    className="w-20 text-start rounded bg-[#f5f5f5]/85 border border-cyan-500/30 px-1.5 py-1 text-xs font-bold text-[#192631] disabled:opacity-60"
                                                 />
                                             </td>
-                                            <td className="py-3 px-2 text-right font-black text-[#192631] whitespace-nowrap">
+                                            <td className="py-3 px-2 text-start font-black text-[#192631] whitespace-nowrap">
                                                 {formatEgp(row.unitDirectCost)}
                                             </td>
-                                            <td className="py-3 px-2 text-right font-semibold text-[#192631] whitespace-nowrap">
+                                            <td className="py-3 px-2 text-start font-semibold text-[#192631] whitespace-nowrap">
                                                 +{formatEgp(row.allocatedUnitOverhead)}
                                             </td>
-                                            <td className="py-3 px-2 text-right font-semibold text-[#192631] whitespace-nowrap">
+                                            <td className="py-3 px-2 text-start font-semibold text-[#192631] whitespace-nowrap">
                                                 +{formatEgp(row.unitCommercialMarkup)}
                                             </td>
-                                            <td className="py-3 px-3 text-right font-black text-[#e04b2a] bg-orange-500/[0.06] whitespace-nowrap">
+                                            <td className="py-3 px-3 text-start font-black text-[#e04b2a] bg-orange-500/[0.06] whitespace-nowrap">
                                                 {formatEgp(row.finalSellingUnitPrice)}
                                             </td>
-                                            <td className="py-3 px-3 text-right font-black text-[#123524] bg-emerald-500/[0.06] whitespace-nowrap">
+                                            <td className="py-3 px-3 text-start font-black text-[#123524] bg-emerald-500/[0.06] whitespace-nowrap">
                                                 {formatEgp(row.totalLineSellingPrice)}
                                             </td>
                                             <td className="py-3 px-3 text-center">
@@ -1564,23 +1564,23 @@ export const PricingEngineHub: React.FC = () => {
                                 </tbody>
                                 <tfoot>
                                     <tr className="bg-[#f5f5f5]/85 border-t-2 border-[#192631]/10 text-xs font-black">
-                                        <td colSpan={7} className="py-3.5 px-3 text-right text-[#192631]/85">
+                                        <td colSpan={7} className="py-3.5 px-3 text-start text-[#192631]/85">
                                             إجمالي بنود المقايسة المعروضة (Totals Before Negotiation Discount):
                                         </td>
-                                        <td className="py-3.5 px-2 text-right text-[#192631]">
+                                        <td className="py-3.5 px-2 text-start text-[#192631]">
                                             {formatEgp(tenderTotals.directCost)} EGP
                                         </td>
-                                        <td className="py-3.5 px-2 text-right text-[#192631]">
+                                        <td className="py-3.5 px-2 text-start text-[#192631]">
                                             +{formatEgp(tenderTotals.indirectSiteOverhead)} EGP
                                         </td>
-                                        <td className="py-3.5 px-2 text-right text-[#192631]">
+                                        <td className="py-3.5 px-2 text-start text-[#192631]">
                                             +{formatEgp(
                                                 tenderTotals.grossSellingBeforeTax - tenderTotals.totalPrimeCost
                                             )}{' '}
                                             EGP
                                         </td>
-                                        <td className="py-3.5 px-3 text-right text-[#e04b2a]">—</td>
-                                        <td className="py-3.5 px-3 text-right text-[#123524] text-sm">
+                                        <td className="py-3.5 px-3 text-start text-[#e04b2a]">—</td>
+                                        <td className="py-3.5 px-3 text-start text-[#123524] text-sm">
                                             {formatEgp(tenderTotals.grossSellingBeforeTax)} EGP
                                         </td>
                                         <td />
@@ -2173,7 +2173,7 @@ export const PricingEngineHub: React.FC = () => {
                                         <span className="text-[#192631]">{formatEgp(totalSiteOverheadsEgp)} EGP</span>
                                     </div>
                                 </div>
-                                <div className="pl-3 border-l border-blue-500/30 text-right">
+                                <div className="pl-3 border-l border-blue-500/30 text-start">
                                     <div className="text-[10px] font-bold text-[#123524] uppercase">
                                         Proportional Multiplier
                                     </div>
@@ -2186,16 +2186,16 @@ export const PricingEngineHub: React.FC = () => {
 
                         {/* Editable Monthly Site Overheads Table */}
                         <div className="overflow-x-auto rounded-xl border border-[#192631]/10">
-                            <table className="w-full text-left border-collapse">
+                            <table className="w-full text-start border-collapse">
                                 <thead>
                                     <tr className="bg-[#f5f5f5]/85 text-[11px] font-black uppercase text-[#192631]/70 border-b border-[#192631]/10">
                                         <th className="py-3 px-3">Resource / Role (البيان / الوظيفة بالموقع)</th>
                                         <th className="py-3 px-3">Category</th>
                                         <th className="py-3 px-2 text-center">Count (العدد)</th>
-                                        <th className="py-3 px-3 text-right">Base Salary / Cost (أساسي شهري)</th>
-                                        <th className="py-3 px-3 text-right">Allowance (بدل انتقالات/مهمات)</th>
-                                        <th className="py-3 px-3 text-right text-[#192631]">Monthly Total (شهري)</th>
-                                        <th className="py-3 px-3 text-right text-[#123524]">
+                                        <th className="py-3 px-3 text-start">Base Salary / Cost (أساسي شهري)</th>
+                                        <th className="py-3 px-3 text-start">Allowance (بدل انتقالات/مهمات)</th>
+                                        <th className="py-3 px-3 text-start text-[#192631]">Monthly Total (شهري)</th>
+                                        <th className="py-3 px-3 text-start text-[#123524]">
                                             Total for {projectDurationMonths} Months (إجمالي المدة)
                                         </th>
                                     </tr>
@@ -2232,7 +2232,7 @@ export const PricingEngineHub: React.FC = () => {
                                                         className="w-16 text-center rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1 text-xs font-bold text-[#192631]"
                                                     />
                                                 </td>
-                                                <td className="py-3 px-3 text-right">
+                                                <td className="py-3 px-3 text-start">
                                                     <input
                                                         type="number"
                                                         disabled={isContractLocked}
@@ -2244,10 +2244,10 @@ export const PricingEngineHub: React.FC = () => {
                                                                 Number(e.target.value) || 0
                                                             )
                                                         }
-                                                        className="w-24 text-right rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1 text-xs font-bold text-[#192631]"
+                                                        className="w-24 text-start rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1 text-xs font-bold text-[#192631]"
                                                     />
                                                 </td>
-                                                <td className="py-3 px-3 text-right">
+                                                <td className="py-3 px-3 text-start">
                                                     <input
                                                         type="number"
                                                         disabled={isContractLocked}
@@ -2259,13 +2259,13 @@ export const PricingEngineHub: React.FC = () => {
                                                                 Number(e.target.value) || 0
                                                             )
                                                         }
-                                                        className="w-24 text-right rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1 text-xs font-bold text-[#b45309]"
+                                                        className="w-24 text-start rounded bg-[#f5f5f5]/85 border border-[#192631]/10 px-2 py-1 text-xs font-bold text-[#b45309]"
                                                     />
                                                 </td>
-                                                <td className="py-3 px-3 text-right font-black text-[#192631]">
+                                                <td className="py-3 px-3 text-start font-black text-[#192631]">
                                                     {formatEgp(monthlyRow)} EGP
                                                 </td>
-                                                <td className="py-3 px-3 text-right font-black text-[#123524] bg-emerald-500/[0.05]">
+                                                <td className="py-3 px-3 text-start font-black text-[#123524] bg-emerald-500/[0.05]">
                                                     {formatEgp(durationRow)} EGP
                                                 </td>
                                             </tr>
@@ -2274,13 +2274,13 @@ export const PricingEngineHub: React.FC = () => {
                                 </tbody>
                                 <tfoot>
                                     <tr className="bg-[#f5f5f5]/85 border-t-2 border-[#192631]/10 text-xs font-black">
-                                        <td colSpan={5} className="py-3.5 px-3 text-right text-[#192631]/85">
+                                        <td colSpan={5} className="py-3.5 px-3 text-start text-[#192631]/85">
                                             إجمالي المصاريف غير المباشرة للموقع (Total Indirect Site Overheads):
                                         </td>
-                                        <td className="py-3.5 px-3 text-right text-[#192631] text-sm">
+                                        <td className="py-3.5 px-3 text-start text-[#192631] text-sm">
                                             {formatEgp(monthlySiteOverheadEgp)} EGP/mo
                                         </td>
-                                        <td className="py-3.5 px-3 text-right text-[#123524] text-sm">
+                                        <td className="py-3.5 px-3 text-start text-[#123524] text-sm">
                                             {formatEgp(totalSiteOverheadsEgp)} EGP
                                         </td>
                                     </tr>
@@ -2451,7 +2451,7 @@ export const PricingEngineHub: React.FC = () => {
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                                     <button
                                         onClick={() => setActiveTaxMode('contracting_5')}
-                                        className={`p-2.5 rounded-lg border text-xs font-bold text-left cursor-pointer ${
+                                        className={`p-2.5 rounded-lg border text-xs font-bold text-start cursor-pointer ${
                                             activeTaxMode === 'contracting_5'
                                                 ? 'bg-[#e04b2a]/10 border-orange-500 text-[#e04b2a]'
                                                 : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/70'
@@ -2462,7 +2462,7 @@ export const PricingEngineHub: React.FC = () => {
                                     </button>
                                     <button
                                         onClick={() => setActiveTaxMode('vat_14')}
-                                        className={`p-2.5 rounded-lg border text-xs font-bold text-left cursor-pointer ${
+                                        className={`p-2.5 rounded-lg border text-xs font-bold text-start cursor-pointer ${
                                             activeTaxMode === 'vat_14'
                                                 ? 'bg-[#e04b2a]/10 border-orange-500 text-[#e04b2a]'
                                                 : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/70'
@@ -2473,7 +2473,7 @@ export const PricingEngineHub: React.FC = () => {
                                     </button>
                                     <button
                                         onClick={() => setActiveTaxMode('net_untaxed')}
-                                        className={`p-2.5 rounded-lg border text-xs font-bold text-left cursor-pointer ${
+                                        className={`p-2.5 rounded-lg border text-xs font-bold text-start cursor-pointer ${
                                             activeTaxMode === 'net_untaxed'
                                                 ? 'bg-[#e04b2a]/10 border-orange-500 text-[#e04b2a]'
                                                 : 'bg-[#f5f5f5]/85 border-[#192631]/10 text-[#192631]/70'

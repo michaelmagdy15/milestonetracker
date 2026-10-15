@@ -13,6 +13,7 @@ import {
     X,
     Calendar,
 } from 'lucide-react';
+import { NEXUS_CLIENT_ACCOUNTS_LEDGER } from '../../data/nexusLiveSeedData';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -1534,7 +1535,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                         </span>
                                     </div>
                                 </div>
-                                <div className="text-right">
+                                <div className="text-start">
                                     <span className="text-[11px] text-[#192631]/70 block">
                                         يمكنك تعديل <strong className="text-[#e04b2a]">Current Quantity</strong> و{' '}
                                         <strong className="text-[#e04b2a]">Rate %</strong> مباشرة لإعادة حساب المستخلص لحظياً
@@ -1544,29 +1545,29 @@ export const ExtractsStatementsHub: React.FC = () => {
 
                             {/* 12-Column Interactive Table matching PDF 1 */}
                             <div className="overflow-x-auto">
-                                <table className="w-full text-left border-collapse">
+                                <table className="w-full text-start border-collapse">
                                     <thead>
                                         <tr className="bg-[#2c529d] text-[#192631] text-[11px] font-extrabold uppercase tracking-wider">
                                             <th className="py-3 px-3 border-r border-[#192631]/10">Code</th>
                                             <th className="py-3 px-3 border-r border-[#192631]/10 min-w-[260px]">Item Description</th>
                                             <th className="py-3 px-2.5 border-r border-[#192631]/10 text-center">Unit</th>
-                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right">Contract Qty</th>
-                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right">Price</th>
-                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right bg-white/80 backdrop-blur-md">
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-start">Contract Qty</th>
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-start">Price</th>
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-start bg-white/80 backdrop-blur-md">
                                                 Previous Qty
                                             </th>
-                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right bg-amber-500/25 text-[#b45309]">
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-start bg-amber-500/25 text-[#b45309]">
                                                 Current Qty (جاري)
                                             </th>
-                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-right bg-white/80 backdrop-blur-md">
+                                            <th className="py-3 px-2.5 border-r border-[#192631]/10 text-start bg-white/80 backdrop-blur-md">
                                                 Total Qty
                                             </th>
-                                            <th className="py-3 px-3 border-r border-[#192631]/10 text-right">TillNowSales</th>
-                                            <th className="py-3 px-3 border-r border-[#192631]/10 text-right">Qty*Price</th>
+                                            <th className="py-3 px-3 border-r border-[#192631]/10 text-start">TillNowSales</th>
+                                            <th className="py-3 px-3 border-r border-[#192631]/10 text-start">Qty*Price</th>
                                             <th className="py-3 px-2.5 border-r border-[#192631]/10 text-center bg-amber-500/25 text-[#b45309]">
                                                 Rate %
                                             </th>
-                                            <th className="py-3 px-3 text-right bg-emerald-900/40 text-[#123524]">Net</th>
+                                            <th className="py-3 px-3 text-start bg-emerald-900/40 text-[#123524]">Net</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-[#192631]/10 text-xs">
@@ -1601,7 +1602,6 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                                 {row.itemAr && (
                                                                     <div
                                                                         className="text-[11px] text-[#192631]/70 mt-0.5"
-                                                                        dir="rtl"
                                                                     >
                                                                         {row.itemAr}
                                                                     </div>
@@ -1610,16 +1610,16 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                             <td className="py-2.5 px-2.5 text-center font-mono font-bold text-[#192631]/85 border-r border-[#192631]/10">
                                                                 {row.unit}
                                                             </td>
-                                                            <td className="py-2.5 px-2.5 text-right font-mono text-[#192631]/85 border-r border-[#192631]/10">
+                                                            <td className="py-2.5 px-2.5 text-start font-mono text-[#192631]/85 border-r border-[#192631]/10">
                                                                 {formatCurrency(row.contractQty, 2)}
                                                             </td>
-                                                            <td className="py-2.5 px-2.5 text-right font-mono text-[#192631] border-r border-[#192631]/10 whitespace-nowrap">
+                                                            <td className="py-2.5 px-2.5 text-start font-mono text-[#192631] border-r border-[#192631]/10 whitespace-nowrap">
                                                                 {formatIntEGP(row.displayPrice)}
                                                             </td>
-                                                            <td className="py-2.5 px-2.5 text-right font-mono text-[#192631]/70 border-r border-[#192631]/10 bg-[#f5f5f5]/90">
+                                                            <td className="py-2.5 px-2.5 text-start font-mono text-[#192631]/70 border-r border-[#192631]/10 bg-[#f5f5f5]/90">
                                                                 {formatCurrency(row.previousQty, 2)}
                                                             </td>
-                                                            <td className="py-2 px-2 text-right border-r border-[#192631]/10 bg-amber-500/10">
+                                                            <td className="py-2 px-2 text-start border-r border-[#192631]/10 bg-amber-500/10">
                                                                 <input
                                                                     type="number"
                                                                     step="0.5"
@@ -1632,20 +1632,20 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                                             parseFloat(e.target.value) || 0
                                                                         )
                                                                     }
-                                                                    className={`w-20 text-right font-mono font-extrabold text-xs px-2 py-1 rounded-lg border outline-none ${
+                                                                    className={`w-20 text-start font-mono font-extrabold text-xs px-2 py-1 rounded-lg border outline-none ${
                                                                         row.currentQty > 0
                                                                             ? 'bg-amber-500/20 text-[#b45309] border-amber-400/50'
                                                                             : 'bg-[#f5f5f5]/90 text-[#192631]/85 border-[#192631]/10'
                                                                     }`}
                                                                 />
                                                             </td>
-                                                            <td className="py-2.5 px-2.5 text-right font-mono font-bold text-[#192631] border-r border-[#192631]/10 bg-[#f5f5f5]/90">
+                                                            <td className="py-2.5 px-2.5 text-start font-mono font-bold text-[#192631] border-r border-[#192631]/10 bg-[#f5f5f5]/90">
                                                                 {formatCurrency(row.totalQty, 2)}
                                                             </td>
-                                                            <td className="py-2.5 px-3 text-right font-mono font-semibold text-[#192631] border-r border-[#192631]/10 whitespace-nowrap">
+                                                            <td className="py-2.5 px-3 text-start font-mono font-semibold text-[#192631] border-r border-[#192631]/10 whitespace-nowrap">
                                                                 {formatIntEGP(row.tillNowSales)}
                                                             </td>
-                                                            <td className="py-2.5 px-3 text-right font-mono text-[#192631]/70 border-r border-[#192631]/10 whitespace-nowrap">
+                                                            <td className="py-2.5 px-3 text-start font-mono text-[#192631]/70 border-r border-[#192631]/10 whitespace-nowrap">
                                                                 {formatIntEGP(row.qtyTimesPrice)}
                                                             </td>
                                                             <td className="py-2 px-2 text-center border-r border-[#192631]/10 bg-amber-500/10">
@@ -1668,7 +1668,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                                     <span className="text-[10px] text-[#192631]/70">%</span>
                                                                 </div>
                                                             </td>
-                                                            <td className="py-2.5 px-3 text-right font-mono font-extrabold text-[#123524] bg-emerald-950/20 whitespace-nowrap">
+                                                            <td className="py-2.5 px-3 text-start font-mono font-extrabold text-[#123524] bg-emerald-950/20 whitespace-nowrap">
                                                                 {formatIntEGP(row.net)}
                                                             </td>
                                                         </tr>
@@ -1711,7 +1711,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                         <span className="text-[#192631] font-semibold">{po.vendor}</span>
                                                         <p className="text-[11px] text-[#192631]/70 mt-0.5">{po.description}</p>
                                                     </div>
-                                                    <div className="text-right font-mono font-bold text-[#192631]">
+                                                    <div className="text-start font-mono font-bold text-[#192631]">
                                                         {formatIntEGP(po.amount)}
                                                     </div>
                                                 </div>
@@ -1878,7 +1878,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                             <table className="w-full border-collapse border border-neutral-600 text-[11px] text-black">
                                 <thead>
                                     <tr className="bg-[#3b62b8] text-[#192631] font-bold">
-                                        <th rowSpan={2} className="border border-neutral-500 px-1.5 py-2 text-left w-14">
+                                        <th rowSpan={2} className="border border-neutral-500 px-1.5 py-2 text-start w-14">
                                             Code
                                         </th>
                                         <th rowSpan={2} className="border border-neutral-500 px-2 py-2 text-center">
@@ -1970,82 +1970,82 @@ export const ExtractsStatementsHub: React.FC = () => {
                                 <table className="w-[340px] border-collapse border border-neutral-600 text-xs">
                                     <tbody>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right w-44">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start w-44">
                                                 Total Actual Work
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-bold text-black">
                                                 {formatIntEGP(computedExtract.totalActualWork)}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start">
                                                 Purchaising Orders
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-bold text-black">
                                                 {formatIntEGP(computedExtract.purchasingOrdersTotal)}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start">
                                                 Ded Value Price
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-bold text-black">
                                                 {formatIntEGP(computedExtract.dedValuePrice)}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start">
                                                 Total Work Achieved
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-bold text-black">
                                                 {formatIntEGP(computedExtract.totalWorkAchieved)}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start">
                                                 Advanced Amount
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-bold text-black">
                                                 {formatIntEGP(computedExtract.advancedAmount)}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start">
                                                 TotalWorkGuarantee
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-bold text-black">
                                                 {formatIntEGP(computedExtract.workGuarantee)}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start">
                                                 Total Guarantee Final
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-bold text-black">
                                                 {formatIntEGP(computedExtract.guaranteeFinal)}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start">
                                                 Vat
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-bold text-black">
                                                 {formatIntEGP(computedExtract.vatAmount)}
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start">
                                                 Total Received Payment
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-bold text-black">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-bold text-black">
                                                 0EGP
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-right">
+                                            <td className="bg-[#3b62b8] text-[#192631] font-bold px-2.5 py-1.5 border border-neutral-600 text-start">
                                                 Total Net
                                             </td>
-                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-right font-black text-[#e62e25]">
+                                            <td className="px-2.5 py-1.5 border border-neutral-600 text-start font-black text-[#e62e25]">
                                                 {formatIntEGP(computedExtract.totalNetPayable)}
                                             </td>
                                         </tr>
@@ -2065,7 +2065,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                     </div>
                                     <div>Powered By: e-Works</div>
                                 </div>
-                                <div className="text-right">
+                                <div className="text-start">
                                     <div className="font-bold mb-4">Owner</div>
                                     <div className="text-[10px]">Printed By : {activeExtract.printedBy}</div>
                                     <div className="text-[10px]">Time : {activeExtract.printTime}</div>
@@ -2167,7 +2167,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                             </div>
 
                             <div className="overflow-x-auto">
-                                <table className="w-full text-right border-collapse" dir="rtl">
+                                <table className="w-full text-start border-collapse">
                                     <thead>
                                         <tr className="bg-[#3b62b8] text-[#192631] text-xs font-extrabold">
                                             <th className="py-3.5 px-4 border-l border-[#192631]/10">التاريخ (Date)</th>
@@ -2216,7 +2216,6 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                     className={`py-3 px-4 font-mono font-black border-l border-slate-800 ${
                                                         row.runningBalance < 0 ? 'text-[#123524]' : 'text-[#b45309]'
                                                     }`}
-                                                    dir="ltr"
                                                 >
                                                     {formatLedgerBalance(row.runningBalance)}
                                                 </td>
@@ -2240,7 +2239,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             <td className="py-3.5 px-4 font-mono border-l border-black/20">
                                                 {formatCurrency(computedLedger.totalCredit, 2)}
                                             </td>
-                                            <td className="py-3.5 px-4 font-mono border-l border-black/20" dir="ltr">
+                                            <td className="py-3.5 px-4 font-mono border-l border-black/20">
                                                 {formatCurrency(computedLedger.finalBalance, 2)} EGP
                                             </td>
                                             <td className="py-3.5 px-4 text-xs">
@@ -2249,6 +2248,57 @@ export const ExtractsStatementsHub: React.FC = () => {
                                         </tr>
                                     </tfoot>
                                 </table>
+                            </div>
+
+                            {/* All 80 Migrated Actpert Client & Project Ledger Accounts */}
+                            <div className="p-6 border-t border-[#192631]/10 bg-[#f5f5f5]/60 space-y-4">
+                                <div className="flex flex-wrap items-center justify-between gap-4">
+                                    <div>
+                                        <h4 className="text-sm font-black text-[#192631]">
+                                            All 80 Actpert Nexus Client & Project Ledger Accounts (كشوف حسابات العملاء والمشروعات — 80 حساب)
+                                        </h4>
+                                        <p className="text-xs text-[#192631]/70">
+                                            Complete directory of all 80 client accounts & project cost centers migrated 100% from https://nexus.actpert.com/client-accounts
+                                        </p>
+                                    </div>
+                                    <span className="px-3 py-1 rounded-xl bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-xs font-black">
+                                        {NEXUS_CLIENT_ACCOUNTS_LEDGER.length} Client & Project Accounts
+                                    </span>
+                                </div>
+                                <div className="max-h-96 overflow-y-auto rounded-xl border border-[#192631]/10 bg-white/90">
+                                    <table className="w-full text-xs text-start border-collapse">
+                                        <thead className="sticky top-0 bg-[#192631] text-white text-[11px]">
+                                            <tr>
+                                                <th className="py-2.5 px-3 font-bold">#</th>
+                                                <th className="py-2.5 px-3 font-bold">Code</th>
+                                                <th className="py-2.5 px-3 font-bold">Client & Project Cost Center</th>
+                                                <th className="py-2.5 px-3 font-bold text-center">Projects</th>
+                                                <th className="py-2.5 px-3 font-bold text-end">Total Extracts (EGP)</th>
+                                                <th className="py-2.5 px-3 font-bold text-end">Total Collected (EGP)</th>
+                                                <th className="py-2.5 px-3 font-bold text-end">Balance Due (EGP)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-[#192631]/10">
+                                            {NEXUS_CLIENT_ACCOUNTS_LEDGER.map((acc, i) => (
+                                                <tr key={acc.id} className="hover:bg-[#e04b2a]/[0.05]">
+                                                    <td className="py-2 px-3 font-mono text-[#192631]/60">{i + 1}</td>
+                                                    <td className="py-2 px-3 font-mono font-bold text-[#e04b2a]">{acc.code}</td>
+                                                    <td className="py-2 px-3 font-bold text-[#192631]">{acc.clientAndProject}</td>
+                                                    <td className="py-2 px-3 font-mono font-bold text-center text-[#192631]">{acc.projectsCount}</td>
+                                                    <td className="py-2 px-3 font-mono font-bold text-end text-[#192631]">
+                                                        {acc.totalExtracts.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                    </td>
+                                                    <td className="py-2 px-3 font-mono font-bold text-end text-[#123524]">
+                                                        {acc.totalCollected.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                    </td>
+                                                    <td className="py-2 px-3 font-mono font-black text-end text-[#e04b2a]">
+                                                        {acc.balanceDue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     ) : (
@@ -2264,18 +2314,18 @@ export const ExtractsStatementsHub: React.FC = () => {
                             </div>
 
                             <div className="flex justify-between items-end mb-4 text-xs">
-                                <div className="space-y-1.5 text-right" dir="rtl">
+                                <div className="space-y-1.5 text-start">
                                     <div>من تاريخ : 01-يناير-2025</div>
                                     <div>إلى تاريخ : 13-أكتوبر-2026</div>
                                     <div className="font-bold pt-1">العميل : Michael Saber (101020069)</div>
                                 </div>
 
-                                <div className="text-right space-y-1">
+                                <div className="text-start space-y-1">
                                     <div className="flex items-center justify-end gap-2.5 mb-2">
                                         <div className="w-9 h-9 bg-[#e64a3b] text-[#192631] font-black text-xl flex items-center justify-center rounded-sm">
                                             N
                                         </div>
-                                        <div className="text-left">
+                                        <div className="text-start">
                                             <div className="text-lg font-black tracking-[0.2em] text-black leading-none">
                                                 NEXUS
                                             </div>
@@ -2289,15 +2339,15 @@ export const ExtractsStatementsHub: React.FC = () => {
                             </div>
 
                             {/* PDF 2 Table */}
-                            <table className="w-full border-collapse border border-neutral-400 text-xs text-black" dir="rtl">
+                            <table className="w-full border-collapse border border-neutral-400 text-xs text-black">
                                 <thead>
                                     <tr className="bg-[#3b62b8] text-[#192631] font-bold text-sm">
-                                        <th className="border border-neutral-400 py-2 px-3 text-right w-28">التاريخ</th>
-                                        <th className="border border-neutral-400 py-2 px-3 text-right w-44">نوع السند</th>
-                                        <th className="border border-neutral-400 py-2 px-3 text-right w-28">رقم السند</th>
-                                        <th className="border border-neutral-400 py-2 px-3 text-right w-28">مدين</th>
-                                        <th className="border border-neutral-400 py-2 px-3 text-right w-28">دائن</th>
-                                        <th className="border border-neutral-400 py-2 px-3 text-right w-32">الرصيد</th>
+                                        <th className="border border-neutral-400 py-2 px-3 text-start w-28">التاريخ</th>
+                                        <th className="border border-neutral-400 py-2 px-3 text-start w-44">نوع السند</th>
+                                        <th className="border border-neutral-400 py-2 px-3 text-start w-28">رقم السند</th>
+                                        <th className="border border-neutral-400 py-2 px-3 text-start w-28">مدين</th>
+                                        <th className="border border-neutral-400 py-2 px-3 text-start w-28">دائن</th>
+                                        <th className="border border-neutral-400 py-2 px-3 text-start w-32">الرصيد</th>
                                         <th className="border border-neutral-400 py-2 px-3 text-center">البيان</th>
                                     </tr>
                                 </thead>
@@ -2318,7 +2368,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                             <td className="border border-neutral-400 py-2 px-2.5 font-mono">
                                                 {formatCurrency(row.credit, 2)}
                                             </td>
-                                            <td className="border border-neutral-400 py-2 px-2.5 font-mono" dir="ltr">
+                                            <td className="border border-neutral-400 py-2 px-2.5 font-mono">
                                                 {formatLedgerBalance(row.runningBalance)}
                                             </td>
                                             <td className="border border-neutral-400 py-2 px-2.5">{row.description}</td>
@@ -2344,7 +2394,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                             <div className="mt-24 pt-3 border-t border-neutral-400 flex justify-between items-center text-xs text-black">
                                 <div>صفحة 1 من 1</div>
                                 <div className="font-bold">Powered By: e-Works</div>
-                                <div className="text-right">
+                                <div className="text-start">
                                     <div>تمت الطباعة بواسطة : Pierre Afifi</div>
                                     <div>وقت الطباعة : 2026/10/13 17:23:54</div>
                                 </div>
@@ -2434,7 +2484,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                         <span>البنك</span>
                                     </div>
 
-                                    <div className="space-y-2 text-right">
+                                    <div className="space-y-2 text-start">
                                         <div className="flex justify-end gap-8">
                                             <span>{activePr.serial}</span>
                                             <span className="w-16">مسلسل</span>
@@ -2472,7 +2522,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                                 <span>{activePr.currencyCode}</span>
                                                 <span>{Math.round(activePr.amount).toLocaleString('en-US')}</span>
                                             </td>
-                                            <td className="border border-neutral-400 py-2 px-4 text-right font-bold text-black">
+                                            <td className="border border-neutral-400 py-2 px-4 text-start font-bold text-black">
                                                 المبلغ ({activePr.amountInWordsAr})
                                             </td>
                                         </tr>
@@ -2499,7 +2549,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                                 <div className="mt-24 pt-3 border-t border-neutral-400 flex justify-between items-center text-xs text-black">
                                     <div>صفحة 1 من 1</div>
                                     <div className="font-bold">:Powered By</div>
-                                    <div className="text-right">
+                                    <div className="text-start">
                                         <div>تمت الطباعة بواسطة : {activePr.printedBy}</div>
                                         <div>وقت الطباعة : {activePr.printTime}</div>
                                     </div>

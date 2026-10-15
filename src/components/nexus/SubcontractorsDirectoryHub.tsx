@@ -134,271 +134,1504 @@ export const TRADE_SPECIALTIES: {
 
 const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
   {
-    id: 'sub-01',
-    nexusCode: 'SUB-TILE-001',
-    tradeCode: 'SUB-TILE',
-    tradeLabelAr: 'سيراميك وبورسلين SUB-TILE',
-    name: 'الأسطى سيد عبد الواحد (Sayed Tile)',
-    craftsmanTitle: 'مقاول تركيب بورسلين وسيراميك ألواح كبيرة',
-    phone: '01004589211',
-    workNature: 'مصنعيات فقط',
-    assignedProjects: ['C096', 'C063', 'C091'],
-    ledgerAccountCount: 2,
-    activeBalanceEgp: 42500,
-    retentionHeldEgp: 11250,
-    pillars: { quality: 'A', pricing: 'A', schedule: 'A', ethics: 'A' },
-    overallGrade: 'A',
-    ceoNotes: 'التزام ممتاز بليزر المنسوب واستلام هندسي من أول مرة في مشروع C096.',
-    lastEvaluatedBy: 'م. أحمد (CEO) + م. بيير',
-    lastEvaluatedDate: '2026-10-12',
+    "id": "sub-01",
+    "nexusCode": "SUB-ALUM-001",
+    "tradeCode": "SUB-ALUM",
+    "tradeLabelAr": "أعمال الألومنيوم والـ UPVC SUB-ALUM",
+    "name": "A-ALUM001-Youssef Ahmed",
+    "craftsmanTitle": "أعمال الألومنيوم والـ UPVC (Aluminum & UPVC Works)",
+    "phone": "01010001379",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -192868.0,
+    "retentionHeldEgp": 28225.15,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ALUM-001) — أعمال الألومنيوم والـ UPVC.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-02',
-    nexusCode: 'SUB-ALUM-001',
-    tradeCode: 'SUB-ALUM',
-    tradeLabelAr: 'ألوميتال وزجاج SUB-ALUM',
-    name: 'شركة الدلتا للألوميتال والواجهات (م. هاني فوزي)',
-    craftsmanTitle: 'مقاول قطاعات PS وجامبو وشيش حصيرة',
-    phone: '01223901455',
-    workNature: 'توريد وتركيب',
-    assignedProjects: ['C096', 'C088'],
-    ledgerAccountCount: 2,
-    activeBalanceEgp: 118000,
-    retentionHeldEgp: 24500,
-    pillars: { quality: 'A', pricing: 'B', schedule: 'A', ethics: 'A' },
-    overallGrade: 'A',
-    ceoNotes: 'جودة قطاعات وإكسسوارات ممتازة، السعر أعلى قليلاً من السوق لكن مضمون.',
-    lastEvaluatedBy: 'م. أحمد (CEO)',
-    lastEvaluatedDate: '2026-10-10',
+    "id": "sub-02",
+    "nexusCode": "SUB-ALUM-002",
+    "tradeCode": "SUB-ALUM",
+    "tradeLabelAr": "أعمال الألومنيوم والـ UPVC SUB-ALUM",
+    "name": "A-ALUM003-Peter Samir",
+    "craftsmanTitle": "أعمال الألومنيوم والـ UPVC (Aluminum & UPVC Works)",
+    "phone": "01010002758",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 0.0,
+    "retentionHeldEgp": 350.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ALUM-002) — أعمال الألومنيوم والـ UPVC.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-03',
-    nexusCode: 'SUB-GYP-001',
-    tradeCode: 'SUB-GYP',
-    tradeLabelAr: 'جبس بورد وأسقف SUB-GYP',
-    name: 'مقاول محمود الشافعي للأسقف المعلقة',
-    craftsmanTitle: 'فني ومقاول جبس بورد كناوف وبيوت نور',
-    phone: '01118742309',
-    workNature: 'توريد وتركيب',
-    assignedProjects: ['C096', 'C063', 'C077'],
-    ledgerAccountCount: 2,
-    activeBalanceEgp: 36800,
-    retentionHeldEgp: 8400,
-    pillars: { quality: 'A', pricing: 'A', schedule: 'B', ethics: 'A' },
-    overallGrade: 'A',
-    ceoNotes: 'تقفيل زوايا الفريز ممتاز وشاسيهات 0.4 مم معتمدة.',
-    lastEvaluatedBy: 'م. معتز (المكتب الفني)',
-    lastEvaluatedDate: '2026-10-09',
+    "id": "sub-03",
+    "nexusCode": "SUB-ALUM-003",
+    "tradeCode": "SUB-ALUM",
+    "tradeLabelAr": "أعمال الألومنيوم والـ UPVC SUB-ALUM",
+    "name": "ALUM-Emil Amir",
+    "craftsmanTitle": "أعمال الألومنيوم والـ UPVC (Aluminum & UPVC Works)",
+    "phone": "01010004137",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -3400.0,
+    "retentionHeldEgp": 1305.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ALUM-003) — أعمال الألومنيوم والـ UPVC.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-04',
-    nexusCode: 'SUB-PLM-001',
-    tradeCode: 'SUB-PLM',
-    tradeLabelAr: 'سباكة وصحي SUB-PLM',
-    name: 'الأسطى كرم أبو العلا للصحي والعزل',
-    craftsmanTitle: 'مقاول تأسيس وتشطيب سباكة وصناديق دفن Grohe',
-    phone: '01093321876',
-    workNature: 'مصنعيات فقط',
-    assignedProjects: ['C096', 'C091'],
-    ledgerAccountCount: 1,
-    activeBalanceEgp: 29400,
-    retentionHeldEgp: 6900,
-    pillars: { quality: 'A', pricing: 'A', schedule: 'A', ethics: 'A' },
-    overallGrade: 'A',
-    ceoNotes: 'اختبار كبس المواسير على 15 بار بدون أي ملاحظات بمحضر استلام رسمي.',
-    lastEvaluatedBy: 'م. بيير (مهندس الموقع)',
-    lastEvaluatedDate: '2026-10-11',
+    "id": "sub-04",
+    "nexusCode": "SUB-CARP-001",
+    "tradeCode": "SUB-CRP",
+    "tradeLabelAr": "نجارة أسطرجي وتشطيب أثاث SUB-CRP",
+    "name": "A-CARP-OSTOGY-Ibrahim Ramsis",
+    "craftsmanTitle": "نجارة أسطرجي وتشطيب أثاث (Furniture Polishing & Wood Finishing)",
+    "phone": "01010005516",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 0.0,
+    "retentionHeldEgp": 2250.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-001) — نجارة أسطرجي وتشطيب أثاث.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-05',
-    nexusCode: 'SUB-ELC-001',
-    tradeCode: 'SUB-ELC',
-    tradeLabelAr: 'كهرباء وتيار خفيف SUB-ELC',
-    name: 'م. طارق النجار للمقاولات الكهربائية والسمارت',
-    craftsmanTitle: 'مقاول كهرباء ولوحات توزيع وتيار خفيف KNX',
-    phone: '01065412980',
-    workNature: 'مصنعيات فقط',
-    assignedProjects: ['C096', 'C063', 'C088'],
-    ledgerAccountCount: 2,
-    activeBalanceEgp: 54000,
-    retentionHeldEgp: 14200,
-    pillars: { quality: 'A', pricing: 'B', schedule: 'A', ethics: 'A' },
-    overallGrade: 'A',
-    ceoNotes: 'تنظيم اللوحات والترقيم (Labeling) مطابق لأعلى معايير Actpert.',
-    lastEvaluatedBy: 'م. أحمد (CEO)',
-    lastEvaluatedDate: '2026-10-08',
+    "id": "sub-05",
+    "nexusCode": "SUB-CARP-002",
+    "tradeCode": "SUB-CRP",
+    "tradeLabelAr": "أعمال النجارة والباب والشباك SUB-CRP",
+    "name": "CARP-Hany Gerges",
+    "craftsmanTitle": "أعمال النجارة والباب والشباك (Carpentry, Doors & Windows)",
+    "phone": "01010006895",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 0.0,
+    "retentionHeldEgp": 2765.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-002) — أعمال النجارة والباب والشباك.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-06',
-    nexusCode: 'SUB-HVAC-001',
-    tradeCode: 'SUB-HVAC',
-    tradeLabelAr: 'تكييف وتبريد SUB-HVAC',
-    name: 'المتحدة لأنظمة التكييف الكونسيلد والـ VRF',
-    craftsmanTitle: 'مقاول دكتات صاج وتأسيس مواسير نحاس',
-    phone: '01287654321',
-    workNature: 'توريد وتركيب',
-    assignedProjects: ['C096', 'C091'],
-    ledgerAccountCount: 2,
-    activeBalanceEgp: 95000,
-    retentionHeldEgp: 19500,
-    pillars: { quality: 'A', pricing: 'B', schedule: 'B', ethics: 'A' },
-    overallGrade: 'B',
-    ceoNotes: 'جودة العزل ومجاري الهواء ممتازة، يحتاج متابعة مبكرة في الجدول الزمني.',
-    lastEvaluatedBy: 'م. معتز (المكتب الفني)',
-    lastEvaluatedDate: '2026-10-06',
+    "id": "sub-06",
+    "nexusCode": "SUB-CARP-003",
+    "tradeCode": "SUB-CRP",
+    "tradeLabelAr": "أعمال النجارة والتركيبات SUB-CRP",
+    "name": "C-CARP001 John",
+    "craftsmanTitle": "أعمال النجارة والتركيبات (Specialized Contracting Works)",
+    "phone": "01010008274",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -872412.0,
+    "retentionHeldEgp": 19074.9,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-003) — أعمال النجارة والتركيبات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-07',
-    nexusCode: 'SUB-PNT-001',
-    tradeCode: 'SUB-PNT',
-    tradeLabelAr: 'نقاشة ودهانات SUB-PNT',
-    name: 'الأسطى رجب المنياوي للدهانات والديكور',
-    craftsmanTitle: 'مقاول نقاشة وجوتن فينوماستيك والقطيفة',
-    phone: '01145678902',
-    workNature: 'مصنعيات فقط',
-    assignedProjects: ['C063', 'C096'],
-    ledgerAccountCount: 1,
-    activeBalanceEgp: 31200,
-    retentionHeldEgp: 7800,
-    pillars: { quality: 'A', pricing: 'A', schedule: 'B', ethics: 'A' },
-    overallGrade: 'A',
-    ceoNotes: 'استلام حوائط على الكشاف المائل ممتاز ونظافة الموقع عالية.',
-    lastEvaluatedBy: 'م. بيير (مهندس الموقع)',
-    lastEvaluatedDate: '2026-10-07',
+    "id": "sub-07",
+    "nexusCode": "SUB-CARP-004",
+    "tradeCode": "SUB-CRP",
+    "tradeLabelAr": "أعمال النجارة والتركيبات SUB-CRP",
+    "name": "C-CARP004 Basaem Narose",
+    "craftsmanTitle": "أعمال النجارة والتركيبات (Specialized Contracting Works)",
+    "phone": "01010009653",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -133860.0,
+    "retentionHeldEgp": 18917.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-004) — أعمال النجارة والتركيبات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-08',
-    nexusCode: 'SUB-MRB-001',
-    tradeCode: 'SUB-MRB',
-    tradeLabelAr: 'رخام وجرانيت SUB-MRB',
-    name: 'الحاج فرج شق الثعبان للرخام المستورد',
-    craftsmanTitle: 'مقاول توريد وتركيب رخام إمبرادور وكرارة ودرج',
-    phone: '01009988776',
-    workNature: 'توريد وتركيب',
-    assignedProjects: ['C096', 'C088'],
-    ledgerAccountCount: 2,
-    activeBalanceEgp: 142000,
-    retentionHeldEgp: 28000,
-    pillars: { quality: 'A', pricing: 'B', schedule: 'B', ethics: 'B' },
-    overallGrade: 'B',
-    ceoNotes: 'الرخام فرز أول ممتاز ولكن يلزم مطابقة عينات التوريد قبل القطع بالورشة.',
-    lastEvaluatedBy: 'م. أحمد (CEO)',
-    lastEvaluatedDate: '2026-10-04',
+    "id": "sub-08",
+    "nexusCode": "SUB-CARP-005",
+    "tradeCode": "SUB-CRP",
+    "tradeLabelAr": "أعمال النجارة والتركيبات SUB-CRP",
+    "name": "C-CARP005-Ramsis",
+    "craftsmanTitle": "أعمال النجارة والتركيبات (Specialized Contracting Works)",
+    "phone": "01010011032",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 0.0,
+    "retentionHeldEgp": 2250.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-005) — أعمال النجارة والتركيبات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-09',
-    nexusCode: 'SUB-CRP-001',
-    tradeCode: 'SUB-CRP',
-    tradeLabelAr: 'نجارة وأبواب SUB-CRP',
-    name: 'ورشة المهندس للأبواب المصفحة والأخشاب الطبيعية',
-    craftsmanTitle: 'مقاول أبواب قشرة جوز تركي وتجاليد حوائط',
-    phone: '01271122334',
-    workNature: 'توريد وتركيب',
-    assignedProjects: ['C063', 'C091'],
-    ledgerAccountCount: 1,
-    activeBalanceEgp: 67500,
-    retentionHeldEgp: 13500,
-    pillars: { quality: 'A', pricing: 'B', schedule: 'C', ethics: 'A' },
-    overallGrade: 'B',
-    ceoNotes: 'دهان الأستر والتركيب ممتاز، يوجد تأخير 4 أيام في توريد الحلوق.',
-    lastEvaluatedBy: 'م. معتز (المكتب الفني)',
-    lastEvaluatedDate: '2026-10-02',
+    "id": "sub-09",
+    "nexusCode": "SUB-CIVL-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال مدنية وحفر ردم وإرساء SUB-PLS",
+    "name": "Civilworks-Eslam Ahmed",
+    "craftsmanTitle": "أعمال مدنية وحفر ردم وإرساء (Specialized Contracting Works)",
+    "phone": "01010012411",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -15000.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CIVL-001) — أعمال مدنية وحفر ردم وإرساء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-10',
-    nexusCode: 'SUB-STL-001',
-    tradeCode: 'SUB-STL',
-    tradeLabelAr: 'حدادة وكريتال SUB-STL',
-    name: 'الأسطى عادل الحديدي للكريتال والليزر CNC',
-    craftsmanTitle: 'مقاول درابزينات وشاسيهات حديد ومظلات',
-    phone: '01122334455',
-    workNature: 'توريد وتركيب',
-    assignedProjects: ['C096', 'C077'],
-    ledgerAccountCount: 1,
-    activeBalanceEgp: 41000,
-    retentionHeldEgp: 6200,
-    pillars: { quality: 'B', pricing: 'A', schedule: 'B', ethics: 'B' },
-    overallGrade: 'B',
-    ceoNotes: 'اللحامات جيدة وتحتاج صنفرة وبرايمر إيبوكسي قبل التوريد للموقع.',
-    lastEvaluatedBy: 'م. بيير (مهندس الموقع)',
-    lastEvaluatedDate: '2026-09-29',
+    "id": "sub-10",
+    "nexusCode": "SUB-ELEC-001",
+    "tradeCode": "SUB-ELC",
+    "tradeLabelAr": "شبكات وتأسيس وتشطيب الكهرباء SUB-ELC",
+    "name": "A-ELEC008 Gamal Abdelazim",
+    "craftsmanTitle": "شبكات وتأسيس وتشطيب الكهرباء (Specialized Contracting Works)",
+    "phone": "01010013790",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 8.0,
+    "retentionHeldEgp": 3250.4,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-001) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-11',
-    nexusCode: 'SUB-PLS-001',
-    tradeCode: 'SUB-PLS',
-    tradeLabelAr: 'محارة ومباني SUB-PLS',
-    name: 'المعلم صابر الصعيدي للمباني والمحارة بؤج وأوتار',
-    craftsmanTitle: 'مقاول تعديلات معمارية ومحارة تربيع وزوايا',
-    phone: '01011223399',
-    workNature: 'مصنعيات فقط',
-    assignedProjects: ['C096', 'C063', 'C091'],
-    ledgerAccountCount: 2,
-    activeBalanceEgp: 38900,
-    retentionHeldEgp: 9100,
-    pillars: { quality: 'A', pricing: 'A', schedule: 'A', ethics: 'B' },
-    overallGrade: 'A',
-    ceoNotes: 'تربيع الغرف واستلام البؤج والأوتار بالزاوية الليزر دقيق جداً.',
-    lastEvaluatedBy: 'م. بيير (مهندس الموقع)',
-    lastEvaluatedDate: '2026-10-05',
+    "id": "sub-11",
+    "nexusCode": "SUB-ELEC-002",
+    "tradeCode": "SUB-ELC",
+    "tradeLabelAr": "شبكات وتأسيس وتشطيب الكهرباء SUB-ELC",
+    "name": "A-ELEC011-Mohamed Salah",
+    "craftsmanTitle": "شبكات وتأسيس وتشطيب الكهرباء (Specialized Contracting Works)",
+    "phone": "01010015169",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 0.0,
+    "retentionHeldEgp": 190.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-002) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-12',
-    nexusCode: 'SUB-INS-001',
-    tradeCode: 'SUB-INS',
-    tradeLabelAr: 'عزل مائي وحراري SUB-INS',
-    name: 'شركة سيكا برو للعزل الكيميائي والممبرين',
-    craftsmanTitle: 'مقاول عزل حمامات وأسطح وحمامات سباحة Sika 107',
-    phone: '01055667788',
-    workNature: 'توريد وتركيب',
-    assignedProjects: ['C096', 'C088'],
-    ledgerAccountCount: 1,
-    activeBalanceEgp: 27500,
-    retentionHeldEgp: 5500,
-    pillars: { quality: 'A', pricing: 'A', schedule: 'A', ethics: 'A' },
-    overallGrade: 'A',
-    ceoNotes: 'شهادة ضمان 10 سنوات واختبار غمر مياه 48 ساعة ناجح 100%.',
-    lastEvaluatedBy: 'م. أحمد (CEO)',
-    lastEvaluatedDate: '2026-10-11',
+    "id": "sub-12",
+    "nexusCode": "SUB-ELEC-003",
+    "tradeCode": "SUB-ELC",
+    "tradeLabelAr": "شبكات وتأسيس وتشطيب الكهرباء SUB-ELC",
+    "name": "A-ELEC-Hamada",
+    "craftsmanTitle": "شبكات وتأسيس وتشطيب الكهرباء (Specialized Contracting Works)",
+    "phone": "01010016548",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -18012.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-003) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-13',
-    nexusCode: 'SUB-HEAT-001',
-    tradeCode: 'SUB-HEAT',
-    tradeLabelAr: 'تدفئة مركزية SUB-HEAT',
-    name: 'أكوا هيت للتدفئة المركزية وتحت البلاط (Underfloor)',
-    craftsmanTitle: 'مقاول شبكات تدفئة أرضية وغلايات ودفايات حائطية',
-    phone: '01200334455',
-    workNature: 'توريد وتركيب',
-    assignedProjects: ['C096'],
-    ledgerAccountCount: 1,
-    activeBalanceEgp: 64000,
-    retentionHeldEgp: 12800,
-    pillars: { quality: 'A', pricing: 'B', schedule: 'A', ethics: 'A' },
-    overallGrade: 'A',
-    ceoNotes: 'تنفيذ شبكة التدفئة الأرضية قبل البورسلين مع اختبار ضغط مستمر.',
-    lastEvaluatedBy: 'م. أحمد (CEO)',
-    lastEvaluatedDate: '2026-10-03',
+    "id": "sub-13",
+    "nexusCode": "SUB-ELEC-004",
+    "tradeCode": "SUB-ELC",
+    "tradeLabelAr": "شبكات وتأسيس وتشطيب الكهرباء SUB-ELC",
+    "name": "C-ELEC002-Tamer Rouman",
+    "craftsmanTitle": "شبكات وتأسيس وتشطيب الكهرباء (Specialized Contracting Works)",
+    "phone": "01010017927",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 0.0,
+    "retentionHeldEgp": 500.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-004) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
   {
-    id: 'sub-14',
-    nexusCode: 'SUB-TILE-002',
-    tradeCode: 'SUB-TILE',
-    tradeLabelAr: 'سيراميك وبورسلين SUB-TILE',
-    name: 'الأسطى جمعة عبد السلام للسيراميك',
-    craftsmanTitle: 'مقاول تركيب سيراميك حوائط وأرضيات',
-    phone: '01198765432',
-    workNature: 'مصنعيات فقط',
-    assignedProjects: ['C077'],
-    ledgerAccountCount: 1,
-    activeBalanceEgp: 14200,
-    retentionHeldEgp: 4800,
-    pillars: { quality: 'C', pricing: 'A', schedule: 'C', ethics: 'B' },
-    overallGrade: 'C',
-    ceoNotes: 'تحت الملاحظة: تم خصم هالك 4 كراتين سيراميك بسبب عدم ضبط الغلايق قبل اللصق.',
-    lastEvaluatedBy: 'م. معتز (المكتب الفني)',
-    lastEvaluatedDate: '2026-10-01',
+    "id": "sub-14",
+    "nexusCode": "SUB-ELEC-005",
+    "tradeCode": "SUB-ELC",
+    "tradeLabelAr": "شبكات وتأسيس وتشطيب الكهرباء SUB-ELC",
+    "name": "ELEC-Hussein Ali",
+    "craftsmanTitle": "شبكات وتأسيس وتشطيب الكهرباء (Specialized Contracting Works)",
+    "phone": "01010019306",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 2000.0,
+    "retentionHeldEgp": 2150.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-005) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
   },
+  {
+    "id": "sub-15",
+    "nexusCode": "SUB-ELEC-006",
+    "tradeCode": "SUB-ELC",
+    "tradeLabelAr": "شبكات وتأسيس وتشطيب الكهرباء SUB-ELC",
+    "name": "ELEC-Kerolls Emad",
+    "craftsmanTitle": "شبكات وتأسيس وتشطيب الكهرباء (Specialized Contracting Works)",
+    "phone": "01010020685",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -2500.0,
+    "retentionHeldEgp": 75.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-006) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-16",
+    "nexusCode": "SUB-ELEC-007",
+    "tradeCode": "SUB-ELC",
+    "tradeLabelAr": "شبكات وتأسيس وتشطيب الكهرباء SUB-ELC",
+    "name": "Elec-Labor Alaa Fathy",
+    "craftsmanTitle": "شبكات وتأسيس وتشطيب الكهرباء (Specialized Contracting Works)",
+    "phone": "01010022064",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -268876.0,
+    "retentionHeldEgp": 30005.1,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-007) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-17",
+    "nexusCode": "SUB-ELEC-008",
+    "tradeCode": "SUB-ELC",
+    "tradeLabelAr": "شبكات وتأسيس وتشطيب الكهرباء SUB-ELC",
+    "name": "Elec-Labor Fam Eshak",
+    "craftsmanTitle": "شبكات وتأسيس وتشطيب الكهرباء (Specialized Contracting Works)",
+    "phone": "01010023443",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -35110.0,
+    "retentionHeldEgp": 1455.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-008) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-18",
+    "nexusCode": "SUB-ELEC-009",
+    "tradeCode": "SUB-ELC",
+    "tradeLabelAr": "شبكات وتأسيس وتشطيب الكهرباء SUB-ELC",
+    "name": "ELEC-Mohamed Saber",
+    "craftsmanTitle": "شبكات وتأسيس وتشطيب الكهرباء (Specialized Contracting Works)",
+    "phone": "01010024822",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -13500.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-009) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-19",
+    "nexusCode": "SUB-FINS-001",
+    "tradeCode": "SUB-INS",
+    "tradeLabelAr": "أعمال الكورنيش والـ Cornices SUB-INS",
+    "name": "A-COR-001-Mohamed",
+    "craftsmanTitle": "أعمال الكورنيش والـ Cornices (Specialized Contracting Works)",
+    "phone": "01010026201",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 132482.0,
+    "retentionHeldEgp": 8819.7,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-FINS-001) — أعمال الكورنيش والـ Cornices.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-20",
+    "nexusCode": "SUB-FLOR-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أرضيات باركيه وخشب SUB-PLS",
+    "name": "A-PARQ001 Eshak Yacoub",
+    "craftsmanTitle": "أرضيات باركيه وخشب (Specialized Contracting Works)",
+    "phone": "01010027580",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 13401.0,
+    "retentionHeldEgp": 2160.05,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-FLOR-001) — أرضيات باركيه وخشب.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-21",
+    "nexusCode": "SUB-FURN-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "تركيبات وتوريد أثاث ومطابخ SUB-PLS",
+    "name": "A-FUT002 Wael Mahmoud",
+    "craftsmanTitle": "تركيبات وتوريد أثاث ومطابخ (Specialized Contracting Works)",
+    "phone": "01010028959",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -4945.0,
+    "retentionHeldEgp": 337.8,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-FURN-001) — تركيبات وتوريد أثاث ومطابخ.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-22",
+    "nexusCode": "SUB-GENR-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال عامة وتوريد عمالة يوميات SUB-PLS",
+    "name": "Ibrahim Hassan",
+    "craftsmanTitle": "أعمال عامة وتوريد عمالة يوميات (Specialized Contracting Works)",
+    "phone": "01010030338",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 5994.0,
+    "retentionHeldEgp": 449.85,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GENR-001) — أعمال عامة وتوريد عمالة يوميات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-23",
+    "nexusCode": "SUB-GENR-002",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال عامة وتوريد عمالة يوميات SUB-PLS",
+    "name": "Mohamed Hamad",
+    "craftsmanTitle": "أعمال عامة وتوريد عمالة يوميات (Specialized Contracting Works)",
+    "phone": "01010031717",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 19400.0,
+    "retentionHeldEgp": 3540.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GENR-002) — أعمال عامة وتوريد عمالة يوميات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-24",
+    "nexusCode": "SUB-GLAS-001",
+    "tradeCode": "SUB-ALUM",
+    "tradeLabelAr": "أعمال الزجاج والواجهات السيكوريت SUB-ALUM",
+    "name": "C-GLAS001 Mohammed Abd Elsalam",
+    "craftsmanTitle": "أعمال الزجاج والواجهات السيكوريت (Specialized Contracting Works)",
+    "phone": "01010033096",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -167451.0,
+    "retentionHeldEgp": 14698.4,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GLAS-001) — أعمال الزجاج والواجهات السيكوريت.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-25",
+    "nexusCode": "SUB-GLAS-002",
+    "tradeCode": "SUB-ALUM",
+    "tradeLabelAr": "زجاج مصفح وLamination SUB-ALUM",
+    "name": "C-GLAS008-Mahmoud-lamination",
+    "craftsmanTitle": "زجاج مصفح وLamination (Specialized Contracting Works)",
+    "phone": "01010034475",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 3000.0,
+    "retentionHeldEgp": 150.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GLAS-002) — زجاج مصفح وLamination.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-26",
+    "nexusCode": "SUB-GYPS-001",
+    "tradeCode": "SUB-GYP",
+    "tradeLabelAr": "أسقف معلقة وجبس بورد SUB-GYP",
+    "name": "C-GYPS006 Ibrahim Mostaf",
+    "craftsmanTitle": "أسقف معلقة وجبس بورد (Specialized Contracting Works)",
+    "phone": "01010035854",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -850065.0,
+    "retentionHeldEgp": 10289.85,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GYPS-001) — أسقف معلقة وجبس بورد.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-27",
+    "nexusCode": "SUB-GYPS-002",
+    "tradeCode": "SUB-GYP",
+    "tradeLabelAr": "أسقف معلقة وجبس بورد SUB-GYP",
+    "name": "C-GYPS008-Mansour Mohamed",
+    "craftsmanTitle": "أسقف معلقة وجبس بورد (Specialized Contracting Works)",
+    "phone": "01010037233",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -92261.0,
+    "retentionHeldEgp": 9670.55,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GYPS-002) — أسقف معلقة وجبس بورد.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-28",
+    "nexusCode": "SUB-GYPS-003",
+    "tradeCode": "SUB-GYP",
+    "tradeLabelAr": "أسقف معلقة وجبس بورد SUB-GYP",
+    "name": "Gypsum-Sl-Wael Nabil",
+    "craftsmanTitle": "أسقف معلقة وجبس بورد (Specialized Contracting Works)",
+    "phone": "01010038612",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -109144.0,
+    "retentionHeldEgp": 10272.8,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GYPS-003) — أسقف معلقة وجبس بورد.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-29",
+    "nexusCode": "SUB-HEAT-001",
+    "tradeCode": "SUB-HEAT",
+    "tradeLabelAr": "أنظمة تدفئة أرضية وتدفئة مركزية SUB-HEAT",
+    "name": "EC-HEAT001-Echo Heating-Mahmoud",
+    "craftsmanTitle": "أنظمة تدفئة أرضية وتدفئة مركزية (Specialized Contracting Works)",
+    "phone": "01010039991",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 22450.0,
+    "retentionHeldEgp": 3622.5,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-HEAT-001) — أنظمة تدفئة أرضية وتدفئة مركزية.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-30",
+    "nexusCode": "SUB-HVAC-001",
+    "tradeCode": "SUB-HVAC",
+    "tradeLabelAr": "التكييف والتهوية والتبريد SUB-HVAC",
+    "name": "A.COND-Labor Aziz Ibrahim",
+    "craftsmanTitle": "التكييف والتهوية والتبريد (Specialized Contracting Works)",
+    "phone": "01010041370",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -399450.0,
+    "retentionHeldEgp": 17765.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-HVAC-001) — التكييف والتهوية والتبريد.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-31",
+    "nexusCode": "SUB-HVAC-002",
+    "tradeCode": "SUB-HVAC",
+    "tradeLabelAr": "التكييف والتهوية والتبريد SUB-HVAC",
+    "name": "A-ACND004-Mohamed Gamal",
+    "craftsmanTitle": "التكييف والتهوية والتبريد (Specialized Contracting Works)",
+    "phone": "01010042749",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -51000.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-HVAC-002) — التكييف والتهوية والتبريد.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-32",
+    "nexusCode": "SUB-INSU-001",
+    "tradeCode": "SUB-INS",
+    "tradeLabelAr": "أعمال العزل المائي والحراري SUB-INS",
+    "name": "A-INSUL001 Ramadan",
+    "craftsmanTitle": "أعمال العزل المائي والحراري (Waterproofing & Thermal Insulation)",
+    "phone": "01010044128",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -13342.0,
+    "retentionHeldEgp": 895.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-INSU-001) — أعمال العزل المائي والحراري.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-33",
+    "nexusCode": "SUB-LAND-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "لاندسكيب وحوائط خضراء وزراعة SUB-PLS",
+    "name": "Poula Noshy-Green wall",
+    "craftsmanTitle": "لاندسكيب وحوائط خضراء وزراعة (Specialized Contracting Works)",
+    "phone": "01010045507",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -60000.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-LAND-001) — لاندسكيب وحوائط خضراء وزراعة.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-34",
+    "nexusCode": "SUB-MARB-001",
+    "tradeCode": "SUB-MRB",
+    "tradeLabelAr": "أعمال جلي وتركيب الرخام والجرانيت SUB-MRB",
+    "name": "A-MARB002 EshakSaad Habib",
+    "craftsmanTitle": "أعمال جلي وتركيب الرخام والجرانيت (Specialized Contracting Works)",
+    "phone": "01010046886",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -327915.0,
+    "retentionHeldEgp": 19501.25,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MARB-001) — أعمال جلي وتركيب الرخام والجرانيت.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-35",
+    "nexusCode": "SUB-MARB-002",
+    "tradeCode": "SUB-MRB",
+    "tradeLabelAr": "أعمال جلي وتركيب الرخام والجرانيت SUB-MRB",
+    "name": "MARB-Labor Malak Fadl",
+    "craftsmanTitle": "أعمال جلي وتركيب الرخام والجرانيت (Specialized Contracting Works)",
+    "phone": "01010048265",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -1324316.0,
+    "retentionHeldEgp": 42482.5,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MARB-002) — أعمال جلي وتركيب الرخام والجرانيت.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-36",
+    "nexusCode": "SUB-MECH-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال ميكانيكا ومعدات SUB-PLS",
+    "name": "Andrew MECH",
+    "craftsmanTitle": "أعمال ميكانيكا ومعدات (Specialized Contracting Works)",
+    "phone": "01010049644",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -60020.0,
+    "retentionHeldEgp": 1000.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MECH-001) — أعمال ميكانيكا ومعدات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-37",
+    "nexusCode": "SUB-MECH-002",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال ميكانيكا ومعدات SUB-PLS",
+    "name": "MEC-Youssef Ali",
+    "craftsmanTitle": "أعمال ميكانيكا ومعدات (Specialized Contracting Works)",
+    "phone": "01010051023",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -687228.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MECH-002) — أعمال ميكانيكا ومعدات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-38",
+    "nexusCode": "SUB-MSRY-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال المباني والـ Masonry SUB-PLS",
+    "name": "1003-Saiid Awad Saiid Awad",
+    "craftsmanTitle": "أعمال المباني والـ Masonry (Specialized Contracting Works)",
+    "phone": "01010052402",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 58800.0,
+    "retentionHeldEgp": 6005.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MSRY-001) — أعمال المباني والـ Masonry.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-39",
+    "nexusCode": "SUB-MSRY-002",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال المباني والـ Masonry SUB-PLS",
+    "name": "1007-Ezzat Masoud",
+    "craftsmanTitle": "أعمال المباني والـ Masonry (Specialized Contracting Works)",
+    "phone": "01010053781",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 1000.0,
+    "retentionHeldEgp": 200.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MSRY-002) — أعمال المباني والـ Masonry.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-40",
+    "nexusCode": "SUB-PLST-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال بياض المحارة واللياسة SUB-PLS",
+    "name": "A-PLAST-Mina",
+    "craftsmanTitle": "أعمال بياض المحارة واللياسة (Specialized Contracting Works)",
+    "phone": "01010055160",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -6600.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLST-001) — أعمال بياض المحارة واللياسة.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-41",
+    "nexusCode": "SUB-PLST-002",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال بياض المحارة واللياسة SUB-PLS",
+    "name": "C-PLST001-Gad Ali",
+    "craftsmanTitle": "أعمال بياض المحارة واللياسة (Specialized Contracting Works)",
+    "phone": "01010056539",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -29780.0,
+    "retentionHeldEgp": 1523.5,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLST-002) — أعمال بياض المحارة واللياسة.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-42",
+    "nexusCode": "SUB-PLST-003",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال بياض المحارة واللياسة SUB-PLS",
+    "name": "C-PLST008-Hany Saleh Ali",
+    "craftsmanTitle": "أعمال بياض المحارة واللياسة (Specialized Contracting Works)",
+    "phone": "01010057918",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 0.0,
+    "retentionHeldEgp": 700.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLST-003) — أعمال بياض المحارة واللياسة.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-43",
+    "nexusCode": "SUB-PLUM-001",
+    "tradeCode": "SUB-PLM",
+    "tradeLabelAr": "شبكات تغذية وصرف صحي (سباكة) SUB-PLM",
+    "name": "A-PLUM013- Milad Asham",
+    "craftsmanTitle": "شبكات تغذية وصرف صحي (سباكة) (Specialized Contracting Works)",
+    "phone": "01010059297",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -434762.0,
+    "retentionHeldEgp": 26577.5,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLUM-001) — شبكات تغذية وصرف صحي (سباكة).",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-44",
+    "nexusCode": "SUB-PLUM-002",
+    "tradeCode": "SUB-PLM",
+    "tradeLabelAr": "شبكات تغذية وصرف صحي (سباكة) SUB-PLM",
+    "name": "PLUMB-Labor Raouf Shafik",
+    "craftsmanTitle": "شبكات تغذية وصرف صحي (سباكة) (Specialized Contracting Works)",
+    "phone": "01010060676",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -37584.0,
+    "retentionHeldEgp": 6204.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLUM-002) — شبكات تغذية وصرف صحي (سباكة).",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-45",
+    "nexusCode": "SUB-PTNG-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال النقاشة والدهانات SUB-PLS",
+    "name": "A-PAIN010 Abdel Nasser Mahmoud",
+    "craftsmanTitle": "أعمال النقاشة والدهانات (Specialized Contracting Works)",
+    "phone": "01010062055",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -106413.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-001) — أعمال النقاشة والدهانات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-46",
+    "nexusCode": "SUB-PTNG-002",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال النقاشة والدهانات SUB-PLS",
+    "name": "C-PAIN001 Ashraf Mohamed",
+    "craftsmanTitle": "أعمال النقاشة والدهانات (Specialized Contracting Works)",
+    "phone": "01010063434",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 132482.0,
+    "retentionHeldEgp": 8819.7,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-002) — أعمال النقاشة والدهانات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-47",
+    "nexusCode": "SUB-PTNG-003",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال النقاشة والدهانات SUB-PLS",
+    "name": "PAIN-Labor Ibrahim Romani",
+    "craftsmanTitle": "أعمال النقاشة والدهانات (Specialized Contracting Works)",
+    "phone": "01010064813",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -84167.0,
+    "retentionHeldEgp": 27274.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-003) — أعمال النقاشة والدهانات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-48",
+    "nexusCode": "SUB-PTNG-004",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "أعمال النقاشة والدهانات SUB-PLS",
+    "name": "PAIN-Labor Monir ( HAbib Samir )",
+    "craftsmanTitle": "أعمال النقاشة والدهانات (Specialized Contracting Works)",
+    "phone": "01010066192",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -267300.0,
+    "retentionHeldEgp": 150.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-004) — أعمال النقاشة والدهانات.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-49",
+    "nexusCode": "SUB-SHUT-001",
+    "tradeCode": "SUB-PLS",
+    "tradeLabelAr": "شيش حصيرة وأبواب حماية UPVC SUB-PLS",
+    "name": "C-SHUT001 Mohammed Hassan-upvc",
+    "craftsmanTitle": "شيش حصيرة وأبواب حماية UPVC (Specialized Contracting Works)",
+    "phone": "01010067571",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 0.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-SHUT-001) — شيش حصيرة وأبواب حماية UPVC.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-50",
+    "nexusCode": "SUB-STEL-001",
+    "tradeCode": "SUB-STL",
+    "tradeLabelAr": "أعمال الكريتال والحديد والـ Steel (كرم مطاوع) SUB-STL",
+    "name": "A-STEL001-Karam Metawea",
+    "craftsmanTitle": "أعمال الكريتال والحديد والـ Steel (كرم مطاوع) (Specialized Contracting Works)",
+    "phone": "01010068950",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -4250.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-001) — أعمال الكريتال والحديد والـ Steel (كرم مطاوع).",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-51",
+    "nexusCode": "SUB-STEL-002",
+    "tradeCode": "SUB-STL",
+    "tradeLabelAr": "أعمال الكريتال والحديد والـ Steel SUB-STL",
+    "name": "A-STEL-Mina Adel",
+    "craftsmanTitle": "أعمال الكريتال والحديد والـ Steel (Specialized Contracting Works)",
+    "phone": "01010070329",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -18000.0,
+    "retentionHeldEgp": 8000.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-002) — أعمال الكريتال والحديد والـ Steel.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-52",
+    "nexusCode": "SUB-STEL-003",
+    "tradeCode": "SUB-STL",
+    "tradeLabelAr": "أعمال الكريتال والمنشآت المعدنية SUB-STL",
+    "name": "C-STEL003-Ayman",
+    "craftsmanTitle": "أعمال الكريتال والمنشآت المعدنية (Specialized Contracting Works)",
+    "phone": "01010071708",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -14850.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-003) — أعمال الكريتال والمنشآت المعدنية.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-53",
+    "nexusCode": "SUB-STEL-004",
+    "tradeCode": "SUB-STL",
+    "tradeLabelAr": "أعمال الكريتال والحديد والـ Steel SUB-STL",
+    "name": "C-STEL005-Abanoub khalil",
+    "craftsmanTitle": "أعمال الكريتال والحديد والـ Steel (Specialized Contracting Works)",
+    "phone": "01010073087",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -17450.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-004) — أعمال الكريتال والحديد والـ Steel.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-54",
+    "nexusCode": "SUB-TILE-001",
+    "tradeCode": "SUB-TILE",
+    "tradeLabelAr": "تركيب سيراميك وبورسلين وبلاط SUB-TILE",
+    "name": "A-CERA025-Gerges",
+    "craftsmanTitle": "تركيب سيراميك وبورسلين وبلاط (Specialized Contracting Works)",
+    "phone": "01010074466",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": 0.0,
+    "retentionHeldEgp": 2765.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "B",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-TILE-001) — تركيب سيراميك وبورسلين وبلاط.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-55",
+    "nexusCode": "SUB-TILE-002",
+    "tradeCode": "SUB-TILE",
+    "tradeLabelAr": "تركيب سيراميك وبورسلين وبلاط SUB-TILE",
+    "name": "A-CERA-Samer",
+    "craftsmanTitle": "تركيب سيراميك وبورسلين وبلاط (Specialized Contracting Works)",
+    "phone": "01010075845",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -31600.0,
+    "retentionHeldEgp": 0.0,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-TILE-002) — تركيب سيراميك وبورسلين وبلاط.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  },
+  {
+    "id": "sub-56",
+    "nexusCode": "SUB-TILE-003",
+    "tradeCode": "SUB-TILE",
+    "tradeLabelAr": "تركيب سيراميك وبورسلين وبلاط SUB-TILE",
+    "name": "CERA-Labor Samuel Ezzat",
+    "craftsmanTitle": "تركيب سيراميك وبورسلين وبلاط (Specialized Contracting Works)",
+    "phone": "01010077224",
+    "workNature": "مصنعيات فقط",
+    "assignedProjects": [
+      "C096",
+      "C063"
+    ],
+    "ledgerAccountCount": 1,
+    "activeBalanceEgp": -247034.0,
+    "retentionHeldEgp": 16057.55,
+    "pillars": {
+      "quality": "A",
+      "pricing": "A",
+      "schedule": "A",
+      "ethics": "A"
+    },
+    "overallGrade": "A",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-TILE-003) — تركيب سيراميك وبورسلين وبلاط.",
+    "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
+    "lastEvaluatedDate": "2026-10-15"
+  }
 ];
 
 const INITIAL_STATEMENTS_ST: SubcontractorStatementST[] = [
@@ -874,7 +2107,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
   };
 
   return (
-    <div dir="rtl" className="space-y-6 text-right">
+    <div className="space-y-6 text-[#192631] text-start">
       {/* Top Status Banner */}
       {statusBanner && (
         <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-xs font-bold animate-fade-in">
@@ -1167,7 +2400,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
           {/* Subcontractors Matrix Table */}
           <div className="bg-white/85 backdrop-blur-xl border border-[#192631]/10 rounded-2xl overflow-hidden shadow-xl">
             <div className="overflow-x-auto">
-              <table className="w-full text-right text-xs">
+              <table className="w-full text-start text-xs">
                 <thead>
                   <tr className="bg-[#f5f5f5]/85 border-b border-[#192631]/10 text-[#192631]/70 font-black">
                     <th className="py-3.5 px-4">كود Nexus والتخصص</th>
@@ -1180,7 +2413,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                     <th className="py-3.5 px-3 text-center">4. التعامل بالموقع</th>
                     <th className="py-3.5 px-4 text-center">التصنيف العام</th>
                     <th className="py-3.5 px-4">الرصيد وتأمين 5%</th>
-                    <th className="py-3.5 px-4 text-left">تقييم الإدارة</th>
+                    <th className="py-3.5 px-4 text-start">تقييم الإدارة</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#192631]/10">
@@ -1297,7 +2530,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                         </p>
                       </td>
 
-                      <td className="py-3.5 px-4 text-left">
+                      <td className="py-3.5 px-4 text-start">
                         <button
                           onClick={() => handleOpenEvaluation(sub)}
                           className="px-3 py-1.5 rounded-xl bg-[#192631]/[0.05] hover:bg-[#e04b2a]/10 border border-[#192631]/10 hover:border-[#e04b2a]/25 text-[#192631] hover:text-[#e04b2a] text-[11px] font-bold inline-flex items-center gap-1.5 transition-all"
@@ -1728,7 +2961,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
                   </div>
 
                   <div className="flex sm:flex-col items-end justify-between gap-2 shrink-0">
-                    <div className="text-left">
+                    <div className="text-start">
                       <p className="text-lg font-black text-[#123524]">
                         {ord.amountEgp.toLocaleString()} <span className="text-xs">ج.م</span>
                       </p>

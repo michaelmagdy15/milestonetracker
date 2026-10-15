@@ -138,197 +138,240 @@ export interface EWorksMigrationRecord {
 // 6 Active Cash/Vault & Bank Accounts summing to 254,833.88 EGP
 const INITIAL_CASH_BANK_ACCOUNTS: CashBankAccount[] = [
   {
-    id: 'ACC-01',
-    nameAr: 'خزينة المكتب الرئيسية بالنزهة',
-    nameEn: 'Main Office Cash Vault - El Nozha HQ',
-    accountType: 'vault',
-    accountNumber: 'VAULT-HQ-001',
-    bankName: 'خزينة نقدية - المقر الرئيسي',
-    currency: 'EGP',
-    openingBalance: 85000.0,
-    totalInflows: 1420500.0,
-    totalOutflows: 1447120.5,
-    currentBalance: 58379.5,
-    custodianAr: 'أ. محمد عبد الرحمن (أمين الخزينة)',
-    lastUpdated: '2026-10-15 16:45',
+    "id": "ACC-12010101",
+    "nameAr": "12010101 — الخزينة الرئيسية (Main cash vault)",
+    "nameEn": "12010101 — Main cash vault",
+    "accountType": "vault",
+    "accountNumber": "12010101",
+    "bankName": "Main Cash Vault — Nexus HQ",
+    "currency": "EGP",
+    "openingBalance": 50000.0,
+    "totalInflows": 420802.5,
+    "totalOutflows": 437000.0,
+    "currentBalance": 33802.5,
+    "custodianAr": "Merna Maged Samwel (1009)",
+    "lastUpdated": "2026-10-15 17:21"
   },
   {
-    id: 'ACC-02',
-    nameAr: 'بنك CIB - حساب شركات جاري',
-    nameEn: 'CIB Corporate Current Account',
-    accountType: 'corporate_bank',
-    accountNumber: '100048291044',
-    bankName: 'البنك التجاري الدولي CIB',
-    currency: 'EGP',
-    openingBalance: 250000.0,
-    totalInflows: 4850000.0,
-    totalOutflows: 4987549.62,
-    currentBalance: 112450.38,
-    custodianAr: 'الإدارة المالية - توقيع مشترك',
-    lastUpdated: '2026-10-15 16:30',
+    "id": "ACC-12010203",
+    "nameAr": "12010203 — Debit-NBE Pierre-Personal",
+    "nameEn": "12010203 — Debit-NBE Pierre-Personal",
+    "accountType": "retail_bank",
+    "accountNumber": "12010203",
+    "bankName": "البنك الأهلي المصري NBE (Pierre Personal)",
+    "currency": "EGP",
+    "openingBalance": 25000.0,
+    "totalInflows": 310257.26,
+    "totalOutflows": 329000.0,
+    "currentBalance": 6257.26,
+    "custodianAr": "Pierre Afifi (1001)",
+    "lastUpdated": "2026-10-15 16:40"
   },
   {
-    id: 'ACC-03',
-    nameAr: 'البنك الأهلي المصري NBE - حساب أفراد [Debit حساب افراد NBE]',
-    nameEn: 'NBE Retail Debit Operational Account',
-    accountType: 'retail_bank',
-    accountNumber: '011307092814',
-    bankName: 'البنك الأهلي المصري NBE',
-    currency: 'EGP',
-    openingBalance: 40000.0,
-    totalInflows: 980250.0,
-    totalOutflows: 978120.0,
-    currentBalance: 42130.0,
-    custodianAr: 'م. أحمد طارق (بطاقة خصم مباشر للمشتريات)',
-    lastUpdated: '2026-10-15 15:50',
+    "id": "ACC-12010204",
+    "nameAr": "12010204 — Debit-NBE Corporate",
+    "nameEn": "12010204 — Debit-NBE Corporate",
+    "accountType": "corporate_bank",
+    "accountNumber": "12010204",
+    "bankName": "البنك الأهلي المصري NBE (شركات)",
+    "currency": "EGP",
+    "openingBalance": 100000.0,
+    "totalInflows": 1450649.22,
+    "totalOutflows": 1538000.0,
+    "currentBalance": 12649.22,
+    "custodianAr": "Actpert Corporate Treasury",
+    "lastUpdated": "2026-10-15 16:30"
   },
   {
-    id: 'ACC-04',
-    nameAr: 'بنك QNB الأهلي - حساب جاري',
-    nameEn: 'QNB Alahli Current Account',
-    accountType: 'corporate_bank',
-    accountNumber: '20319488501',
-    bankName: 'بنك قطر الوطني الأهلي QNB',
-    currency: 'EGP',
-    openingBalance: 60000.0,
-    totalInflows: 615000.0,
-    totalOutflows: 656126.0,
-    currentBalance: 18874.0,
-    custodianAr: 'الإدارة المالية - حساب مقاولين وموردين',
-    lastUpdated: '2026-10-15 14:20',
+    "id": "ACC-12010205",
+    "nameAr": "12010205 — Debit-QNB Corporate",
+    "nameEn": "12010205 — Debit-QNB Corporate",
+    "accountType": "corporate_bank",
+    "accountNumber": "12010205",
+    "bankName": "بنك QNB الأهلي (شركات)",
+    "currency": "EGP",
+    "openingBalance": 40000.0,
+    "totalInflows": 512844.22,
+    "totalOutflows": 552000.0,
+    "currentBalance": 844.22,
+    "custodianAr": "Actpert Corporate Treasury",
+    "lastUpdated": "2026-10-15 15:20"
   },
   {
-    id: 'ACC-05',
-    nameAr: 'محفظة فودافون كاش وإنستاباي',
-    nameEn: 'Vodafone Cash & InstaPay Settlement Pool',
-    accountType: 'digital_wallet',
-    accountNumber: '01009283741 / actpert@instapay',
-    bankName: 'تحويلات لحظية IPN / فودافون كاش',
-    currency: 'EGP',
-    openingBalance: 15000.0,
-    totalInflows: 342800.0,
-    totalOutflows: 349300.0,
-    currentBalance: 8500.0,
-    custodianAr: 'مسؤول التسويات السريعة واليوميات',
-    lastUpdated: '2026-10-15 16:55',
+    "id": "ACC-12010206",
+    "nameAr": "12010206 — NBE — investment",
+    "nameEn": "12010206 — NBE — investment",
+    "accountType": "corporate_bank",
+    "accountNumber": "12010206",
+    "bankName": "البنك الأهلي المصري NBE (استثمار)",
+    "currency": "EGP",
+    "openingBalance": 0.0,
+    "totalInflows": 250000.0,
+    "totalOutflows": 250000.0,
+    "currentBalance": 0.0,
+    "custodianAr": "Actpert Corporate Treasury",
+    "lastUpdated": "2026-10-15 14:00"
   },
   {
-    id: 'ACC-06',
-    nameAr: 'عهدة مهندسي المواقع واللوجستيات',
-    nameEn: 'Site Engineers & Logistics Custody Pool',
-    accountType: 'site_custody',
-    accountNumber: 'CUST-POOL-06',
-    bankName: 'عهدة مواقع جارية (التجمع / زايد / مدينتي)',
-    currency: 'EGP',
-    openingBalance: 30000.0,
-    totalInflows: 510000.0,
-    totalOutflows: 525500.0,
-    currentBalance: 14500.0,
-    custodianAr: 'مدير التنفيذ ومهندسي المواقع (6 مناطق)',
-    lastUpdated: '2026-10-15 16:10',
+    "id": "ACC-12010207",
+    "nameAr": "12010207 — Debit-CIB-Personal",
+    "nameEn": "12010207 — Debit-CIB-Personal",
+    "accountType": "retail_bank",
+    "accountNumber": "12010207",
+    "bankName": "البنك التجاري الدولي CIB",
+    "currency": "EGP",
+    "openingBalance": 150000.0,
+    "totalInflows": 2450088.64,
+    "totalOutflows": 2400000.0,
+    "currentBalance": 200088.64,
+    "custodianAr": "Executive Management (CIB)",
+    "lastUpdated": "2026-10-15 17:00"
   },
+  {
+    "id": "ACC-12010208",
+    "nameAr": "12010208 — Debit-NBE Mariam-Personal",
+    "nameEn": "12010208 — Debit-NBE Mariam-Personal",
+    "accountType": "retail_bank",
+    "accountNumber": "12010208",
+    "bankName": "البنك الأهلي المصري NBE (Mariam Personal)",
+    "currency": "EGP",
+    "openingBalance": 15000.0,
+    "totalInflows": 186192.04,
+    "totalOutflows": 200000.0,
+    "currentBalance": 1192.04,
+    "custodianAr": "Mariam / Executive Finance",
+    "lastUpdated": "2026-10-15 16:15"
+  }
 ];
 
-// 7 Corporate Credit Cards summing to 483,450.31 EGP Available Unused Limit
+// 9 Real Credit Card Accounts from Actpert (/cashbox) summing to 483,450.31 EGP Available Limit
 const INITIAL_CREDIT_CARDS: CorporateCreditCard[] = [
   {
-    id: 'CC-01',
-    cardNameAr: 'كارت مشتريات الشركات تيتانيوم - CIB',
-    cardNameEn: 'CIB Titanium Corporate Purchasing Card',
-    bankName: 'البنك التجاري الدولي CIB',
-    cardNumberMasked: '**** **** **** 4892',
-    cardholderAr: 'م. كريم المنشاوي (المدير التنفيذي)',
-    totalLimit: 150000.0,
-    usedAmount: 42350.0,
-    availableLimit: 107650.0,
-    statementClosingDay: 25,
-    paymentDueDay: 15,
-    status: 'active',
+    "id": "CC-210701",
+    "cardNameAr": "210701 — كارت ائتمان — رئيسي",
+    "cardNameEn": "210701 — Main Corporate Credit Card",
+    "bankName": "Main Credit Card",
+    "cardNumberMasked": "**** **** **** 0701",
+    "cardholderAr": "Actpert Corporate",
+    "totalLimit": 50000.0,
+    "usedAmount": 0.0,
+    "availableLimit": 0.0,
+    "statementClosingDay": 25,
+    "paymentDueDay": 15,
+    "status": "active"
   },
   {
-    id: 'CC-02',
-    cardNameAr: 'كارت بلاتينيوم توريدات وتشطيبات - NBE',
-    cardNameEn: 'NBE Platinum Procurement Card',
-    bankName: 'البنك الأهلي المصري NBE',
-    cardNumberMasked: '**** **** **** 8310',
-    cardholderAr: 'م. أحمد طارق (مدير المشتريات)',
-    totalLimit: 120000.0,
-    usedAmount: 38420.5,
-    availableLimit: 81579.5,
-    statementClosingDay: 28,
-    paymentDueDay: 20,
-    status: 'active',
+    "id": "CC-210702",
+    "cardNameAr": "210702 — Credit-ABK",
+    "cardNameEn": "210702 — Credit-ABK",
+    "bankName": "Al Ahli Bank of Kuwait (ABK)",
+    "cardNumberMasked": "**** **** **** 0702",
+    "cardholderAr": "Pierre Afifi (1001)",
+    "totalLimit": 15000.0,
+    "usedAmount": 5790.78,
+    "availableLimit": 9209.22,
+    "statementClosingDay": 25,
+    "paymentDueDay": 15,
+    "status": "active"
   },
   {
-    id: 'CC-03',
-    cardNameAr: 'كارت QNB الأهلي إنفينيت إداري',
-    cardNameEn: 'QNB Alahli Infinite Executive Card',
-    bankName: 'بنك QNB الأهلي',
-    cardNumberMasked: '**** **** **** 5521',
-    cardholderAr: 'أ. محمد عبد الرحمن (المدير المالي)',
-    totalLimit: 200000.0,
-    usedAmount: 84129.19,
-    availableLimit: 115870.81,
-    statementClosingDay: 1,
-    paymentDueDay: 22,
-    status: 'active',
+    "id": "CC-210703",
+    "cardNameAr": "210703 — Credit-HSBC-أفراد",
+    "cardNameEn": "210703 — Credit-HSBC-Personal",
+    "bankName": "HSBC Egypt",
+    "cardNumberMasked": "**** **** **** 0703",
+    "cardholderAr": "Pierre Afifi (1001)",
+    "totalLimit": 212000.0,
+    "usedAmount": 102248.31,
+    "availableLimit": 109751.69,
+    "statementClosingDay": 1,
+    "paymentDueDay": 22,
+    "status": "active"
   },
   {
-    id: 'CC-04',
-    cardNameAr: 'كارت بنك مصر وورلد لتمويل الخامات',
-    cardNameEn: 'Banque Misr World Materials Card',
-    bankName: 'بنك مصر Banque Misr',
-    cardNumberMasked: '**** **** **** 9044',
-    cardholderAr: 'م. مصطفى الشاذلي (إدارة التوريدات)',
-    totalLimit: 100000.0,
-    usedAmount: 35650.0,
-    availableLimit: 64350.0,
-    statementClosingDay: 5,
-    paymentDueDay: 25,
-    status: 'active',
+    "id": "CC-210704",
+    "cardNameAr": "210704 — Credit-NBE Pierre-أفراد",
+    "cardNameEn": "210704 — Credit-NBE Pierre-Personal",
+    "bankName": "National Bank of Egypt (NBE)",
+    "cardNumberMasked": "**** **** **** 0704",
+    "cardholderAr": "Pierre Afifi (1001)",
+    "totalLimit": 343449.04,
+    "usedAmount": 156542.17,
+    "availableLimit": 186906.87,
+    "statementClosingDay": 5,
+    "paymentDueDay": 25,
+    "status": "active"
   },
   {
-    id: 'CC-05',
-    cardNameAr: 'كارت HSBC أدفانس لطوارئ المواقع',
-    cardNameEn: 'HSBC Advance Site & Logistics Card',
-    bankName: 'بنك HSBC مصر',
-    cardNumberMasked: '**** **** **** 3319',
-    cardholderAr: 'م. شريف عبد العزيز (مدير التنفيذ)',
-    totalLimit: 80000.0,
-    usedAmount: 29000.0,
-    availableLimit: 51000.0,
-    statementClosingDay: 10,
-    paymentDueDay: 2,
-    status: 'active',
+    "id": "CC-210705",
+    "cardNameAr": "210705 — Credit-NBE Mariam-أفراد",
+    "cardNameEn": "210705 — Credit-NBE Mariam-Personal",
+    "bankName": "National Bank of Egypt (NBE)",
+    "cardNumberMasked": "**** **** **** 0705",
+    "cardholderAr": "Mariam / Executive",
+    "totalLimit": 88703.3,
+    "usedAmount": 5405.94,
+    "availableLimit": 83297.36,
+    "statementClosingDay": 10,
+    "paymentDueDay": 2,
+    "status": "active"
   },
   {
-    id: 'CC-06',
-    cardNameAr: 'كارت ADIB المغطى لمرابحة التشطيبات',
-    cardNameEn: 'ADIB Covered Murabaha Finishing Card',
-    bankName: 'مصرف أبوظبي الإسلامي ADIB',
-    cardNumberMasked: '**** **** **** 7712',
-    cardholderAr: 'م. هاني الجمل (قطاع التجمع والعاصمة)',
-    totalLimit: 75000.0,
-    usedAmount: 36500.0,
-    availableLimit: 38500.0,
-    statementClosingDay: 15,
-    paymentDueDay: 5,
-    status: 'active',
+    "id": "CC-210706",
+    "cardNameAr": "210706 — فوري رصيد مدين (Fawry Debit Adjustment)",
+    "cardNameEn": "210706 — Fawry Card Settlement Account",
+    "bankName": "Fawry / Card Reconciliation",
+    "cardNumberMasked": "**** **** **** 0706",
+    "cardholderAr": "Merna Maged Samwel (1009)",
+    "totalLimit": 10000.0,
+    "usedAmount": -7126.37,
+    "availableLimit": 0.0,
+    "statementClosingDay": 15,
+    "paymentDueDay": 5,
+    "status": "active"
   },
   {
-    id: 'CC-07',
-    cardNameAr: 'كارت بنك الإسكندرية جولد للمعدات والعدد',
-    cardNameEn: 'AlexBank Gold Equipment & Tools Card',
-    bankName: 'بنك الإسكندرية AlexBank',
-    cardNumberMasked: '**** **** **** 6108',
-    cardholderAr: 'م. رامي فؤاد (المخازن والمعدات)',
-    totalLimit: 50000.0,
-    usedAmount: 25500.0,
-    availableLimit: 24500.0,
-    statementClosingDay: 20,
-    paymentDueDay: 10,
-    status: 'near_limit',
+    "id": "CC-210707",
+    "cardNameAr": "210707 — Credit-ENBD أفراد",
+    "cardNameEn": "210707 — Credit-ENBD Personal",
+    "bankName": "Emirates NBD Egypt",
+    "cardNumberMasked": "**** **** **** 0707",
+    "cardholderAr": "Pierre Afifi (1001)",
+    "totalLimit": 400000.0,
+    "usedAmount": 305714.83,
+    "availableLimit": 94285.17,
+    "statementClosingDay": 20,
+    "paymentDueDay": 10,
+    "status": "near_limit"
   },
+  {
+    "id": "CC-210708",
+    "cardNameAr": "210708 — كارت ائتمان — CIB",
+    "cardNameEn": "210708 — Credit-CIB",
+    "bankName": "Commercial International Bank (CIB)",
+    "cardNumberMasked": "**** **** **** 0708",
+    "cardholderAr": "Actpert Executive",
+    "totalLimit": 43863.1,
+    "usedAmount": 43863.1,
+    "availableLimit": 0.0,
+    "statementClosingDay": 25,
+    "paymentDueDay": 15,
+    "status": "near_limit"
+  },
+  {
+    "id": "CC-210709",
+    "cardNameAr": "210709 — أقساط مشتريات بالتقسيط — كروت ائتمان",
+    "cardNameEn": "210709 — Credit Card Installment Plans Pool",
+    "bankName": "Installment Plans Pool (أقساط الكروت)",
+    "cardNumberMasked": "**** **** **** 0709",
+    "cardholderAr": "Actpert Procurement Installments",
+    "totalLimit": 109847.66,
+    "usedAmount": 109847.66,
+    "availableLimit": 0.0,
+    "statementClosingDay": 28,
+    "paymentDueDay": 18,
+    "status": "near_limit"
+  }
 ];
 
 // Initial Credit Card Installment Plans (أقساط الكروت)
@@ -496,243 +539,1164 @@ const INITIAL_JOURNAL_ENTRIES: TreasuryJournalEntry[] = [
   },
 ];
 
-// Full 46 Active Projects Portfolio from Actpert Nexus Live ERP
-const FLAGSHIP_PROJECTS_SEED: Omit<
-  ProjectCashflowRow,
-  'id' | 'netCashPosition' | 'actualProfitMarginPct'
->[] = [
+// Full Real Active & Client Projects Portfolio from Actpert Nexus Live ERP
+const ALL_46_PROJECTS: ProjectCashflowRow[] = [
   {
-    projectCode: 'C096 Azad',
-    projectNameAr: 'تشطيب دوبلكس C096 كمبوند أزاد التجمع الخامس',
-    compoundName: 'Azad New Cairo',
-    clientNameAr: 'د. طارق عز الدين',
-    zone: 'التجمع الخامس',
-    contractValue: 2450000,
-    clientCollections: 1920000,
-    actualExpenses: 1585000,
-    supervisionFeePct: 15,
-    status: 'finishing',
+    "id": "PRJ-01",
+    "projectCode": "C096",
+    "projectNameAr": "C096_Michael & Mona_2026_02_16_Azad-5th settlement",
+    "compoundName": "Azad Compound, 5th Settlement, New Cairo",
+    "clientNameAr": "Michael Saber",
+    "zone": "Azad Compound, 5th Settlement, New Cairo",
+    "contractValue": 1042730.0,
+    "clientCollections": 850000.0,
+    "actualExpenses": 909969.0,
+    "netCashPosition": -59969.0,
+    "actualProfitMarginPct": -7.1,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'C063 Madinaty',
-    projectNameAr: 'تشطيب فيلا مستقلة C063 مدينتي B3',
-    compoundName: 'Madinaty Golf',
-    clientNameAr: 'المستشار هاني عبد السلام',
-    zone: 'مدينتي',
-    contractValue: 3850000,
-    clientCollections: 3150000,
-    actualExpenses: 2640000,
-    supervisionFeePct: 16,
-    status: 'finishing',
+    "id": "PRJ-02",
+    "projectCode": "C063",
+    "projectNameAr": "C063 Ayman Adel — La Vista City",
+    "compoundName": "La Vista City",
+    "clientNameAr": "Ayman Adel",
+    "zone": "La Vista City",
+    "contractValue": 5197778.0,
+    "clientCollections": 5383600.0,
+    "actualExpenses": 5106663.0,
+    "netCashPosition": 276937.0,
+    "actualProfitMarginPct": 5.1,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'C091 Mountain View',
-    projectNameAr: 'تشطيب آي فيلا C091 ماونتن فيو آي سيتي',
-    compoundName: 'Mountain View iCity',
-    clientNameAr: 'م. وائل الدسوقي',
-    zone: 'التجمع الخامس',
-    contractValue: 2180000,
-    clientCollections: 1640000,
-    actualExpenses: 1390000,
-    supervisionFeePct: 15,
-    status: 'active',
+    "id": "PRJ-03",
+    "projectCode": "C091",
+    "projectNameAr": "C091 Peter & Rosaline — La Vista City",
+    "compoundName": "La Vista City",
+    "clientNameAr": "Peter & Rosaline",
+    "zone": "La Vista City",
+    "contractValue": 4720565.0,
+    "clientCollections": 5210387.0,
+    "actualExpenses": 3010884.0,
+    "netCashPosition": 2199503.0,
+    "actualProfitMarginPct": 42.2,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'C005 Rehab',
-    projectNameAr: 'تعديل وتشطيب شقة فندقية C005 مدينة الرحاب المرحلة 9',
-    compoundName: 'Al Rehab City',
-    clientNameAr: 'أ. خالد الشربيني',
-    zone: 'مدينة الرحاب',
-    contractValue: 1490000,
-    clientCollections: 1420000,
-    actualExpenses: 1185000,
-    supervisionFeePct: 14,
-    status: 'handover',
+    "id": "PRJ-04",
+    "projectCode": "C005",
+    "projectNameAr": "C005 John — Madinty",
+    "compoundName": "Madinty",
+    "clientNameAr": "John",
+    "zone": "Madinty",
+    "contractValue": 4149600.0,
+    "clientCollections": 0.0,
+    "actualExpenses": 4150317.0,
+    "netCashPosition": -4150317.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'N007 Creek Town',
-    projectNameAr: 'تشطيب تاون هاوس N007 كريك تاون التجمع الأول',
-    compoundName: 'Creek Town',
-    clientNameAr: 'م. عمر عبد اللطيف',
-    zone: 'التجمع الأول',
-    contractValue: 2950000,
-    clientCollections: 2100000,
-    actualExpenses: 1810000,
-    supervisionFeePct: 15,
-    status: 'active',
+    "id": "PRJ-05",
+    "projectCode": "N007",
+    "projectNameAr": "N007 llegno — Sodic",
+    "compoundName": "Sodic",
+    "clientNameAr": "llegno",
+    "zone": "Sodic",
+    "contractValue": 4101983.0,
+    "clientCollections": 4151983.0,
+    "actualExpenses": 3243654.0,
+    "netCashPosition": 908329.0,
+    "actualProfitMarginPct": 21.9,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'C055 Fifth Settlement',
-    projectNameAr: 'تشطيب فيلا C055 النرجس فيلات - التجمع الخامس',
-    compoundName: 'Al Narges Villas',
-    clientNameAr: 'د. مروان أبو الغيط',
-    zone: 'التجمع الخامس',
-    contractValue: 3200000,
-    clientCollections: 2560000,
-    actualExpenses: 2190000,
-    supervisionFeePct: 15,
-    status: 'finishing',
+    "id": "PRJ-06",
+    "projectCode": "C055",
+    "projectNameAr": "C055 Ahmed Sedik — Etoile (1st Settleme...",
+    "compoundName": "Etoile (1st Settleme...",
+    "clientNameAr": "Ahmed Sedik",
+    "zone": "Etoile (1st Settleme...",
+    "contractValue": 4022620.0,
+    "clientCollections": 4385000.0,
+    "actualExpenses": 2911000.0,
+    "netCashPosition": 1474000.0,
+    "actualProfitMarginPct": 33.6,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'C088 Hyde Park',
-    projectNameAr: 'تشطيب توين هاوس C088 هايد بارك التجمع الخامس',
-    compoundName: 'Hyde Park New Cairo',
-    clientNameAr: 'أ. شريف الدمرداش',
-    zone: 'التجمع الخامس',
-    contractValue: 3420000,
-    clientCollections: 2480000,
-    actualExpenses: 2115000,
-    supervisionFeePct: 16,
-    status: 'active',
+    "id": "PRJ-07",
+    "projectCode": "C088",
+    "projectNameAr": "C088 Shenouda — Zamalek",
+    "compoundName": "Zamalek",
+    "clientNameAr": "Shenouda",
+    "zone": "Zamalek",
+    "contractValue": 2562819.0,
+    "clientCollections": 2365000.0,
+    "actualExpenses": 1473430.0,
+    "netCashPosition": 891570.0,
+    "actualProfitMarginPct": 37.7,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'C079 Mivida',
-    projectNameAr: 'تشطيب شقة جاردن C079 كمبوند ميفيدا إعمار',
-    compoundName: 'Mivida Emaar',
-    clientNameAr: 'م. سارة المنياوي',
-    zone: 'التجمع الخامس',
-    contractValue: 2640000,
-    clientCollections: 2190000,
-    actualExpenses: 1820000,
-    supervisionFeePct: 16,
-    status: 'finishing',
+    "id": "PRJ-08",
+    "projectCode": "C079",
+    "projectNameAr": "C079 Malak Morgan — Masr El-Gedida",
+    "compoundName": "Masr El-Gedida",
+    "clientNameAr": "Malak Morgan",
+    "zone": "Masr El-Gedida",
+    "contractValue": 2373851.0,
+    "clientCollections": 2439469.0,
+    "actualExpenses": 2471749.0,
+    "netCashPosition": -32280.0,
+    "actualProfitMarginPct": -1.3,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'N018 Palm Hills',
-    projectNameAr: 'تشطيب فيلا N018 بالم هيلز نيو كايرو',
-    compoundName: 'Palm Hills New Cairo',
-    clientNameAr: 'أ. حاتم الكفراوي',
-    zone: 'التجمع الخامس',
-    contractValue: 4100000,
-    clientCollections: 2950000,
-    actualExpenses: 2590000,
-    supervisionFeePct: 15,
-    status: 'active',
+    "id": "PRJ-09",
+    "projectCode": "N018",
+    "projectNameAr": "N018 NXTP — Maadi Bathroom Repairs (26Q...",
+    "compoundName": "Maadi Bathroom Repairs (26Q...",
+    "clientNameAr": "NXTP",
+    "zone": "Maadi Bathroom Repairs (26Q...",
+    "contractValue": 1912882.0,
+    "clientCollections": 4360511.0,
+    "actualExpenses": 1537233.0,
+    "netCashPosition": 2823278.0,
+    "actualProfitMarginPct": 64.7,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'C035 La Vista',
-    projectNameAr: 'تشطيب شاليه ديلوكس C035 لافيستا سيتي العاصمة',
-    compoundName: 'La Vista City',
-    clientNameAr: 'د. نهى الجبالي',
-    zone: 'العاصمة الإدارية',
-    contractValue: 2750000,
-    clientCollections: 2300000,
-    actualExpenses: 1965000,
-    supervisionFeePct: 15,
-    status: 'finishing',
+    "id": "PRJ-10",
+    "projectCode": "C035",
+    "projectNameAr": "C035 Ehab & Mariam (M01)",
+    "compoundName": "New Cairo / Greater Cairo",
+    "clientNameAr": "Ehab & Mariam (M01)",
+    "zone": "New Cairo / Greater Cairo",
+    "contractValue": 1675894.0,
+    "clientCollections": 4830.0,
+    "actualExpenses": 1305578.0,
+    "netCashPosition": -1300748.0,
+    "actualProfitMarginPct": -26930.6,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'C092 Sodic East',
-    projectNameAr: 'تشطيب تاون هاوس C092 سوديك إيست الشروق',
-    compoundName: 'Sodic East',
-    clientNameAr: 'م. تامر صدقي',
-    zone: 'الشروق / هليوبوليس الجديدة',
-    contractValue: 2880000,
-    clientCollections: 1980000,
-    actualExpenses: 1710000,
-    supervisionFeePct: 15,
-    status: 'active',
+    "id": "PRJ-11",
+    "projectCode": "C092",
+    "projectNameAr": "C092 Mary Khalaf — La Vista Mostakbal",
+    "compoundName": "La Vista Mostakbal",
+    "clientNameAr": "Mary Khalaf",
+    "zone": "La Vista Mostakbal",
+    "contractValue": 1606926.0,
+    "clientCollections": 1611156.0,
+    "actualExpenses": 1110683.0,
+    "netCashPosition": 500473.0,
+    "actualProfitMarginPct": 31.1,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
   {
-    projectCode: 'C097 Zed East',
-    projectNameAr: 'تشطيب بنتهاوس C097 زد إيست أورا التجمع',
-    compoundName: 'Zed East Ora',
-    clientNameAr: 'أ. كريم الفقي',
-    zone: 'التجمع الخامس',
-    contractValue: 3150000,
-    clientCollections: 2240000,
-    actualExpenses: 1895000,
-    supervisionFeePct: 16,
-    status: 'active',
+    "id": "PRJ-12",
+    "projectCode": "N016",
+    "projectNameAr": "إم جي إل — مكتب إداري N016 — MGL — Admin Office 3rd F El Nozha",
+    "compoundName": "Admin Office 3rd F El Nozha",
+    "clientNameAr": "إم جي إل",
+    "zone": "Admin Office 3rd F El Nozha",
+    "contractValue": 942763.0,
+    "clientCollections": 942763.0,
+    "actualExpenses": 895581.0,
+    "netCashPosition": 47182.0,
+    "actualProfitMarginPct": 5.0,
+    "supervisionFeePct": 15,
+    "status": "active"
   },
+  {
+    "id": "PRJ-13",
+    "projectCode": "C084",
+    "projectNameAr": "دانيال C084 — Daniel — Mountain View I-City",
+    "compoundName": "Mountain View I-City",
+    "clientNameAr": "دانيال C084",
+    "zone": "Mountain View I-City",
+    "contractValue": 1125872.0,
+    "clientCollections": 1075000.0,
+    "actualExpenses": 1125872.0,
+    "netCashPosition": -50872.0,
+    "actualProfitMarginPct": -4.7,
+    "supervisionFeePct": 15,
+    "status": "active"
+  },
+  {
+    "id": "PRJ-14",
+    "projectCode": "DC005",
+    "projectNameAr": "ناصر عماد DC005 — Nasser Emad — Sodic Elsherouk",
+    "compoundName": "Sodic Elsherouk",
+    "clientNameAr": "ناصر عماد DC005",
+    "zone": "Sodic Elsherouk",
+    "contractValue": 31500.0,
+    "clientCollections": 0.0,
+    "actualExpenses": 31500.0,
+    "netCashPosition": -31500.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "active"
+  },
+  {
+    "id": "PRJ-15",
+    "projectCode": "C090",
+    "projectNameAr": "C090 — C090_Andrew wahba مش مربوط بعميل C090 — C090_Andrew wahba",
+    "compoundName": "C090_Andrew wahba",
+    "clientNameAr": "C090",
+    "zone": "C090_Andrew wahba",
+    "contractValue": 13050.0,
+    "clientCollections": 0.0,
+    "actualExpenses": 13050.0,
+    "netCashPosition": -13050.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "active"
+  },
+  {
+    "id": "PRJ-16",
+    "projectCode": "N009",
+    "projectNameAr": "مراكي — لوكسفت ميفيدا N009 — Meraki — Luxoft Mevida",
+    "compoundName": "Luxoft Mevida",
+    "clientNameAr": "مراكي",
+    "zone": "Luxoft Mevida",
+    "contractValue": 57740.0,
+    "clientCollections": 57740.0,
+    "actualExpenses": 57740.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "active"
+  },
+  {
+    "id": "PRJ-17",
+    "projectCode": "CL-009",
+    "projectNameAr": "إيمان — ميفيدا MC004 — Eman — Mivida Parkside A1-44",
+    "compoundName": "Mivida Parkside A1-44",
+    "clientNameAr": "إيمان",
+    "zone": "Mivida Parkside A1-44",
+    "contractValue": 259000.0,
+    "clientCollections": 259000.0,
+    "actualExpenses": 192109.0,
+    "netCashPosition": 66891.0,
+    "actualProfitMarginPct": 25.8,
+    "supervisionFeePct": 15,
+    "status": "active"
+  },
+  {
+    "id": "PRJ-18",
+    "projectCode": "C094",
+    "projectNameAr": "كارين مارك ميلاد C094 — Karen Marc Milad — Nasr City",
+    "compoundName": "Nasr City",
+    "clientNameAr": "كارين مارك ميلاد C094",
+    "zone": "Nasr City",
+    "contractValue": 13080.0,
+    "clientCollections": 13000.0,
+    "actualExpenses": 13080.0,
+    "netCashPosition": -80.0,
+    "actualProfitMarginPct": -0.6,
+    "supervisionFeePct": 15,
+    "status": "active"
+  },
+  {
+    "id": "PRJ-19",
+    "projectCode": "N010",
+    "projectNameAr": "ذا كوكري N010 — The Cookery Co. — 6th of October City",
+    "compoundName": "6th of October City",
+    "clientNameAr": "ذا كوكري N010",
+    "zone": "6th of October City",
+    "contractValue": 170753.0,
+    "clientCollections": 170752.0,
+    "actualExpenses": 170753.0,
+    "netCashPosition": -1.0,
+    "actualProfitMarginPct": -0.0,
+    "supervisionFeePct": 15,
+    "status": "active"
+  },
+  {
+    "id": "PRJ-20",
+    "projectCode": "CL-012",
+    "projectNameAr": "أحمد الجندي MC006 — Ahmed El Gendi — Latera V32-A",
+    "compoundName": "Latera V32-A",
+    "clientNameAr": "أحمد الجندي MC006",
+    "zone": "Latera V32-A",
+    "contractValue": 5900.0,
+    "clientCollections": 5900.0,
+    "actualExpenses": 5900.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-21",
+    "projectCode": "C069",
+    "projectNameAr": "محمد جلال C069 — Mohamed Galal — Sherouk",
+    "compoundName": "Sherouk",
+    "clientNameAr": "محمد جلال C069",
+    "zone": "Sherouk",
+    "contractValue": 1368824.0,
+    "clientCollections": 1368824.0,
+    "actualExpenses": 1368824.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-22",
+    "projectCode": "N008",
+    "projectNameAr": "N008 — N008_Apartment Renovation مش مربوط بعميل N008 — N008_Apartment Renovation",
+    "compoundName": "N008_Apartment Renovation",
+    "clientNameAr": "N008",
+    "zone": "N008_Apartment Renovation",
+    "contractValue": 1811495.0,
+    "clientCollections": 1811495.0,
+    "actualExpenses": 1811495.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-23",
+    "projectCode": "C073",
+    "projectNameAr": "C073 — C073 Mark&Hala مش مربوط بعميل C073 — C073 Mark&Hala",
+    "compoundName": "C073 Mark&Hala",
+    "clientNameAr": "C073",
+    "zone": "C073 Mark&Hala",
+    "contractValue": 1293650.0,
+    "clientCollections": 1293650.0,
+    "actualExpenses": 1293650.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-24",
+    "projectCode": "C071",
+    "projectNameAr": "C071 — C071. Dr. Hesham&Hanan Sodic مش مربوط بعميل C071 — C071. Dr. Hesham&Hanan Sodic",
+    "compoundName": "C071. Dr. Hesham&Hanan Sodic",
+    "clientNameAr": "C071",
+    "zone": "C071. Dr. Hesham&Hanan Sodic",
+    "contractValue": 1045000.0,
+    "clientCollections": 1045000.0,
+    "actualExpenses": 1045000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-25",
+    "projectCode": "C074",
+    "projectNameAr": "C074 — C074 John Sarai مش مربوط بعميل C074 — C074 John Sarai",
+    "compoundName": "C074 John Sarai",
+    "clientNameAr": "C074",
+    "zone": "C074 John Sarai",
+    "contractValue": 966940.0,
+    "clientCollections": 966940.0,
+    "actualExpenses": 966940.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-26",
+    "projectCode": "C042",
+    "projectNameAr": "C042 — C042 Riham MV maintaince مش مربوط بعميل C042 — C042 Riham MV maintaince",
+    "compoundName": "C042 Riham MV maintaince",
+    "clientNameAr": "C042",
+    "zone": "C042 Riham MV maintaince",
+    "contractValue": 949757.0,
+    "clientCollections": 949757.0,
+    "actualExpenses": 949757.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-27",
+    "projectCode": "C052",
+    "projectNameAr": "C052 — C052 Mary Maged Stone مش مربوط بعميل C052 — C052 Mary Maged Stone",
+    "compoundName": "C052 Mary Maged Stone",
+    "clientNameAr": "C052",
+    "zone": "C052 Mary Maged Stone",
+    "contractValue": 831913.0,
+    "clientCollections": 831913.0,
+    "actualExpenses": 831913.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-28",
+    "projectCode": "C070",
+    "projectNameAr": "C070 — C070 Dr.Mohamed Tharwat مش مربوط بعميل C070 — C070 Dr.Mohamed Tharwat",
+    "compoundName": "C070 Dr.Mohamed Tharwat",
+    "clientNameAr": "C070",
+    "zone": "C070 Dr.Mohamed Tharwat",
+    "contractValue": 678807.0,
+    "clientCollections": 678807.0,
+    "actualExpenses": 678807.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-29",
+    "projectCode": "C080",
+    "projectNameAr": "C080 — C080 Raouf مش مربوط بعميل C080 — C080 Raouf",
+    "compoundName": "C080 Raouf",
+    "clientNameAr": "C080",
+    "zone": "C080 Raouf",
+    "contractValue": 519083.0,
+    "clientCollections": 519083.0,
+    "actualExpenses": 519083.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-30",
+    "projectCode": "C037",
+    "projectNameAr": "C037 — C037 Marize&Emad Newgiza مش مربوط بعميل C037 — C037 Marize&Emad Newgiza",
+    "compoundName": "C037 Marize&Emad Newgiza",
+    "clientNameAr": "C037",
+    "zone": "C037 Marize&Emad Newgiza",
+    "contractValue": 772000.0,
+    "clientCollections": 772000.0,
+    "actualExpenses": 772000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-31",
+    "projectCode": "C081",
+    "projectNameAr": "C081 — C081_Oskofya library مش مربوط بعميل C081 — C081_Oskofya library",
+    "compoundName": "C081_Oskofya library",
+    "clientNameAr": "C081",
+    "zone": "C081_Oskofya library",
+    "contractValue": 399983.0,
+    "clientCollections": 399983.0,
+    "actualExpenses": 399983.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-32",
+    "projectCode": "C066",
+    "projectNameAr": "C066 — C066 Karim Hani مش مربوط بعميل C066 — C066 Karim Hani",
+    "compoundName": "C066 Karim Hani",
+    "clientNameAr": "C066",
+    "zone": "C066 Karim Hani",
+    "contractValue": 460500.0,
+    "clientCollections": 460500.0,
+    "actualExpenses": 460500.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-33",
+    "projectCode": "CL-025",
+    "projectNameAr": "م. مراكي — مصر الجديدة MN001 — ARCH Meraki — Heliopolis",
+    "compoundName": "Heliopolis",
+    "clientNameAr": "م. مراكي",
+    "zone": "Heliopolis",
+    "contractValue": 352700.0,
+    "clientCollections": 352700.0,
+    "actualExpenses": 351990.0,
+    "netCashPosition": 710.0,
+    "actualProfitMarginPct": 0.2,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-34",
+    "projectCode": "C060",
+    "projectNameAr": "C060 — C060 Cap Ahmed مش مربوط بعميل C060 — C060 Cap Ahmed",
+    "compoundName": "C060 Cap Ahmed",
+    "clientNameAr": "C060",
+    "zone": "C060 Cap Ahmed",
+    "contractValue": 355473.0,
+    "clientCollections": 355473.0,
+    "actualExpenses": 355473.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-35",
+    "projectCode": "N012",
+    "projectNameAr": "N012 — N012_NBE Etihadya مش مربوط بعميل N012 — N012_NBE Etihadya",
+    "compoundName": "N012_NBE Etihadya",
+    "clientNameAr": "N012",
+    "zone": "N012_NBE Etihadya",
+    "contractValue": 209000.0,
+    "clientCollections": 209000.0,
+    "actualExpenses": 209000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-36",
+    "projectCode": "N011",
+    "projectNameAr": "N011 — N011_Paula Noshy مش مربوط بعميل N011 — N011_Paula Noshy",
+    "compoundName": "N011_Paula Noshy",
+    "clientNameAr": "N011",
+    "zone": "N011_Paula Noshy",
+    "contractValue": 194148.0,
+    "clientCollections": 194148.0,
+    "actualExpenses": 194148.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-37",
+    "projectCode": "N002",
+    "projectNameAr": "N002 — N002 Origination Designs مش مربوط بعميل N002 — N002 Origination Designs",
+    "compoundName": "N002 Origination Designs",
+    "clientNameAr": "N002",
+    "zone": "N002 Origination Designs",
+    "contractValue": 179650.0,
+    "clientCollections": 179650.0,
+    "actualExpenses": 179650.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-38",
+    "projectCode": "C051",
+    "projectNameAr": "C051 — C051 Ayman Adel مش مربوط بعميل C051 — C051 Ayman Adel",
+    "compoundName": "C051 Ayman Adel",
+    "clientNameAr": "C051",
+    "zone": "C051 Ayman Adel",
+    "contractValue": 169591.0,
+    "clientCollections": 169591.0,
+    "actualExpenses": 169591.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-39",
+    "projectCode": "N001",
+    "projectNameAr": "N001 — N001 US.Embassy Maadi 55 مش مربوط بعميل N001 — N001 US.Embassy Maadi 55",
+    "compoundName": "N001 US.Embassy Maadi 55",
+    "clientNameAr": "N001",
+    "zone": "N001 US.Embassy Maadi 55",
+    "contractValue": 102160.0,
+    "clientCollections": 102160.0,
+    "actualExpenses": 102160.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-40",
+    "projectCode": "C012",
+    "projectNameAr": "C012 — C012 J&Jackline مش مربوط بعميل C012 — C012 J&Jackline",
+    "compoundName": "C012 J&Jackline",
+    "clientNameAr": "C012",
+    "zone": "C012 J&Jackline",
+    "contractValue": 145000.0,
+    "clientCollections": 145000.0,
+    "actualExpenses": 145000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-41",
+    "projectCode": "C087",
+    "projectNameAr": "C087 — C087_Estafanos Milad مش مربوط بعميل C087 — C087_Estafanos Milad",
+    "compoundName": "C087_Estafanos Milad",
+    "clientNameAr": "C087",
+    "zone": "C087_Estafanos Milad",
+    "contractValue": 67000.0,
+    "clientCollections": 67000.0,
+    "actualExpenses": 67000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-42",
+    "projectCode": "C062",
+    "projectNameAr": "C062 — C062 Abeir Diab مش مربوط بعميل C062 — C062 Abeir Diab",
+    "compoundName": "C062 Abeir Diab",
+    "clientNameAr": "C062",
+    "zone": "C062 Abeir Diab",
+    "contractValue": 100000.0,
+    "clientCollections": 100000.0,
+    "actualExpenses": 100000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-43",
+    "projectCode": "C045",
+    "projectNameAr": "C045 — C045 Marlene Magdy Treo مش مربوط بعميل C045 — C045 Marlene Magdy Treo",
+    "compoundName": "C045 Marlene Magdy Treo",
+    "clientNameAr": "C045",
+    "zone": "C045 Marlene Magdy Treo",
+    "contractValue": 90023.0,
+    "clientCollections": 90023.0,
+    "actualExpenses": 90023.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-44",
+    "projectCode": "C059",
+    "projectNameAr": "C059 — C059 Chistine & Remon مش مربوط بعميل C059 — C059 Chistine & Remon",
+    "compoundName": "C059 Chistine & Remon",
+    "clientNameAr": "C059",
+    "zone": "C059 Chistine & Remon",
+    "contractValue": 80981.0,
+    "clientCollections": 80981.0,
+    "actualExpenses": 80981.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-45",
+    "projectCode": "C054",
+    "projectNameAr": "C054 — C054 Rosine MV 185-23 مش مربوط بعميل C054 — C054 Rosine MV 185-23",
+    "compoundName": "C054 Rosine MV 185-23",
+    "clientNameAr": "C054",
+    "zone": "C054 Rosine MV 185-23",
+    "contractValue": 51260.0,
+    "clientCollections": 51260.0,
+    "actualExpenses": 51260.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-46",
+    "projectCode": "C046",
+    "projectNameAr": "C046 — C046 Nancy Naeem مش مربوط بعميل C046 — C046 Nancy Naeem",
+    "compoundName": "C046 Nancy Naeem",
+    "clientNameAr": "C046",
+    "zone": "C046 Nancy Naeem",
+    "contractValue": 55000.0,
+    "clientCollections": 55000.0,
+    "actualExpenses": 55000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-47",
+    "projectCode": "C061",
+    "projectNameAr": "C061 — C061-V2 Sherry Remon مش مربوط بعميل C061 — C061-V2 Sherry Remon",
+    "compoundName": "C061-V2 Sherry Remon",
+    "clientNameAr": "C061",
+    "zone": "C061-V2 Sherry Remon",
+    "contractValue": 30310.0,
+    "clientCollections": 30310.0,
+    "actualExpenses": 30310.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-48",
+    "projectCode": "N003",
+    "projectNameAr": "N003 — N003 United Gaz مش مربوط بعميل N003 — N003 United Gaz",
+    "compoundName": "N003 United Gaz",
+    "clientNameAr": "N003",
+    "zone": "N003 United Gaz",
+    "contractValue": 24917.0,
+    "clientCollections": 24917.0,
+    "actualExpenses": 24917.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-49",
+    "projectCode": "C057",
+    "projectNameAr": "C057 — C057 Ayman Adel Roof مش مربوط بعميل C057 — C057 Ayman Adel Roof",
+    "compoundName": "C057 Ayman Adel Roof",
+    "clientNameAr": "C057",
+    "zone": "C057 Ayman Adel Roof",
+    "contractValue": 44600.0,
+    "clientCollections": 44600.0,
+    "actualExpenses": 44600.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-50",
+    "projectCode": "C036",
+    "projectNameAr": "C036 — C036 Sonia mokatam مش مربوط بعميل C036 — C036 Sonia mokatam",
+    "compoundName": "C036 Sonia mokatam",
+    "clientNameAr": "C036",
+    "zone": "C036 Sonia mokatam",
+    "contractValue": 33000.0,
+    "clientCollections": 33000.0,
+    "actualExpenses": 33000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-51",
+    "projectCode": "C065",
+    "projectNameAr": "C065 — C065 Hassan Azouz مش مربوط بعميل C065 — C065 Hassan Azouz",
+    "compoundName": "C065 Hassan Azouz",
+    "clientNameAr": "C065",
+    "zone": "C065 Hassan Azouz",
+    "contractValue": 30000.0,
+    "clientCollections": 30000.0,
+    "actualExpenses": 30000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-52",
+    "projectCode": "N006",
+    "projectNameAr": "N006 — N006 STM مش مربوط بعميل N006 — N006 STM",
+    "compoundName": "N006 STM",
+    "clientNameAr": "N006",
+    "zone": "N006 STM",
+    "contractValue": 11190.0,
+    "clientCollections": 11190.0,
+    "actualExpenses": 11190.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-53",
+    "projectCode": "C077",
+    "projectNameAr": "C077 — C077-V1 Basma Ibrahim مش مربوط بعميل C077 — C077-V1 Basma Ibrahim",
+    "compoundName": "C077-V1 Basma Ibrahim",
+    "clientNameAr": "C077",
+    "zone": "C077-V1 Basma Ibrahim",
+    "contractValue": 21500.0,
+    "clientCollections": 21500.0,
+    "actualExpenses": 21500.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-54",
+    "projectCode": "C038",
+    "projectNameAr": "C038 — C038 Rafy raouf Painting مش مربوط بعميل C038 — C038 Rafy raouf Painting",
+    "compoundName": "C038 Rafy raouf Painting",
+    "clientNameAr": "C038",
+    "zone": "C038 Rafy raouf Painting",
+    "contractValue": 19550.0,
+    "clientCollections": 19550.0,
+    "actualExpenses": 19550.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-55",
+    "projectCode": "C085",
+    "projectNameAr": "C085 — C085_Ali Moustafa مش مربوط بعميل C085 — C085_Ali Moustafa",
+    "compoundName": "C085_Ali Moustafa",
+    "clientNameAr": "C085",
+    "zone": "C085_Ali Moustafa",
+    "contractValue": 18900.0,
+    "clientCollections": 18900.0,
+    "actualExpenses": 18900.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-56",
+    "projectCode": "C050",
+    "projectNameAr": "C050 — C050 Alber & Lidia مش مربوط بعميل C050 — C050 Alber & Lidia",
+    "compoundName": "C050 Alber & Lidia",
+    "clientNameAr": "C050",
+    "zone": "C050 Alber & Lidia",
+    "contractValue": 15000.0,
+    "clientCollections": 15000.0,
+    "actualExpenses": 15000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-57",
+    "projectCode": "CL-051",
+    "projectNameAr": "د. رؤوف — عيادة الألم MC009 — PAIN Dr. Raouf — Mahkama Square",
+    "compoundName": "Mahkama Square",
+    "clientNameAr": "د. رؤوف",
+    "zone": "Mahkama Square",
+    "contractValue": 8320.0,
+    "clientCollections": 8320.0,
+    "actualExpenses": 8320.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-58",
+    "projectCode": "C047",
+    "projectNameAr": "C047 — C047 Eman&Taher Gardenia مش مربوط بعميل C047 — C047 Eman&Taher Gardenia",
+    "compoundName": "C047 Eman&Taher Gardenia",
+    "clientNameAr": "C047",
+    "zone": "C047 Eman&Taher Gardenia",
+    "contractValue": 13857.0,
+    "clientCollections": 13857.0,
+    "actualExpenses": 13857.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-59",
+    "projectCode": "C058",
+    "projectNameAr": "C058 — C058 Bassem Abo el fetouh مش مربوط بعميل C058 — C058 Bassem Abo el fetouh",
+    "compoundName": "C058 Bassem Abo el fetouh",
+    "clientNameAr": "C058",
+    "zone": "C058 Bassem Abo el fetouh",
+    "contractValue": 12500.0,
+    "clientCollections": 12500.0,
+    "actualExpenses": 12500.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-60",
+    "projectCode": "C056",
+    "projectNameAr": "C056 — C056 Eriny Elnozha مش مربوط بعميل C056 — C056 Eriny Elnozha",
+    "compoundName": "C056 Eriny Elnozha",
+    "clientNameAr": "C056",
+    "zone": "C056 Eriny Elnozha",
+    "contractValue": 12300.0,
+    "clientCollections": 12300.0,
+    "actualExpenses": 12300.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-61",
+    "projectCode": "DC003",
+    "projectNameAr": "عبد الحي DC003 — Abd El-hay — Mokattam",
+    "compoundName": "Mokattam",
+    "clientNameAr": "عبد الحي DC003",
+    "zone": "Mokattam",
+    "contractValue": 10000.0,
+    "clientCollections": 10000.0,
+    "actualExpenses": 10000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-62",
+    "projectCode": "C039",
+    "projectNameAr": "C039 — C039 Rafy William Painting مش مربوط بعميل C039 — C039 Rafy William Painting",
+    "compoundName": "C039 Rafy William Painting",
+    "clientNameAr": "C039",
+    "zone": "C039 Rafy William Painting",
+    "contractValue": 7822.0,
+    "clientCollections": 7822.0,
+    "actualExpenses": 7822.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-63",
+    "projectCode": "C000",
+    "projectNameAr": "C000 — C00_Abanoub El shrouk مش مربوط بعميل C000 — C00_Abanoub El shrouk",
+    "compoundName": "C00_Abanoub El shrouk",
+    "clientNameAr": "C000",
+    "zone": "C00_Abanoub El shrouk",
+    "contractValue": 5000.0,
+    "clientCollections": 5000.0,
+    "actualExpenses": 5000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-64",
+    "projectCode": "CL-059",
+    "projectNameAr": "أيمن — التجمع MC015 — Ayman — التجمع تكييفات",
+    "compoundName": "التجمع تكييفات",
+    "clientNameAr": "أيمن",
+    "zone": "التجمع تكييفات",
+    "contractValue": 3420.0,
+    "clientCollections": 3420.0,
+    "actualExpenses": 3420.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-65",
+    "projectCode": "N004",
+    "projectNameAr": "N004 — N004 MGl-Admin office مش مربوط بعميل N004 — N004 MGl-Admin office",
+    "compoundName": "N004 MGl-Admin office",
+    "clientNameAr": "N004",
+    "zone": "N004 MGl-Admin office",
+    "contractValue": 5700.0,
+    "clientCollections": 5700.0,
+    "actualExpenses": 5700.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-66",
+    "projectCode": "C078",
+    "projectNameAr": "C078 — C078 Milad Naeim مش مربوط بعميل C078 — C078 Milad Naeim",
+    "compoundName": "C078 Milad Naeim",
+    "clientNameAr": "C078",
+    "zone": "C078 Milad Naeim",
+    "contractValue": 4900.0,
+    "clientCollections": 4900.0,
+    "actualExpenses": 4900.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-67",
+    "projectCode": "C086",
+    "projectNameAr": "C086 — C086_Mariam مش مربوط بعميل C086 — C086_Mariam",
+    "compoundName": "C086_Mariam",
+    "clientNameAr": "C086",
+    "zone": "C086_Mariam",
+    "contractValue": 2000.0,
+    "clientCollections": 2000.0,
+    "actualExpenses": 2000.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-68",
+    "projectCode": "CL-063",
+    "projectNameAr": "دانيال ناجي MC001 — Daniel Nagui — Rehab Apartment",
+    "compoundName": "Rehab Apartment",
+    "clientNameAr": "دانيال ناجي MC001",
+    "zone": "Rehab Apartment",
+    "contractValue": 22508.0,
+    "clientCollections": 22508.0,
+    "actualExpenses": 22508.0,
+    "netCashPosition": 0.0,
+    "actualProfitMarginPct": 0.0,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-69",
+    "projectCode": "N017",
+    "projectNameAr": "مراكي — أديداس N017 — MRKI — Adidas Toilets Renovation DIST-5",
+    "compoundName": "Adidas Toilets Renovation DIST-5",
+    "clientNameAr": "مراكي",
+    "zone": "Adidas Toilets Renovation DIST-5",
+    "contractValue": 1529535.0,
+    "clientCollections": 1529535.0,
+    "actualExpenses": 1337232.0,
+    "netCashPosition": 192303.0,
+    "actualProfitMarginPct": 12.6,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-70",
+    "projectCode": "C031",
+    "projectNameAr": "ماجدي موريس MC014 — Magdy Morice — Rehab Villa خشب و بيرجولة (C031)، C031 — Magdy Mourice — ANASIA، MC...",
+    "compoundName": "ANASIA، MC...",
+    "clientNameAr": "ماجدي موريس MC014",
+    "zone": "ANASIA، MC...",
+    "contractValue": 273575.0,
+    "clientCollections": 271576.0,
+    "actualExpenses": 273575.0,
+    "netCashPosition": -1999.0,
+    "actualProfitMarginPct": -0.7,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-71",
+    "projectCode": "C093",
+    "projectNameAr": "مارك ميلاد C093 — Marc Milad — Garage Ramp",
+    "compoundName": "Garage Ramp",
+    "clientNameAr": "مارك ميلاد C093",
+    "zone": "Garage Ramp",
+    "contractValue": 242850.0,
+    "clientCollections": 242850.0,
+    "actualExpenses": 241683.0,
+    "netCashPosition": 1167.0,
+    "actualProfitMarginPct": 0.5,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-72",
+    "projectCode": "C067",
+    "projectNameAr": "عمر مصطفى C067 — Omar Mostafa",
+    "compoundName": "Omar Mostafa",
+    "clientNameAr": "عمر مصطفى C067",
+    "zone": "Omar Mostafa",
+    "contractValue": 1083467.0,
+    "clientCollections": 1083467.0,
+    "actualExpenses": 1078467.0,
+    "netCashPosition": 5000.0,
+    "actualProfitMarginPct": 0.5,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-73",
+    "projectCode": "C083",
+    "projectNameAr": "مينا رؤوف C083 — Mina Raouf — Nasr City",
+    "compoundName": "Nasr City",
+    "clientNameAr": "مينا رؤوف C083",
+    "zone": "Nasr City",
+    "contractValue": 774314.0,
+    "clientCollections": 774314.0,
+    "actualExpenses": 756314.0,
+    "netCashPosition": 18000.0,
+    "actualProfitMarginPct": 2.3,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-74",
+    "projectCode": "C098",
+    "projectNameAr": "إيمان الجندي C098 — Eman El Gendy — Portcairo 5th C322",
+    "compoundName": "Portcairo 5th C322",
+    "clientNameAr": "إيمان الجندي C098",
+    "zone": "Portcairo 5th C322",
+    "contractValue": 1055000.0,
+    "clientCollections": 1055000.0,
+    "actualExpenses": 1016713.0,
+    "netCashPosition": 38287.0,
+    "actualProfitMarginPct": 3.6,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-75",
+    "projectCode": "C034",
+    "projectNameAr": "نيفين — مخزن السطح C034 — Nevein Roof's Warehouse (V06)",
+    "compoundName": "Nevein Roof's Warehouse (V06)",
+    "clientNameAr": "نيفين",
+    "zone": "Nevein Roof's Warehouse (V06)",
+    "contractValue": 374948.0,
+    "clientCollections": 374948.0,
+    "actualExpenses": 208896.0,
+    "netCashPosition": 166052.0,
+    "actualProfitMarginPct": 44.3,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-76",
+    "projectCode": "C097",
+    "projectNameAr": "كريستينا عزمي C097 — Christina Azmy — Tag Nasr City، DC002 — Christina Azmy — Tag Nasr City",
+    "compoundName": "Tag Nasr City",
+    "clientNameAr": "كريستينا عزمي C097",
+    "zone": "Tag Nasr City",
+    "contractValue": 214000.0,
+    "clientCollections": 214000.0,
+    "actualExpenses": 49677.0,
+    "netCashPosition": 164323.0,
+    "actualProfitMarginPct": 76.8,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  },
+  {
+    "id": "PRJ-77",
+    "projectCode": "N014",
+    "projectNameAr": "سوديك فيليت N014 — Sodic Villete Villa 325B",
+    "compoundName": "Sodic Villete Villa 325B",
+    "clientNameAr": "سوديك فيليت N014",
+    "zone": "Sodic Villete Villa 325B",
+    "contractValue": 1056476.0,
+    "clientCollections": 1056476.0,
+    "actualExpenses": 240738.0,
+    "netCashPosition": 815738.0,
+    "actualProfitMarginPct": 77.2,
+    "supervisionFeePct": 15,
+    "status": "handover"
+  }
 ];
-
-// Generate all 46 Active Nexus Projects deterministically
-const ALL_46_PROJECTS: ProjectCashflowRow[] = (() => {
-  const rows: ProjectCashflowRow[] = [];
-
-  FLAGSHIP_PROJECTS_SEED.forEach((p, idx) => {
-    const netCashPosition = p.clientCollections - p.actualExpenses;
-    const actualProfitMarginPct = Number(
-      (((p.clientCollections - p.actualExpenses) / p.clientCollections) * 100).toFixed(1)
-    );
-    rows.push({
-      ...p,
-      id: `PRJ-${String(idx + 1).padStart(2, '0')}`,
-      netCashPosition,
-      actualProfitMarginPct,
-    });
-  });
-
-  const additionalCatalog: Array<{
-    code: string;
-    compound: string;
-    zone: string;
-    client: string;
-    contract: number;
-    collections: number;
-    expenses: number;
-    supFee: number;
-    status: 'active' | 'handover' | 'finishing';
-  }> = [
-    { code: 'C012 Villette', compound: 'Sodic Villette', zone: 'التجمع الخامس', client: 'د. أيمن شلبي', contract: 2650000, collections: 2350000, expenses: 1990000, supFee: 15, status: 'handover' },
-    { code: 'C019 Eastown', compound: 'Sodic Eastown', zone: 'التجمع الخامس', client: 'م. ياسر علام', contract: 1920000, collections: 1680000, expenses: 1410000, supFee: 14, status: 'finishing' },
-    { code: 'C022 Lake View', compound: 'Lake View Residence', zone: 'التجمع الخامس', client: 'أ. عمرو النجار', contract: 2380000, collections: 1890000, expenses: 1620000, supFee: 15, status: 'active' },
-    { code: 'C027 Galleria', compound: 'Galleria Moon Valley', zone: 'التجمع الخامس', client: 'د. رانيا محمود', contract: 1750000, collections: 1520000, expenses: 1295000, supFee: 14, status: 'finishing' },
-    { code: 'C031 Taj City', compound: 'Taj City', zone: 'طريق السويس', client: 'م. حسام زكي', contract: 1640000, collections: 1310000, expenses: 1120000, supFee: 14, status: 'active' },
-    { code: 'C038 Sarai', compound: 'Sarai New Cairo', zone: 'مدينتي / المستقبل', client: 'أ. محمد الغندور', contract: 2100000, collections: 1690000, expenses: 1445000, supFee: 15, status: 'active' },
-    { code: 'C041 Bloomfields', compound: 'Tatweer Misr Bloomfields', zone: 'المستقبل سيتي', client: 'د. هشام البنا', contract: 2290000, collections: 1750000, expenses: 1490000, supFee: 15, status: 'active' },
-    { code: 'C044 Il Bosco', compound: 'Il Bosco New Capital', zone: 'العاصمة الإدارية', client: 'م. سامح رشدي', contract: 2840000, collections: 2120000, expenses: 1840000, supFee: 15, status: 'active' },
-    { code: 'C047 Celia', compound: 'Celia Talaat Moustafa', zone: 'العاصمة الإدارية', client: 'أ. نبيل عبد الوهاب', contract: 1980000, collections: 1590000, expenses: 1350000, supFee: 15, status: 'finishing' },
-    { code: 'C051 Al Maqsad', compound: 'Al Maqsad New Capital', zone: 'العاصمة الإدارية', client: 'د. علاء الدين فوزي', contract: 3120000, collections: 2490000, expenses: 2140000, supFee: 16, status: 'finishing' },
-    { code: 'C054 Badya', compound: 'Badya Palm Hills', zone: '6 أكتوبر', client: 'م. شادي نصار', contract: 2420000, collections: 1820000, expenses: 1560000, supFee: 15, status: 'active' },
-    { code: 'C058 Allegria', compound: 'Sodic Allegria', zone: 'الشيخ زايد', client: 'أ. تيمور الخولي', contract: 4350000, collections: 3620000, expenses: 3080000, supFee: 16, status: 'finishing' },
-    { code: 'C061 Beverly Hills', compound: 'Beverly Hills Zayed', zone: 'الشيخ زايد', client: 'د. ماجد سرور', contract: 2150000, collections: 1940000, expenses: 1650000, supFee: 15, status: 'handover' },
-    { code: 'C065 Zed West', compound: 'Zed Towers Sheikh Zayed', zone: 'الشيخ زايد', client: 'م. سيف الدين عادل', contract: 2790000, collections: 2180000, expenses: 1860000, supFee: 16, status: 'active' },
-    { code: 'C068 Cairo Gate', compound: 'Emaar Cairo Gate', zone: 'الشيخ زايد', client: 'أ. فريدة الشافعي', contract: 3340000, collections: 2610000, expenses: 2230000, supFee: 16, status: 'active' },
-    { code: 'C071 Belle Vie', compound: 'Emaar Belle Vie', zone: 'الشيخ زايد الجديدة', client: 'د. باهر السعيد', contract: 2960000, collections: 2210000, expenses: 1910000, supFee: 15, status: 'active' },
-    { code: 'C074 Mountain View Chillout', compound: 'MV Chillout Park', zone: '6 أكتوبر', client: 'م. معتز سليمان', contract: 2520000, collections: 1990000, expenses: 1715000, supFee: 15, status: 'finishing' },
-    { code: 'C077 O West', compound: 'Orascom O West', zone: '6 أكتوبر', client: 'أ. يحيى الدرملي', contract: 3080000, collections: 2340000, expenses: 1995000, supFee: 15, status: 'active' },
-    { code: 'C081 Sun Capital', compound: 'Sun Capital October', zone: '6 أكتوبر', client: 'د. شيرين عبد المنعم', contract: 1680000, collections: 1360000, expenses: 1170000, supFee: 14, status: 'active' },
-    { code: 'C083 Korba Heights', compound: 'Korba New Heliopolis', zone: 'هليوبوليس الجديدة', client: 'م. هيثم راضي', contract: 1540000, collections: 1410000, expenses: 1190000, supFee: 14, status: 'handover' },
-    { code: 'C085 Sheraton Residence', compound: 'Sheraton Heliopolis', zone: 'مصر الجديدة', client: 'أ. جمال العشري', contract: 1870000, collections: 1620000, expenses: 1380000, supFee: 14, status: 'finishing' },
-    { code: 'C087 Merghany Loft', compound: 'El Merghany Heliopolis', zone: 'مصر الجديدة', client: 'د. نادر فهمي', contract: 2210000, collections: 1840000, expenses: 1560000, supFee: 15, status: 'finishing' },
-    { code: 'C090 Fifth Square', compound: 'Al Marasem Fifth Square', zone: 'التجمع الخامس', client: 'م. زياد التهامي', contract: 2690000, collections: 2080000, expenses: 1775000, supFee: 15, status: 'active' },
-    { code: 'C093 Stone Residence', compound: 'Stone Residence Ring Rd', zone: 'القطامية / التجمع', client: 'أ. طارق الجندي', contract: 1790000, collections: 1460000, expenses: 1240000, supFee: 14, status: 'active' },
-    { code: 'C095 Uptown Cairo', compound: 'Emaar Uptown Cairo', zone: 'المقطم', client: 'د. حازم اللوزي', contract: 3920000, collections: 3180000, expenses: 2695000, supFee: 16, status: 'finishing' },
-    { code: 'C098 Waterway', compound: 'The Waterway New Cairo', zone: 'التجمع الخامس', client: 'م. أدهم شعراوي', contract: 3650000, collections: 2890000, expenses: 2450000, supFee: 16, status: 'active' },
-    { code: 'C101 District 5', compound: 'Marakez District 5', zone: 'القطامية الجديدة', client: 'أ. نهال العلايلي', contract: 2580000, collections: 1960000, expenses: 1670000, supFee: 15, status: 'active' },
-    { code: 'C103 Lavista Patio Oro', compound: 'El Patio Oro', zone: 'التجمع الخامس', client: 'د. وسيم غالي', contract: 2810000, collections: 2150000, expenses: 1845000, supFee: 15, status: 'active' },
-    { code: 'N002 Swan Lake', compound: 'Hassan Allam Swan Lake', zone: 'التجمع الأول', client: 'م. باسل منصور', contract: 4480000, collections: 3540000, expenses: 3010000, supFee: 16, status: 'finishing' },
-    { code: 'N004 Mirage City', compound: 'Mirage City Villas', zone: 'التجمع الأول', client: 'أ. عاصم أبو الفتوح', contract: 3740000, collections: 2910000, expenses: 2495000, supFee: 16, status: 'active' },
-    { code: 'N009Seasons', compound: 'Seasons Residence', zone: 'التجمع الخامس', client: 'د. لبنى زهران', contract: 2120000, collections: 1710000, expenses: 1465000, supFee: 15, status: 'active' },
-    { code: 'N012 Jayd', compound: 'Jayd New Cairo', zone: 'الرحاب / التجمع', client: 'م. فادي غبريال', contract: 1620000, collections: 1380000, expenses: 1175000, supFee: 14, status: 'finishing' },
-    { code: 'N015 Midtown Condo', compound: 'Midtown New Capital', zone: 'العاصمة الإدارية', client: 'أ. محمود السرجاني', contract: 1890000, collections: 1440000, expenses: 1235000, supFee: 14, status: 'active' },
-    { code: 'N021 HapTown', compound: 'Hassan Allam HapTown', zone: 'المستقبل سيتي', client: 'د. شريف حجازي', contract: 2340000, collections: 1790000, expenses: 1525000, supFee: 15, status: 'active' },
-  ];
-
-  additionalCatalog.forEach((item, idx) => {
-    const netCash = item.collections - item.expenses;
-    const profitPct = Number((((item.collections - item.expenses) / item.collections) * 100).toFixed(1));
-    rows.push({
-      id: `PRJ-${String(FLAGSHIP_PROJECTS_SEED.length + idx + 1).padStart(2, '0')}`,
-      projectCode: item.code,
-      projectNameAr: `مشروع تشطيب متكامل ${item.code} - ${item.compound}`,
-      compoundName: item.compound,
-      clientNameAr: item.client,
-      zone: item.zone,
-      contractValue: item.contract,
-      clientCollections: item.collections,
-      actualExpenses: item.expenses,
-      netCashPosition: netCash,
-      actualProfitMarginPct: profitPct,
-      supervisionFeePct: item.supFee,
-      status: item.status,
-    });
-  });
-
-  return rows;
-})();
 
 // E-Works Legacy ERP Migration Audit Records (`/eworks` & /eworks/review)
 const INITIAL_EWORKS_AUDIT_RECORDS: EWorksMigrationRecord[] = [
@@ -1155,7 +2119,7 @@ export const TreasuryCashBankHub: React.FC = () => {
   };
 
   return (
-    <div dir="rtl" className="space-y-6 text-[#192631]">
+    <div className="space-y-6 text-[#192631] text-start">
       {/* =====================================================================
           1. TOP EXECUTIVE LIQUIDITY BANNER (EXACT LIVE NEXUS NUMBERS)
          ===================================================================== */}
@@ -1229,7 +2193,7 @@ export const TreasuryCashBankHub: React.FC = () => {
               </div>
             </div>
             <div className="mt-3 flex items-baseline justify-between">
-              <p className="text-2xl sm:text-3xl font-black tracking-tight text-[#192631] font-mono" dir="ltr">
+              <p className="text-2xl sm:text-3xl font-black tracking-tight text-[#192631] font-mono">
                 {formatEGP(totalSpendableLiquidity)}
               </p>
               <span className="rounded-lg bg-[#123524]/10 px-2 py-0.5 text-xs font-semibold text-[#123524]">
@@ -1252,7 +2216,7 @@ export const TreasuryCashBankHub: React.FC = () => {
               </div>
             </div>
             <div className="mt-3 flex items-baseline justify-between">
-              <p className="text-2xl sm:text-3xl font-black tracking-tight text-[#192631] font-mono" dir="ltr">
+              <p className="text-2xl sm:text-3xl font-black tracking-tight text-[#192631] font-mono">
                 {formatEGP(totalCashAndBankBalance)}
               </p>
               <span className="rounded-lg bg-sky-500/20 px-2 py-0.5 text-xs font-semibold text-[#192631]">
@@ -1275,7 +2239,7 @@ export const TreasuryCashBankHub: React.FC = () => {
               </div>
             </div>
             <div className="mt-3 flex items-baseline justify-between">
-              <p className="text-2xl sm:text-3xl font-black tracking-tight text-[#192631] font-mono" dir="ltr">
+              <p className="text-2xl sm:text-3xl font-black tracking-tight text-[#192631] font-mono">
                 {formatEGP(totalUnusedCreditCardLimit)}
               </p>
               <span className="rounded-lg bg-amber-500/20 px-2 py-0.5 text-xs font-semibold text-[#b45309]">
@@ -1435,7 +2399,7 @@ export const TreasuryCashBankHub: React.FC = () => {
 
                     <div className="mt-4 rounded-xl bg-[#f5f5f5]/90 p-3.5 border border-[#192631]/10">
                       <div className="text-xs text-[#192631]/70">الرصيد الفعلي المتاح حالياً</div>
-                      <div className="mt-1 text-2xl font-black text-[#123524] font-mono" dir="ltr">
+                      <div className="mt-1 text-2xl font-black text-[#123524] font-mono">
                         {formatEGP(acc.currentBalance)}
                       </div>
                     </div>
@@ -1443,7 +2407,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                     <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
                       <div className="rounded-lg bg-[#192631]/[0.05] p-2">
                         <div className="text-[#192631]/70">رصيد افتتاحي</div>
-                        <div className="mt-0.5 font-mono font-semibold text-[#192631]" dir="ltr">
+                        <div className="mt-0.5 font-mono font-semibold text-[#192631]">
                           {acc.openingBalance.toLocaleString('en-US')}
                         </div>
                       </div>
@@ -1451,7 +2415,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                         <div className="text-[#123524] flex items-center justify-center gap-0.5">
                           <ArrowDownRight className="h-3 w-3" /> إجمالي الوارد
                         </div>
-                        <div className="mt-0.5 font-mono font-semibold text-[#123524]" dir="ltr">
+                        <div className="mt-0.5 font-mono font-semibold text-[#123524]">
                           {acc.totalInflows.toLocaleString('en-US')}
                         </div>
                       </div>
@@ -1459,7 +2423,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                         <div className="text-red-700 flex items-center justify-center gap-0.5">
                           <ArrowUpRight className="h-3 w-3" /> إجمالي المنصرف
                         </div>
-                        <div className="mt-0.5 font-mono font-semibold text-red-700" dir="ltr">
+                        <div className="mt-0.5 font-mono font-semibold text-red-700">
                           {acc.totalOutflows.toLocaleString('en-US')}
                         </div>
                       </div>
@@ -1492,7 +2456,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                 إجمالي النقدية الفعلية المجمّعة بالخزن والبنوك الـ 6 (مطابق لشاشة /cashbox):
               </span>
             </div>
-            <span className="text-xl font-black text-[#192631] font-mono" dir="ltr">
+            <span className="text-xl font-black text-[#192631] font-mono">
               {formatEGP(totalCashAndBankBalance)}
             </span>
           </div>
@@ -1520,7 +2484,7 @@ export const TreasuryCashBankHub: React.FC = () => {
             </div>
 
             <div className="mt-4 overflow-x-auto">
-              <table className="w-full text-right text-sm">
+              <table className="w-full text-start text-sm">
                 <thead>
                   <tr className="border-b border-[#192631]/10 text-xs text-[#192631]/70 bg-[#f5f5f5]/90">
                     <th className="py-3 px-3">رقم المرجع والتاريخ</th>
@@ -1528,7 +2492,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                     <th className="py-3 px-3">الحساب البنكي / الخزينة</th>
                     <th className="py-3 px-3">المشروع</th>
                     <th className="py-3 px-3">الجهة / المستفيد والبيان</th>
-                    <th className="py-3 px-3 text-left">المبلغ (EGP)</th>
+                    <th className="py-3 px-3 text-start">المبلغ (EGP)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#192631]/10">
@@ -1570,7 +2534,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                         <div className="font-semibold text-[#192631]">{entry.counterpartyAr}</div>
                         <div className="text-xs text-[#192631]/70">{entry.categoryAr} — {entry.notesAr}</div>
                       </td>
-                      <td className="py-3 px-3 text-left font-mono font-bold" dir="ltr">
+                      <td className="py-3 px-3 text-start font-mono font-bold">
                         <span
                           className={
                             entry.txType === 'deposit'
@@ -1613,9 +2577,9 @@ export const TreasuryCashBankHub: React.FC = () => {
                   </span>
                 </p>
               </div>
-              <div className="rounded-xl bg-amber-500/15 border border-amber-500/30 px-4 py-2 text-right">
+              <div className="rounded-xl bg-amber-500/15 border border-amber-500/30 px-4 py-2 text-start">
                 <div className="text-[11px] text-[#b45309]">الرصيد المتاح بالكروت الـ 7</div>
-                <div className="text-lg font-black text-[#192631] font-mono" dir="ltr">
+                <div className="text-lg font-black text-[#192631] font-mono">
                   {formatEGP(totalUnusedCreditCardLimit)}
                 </div>
               </div>
@@ -1639,7 +2603,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                             كارت #{index + 1} • {card.bankName}
                           </span>
                           <h4 className="mt-1.5 text-base font-bold text-[#192631]">{card.cardNameAr}</h4>
-                          <p className="text-xs font-mono text-[#192631]/70 mt-0.5" dir="ltr">
+                          <p className="text-xs font-mono text-[#192631]/70 mt-0.5">
                             {card.cardNumberMasked}
                           </p>
                         </div>
@@ -1649,19 +2613,19 @@ export const TreasuryCashBankHub: React.FC = () => {
                       <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl bg-white/80 backdrop-blur-md p-3 border border-[#192631]/10 text-xs">
                         <div>
                           <div className="text-[#192631]/70">الحد الكلي</div>
-                          <div className="mt-0.5 font-mono font-bold text-[#192631]" dir="ltr">
+                          <div className="mt-0.5 font-mono font-bold text-[#192631]">
                             {card.totalLimit.toLocaleString('en-US')}
                           </div>
                         </div>
                         <div>
                           <div className="text-red-700">المستخدم</div>
-                          <div className="mt-0.5 font-mono font-bold text-red-700" dir="ltr">
+                          <div className="mt-0.5 font-mono font-bold text-red-700">
                             {card.usedAmount.toLocaleString('en-US')}
                           </div>
                         </div>
                         <div>
                           <div className="text-[#123524] font-bold">المتاح للصرف</div>
-                          <div className="mt-0.5 font-mono font-black text-[#123524]" dir="ltr">
+                          <div className="mt-0.5 font-mono font-black text-[#123524]">
                             {card.availableLimit.toLocaleString('en-US')}
                           </div>
                         </div>
@@ -1720,14 +2684,14 @@ export const TreasuryCashBankHub: React.FC = () => {
             </div>
 
             <div className="mt-4 overflow-x-auto">
-              <table className="w-full text-right text-sm">
+              <table className="w-full text-start text-sm">
                 <thead>
                   <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-xs text-[#192631]/70">
                     <th className="py-3 px-3">الكارت والبنك</th>
                     <th className="py-3 px-3">المورد / التاجر وبنود الخامات</th>
                     <th className="py-3 px-3">المشروع</th>
-                    <th className="py-3 px-3 text-left">إجمالي العملية</th>
-                    <th className="py-3 px-3 text-left">القسط الشهري</th>
+                    <th className="py-3 px-3 text-start">إجمالي العملية</th>
+                    <th className="py-3 px-3 text-start">القسط الشهري</th>
                     <th className="py-3 px-3">المدفوع / المتبقي</th>
                     <th className="py-3 px-3">الاستحقاق القادم</th>
                     <th className="py-3 px-3 text-center">إجراء السداد</th>
@@ -1753,10 +2717,10 @@ export const TreasuryCashBankHub: React.FC = () => {
                             {plan.projectCode}
                           </span>
                         </td>
-                        <td className="py-3.5 px-3 text-left font-mono font-semibold text-[#192631]" dir="ltr">
+                        <td className="py-3.5 px-3 text-start font-mono font-semibold text-[#192631]">
                           {formatEGP(plan.totalPurchaseAmount)}
                         </td>
-                        <td className="py-3.5 px-3 text-left font-mono font-bold text-[#b45309]" dir="ltr">
+                        <td className="py-3.5 px-3 text-start font-mono font-bold text-[#b45309]">
                           {formatEGP(plan.monthlyInstallment)}
                         </td>
                         <td className="py-3.5 px-3">
@@ -1864,25 +2828,25 @@ export const TreasuryCashBankHub: React.FC = () => {
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
               <div className="rounded-xl bg-[#f5f5f5]/90 border border-[#192631]/10 p-3">
                 <div className="text-xs text-[#192631]/70">إجمالي قيم التعاقدات ({filteredProjects.length} مشروع)</div>
-                <div className="mt-1 font-mono text-base font-black text-[#192631]" dir="ltr">
+                <div className="mt-1 font-mono text-base font-black text-[#192631]">
                   {formatEGP(projectPortfolioTotals.contractValue)}
                 </div>
               </div>
               <div className="rounded-xl bg-[#f5f5f5]/90 border border-[#123524]/25 p-3">
                 <div className="text-xs text-[#123524]">إجمالي المتحصلات من العملاء</div>
-                <div className="mt-1 font-mono text-base font-black text-[#123524]" dir="ltr">
+                <div className="mt-1 font-mono text-base font-black text-[#123524]">
                   {formatEGP(projectPortfolioTotals.clientCollections)}
                 </div>
               </div>
               <div className="rounded-xl bg-[#f5f5f5]/90 border border-rose-500/20 p-3">
                 <div className="text-xs text-red-700">إجمالي المصروفات الفعلية والتوريدات</div>
-                <div className="mt-1 font-mono text-base font-black text-red-700" dir="ltr">
+                <div className="mt-1 font-mono text-base font-black text-red-700">
                   {formatEGP(projectPortfolioTotals.actualExpenses)}
                 </div>
               </div>
               <div className="rounded-xl bg-[#f5f5f5]/90 border border-[#e04b2a]/25 p-3">
                 <div className="text-xs text-[#e04b2a]">صافي فائض السيولة والربحية التشغيلية</div>
-                <div className="mt-1 font-mono text-base font-black text-[#e04b2a]" dir="ltr">
+                <div className="mt-1 font-mono text-base font-black text-[#e04b2a]">
                   {formatEGP(projectPortfolioTotals.netCashPosition)}
                 </div>
               </div>
@@ -1890,16 +2854,16 @@ export const TreasuryCashBankHub: React.FC = () => {
 
             {/* 46 Projects Table */}
             <div className="mt-4 overflow-x-auto max-h-[560px] overflow-y-auto rounded-xl border border-[#192631]/10">
-              <table className="w-full text-right text-sm">
+              <table className="w-full text-start text-sm">
                 <thead className="sticky top-0 bg-[#f5f5f5]/90 text-xs text-[#192631]/70 border-b border-[#192631]/10 z-10">
                   <tr>
                     <th className="py-3 px-3">#</th>
                     <th className="py-3 px-3">كود واسم المشروع</th>
                     <th className="py-3 px-3">العميل والمنطقة</th>
-                    <th className="py-3 px-3 text-left">قيمة التعاقد</th>
-                    <th className="py-3 px-3 text-left">إجمالي المتحصلات من العميل</th>
-                    <th className="py-3 px-3 text-left">إجمالي المصروفات الفعلية</th>
-                    <th className="py-3 px-3 text-left">صافي سيولة المشروع</th>
+                    <th className="py-3 px-3 text-start">قيمة التعاقد</th>
+                    <th className="py-3 px-3 text-start">إجمالي المتحصلات من العميل</th>
+                    <th className="py-3 px-3 text-start">إجمالي المصروفات الفعلية</th>
+                    <th className="py-3 px-3 text-start">صافي سيولة المشروع</th>
                     <th className="py-3 px-3 text-center">نسبة الربح الفعلي</th>
                     <th className="py-3 px-3 text-center">نسبة الإشراف</th>
                   </tr>
@@ -1921,16 +2885,16 @@ export const TreasuryCashBankHub: React.FC = () => {
                         <div className="font-medium text-[#192631]">{proj.clientNameAr}</div>
                         <div className="text-xs text-[#192631]/60">{proj.zone}</div>
                       </td>
-                      <td className="py-3 px-3 text-left font-mono text-xs text-[#192631]/85" dir="ltr">
+                      <td className="py-3 px-3 text-start font-mono text-xs text-[#192631]/85">
                         {formatEGP(proj.contractValue)}
                       </td>
-                      <td className="py-3 px-3 text-left font-mono text-xs font-bold text-[#123524]" dir="ltr">
+                      <td className="py-3 px-3 text-start font-mono text-xs font-bold text-[#123524]">
                         {formatEGP(proj.clientCollections)}
                       </td>
-                      <td className="py-3 px-3 text-left font-mono text-xs font-bold text-red-700" dir="ltr">
+                      <td className="py-3 px-3 text-start font-mono text-xs font-bold text-red-700">
                         {formatEGP(proj.actualExpenses)}
                       </td>
-                      <td className="py-3 px-3 text-left font-mono text-xs font-black text-[#192631]" dir="ltr">
+                      <td className="py-3 px-3 text-start font-mono text-xs font-black text-[#192631]">
                         +{formatEGP(proj.netCashPosition)}
                       </td>
                       <td className="py-3 px-3 text-center">
@@ -2040,15 +3004,15 @@ export const TreasuryCashBankHub: React.FC = () => {
 
             {/* E-Works Migration Audit Table */}
             <div className="mt-4 overflow-x-auto">
-              <table className="w-full text-right text-sm">
+              <table className="w-full text-start text-sm">
                 <thead>
                   <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-xs text-[#192631]/70">
                     <th className="py-3 px-3">مرجع E-Works / Nexus</th>
                     <th className="py-3 px-3">القسم والمشروع</th>
                     <th className="py-3 px-3">البيان والجهة</th>
-                    <th className="py-3 px-3 text-left">رصيد E-Works القديم</th>
-                    <th className="py-3 px-3 text-left">رصيد Nexus المرحّل</th>
-                    <th className="py-3 px-3 text-left">الفروق (Variance)</th>
+                    <th className="py-3 px-3 text-start">رصيد E-Works القديم</th>
+                    <th className="py-3 px-3 text-start">رصيد Nexus المرحّل</th>
+                    <th className="py-3 px-3 text-start">الفروق (Variance)</th>
                     <th className="py-3 px-3">حالة التدقيق</th>
                     <th className="py-3 px-3 text-center">إجراء المراجعة</th>
                   </tr>
@@ -2073,13 +3037,13 @@ export const TreasuryCashBankHub: React.FC = () => {
                           <span>{rec.auditorNoteAr}</span>
                         </div>
                       </td>
-                      <td className="py-3.5 px-3 text-left font-mono text-xs text-[#192631]/85" dir="ltr">
+                      <td className="py-3.5 px-3 text-start font-mono text-xs text-[#192631]/85">
                         {formatEGP(rec.eworksLegacyBalance)}
                       </td>
-                      <td className="py-3.5 px-3 text-left font-mono text-xs font-bold text-[#192631]" dir="ltr">
+                      <td className="py-3.5 px-3 text-start font-mono text-xs font-bold text-[#192631]">
                         {formatEGP(rec.nexusMigratedBalance)}
                       </td>
-                      <td className="py-3.5 px-3 text-left font-mono text-xs font-bold" dir="ltr">
+                      <td className="py-3.5 px-3 text-start font-mono text-xs font-bold">
                         <span className={rec.varianceAmount === 0 ? 'text-[#123524]' : 'text-[#b45309]'}>
                           {rec.varianceAmount === 0 ? '0.00 EGP' : formatEGP(rec.varianceAmount)}
                         </span>
@@ -2124,7 +3088,6 @@ export const TreasuryCashBankHub: React.FC = () => {
       {isTxModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192631]/40 backdrop-blur-sm p-4">
           <div
-            dir="rtl"
             className="w-full max-w-lg rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-6 shadow-2xl space-y-4"
           >
             <div className="flex items-center justify-between border-b border-[#192631]/10 pb-3">

@@ -1109,7 +1109,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
   }, [warehouseStock, selectedWarehouseFilter]);
 
   return (
-    <div dir="rtl" className="space-y-6 text-[#192631]">
+    <div className="space-y-6 text-[#192631] text-start">
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed bottom-6 left-6 z-50 flex items-center gap-3 rounded-xl border border-[#123524]/25 bg-white/80 backdrop-blur-md px-5 py-4 text-sm font-medium text-[#123524] shadow-2xl backdrop-blur-md">
@@ -1404,7 +1404,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-right text-xs">
+              <table className="w-full text-start text-xs">
                 <thead>
                   <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70">
                     <th className="px-3 py-3 font-semibold">كود أمر الشراء (NPO)</th>
@@ -1669,7 +1669,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                 </div>
               ) : (
                 <div className="overflow-x-auto rounded-xl border border-[#192631]/10">
-                  <table className="w-full text-right text-xs">
+                  <table className="w-full text-start text-xs">
                     <thead>
                       <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70">
                         <th className="px-3 py-2.5">بيان الخامة / البند</th>
@@ -2125,7 +2125,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                       <div className="text-[10px] text-[#192631]/60">الأصناف المسجلة</div>
                       <div className="font-bold text-[#192631]">{itemsInWh.length} أصناف</div>
                     </div>
-                    <div className="text-left">
+                    <div className="text-start">
                       <div className="text-[10px] text-[#192631]/60">قيمة العهدة الحالية</div>
                       <div className="font-bold text-[#123524]">{totalVal.toLocaleString()} ج.م</div>
                     </div>
@@ -2180,7 +2180,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
             </h3>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-right text-xs">
+              <table className="w-full text-start text-xs">
                 <thead>
                   <tr className="border-b border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70">
                     <th className="px-3 py-3">كود الصنف والبيان</th>
@@ -2293,7 +2293,6 @@ export const ProcurementWarehouseHub: React.FC = () => {
       {showCreatePOModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192631]/40 p-4 backdrop-blur-sm">
           <div
-            dir="rtl"
             className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-6 text-[#192631] shadow-2xl"
           >
             <div className="flex items-center justify-between border-b border-[#192631]/10 pb-4">
@@ -2368,7 +2367,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setNewPOVendorType('corporate')}
-                      className={`rounded-xl border p-3 text-right transition ${
+                      className={`rounded-xl border p-3 text-start transition ${
                         newPOVendorType === 'corporate'
                           ? 'border-emerald-500 bg-[#123524]/10 text-[#192631]'
                           : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70'
@@ -2383,7 +2382,7 @@ export const ProcurementWarehouseHub: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setNewPOVendorType('local_mawan')}
-                      className={`rounded-xl border p-3 text-right transition ${
+                      className={`rounded-xl border p-3 text-start transition ${
                         newPOVendorType === 'local_mawan'
                           ? 'border-amber-500 bg-amber-500/15 text-white'
                           : 'border-[#192631]/10 bg-[#f5f5f5]/90 text-[#192631]/70'
@@ -2519,7 +2518,6 @@ export const ProcurementWarehouseHub: React.FC = () => {
       {showTransferModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#192631]/40 p-4 backdrop-blur-sm">
           <div
-            dir="rtl"
             className="w-full max-w-xl rounded-2xl border border-[#192631]/10 bg-white/80 backdrop-blur-md p-6 text-[#192631] shadow-2xl"
           >
             <div className="flex items-center justify-between border-b border-[#192631]/10 pb-4">
