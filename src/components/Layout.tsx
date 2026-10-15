@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { LayoutDashboard, FolderKanban, Users, FileText, PieChart, Menu, X, LogOut, CalendarCheck, Search, Bell, User, DollarSign, Mail, Calendar, Calculator, BookOpen } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, Users, FileText, PieChart, Menu, X, LogOut, CalendarCheck, Search, Bell, User, DollarSign, Mail, Calendar, Calculator, BookOpen, Palette, HardHat } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Logo } from './Logo';
@@ -7,6 +7,7 @@ import { MailNotifier } from './MailNotifier';
 import { useAuth } from '../context/AuthContext';
 import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
+import { useTenant } from '../context/TenantContext';
 import { Globe } from 'lucide-react';
 
 const NavItem = ({ to, icon: Icon, label }: { to: string; icon: React.ElementType; label: string }) => {
@@ -40,6 +41,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     const { role, signOut, user, engineerId } = useAuth();
     const { projects, engineers, tasks, entries, notifications, markNotificationRead, addNotification } = useData();
     const { language, toggleLanguage } = useLanguage();
+    const { activeOrg, organizations, switchOrganization } = useTenant();
     const navigate = useNavigate();
 
     const notifiedTasksRef = useRef<Set<string>>(new Set());
@@ -158,6 +160,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     <nav className="space-y-2 flex-1">
                         <NavItem to="/" icon={LayoutDashboard} label="Dashboard" />
                         {role !== 'client' && <NavItem to="/projects" icon={FolderKanban} label="Projects" />}
+                        {role !== 'client' && <NavItem to="/contracting-erp" icon={HardHat} label="Contracting ERP" />}
                         {role !== 'client' && <NavItem to="/boq" icon={Calculator} label="BOQ Viewer" />}
                         {role !== 'client' && <NavItem to="/meetings" icon={Calendar} label="Meetings" />}
                         {role === 'admin' && <NavItem to="/engineers" icon={Users} label="Engineers" />}
@@ -166,15 +169,34 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         {role === 'admin' && <NavItem to="/financials" icon={DollarSign} label="Financials" />}
                         {role === 'admin' && <NavItem to="/reports" icon={PieChart} label="Reports" />}
                         {role !== 'client' && <NavItem to="/emails" icon={Mail} label="Emails" />}
+                        {role === 'admin' && <NavItem to="/settings" icon={Palette} label="White-Label Studio" />}
                         <NavItem to="/help" icon={BookOpen} label="Help Guide" />
                         <NavItem to="/profile" icon={User} label="My Profile" />
                     </nav>
 
                     <div className="pt-6 border-t border-white/5 flex flex-col space-y-4 shrink-0 mt-auto">
+                        {role === 'admin' && organizations.length > 1 && (
+                            <div className="px-1">
+                                <label className="block text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-1">
+                                    Active Company Workspace
+                                </label>
+                                <select
+                                    value={activeOrg.id}
+                                    onChange={(e) => switchOrganization(e.target.value)}
+                                    className="w-full px-3 py-2 bg-[#141414] border border-white/10 rounded-xl text-white text-xs font-bold focus:outline-none focus:border-orange-500"
+                                >
+                                    {organizations.map(org => (
+                                        <option key={org.id} value={org.id}>
+                                            {org.name} ({org.currency})
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
 
                         <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] border border-white/5 rounded-2xl p-4 text-white shadow-xl">
-                            <p className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 mb-1">DEC Engineering</p>
-                            <p className="text-sm font-semibold tracking-tight">Milestone Tracker</p>
+                            <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-orange-400 mb-1 truncate">{activeOrg.name}</p>
+                            <p className="text-xs font-medium tracking-tight text-slate-400 truncate">{activeOrg.tagline}</p>
                         </div>
 
                         <div className="flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5">

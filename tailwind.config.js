@@ -12,30 +12,30 @@ export default {
       },
       colors: {
         orange: {
-          50: '#fff4ed',
-          100: '#ffe5d3',
-          200: '#ffc8a5',
-          300: '#ffa26d',
-          400: '#ff7432',
-          500: '#f3822d', // Exact match with DEC logo
-          600: '#e55c13',
-          700: '#be4311',
-          800: '#973515',
-          900: '#7a2f15',
-          950: '#421408',
+          50: 'rgb(var(--brand-50) / <alpha-value>)',
+          100: 'rgb(var(--brand-100) / <alpha-value>)',
+          200: 'rgb(var(--brand-200) / <alpha-value>)',
+          300: 'rgb(var(--brand-300) / <alpha-value>)',
+          400: 'rgb(var(--brand-400) / <alpha-value>)',
+          500: 'rgb(var(--brand-500) / <alpha-value>)',
+          600: 'rgb(var(--brand-600) / <alpha-value>)',
+          700: 'rgb(var(--brand-700) / <alpha-value>)',
+          800: 'rgb(var(--brand-800) / <alpha-value>)',
+          900: 'rgb(var(--brand-900) / <alpha-value>)',
+          950: 'rgb(var(--brand-950) / <alpha-value>)',
         },
         dec: {
-          bg: '#0f0f0f',
+          bg: 'var(--surface-bg, #0f0f0f)',
           text: '#f3f3f3',
-          card: '#1a1a1a',
+          card: 'var(--surface-card, #1a1a1a)',
           border: '#2a2a2a',
-          accent: '#f3822d', // Updating the accent color to the logo's orange
+          accent: 'rgb(var(--brand-500) / <alpha-value>)',
         }
       },
       boxShadow: {
         'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.8)',
-        'orange-glow': '0 0 20px rgba(243, 130, 45, 0.15)',
-        'orange-glow-strong': '0 0 30px rgba(243, 130, 45, 0.25)',
+        'orange-glow': '0 0 20px rgb(var(--brand-500) / 0.18)',
+        'orange-glow-strong': '0 0 30px rgb(var(--brand-500) / 0.30)',
       },
       animation: {
         'fade-in-up': 'fadeInUp 0.5s ease-out forwards',

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { DataProvider, useData } from './context/DataContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
+import { TenantProvider } from './context/TenantContext';
 import { Layout } from './components/Layout';
 import { Dashboard } from './pages/Dashboard';
 import { Projects } from './pages/Projects';
@@ -20,6 +21,8 @@ import { Financials } from './pages/Financials';
 import { Emails } from './pages/Emails';
 import { Meetings } from './pages/Meetings';
 import { HelpGuide } from './pages/HelpGuide';
+import { OrganizationSettings } from './pages/OrganizationSettings';
+import { ContractingERP } from './pages/ContractingERP';
 import { Toaster } from 'react-hot-toast';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
@@ -83,53 +86,57 @@ function App() {
   return (
     <ErrorBoundary>
       <LanguageProvider>
-        <Router>
-          <AuthProvider>
-          <DataProvider>
-            <Toaster
-              position="bottom-right"
-              toastOptions={{
-                style: {
-                  background: '#1a1a1a',
-                  color: '#fff',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  backdropFilter: 'blur(10px)',
-                },
-              }}
-            />
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-              {/* Zoho OAuth callback — must be OUTSIDE ProtectedRoute */}
-              <Route path="/emails/callback" element={<ZohoCallbackRedirect />} />
+        <TenantProvider>
+          <Router>
+            <AuthProvider>
+              <DataProvider>
+                <Toaster
+                  position="bottom-right"
+                  toastOptions={{
+                    style: {
+                      background: '#1a1a1a',
+                      color: '#fff',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      backdropFilter: 'blur(10px)',
+                    },
+                  }}
+                />
+                <Routes>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/reset-password" element={<ResetPassword />} />
+                  {/* Zoho OAuth callback — must be OUTSIDE ProtectedRoute */}
+                  <Route path="/emails/callback" element={<ZohoCallbackRedirect />} />
 
-              <Route path="/*" element={
-                <ProtectedRoute>
-                  <Layout>
-                    <Routes>
-                      <Route path="/" element={<HomeRoute />} />
-                      <Route path="/entries" element={<ProtectedRoute requireEngineerOrAdmin><Entries /></ProtectedRoute>} />
-                      <Route path="/attendance" element={<ProtectedRoute requireEngineerOrAdmin><Attendance /></ProtectedRoute>} />
-                      <Route path="/reports" element={<ProtectedRoute requireAdmin><Reports /></ProtectedRoute>} />
-                      <Route path="/projects" element={<ProtectedRoute requireEngineerOrAdmin><Projects /></ProtectedRoute>} />
-                      <Route path="/projects/:id" element={<ProjectDetails />} />
-                      <Route path="/boq" element={<ProtectedRoute requireEngineerOrAdmin><BOQViewer /></ProtectedRoute>} />
-                      <Route path="/meetings" element={<ProtectedRoute requireEngineerOrAdmin><Meetings /></ProtectedRoute>} />
-                      <Route path="/engineers" element={<ProtectedRoute requireAdmin><Engineers /></ProtectedRoute>} />
-                      <Route path="/emails/*" element={<ProtectedRoute requireEngineerOrAdmin skipDataWait><Emails /></ProtectedRoute>} />
-                      <Route path="/financials" element={<ProtectedRoute requireAdmin><Financials /></ProtectedRoute>} />
-                      <Route path="/help" element={<HelpGuide />} />
-                      <Route path="/profile" element={<Profile />} />
-                      {/* Fallback for authenticated users */}
-                      <Route path="*" element={<Navigate to="/" replace />} />
-                    </Routes>
-                  </Layout>
-                </ProtectedRoute>
-              } />
-            </Routes>
-          </DataProvider>
-        </AuthProvider>
-      </Router>
+                  <Route path="/*" element={
+                    <ProtectedRoute>
+                      <Layout>
+                        <Routes>
+                          <Route path="/" element={<HomeRoute />} />
+                          <Route path="/entries" element={<ProtectedRoute requireEngineerOrAdmin><Entries /></ProtectedRoute>} />
+                          <Route path="/attendance" element={<ProtectedRoute requireEngineerOrAdmin><Attendance /></ProtectedRoute>} />
+                          <Route path="/reports" element={<ProtectedRoute requireAdmin><Reports /></ProtectedRoute>} />
+                          <Route path="/projects" element={<ProtectedRoute requireEngineerOrAdmin><Projects /></ProtectedRoute>} />
+                          <Route path="/projects/:id" element={<ProjectDetails />} />
+                          <Route path="/contracting-erp" element={<ProtectedRoute requireEngineerOrAdmin><ContractingERP /></ProtectedRoute>} />
+                          <Route path="/boq" element={<ProtectedRoute requireEngineerOrAdmin><BOQViewer /></ProtectedRoute>} />
+                          <Route path="/meetings" element={<ProtectedRoute requireEngineerOrAdmin><Meetings /></ProtectedRoute>} />
+                          <Route path="/engineers" element={<ProtectedRoute requireAdmin><Engineers /></ProtectedRoute>} />
+                          <Route path="/emails/*" element={<ProtectedRoute requireEngineerOrAdmin skipDataWait><Emails /></ProtectedRoute>} />
+                          <Route path="/financials" element={<ProtectedRoute requireAdmin><Financials /></ProtectedRoute>} />
+                          <Route path="/settings" element={<ProtectedRoute requireAdmin><OrganizationSettings /></ProtectedRoute>} />
+                          <Route path="/help" element={<HelpGuide />} />
+                          <Route path="/profile" element={<Profile />} />
+                          {/* Fallback for authenticated users */}
+                          <Route path="*" element={<Navigate to="/" replace />} />
+                        </Routes>
+                      </Layout>
+                    </ProtectedRoute>
+                  } />
+                </Routes>
+              </DataProvider>
+            </AuthProvider>
+          </Router>
+        </TenantProvider>
       </LanguageProvider>
     </ErrorBoundary>
   );

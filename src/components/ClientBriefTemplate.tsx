@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { format } from 'date-fns';
 import type { Project, Milestone, Task, LogEntry } from '../types';
+import { useTenant } from '../context/TenantContext';
 import logo from '../assets/logo.png';
 
 interface ClientBriefTemplateProps {
@@ -13,6 +14,7 @@ interface ClientBriefTemplateProps {
 
 export const ClientBriefTemplate = forwardRef<HTMLDivElement, ClientBriefTemplateProps>(
     ({ project, milestones, tasks, entries, totalCost }, ref) => {
+        const { activeOrg } = useTenant();
         const sortedEntries = [...entries].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 10);
         
         // Calculate Budget Health
@@ -43,10 +45,10 @@ export const ClientBriefTemplate = forwardRef<HTMLDivElement, ClientBriefTemplat
                         <p className="text-slate-500 font-medium">Date: {format(new Date(), 'MMMM d, yyyy')}</p>
                     </div>
                     <div className="text-right flex flex-col items-end">
-                        <img src={logo} alt="DEC Logo" className="h-12 w-auto object-contain mb-2" />
-                        <h2 className="text-2xl font-bold text-slate-800 tracking-tight">DEC Engineering</h2>
-                        <p className="text-slate-500 mt-1 text-sm">Design & Engineering Consultants</p>
-                        <p className="text-slate-500 text-sm">Abu Dhabi / Cairo</p>
+                        <img src={activeOrg.logoUrl || logo} alt={activeOrg.name} className="h-12 w-auto object-contain mb-2" />
+                        <h2 className="text-2xl font-bold text-slate-800 tracking-tight">{activeOrg.name}</h2>
+                        <p className="text-slate-500 mt-1 text-sm">{activeOrg.tagline}</p>
+                        <p className="text-slate-500 text-sm">{activeOrg.branches?.join(' / ')}</p>
                     </div>
                 </div>
 

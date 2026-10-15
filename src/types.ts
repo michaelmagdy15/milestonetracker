@@ -1,5 +1,26 @@
+export interface Organization {
+    id: string;
+    name: string;
+    slug: string;
+    tagline: string;
+    logoUrl?: string;
+    faviconUrl?: string;
+    primaryColor: string;
+    themeSurface?: 'obsidian' | 'midnight' | 'slate';
+    currency: string;
+    branches: string[];
+    email?: string;
+    phone?: string;
+    address?: string;
+    city?: string;
+    country?: string;
+    plan?: 'Starter' | 'Professional' | 'Enterprise';
+    createdAt?: string;
+}
+
 export interface Project {
     id: string;
+    organizationId?: string;
     name: string;
     hourlyRate?: number;
     budget?: number;
@@ -15,6 +36,7 @@ export interface Project {
 
 export interface ProjectPhase {
     id: string;
+    organizationId?: string;
     name: string;
     orderIndex: number;
     createdAt?: string;
@@ -22,6 +44,8 @@ export interface ProjectPhase {
 
 export interface Engineer {
     id: string;
+    organizationId?: string;
+    email?: string;
     name: string;
     role: string;
     hourlyRate?: number;
@@ -166,6 +190,7 @@ export interface AuditLog {
 
 export interface OfficeExpense {
     id: string;
+    organizationId?: string;
     location: 'Abu Dhabi' | 'Cairo';
     category: string; // 'Salary' | 'Rent' | 'Utilities' | 'Equipment' | 'Software' | 'Repair' | 'Other'
     amount: number;
@@ -187,4 +212,109 @@ export interface PerformanceEvaluation {
     overallRating: number;
     createdAt?: string;
 }
+
+// ─── Open-Source Contracting ERP Models (OpenConstructionERP + BuildSuite + boq-check) ───
+
+export interface BOQItem {
+    id: string;
+    organizationId?: string;
+    projectId: string;
+    code: string; // e.g., '01.01', '02.04'
+    section: string; // e.g., 'Substructure', 'Superstructure', 'MEP', 'Finishes', 'Preliminaries'
+    description: string;
+    unit: string; // 'm2' | 'm3' | 'lm' | 'kg' | 'ton' | 'no' | 'ls'
+    quantity: number;
+    netCostRate: number; // Tier 1: Direct cost rate
+    targetRate: number;  // Tier 2: Target rate with overhead
+    saleRate: number;    // Tier 3: Client contract rate
+    claimedQty: number;  // Cumulative contractor claimed quantity
+    certifiedQty: number; // Cumulative QS certified quantity
+    priceBasis: 'catalogue' | 'subcontractor_quote' | 'historical' | 'provisional';
+    riskDispersion: number; // 0.0 to 1.0 (sigma risk factor from OpenConstructionERP)
+    isLocked?: boolean;
+    createdAt?: string;
+}
+
+export interface Subcontractor {
+    id: string;
+    organizationId?: string;
+    legalName: string;
+    tradeCategories: string[]; // e.g., ['MEP', 'HVAC', 'Structural Steel']
+    taxId?: string;
+    contactName: string;
+    email: string;
+    phone: string;
+    prequalificationStatus: 'approved' | 'pending' | 'conditional' | 'blocked';
+    prequalScore: number; // 0 - 100
+    ratingScore: number; // 1.0 - 5.0
+    insuranceExpiryDate: string; // YYYY-MM-DD
+    requiresLienWaiver: boolean;
+    createdAt?: string;
+}
+
+export interface PaymentApplication {
+    id: string;
+    organizationId?: string;
+    projectId: string;
+    subcontractorId: string;
+    subcontractorName: string;
+    applicationNumber: string; // e.g., 'IPC-001'
+    workPackageName: string;
+    contractValue: number;
+    retentionPercent: number; // e.g., 5 or 10
+    claimedGross: number;     // Stage 1: Subcontractor Claimed
+    certifiedGross: number;   // Stage 2: Engineer / QS Assessed
+    approvedGross: number;    // Stage 3: Finance Approved
+    retentionHeld: number;
+    retentionReleased: number;
+    advanceRecovery: number;
+    netPayable: number;
+    lienWaiverSigned: boolean;
+    status: 'submitted' | 'qs_certified' | 'finance_approved' | 'paid' | 'rejected';
+    periodEnd: string; // YYYY-MM-DD
+    createdAt?: string;
+}
+
+export interface VariationOrder {
+    id: string;
+    organizationId?: string;
+    projectId: string;
+    code: string; // e.g., 'VO-001'
+    title: string;
+    description: string;
+    reasonCategory: 'client_request' | 'design_change' | 'site_condition' | 'unforeseen_obstruction' | 'value_engineering';
+    status: 'draft' | 'submitted' | 'technical_approved' | 'commercial_approved' | 'approved' | 'rejected';
+    contractorAmount: number;
+    engineerAssessedAmount: number;
+    approvedAmount: number;
+    scheduleImpactDays: number;
+    approvedTimeDays: number;
+    ballInCourt: string;
+    currentApprovalStep: 1 | 2 | 3; // 1: Technical Review, 2: Commercial QS, 3: Client/Director Sign-off
+    linkedRfiId?: string;
+    createdAt?: string;
+}
+
+export interface ContractingRFI {
+    id: string;
+    organizationId?: string;
+    projectId: string;
+    rfiNumber: string; // e.g., 'RFI-001'
+    subject: string;
+    discipline: 'Architectural' | 'Structural' | 'MEP' | 'Civil' | 'Geotechnical';
+    priority: 'low' | 'normal' | 'high' | 'critical';
+    question: string;
+    officialResponse?: string;
+    raisedBy: string;
+    ballInCourt: string;
+    status: 'open' | 'answered' | 'closed' | 'converted_to_vo';
+    costImpact: boolean;
+    costImpactEstimate: number;
+    scheduleImpact: boolean;
+    scheduleImpactDays: number;
+    dueDate: string; // YYYY-MM-DD
+    linkedVoId?: string;
+    createdAt?: string;
+}
+
 

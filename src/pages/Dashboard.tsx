@@ -202,7 +202,7 @@ export const Dashboard = () => {
                 <div className="h-1 w-16 md:w-20 bg-orange-500 rounded-full mb-2 md:mb-4 md:mx-0 mx-auto mt-2"></div>
                 <EditableText
                     settingKey="dashboard_subtitle"
-                    defaultText="DEC Engineering Consultant Milestone Tracker"
+                    defaultText="Enterprise Contracting & Milestone Management Platform"
                     as="p"
                     className="text-slate-500 font-medium tracking-wide text-xs md:text-base inline-block pr-6"
                 />

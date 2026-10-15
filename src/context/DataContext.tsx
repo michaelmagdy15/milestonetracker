@@ -228,19 +228,21 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return () => clearTimeout(timer);
     }, []);
 
-    // ─── Single-table fetch ──────────────────────────────────────
+    // ─── Single-table fetch (Scoped to Active Tenant Workspace) ──
     const fetchSingleTable = useCallback(async (tableName: TableName) => {
         const config = TABLE_CONFIGS[tableName];
         const setter = setterMap[tableName];
+        const activeOrgId = localStorage.getItem('whitelabel_active_org_id') || 'org-default';
+        const filterByTenant = (rows: any[]) =>
+            rows.filter(r => !r.organization_id || r.organization_id === activeOrgId);
         
         try {
             if (tableName === 'app_usage_log' || tableName === 'audit_log') {
-                // High-volume tables: Fetch iteratively to bypass Supabase 1000 row max API limit
                 let allData: any[] = [];
                 let from = 0;
                 const step = 1000;
                 let fetchMore = true;
-                const maxLogs = 100000; // Hard cap
+                const maxLogs = 100000;
                 
                 while (fetchMore && allData.length < maxLogs) {
                     let query = supabase.from(tableName).select('*').order(config.orderBy, { ascending: config.ascending }).range(from, from + step - 1);
@@ -265,12 +267,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
                         fetchMore = false;
                     }
                 }
-                setter(allData.map(config.mapper));
+                setter(filterByTenant(allData).map(config.mapper));
             } else {
                 // Standard tables
                 const { data, error } = await supabase.from(tableName).select('*').order(config.orderBy, { ascending: config.ascending }).limit(1000);
                 if (error) { console.error(`Error fetching ${tableName}:`, error); return; }
-                if (data) setter(data.map(config.mapper));
+                if (data) setter(filterByTenant(data).map(config.mapper));
             }
         } catch (err) {
             console.error(`Exception fetching ${tableName}:`, err);
@@ -304,7 +306,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
             }
             if (data) {
                 const settingsMap: Record<string, string> = {};
-                data.forEach(item => {
+                data.forEach((item: any) => {
                     settingsMap[item.key] = item.value;
                 });
                 setGlobalSettings(settingsMap);
@@ -358,7 +360,13 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
         channels.subscribe();
 
+        const handleOrgSwitch = () => {
+            void fetchAllTables(false);
+        };
+        window.addEventListener('whitelabel-org-switched', handleOrgSwitch);
+
         return () => {
+            window.removeEventListener('whitelabel-org-switched', handleOrgSwitch);
             supabase.removeChannel(channels);
             // Clear all pending debounce timers
             Object.values(debounceTimers.current).forEach(clearTimeout);

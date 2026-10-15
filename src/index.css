@@ -33,15 +33,27 @@
 }
 
 :root {
+  --brand-50: 255 244 237;
+  --brand-100: 255 229 211;
+  --brand-200: 255 200 165;
+  --brand-300: 255 162 109;
+  --brand-400: 255 116 50;
+  --brand-500: 243 130 45;
+  --brand-600: 229 92 19;
+  --brand-700: 190 67 17;
+  --brand-800: 151 53 21;
+  --brand-900: 122 47 21;
+  --brand-950: 66 20 8;
+  --surface-bg: #0f0f0f;
+  --surface-card: #1a1a1a;
+
   font-family: 'Fira Sans', 'Manrope', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: dark;
   color: #f3f3f3;
-  /* Corporate text color */
-  background-color: #0f0f0f;
-  /* Corporate background color */
+  background-color: var(--surface-bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -52,7 +64,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #0f0f0f;
+  background-color: var(--surface-bg);
   color: #f3f3f3;
   font-family: 'Fira Sans', 'Manrope', sans-serif;
 }

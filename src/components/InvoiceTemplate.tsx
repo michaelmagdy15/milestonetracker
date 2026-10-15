@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { format } from 'date-fns';
 import type { Project, LogEntry } from '../types';
+import { useTenant } from '../context/TenantContext';
 import logo from '../assets/logo.png';
 
 interface InvoiceTemplateProps {
@@ -12,6 +13,7 @@ interface InvoiceTemplateProps {
 
 export const InvoiceTemplate = forwardRef<HTMLDivElement, InvoiceTemplateProps>(
     ({ project, entries, totalHours, totalCost }, ref) => {
+        const { activeOrg } = useTenant();
         const sortedEntries = [...entries].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
         return (
@@ -24,11 +26,15 @@ export const InvoiceTemplate = forwardRef<HTMLDivElement, InvoiceTemplateProps>(
                         <p className="text-slate-500 font-medium">Date: {format(new Date(), 'MMMM d, yyyy')}</p>
                     </div>
                     <div className="text-right flex flex-col items-end">
-                        <img src={logo} alt="DEC Logo" className="h-12 w-auto object-contain mb-2" />
-                        <h2 className="text-xl font-bold text-slate-800">DEC Engineering</h2>
-                        <p className="text-slate-500 text-sm mt-1">123 Corporate Ave, Suite 400</p>
-                        <p className="text-slate-500 text-sm">Dubai, United Arab Emirates</p>
-                        <p className="text-slate-500 text-sm">contact@deceng.com</p>
+                        {activeOrg.logoUrl ? (
+                            <img src={activeOrg.logoUrl} alt={activeOrg.name} className="h-12 w-auto object-contain mb-2" />
+                        ) : (
+                            <img src={logo} alt={activeOrg.name} className="h-12 w-auto object-contain mb-2" />
+                        )}
+                        <h2 className="text-xl font-bold text-slate-800">{activeOrg.name}</h2>
+                        <p className="text-slate-500 text-sm mt-1">{activeOrg.address || 'Corporate Headquarters'}</p>
+                        <p className="text-slate-500 text-sm">{[activeOrg.city, activeOrg.country].filter(Boolean).join(', ')}</p>
+                        <p className="text-slate-500 text-sm">{activeOrg.email || 'billing@company.com'}</p>
                     </div>
                 </div>
 

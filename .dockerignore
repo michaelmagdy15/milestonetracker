@@ -1,0 +1,10 @@
+node_modules
+dist
+.git
+.playwright-mcp
+companion-app
+desktop-tracker
+desktop-tracker.zip
+Security_Evidence_Backup_*.json
+*.log
+lint-*.txt
