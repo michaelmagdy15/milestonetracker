@@ -60,11 +60,11 @@ export const Logo: React.FC<{
         !activeOrg.logoUrl.includes('/logo.png')
     ) {
         return (
-            <div className={clsx('flex items-center gap-3', className)}>
+            <div className={clsx('flex items-center gap-2 sm:gap-3 shrink-0', className)}>
                 <img
                     src={activeOrg.logoUrl}
                     alt={activeOrg.name}
-                    className="h-11 w-auto max-h-14 object-contain"
+                    className="h-8 sm:h-11 w-auto max-w-[135px] sm:max-w-[200px] max-h-14 object-contain"
                 />
             </div>
         );
@@ -72,23 +72,24 @@ export const Logo: React.FC<{
 
     if (!showText) {
         return (
-            <div className={clsx('inline-flex items-center justify-center select-none', className)}>
+            <div className={clsx('inline-flex items-center justify-center select-none shrink-0', className)}>
                 <img
                     src="/nexus-symbol.svg"
                     alt="NEXUS Contracting"
-                    className="h-12 w-12 object-contain"
+                    className="h-9 w-9 sm:h-12 sm:w-12 object-contain"
                 />
             </div>
         );
     }
 
     return (
-        <div className={clsx('inline-flex items-center select-none', className)}>
+        <div className={clsx('inline-flex items-center select-none shrink-0', className)}>
             <img
                 src="/nexus-logo.svg"
                 alt="NEXUS Contracting"
-                className="h-11 w-auto max-w-[205px] object-contain"
+                className="h-8 sm:h-10 lg:h-11 w-auto max-w-[132px] sm:max-w-[180px] lg:max-w-[205px] object-contain"
             />
         </div>
     );
 };
+

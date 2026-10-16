@@ -411,45 +411,49 @@ export const Dashboard = () => {
             animate="visible"
             className="space-y-4 md:space-y-8"
         >
-            <div className="text-center md:text-left mb-4 md:mb-6 relative">
+            <div className="text-center md:text-start mb-3 md:mb-6 relative">
                 <EditableText
                     settingKey="dashboard_main_title"
-                    defaultText="Insight Dashboard"
+                    defaultText={isAr ? 'لوحة القيادة التنفيذية' : 'Insight Dashboard'}
                     as="h2"
-                    className="text-2xl md:text-4xl lg:text-5xl font-black text-[#192631] tracking-tighter mb-1 md:mb-2 inline-block relative pr-6"
+                    className="text-2xl md:text-4xl lg:text-5xl font-black text-[#192631] tracking-tighter mb-1 md:mb-2 inline-block relative pe-6"
                 />
-                <div className="h-1 w-16 md:w-20 bg-orange-500 rounded-full mb-2 md:mb-4 md:mx-0 mx-auto mt-2"></div>
+                <div className="h-1 w-16 md:w-20 bg-orange-500 rounded-full mb-1.5 md:mb-4 md:mx-0 mx-auto mt-1.5"></div>
                 <EditableText
                     settingKey="dashboard_subtitle"
-                    defaultText="Enterprise Contracting & Milestone Management Platform"
+                    defaultText={
+                        isAr
+                            ? 'منصة إدارة المشاريع الهندسية والمقاولات المتكاملة'
+                            : 'Enterprise Contracting & Milestone Management Platform'
+                    }
                     as="p"
-                    className="text-[#192631]/60 font-medium tracking-wide text-xs md:text-base inline-block pr-6"
+                    className="text-[#192631]/60 font-medium tracking-wide text-xs md:text-base inline-block pe-6"
                 />
             </div>
 
             {/* START HERE: Guided Step-by-Step Command Center */}
-            <div className="glass-card rounded-3xl md:rounded-[32px] p-4 md:p-7 border-2 border-[#e04b2a]/25 bg-gradient-to-br from-white/95 via-white/90 to-[#e04b2a]/[0.04] shadow-xl space-y-6">
+            <div className="glass-card rounded-2xl sm:rounded-3xl md:rounded-[32px] p-3.5 sm:p-5 md:p-7 border-2 border-[#e04b2a]/25 bg-gradient-to-br from-white/95 via-white/90 to-[#e04b2a]/[0.04] shadow-xl space-y-4 sm:space-y-6">
                 {/* Command Center Header */}
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-[#192631]/10 pb-5">
-                    <div className="flex items-start gap-3.5">
-                        <div className="w-12 h-12 rounded-2xl bg-[#e04b2a] text-white flex items-center justify-center shadow-lg shadow-[#e04b2a]/25 shrink-0">
-                            <Compass className="w-6 h-6" />
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 sm:gap-4 border-b border-[#192631]/10 pb-3.5 sm:pb-5">
+                    <div className="flex items-start gap-3">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[#e04b2a] text-white flex items-center justify-center shadow-lg shadow-[#e04b2a]/25 shrink-0">
+                            <Compass className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
-                        <div>
-                            <div className="flex items-center gap-2 flex-wrap">
-                                <span className="px-2.5 py-0.5 rounded-full bg-[#e04b2a]/15 text-[#e04b2a] text-[10px] font-black uppercase tracking-widest">
+                        <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                                <span className="px-2 py-0.5 rounded-full bg-[#e04b2a]/15 text-[#e04b2a] text-[10px] font-black uppercase tracking-widest">
                                     {isAr ? 'ابدأ من هنا · دليل التشغيل السريع' : 'Start Here · Guided Command Center'}
                                 </span>
-                                <span className="px-2.5 py-0.5 rounded-full bg-[#123524]/10 text-[#123524] text-[10px] font-bold">
-                                    {isAr ? '3 خطوات يومية واضحة حسب دورك' : 'Role-Based 3 Simple Steps Today'}
+                                <span className="px-2 py-0.5 rounded-full bg-[#123524]/10 text-[#123524] text-[10px] font-bold">
+                                    {isAr ? '3 خطوات يومية واضحة' : '3 Simple Steps Today'}
                                 </span>
                             </div>
-                            <h3 className="text-lg md:text-2xl font-black text-[#192631] tracking-tight mt-1">
+                            <h3 className="text-base sm:text-lg md:text-2xl font-black text-[#192631] tracking-tight mt-1 leading-snug">
                                 {isAr
                                     ? 'مركز القيادة التوجيهي — اختر دورك ونفّذ خطواتك اليومية بضغطة واحدة'
                                     : 'Start Here: Guided Step-by-Step Command Center'}
                             </h3>
-                            <p className="text-xs md:text-sm text-[#192631]/70 mt-0.5">
+                            <p className="text-xs md:text-sm text-[#192631]/70 mt-0.5 leading-snug">
                                 {isAr ? selectedPersonaConfig.subtitleAr : selectedPersonaConfig.subtitleEn}
                             </p>
                         </div>
@@ -459,7 +463,7 @@ export const Dashboard = () => {
                         <button
                             type="button"
                             onClick={toggleViewComplexity}
-                            className={`px-3.5 py-2 rounded-xl text-xs font-black border transition-all flex items-center gap-2 ${
+                            className={`px-3 py-2 min-h-[38px] rounded-xl text-xs font-black border transition-all flex items-center gap-2 touch-manipulation ${
                                 viewComplexity === 'guided'
                                     ? 'bg-[#123524] text-white border-[#123524] shadow-sm'
                                     : 'bg-white text-[#192631] border-[#192631]/15 hover:border-[#e04b2a]/40'
@@ -473,12 +477,12 @@ export const Dashboard = () => {
                     </div>
                 </div>
 
-                {/* a) Persona Selector Tabs */}
+                {/* a) Persona Selector Tabs — 2x2 Compact Grid on iPhone 15 Pro (393px), 4 cols on Desktop */}
                 <div>
-                    <div className="text-[11px] font-black uppercase tracking-wider text-[#192631]/60 mb-2.5">
+                    <div className="text-[11px] font-black uppercase tracking-wider text-[#192631]/60 mb-2">
                         {isAr ? '1. اختر دورك الوظيفي (Persona):' : '1. Select Your Role / Persona:'}
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2.5">
+                    <div className="grid grid-cols-2 xl:grid-cols-4 gap-2 sm:gap-2.5">
                         {PERSONA_COMMAND_CONFIGS.map((persona) => {
                             const Icon = persona.icon;
                             const isSelected = activePersona === persona.id;
@@ -487,14 +491,14 @@ export const Dashboard = () => {
                                     key={persona.id}
                                     type="button"
                                     onClick={() => setActivePersona(persona.id)}
-                                    className={`p-3.5 rounded-2xl border text-left transition-all flex items-start gap-3 ${
+                                    className={`p-2.5 sm:p-3.5 rounded-2xl border text-start transition-all flex items-start gap-2 sm:gap-3 touch-manipulation ${
                                         isSelected
                                             ? 'bg-[#192631] text-white border-[#192631] shadow-md ring-2 ring-[#e04b2a]/40'
                                             : 'bg-white/85 hover:bg-white text-[#192631] border-[#192631]/12 hover:border-[#e04b2a]/40'
                                     }`}
                                 >
                                     <div
-                                        className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
+                                        className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
                                             isSelected ? 'bg-[#e04b2a] text-white' : 'bg-[#192631]/[0.07] text-[#192631]'
                                         }`}
                                     >
@@ -502,7 +506,7 @@ export const Dashboard = () => {
                                     </div>
                                     <div className="min-w-0 flex-1">
                                         <div className="flex items-center justify-between gap-1">
-                                            <span className="text-xs md:text-sm font-black truncate">
+                                            <span className="text-xs sm:text-sm font-black truncate">
                                                 {isAr ? persona.labelAr : persona.labelEn}
                                             </span>
                                             {isSelected && (
@@ -510,7 +514,7 @@ export const Dashboard = () => {
                                             )}
                                         </div>
                                         <p
-                                            className={`text-[11px] mt-1 leading-snug line-clamp-2 ${
+                                            className={`text-[10px] sm:text-[11px] mt-0.5 sm:mt-1 leading-snug line-clamp-2 ${
                                                 isSelected ? 'text-white/80' : 'text-[#192631]/65'
                                             }`}
                                         >
@@ -525,38 +529,38 @@ export const Dashboard = () => {
 
                 {/* b) "Your 3 Simple Steps Today" Cards */}
                 <div>
-                    <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2.5">
                         <span className="text-[11px] font-black uppercase tracking-wider text-[#192631]/60">
                             {isAr
                                 ? `2. خطواتك الـ 3 البسيطة اليوم (${selectedPersonaConfig.labelAr}):`
                                 : `2. Your 3 Simple Steps Today (${selectedPersonaConfig.labelEn}):`}
                         </span>
-                        <span className="text-[11px] font-bold text-[#e04b2a]">
+                        <span className="text-[11px] font-bold text-[#e04b2a] hidden sm:inline">
                             {isAr ? 'اضغط على أي خطوة للتنفيذ المباشر ➔' : 'Click any step to jump straight to execution ➔'}
                         </span>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
                         {selectedPersonaConfig.steps.map((step) => (
                             <div
                                 key={step.stepNumber}
-                                className="rounded-2xl bg-white border border-[#192631]/12 hover:border-[#e04b2a]/50 p-4 md:p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                                className="rounded-2xl bg-white border border-[#192631]/12 hover:border-[#e04b2a]/50 p-3.5 sm:p-4 md:p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
                             >
                                 <div>
-                                    <div className="flex items-center justify-between gap-2 mb-3">
+                                    <div className="flex items-center justify-between gap-2 mb-2.5">
                                         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#e04b2a] text-white text-xs font-black">
                                             {isAr ? `الخطوة ${step.stepNumber}` : `Step ${step.stepNumber}`}
                                         </span>
-                                        <span className="px-2.5 py-1 rounded-full bg-[#192631]/[0.06] text-[#192631]/80 text-[10px] font-bold uppercase tracking-wider">
+                                        <span className="px-2.5 py-1 rounded-full bg-[#192631]/[0.06] text-[#192631]/80 text-[10px] font-bold uppercase tracking-wider truncate">
                                             {isAr ? step.badgeAr : step.badgeEn}
                                         </span>
                                     </div>
 
-                                    <h4 className="text-sm md:text-base font-black text-[#192631] leading-snug mb-2.5">
+                                    <h4 className="text-sm md:text-base font-black text-[#192631] leading-snug mb-2">
                                         {isAr ? step.titleAr : step.titleEn}
                                     </h4>
 
-                                    <div className="space-y-2 text-xs">
+                                    <div className="space-y-1.5 sm:space-y-2 text-xs">
                                         <div className="p-2.5 rounded-xl bg-[#192631]/[0.04] border border-[#192631]/8">
                                             <span className="font-black text-[#192631] block mb-0.5">
                                                 {isAr ? 'ماذا تفعل الآن؟' : 'What to do:'}
@@ -580,10 +584,10 @@ export const Dashboard = () => {
                                 <button
                                     type="button"
                                     onClick={() => navigate(step.route)}
-                                    className="mt-4 w-full py-2.5 px-4 rounded-xl bg-[#192631] hover:bg-[#e04b2a] text-white text-xs font-black transition-colors flex items-center justify-center gap-2 shadow-sm"
+                                    className="mt-3 sm:mt-4 w-full py-2.5 min-h-[42px] px-4 rounded-xl bg-[#192631] hover:bg-[#e04b2a] active:bg-[#e04b2a] text-white text-xs font-black transition-colors flex items-center justify-center gap-2 shadow-sm touch-manipulation"
                                 >
-                                    <span>{isAr ? 'نفّذ هذه الخطوة الآن ➔' : 'Do This Step Now ➔'}</span>
-                                    <ArrowRight className="w-3.5 h-3.5" />
+                                    <span>{isAr ? 'نفّذ هذه الخطوة الآن' : 'Do This Step Now'}</span>
+                                    <ArrowRight className={`w-3.5 h-3.5 ${isAr ? 'rotate-180' : ''}`} />
                                 </button>
                             </div>
                         ))}

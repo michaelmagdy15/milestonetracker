@@ -48,11 +48,11 @@ export const GuidedStepBanner: React.FC<GuidedStepBannerProps> = ({
     );
 
     return (
-        <div className="bg-white/90 backdrop-blur-xl border border-[#192631]/12 rounded-2xl p-4 sm:p-5 shadow-sm mb-5">
+        <div className="bg-white/90 backdrop-blur-xl border border-[#192631]/12 rounded-2xl p-3 sm:p-5 shadow-sm mb-4 sm:mb-5">
             {/* Top Row: Lifecycle Stage Indicator + Active Project Pill + Step Counter */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 border-b border-[#192631]/10">
-                <div className="flex flex-wrap items-center gap-2.5">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e04b2a] text-white text-xs font-black tracking-wide shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 pb-3 border-b border-[#192631]/10">
+                <div className="flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#e04b2a] text-white text-[10px] sm:text-xs font-black tracking-wide shadow-sm shrink-0">
                         <Compass className="w-3.5 h-3.5" />
                         <span>
                             {language === 'ar'
@@ -60,22 +60,22 @@ export const GuidedStepBanner: React.FC<GuidedStepBannerProps> = ({
                                 : `STAGE ${lifecycleStageNumber} OF 6`}
                         </span>
                     </span>
-                    <h2 className="text-base sm:text-lg font-black text-[#192631]">
+                    <h2 className="text-sm sm:text-lg font-black text-[#192631] leading-snug">
                         {language === 'ar' ? moduleTitleAr : moduleTitleEn}
                     </h2>
                     {activeProject ? (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#192631]/[0.06] border border-[#192631]/12 text-xs font-bold text-[#192631]">
-                            <FolderKanban className="w-3.5 h-3.5 text-[#e04b2a]" />
-                            <span dir="ltr" className="font-mono font-black text-[#e04b2a]">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#192631]/[0.06] border border-[#192631]/12 text-[11px] font-bold text-[#192631] max-w-full">
+                            <FolderKanban className="w-3.5 h-3.5 text-[#e04b2a] shrink-0" />
+                            <span dir="ltr" className="font-mono font-black text-[#e04b2a] shrink-0">
                                 {activeProject.code}
                             </span>
-                            <span className="truncate max-w-[200px] sm:max-w-[260px]">
+                            <span className="truncate max-w-[165px] sm:max-w-[260px]">
                                 {activeProject.clientName} ({activeProject.location})
                             </span>
                         </span>
                     ) : (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-[#192631]/[0.06] border border-[#192631]/12 text-xs font-bold text-[#192631]">
-                            <FolderKanban className="w-3.5 h-3.5 text-[#e04b2a]" />
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#192631]/[0.06] border border-[#192631]/12 text-[11px] font-bold text-[#192631]">
+                            <FolderKanban className="w-3.5 h-3.5 text-[#e04b2a] shrink-0" />
                             <span>
                                 {language === 'ar' ? 'جميع المشروعات (77 مشروع)' : 'All 77 Projects Portfolio'}
                             </span>
@@ -84,15 +84,15 @@ export const GuidedStepBanner: React.FC<GuidedStepBannerProps> = ({
                 </div>
 
                 {/* Quick Prev / Next Step Controls */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
                     {hasPrev && (
                         <button
                             type="button"
                             onClick={() => onSelectStep(steps[currentIndex - 1].id)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#192631]/[0.05] hover:bg-[#192631]/10 text-[#192631] text-xs font-bold transition-all"
+                            className="inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 min-h-[38px] rounded-xl bg-[#192631]/[0.06] hover:bg-[#192631]/10 text-[#192631] text-xs font-bold transition-all shrink-0 touch-manipulation"
                         >
                             {language === 'ar' ? <ArrowRight className="w-3.5 h-3.5" /> : <ArrowLeft className="w-3.5 h-3.5" />}
-                            <span>{language === 'ar' ? 'الخطوة السابقة' : 'Previous Step'}</span>
+                            <span>{language === 'ar' ? 'السابق' : 'Prev'}</span>
                         </button>
                     )}
 
@@ -100,34 +100,45 @@ export const GuidedStepBanner: React.FC<GuidedStepBannerProps> = ({
                         <button
                             type="button"
                             onClick={() => onSelectStep(steps[currentIndex + 1].id)}
-                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#e04b2a] hover:bg-[#c93e1f] text-white text-xs font-black shadow-sm transition-all"
+                            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:py-1.5 min-h-[38px] rounded-xl bg-[#e04b2a] hover:bg-[#c93e1f] text-white text-xs font-black shadow-sm transition-all min-w-0 touch-manipulation"
                         >
-                            <span>
+                            <span className="truncate">
                                 {language === 'ar'
                                     ? `الخطوة التالية (${currentIndex + 2}/${steps.length}): ${steps[currentIndex + 1].titleAr}`
                                     : `Next Step (${currentIndex + 2}/${steps.length}): ${steps[currentIndex + 1].titleEn}`}
                             </span>
-                            {language === 'ar' ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
+                            {language === 'ar' ? (
+                                <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
+                            ) : (
+                                <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                            )}
                         </button>
                     ) : nextLifecycleStage ? (
                         <button
                             type="button"
                             onClick={() => navigate(nextLifecycleStage.path)}
-                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#123524] hover:bg-[#194a32] text-white text-xs font-black shadow-sm transition-all"
+                            className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 sm:py-1.5 min-h-[38px] rounded-xl bg-[#123524] hover:bg-[#194a32] text-white text-xs font-black shadow-sm transition-all min-w-0 touch-manipulation"
                         >
-                            <span>
+                            <span className="truncate">
                                 {language === 'ar'
                                     ? `انتقل للمرحلة ${nextLifecycleStage.stepNumber}: ${nextLifecycleStage.titleAr}`
                                     : `Proceed to Stage ${nextLifecycleStage.stepNumber}: ${nextLifecycleStage.titleEn}`}
                             </span>
-                            {language === 'ar' ? <ArrowLeft className="w-3.5 h-3.5" /> : <ArrowRight className="w-3.5 h-3.5" />}
+                            {language === 'ar' ? (
+                                <ArrowLeft className="w-3.5 h-3.5 shrink-0" />
+                            ) : (
+                                <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                            )}
                         </button>
                     ) : null}
                 </div>
             </div>
 
-            {/* Numbered Stepper Pills */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 mt-3.5">
+            {/* Numbered Stepper Pills — Horizontal Swipe Strip on iPhone 15 Pro, Grid on Tablet/Desktop */}
+            <div
+                className="flex overflow-x-auto snap-x snap-mandatory gap-2 pb-1 no-scrollbar sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-2.5 mt-3 touch-pan-x"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+            >
                 {steps.map((step, idx) => {
                     const isActive = step.id === activeStepId;
                     const isDone = idx < currentIndex;
@@ -137,7 +148,7 @@ export const GuidedStepBanner: React.FC<GuidedStepBannerProps> = ({
                             type="button"
                             onClick={() => onSelectStep(step.id)}
                             className={clsx(
-                                'flex items-start gap-2.5 p-3 rounded-xl border text-start transition-all',
+                                'min-w-[238px] max-w-[265px] sm:min-w-0 sm:max-w-none snap-start shrink-0 flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl border text-start transition-all touch-manipulation',
                                 isActive
                                     ? 'bg-[#e04b2a]/[0.09] border-[#e04b2a] shadow-sm'
                                     : isDone
@@ -184,10 +195,10 @@ export const GuidedStepBanner: React.FC<GuidedStepBannerProps> = ({
 
             {/* Simple 1-Line "What to do right now" Callout */}
             {currentStep && (
-                <div className="mt-3 pt-2.5 border-t border-[#192631]/10 flex flex-wrap items-center justify-between gap-2 text-xs">
-                    <div className="flex items-center gap-2 text-[#192631]/80 font-semibold">
-                        <Sparkles className="w-4 h-4 text-[#e04b2a] shrink-0" />
-                        <span>
+                <div className="mt-2.5 pt-2.5 border-t border-[#192631]/10 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <div className="flex items-start sm:items-center gap-2 text-[#192631]/80 font-semibold">
+                        <Sparkles className="w-4 h-4 text-[#e04b2a] shrink-0 mt-0.5 sm:mt-0" />
+                        <span className="leading-snug">
                             <strong className="text-[#192631] font-black">
                                 {language === 'ar'
                                     ? `خطوة ${currentStep.stepNum} من ${steps.length} — ما يجب فعله الآن: `
@@ -196,7 +207,7 @@ export const GuidedStepBanner: React.FC<GuidedStepBannerProps> = ({
                             {language === 'ar' ? currentStep.actionHintAr : currentStep.actionHintEn}
                         </span>
                     </div>
-                    <span className="text-[11px] font-mono text-[#192631]/55">
+                    <span className="text-[11px] font-mono text-[#192631]/55 hidden sm:inline">
                         {activeProjectCode === 'ALL'
                             ? language === 'ar'
                                 ? 'النطاق: كل المشروعات'
@@ -211,3 +222,4 @@ export const GuidedStepBanner: React.FC<GuidedStepBannerProps> = ({
     );
 };
 export default GuidedStepBanner;
+
