@@ -4,9 +4,9 @@ import { useTenant } from '../context/TenantContext';
 
 /**
  * Official NEXUS CONTRACTING Brand Logo & Symbol
- * Uses the exact transparent cropped PNGs extracted from the official Nexus Brand Guideline:
- * - /nexus-logo.png   (468x140 full horizontal lockup: Orange N symbol + Squid Ink NEXUS + CONTRACTING)
- * - /nexus-symbol.png (140x140 standalone Orange N symbol)
+ * Uses the exact unmodified native vector SVGs extracted directly from the official Nexus Brand Guideline PDF:
+ * - /nexus-logo.svg   (Exact Page 3 vector paths: Orange N symbol + Squid Ink NEXUS + CONTRACTING)
+ * - /nexus-symbol.svg (Exact Page 2/3 standalone Orange N symbol vector paths)
  */
 export const NexusBrandSymbol: React.FC<{
     size?: number;
@@ -16,7 +16,7 @@ export const NexusBrandSymbol: React.FC<{
     if (variant === 'orange-symbol') {
         return (
             <img
-                src="/nexus-symbol.png"
+                src="/nexus-symbol.svg"
                 alt="NEXUS Symbol"
                 style={{ width: size, height: size }}
                 className={clsx('object-contain shrink-0 select-none', className)}
@@ -37,7 +37,7 @@ export const NexusBrandSymbol: React.FC<{
             )}
         >
             <img
-                src="/nexus-symbol.png"
+                src="/nexus-symbol.svg"
                 alt="NEXUS Symbol"
                 className={clsx('w-full h-full object-contain', isOrangeBox && 'brightness-0 invert')}
             />
@@ -74,7 +74,7 @@ export const Logo: React.FC<{
         return (
             <div className={clsx('inline-flex items-center justify-center select-none', className)}>
                 <img
-                    src="/nexus-symbol.png"
+                    src="/nexus-symbol.svg"
                     alt="NEXUS Contracting"
                     className="h-12 w-12 object-contain"
                 />
@@ -85,9 +85,9 @@ export const Logo: React.FC<{
     return (
         <div className={clsx('inline-flex items-center select-none', className)}>
             <img
-                src="/nexus-logo.png"
+                src="/nexus-logo.svg"
                 alt="NEXUS Contracting"
-                className="h-12 w-auto max-w-[210px] object-contain"
+                className="h-11 w-auto max-w-[205px] object-contain"
             />
         </div>
     );
