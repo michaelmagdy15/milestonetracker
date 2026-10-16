@@ -23,6 +23,7 @@ import {
   History,
   Paperclip,
 } from 'lucide-react';
+import { GuidedStepBanner } from './GuidedStepBanner';
 
 // ============================================================================
 // TYPES & STANDALONE ENTERPRISE DATA (RACE-CONDITION IMMUNE)
@@ -1189,6 +1190,49 @@ ${transmittalRemarks}
 
   return (
     <div className="space-y-6 text-[#192631]">
+      {/* Guided Lifecycle Step Banner */}
+      <GuidedStepBanner
+        lifecycleStageNumber={2}
+        moduleTitleEn="Submittals Register & Document Coding"
+        moduleTitleAr="سجل الاعتمادات الهندسية وتكويد المستندات"
+        activeStepId={activeTab}
+        onSelectStep={(id) => setActiveTab(id as any)}
+        steps={[
+          {
+            id: 'register',
+            stepNum: 1,
+            titleEn: 'Log Submittal & Track Code A/B Approval',
+            titleAr: 'تسجيل الاعتماد ومتابعة كود A/B',
+            actionHintEn: 'Log MS/DR/MIR/SL/SIR packages and update consultant status to Code A/B to unlock PO.',
+            actionHintAr: 'سجل اعتمادات MS/DR/MIR/SL/SIR وحدث حالة الاستشاري إلى كود A/B لفتح أمر الشراء.',
+          },
+          {
+            id: 'transmittal',
+            stepNum: 2,
+            titleEn: 'Generate Formal Consultant Transmittal Email',
+            titleAr: 'توليد إيميل الترانسميتال الرسمي للاستشاري',
+            actionHintEn: 'Select pending submittals and dispatch a bilingual transmittal email to the consultant.',
+            actionHintAr: 'اختر الاعتمادات الجاهزة وأرسل إيميل الترانسميتال الرسمي ثنائي اللغة للاستشاري.',
+          },
+          {
+            id: 'filecoder',
+            stepNum: 3,
+            titleEn: 'Generate Standard File & Folder Code',
+            titleAr: 'توليد الكود القياسي للملفات والفولدرات',
+            actionHintEn: 'Build standardized file names and server folder paths for DC, TDC, NPO, and RCB records.',
+            actionHintAr: 'أنشئ أسماء الملفات ومسارات الأرشفة القياسية لمستندات DC وTDC وNPO وRCB.',
+          },
+          {
+            id: 'matrix',
+            stepNum: 4,
+            titleEn: 'Reference 51 Submittal Clauses & Abbreviations',
+            titleAr: 'مصفوفة الـ 51 بند اعتماد ودليل الاختصارات',
+            actionHintEn: 'Browse all 51 architectural, civil, electrical, and mechanical submittal clause codes.',
+            actionHintAr: 'استعرض جميع أكواد الـ 51 بند المعتمدة للتخصصات المعمارية والمدنية والكهربائية والميكانيكية.',
+          },
+        ]}
+      />
+
       {/* Notification Toast */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-xl border border-[#123524]/25 bg-white/80 backdrop-blur-md px-4 py-3 text-sm font-medium text-[#123524] shadow-2xl backdrop-blur-md">

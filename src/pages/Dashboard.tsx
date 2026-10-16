@@ -3,16 +3,227 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { supabase } from '../lib/supabase';
-import { FolderKanban, Users, Clock, TrendingUp, Activity, Briefcase, Settings, Trash2, CheckCircle2, AlertCircle, Camera, UploadCloud, Receipt, Calculator, FileCheck2, PackageCheck, Wallet, HardHat, ArrowUpRight } from 'lucide-react';
+import { FolderKanban, Users, Clock, TrendingUp, Activity, Briefcase, Settings, Trash2, CheckCircle2, AlertCircle, Camera, UploadCloud, Receipt, Calculator, FileCheck2, PackageCheck, Wallet, HardHat, ArrowUpRight, Compass, ArrowRight, ChevronDown, ChevronUp, ShieldCheck, Truck, Sparkles } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { format, startOfWeek as getStartOfWeek } from 'date-fns';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { useWorkflow, NEXUS_LIFECYCLE_STAGES } from '../context/WorkflowContext';
+import type { WorkflowPersona } from '../context/WorkflowContext';
+import { useLanguage } from '../context/LanguageContext';
 import { categorizeApp } from '../utils/appCategorization';
 import { GlowButton } from '../components/GlowButton';
 import { EditableText } from '../components/EditableText';
 import { LiveOperationsMonitor } from '../components/LiveOperationsMonitor';
 import { SystemHint } from '../components/SystemHint';
+
+interface PersonaConfig {
+    id: WorkflowPersona;
+    labelEn: string;
+    labelAr: string;
+    subtitleEn: string;
+    subtitleAr: string;
+    icon: any;
+    steps: {
+        stepNumber: number;
+        badgeEn: string;
+        badgeAr: string;
+        titleEn: string;
+        titleAr: string;
+        whatToDoEn: string;
+        whatToDoAr: string;
+        whyItMattersEn: string;
+        whyItMattersAr: string;
+        route: string;
+    }[];
+}
+
+const PERSONA_COMMAND_CONFIGS: PersonaConfig[] = [
+    {
+        id: 'ceo',
+        labelEn: 'CEO / Executive',
+        labelAr: 'الإدارة التنفيذية (CEO)',
+        subtitleEn: 'Eng. Mohamed — Approve pricing discounts, subcontractor grades & liquidity',
+        subtitleAr: 'م. محمد — اعتماد نسب الخصم وتقييم مقاولي الباطن ومتابعة السيولة',
+        icon: ShieldCheck,
+        steps: [
+            {
+                stepNumber: 1,
+                badgeEn: 'Stage 1 · BOQ & Pricing',
+                badgeAr: 'مرحلة 1 · المقايسة والتسعير',
+                titleEn: 'Approve R02 Contract Pricing & Commercial Discount',
+                titleAr: 'اعتماد تسعير مقايسة R02 ونسبة الخصم التجاري',
+                whatToDoEn: 'Review the 34 work packages (839 R02 items), inspect unit cost margins, and approve the final contract discount.',
+                whatToDoAr: 'مراجعة الـ 34 حزمة أعمال (839 بند R02) وفحص هوامش الربح واعتماد نسبة الخصم النهائية للعميل.',
+                whyItMattersEn: 'Locks the official contract baseline so no unapproved cost overruns can occur.',
+                whyItMattersAr: 'يثبت خط الأساس التعاقدي الرسمي ويمنع أي تجاوز في التكاليف المعتمدة.',
+                route: '/boq',
+            },
+            {
+                stepNumber: 2,
+                badgeEn: 'Stage 4 · Site & Subs',
+                badgeAr: 'مرحلة 4 · مقاولي الباطن',
+                titleEn: 'Audit 4-Pillar Subcontractor Grades (A/B/C) & CPOs',
+                titleAr: 'مراجعة تقييم الـ 56 مقاول باطن (A/B/C) والمستخلصات',
+                whatToDoEn: 'Evaluate Quality, Pricing, Commitment & Dealing grades across 56 trades and sign off on ST/CPO statements.',
+                whatToDoAr: 'فحص تقييم الجودة والسعر والالتزام والتعامل لـ 56 مقاول باطن واعتماد مستخلصات الصنايعية (ST/CPO).',
+                whyItMattersEn: 'Ensures only top-graded trades execute site works and prevents overpaying subcontractors.',
+                whyItMattersAr: 'يضمن إسناد الأعمال لأكفأ الصنايعية ويمنع صرف أي دفعات بدون استلام هندسي.',
+                route: '/subcontractors',
+            },
+            {
+                stepNumber: 3,
+                badgeEn: 'Stage 6 · Treasury & Cashflow',
+                badgeAr: 'مرحلة 6 · الخزينة والسيولة',
+                titleEn: 'Monitor EGP 738,284 Liquidity & 77-Project Margins',
+                titleAr: 'متابعة السيولة المتاحة (738,284 ج.م) وربحية المشاريع',
+                whatToDoEn: 'Check live balances across 7 cash/bank vaults, 9 credit cards, and net receivables across active projects.',
+                whatToDoAr: 'مراجعة الأرصدة اللحظية في 7 خزن وبنوك و9 كروت ائتمان وصافي مستحقات المشاريع الجارية.',
+                whyItMattersEn: 'Keeps cashflow positive by aligning supplier disbursements with client collections.',
+                whyItMattersAr: 'يحافظ على التدفق النقدي الإيجابي عبر ربط المدفوعات بتحصيل دفعات العملاء.',
+                route: '/financials',
+            },
+        ],
+    },
+    {
+        id: 'technical',
+        labelEn: 'Technical Office',
+        labelAr: 'المكتب الفني',
+        subtitleEn: 'Eng. Pierre Afifi — Price R02 BOQ, submit MS/DR approvals & prepare Works Extracts',
+        subtitleAr: 'م. بيير عفيفي — تسعير مقايسة R02 وتقديم اعتمادات MS/DR وإعداد المستخلصات',
+        icon: Calculator,
+        steps: [
+            {
+                stepNumber: 1,
+                badgeEn: 'Stage 1 · BOQ Engine',
+                badgeAr: 'مرحلة 1 · تسعير المقايسة',
+                titleEn: 'Complete 11-Component Unit Cost Breakdown (R02)',
+                titleAr: 'إدخال تحليل أسعار الوحدة (11 مكون) لبنود R02',
+                whatToDoEn: 'Break down materials, wastage, labor, equipment, and overheads across the 839 BOQ sub-items.',
+                whatToDoAr: 'تحليل تكلفة الخامات والهالك والمصنعيات والمعدات والمصاريف غير المباشرة لـ 839 بند.',
+                whyItMattersEn: 'Sets the exact budget ceiling for site execution and material procurement.',
+                whyItMattersAr: 'يحدد السقف المالي الدقيق للمشتريات والتنفيذ بالموقع.',
+                route: '/boq',
+            },
+            {
+                stepNumber: 2,
+                badgeEn: 'Stage 2 · Document Control',
+                badgeAr: 'مرحلة 2 · الاعتمادات الفنية',
+                titleEn: 'Submit MS / DR / MIR & Secure Code A or B',
+                titleAr: 'تقديم اعتمادات الخامات والرسومات والحصول على كود A/B',
+                whatToDoEn: 'Log the 51 technical submittals with standard file coding (01.TDC / 02.DC / 03.TC) and track consultant responses.',
+                whatToDoAr: 'تسجيل الـ 51 اعتماد فني بالتكويد القياسي ومتابعة رد الاستشاري للحصول على كود A أو B.',
+                whyItMattersEn: 'Unlocking purchasing requires an approved Code A or Code B submittal first.',
+                whyItMattersAr: 'لا يمكن إصدار أمر شراء لأي خامة قبل اعتمادها رسمياً بكود A أو B.',
+                route: '/submittals',
+            },
+            {
+                stepNumber: 3,
+                badgeEn: 'Stage 5 · Works Extracts',
+                badgeAr: 'مرحلة 5 · مستخلصات الأعمال',
+                titleEn: 'Prepare Cumulative Client Works Extract #4',
+                titleAr: 'إعداد المستخلص الجاري التراكمي للعميل',
+                whatToDoEn: 'Update current executed quantities and achievement percentages (75%–100%) to generate the client extract.',
+                whatToDoAr: 'تحديث الكميات المنفذة الحالية ونسب الصرف (75%–100%) لإصدار المستخلص الجاري للعميل.',
+                whyItMattersEn: 'Translates physical site completion directly into billable client revenue.',
+                whyItMattersAr: 'يحول نسب الإنجاز الميداني إلى مستحقات مالية جاهزة للتحصيل.',
+                route: '/extracts',
+            },
+        ],
+    },
+    {
+        id: 'accounting',
+        labelEn: 'Accounting & Finance',
+        labelAr: 'الحسابات والمالية',
+        subtitleEn: 'Merna Maged — Issue Payment Requests PR, attach POP & reconcile 80 client ledgers',
+        subtitleAr: 'أ. ميرنا ماجد — إصدار طلبات الصرف PR وإرفاق POP ومطابقة 80 حساب عميل',
+        icon: Receipt,
+        steps: [
+            {
+                stepNumber: 1,
+                badgeEn: 'Stage 3 · NPO ➔ PR ➔ POP',
+                badgeAr: 'مرحلة 3 · دورة الصرف',
+                titleEn: 'Convert Approved POs to Payment Requests (PR) & Attach POP',
+                titleAr: 'تحويل أوامر الشراء لطلبات صرف (PR) وإرفاق إثبات الدفع (POP)',
+                whatToDoEn: 'Verify Submittal-gated NPOs, issue official Payment Requests, and attach bank transfer POP receipts.',
+                whatToDoAr: 'مراجعة أوامر الشراء المعتمدة وإصدار طلب الصرف (PR) ورفع إيصال التحويل البنكي (POP).',
+                whyItMattersEn: 'Enforces strict 3-way financial control before any transfer leaves company accounts.',
+                whyItMattersAr: 'يطبق الرقابة الثلاثية الصارمة قبل خروج أي مبالغ من حسابات الشركة.',
+                route: '/procurement',
+            },
+            {
+                stepNumber: 2,
+                badgeEn: 'Stage 5 · Client Ledgers',
+                badgeAr: 'مرحلة 5 · حسابات العملاء',
+                titleEn: 'Reconcile 80 Client Account Statements & Extract Billings',
+                titleAr: 'مطابقة كشوف حسابات الـ 80 عميل والدفعات المحصلة',
+                whatToDoEn: 'Audit customer bank transfers, opening balances, and contract debits (e.g. C096 statement of 107,048 EGP).',
+                whatToDoAr: 'مراجعة تحويلات العملاء والأرصدة الافتتاحية ومديونيات المستخلصات (مثل حساب C096 بقيمة 107,048 ج.م).',
+                whyItMattersEn: 'Keeps all 80 client statements 100% reconciled and ready for instant PDF export.',
+                whyItMattersAr: 'يضمن دقة ومطابقة جميع كشوف حسابات العملاء وجاهزيتها للطباعة الفورية.',
+                route: '/extracts',
+            },
+            {
+                stepNumber: 3,
+                badgeEn: 'Stage 6 · Vaults & Cards',
+                badgeAr: 'مرحلة 6 · الخزن والكروت',
+                titleEn: 'Settle 7 Cash/Bank Vaults & 9 Credit Card Installments',
+                titleAr: 'تسوية أرصدة الـ 7 خزن والبنوك وأقساط الـ 9 كروت ائتمان',
+                whatToDoEn: 'Record daily custody movements (254,833.88 EGP cash/banks) and track unused card limits (483,450.31 EGP).',
+                whatToDoAr: 'تسجيل حركات العهدة والبنوك (254,833.88 ج.م) ومتابعة الحدود المتاحة لكروت الائتمان (483,450.31 ج.م).',
+                whyItMattersEn: 'Prevents credit card late fees and maintains accurate daily treasury reporting.',
+                whyItMattersAr: 'يمنع غرامات التأخير البنكية ويوفر تقرير سيولة يومي دقيق للإدارة.',
+                route: '/financials',
+            },
+        ],
+    },
+    {
+        id: 'logistics',
+        labelEn: 'Logistics & Stores',
+        labelAr: 'اللوجستيات والمخازن',
+        subtitleEn: 'Milad Haroun — Dispatch fleet, Uber Bike/Trucks & manage 4 warehouses',
+        subtitleAr: 'أ. ميلاد هارون — تشغيل الأسطول وأوبر بايك/النقل وإدارة الـ 4 مخازن',
+        icon: Truck,
+        steps: [
+            {
+                stepNumber: 1,
+                badgeEn: 'Stage 3 · 4 Warehouses',
+                badgeAr: 'مرحلة 3 · المخازن الأربعة',
+                titleEn: 'Manage Inventory Across 4 Warehouses & Site Custody',
+                titleAr: 'إدارة المخزون والتوريد عبر الـ 4 مخازن وعهد المواقع',
+                whatToDoEn: 'Log stock in/out across Ring Road 1 & 2, Nozha HQ Store, and Active Site Custody.',
+                whatToDoAr: 'تسجيل حركات الاستلام والصرف في مخزن الدائري 1 و2 ومخزن النزهة الرئيسي وعهد المواقع.',
+                whyItMattersEn: 'Stops duplicate buying of materials already available in company stores.',
+                whyItMattersAr: 'يمنع تكرار شراء خامات متوفرة بالفعل في مخازن الشركة.',
+                route: '/procurement',
+            },
+            {
+                stepNumber: 2,
+                badgeEn: 'Stage 3 · Fleet & OCR',
+                badgeAr: 'مرحلة 3 · الأسطول والفواتير',
+                titleEn: 'Scan Local Hardware (Mawan) Bills & Dispatch Fleet',
+                titleAr: 'مسح فواتير الموانين بالذكاء الاصطناعي وتشغيل النقل',
+                whatToDoEn: 'Digitize handwritten site receipts via OCR and dispatch company cars, Uber Bike, or Dababa/Jumbo trucks.',
+                whatToDoAr: 'مسح الفواتير اليدوية بالـ OCR وتوجيه سيارات الشركة أو أوبر بايك أو الدبابة/الجامبو للمواقع.',
+                whyItMattersEn: 'Captures every petty-cash hardware purchase and optimizes Cairo transport routes.',
+                whyItMattersAr: 'يوثق كافة مشتريات العهدة النقدية ويرشد تكاليف الشحن والنقل اليومية.',
+                route: '/procurement',
+            },
+            {
+                stepNumber: 3,
+                badgeEn: 'Field GPS · 21→20 Cycle',
+                badgeAr: 'بصمة GPS · دورة 21←20',
+                titleEn: 'Verify Field GPS Check-Ins & Site Transfers',
+                titleAr: 'متابعة بصمة الـ GPS الميدانية وتحركات فرق المواقع',
+                whatToDoEn: 'Monitor live GPS coordinates for 16 engineers/staff and confirm daily site attendance.',
+                whatToDoAr: 'مراجعة مواقع الـ GPS اللحظية لـ 16 مهندس وموظف وتأكيد الحضور الميداني بالمواقع.',
+                whyItMattersEn: 'Verifies on-site presence and feeds directly into the 21st-to-20th payroll cycle.',
+                whyItMattersAr: 'يؤكد التواجد الفعلي بالمواقع ويغذي مسير الرواتب الشهري (دورة 21 إلى 20) تلقائياً.',
+                route: '/attendance',
+            },
+        ],
+    },
+];
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -40,6 +251,9 @@ export const Dashboard = () => {
     const navigate = useNavigate();
     const { projects, engineers, entries, clearMonthlyData, appUsageLogs, updateProject, globalSettings, updateGlobalSetting } = useData();
     const { role } = useAuth();
+    const { activeProject, activePersona, setActivePersona, viewComplexity, toggleViewComplexity } = useWorkflow();
+    const { language } = useLanguage();
+    const isAr = language === 'ar';
 
     // Configurable target hours (Supabase app_settings with localStorage fallback)
     const [targetHours, setTargetHours] = useState(() => {
@@ -51,6 +265,9 @@ export const Dashboard = () => {
     const [isUpdatingTracker, setIsUpdatingTracker] = useState(false);
     const [trackerVersion, setTrackerVersion] = useState('');
     const [trackerUrl, setTrackerUrl] = useState('');
+    const [showDetailedCharts, setShowDetailedCharts] = useState(false);
+
+    const selectedPersonaConfig = PERSONA_COMMAND_CONFIGS.find(p => p.id === activePersona) || PERSONA_COMMAND_CONFIGS[0];
 
     useEffect(() => {
         if (globalSettings['tracker_version']) setTrackerVersion(globalSettings['tracker_version']);
@@ -194,7 +411,7 @@ export const Dashboard = () => {
             animate="visible"
             className="space-y-4 md:space-y-8"
         >
-            <div className="text-center md:text-left mb-4 md:mb-8 relative">
+            <div className="text-center md:text-left mb-4 md:mb-6 relative">
                 <EditableText
                     settingKey="dashboard_main_title"
                     defaultText="Insight Dashboard"
@@ -208,6 +425,227 @@ export const Dashboard = () => {
                     as="p"
                     className="text-[#192631]/60 font-medium tracking-wide text-xs md:text-base inline-block pr-6"
                 />
+            </div>
+
+            {/* START HERE: Guided Step-by-Step Command Center */}
+            <div className="glass-card rounded-3xl md:rounded-[32px] p-4 md:p-7 border-2 border-[#e04b2a]/25 bg-gradient-to-br from-white/95 via-white/90 to-[#e04b2a]/[0.04] shadow-xl space-y-6">
+                {/* Command Center Header */}
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 border-b border-[#192631]/10 pb-5">
+                    <div className="flex items-start gap-3.5">
+                        <div className="w-12 h-12 rounded-2xl bg-[#e04b2a] text-white flex items-center justify-center shadow-lg shadow-[#e04b2a]/25 shrink-0">
+                            <Compass className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <div className="flex items-center gap-2 flex-wrap">
+                                <span className="px-2.5 py-0.5 rounded-full bg-[#e04b2a]/15 text-[#e04b2a] text-[10px] font-black uppercase tracking-widest">
+                                    {isAr ? 'ابدأ من هنا · دليل التشغيل السريع' : 'Start Here · Guided Command Center'}
+                                </span>
+                                <span className="px-2.5 py-0.5 rounded-full bg-[#123524]/10 text-[#123524] text-[10px] font-bold">
+                                    {isAr ? '3 خطوات يومية واضحة حسب دورك' : 'Role-Based 3 Simple Steps Today'}
+                                </span>
+                            </div>
+                            <h3 className="text-lg md:text-2xl font-black text-[#192631] tracking-tight mt-1">
+                                {isAr
+                                    ? 'مركز القيادة التوجيهي — اختر دورك ونفّذ خطواتك اليومية بضغطة واحدة'
+                                    : 'Start Here: Guided Step-by-Step Command Center'}
+                            </h3>
+                            <p className="text-xs md:text-sm text-[#192631]/70 mt-0.5">
+                                {isAr ? selectedPersonaConfig.subtitleAr : selectedPersonaConfig.subtitleEn}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 self-start lg:self-center">
+                        <button
+                            type="button"
+                            onClick={toggleViewComplexity}
+                            className={`px-3.5 py-2 rounded-xl text-xs font-black border transition-all flex items-center gap-2 ${
+                                viewComplexity === 'guided'
+                                    ? 'bg-[#123524] text-white border-[#123524] shadow-sm'
+                                    : 'bg-white text-[#192631] border-[#192631]/15 hover:border-[#e04b2a]/40'
+                            }`}
+                        >
+                            <Sparkles className="w-3.5 h-3.5 text-[#e04b2a]" />
+                            {viewComplexity === 'guided'
+                                ? (isAr ? 'الوضع المبسط مفعّل' : 'Guided Mode Active')
+                                : (isAr ? 'الوضع التفصيلي الكامل' : 'Full Expert View')}
+                        </button>
+                    </div>
+                </div>
+
+                {/* a) Persona Selector Tabs */}
+                <div>
+                    <div className="text-[11px] font-black uppercase tracking-wider text-[#192631]/60 mb-2.5">
+                        {isAr ? '1. اختر دورك الوظيفي (Persona):' : '1. Select Your Role / Persona:'}
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2.5">
+                        {PERSONA_COMMAND_CONFIGS.map((persona) => {
+                            const Icon = persona.icon;
+                            const isSelected = activePersona === persona.id;
+                            return (
+                                <button
+                                    key={persona.id}
+                                    type="button"
+                                    onClick={() => setActivePersona(persona.id)}
+                                    className={`p-3.5 rounded-2xl border text-left transition-all flex items-start gap-3 ${
+                                        isSelected
+                                            ? 'bg-[#192631] text-white border-[#192631] shadow-md ring-2 ring-[#e04b2a]/40'
+                                            : 'bg-white/85 hover:bg-white text-[#192631] border-[#192631]/12 hover:border-[#e04b2a]/40'
+                                    }`}
+                                >
+                                    <div
+                                        className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
+                                            isSelected ? 'bg-[#e04b2a] text-white' : 'bg-[#192631]/[0.07] text-[#192631]'
+                                        }`}
+                                    >
+                                        <Icon className="w-4 h-4" />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <div className="flex items-center justify-between gap-1">
+                                            <span className="text-xs md:text-sm font-black truncate">
+                                                {isAr ? persona.labelAr : persona.labelEn}
+                                            </span>
+                                            {isSelected && (
+                                                <span className="w-2 h-2 rounded-full bg-[#e04b2a] shrink-0" />
+                                            )}
+                                        </div>
+                                        <p
+                                            className={`text-[11px] mt-1 leading-snug line-clamp-2 ${
+                                                isSelected ? 'text-white/80' : 'text-[#192631]/65'
+                                            }`}
+                                        >
+                                            {isAr ? persona.subtitleAr : persona.subtitleEn}
+                                        </p>
+                                    </div>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* b) "Your 3 Simple Steps Today" Cards */}
+                <div>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                        <span className="text-[11px] font-black uppercase tracking-wider text-[#192631]/60">
+                            {isAr
+                                ? `2. خطواتك الـ 3 البسيطة اليوم (${selectedPersonaConfig.labelAr}):`
+                                : `2. Your 3 Simple Steps Today (${selectedPersonaConfig.labelEn}):`}
+                        </span>
+                        <span className="text-[11px] font-bold text-[#e04b2a]">
+                            {isAr ? 'اضغط على أي خطوة للتنفيذ المباشر ➔' : 'Click any step to jump straight to execution ➔'}
+                        </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                        {selectedPersonaConfig.steps.map((step) => (
+                            <div
+                                key={step.stepNumber}
+                                className="rounded-2xl bg-white border border-[#192631]/12 hover:border-[#e04b2a]/50 p-4 md:p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                            >
+                                <div>
+                                    <div className="flex items-center justify-between gap-2 mb-3">
+                                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#e04b2a] text-white text-xs font-black">
+                                            {isAr ? `الخطوة ${step.stepNumber}` : `Step ${step.stepNumber}`}
+                                        </span>
+                                        <span className="px-2.5 py-1 rounded-full bg-[#192631]/[0.06] text-[#192631]/80 text-[10px] font-bold uppercase tracking-wider">
+                                            {isAr ? step.badgeAr : step.badgeEn}
+                                        </span>
+                                    </div>
+
+                                    <h4 className="text-sm md:text-base font-black text-[#192631] leading-snug mb-2.5">
+                                        {isAr ? step.titleAr : step.titleEn}
+                                    </h4>
+
+                                    <div className="space-y-2 text-xs">
+                                        <div className="p-2.5 rounded-xl bg-[#192631]/[0.04] border border-[#192631]/8">
+                                            <span className="font-black text-[#192631] block mb-0.5">
+                                                {isAr ? 'ماذا تفعل الآن؟' : 'What to do:'}
+                                            </span>
+                                            <p className="text-[#192631]/75 leading-relaxed">
+                                                {isAr ? step.whatToDoAr : step.whatToDoEn}
+                                            </p>
+                                        </div>
+
+                                        <div className="p-2.5 rounded-xl bg-[#123524]/[0.06] border border-[#123524]/15">
+                                            <span className="font-black text-[#123524] block mb-0.5">
+                                                {isAr ? 'لماذا هذه الخطوة مهمة؟' : 'Why it matters:'}
+                                            </span>
+                                            <p className="text-[#123524]/90 leading-relaxed">
+                                                {isAr ? step.whyItMattersAr : step.whyItMattersEn}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    onClick={() => navigate(step.route)}
+                                    className="mt-4 w-full py-2.5 px-4 rounded-xl bg-[#192631] hover:bg-[#e04b2a] text-white text-xs font-black transition-colors flex items-center justify-center gap-2 shadow-sm"
+                                >
+                                    <span>{isAr ? 'نفّذ هذه الخطوة الآن ➔' : 'Do This Step Now ➔'}</span>
+                                    <ArrowRight className="w-3.5 h-3.5" />
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* c) Active Project 6-Stage Progress Map */}
+                <div className="pt-4 border-t border-[#192631]/10">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                        <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-[11px] font-black uppercase tracking-wider text-[#192631]/60">
+                                {isAr ? '3. خريطة مراحل المشروع النشط (6 مراحل):' : '3. Active Project 6-Stage Progress Map:'}
+                            </span>
+                            {activeProject ? (
+                                <span className="px-2.5 py-0.5 rounded-lg bg-[#e04b2a]/12 border border-[#e04b2a]/30 text-[#e04b2a] text-xs font-black">
+                                    {activeProject.code} — {activeProject.name} ({activeProject.completionPercent}% {isAr ? 'إنجاز' : 'Complete'})
+                                </span>
+                            ) : (
+                                <span className="px-2.5 py-0.5 rounded-lg bg-[#192631]/10 text-[#192631] text-xs font-black">
+                                    {isAr ? 'جميع المشاريع (77 مشروع)' : 'All Projects Portfolio (77 Projects)'}
+                                </span>
+                            )}
+                        </div>
+                        {activeProject && (
+                            <span className="text-[11px] font-bold text-[#192631]/65 font-mono">
+                                {isAr ? 'المستخلصات:' : 'Extracts:'} #{activeProject.extractsCount} · {isAr ? 'قيمة العقد:' : 'Contract:'} EGP {activeProject.contractValue.toLocaleString()}
+                            </span>
+                        )}
+                    </div>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+                        {NEXUS_LIFECYCLE_STAGES.map((stage) => (
+                            <button
+                                key={stage.id}
+                                type="button"
+                                onClick={() => navigate(stage.path)}
+                                className="p-3 rounded-2xl bg-white/90 hover:bg-[#192631] text-[#192631] hover:text-white border border-[#192631]/12 hover:border-[#192631] transition-all text-left group/stage flex flex-col justify-between"
+                            >
+                                <div>
+                                    <div className="flex items-center justify-between gap-1 mb-1.5">
+                                        <span className="px-2 py-0.5 rounded-md bg-[#e04b2a]/15 group-hover/stage:bg-[#e04b2a] text-[#e04b2a] group-hover/stage:text-white text-[10px] font-black font-mono">
+                                            {stage.stepNumber}. {stage.id.toUpperCase()}
+                                        </span>
+                                        <span className="text-[10px] font-black font-mono px-1.5 py-0.5 rounded bg-[#192631]/[0.06] group-hover/stage:bg-white/15">
+                                            {stage.badge}
+                                        </span>
+                                    </div>
+                                    <div className="text-xs font-black leading-snug">
+                                        {isAr ? stage.titleAr : stage.titleEn}
+                                    </div>
+                                    <p className="text-[10px] opacity-70 mt-1 line-clamp-2 leading-relaxed">
+                                        {isAr ? stage.shortDescAr : stage.shortDescEn}
+                                    </p>
+                                </div>
+                                <div className="mt-2.5 pt-2 border-t border-current/10 flex items-center justify-between text-[10px] font-bold">
+                                    <span className="truncate opacity-75">{isAr ? stage.ownerRoleAr : stage.ownerRoleEn}</span>
+                                    <ArrowUpRight className="w-3 h-3 text-[#e04b2a] shrink-0" />
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             <SystemHint>
@@ -380,11 +818,43 @@ export const Dashboard = () => {
                 })}
             </div>
 
-            {/* Live Operations Central Monitor */}
-            <LiveOperationsMonitor />
+            {/* Guided Mode Toggle for Detailed Executive Charts */}
+            {viewComplexity === 'guided' && (
+                <div className="glass-card rounded-2xl p-4 border border-[#192631]/12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white/80">
+                    <div>
+                        <p className="text-sm font-black text-[#192631]">
+                            {isAr
+                                ? 'الرسوم البيانية التنفيذية ومتابعة الفرق المباشرة'
+                                : 'Detailed Executive Charts, Live Telemetry & Admin Controls'}
+                        </p>
+                        <p className="text-xs text-[#192631]/65">
+                            {isAr
+                                ? 'تم طي الجداول التفصيلية لتبسيط الشاشة — يمكنك إظهارها في أي وقت بضغطة واحدة.'
+                                : 'Secondary telemetry, desktop tracker charts, and NVR feeds are collapsed in Guided Mode to keep your workspace clean.'}
+                        </p>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => setShowDetailedCharts(prev => !prev)}
+                        className="px-4 py-2.5 rounded-xl bg-[#192631] hover:bg-[#e04b2a] text-white text-xs font-black transition-colors flex items-center justify-center gap-2 shrink-0"
+                    >
+                        <span>
+                            {showDetailedCharts
+                                ? (isAr ? 'إخفاء الرسوم البيانية التفصيلية' : 'Hide Detailed Executive Charts')
+                                : (isAr ? 'إظهار الرسوم البيانية التفصيلية' : 'Show Detailed Executive Charts')}
+                        </span>
+                        {showDetailedCharts ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </button>
+                </div>
+            )}
 
-            {/* Main Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
+            {(viewComplexity === 'full' || showDetailedCharts) && (
+                <div className="space-y-4 md:space-y-8">
+                    {/* Live Operations Central Monitor */}
+                    <LiveOperationsMonitor />
+
+                    {/* Main Content Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
                 {/* Recent Activity */}
                 <motion.div variants={itemVariants} className="lg:col-span-2 glass-card rounded-2xl md:rounded-[32px] p-4 md:p-8 relative overflow-hidden group min-h-[200px] md:min-h-[500px]">
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(243, 130, 45, 0.02), transparent)' }} />
@@ -794,6 +1264,8 @@ export const Dashboard = () => {
                     </motion.div>
                 )
             }
+                </div>
+            )}
         </motion.div >
     );
 };

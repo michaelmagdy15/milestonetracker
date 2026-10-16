@@ -26,6 +26,7 @@ import {
   BadgeDollarSign,
 } from 'lucide-react';
 import clsx from 'clsx';
+import { GuidedStepBanner } from './GuidedStepBanner';
 
 export type TradeSpecialtyCode =
   | 'ALL'
@@ -2108,6 +2109,40 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
 
   return (
     <div className="space-y-6 text-[#192631] text-start">
+      <GuidedStepBanner
+        lifecycleStageNumber={4}
+        moduleTitleEn="56 Subcontractors Directory, CEO Ratings & Statements"
+        moduleTitleAr="دليل الـ 56 مقاول باطن وتقييم الإدارة والمستخلصات"
+        activeStepId={activeSubTab}
+        onSelectStep={(id) => setActiveSubTab(id as any)}
+        steps={[
+          {
+            id: 'directory',
+            stepNum: 1,
+            titleEn: 'Select & Rate Subcontractor (CEO A/B/C Matrix)',
+            titleAr: 'اختيار وتقييم مقاول الباطن (مصفوفة A/B/C)',
+            actionHintEn: 'Filter across 13 trade specialties and update 4-pillar CEO ratings (Quality, Price, Schedule, Ethics).',
+            actionHintAr: 'فلتر بين 13 تخصص هندسي وحدّث تقييم الإدارة الرباعي (الجودة، السعر، المواعيد، التعامل).',
+          },
+          {
+            id: 'statements',
+            stepNum: 2,
+            titleEn: 'Verify Site Inspection (SIR) & Issue Statement (ST)',
+            titleAr: 'مراجعة استلام الموقع وإصدار مستخلص مقاول (ST)',
+            actionHintEn: 'Verify site engineer SIR approval, calculate 5% workmanship retention, and approve ST statement.',
+            actionHintAr: 'تأكد من اعتماد استلام مهندس الموقع (SIR) واحتسب خصم 5% تأمين أعمال واعتمد المستخلص (ST).',
+          },
+          {
+            id: 'cpo_rcb',
+            stepNum: 3,
+            titleEn: 'Issue Cash Payment Order (CPO) & Custody (RCB)',
+            titleAr: 'إصدار أمر دفع نقدي (CPO) أو تسوية عهدة (RCB)',
+            actionHintEn: 'Generate standardized CPO/RCB coding sheet codes and route to Merna Maged (Accounting) for payout.',
+            actionHintAr: 'أصدر كود أمر الدفع النقدي (CPO) أو تسوية العهدة (RCB) وأرسله لأستاذة ميرنا ماجد للصرف.',
+          },
+        ]}
+      />
+
       {/* Top Status Banner */}
       {statusBanner && (
         <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-xs font-bold animate-fade-in">

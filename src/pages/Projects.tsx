@@ -3,6 +3,7 @@ import { Plus, Trash2, Edit2, Folder, X, Check, Users, Calendar, Target, Refresh
 import { useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
+import { useWorkflow, NEXUS_LIFECYCLE_STAGES } from '../context/WorkflowContext';
 import type { Project, ProjectPhase } from '../types';
 import { motion } from 'framer-motion';
 import { RiskIndicator } from '../components/RiskIndicator';
@@ -130,6 +131,7 @@ const PhaseConfigModal = ({
 export const Projects: React.FC = () => {
     const navigate = useNavigate();
     const { role, engineerId } = useAuth();
+    const { activeProjectCode, setActiveProjectCode, activeProject } = useWorkflow();
     const { projects, projectPhases, engineers, milestones, entries, addProject, updateProject, deleteProject, addMilestone, addTask, updateProjectOrder, addProjectPhase, updateProjectPhase, deleteProjectPhase, addNotification } = useData();
     const [isAdding, setIsAdding] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
@@ -839,13 +841,94 @@ export const Projects: React.FC = () => {
             {/* Active Turnkey Contracting Portfolio Section (C096, C063, C091, etc.) */}
             {portfolioFilter !== 'milestones' && (
                 <div className="space-y-5 pt-4">
+                    {/* Pinned Active Project Workflow Bar */}
+                    <div className="bg-gradient-to-r from-[#192631] via-[#1f303e] to-[#192631] text-white p-6 rounded-3xl border border-[#e04b2a]/40 shadow-xl space-y-4">
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                            <div className="space-y-1">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/20 border border-[#e04b2a]/40 text-[#ff8b70] text-[10px] font-black uppercase tracking-widest">
+                                    <span>📌 Pinned Active Project Workflow Bar</span>
+                                    <span>·</span>
+                                    <span>شريط سير عمل المشروع النشط المثبت</span>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-3 pt-1">
+                                    <span className="px-3 py-1 rounded-xl bg-[#e04b2a] text-white font-mono text-sm font-black shadow-sm">
+                                        {activeProjectCode}
+                                    </span>
+                                    <h4 className="text-lg md:text-xl font-black text-white tracking-tight">
+                                        {activeProjectCode === 'ALL'
+                                            ? 'All 77 Actpert Portfolio Projects (Global View)'
+                                            : `${activeProject?.name || activeProjectCode} — ${activeProject?.clientName || ''}`}
+                                    </h4>
+                                    {activeProject && activeProjectCode !== 'ALL' && (
+                                        <span className="text-xs font-bold text-white/70 bg-white/10 px-3 py-1 rounded-full">
+                                            {activeProject.location} · Completion: {activeProject.completionPercent}%
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-2 self-start lg:self-auto">
+                                <select
+                                    value={activeProjectCode}
+                                    onChange={(e) => setActiveProjectCode(e.target.value)}
+                                    aria-label="Select Active Project"
+                                    className="bg-white/10 hover:bg-white/15 text-white text-xs font-bold rounded-xl px-3.5 py-2.5 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#e04b2a]"
+                                >
+                                    <option value="ALL" className="bg-[#192631] text-white">ALL — All 77 Projects</option>
+                                    {NEXUS_LIVE_PROJECTS.map(p => (
+                                        <option key={p.code} value={p.code} className="bg-[#192631] text-white">
+                                            {p.code} — {p.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-2 border-t border-white/10">
+                            {NEXUS_LIFECYCLE_STAGES.map((stage) => {
+                                const stepShortLabels: Record<number, string> = {
+                                    1: '1. BOQ',
+                                    2: '2. Submittals',
+                                    3: '3. Buy & Stores',
+                                    4: '4. Subcontractors',
+                                    5: '5. Extracts',
+                                    6: '6. Treasury',
+                                };
+                                const label = stepShortLabels[stage.stepNumber] || `${stage.stepNumber}. ${stage.titleEn}`;
+                                return (
+                                    <button
+                                        key={stage.id}
+                                        type="button"
+                                        onClick={() => navigate(stage.path)}
+                                        className="group flex flex-col justify-between p-3 rounded-2xl bg-white/[0.07] hover:bg-[#e04b2a] border border-white/10 hover:border-[#e04b2a] text-left transition-all shadow-sm hover:-translate-y-0.5"
+                                    >
+                                        <div className="flex items-center justify-between gap-1 w-full mb-1.5">
+                                            <span className="text-xs font-black text-white tracking-tight">
+                                                {label}
+                                            </span>
+                                            <span className="px-1.5 py-0.5 rounded-md bg-white/15 group-hover:bg-white/25 text-[10px] font-mono font-black text-white">
+                                                {stage.badge}
+                                            </span>
+                                        </div>
+                                        <div className="text-[11px] font-bold text-white/75 group-hover:text-white truncate">
+                                            {stage.titleAr}
+                                        </div>
+                                        <div className="text-[9px] font-semibold text-white/50 group-hover:text-white/90 truncate mt-0.5">
+                                            {stage.ownerRoleEn}
+                                        </div>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/80 backdrop-blur-xl p-5 rounded-2xl border border-[#192631]/10 shadow-sm">
                         <div>
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[10px] font-bold uppercase tracking-wider mb-1.5">
-                                Turnkey Contracting Portfolio · Live Extracts, BOQ, Submittals & Site Custody
+                                Live Actpert 77-Project Portfolio · Live Extracts, BOQ, Submittals & Site Custody
                             </div>
                             <h3 className="text-2xl font-black text-[#192631] tracking-tight">
-                                Active Contracting <span className="text-[#e04b2a]">Sites & Contracts ({NEXUS_LIVE_PROJECTS.length} Featured / 46 Total)</span>
+                                Active Contracting <span className="text-[#e04b2a]">Sites & Contracts ({NEXUS_LIVE_PROJECTS.length} Featured / 77 Total)</span>
                             </h3>
                         </div>
                         <div className="flex items-center gap-2 bg-[#192631]/[0.05] p-1.5 rounded-xl border border-[#192631]/10 self-start md:self-auto">
@@ -867,96 +950,137 @@ export const Projects: React.FC = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {NEXUS_LIVE_PROJECTS.map(proj => (
-                            <div
-                                key={proj.id}
-                                className="bg-white/80 backdrop-blur-xl rounded-3xl border border-[#192631]/10 p-6 shadow-sm hover:border-[#e04b2a]/40 transition-all flex flex-col justify-between"
-                            >
-                                <div>
-                                    <div className="flex items-center justify-between gap-2 mb-3">
-                                        <span className="px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] font-mono text-xs font-black">
-                                            {proj.code} · Contract #{proj.contractNo}
-                                        </span>
-                                        <span className="px-2.5 py-1 rounded-full bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-[10px] font-bold">
-                                            {proj.status}
-                                        </span>
-                                    </div>
-                                    <h4 className="text-lg font-black text-[#192631] leading-snug mb-1">
-                                        {proj.name}
-                                    </h4>
-                                    <p className="text-xs text-[#192631]/70 font-medium flex items-center gap-1.5 mb-4">
-                                        <MapPin className="w-3.5 h-3.5 text-[#e04b2a]" />
-                                        {proj.location} · Client: <strong className="text-[#192631]">{proj.clientName}</strong>
-                                    </p>
-
-                                    <div className="grid grid-cols-2 gap-2.5 p-3.5 rounded-2xl bg-[#f5f5f5]/90 border border-[#192631]/10 mb-4">
-                                        <div>
-                                            <p className="text-[10px] font-bold uppercase text-[#192631]/60">Contract Value</p>
-                                            <p className="text-sm font-black text-[#192631]">EGP {proj.contractValue.toLocaleString()}</p>
+                        {NEXUS_LIVE_PROJECTS.map(proj => {
+                            const isPinned = activeProjectCode === proj.code;
+                            return (
+                                <div
+                                    key={proj.id}
+                                    className={`bg-white/80 backdrop-blur-xl rounded-3xl border p-6 shadow-sm transition-all flex flex-col justify-between ${
+                                        isPinned
+                                            ? 'border-[#e04b2a] ring-2 ring-[#e04b2a]/25 shadow-lg'
+                                            : 'border-[#192631]/10 hover:border-[#e04b2a]/40'
+                                    }`}
+                                >
+                                    <div>
+                                        <div className="flex items-center justify-between gap-2 mb-3">
+                                            <span className="px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] font-mono text-xs font-black">
+                                                {proj.code} · Contract #{proj.contractNo}
+                                            </span>
+                                            <div className="flex items-center gap-1.5">
+                                                {isPinned && (
+                                                    <span className="px-2.5 py-1 rounded-full bg-[#e04b2a] text-white text-[10px] font-black uppercase tracking-wider">
+                                                        📌 Pinned
+                                                    </span>
+                                                )}
+                                                <span className="px-2.5 py-1 rounded-full bg-[#123524]/10 border border-[#123524]/25 text-[#123524] text-[10px] font-bold">
+                                                    {proj.status}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className="text-[10px] font-bold uppercase text-[#192631]/60">Work Achieved</p>
-                                            <p className="text-sm font-black text-[#e04b2a]">EGP {proj.actualWorkAchieved.toLocaleString()}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-[10px] font-bold uppercase text-[#192631]/60">Collected</p>
-                                            <p className="text-sm font-black text-[#123524]">EGP {proj.totalCollected.toLocaleString()}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-[10px] font-bold uppercase text-[#192631]/60">Net Balance Due</p>
-                                            <p className="text-sm font-black text-[#192631]">EGP {proj.netReceivable.toLocaleString()}</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <div className="flex items-center justify-between text-xs font-bold mb-1">
-                                            <span className="text-[#192631]/70">Execution Progress ({proj.extractsCount} Extracts)</span>
-                                            <span className="text-[#123524]">{proj.completionPercent}%</span>
-                                        </div>
-                                        <div className="w-full h-2 rounded-full bg-[#192631]/10 overflow-hidden">
-                                            <div
-                                                className="h-full bg-[#e04b2a] rounded-full transition-all"
-                                                style={{ width: `${Math.min(100, proj.completionPercent)}%` }}
-                                            />
-                                        </div>
-                                        <p className="text-[11px] text-[#192631]/65 mt-2">
-                                            Site Eng: <strong>{proj.siteEngineer}</strong> · Tech Office: <strong>{proj.leadEngineer}</strong>
+                                        <h4 className="text-lg font-black text-[#192631] leading-snug mb-1">
+                                            {proj.name}
+                                        </h4>
+                                        <p className="text-xs text-[#192631]/70 font-medium flex items-center gap-1.5 mb-4">
+                                            <MapPin className="w-3.5 h-3.5 text-[#e04b2a]" />
+                                            {proj.location} · Client: <strong className="text-[#192631]">{proj.clientName}</strong>
                                         </p>
+
+                                        <div className="grid grid-cols-2 gap-2.5 p-3.5 rounded-2xl bg-[#f5f5f5]/90 border border-[#192631]/10 mb-4">
+                                            <div>
+                                                <p className="text-[10px] font-bold uppercase text-[#192631]/60">Contract Value</p>
+                                                <p className="text-sm font-black text-[#192631]">EGP {proj.contractValue.toLocaleString()}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-[10px] font-bold uppercase text-[#192631]/60">Work Achieved</p>
+                                                <p className="text-sm font-black text-[#e04b2a]">EGP {proj.actualWorkAchieved.toLocaleString()}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-[10px] font-bold uppercase text-[#192631]/60">Collected</p>
+                                                <p className="text-sm font-black text-[#123524]">EGP {proj.totalCollected.toLocaleString()}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-[10px] font-bold uppercase text-[#192631]/60">Net Balance Due</p>
+                                                <p className="text-sm font-black text-[#192631]">EGP {proj.netReceivable.toLocaleString()}</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="mb-4">
+                                            <div className="flex items-center justify-between text-xs font-bold mb-1">
+                                                <span className="text-[#192631]/70">Execution Progress ({proj.extractsCount} Extracts)</span>
+                                                <span className="text-[#123524]">{proj.completionPercent}%</span>
+                                            </div>
+                                            <div className="w-full h-2 rounded-full bg-[#192631]/10 overflow-hidden">
+                                                <div
+                                                    className="h-full bg-[#e04b2a] rounded-full transition-all"
+                                                    style={{ width: `${Math.min(100, proj.completionPercent)}%` }}
+                                                />
+                                            </div>
+                                            <p className="text-[11px] text-[#192631]/65 mt-2">
+                                                Site Eng: <strong>{proj.siteEngineer}</strong> · Tech Office: <strong>{proj.leadEngineer}</strong>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2 pt-3 border-t border-[#192631]/10">
+                                        <button
+                                            type="button"
+                                            onClick={() => setActiveProjectCode(proj.code)}
+                                            className={`w-full py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 shadow-sm transition-all ${
+                                                isPinned
+                                                    ? 'bg-[#123524] text-white'
+                                                    : 'bg-[#e04b2a]/10 hover:bg-[#e04b2a] text-[#e04b2a] hover:text-white border border-[#e04b2a]/30'
+                                            }`}
+                                        >
+                                            <span>📌 Pin & Open Workflow</span>
+                                            <span className="text-[10px] opacity-80">({proj.code})</span>
+                                        </button>
+
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setActiveProjectCode(proj.code);
+                                                    navigate('/extracts');
+                                                }}
+                                                className="py-2.5 px-3 rounded-xl bg-[#e04b2a] hover:bg-[#c83e1f] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                                            >
+                                                <Receipt className="w-3.5 h-3.5" /> Works Extracts
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setActiveProjectCode(proj.code);
+                                                    navigate('/boq');
+                                                }}
+                                                className="py-2.5 px-3 rounded-xl bg-[#192631] hover:bg-[#e04b2a] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all"
+                                            >
+                                                <Calculator className="w-3.5 h-3.5" /> R02 BOQ & Rates
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setActiveProjectCode(proj.code);
+                                                    navigate('/submittals');
+                                                }}
+                                                className="py-2 px-3 rounded-xl bg-[#192631]/[0.06] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-xs font-bold flex items-center justify-center gap-1.5 transition-all"
+                                            >
+                                                <FileCheck2 className="w-3.5 h-3.5" /> 51 Submittals
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setActiveProjectCode(proj.code);
+                                                    navigate('/procurement');
+                                                }}
+                                                className="py-2 px-3 rounded-xl bg-[#192631]/[0.06] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-xs font-bold flex items-center justify-center gap-1.5 transition-all"
+                                            >
+                                                <PackageCheck className="w-3.5 h-3.5" /> POs & Custody
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div className="grid grid-cols-2 gap-2 pt-3 border-t border-[#192631]/10">
-                                    <button
-                                        type="button"
-                                        onClick={() => navigate('/extracts')}
-                                        className="py-2.5 px-3 rounded-xl bg-[#e04b2a] hover:bg-[#c83e1f] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all"
-                                    >
-                                        <Receipt className="w-3.5 h-3.5" /> Works Extracts
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => navigate('/boq')}
-                                        className="py-2.5 px-3 rounded-xl bg-[#192631] hover:bg-[#e04b2a] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all"
-                                    >
-                                        <Calculator className="w-3.5 h-3.5" /> R02 BOQ & Rates
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => navigate('/submittals')}
-                                        className="py-2 px-3 rounded-xl bg-[#192631]/[0.06] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-xs font-bold flex items-center justify-center gap-1.5 transition-all"
-                                    >
-                                        <FileCheck2 className="w-3.5 h-3.5" /> 51 Submittals
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => navigate('/procurement')}
-                                        className="py-2 px-3 rounded-xl bg-[#192631]/[0.06] hover:bg-[#e04b2a]/10 text-[#192631] hover:text-[#e04b2a] text-xs font-bold flex items-center justify-center gap-1.5 transition-all"
-                                    >
-                                        <PackageCheck className="w-3.5 h-3.5" /> POs & Custody
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             )}

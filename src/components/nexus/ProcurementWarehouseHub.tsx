@@ -26,6 +26,7 @@ import {
   Trash2,
   Send
 } from 'lucide-react';
+import { GuidedStepBanner } from './GuidedStepBanner';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -1110,6 +1111,48 @@ export const ProcurementWarehouseHub: React.FC = () => {
 
   return (
     <div className="space-y-6 text-[#192631] text-start">
+      <GuidedStepBanner
+        lifecycleStageNumber={3}
+        moduleTitleEn="Submittal-Gated Procurement, OCR & 4 Warehouses"
+        moduleTitleAr="المشتريات المربوطة بالاعتمادات وماسح الفواتير والمخازن الأربعة"
+        activeStepId={activeSubTab}
+        onSelectStep={(id) => setActiveSubTab(id as any)}
+        steps={[
+          {
+            id: 'npo',
+            stepNum: 1,
+            titleEn: 'Verify Code A/B Submittal & Issue PO (NPO)',
+            titleAr: 'التحقق من اعتماد الخامة وإصدار أمر الشراء',
+            actionHintEn: 'Confirm material submittal is approved (Code A/B) before issuing a formal Purchase Order (NPO).',
+            actionHintAr: 'تأكد من اعتماد الخامة (Code A/B) قبل إصدار أمر شراء رسمي (NPO).'
+          },
+          {
+            id: 'ocr',
+            stepNum: 2,
+            titleEn: 'Scan Mawan WhatsApp / Handwritten Bill (OCR)',
+            titleAr: 'مسح فاتورة الموان أو الواتساب (OCR)',
+            actionHintEn: 'Extract items, VAT, and discounts from local Mawan WhatsApp messages or handwritten bills into an official PO.',
+            actionHintAr: 'استخرج البنود والضريبة والخصم من رسائل الواتساب أو الفواتير اليدوية للموان وحولها لأمر شراء رسمي.'
+          },
+          {
+            id: 'accounting_logistics',
+            stepNum: 3,
+            titleEn: 'Approve Accounting PR/POP & Dispatch Milad Fleet',
+            titleAr: 'اعتماد طلب الصرف PR وتوجيه أسطول ميلاد',
+            actionHintEn: 'Attach Merna accounting Proof of Payment (POP) and dispatch Milad company car, Uber Bike, or truck.',
+            actionHintAr: 'أرفق إيصال السداد (POP) من حسابات ميرنا ووجّه سيارة الشركة مع ميلاد أو أوبر بايك أو النقل الخارجي.'
+          },
+          {
+            id: 'warehouses',
+            stepNum: 4,
+            titleEn: 'Receive & Transfer Stock Across 4 Warehouses',
+            titleAr: 'استلام وتحويل الخامات بين المخازن الأربعة',
+            actionHintEn: 'Track custody and transfer stock across Ring Road 1 & 2, Nozha HQ Safe Vault, and Project Site Custody.',
+            actionHintAr: 'تابع العهدة وحوّل المخزون بين مخزني الدائري (1 و2) وخزنة مقر النزهة وعهدة مهندس الموقع.'
+          }
+        ]}
+      />
+
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed bottom-6 left-6 z-50 flex items-center gap-3 rounded-xl border border-[#123524]/25 bg-white/80 backdrop-blur-md px-5 py-4 text-sm font-medium text-[#123524] shadow-2xl backdrop-blur-md">

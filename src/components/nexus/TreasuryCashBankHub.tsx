@@ -29,6 +29,7 @@ import {
   Banknote,
   Info,
 } from 'lucide-react';
+import { GuidedStepBanner } from './GuidedStepBanner';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -1839,6 +1840,8 @@ const formatEGP = (value: number): string => {
 
 export const TreasuryCashBankHub: React.FC = () => {
   const [activeSubTab, setActiveSubTab] = useState<SubTabKey>('vaults_banks');
+  const activeTab = activeSubTab;
+  const setActiveTab = setActiveSubTab;
 
   // State for Cash/Vault & Bank Accounts
   const [accounts, setAccounts] = useState<CashBankAccount[]>(INITIAL_CASH_BANK_ACCOUNTS);
@@ -2120,6 +2123,47 @@ export const TreasuryCashBankHub: React.FC = () => {
 
   return (
     <div className="space-y-6 text-[#192631] text-start">
+      <GuidedStepBanner
+        lifecycleStageNumber={6}
+        moduleTitleEn="Executive Treasury, 7 Vaults, 9 Credit Cards & 77-Project Matrix"
+        moduleTitleAr="الخزينة المركزية والبنوك الـ 7 والكروت الـ 9 وربحية الـ 77 مشروع"
+        activeStepId={activeTab}
+        onSelectStep={(id) => setActiveTab(id as any)}
+        steps={[
+          {
+            id: 'vaults_banks',
+            stepNum: 1,
+            titleEn: 'Verify 7 Cash & Bank Vault Balances (254.8K EGP)',
+            titleAr: 'مراجعة أرصدة الـ 7 خزن وحسابات بنكية',
+            actionHintEn: 'Review opening balances, inflows, outflows, and record deposits, payments, or internal transfers across all 7 cash & bank vaults.',
+            actionHintAr: 'راجع الأرصدة الافتتاحية والوارد والمنصرف وسجّل الإيداعات والمدفوعات والتحويلات الداخلية للـ 7 خزن وبنوك.',
+          },
+          {
+            id: 'credit_cards',
+            stepNum: 2,
+            titleEn: 'Manage 9 Credit Cards & Monthly Installments',
+            titleAr: 'إدارة الـ 9 كروت ائتمانية وجدول الأقساط',
+            actionHintEn: 'Monitor available credit limits across 9 corporate cards (483.4K EGP unused) and settle monthly 0% material installment plans.',
+            actionHintAr: 'تابع الحدود الائتمانية المتاحة للـ 9 كروت (483.4 ألف ج.م متاح) وسدّد الأقساط الشهرية لمشتريات الخامات.',
+          },
+          {
+            id: 'projects_matrix',
+            stepNum: 3,
+            titleEn: 'Audit 77-Project Profitability & Net Cashflow',
+            titleAr: 'مراجعة ربحية وتدفقات الـ 77 مشروع',
+            actionHintEn: 'Inspect contract values, client collections, actual site expenses, net cash positions, and profit margins per project.',
+            actionHintAr: 'افحص قيم التعاقد ومتحصلات العملاء والمصروفات الفعلية وصافي السيولة وهامش الربح لكل مشروع.',
+          },
+          {
+            id: 'eworks_audit',
+            stepNum: 4,
+            titleEn: 'Verify Legacy E-Works ERP Migration Records',
+            titleAr: 'مطابقة وترحيل سجلات نظام E-Works',
+            actionHintEn: 'Reconcile legacy E-Works balances against migrated Actpert Nexus records and approve flagged variance adjustments.',
+            actionHintAr: 'طابق أرصدة نظام E-Works السابق مع السجلات المرحّلة لنظام Actpert Nexus واعتمد تسوية الفروقات المعلّقة.',
+          },
+        ]}
+      />
       {/* =====================================================================
           1. TOP EXECUTIVE LIQUIDITY BANNER (EXACT LIVE NEXUS NUMBERS)
          ===================================================================== */}

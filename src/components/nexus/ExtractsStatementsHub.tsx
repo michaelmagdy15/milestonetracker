@@ -14,6 +14,7 @@ import {
     Calendar,
 } from 'lucide-react';
 import { NEXUS_CLIENT_ACCOUNTS_LEDGER } from '../../data/nexusLiveSeedData';
+import { GuidedStepBanner } from './GuidedStepBanner';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -1237,6 +1238,42 @@ export const ExtractsStatementsHub: React.FC = () => {
 
     return (
         <div className="space-y-6">
+            <div className="print:hidden">
+                <GuidedStepBanner
+                    lifecycleStageNumber={5}
+                    moduleTitleEn="Client Works Extracts, 80 Ledgers & Payment Requests"
+                    moduleTitleAr="مستخلصات الأعمال الجارية وكشوف حساب الـ 80 عميل وطلبات الصرف"
+                    activeStepId={activeSubTab}
+                    onSelectStep={(id) => setActiveSubTab(id as HubSubTab)}
+                    steps={[
+                        {
+                            id: 'extracts',
+                            stepNum: 1,
+                            titleEn: 'Update Current Quantities & Print Works Extract (PDF 1)',
+                            titleAr: 'تحديث الكميات الحالية وطباعة المستخلص الجاري (PDF 1)',
+                            actionHintEn: 'Review 28 BOQ items & VO variations, update current quantities and rate %, and print official Works Extract.',
+                            actionHintAr: 'مراجعة 28 بند مقايسة وأوامر التغيير، وتحديث الكميات الحالية ونسب الصرف وطباعة المستخلص الرسمي.',
+                        },
+                        {
+                            id: 'statement',
+                            stepNum: 2,
+                            titleEn: 'Reconcile Client Account Statement & 80 Ledgers (PDF 2)',
+                            titleAr: 'مطابقة كشف حساب العميل ودفتر الـ 80 حساب (PDF 2)',
+                            actionHintEn: 'Inspect running debit/credit ledger entries, record customer bank transfers, and verify client account balances across 80 accounts.',
+                            actionHintAr: 'مراجعة قيود المدين والدائن والرصيد التراكمي، وتسجيل التحويلات البنكية ومطابقة أرصدة الـ 80 حساب عميل.',
+                        },
+                        {
+                            id: 'payment_request',
+                            stepNum: 3,
+                            titleEn: 'Issue & Print Official Payment Request Voucher (PDF 3)',
+                            titleAr: 'إصدار وطباعة سند طلب الصرف الرسمي (PDF 3)',
+                            actionHintEn: 'Issue official payment request vouchers with Arabic Tafqeet, 3-tier signatures, and proof of payment (POP) attachment.',
+                            actionHintAr: 'إصدار سند طلب الصرف الرسمي بالتفقيط العربي والتوقيعات الثلاثية وإرفاق إشعار التحويل البنكي (POP).',
+                        },
+                    ]}
+                />
+            </div>
+
             {/* ========================================================================
                 TOP EXECUTIVE HEADER & SUB-TAB NAVIGATION (HIDDEN ON WINDOW.PRINT)
                ======================================================================== */}

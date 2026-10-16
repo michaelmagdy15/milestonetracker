@@ -4,6 +4,7 @@ import { DataProvider, useData } from './context/DataContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { TenantProvider } from './context/TenantContext';
+import { WorkflowProvider } from './context/WorkflowContext';
 import { Layout } from './components/Layout';
 import { Dashboard } from './pages/Dashboard';
 import { Projects } from './pages/Projects';
@@ -23,6 +24,8 @@ import { Meetings } from './pages/Meetings';
 import { HelpGuide } from './pages/HelpGuide';
 import { OrganizationSettings } from './pages/OrganizationSettings';
 import { ContractingERP } from './pages/ContractingERP';
+import { DocumentControlHub } from './components/nexus/DocumentControlHub';
+import { SubcontractorsDirectoryHub } from './components/nexus/SubcontractorsDirectoryHub';
 import { ExtractsStatementsHub } from './components/nexus/ExtractsStatementsHub';
 import { ProcurementWarehouseHub } from './components/nexus/ProcurementWarehouseHub';
 import { Toaster } from 'react-hot-toast';
@@ -89,6 +92,7 @@ function App() {
           <Router>
             <AuthProvider>
               <DataProvider>
+                <WorkflowProvider>
                 <Toaster
                   position="bottom-right"
                   toastOptions={{
@@ -119,10 +123,10 @@ function App() {
                           <Route path="/projects" element={<ProtectedRoute requireEngineerOrAdmin><Projects /></ProtectedRoute>} />
                           <Route path="/projects/:id" element={<ProjectDetails />} />
                           <Route path="/boq" element={<ProtectedRoute requireEngineerOrAdmin><BOQViewer /></ProtectedRoute>} />
-                          <Route path="/submittals" element={<ProtectedRoute requireEngineerOrAdmin skipDataWait><Emails /></ProtectedRoute>} />
+                          <Route path="/submittals" element={<ProtectedRoute requireEngineerOrAdmin skipDataWait><DocumentControlHub /></ProtectedRoute>} />
                           <Route path="/variations-rfis" element={<ProtectedRoute requireEngineerOrAdmin><ContractingERP defaultTab="variations" /></ProtectedRoute>} />
                           <Route path="/procurement" element={<ProtectedRoute requireEngineerOrAdmin><ProcurementWarehouseHub /></ProtectedRoute>} />
-                          <Route path="/subcontractors" element={<ProtectedRoute requireEngineerOrAdmin><Engineers /></ProtectedRoute>} />
+                          <Route path="/subcontractors" element={<ProtectedRoute requireEngineerOrAdmin><SubcontractorsDirectoryHub /></ProtectedRoute>} />
                           <Route path="/extracts" element={<ProtectedRoute requireEngineerOrAdmin><ExtractsStatementsHub /></ProtectedRoute>} />
                           <Route path="/contracting-erp" element={<ProtectedRoute requireEngineerOrAdmin><ContractingERP /></ProtectedRoute>} />
                           <Route path="/meetings" element={<ProtectedRoute requireEngineerOrAdmin><Meetings /></ProtectedRoute>} />
@@ -139,6 +143,7 @@ function App() {
                     </ProtectedRoute>
                   } />
                 </Routes>
+                </WorkflowProvider>
               </DataProvider>
             </AuthProvider>
           </Router>

@@ -92,3 +92,33 @@ All live production data extracted via REA from Actpert Nexus ERP and the upload
   - Automatically docks the sidebar on the left (`LTR`) or right (`RTL`).
   - Translates navigation labels, page titles, hub headers, table columns, status badges, and action buttons into pure English (`LTR`) or pure Arabic (`RTL`), eliminating broken BiDi parentheses.
   - Isolates numeric badges, project codes, and currency figures with `unicode-bidi: isolate` and `dir="ltr"`.
+
+---
+
+## 5. Installed Engineering & Product Skill Packs
+
+The following skill ecosystems have been installed into both `C:\Users\Mi5a\.gemini\config\skills` and `.agent/skills`:
+
+1. **`JuliusBrussee/caveman`** (`caveman`, `caveman-commit`, `caveman-compress`, `caveman-discover`, `caveman-evidence-review`, `caveman-explore`, `caveman-review`, etc.)
+2. **`obra/superpowers`** (`brainstorming`, `writing-plans`, `executing-plans`, `test-driven-development`, `systematic-debugging`, `verification-before-completion`, `subagent-driven-development`, `dispatching-parallel-agents`, etc.)
+3. **`mksglu/context-mode`** (`context-mode`, `ctx-doctor`, `ctx-index`, `ctx-insight`, `ctx-purge`, `ctx-search`, `ctx-stats`, `ctx-upgrade`)
+4. **`xerj-org/xerj`** (`xerj-code`, `architect-review`, `security-auditor`, `vibe-code-auditor`, etc.)
+5. **`garrytan/gstack` (58 skills):**
+   - `gstack`, `autoplan`, `benchmark`, `benchmark-models`, `browse`, `canary`, `careful`, `codex`, `connect-chrome`, `context-restore`, `context-save`, `cso`, `design-consultation`, `design-html`, `design-review`, `design-shotgun`, `deslop-shared-libs`, `devex-review`, `diagram`, `document-generate`, `document-release`, `eval-plan`, `freeze`, `gstack-upgrade`, `guard`, `health`, `investigate`, `ios-clean`, `ios-design-review`, `ios-fix`, `ios-qa`, `ios-sync`, `land-and-deploy`, `landing-report`, `gstack-learn`, `make-pdf`, `office-hours`, `open-gstack-browser`, `pair-agent`, `plan-ceo-review`, `plan-design-review`, `plan-devex-review`, `plan-eng-review`, `plan-tune`, `qa`, `qa-only`, `retro`, `gstack-review`, `scrape`, `setup-browser-cookies`, `setup-deploy`, `setup-gbrain`, `gstack-ship`, `skillify`, `spec`, `sync-gbrain`, `test-audit`, `unfreeze`.
+
+---
+
+## 6. Guided Step-by-Step UX & Lifecycle Workflow Architecture (`/plan-ceo-review`)
+
+Implemented across 12 modules via 10 parallel agents to eliminate feature overload and guide every user step-by-step:
+
+1. **Global Active Project & Guided Mode Context ([`src/context/WorkflowContext.tsx`](src/context/WorkflowContext.tsx)):**
+   - Persists `activeProjectCode` (`C096`, `C063`, `C091`, etc., or `ALL`), `viewComplexity` (`'guided'` vs `'full'`), and `activePersona` (`'ceo'`, `'technical'`, `'accounting'`, `'logistics'`).
+2. **Top Bar Active Project Switcher, Persistent 6-Step Lifecycle Bar & Collapsible Sidebar ([`src/components/Layout.tsx`](src/components/Layout.tsx)):**
+   - **📌 Active Project Pill:** Pin any of the 77 Actpert projects in the header so all screens stay focused on that project.
+   - **⚡ Guided Mode vs. Full ERP Toggle:** Guided Mode highlights the 6 core numbered stages in the sidebar and groups the 9 secondary utilities into a clean *"More Tools & Admin (9)"* accordion.
+   - **Persistent 6-Step Contracting Lifecycle Strip:** Always shows where you are in the project journey (`① BOQ & Pricing` ➔ `② Submittals & Approvals` ➔ `③ Buy & Warehouses` ➔ `④ Site & Subcontractors` ➔ `⑤ Client Extracts & Ledger` ➔ `⑥ Treasury & Cashflow`) with 1-click stage jumping and a **"Next Stage ➔"** button.
+3. **"Start Here: Your 3 Simple Steps Today" Role Command Center ([`src/pages/Dashboard.tsx`](src/pages/Dashboard.tsx)):**
+   - Tailored 3-step daily action cards for **CEO (`Eng. Mohamed`)**, **Technical Office (`Eng. Pierre Afifi`)**, **Accounting (`Merna Maged`)**, and **Logistics (`Milad Haroun`)**, plus an interactive **Active Project 6-Stage Progress Map**.
+4. **Numbered Step-by-Step Wizards Inside All 6 ERP Hubs ([`src/components/nexus/GuidedStepBanner.tsx`](src/components/nexus/GuidedStepBanner.tsx)):**
+   - Integrated into [`PricingEngineHub.tsx`](src/components/nexus/PricingEngineHub.tsx) (Stage 1), [`DocumentControlHub.tsx`](src/components/nexus/DocumentControlHub.tsx) (Stage 2), [`ProcurementWarehouseHub.tsx`](src/components/nexus/ProcurementWarehouseHub.tsx) (Stage 3), [`SubcontractorsDirectoryHub.tsx`](src/components/nexus/SubcontractorsDirectoryHub.tsx) (Stage 4), [`ExtractsStatementsHub.tsx`](src/components/nexus/ExtractsStatementsHub.tsx) (Stage 5), and [`TreasuryCashBankHub.tsx`](src/components/nexus/TreasuryCashBankHub.tsx) (Stage 6), plus project pinning in [`Projects.tsx`](src/pages/Projects.tsx) and the interactive 6-step playbook in [`HelpGuide.tsx`](src/pages/HelpGuide.tsx).

@@ -18,6 +18,7 @@ import {
     Scale,
     Info,
 } from 'lucide-react';
+import { GuidedStepBanner } from './GuidedStepBanner';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -961,6 +962,47 @@ export const PricingEngineHub: React.FC = () => {
 
     return (
         <div className="space-y-6 text-[#192631]">
+            <GuidedStepBanner
+                lifecycleStageNumber={1}
+                moduleTitleEn="BOQ & R02 Engineering Pricing Engine"
+                moduleTitleAr="محرك التسعير الهندسي وبناء المقايسة R02"
+                activeStepId={activeSubTab}
+                onSelectStep={(id) => setActiveSubTab(id as any)}
+                steps={[
+                    {
+                        id: 'boq_map',
+                        stepNum: 1,
+                        titleEn: 'Select & Price R02 BOQ Items (839 Items)',
+                        titleAr: 'اختيار وتسعير بنود المقايسة R02',
+                        actionHintEn: 'Filter 34 work packages, adjust quantities & direct M/L/S rates, or launch deep unit analysis.',
+                        actionHintAr: 'تصفح 34 باقة أعمال وعدّل الكميات وأسعار الخامات والمصنعيات أو افتح التحليل التفصيلي.',
+                    },
+                    {
+                        id: 'deep_analyzer',
+                        stepNum: 2,
+                        titleEn: "Analyze 11-Component Unit Cost (Pierre's Analyzer)",
+                        titleAr: 'تحليل سعر الوحدة التفصيلي (11 مركب)',
+                        actionHintEn: 'Break down base material, waste %, Cetox U adhesive, sand bed, tashween, 45° miter & protection, then push to BOQ.',
+                        actionHintAr: 'حلل سعر التوريد والهالك ومادة اللصق والرمل والتشوين وشطف 45° والحماية ثم رحّل السعر للمقايسة.',
+                    },
+                    {
+                        id: 'site_overheads',
+                        stepNum: 3,
+                        titleEn: 'Distribute Monthly Site Overheads',
+                        titleAr: 'توزيع التكاليف غير المباشرة للموقع',
+                        actionHintEn: 'Configure site engineers, guards, utilities & mobilization to auto-allocate proportional overhead % per BOQ item.',
+                        actionHintAr: 'اضبط طاقم الإشراف والحراسة والمرافق ليتم توزيع نسبتها تلقائياً على كل بند في المقايسة.',
+                    },
+                    {
+                        id: 'commercial_sim',
+                        stepNum: 4,
+                        titleEn: 'Set Markups, Simulate Discount & Lock Contract',
+                        titleAr: 'الهوامش ومحاكاة الخصم وقفل التعاقد',
+                        actionHintEn: 'Set risk, admin, inflation & target profit, test client discount in the traffic-light simulator, then lock the contract.',
+                        actionHintAr: 'حدد نسب المخاطر والإدارة والتضخم والربح، وجرّب خصم العميل في محاكي الأمان، ثم اقفل المقايسة التعاقدية.',
+                    },
+                ]}
+            />
             {/* ====================================================================
                 1. TOP TENDER HEADER & CONTRACT LOCK BANNER
                ==================================================================== */}
