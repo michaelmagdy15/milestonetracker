@@ -181,8 +181,8 @@ export const Engineers = () => {
                         {activeRosterTab === 'subcontractors'
                             ? '56 Registered Subcontractors & Craftsmen · CEO 4-Pillar A/B/C Evaluation Matrix · Subcontractor Statements (ST) & Cash Payment Orders (CPO)'
                             : activeRosterTab === 'contractor_accounts'
-                            ? '63 Live Contractor Ledger Accounts migrated from Actpert Nexus ERP (/contractor-accounts) with exact EGP balances'
-                            : '16 In-House Actpert Nexus Staff (IDs 1001–1030), Site Engineers, Technical Office, and 56 Trade Subcontractors.'}
+                            ? '63 Live Contractor Ledger Accounts migrated from Nexus ERP (/contractor-accounts) with exact EGP balances'
+                            : '16 In-House Nexus Staff (IDs 1001–1030), Site Engineers, Technical Office, and 56 Trade Subcontractors.'}
                     </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
@@ -244,10 +244,10 @@ export const Engineers = () => {
                     <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#192631]/10 pb-4">
                         <div>
                             <h3 className="text-lg font-black text-[#192631]">
-                                Actpert Nexus Contractor Ledger Accounts (63 Accounts)
+                                Nexus Contractor Ledger Accounts (63 Accounts)
                             </h3>
                             <p className="text-xs text-[#192631]/70">
-                                Complete chart of contractor & subcontractor financial accounts migrated from https://nexus.actpert.com/contractor-accounts
+                                Complete chart of contractor & subcontractor financial accounts migrated from https://nexus.nexus-contracting.com/contractor-accounts
                             </p>
                         </div>
                         <span className="px-3 py-1.5 rounded-xl bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-xs font-black">
@@ -289,15 +289,15 @@ export const Engineers = () => {
                 </div>
             ) : (
                 <>
-                    {/* 16 Live Actpert Nexus Personnel Roster (1001 to 1030) */}
+                    {/* 16 Live Nexus Personnel Roster (1001 to 1030) */}
                     <div className="glass-card rounded-3xl p-6 border border-[#192631]/10 space-y-5">
                         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#192631]/10 pb-4">
                             <div>
                                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[10px] font-black uppercase tracking-widest mb-1.5">
-                                    Live Actpert Nexus Roster · IDs 1001–1030
+                                    Live Nexus Roster · IDs 1001–1030
                                 </div>
                                 <h3 className="text-xl font-black text-[#192631]">
-                                    16 Registered Actpert Nexus Engineers & Staff
+                                    16 Registered Nexus Engineers & Staff
                                 </h3>
                             </div>
                             <div className="flex items-center gap-2 text-xs font-bold text-[#123524] bg-[#123524]/10 px-3.5 py-2 rounded-xl border border-[#123524]/20">

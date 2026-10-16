@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import {
     supabase,
     registerContractingCompany,
-    DEFAULT_ADMIN_EMAIL,
-    DEFAULT_ADMIN_PASSWORD,
 } from '../lib/supabase';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTenant } from '../context/TenantContext';
 import { motion } from 'framer-motion';
-import { Building2, ShieldCheck, Sparkles, ArrowRight } from 'lucide-react';
+import { Building2 } from 'lucide-react';
 import clsx from 'clsx';
 import { Logo } from '../components/Logo';
 
@@ -103,24 +101,6 @@ export const Login: React.FC = () => {
         }
     };
 
-    const handleQuickAdminLogin = async () => {
-        setEmail(DEFAULT_ADMIN_EMAIL);
-        setPassword(DEFAULT_ADMIN_PASSWORD);
-        setLoading(true);
-        setError(null);
-        try {
-            const { error: signInError } = await supabase.auth.signInWithPassword({
-                email: DEFAULT_ADMIN_EMAIL,
-                password: DEFAULT_ADMIN_PASSWORD,
-            });
-            if (signInError) throw new Error(signInError.message);
-        } catch (err: any) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#f5f5f5] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Ambient Glassmorphic Brand Orbs */}
@@ -134,10 +114,6 @@ export const Login: React.FC = () => {
                     <div className="mb-5">
                         <Logo showText={true} darkText={true} variant="orange-symbol" />
                     </div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[10px] font-bold uppercase tracking-widest mb-2">
-                        <Sparkles className="w-3 h-3" />
-                        Actpert Nexus Contracting ERP
-                    </div>
                     <h2 className="text-center text-2xl md:text-3xl font-extrabold text-[#192631] tracking-tight">
                         {mode === 'login'
                             ? activeOrg.name === 'Apex Contracting & Engineering' ? 'NEXUS CONTRACTING' : activeOrg.name
@@ -149,7 +125,7 @@ export const Login: React.FC = () => {
                     </h2>
                     <p className="mt-1.5 text-center text-xs md:text-sm text-[#192631]/70 font-medium">
                         {mode === 'login'
-                            ? 'Eng. Pierre Afifi · Architecture, Turnkey Contracting & ERP'
+                            ? 'Eng. Pierre Afifi · Architecture & Turnkey Contracting'
                             : mode === 'register-company'
                             ? 'Set up a workspace for your contracting company in seconds'
                             : mode === 'signup'
@@ -165,7 +141,7 @@ export const Login: React.FC = () => {
                         onClick={() => { setMode('login'); setError(null); setMessage(null); }}
                         className={clsx(
                             'py-2 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all',
-                            mode === 'login' ? 'bg-[#e04b2a] text-[#192631] shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/70 hover:text-[#192631] hover:bg-white/60'
+                            mode === 'login' ? 'bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/70 hover:text-[#192631] hover:bg-white/60'
                         )}
                     >
                         Sign In
@@ -175,7 +151,7 @@ export const Login: React.FC = () => {
                         onClick={() => { setMode('register-company'); setError(null); setMessage(null); }}
                         className={clsx(
                             'py-2 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all',
-                            mode === 'register-company' ? 'bg-[#e04b2a] text-[#192631] shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/70 hover:text-[#192631] hover:bg-white/60'
+                            mode === 'register-company' ? 'bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/70 hover:text-[#192631] hover:bg-white/60'
                         )}
                     >
                         New Company
@@ -185,35 +161,12 @@ export const Login: React.FC = () => {
                         onClick={() => { setMode('signup'); setError(null); setMessage(null); }}
                         className={clsx(
                             'py-2 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all',
-                            mode === 'signup' ? 'bg-[#e04b2a] text-[#192631] shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/70 hover:text-[#192631] hover:bg-white/60'
+                            mode === 'signup' ? 'bg-[#e04b2a] text-white shadow-md shadow-[#e04b2a]/25' : 'text-[#192631]/70 hover:text-[#192631] hover:bg-white/60'
                         )}
                     >
                         Join Team
                     </button>
                 </div>
-
-                {mode === 'login' && (
-                    <div className="p-3.5 rounded-2xl bg-[#e04b2a]/[0.08] backdrop-blur-md border border-[#e04b2a]/25 flex items-center justify-between gap-3">
-                        <div className="text-xs">
-                            <p className="font-bold text-[#e04b2a] flex items-center gap-1.5">
-                                <ShieldCheck className="w-4 h-4" />
-                                Default Platform Admin Account
-                            </p>
-                            <p className="text-[#192631]/80 font-mono text-[11px] mt-0.5 font-semibold">
-                                {DEFAULT_ADMIN_EMAIL} &bull; {DEFAULT_ADMIN_PASSWORD}
-                            </p>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={handleQuickAdminLogin}
-                            disabled={loading}
-                            className="px-3.5 py-2 bg-[#e04b2a] hover:bg-[#c83e1f] text-[#192631] font-bold rounded-xl text-xs shrink-0 flex items-center gap-1 shadow-md shadow-[#e04b2a]/20 transition-all"
-                        >
-                            1-Click Admin Login
-                            <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                    </div>
-                )}
 
                 <form className="space-y-4" onSubmit={handleAuth}>
                     {mode === 'register-company' && (
@@ -306,16 +259,16 @@ export const Login: React.FC = () => {
 
                         <div>
                             <label htmlFor="email-address" className="block text-[11px] font-bold text-[#192631]/80 uppercase tracking-widest mb-1.5 ml-1">
-                                Work Email Address *
+                                {mode === 'login' ? 'Work Email or Username *' : 'Work Email Address *'}
                             </label>
                             <input
                                 id="email-address"
                                 name="email"
-                                type="email"
-                                autoComplete="email"
+                                type={mode === 'login' ? 'text' : 'email'}
+                                autoComplete="username"
                                 required
                                 className="w-full px-4 py-3 bg-white/85 border border-[#192631]/15 placeholder-[#192631]/40 text-[#192631] rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#e04b2a]/30 focus:border-[#e04b2a] text-sm font-semibold shadow-sm"
-                                placeholder="admin@platform.com"
+                                placeholder="pierre@nexus-contracting.com"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
                             />
@@ -376,10 +329,10 @@ export const Login: React.FC = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full flex justify-center py-4 px-4 text-sm font-bold rounded-2xl text-[#192631] bg-[#192631] hover:bg-[#e04b2a] disabled:opacity-50 transition-all shadow-lg shadow-[#192631]/15"
+                            className="w-full flex justify-center py-4 px-4 text-sm font-bold rounded-2xl text-white bg-[#192631] hover:bg-[#e04b2a] disabled:opacity-50 transition-all shadow-lg shadow-[#192631]/15"
                         >
                             {loading
-                                ? 'Authenticating with Firebase...'
+                                ? 'Signing in...'
                                 : mode === 'login'
                                 ? 'Sign In to Workspace'
                                 : mode === 'register-company'

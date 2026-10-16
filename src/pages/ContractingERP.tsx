@@ -995,13 +995,13 @@ export const ContractingERP: React.FC<{ defaultTab?: ErpTab }> = ({ defaultTab =
                 <div>
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[11px] font-black uppercase tracking-wider mb-3">
                         <Layers className="w-3.5 h-3.5" />
-                        Actpert Nexus Contracting ERP · R02 Work Map · Document Control · Live Extracts
+                        Nexus Contracting ERP · R02 Work Map · Document Control · Live Extracts
                     </div>
                     <h1 className="text-3xl lg:text-5xl font-black text-[#192631] tracking-tight">
-                        Actpert Nexus <span className="text-[#e04b2a]">& Contracting ERP</span>
+                        Nexus <span className="text-[#e04b2a]">& Contracting ERP</span>
                     </h1>
                     <p className="text-[#192631]/75 text-sm mt-2 max-w-3xl leading-relaxed">
-                        Unified Actpert Nexus Contracting ERP & Milestone Tracker: Live Cumulative Works Extracts (مستخلصات جارية), Client Account Statements (كشف حساب عميل), R02 Tendering & Granular Cost Breakdown (839 Items), 51-Clause Document Control & Submittals (MS/DR/MIR/SL/SIR), Submittal-Gated Procurement & 4-Warehouse Custody, 56 Subcontractors Directory, Treasury/Credit Cards (738,284.19 EGP), and HR GPS Whereabouts.
+                        Unified Nexus Contracting ERP & Milestone Tracker: Live Cumulative Works Extracts (مستخلصات جارية), Client Account Statements (كشف حساب عميل), R02 Tendering & Granular Cost Breakdown (839 Items), 51-Clause Document Control & Submittals (MS/DR/MIR/SL/SIR), Submittal-Gated Procurement & 4-Warehouse Custody, 56 Subcontractors Directory, Treasury/Credit Cards (738,284.19 EGP), and HR GPS Whereabouts.
                     </p>
                 </div>
 
@@ -1140,7 +1140,7 @@ export const ContractingERP: React.FC<{ defaultTab?: ErpTab }> = ({ defaultTab =
                 })}
             </div>
 
-            {/* ───────────────── ACTPERT NEXUS ERP INTEGRATED HUBS ───────────────── */}
+            {/* ───────────────── Nexus ERP INTEGRATED HUBS ───────────────── */}
             {activeTab === 'nexus_extracts' && <ExtractsStatementsHub />}
             {activeTab === 'nexus_pricing' && <PricingEngineHub />}
             {activeTab === 'nexus_doc_control' && <DocumentControlHub />}

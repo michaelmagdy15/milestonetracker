@@ -1,6 +1,6 @@
 /**
- * Actpert Nexus Document Coding System, Abbreviations Matrix, and 51 Submittal Clauses
- * Source: Actpert Engineering / REA Submittals & Document Control Standards
+ * Nexus Document Coding System, Abbreviations Matrix, and 51 Submittal Clauses
+ * Source: Nexus Engineering / REA Submittals & Document Control Standards
  */
 
 export type SubmittalLogTypeCode = 'MS' | 'DR' | 'MIR' | 'SL' | 'SIR';
@@ -614,7 +614,7 @@ export const NEXUS_SUBMITTAL_SUBCATEGORIES = SUBMITTAL_SUBCATEGORIES;
 export const NEXUS_SUBMITTAL_CLAUSES = SUBMITTAL_SUBCATEGORIES;
 
 /**
- * Complete Actpert Nexus File-Coding Standards from Team CSV
+ * Complete Nexus File-Coding Standards from Team CSV
  */
 export const NEXUS_FILE_CODING_RULES: NexusFileCodingRule[] = [
   {
@@ -1173,7 +1173,7 @@ export const NEXUS_ABBREVIATIONS_DICTIONARY: NexusAbbreviationEntry[] = [
 ];
 
 /**
- * Generates a standardized Actpert Nexus submittal code.
+ * Generates a standardized Nexus submittal code.
  * Examples:
  * - generateSubmittalCode('MS', 'AR', 'GP', 1) => 'MSARGP01'
  * - generateSubmittalCode('MS', 'AR', 'GP', 1, 1) => 'MSARGP01-R01'

@@ -1,5 +1,5 @@
-// ─── Actpert Nexus ERP Live Seed Data (https://nexus.actpert.com/) ───
-// Extracted from Live Actpert Nexus ERP & Official Project C096 PDFs (Michael & Mona - Azad 5th Settlement)
+// ─── Nexus ERP Live Seed Data (https://nexus.nexus-contracting.com/) ───
+// Extracted from Live Nexus ERP & Official Project C096 PDFs (Michael & Mona - Azad 5th Settlement)
 
 export interface NexusExtractLineItem {
     id: string;
@@ -978,7 +978,7 @@ export const C096_PAYMENT_REQUEST_DATA: NexusPaymentRequestData = {
     clientName: 'Michael Saber',
     preparedBy: 'Merna Maged (Financial Accountant)',
     reviewedBy: 'Eng. Pierre Safwat (Technical & Controls)',
-    approvedBy: 'Eng. Mohamed / Actpert CEO',
+    approvedBy: 'Eng. Mohamed / Nexus CEO',
     status: 'Approved & Posted',
 };
 
@@ -2604,7 +2604,7 @@ export const NEXUS_LIVE_PROJECTS: NexusLiveProject[] = [
     }
 ];
 
-// ─── 4B. ALL 80 CLIENT & PROJECT LEDGER ACCOUNTS FROM ACTPERT (/client-accounts) ───
+// ─── 4B. ALL 80 CLIENT & PROJECT LEDGER ACCOUNTS FROM NEXUS (/client-accounts) ───
 
 export interface NexusClientLedgerAccount {
     id: string;
@@ -3524,7 +3524,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ALUM-001) — أعمال الألومنيوم والـ UPVC."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ALUM-001) — أعمال الألومنيوم والـ UPVC."
     },
     {
         "id": "sub-02",
@@ -3546,7 +3546,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ALUM-002) — أعمال الألومنيوم والـ UPVC."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ALUM-002) — أعمال الألومنيوم والـ UPVC."
     },
     {
         "id": "sub-03",
@@ -3568,7 +3568,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ALUM-003) — أعمال الألومنيوم والـ UPVC."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ALUM-003) — أعمال الألومنيوم والـ UPVC."
     },
     {
         "id": "sub-04",
@@ -3590,7 +3590,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-001) — نجارة أسطرجي وتشطيب أثاث."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-001) — نجارة أسطرجي وتشطيب أثاث."
     },
     {
         "id": "sub-05",
@@ -3612,7 +3612,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-002) — أعمال النجارة والباب والشباك."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-002) — أعمال النجارة والباب والشباك."
     },
     {
         "id": "sub-06",
@@ -3634,7 +3634,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-003) — أعمال النجارة والتركيبات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-003) — أعمال النجارة والتركيبات."
     },
     {
         "id": "sub-07",
@@ -3656,7 +3656,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-004) — أعمال النجارة والتركيبات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-004) — أعمال النجارة والتركيبات."
     },
     {
         "id": "sub-08",
@@ -3678,7 +3678,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-005) — أعمال النجارة والتركيبات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-005) — أعمال النجارة والتركيبات."
     },
     {
         "id": "sub-09",
@@ -3699,7 +3699,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CIVL-001) — أعمال مدنية وحفر ردم وإرساء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CIVL-001) — أعمال مدنية وحفر ردم وإرساء."
     },
     {
         "id": "sub-10",
@@ -3721,7 +3721,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-001) — شبكات وتأسيس وتشطيب الكهرباء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-001) — شبكات وتأسيس وتشطيب الكهرباء."
     },
     {
         "id": "sub-11",
@@ -3743,7 +3743,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-002) — شبكات وتأسيس وتشطيب الكهرباء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-002) — شبكات وتأسيس وتشطيب الكهرباء."
     },
     {
         "id": "sub-12",
@@ -3764,7 +3764,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-003) — شبكات وتأسيس وتشطيب الكهرباء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-003) — شبكات وتأسيس وتشطيب الكهرباء."
     },
     {
         "id": "sub-13",
@@ -3786,7 +3786,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-004) — شبكات وتأسيس وتشطيب الكهرباء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-004) — شبكات وتأسيس وتشطيب الكهرباء."
     },
     {
         "id": "sub-14",
@@ -3808,7 +3808,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-005) — شبكات وتأسيس وتشطيب الكهرباء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-005) — شبكات وتأسيس وتشطيب الكهرباء."
     },
     {
         "id": "sub-15",
@@ -3830,7 +3830,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-006) — شبكات وتأسيس وتشطيب الكهرباء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-006) — شبكات وتأسيس وتشطيب الكهرباء."
     },
     {
         "id": "sub-16",
@@ -3852,7 +3852,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-007) — شبكات وتأسيس وتشطيب الكهرباء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-007) — شبكات وتأسيس وتشطيب الكهرباء."
     },
     {
         "id": "sub-17",
@@ -3874,7 +3874,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-008) — شبكات وتأسيس وتشطيب الكهرباء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-008) — شبكات وتأسيس وتشطيب الكهرباء."
     },
     {
         "id": "sub-18",
@@ -3895,7 +3895,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-009) — شبكات وتأسيس وتشطيب الكهرباء."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-009) — شبكات وتأسيس وتشطيب الكهرباء."
     },
     {
         "id": "sub-19",
@@ -3917,7 +3917,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-FINS-001) — أعمال الكورنيش والـ Cornices."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-FINS-001) — أعمال الكورنيش والـ Cornices."
     },
     {
         "id": "sub-20",
@@ -3939,7 +3939,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-FLOR-001) — أرضيات باركيه وخشب."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-FLOR-001) — أرضيات باركيه وخشب."
     },
     {
         "id": "sub-21",
@@ -3961,7 +3961,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-FURN-001) — تركيبات وتوريد أثاث ومطابخ."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-FURN-001) — تركيبات وتوريد أثاث ومطابخ."
     },
     {
         "id": "sub-22",
@@ -3983,7 +3983,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GENR-001) — أعمال عامة وتوريد عمالة يوميات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GENR-001) — أعمال عامة وتوريد عمالة يوميات."
     },
     {
         "id": "sub-23",
@@ -4005,7 +4005,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GENR-002) — أعمال عامة وتوريد عمالة يوميات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GENR-002) — أعمال عامة وتوريد عمالة يوميات."
     },
     {
         "id": "sub-24",
@@ -4027,7 +4027,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GLAS-001) — أعمال الزجاج والواجهات السيكوريت."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GLAS-001) — أعمال الزجاج والواجهات السيكوريت."
     },
     {
         "id": "sub-25",
@@ -4049,7 +4049,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GLAS-002) — زجاج مصفح وLamination."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GLAS-002) — زجاج مصفح وLamination."
     },
     {
         "id": "sub-26",
@@ -4071,7 +4071,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GYPS-001) — أسقف معلقة وجبس بورد."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GYPS-001) — أسقف معلقة وجبس بورد."
     },
     {
         "id": "sub-27",
@@ -4093,7 +4093,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GYPS-002) — أسقف معلقة وجبس بورد."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GYPS-002) — أسقف معلقة وجبس بورد."
     },
     {
         "id": "sub-28",
@@ -4115,7 +4115,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GYPS-003) — أسقف معلقة وجبس بورد."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GYPS-003) — أسقف معلقة وجبس بورد."
     },
     {
         "id": "sub-29",
@@ -4137,7 +4137,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-HEAT-001) — أنظمة تدفئة أرضية وتدفئة مركزية."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-HEAT-001) — أنظمة تدفئة أرضية وتدفئة مركزية."
     },
     {
         "id": "sub-30",
@@ -4159,7 +4159,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-HVAC-001) — التكييف والتهوية والتبريد."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-HVAC-001) — التكييف والتهوية والتبريد."
     },
     {
         "id": "sub-31",
@@ -4180,7 +4180,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-HVAC-002) — التكييف والتهوية والتبريد."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-HVAC-002) — التكييف والتهوية والتبريد."
     },
     {
         "id": "sub-32",
@@ -4202,7 +4202,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-INSU-001) — أعمال العزل المائي والحراري."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-INSU-001) — أعمال العزل المائي والحراري."
     },
     {
         "id": "sub-33",
@@ -4223,7 +4223,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-LAND-001) — لاندسكيب وحوائط خضراء وزراعة."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-LAND-001) — لاندسكيب وحوائط خضراء وزراعة."
     },
     {
         "id": "sub-34",
@@ -4245,7 +4245,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MARB-001) — أعمال جلي وتركيب الرخام والجرانيت."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MARB-001) — أعمال جلي وتركيب الرخام والجرانيت."
     },
     {
         "id": "sub-35",
@@ -4267,7 +4267,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MARB-002) — أعمال جلي وتركيب الرخام والجرانيت."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MARB-002) — أعمال جلي وتركيب الرخام والجرانيت."
     },
     {
         "id": "sub-36",
@@ -4289,7 +4289,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MECH-001) — أعمال ميكانيكا ومعدات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MECH-001) — أعمال ميكانيكا ومعدات."
     },
     {
         "id": "sub-37",
@@ -4310,7 +4310,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MECH-002) — أعمال ميكانيكا ومعدات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MECH-002) — أعمال ميكانيكا ومعدات."
     },
     {
         "id": "sub-38",
@@ -4332,7 +4332,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MSRY-001) — أعمال المباني والـ Masonry."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MSRY-001) — أعمال المباني والـ Masonry."
     },
     {
         "id": "sub-39",
@@ -4354,7 +4354,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MSRY-002) — أعمال المباني والـ Masonry."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MSRY-002) — أعمال المباني والـ Masonry."
     },
     {
         "id": "sub-40",
@@ -4375,7 +4375,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLST-001) — أعمال بياض المحارة واللياسة."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLST-001) — أعمال بياض المحارة واللياسة."
     },
     {
         "id": "sub-41",
@@ -4397,7 +4397,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLST-002) — أعمال بياض المحارة واللياسة."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLST-002) — أعمال بياض المحارة واللياسة."
     },
     {
         "id": "sub-42",
@@ -4419,7 +4419,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLST-003) — أعمال بياض المحارة واللياسة."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLST-003) — أعمال بياض المحارة واللياسة."
     },
     {
         "id": "sub-43",
@@ -4441,7 +4441,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLUM-001) — شبكات تغذية وصرف صحي (سباكة)."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLUM-001) — شبكات تغذية وصرف صحي (سباكة)."
     },
     {
         "id": "sub-44",
@@ -4463,7 +4463,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLUM-002) — شبكات تغذية وصرف صحي (سباكة)."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLUM-002) — شبكات تغذية وصرف صحي (سباكة)."
     },
     {
         "id": "sub-45",
@@ -4484,7 +4484,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-001) — أعمال النقاشة والدهانات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PTNG-001) — أعمال النقاشة والدهانات."
     },
     {
         "id": "sub-46",
@@ -4506,7 +4506,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-002) — أعمال النقاشة والدهانات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PTNG-002) — أعمال النقاشة والدهانات."
     },
     {
         "id": "sub-47",
@@ -4528,7 +4528,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-003) — أعمال النقاشة والدهانات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PTNG-003) — أعمال النقاشة والدهانات."
     },
     {
         "id": "sub-48",
@@ -4550,7 +4550,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-004) — أعمال النقاشة والدهانات."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PTNG-004) — أعمال النقاشة والدهانات."
     },
     {
         "id": "sub-49",
@@ -4571,7 +4571,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-SHUT-001) — شيش حصيرة وأبواب حماية UPVC."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-SHUT-001) — شيش حصيرة وأبواب حماية UPVC."
     },
     {
         "id": "sub-50",
@@ -4592,7 +4592,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-001) — أعمال الكريتال والحديد والـ Steel (كرم مطاوع)."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-STEL-001) — أعمال الكريتال والحديد والـ Steel (كرم مطاوع)."
     },
     {
         "id": "sub-51",
@@ -4614,7 +4614,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-002) — أعمال الكريتال والحديد والـ Steel."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-STEL-002) — أعمال الكريتال والحديد والـ Steel."
     },
     {
         "id": "sub-52",
@@ -4635,7 +4635,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-003) — أعمال الكريتال والمنشآت المعدنية."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-STEL-003) — أعمال الكريتال والمنشآت المعدنية."
     },
     {
         "id": "sub-53",
@@ -4656,7 +4656,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-004) — أعمال الكريتال والحديد والـ Steel."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-STEL-004) — أعمال الكريتال والحديد والـ Steel."
     },
     {
         "id": "sub-54",
@@ -4678,7 +4678,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-TILE-001) — تركيب سيراميك وبورسلين وبلاط."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-TILE-001) — تركيب سيراميك وبورسلين وبلاط."
     },
     {
         "id": "sub-55",
@@ -4699,7 +4699,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
         "activeProjects": [
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-TILE-002) — تركيب سيراميك وبورسلين وبلاط."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-TILE-002) — تركيب سيراميك وبورسلين وبلاط."
     },
     {
         "id": "sub-56",
@@ -4721,7 +4721,7 @@ export const NEXUS_SUBCONTRACTORS: NexusSubcontractorRecord[] = [
             "C096",
             "C063"
         ],
-        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-TILE-003) — تركيب سيراميك وبورسلين وبلاط."
+        "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-TILE-003) — تركيب سيراميك وبورسلين وبلاط."
     }
 ];
 
@@ -5482,7 +5482,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "accountNumber": "12010204",
         "currency": "EGP",
         "balance": 12649.22,
-        "custodian": "Actpert Corporate Finance",
+        "custodian": "Nexus Corporate Finance",
         "lastUpdated": "2026-10-15"
     },
     {
@@ -5495,7 +5495,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "accountNumber": "12010205",
         "currency": "EGP",
         "balance": 844.22,
-        "custodian": "Actpert Corporate Finance",
+        "custodian": "Nexus Corporate Finance",
         "lastUpdated": "2026-10-15"
     },
     {
@@ -5508,7 +5508,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "accountNumber": "12010206",
         "currency": "EGP",
         "balance": 0.0,
-        "custodian": "Actpert Corporate Finance",
+        "custodian": "Nexus Corporate Finance",
         "lastUpdated": "2026-10-15"
     },
     {
@@ -5545,7 +5545,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "cardName": "210701 كارت ائتمان — رئيسي",
         "bankName": "CIB / NBE / HSBC / ABK / ENBD",
         "cardNumberMasked": "**** **** **** 0701",
-        "holderName": "ACTPERT / PIERRE / MARIAM",
+        "holderName": "NEXUS / PIERRE / MARIAM",
         "creditLimit": 0.0,
         "usedBalance": 0.0,
         "availableLimit": 0.0,
@@ -5559,7 +5559,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "cardName": "210702 Credit-ABK",
         "bankName": "CIB / NBE / HSBC / ABK / ENBD",
         "cardNumberMasked": "**** **** **** 0702",
-        "holderName": "ACTPERT / PIERRE / MARIAM",
+        "holderName": "NEXUS / PIERRE / MARIAM",
         "creditLimit": 15000.0,
         "usedBalance": 5790.78,
         "availableLimit": 9209.22,
@@ -5573,7 +5573,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "cardName": "210703 Credit-HSBC-أفراد",
         "bankName": "CIB / NBE / HSBC / ABK / ENBD",
         "cardNumberMasked": "**** **** **** 0703",
-        "holderName": "ACTPERT / PIERRE / MARIAM",
+        "holderName": "NEXUS / PIERRE / MARIAM",
         "creditLimit": 212000.0,
         "usedBalance": 102248.31,
         "availableLimit": 109751.69,
@@ -5587,7 +5587,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "cardName": "210704 Credit-NBE Pierre-أفراد",
         "bankName": "CIB / NBE / HSBC / ABK / ENBD",
         "cardNumberMasked": "**** **** **** 0704",
-        "holderName": "ACTPERT / PIERRE / MARIAM",
+        "holderName": "NEXUS / PIERRE / MARIAM",
         "creditLimit": 343449.04,
         "usedBalance": 156542.17,
         "availableLimit": 186906.87,
@@ -5601,7 +5601,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "cardName": "210705 Credit-NBE Mariam-أفراد",
         "bankName": "CIB / NBE / HSBC / ABK / ENBD",
         "cardNumberMasked": "**** **** **** 0705",
-        "holderName": "ACTPERT / PIERRE / MARIAM",
+        "holderName": "NEXUS / PIERRE / MARIAM",
         "creditLimit": 88703.3,
         "usedBalance": 5405.94,
         "availableLimit": 83297.36,
@@ -5615,7 +5615,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "cardName": "210706 فوري رصيد مدين — المسدد أكبر من المسحوب المسجل؛ محتاج مطابقة مع كشف الكارت (المسحوب محسوب صفر)",
         "bankName": "CIB / NBE / HSBC / ABK / ENBD",
         "cardNumberMasked": "**** **** **** 0706",
-        "holderName": "ACTPERT / PIERRE / MARIAM",
+        "holderName": "NEXUS / PIERRE / MARIAM",
         "creditLimit": 0.0,
         "usedBalance": -7126.37,
         "availableLimit": 0.0,
@@ -5629,7 +5629,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "cardName": "210707 Credit-ENBD أفراد",
         "bankName": "CIB / NBE / HSBC / ABK / ENBD",
         "cardNumberMasked": "**** **** **** 0707",
-        "holderName": "ACTPERT / PIERRE / MARIAM",
+        "holderName": "NEXUS / PIERRE / MARIAM",
         "creditLimit": 400000.0,
         "usedBalance": 305714.83,
         "availableLimit": 94285.17,
@@ -5643,7 +5643,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "cardName": "210708 كارت ائتمان — CIB",
         "bankName": "CIB / NBE / HSBC / ABK / ENBD",
         "cardNumberMasked": "**** **** **** 0708",
-        "holderName": "ACTPERT / PIERRE / MARIAM",
+        "holderName": "NEXUS / PIERRE / MARIAM",
         "creditLimit": 43863.1,
         "usedBalance": 43863.1,
         "availableLimit": 0.0,
@@ -5657,7 +5657,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
         "cardName": "210709 أقساط مشتريات بالتقسيط — كروت ائتمان",
         "bankName": "CIB / NBE / HSBC / ABK / ENBD",
         "cardNumberMasked": "**** **** **** 0709",
-        "holderName": "ACTPERT / PIERRE / MARIAM",
+        "holderName": "NEXUS / PIERRE / MARIAM",
         "creditLimit": 109847.66,
         "usedBalance": 109847.66,
         "availableLimit": 0.0,
@@ -5668,7 +5668,7 @@ export const NEXUS_TREASURY_SUMMARY: NexusTreasurySummary = {
 ],
 };
 
-// ─── 7. ALL 16 LIVE ACTPERT HR & GEOLOCATION STAFF ROSTER (1001 to 1030) ───
+// ─── 7. ALL 16 LIVE NEXUS HR & GEOLOCATION STAFF ROSTER (1001 to 1030) ───
 
 export const NEXUS_HR_STAFF: NexusHrStaffMember[] = [
     {

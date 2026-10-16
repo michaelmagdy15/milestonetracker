@@ -133,7 +133,7 @@ export interface EWorksMigrationRecord {
 }
 
 // ============================================================================
-// EXACT LIVE ACTPERT NEXUS DATA SNAPSHOT
+// EXACT LIVE Nexus DATA SNAPSHOT
 // ============================================================================
 
 // 6 Active Cash/Vault & Bank Accounts summing to 254,833.88 EGP
@@ -180,7 +180,7 @@ const INITIAL_CASH_BANK_ACCOUNTS: CashBankAccount[] = [
     "totalInflows": 1450649.22,
     "totalOutflows": 1538000.0,
     "currentBalance": 12649.22,
-    "custodianAr": "Actpert Corporate Treasury",
+    "custodianAr": "Nexus Corporate Treasury",
     "lastUpdated": "2026-10-15 16:30"
   },
   {
@@ -195,7 +195,7 @@ const INITIAL_CASH_BANK_ACCOUNTS: CashBankAccount[] = [
     "totalInflows": 512844.22,
     "totalOutflows": 552000.0,
     "currentBalance": 844.22,
-    "custodianAr": "Actpert Corporate Treasury",
+    "custodianAr": "Nexus Corporate Treasury",
     "lastUpdated": "2026-10-15 15:20"
   },
   {
@@ -210,7 +210,7 @@ const INITIAL_CASH_BANK_ACCOUNTS: CashBankAccount[] = [
     "totalInflows": 250000.0,
     "totalOutflows": 250000.0,
     "currentBalance": 0.0,
-    "custodianAr": "Actpert Corporate Treasury",
+    "custodianAr": "Nexus Corporate Treasury",
     "lastUpdated": "2026-10-15 14:00"
   },
   {
@@ -245,7 +245,7 @@ const INITIAL_CASH_BANK_ACCOUNTS: CashBankAccount[] = [
   }
 ];
 
-// 9 Real Credit Card Accounts from Actpert (/cashbox) summing to 483,450.31 EGP Available Limit
+// 9 Real Credit Card Accounts from Nexus (/cashbox) summing to 483,450.31 EGP Available Limit
 const INITIAL_CREDIT_CARDS: CorporateCreditCard[] = [
   {
     "id": "CC-210701",
@@ -253,7 +253,7 @@ const INITIAL_CREDIT_CARDS: CorporateCreditCard[] = [
     "cardNameEn": "210701 — Main Corporate Credit Card",
     "bankName": "Main Credit Card",
     "cardNumberMasked": "**** **** **** 0701",
-    "cardholderAr": "Actpert Corporate",
+    "cardholderAr": "Nexus Corporate",
     "totalLimit": 50000.0,
     "usedAmount": 0.0,
     "availableLimit": 0.0,
@@ -351,7 +351,7 @@ const INITIAL_CREDIT_CARDS: CorporateCreditCard[] = [
     "cardNameEn": "210708 — Credit-CIB",
     "bankName": "Commercial International Bank (CIB)",
     "cardNumberMasked": "**** **** **** 0708",
-    "cardholderAr": "Actpert Executive",
+    "cardholderAr": "Nexus Executive",
     "totalLimit": 43863.1,
     "usedAmount": 43863.1,
     "availableLimit": 0.0,
@@ -365,7 +365,7 @@ const INITIAL_CREDIT_CARDS: CorporateCreditCard[] = [
     "cardNameEn": "210709 — Credit Card Installment Plans Pool",
     "bankName": "Installment Plans Pool (أقساط الكروت)",
     "cardNumberMasked": "**** **** **** 0709",
-    "cardholderAr": "Actpert Procurement Installments",
+    "cardholderAr": "Nexus Procurement Installments",
     "totalLimit": 109847.66,
     "usedAmount": 109847.66,
     "availableLimit": 0.0,
@@ -540,7 +540,7 @@ const INITIAL_JOURNAL_ENTRIES: TreasuryJournalEntry[] = [
   },
 ];
 
-// Full Real Active & Client Projects Portfolio from Actpert Nexus Live ERP
+// Full Real Active & Client Projects Portfolio from Nexus Live ERP
 const ALL_46_PROJECTS: ProjectCashflowRow[] = [
   {
     "id": "PRJ-01",
@@ -1913,7 +1913,7 @@ export const TreasuryCashBankHub: React.FC = () => {
     setInstallmentPlans(INITIAL_INSTALLMENT_PLANS);
     setJournalEntries(INITIAL_JOURNAL_ENTRIES);
     setEworksRecords(INITIAL_EWORKS_AUDIT_RECORDS);
-    showToast('تم استعادة الأرصدة اللحظية المعتمدة من نظام Actpert Nexus (738,284.19 EGP)');
+    showToast('تم استعادة الأرصدة اللحظية المعتمدة من نظام Nexus (738,284.19 EGP)');
   };
 
   // Record Deposit / Payment / Internal Transfer
@@ -2118,7 +2118,7 @@ export const TreasuryCashBankHub: React.FC = () => {
           : rec
       )
     );
-    showToast('تم اعتماد تسوية قيد E-Works وتأكيد المطابقة النهائية في Actpert Nexus ✅');
+    showToast('تم اعتماد تسوية قيد E-Works وتأكيد المطابقة النهائية في Nexus ✅');
   };
 
   return (
@@ -2159,8 +2159,8 @@ export const TreasuryCashBankHub: React.FC = () => {
             stepNum: 4,
             titleEn: 'Verify Legacy E-Works ERP Migration Records',
             titleAr: 'مطابقة وترحيل سجلات نظام E-Works',
-            actionHintEn: 'Reconcile legacy E-Works balances against migrated Actpert Nexus records and approve flagged variance adjustments.',
-            actionHintAr: 'طابق أرصدة نظام E-Works السابق مع السجلات المرحّلة لنظام Actpert Nexus واعتمد تسوية الفروقات المعلّقة.',
+            actionHintEn: 'Reconcile legacy E-Works balances against migrated Nexus records and approve flagged variance adjustments.',
+            actionHintAr: 'طابق أرصدة نظام E-Works السابق مع السجلات المرحّلة لنظام Nexus واعتمد تسوية الفروقات المعلّقة.',
           },
         ]}
       />
@@ -2173,7 +2173,7 @@ export const TreasuryCashBankHub: React.FC = () => {
             <div className="flex flex-wrap items-center gap-2.5">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#123524]/10 px-3 py-1 text-xs font-bold text-[#123524] border border-[#123524]/25">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                LIVE ACTPERT NEXUS TREASURY &amp; LIQUIDITY ENGINE
+                LIVE Nexus TREASURY &amp; LIQUIDITY ENGINE
               </span>
               <span className="rounded-full bg-[#192631]/[0.05] px-3 py-1 text-xs font-medium text-[#192631]/85 border border-[#192631]/10">
                 /cashbox • /cashbox/credit-cards • /eworks/review
@@ -2976,7 +2976,7 @@ export const TreasuryCashBankHub: React.FC = () => {
                   </h3>
                 </div>
                 <p className="mt-1 text-xs text-[#192631]/70">
-                  مطابقة الأرصدة المرحّلة من نظام E-Works القديم (/eworks &amp; /eworks/review) مع القيود الفعلية في Actpert Nexus للمستخلصات، أرصدة العملاء، أوامر الشراء، وكشوف المقاولين
+                  مطابقة الأرصدة المرحّلة من نظام E-Works القديم (/eworks &amp; /eworks/review) مع القيود الفعلية في Nexus للمستخلصات، أرصدة العملاء، أوامر الشراء، وكشوف المقاولين
                 </p>
               </div>
 

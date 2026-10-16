@@ -157,7 +157,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ALUM-001) — أعمال الألومنيوم والـ UPVC.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ALUM-001) — أعمال الألومنيوم والـ UPVC.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -184,7 +184,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ALUM-002) — أعمال الألومنيوم والـ UPVC.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ALUM-002) — أعمال الألومنيوم والـ UPVC.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -211,7 +211,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ALUM-003) — أعمال الألومنيوم والـ UPVC.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ALUM-003) — أعمال الألومنيوم والـ UPVC.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -238,7 +238,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-001) — نجارة أسطرجي وتشطيب أثاث.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-001) — نجارة أسطرجي وتشطيب أثاث.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -265,7 +265,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-002) — أعمال النجارة والباب والشباك.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-002) — أعمال النجارة والباب والشباك.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -292,7 +292,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-003) — أعمال النجارة والتركيبات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-003) — أعمال النجارة والتركيبات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -319,7 +319,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-004) — أعمال النجارة والتركيبات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-004) — أعمال النجارة والتركيبات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -346,7 +346,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CARP-005) — أعمال النجارة والتركيبات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CARP-005) — أعمال النجارة والتركيبات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -372,7 +372,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-CIVL-001) — أعمال مدنية وحفر ردم وإرساء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-CIVL-001) — أعمال مدنية وحفر ردم وإرساء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -399,7 +399,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-001) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-001) — شبكات وتأسيس وتشطيب الكهرباء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -426,7 +426,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-002) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-002) — شبكات وتأسيس وتشطيب الكهرباء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -452,7 +452,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-003) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-003) — شبكات وتأسيس وتشطيب الكهرباء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -479,7 +479,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-004) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-004) — شبكات وتأسيس وتشطيب الكهرباء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -506,7 +506,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-005) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-005) — شبكات وتأسيس وتشطيب الكهرباء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -533,7 +533,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-006) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-006) — شبكات وتأسيس وتشطيب الكهرباء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -560,7 +560,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-007) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-007) — شبكات وتأسيس وتشطيب الكهرباء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -587,7 +587,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-008) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-008) — شبكات وتأسيس وتشطيب الكهرباء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -613,7 +613,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-ELEC-009) — شبكات وتأسيس وتشطيب الكهرباء.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-ELEC-009) — شبكات وتأسيس وتشطيب الكهرباء.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -640,7 +640,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-FINS-001) — أعمال الكورنيش والـ Cornices.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-FINS-001) — أعمال الكورنيش والـ Cornices.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -667,7 +667,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-FLOR-001) — أرضيات باركيه وخشب.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-FLOR-001) — أرضيات باركيه وخشب.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -694,7 +694,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-FURN-001) — تركيبات وتوريد أثاث ومطابخ.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-FURN-001) — تركيبات وتوريد أثاث ومطابخ.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -721,7 +721,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GENR-001) — أعمال عامة وتوريد عمالة يوميات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GENR-001) — أعمال عامة وتوريد عمالة يوميات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -748,7 +748,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GENR-002) — أعمال عامة وتوريد عمالة يوميات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GENR-002) — أعمال عامة وتوريد عمالة يوميات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -775,7 +775,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GLAS-001) — أعمال الزجاج والواجهات السيكوريت.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GLAS-001) — أعمال الزجاج والواجهات السيكوريت.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -802,7 +802,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GLAS-002) — زجاج مصفح وLamination.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GLAS-002) — زجاج مصفح وLamination.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -829,7 +829,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GYPS-001) — أسقف معلقة وجبس بورد.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GYPS-001) — أسقف معلقة وجبس بورد.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -856,7 +856,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GYPS-002) — أسقف معلقة وجبس بورد.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GYPS-002) — أسقف معلقة وجبس بورد.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -883,7 +883,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-GYPS-003) — أسقف معلقة وجبس بورد.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-GYPS-003) — أسقف معلقة وجبس بورد.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -910,7 +910,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-HEAT-001) — أنظمة تدفئة أرضية وتدفئة مركزية.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-HEAT-001) — أنظمة تدفئة أرضية وتدفئة مركزية.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -937,7 +937,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-HVAC-001) — التكييف والتهوية والتبريد.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-HVAC-001) — التكييف والتهوية والتبريد.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -963,7 +963,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-HVAC-002) — التكييف والتهوية والتبريد.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-HVAC-002) — التكييف والتهوية والتبريد.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -990,7 +990,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-INSU-001) — أعمال العزل المائي والحراري.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-INSU-001) — أعمال العزل المائي والحراري.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1016,7 +1016,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-LAND-001) — لاندسكيب وحوائط خضراء وزراعة.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-LAND-001) — لاندسكيب وحوائط خضراء وزراعة.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1043,7 +1043,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MARB-001) — أعمال جلي وتركيب الرخام والجرانيت.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MARB-001) — أعمال جلي وتركيب الرخام والجرانيت.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1070,7 +1070,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MARB-002) — أعمال جلي وتركيب الرخام والجرانيت.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MARB-002) — أعمال جلي وتركيب الرخام والجرانيت.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1097,7 +1097,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MECH-001) — أعمال ميكانيكا ومعدات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MECH-001) — أعمال ميكانيكا ومعدات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1123,7 +1123,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MECH-002) — أعمال ميكانيكا ومعدات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MECH-002) — أعمال ميكانيكا ومعدات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1150,7 +1150,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MSRY-001) — أعمال المباني والـ Masonry.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MSRY-001) — أعمال المباني والـ Masonry.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1177,7 +1177,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-MSRY-002) — أعمال المباني والـ Masonry.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-MSRY-002) — أعمال المباني والـ Masonry.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1203,7 +1203,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLST-001) — أعمال بياض المحارة واللياسة.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLST-001) — أعمال بياض المحارة واللياسة.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1230,7 +1230,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLST-002) — أعمال بياض المحارة واللياسة.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLST-002) — أعمال بياض المحارة واللياسة.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1257,7 +1257,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLST-003) — أعمال بياض المحارة واللياسة.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLST-003) — أعمال بياض المحارة واللياسة.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1284,7 +1284,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLUM-001) — شبكات تغذية وصرف صحي (سباكة).",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLUM-001) — شبكات تغذية وصرف صحي (سباكة).",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1311,7 +1311,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PLUM-002) — شبكات تغذية وصرف صحي (سباكة).",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PLUM-002) — شبكات تغذية وصرف صحي (سباكة).",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1337,7 +1337,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-001) — أعمال النقاشة والدهانات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PTNG-001) — أعمال النقاشة والدهانات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1364,7 +1364,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-002) — أعمال النقاشة والدهانات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PTNG-002) — أعمال النقاشة والدهانات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1391,7 +1391,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-003) — أعمال النقاشة والدهانات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PTNG-003) — أعمال النقاشة والدهانات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1418,7 +1418,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-PTNG-004) — أعمال النقاشة والدهانات.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-PTNG-004) — أعمال النقاشة والدهانات.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1444,7 +1444,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-SHUT-001) — شيش حصيرة وأبواب حماية UPVC.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-SHUT-001) — شيش حصيرة وأبواب حماية UPVC.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1470,7 +1470,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-001) — أعمال الكريتال والحديد والـ Steel (كرم مطاوع).",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-STEL-001) — أعمال الكريتال والحديد والـ Steel (كرم مطاوع).",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1497,7 +1497,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-002) — أعمال الكريتال والحديد والـ Steel.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-STEL-002) — أعمال الكريتال والحديد والـ Steel.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1523,7 +1523,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-003) — أعمال الكريتال والمنشآت المعدنية.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-STEL-003) — أعمال الكريتال والمنشآت المعدنية.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1549,7 +1549,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-STEL-004) — أعمال الكريتال والحديد والـ Steel.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-STEL-004) — أعمال الكريتال والحديد والـ Steel.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1576,7 +1576,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-TILE-001) — تركيب سيراميك وبورسلين وبلاط.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-TILE-001) — تركيب سيراميك وبورسلين وبلاط.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1602,7 +1602,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-TILE-002) — تركيب سيراميك وبورسلين وبلاط.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-TILE-002) — تركيب سيراميك وبورسلين وبلاط.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   },
@@ -1629,7 +1629,7 @@ const INITIAL_SUBCONTRACTORS: SubcontractorRecord[] = [
       "ethics": "A"
     },
     "overallGrade": "A",
-    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Actpert Nexus (SUB-TILE-003) — تركيب سيراميك وبورسلين وبلاط.",
+    "ceoNotes": "مسجل في قاعدة بيانات مقاولي الباطن Nexus (SUB-TILE-003) — تركيب سيراميك وبورسلين وبلاط.",
     "lastEvaluatedBy": "Pierre Afifi (1001) + Technical Office",
     "lastEvaluatedDate": "2026-10-15"
   }
@@ -1862,7 +1862,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
     });
   }, [subcontractors, selectedTrade, selectedWorkNature, selectedGrade, searchQuery]);
 
-  // KPI Metrics (Reflecting Live Actpert Nexus 56 Subcontractors & 63 Contractor Ledger Accounts)
+  // KPI Metrics (Reflecting Live Nexus 56 Subcontractors & 63 Contractor Ledger Accounts)
   const kpiStats = useMemo(() => {
     const baseRegisteredCount = 56 + (subcontractors.length - INITIAL_SUBCONTRACTORS.length);
     const baseLedgerAccounts = 63 + (subcontractors.length - INITIAL_SUBCONTRACTORS.length);
@@ -1944,7 +1944,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
       retentionHeldEgp: 0,
       pillars: { quality: 'A', pricing: 'A', schedule: 'A', ethics: 'A' },
       overallGrade: 'A',
-      ceoNotes: newSubNotes.trim() || 'تم التسجيل والاعتماد المبدئي في دليل مقاولي الباطن Actpert Nexus.',
+      ceoNotes: newSubNotes.trim() || 'تم التسجيل والاعتماد المبدئي في دليل مقاولي الباطن Nexus.',
       lastEvaluatedBy: 'م. أحمد (CEO)',
       lastEvaluatedDate: new Date().toISOString().split('T')[0],
     };
@@ -2165,7 +2165,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-orange-500/25 text-[#e04b2a] text-[11px] font-black tracking-wide mb-2">
               <HardHat className="w-3.5 h-3.5" />
-              <span>ACTPERT NEXUS LIVE · /subcontractors & /contractor-accounts</span>
+              <span>Nexus LIVE · /subcontractors & /contractor-accounts</span>
             </div>
             <h2 className="text-2xl lg:text-3xl font-black text-[#192631]">
               دليل مقاولي الباطن والصنايعية وتقييم الإدارة{' '}
@@ -2593,7 +2593,7 @@ export const SubcontractorsDirectoryHub: React.FC = () => {
             <div className="space-y-1">
               <div className="inline-flex items-center gap-2 text-[#e04b2a] text-xs font-black">
                 <Scale className="w-4 h-4" />
-                <span>معادلة المستخلص القياسية (Actpert ST Engine) + بوابة الاستلام الهندسي (SIR Gate)</span>
+                <span>معادلة المستخلص القياسية (Nexus ST Engine) + بوابة الاستلام الهندسي (SIR Gate)</span>
               </div>
               <p className="text-xs text-[#192631]/85 leading-relaxed">
                 صافي المستحق للصرف = إجمالي قيمة الأعمال المنفذة (السابقة + الحالية) −{' '}

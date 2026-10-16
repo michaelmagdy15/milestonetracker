@@ -129,7 +129,7 @@ interface StaffRequestItem {
 }
 
 // ============================================================================
-// INITIAL REALISTIC ACTPERT NEXUS DATA (16 STAFF, SITES, LOGS, 21->20 CYCLE)
+// INITIAL REALISTIC Nexus DATA (16 STAFF, SITES, LOGS, 21->20 CYCLE)
 // ============================================================================
 
 const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
@@ -152,7 +152,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "مفتوح 9.49 س (أول→آخر)",
     "batteryLevel": 87,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (حاضر بالموقع)",
+    "activeTask": "سجل حضور Nexus اليومي (حاضر بالموقع)",
     "rcbCustodyCode": "RCB-1001"
   },
   {
@@ -174,7 +174,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "مفتوح 9.39 س (أول→آخر)",
     "batteryLevel": 86,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (حاضر بالموقع)",
+    "activeTask": "سجل حضور Nexus اليومي (حاضر بالموقع)",
     "rcbCustodyCode": "RCB-1002"
   },
   {
@@ -196,7 +196,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "—",
     "batteryLevel": 85,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (غائب اليوم)",
+    "activeTask": "سجل حضور Nexus اليومي (غائب اليوم)",
     "rcbCustodyCode": "RCB-1003"
   },
   {
@@ -218,7 +218,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "مفتوح 10.47 س (أول→آخر)",
     "batteryLevel": 84,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (حاضر بالموقع)",
+    "activeTask": "سجل حضور Nexus اليومي (حاضر بالموقع)",
     "rcbCustodyCode": "RCB-1005"
   },
   {
@@ -240,7 +240,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "—",
     "batteryLevel": 83,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (غائب اليوم)",
+    "activeTask": "سجل حضور Nexus اليومي (غائب اليوم)",
     "rcbCustodyCode": "RCB-1006"
   },
   {
@@ -262,7 +262,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "—",
     "batteryLevel": 82,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (غائب اليوم)",
+    "activeTask": "سجل حضور Nexus اليومي (غائب اليوم)",
     "rcbCustodyCode": "RCB-1007"
   },
   {
@@ -284,7 +284,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "17:21 8.36 س (أول→آخر)",
     "batteryLevel": 81,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (حاضر بالموقع)",
+    "activeTask": "سجل حضور Nexus اليومي (حاضر بالموقع)",
     "rcbCustodyCode": "RCB-1009"
   },
   {
@@ -306,7 +306,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "17:03 7.87 س (أول→آخر)",
     "batteryLevel": 80,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (حاضر بالموقع)",
+    "activeTask": "سجل حضور Nexus اليومي (حاضر بالموقع)",
     "rcbCustodyCode": "RCB-1014"
   },
   {
@@ -328,7 +328,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "—",
     "batteryLevel": 79,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (غائب اليوم)",
+    "activeTask": "سجل حضور Nexus اليومي (غائب اليوم)",
     "rcbCustodyCode": "RCB-1016"
   },
   {
@@ -350,7 +350,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "مفتوح 11.05 س (أول→آخر)",
     "batteryLevel": 78,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (حاضر بالموقع)",
+    "activeTask": "سجل حضور Nexus اليومي (حاضر بالموقع)",
     "rcbCustodyCode": "RCB-1019"
   },
   {
@@ -372,7 +372,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "—",
     "batteryLevel": 77,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (غائب اليوم)",
+    "activeTask": "سجل حضور Nexus اليومي (غائب اليوم)",
     "rcbCustodyCode": "RCB-1022"
   },
   {
@@ -394,7 +394,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "—",
     "batteryLevel": 76,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (غائب اليوم)",
+    "activeTask": "سجل حضور Nexus اليومي (غائب اليوم)",
     "rcbCustodyCode": "RCB-1023"
   },
   {
@@ -416,7 +416,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "15:39 6.2 س (أول→آخر)",
     "batteryLevel": 75,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (حاضر بالموقع)",
+    "activeTask": "سجل حضور Nexus اليومي (حاضر بالموقع)",
     "rcbCustodyCode": "RCB-1026"
   },
   {
@@ -438,7 +438,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "مفتوح 10.67 س (أول→آخر)",
     "batteryLevel": 74,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (حاضر بالموقع)",
+    "activeTask": "سجل حضور Nexus اليومي (حاضر بالموقع)",
     "rcbCustodyCode": "RCB-1027"
   },
   {
@@ -460,7 +460,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "—",
     "batteryLevel": 73,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (غائب اليوم)",
+    "activeTask": "سجل حضور Nexus اليومي (غائب اليوم)",
     "rcbCustodyCode": "RCB-1028"
   },
   {
@@ -482,7 +482,7 @@ const INITIAL_STAFF_WHEREABOUTS: StaffWhereabouts[] = [
     "lastPingTime": "مفتوح 10.84 س (أول→آخر)",
     "batteryLevel": 72,
     "deviceModel": "Nexus GPS Mobile App",
-    "activeTask": "سجل حضور Actpert اليومي (حاضر بالموقع)",
+    "activeTask": "سجل حضور Nexus اليومي (حاضر بالموقع)",
     "rcbCustodyCode": "RCB-1030"
   }
 ];
@@ -1319,7 +1319,7 @@ export const HrWhereaboutsHub: React.FC = () => {
       category: newReqCategory,
       categoryLabelAr: categoryLabels[newReqCategory],
       title: newReqTitle,
-      details: newReqDetails || 'تم التسجيل عبر بوابة الموارد البشرية والعهد الميدانية Actpert Nexus.',
+      details: newReqDetails || 'تم التسجيل عبر بوابة الموارد البشرية والعهد الميدانية Nexus.',
       dateSubmitted: '2026-10-15 (الآن)',
       amountEgp:
         newReqCategory !== 'leave' && newReqAmount ? Number(newReqAmount) : undefined,
@@ -1398,7 +1398,7 @@ export const HrWhereaboutsHub: React.FC = () => {
             <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
                 <Radar className="w-3.5 h-3.5 animate-pulse" />
-                Actpert Nexus Live GPS & HR Core
+                Nexus Live GPS & HR Core
               </span>
               <span className="text-xs text-[#192631]/70 font-mono">
                 /whereabouts • /project-sites • /hr/surprise-check • /attendance (21→20) • /my-requests
@@ -1762,7 +1762,7 @@ export const HrWhereaboutsHub: React.FC = () => {
               <div>
                 <h3 className="text-base md:text-lg font-bold text-[#192631] flex items-center gap-2">
                   <Users className="w-5 h-5 text-[#123524]" />
-                  سجل التواجد اللحظي لجميع موظفي ومهندسي Actpert Nexus ({filteredStaff.length} من 16)
+                  سجل التواجد اللحظي لجميع موظفي ومهندسي Nexus ({filteredStaff.length} من 16)
                 </h3>
                 <p className="text-xs text-[#192631]/70">
                   يتضمن حالة التحقق من النطاق الجغرافي (Within 150m/200m Geofence)، وقت البصمة، وحالة الجهاز
@@ -1992,7 +1992,7 @@ export const HrWhereaboutsHub: React.FC = () => {
               <div className="space-y-2 max-w-3xl">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-red-700 border border-rose-500/30">
                   <Timer className="w-3.5 h-3.5" />
-                  ميزة Actpert Nexus الحصرية • /hr/surprise-check
+                  ميزة Nexus الحصرية • /hr/surprise-check
                 </div>
                 <h2 className="text-xl md:text-2xl font-extrabold text-[#192631]">
                   إطلاق تمام مفاجئ الآن (Surprise GPS & Live Photo Roll Call)
@@ -2195,7 +2195,7 @@ export const HrWhereaboutsHub: React.FC = () => {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25 mb-2">
                   <CalendarRange className="w-3.5 h-3.5" />
-                  قاعدة الرواتب المعتمدة في Actpert Nexus (من يوم 21 بالشهر السابق حتى يوم 20 بالشهر الحالي)
+                  قاعدة الرواتب المعتمدة في Nexus (من يوم 21 بالشهر السابق حتى يوم 20 بالشهر الحالي)
                 </div>
                 <h2 className="text-xl font-extrabold text-[#192631]">
                   شيت البصمة والحضور الشهري (دورة {selectedCycleLabel})

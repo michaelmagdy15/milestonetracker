@@ -24,9 +24,17 @@ const DB_STORAGE_KEY = 'whitelabel_firebase_cache_v3';
 const SESSION_STORAGE_KEY = 'whitelabel_firebase_session_v3';
 const LEGACY_AUTH_KEY = 'dec-tracker-auth';
 
-export const DEFAULT_ADMIN_EMAIL = 'admin@platform.com';
-export const DEFAULT_ADMIN_PASSWORD = 'Admin123!';
-export const DEFAULT_ADMIN_ID = 'hfGbGazwTHQDeN2TNlGi9igisZg2';
+export const PIERRE_OWNER_EMAIL = 'pierre@nexus-contracting.com';
+export const PIERRE_OWNER_PASSWORD = 'Pierre@Nexus2026!';
+export const PIERRE_OWNER_ID = 'owner-pierre-afifi-001';
+
+export const MICHAEL_SYSADMIN_EMAIL = 'michael@nexus-contracting.com';
+export const MICHAEL_SYSADMIN_PASSWORD = 'Michael@Nexus2026!';
+export const MICHAEL_SYSADMIN_ID = 'sysadmin-michael-001';
+
+export const DEFAULT_ADMIN_EMAIL = PIERRE_OWNER_EMAIL;
+export const DEFAULT_ADMIN_PASSWORD = PIERRE_OWNER_PASSWORD;
+export const DEFAULT_ADMIN_ID = PIERRE_OWNER_ID;
 export const DEFAULT_ORG_ID = 'org-default';
 
 export interface StoredAuthUser {
@@ -110,61 +118,98 @@ const stripUndefined = (obj: Record<string, any>) => {
     return cleaned;
 };
 
-const createInitialDatabase = (): LocalDatabase => {
-    const now = new Date().toISOString();
-    const defaultOrg: Organization = {
-        id: DEFAULT_ORG_ID,
-        name: 'Apex Contracting & Engineering',
-        slug: 'apex-contracting',
-        tagline: 'White-Label Contracting & Milestone Management Platform',
-        logoUrl: '',
-        faviconUrl: '',
-        primaryColor: '#f3822d',
-        themeSurface: 'obsidian',
-        currency: 'AED',
-        branches: ['Abu Dhabi', 'Cairo', 'Dubai', 'Riyadh'],
-        email: DEFAULT_ADMIN_EMAIL,
-        phone: '+971 2 555 0100',
-        address: 'Corporate Tower, Suite 400',
-        city: 'Abu Dhabi',
-        country: 'United Arab Emirates',
-        plan: 'Enterprise',
-        createdAt: now,
-    };
-
-    const adminUser: StoredAuthUser = {
-        id: DEFAULT_ADMIN_ID,
-        email: DEFAULT_ADMIN_EMAIL,
-        password: DEFAULT_ADMIN_PASSWORD,
+const getSeedUsersAndEngineers = (now: string) => {
+    const pierreUser: StoredAuthUser = {
+        id: PIERRE_OWNER_ID,
+        email: PIERRE_OWNER_EMAIL,
+        password: PIERRE_OWNER_PASSWORD,
         user_metadata: {
-            name: 'Platform Administrator',
-            full_name: 'Platform Administrator',
+            name: 'Eng. Pierre Afifi',
+            full_name: 'Eng. Pierre Afifi',
             role: 'admin',
             organization_id: DEFAULT_ORG_ID,
-            hourly_rate: 150,
-            weekly_goal_hours: 40,
+            hourly_rate: 250,
+            weekly_goal_hours: 45,
         },
         created_at: now,
     };
 
+    const michaelUser: StoredAuthUser = {
+        id: MICHAEL_SYSADMIN_ID,
+        email: MICHAEL_SYSADMIN_EMAIL,
+        password: MICHAEL_SYSADMIN_PASSWORD,
+        user_metadata: {
+            name: 'Michael (System Administrator)',
+            full_name: 'Michael (System Administrator)',
+            role: 'admin',
+            organization_id: DEFAULT_ORG_ID,
+            hourly_rate: 250,
+            weekly_goal_hours: 45,
+        },
+        created_at: now,
+    };
+
+    const pierreEngineer = {
+        id: PIERRE_OWNER_ID,
+        organization_id: DEFAULT_ORG_ID,
+        email: PIERRE_OWNER_EMAIL,
+        name: 'Eng. Pierre Afifi',
+        role: 'admin',
+        hourly_rate: 250,
+        weekly_goal_hours: 45,
+        location: 'El Nozha El Gedida HQ',
+        skills: ['Owner & Founder', 'Architecture', 'Turnkey Contracting', 'Cost Control'],
+        created_at: now,
+    };
+
+    const michaelEngineer = {
+        id: MICHAEL_SYSADMIN_ID,
+        organization_id: DEFAULT_ORG_ID,
+        email: MICHAEL_SYSADMIN_EMAIL,
+        name: 'Michael (System Administrator)',
+        role: 'admin',
+        hourly_rate: 250,
+        weekly_goal_hours: 45,
+        location: 'El Nozha El Gedida HQ',
+        skills: ['System Administration', 'Platform Architecture', 'Security', 'Operations'],
+        created_at: now,
+    };
+
     return {
-        users: [adminUser],
+        users: [pierreUser, michaelUser],
+        engineers: [pierreEngineer, michaelEngineer],
+    };
+};
+
+const createInitialDatabase = (): LocalDatabase => {
+    const now = new Date().toISOString();
+    const defaultOrg: Organization = {
+        id: DEFAULT_ORG_ID,
+        name: 'NEXUS CONTRACTING',
+        slug: 'nexus-contracting',
+        tagline: 'Architecture, Turnkey Contracting & ERP Platform',
+        logoUrl: '',
+        faviconUrl: '',
+        primaryColor: '#e04b2a',
+        themeSurface: 'obsidian',
+        currency: 'EGP',
+        branches: ['El Nozha El Gedida HQ', 'New Cairo - 5th Settlement', 'Madinaty', 'Sheikh Zayed'],
+        email: PIERRE_OWNER_EMAIL,
+        phone: '+20 127 899 5447',
+        address: 'El Nozha El Gedida, Cairo',
+        city: 'Cairo',
+        country: 'Egypt',
+        plan: 'Enterprise',
+        createdAt: now,
+    };
+
+    const { users, engineers } = getSeedUsersAndEngineers(now);
+
+    return {
+        users,
         organizations: [defaultOrg],
         projects: [],
-        engineers: [
-            {
-                id: DEFAULT_ADMIN_ID,
-                organization_id: DEFAULT_ORG_ID,
-                email: DEFAULT_ADMIN_EMAIL,
-                name: 'Platform Administrator',
-                role: 'admin',
-                hourly_rate: 150,
-                weekly_goal_hours: 40,
-                location: 'Abu Dhabi',
-                skills: ['Project Management', 'Contracting', 'FIDIC', 'Cost Control'],
-                created_at: now,
-            }
-        ],
+        engineers,
         entries: [],
         attendance: [],
         milestones: [],
@@ -174,8 +219,8 @@ const createInitialDatabase = (): LocalDatabase => {
             {
                 id: 'notif-welcome-1',
                 organization_id: DEFAULT_ORG_ID,
-                engineer_id: DEFAULT_ADMIN_ID,
-                message: 'Welcome to your Firebase-powered White-Label Contracting Platform! Customize your branding in White-Label Settings.',
+                engineer_id: PIERRE_OWNER_ID,
+                message: 'Welcome to NEXUS CONTRACTING! Your workspace is ready.',
                 is_read: false,
                 created_at: now,
             }
@@ -222,12 +267,29 @@ const loadDb = (): LocalDatabase => {
         if (!parsed.organizations || parsed.organizations.length === 0) {
             parsed.organizations = createInitialDatabase().organizations;
         }
-        if (!parsed.users || parsed.users.length === 0) {
-            parsed.users = createInitialDatabase().users;
+        if (!parsed.users) parsed.users = [];
+        if (!parsed.engineers) parsed.engineers = [];
+
+        // Always ensure Pierre (Owner) and Michael (System Administrator) accounts exist
+        const { users: seedUsers, engineers: seedEngineers } = getSeedUsersAndEngineers(new Date().toISOString());
+        for (const su of seedUsers) {
+            const idx = parsed.users.findIndex(u => u.email.toLowerCase() === su.email.toLowerCase());
+            if (idx === -1) {
+                parsed.users.push(su);
+            } else if (!parsed.users[idx].password) {
+                parsed.users[idx].password = su.password;
+                parsed.users[idx].user_metadata = { ...parsed.users[idx].user_metadata, role: 'admin' };
+            }
         }
-        if (!parsed.engineers || parsed.engineers.length === 0) {
-            parsed.engineers = createInitialDatabase().engineers;
+        for (const se of seedEngineers) {
+            const idx = parsed.engineers.findIndex(e => e.email?.toLowerCase() === se.email.toLowerCase());
+            if (idx === -1) {
+                parsed.engineers.push(se);
+            } else {
+                parsed.engineers[idx].role = 'admin';
+            }
         }
+
         if (!parsed.boq_items) parsed.boq_items = [];
         if (!parsed.subcontractors) parsed.subcontractors = [];
         if (!parsed.payment_applications) parsed.payment_applications = [];
@@ -665,7 +727,13 @@ export const supabase = {
         },
 
         signInWithPassword: async ({ email, password }: { email: string; password: string }) => {
-            const normalizedEmail = email.trim().toLowerCase();
+            let normalizedEmail = email.trim().toLowerCase();
+            if (normalizedEmail === 'pierre') normalizedEmail = PIERRE_OWNER_EMAIL;
+            if (normalizedEmail === 'michael') normalizedEmail = MICHAEL_SYSADMIN_EMAIL;
+
+            const isBuiltInAdmin =
+                normalizedEmail === PIERRE_OWNER_EMAIL || normalizedEmail === MICHAEL_SYSADMIN_EMAIL;
+
             try {
                 // 1. Authenticate against live Firebase Authentication
                 const cred = await signInWithEmailAndPassword(firebaseAuth, normalizedEmail, password);
@@ -675,20 +743,28 @@ export const supabase = {
                 let existingEng = db.engineers.find(e => e.id === fbUser.uid || e.email?.toLowerCase() === normalizedEmail);
                 if (!existingEng) {
                     const now = new Date().toISOString();
+                    const defaultName =
+                        normalizedEmail === PIERRE_OWNER_EMAIL
+                            ? 'Eng. Pierre Afifi'
+                            : normalizedEmail === MICHAEL_SYSADMIN_EMAIL
+                            ? 'Michael (System Administrator)'
+                            : fbUser.displayName || normalizedEmail.split('@')[0];
                     existingEng = {
                         id: fbUser.uid,
                         organization_id: DEFAULT_ORG_ID,
                         email: normalizedEmail,
-                        name: fbUser.displayName || (normalizedEmail === DEFAULT_ADMIN_EMAIL ? 'Platform Administrator' : normalizedEmail.split('@')[0]),
-                        role: normalizedEmail === DEFAULT_ADMIN_EMAIL ? 'admin' : 'engineer',
-                        hourly_rate: 150,
-                        weekly_goal_hours: 40,
-                        location: 'Abu Dhabi',
+                        name: defaultName,
+                        role: isBuiltInAdmin ? 'admin' : 'engineer',
+                        hourly_rate: isBuiltInAdmin ? 250 : 150,
+                        weekly_goal_hours: isBuiltInAdmin ? 45 : 40,
+                        location: 'El Nozha El Gedida HQ',
                         skills: [],
                         created_at: now,
                     };
                     db.engineers.push(existingEng);
                     await setDoc(doc(firestoreDb, 'mt_engineers', fbUser.uid), existingEng, { merge: true });
+                } else if (isBuiltInAdmin) {
+                    existingEng.role = 'admin';
                 }
 
                 const storedUser: StoredAuthUser = {
@@ -697,7 +773,7 @@ export const supabase = {
                     user_metadata: {
                         name: existingEng.name,
                         full_name: existingEng.name,
-                        role: existingEng.role || 'engineer',
+                        role: isBuiltInAdmin ? 'admin' : existingEng.role || 'engineer',
                         organization_id: existingEng.organization_id || DEFAULT_ORG_ID,
                         hourly_rate: existingEng.hourly_rate || 0,
                         weekly_goal_hours: existingEng.weekly_goal_hours || 40,
@@ -720,10 +796,23 @@ export const supabase = {
                 notifyAuthChange('SIGNED_IN', session);
                 return { data: { user: session.user, session }, error: null };
             } catch (fbErr: any) {
-                // Fallback check in local users store if created offline
+                // Fallback check in local users store (including Pierre Owner & Michael SysAdmin accounts)
                 const db = loadDb();
                 const localUser = db.users.find(u => u.email.toLowerCase() === normalizedEmail && u.password === password);
                 if (localUser) {
+                    // Best-effort sync to Firebase Auth if not yet created in cloud
+                    try {
+                        const createdCred = await createUserWithEmailAndPassword(firebaseAuth, normalizedEmail, password);
+                        if (localUser.user_metadata?.name) {
+                            await updateProfile(createdCred.user, { displayName: localUser.user_metadata.name });
+                        }
+                        await Promise.allSettled([
+                            setDoc(doc(firestoreDb, 'mt_users', createdCred.user.uid), stripUndefined({ ...localUser, id: createdCred.user.uid }), { merge: true }),
+                        ]);
+                    } catch {
+                        // Ignore if already exists or offline
+                    }
+
                     const session = buildSession(localUser);
                     setStoredSession(session);
                     if (localUser.user_metadata?.organization_id) {
@@ -734,7 +823,7 @@ export const supabase = {
                 }
                 return {
                     data: { user: null, session: null },
-                    error: { message: 'Invalid login credentials. Use admin@platform.com / Admin123! or register a new workspace.' },
+                    error: { message: 'Invalid login credentials. Please check your email/username and password.' },
                 };
             }
         },

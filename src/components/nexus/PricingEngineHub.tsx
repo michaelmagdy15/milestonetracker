@@ -1012,7 +1012,7 @@ export const PricingEngineHub: React.FC = () => {
                         <div className="flex items-center gap-2.5 flex-wrap">
                             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-[#e04b2a]/10 text-[#e04b2a] border border-[#e04b2a]/25">
                                 <Calculator className="w-3.5 h-3.5" />
-                                Actpert Nexus R02 Pricing Engine
+                                Nexus R02 Pricing Engine
                             </span>
                             <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-blue-500/15 text-[#192631] border border-blue-500/30">
                                 34 Work Packages • 839 Standard Items

@@ -1282,7 +1282,7 @@ export const ExtractsStatementsHub: React.FC = () => {
                     <div>
                         <div className="flex items-center gap-2.5">
                             <span className="px-2.5 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-[#e04b2a]/20 text-[#e04b2a] border border-[#e04b2a]/40">
-                                Actpert Nexus · e-Works Financial Core
+                                Nexus · e-Works Financial Core
                             </span>
                             <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
                                 ContractNo: 000055 · C096 Azad
@@ -2287,15 +2287,15 @@ export const ExtractsStatementsHub: React.FC = () => {
                                 </table>
                             </div>
 
-                            {/* All 80 Migrated Actpert Client & Project Ledger Accounts */}
+                            {/* All 80 Migrated Nexus Client & Project Ledger Accounts */}
                             <div className="p-6 border-t border-[#192631]/10 bg-[#f5f5f5]/60 space-y-4">
                                 <div className="flex flex-wrap items-center justify-between gap-4">
                                     <div>
                                         <h4 className="text-sm font-black text-[#192631]">
-                                            All 80 Actpert Nexus Client & Project Ledger Accounts (كشوف حسابات العملاء والمشروعات — 80 حساب)
+                                            All 80 Nexus Client & Project Ledger Accounts (كشوف حسابات العملاء والمشروعات — 80 حساب)
                                         </h4>
                                         <p className="text-xs text-[#192631]/70">
-                                            Complete directory of all 80 client accounts & project cost centers migrated 100% from https://nexus.actpert.com/client-accounts
+                                            Complete directory of all 80 client accounts & project cost centers migrated 100% from https://nexus.nexus-contracting.com/client-accounts
                                         </p>
                                     </div>
                                     <span className="px-3 py-1 rounded-xl bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-xs font-black">

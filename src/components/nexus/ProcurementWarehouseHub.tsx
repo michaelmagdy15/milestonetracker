@@ -130,7 +130,7 @@ interface CustodyTransferLog {
 }
 
 // ============================================================================
-// INITIAL SEED DATA (ENG. PIERRE AUDIO & ACTPERT NEXUS ERP)
+// INITIAL SEED DATA (ENG. PIERRE AUDIO & Nexus ERP)
 // ============================================================================
 
 const SUBMITTAL_REGISTER: MaterialSubmittalOption[] = [

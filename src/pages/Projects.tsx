@@ -856,7 +856,7 @@ export const Projects: React.FC = () => {
                                     </span>
                                     <h4 className="text-lg md:text-xl font-black text-white tracking-tight">
                                         {activeProjectCode === 'ALL'
-                                            ? 'All 77 Actpert Portfolio Projects (Global View)'
+                                            ? 'All 77 Nexus Portfolio Projects (Global View)'
                                             : `${activeProject?.name || activeProjectCode} — ${activeProject?.clientName || ''}`}
                                     </h4>
                                     {activeProject && activeProjectCode !== 'ALL' && (
@@ -925,7 +925,7 @@ export const Projects: React.FC = () => {
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white/80 backdrop-blur-xl p-5 rounded-2xl border border-[#192631]/10 shadow-sm">
                         <div>
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e04b2a]/10 border border-[#e04b2a]/25 text-[#e04b2a] text-[10px] font-bold uppercase tracking-wider mb-1.5">
-                                Live Actpert 77-Project Portfolio · Live Extracts, BOQ, Submittals & Site Custody
+                                Live Nexus 77-Project Portfolio · Live Extracts, BOQ, Submittals & Site Custody
                             </div>
                             <h3 className="text-2xl font-black text-[#192631] tracking-tight">
                                 Active Contracting <span className="text-[#e04b2a]">Sites & Contracts ({NEXUS_LIVE_PROJECTS.length} Featured / 77 Total)</span>

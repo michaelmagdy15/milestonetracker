@@ -1,4 +1,4 @@
-// ─── Actpert Nexus Bilingual & BiDi Directionality Engine ───
+// ─── Nexus Bilingual & BiDi Directionality Engine ───
 // Guarantees 100% clean LTR (English) and RTL (Arabic) rendering across all pages and hubs,
 // preventing broken parentheses, backwards BiDi tokens, or mixed-language collisions.
 
@@ -392,7 +392,7 @@ const AR_PHRASES_TO_EN: Array<[RegExp, string]> = [
     [/مأمورية خارجية/g, 'Field Transit'],
     [/تأخير \/ لم يسجل/g, 'Late / Unregistered'],
     [/تأخير \/ خارج النطاق/g, 'Outside Geofence'],
-    [/سجل حضور Actpert اليومي/g, 'Actpert Daily Attendance Log'],
+    [/سجل حضور Nexus اليومي/g, 'Nexus Daily Attendance Log'],
     [/حاضر بالموقع/g, 'Present on Site'],
     [/غائب اليوم/g, 'Absent Today'],
     [/آخر ظهور GPS/g, 'Last GPS Ping'],
