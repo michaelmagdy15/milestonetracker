@@ -3,6 +3,7 @@ import type { Organization } from '../types';
 import { supabase, DEFAULT_ORG_ID } from '../lib/supabase';
 import toast from 'react-hot-toast';
 
+export { DEFAULT_ORG_ID };
 export const DEC_ORG_ID = 'org-dec-portal';
 
 interface TenantContextType {

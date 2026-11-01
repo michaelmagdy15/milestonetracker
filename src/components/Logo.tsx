@@ -1,17 +1,13 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useTenant } from '../context/TenantContext';
+import { useTheme } from '../context/ThemeContext';
 
-/**
- * Official NEXUS CONTRACTING & DEC MILESTONE PORTAL Multi-Tenant Brand Logo
- * - When activeOrg is DEC MILESTONE PORTAL (`org-dec-portal`), renders the DEC Portal emblem & badge.
- * - When activeOrg is NEXUS CONTRACTING (`org-default`), renders the official Nexus vector SVG (`/nexus-logo.svg`).
- */
 export const NexusBrandSymbol: React.FC<{
     size?: number;
     variant?: 'orange-symbol' | 'squid-box' | 'orange-box';
     className?: string;
-}> = ({ size = 42, variant = 'orange-symbol', className }) => {
+}> = ({ size = 40, variant = 'orange-symbol', className }) => {
     if (variant === 'orange-symbol') {
         return (
             <img
@@ -47,10 +43,19 @@ export const NexusBrandSymbol: React.FC<{
 export const Logo: React.FC<{
     className?: string;
     showText?: boolean;
+    collapsed?: boolean;
     variant?: 'orange-symbol' | 'squid-box' | 'orange-box';
     darkText?: boolean;
-}> = ({ className, showText = true }) => {
+}> = ({ className, showText = true, collapsed = false }) => {
     const { activeOrg } = useTenant();
+    let isDarkTheme = false;
+    try {
+        const themeCtx = useTheme();
+        isDarkTheme = themeCtx.theme === 'dark';
+    } catch {
+        isDarkTheme = false;
+    }
+
     const isDecPortal =
         activeOrg.id === 'org-dec-portal' ||
         activeOrg.slug === 'dec-engineering-consultants' ||
@@ -62,14 +67,14 @@ export const Logo: React.FC<{
                 <img
                     src="/logo.png"
                     alt="DEC Milestone Portal"
-                    className="h-9 w-9 sm:h-11 sm:w-11 rounded-xl object-contain bg-[#192631] p-1 shadow-sm"
+                    className="h-9 w-9 rounded-xl object-contain bg-[#192631] p-1 shadow-sm border border-white/10 shrink-0"
                 />
-                {showText && (
+                {showText && !collapsed && (
                     <div className="flex flex-col leading-none">
-                        <span className="text-sm sm:text-base font-black tracking-tight text-[#192631]">
+                        <span className={clsx('text-sm font-black tracking-tight', isDarkTheme ? 'text-white' : 'text-[#192631]')}>
                             DEC <span className="text-[#f97316]">PORTAL</span>
                         </span>
-                        <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.16em] text-[#192631]/60 mt-0.5">
+                        <span className={clsx('text-[8px] font-bold uppercase tracking-[0.16em] mt-0.5', isDarkTheme ? 'text-slate-400' : 'text-[#192631]/60')}>
                             Design & Engineering
                         </span>
                     </div>
@@ -78,30 +83,29 @@ export const Logo: React.FC<{
         );
     }
 
-    // If a custom external logo URL was explicitly set in White-Label Studio
     if (
         activeOrg.logoUrl &&
         !activeOrg.logoUrl.includes('nexus-default') &&
         !activeOrg.logoUrl.includes('/logo.png')
     ) {
         return (
-            <div className={clsx('flex items-center gap-2 sm:gap-3 shrink-0', className)}>
+            <div className={clsx('flex items-center gap-2 shrink-0', className)}>
                 <img
                     src={activeOrg.logoUrl}
                     alt={activeOrg.name}
-                    className="h-8 sm:h-11 w-auto max-w-[135px] sm:max-w-[200px] max-h-14 object-contain"
+                    className={clsx('object-contain', collapsed ? 'h-8 w-8' : 'h-8 sm:h-9 w-auto max-w-[160px]')}
                 />
             </div>
         );
     }
 
-    if (!showText) {
+    if (!showText || collapsed) {
         return (
             <div className={clsx('inline-flex items-center justify-center select-none shrink-0', className)}>
                 <img
                     src="/nexus-symbol.svg"
                     alt="NEXUS Contracting"
-                    className="h-9 w-9 sm:h-12 sm:w-12 object-contain"
+                    className="h-8 w-8 object-contain"
                 />
             </div>
         );
@@ -110,9 +114,15 @@ export const Logo: React.FC<{
     return (
         <div className={clsx('inline-flex items-center select-none shrink-0', className)}>
             <img
-                src="/nexus-logo.svg"
+                src={isDarkTheme ? '/nexus-logo-dark.svg' : '/nexus-logo.svg'}
+                onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src.includes('nexus-logo-dark.svg')) {
+                        target.src = '/nexus-logo.svg';
+                    }
+                }}
                 alt="NEXUS Contracting"
-                className="h-8 sm:h-10 lg:h-11 w-auto max-w-[132px] sm:max-w-[180px] lg:max-w-[205px] object-contain"
+                className="h-8 sm:h-9 w-auto max-w-[155px] object-contain"
             />
         </div>
     );
