@@ -3,10 +3,9 @@ import clsx from 'clsx';
 import { useTenant } from '../context/TenantContext';
 
 /**
- * Official NEXUS CONTRACTING Brand Logo & Symbol
- * Uses the exact unmodified native vector SVGs extracted directly from the official Nexus Brand Guideline PDF:
- * - /nexus-logo.svg   (Exact Page 3 vector paths: Orange N symbol + Squid Ink NEXUS + CONTRACTING)
- * - /nexus-symbol.svg (Exact Page 2/3 standalone Orange N symbol vector paths)
+ * Official NEXUS CONTRACTING & DEC MILESTONE PORTAL Multi-Tenant Brand Logo
+ * - When activeOrg is DEC MILESTONE PORTAL (`org-dec-portal`), renders the DEC Portal emblem & badge.
+ * - When activeOrg is NEXUS CONTRACTING (`org-default`), renders the official Nexus vector SVG (`/nexus-logo.svg`).
  */
 export const NexusBrandSymbol: React.FC<{
     size?: number;
@@ -52,6 +51,32 @@ export const Logo: React.FC<{
     darkText?: boolean;
 }> = ({ className, showText = true }) => {
     const { activeOrg } = useTenant();
+    const isDecPortal =
+        activeOrg.id === 'org-dec-portal' ||
+        activeOrg.slug === 'dec-engineering-consultants' ||
+        activeOrg.name.toUpperCase().includes('DEC');
+
+    if (isDecPortal) {
+        return (
+            <div className={clsx('inline-flex items-center gap-2.5 select-none shrink-0', className)}>
+                <img
+                    src="/logo.png"
+                    alt="DEC Milestone Portal"
+                    className="h-9 w-9 sm:h-11 sm:w-11 rounded-xl object-contain bg-[#192631] p-1 shadow-sm"
+                />
+                {showText && (
+                    <div className="flex flex-col leading-none">
+                        <span className="text-sm sm:text-base font-black tracking-tight text-[#192631]">
+                            DEC <span className="text-[#f97316]">PORTAL</span>
+                        </span>
+                        <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.16em] text-[#192631]/60 mt-0.5">
+                            Design & Engineering
+                        </span>
+                    </div>
+                )}
+            </div>
+        );
+    }
 
     // If a custom external logo URL was explicitly set in White-Label Studio
     if (
@@ -92,4 +117,3 @@ export const Logo: React.FC<{
         </div>
     );
 };
-

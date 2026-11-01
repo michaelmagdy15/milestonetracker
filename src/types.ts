@@ -32,6 +32,15 @@ export interface Project {
     zohoDealId?: string; // For Zoho Sync
     orderIndex?: number;
     googleDriveLink?: string;
+    // Mitrixo AEC 5-Gate Governance fields
+    clientName?: string;
+    branchLocation?: 'Abu Dhabi' | 'Cairo' | string;
+    currency?: 'AED' | 'EGP' | 'SAR' | 'USD' | string;
+    proposalSigned?: boolean;
+    authorityNocUploaded?: boolean;
+    retainerPaid?: boolean;
+    siteSurveyUploaded?: boolean;
+    allowedRevisionRounds?: number;
 }
 
 export interface ProjectPhase {
@@ -63,6 +72,13 @@ export interface Milestone {
     completedPercentage: number;
     createdAt?: string;
     clientStatus?: 'pending' | 'approved' | 'revision'; // For Revision Portal
+    // Mitrixo AEC 5-Gate Governance fields
+    ribaStageCode?: 'RIBA-1' | 'RIBA-2' | 'RIBA-3' | 'RIBA-4' | 'RIBA-5';
+    revisionCount?: number;
+    maxRevisions?: number;
+    feePercentage?: number;
+    ipcPaid?: boolean;
+    isFrozenByVo?: boolean;
 }
 
 export interface Task {
@@ -317,4 +333,50 @@ export interface ContractingRFI {
     createdAt?: string;
 }
 
+// ─── Mitrixo AEC RIBA Proposal, 5-Gate & BIM Pin Models ───
 
+export interface RibaStageFeeRow {
+    stageCode: 'RIBA-1' | 'RIBA-2' | 'RIBA-3' | 'RIBA-4' | 'RIBA-5';
+    stageName: string;
+    feePercentage: number;
+    feeAmount: number;
+    estimatedHours: number;
+    includedRevisionRounds: number;
+}
+
+export interface BidProposal {
+    id: string;
+    organizationId?: string;
+    projectId?: string;
+    proposalNumber: string;
+    clientName: string;
+    clientEmail: string;
+    projectTitle: string;
+    branchLocation: string;
+    currency: string;
+    totalFee: number;
+    retainerPercentage: number;
+    stages: RibaStageFeeRow[];
+    status: 'draft' | 'sent' | 'signed' | 'converted';
+    proposalSigned: boolean;
+    authorityNocUploaded: boolean;
+    retainerPaid: boolean;
+    siteSurveyUploaded: boolean;
+    signatureDataUrl?: string;
+    signedByName?: string;
+    signedAt?: string;
+    createdAt: string;
+}
+
+export interface BimPin {
+    id: string;
+    projectId: string;
+    title: string;
+    elementCode: string;
+    x: number; // % 0-100
+    y: number; // % 0-100
+    discipline: 'Architecture' | 'Structure' | 'MEP' | 'Clash';
+    status: 'open' | 'resolved' | 'converted_to_vo';
+    createdBy: string;
+    createdAt: string;
+}

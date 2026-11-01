@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-
-
 import { useParams, useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
-import { ArrowLeft, Plus, Check, AlertCircle, FolderKanban, Clock, CheckCircle2, MoreHorizontal, Settings2, Folder, Info, ClipboardList, DollarSign, TrendingUp, AlertTriangle, FileText, Link as LinkIcon, Target } from 'lucide-react';
+import { useTenant } from '../context/TenantContext';
+import { supabase } from '../lib/supabase';
+import { ArrowLeft, Plus, Check, AlertCircle, FolderKanban, Clock, CheckCircle2, MoreHorizontal, Settings2, Folder, Info, ClipboardList, DollarSign, TrendingUp, AlertTriangle, FileText, Link as LinkIcon, Target, ShieldCheck, Lock, Unlock, QrCode, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
-import type { Task } from '../types';
-
-
+import type { Task, Milestone, PaymentApplication, VariationOrder } from '../types';
+import { evaluateAecFiveGate, buildAutoVariationOrder, validateBaselineDateOverride } from '../utils/aecScopeGate';
+import { QRCodeSVG } from 'qrcode.react';
+import toast from 'react-hot-toast';
 import { differenceInDays, format, startOfWeek, endOfWeek, eachDayOfInterval, addDays, startOfDay } from 'date-fns';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -19,8 +20,9 @@ import { getLocalizedText } from '../utils/languageUtils';
 export const ProjectDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
-    const { projects, milestones, tasks, engineers, entries, appUsageLogs, addMilestone, addTask, updateTask, addNotification, isLoading } = useData();
+    const { projects, milestones, tasks, engineers, entries, appUsageLogs, addMilestone, updateMilestone, addTask, updateTask, addNotification, isLoading } = useData();
     const { role, engineerId: currentEngineerId } = useAuth();
+    const { activeOrg } = useTenant();
     const { language } = useLanguage();
 
     const project = projects.find(p => p.id === id);
@@ -28,11 +30,81 @@ export const ProjectDetails: React.FC = () => {
     const projectTasks = tasks.filter(t => t.projectId === id).sort((a, b) => (a.createdAt || '').localeCompare(b.createdAt || ''));
     const projectEntries = entries.filter(e => e.projectId === id).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+    const [paymentApps, setPaymentApps] = useState<PaymentApplication[]>([]);
+    const [variationOrders, setVariationOrders] = useState<VariationOrder[]>([]);
+
+    // Admin Baseline Date Override Modal State
+    const [overridingMilestone, setOverridingMilestone] = useState<Milestone | null>(null);
+    const [overrideNewDate, setOverrideNewDate] = useState('');
+    const [overrideReason, setOverrideReason] = useState('');
+
+    // QR Transmittal Stamp Modal State
+    const [qrStampMilestone, setQrStampMilestone] = useState<Milestone | null>(null);
+
+    useEffect(() => {
+        if (!id) return;
+        const loadProjectGovernance = async () => {
+            const [ipcRes, voRes] = await Promise.all([
+                supabase.from('payment_applications').select('*'),
+                supabase.from('variation_orders').select('*'),
+            ]);
+            if (ipcRes.data) {
+                setPaymentApps(
+                    ipcRes.data.map((r: any) => ({
+                        id: r.id,
+                        organizationId: r.organization_id || activeOrg.id,
+                        projectId: r.project_id,
+                        subcontractorId: r.subcontractor_id || 'sub-1',
+                        subcontractorName: r.subcontractor_name || 'Subcontractor',
+                        applicationNumber: r.application_number || 'IPC-001',
+                        workPackageName: r.work_package_name || '',
+                        contractValue: Number(r.contract_value || 0),
+                        retentionPercent: Number(r.retention_percent ?? 10),
+                        claimedGross: Number(r.claimed_gross || 0),
+                        certifiedGross: Number(r.certified_gross || 0),
+                        approvedGross: Number(r.approved_gross || 0),
+                        retentionHeld: Number(r.retention_held || 0),
+                        retentionReleased: Number(r.retention_released || 0),
+                        advanceRecovery: Number(r.advance_recovery || 0),
+                        netPayable: Number(r.net_payable || 0),
+                        lienWaiverSigned: Boolean(r.lien_waiver_signed),
+                        status: r.status || 'submitted',
+                        periodEnd: r.period_end || '2026-03-31',
+                        createdAt: r.created_at,
+                    }))
+                );
+            }
+            if (voRes.data) {
+                setVariationOrders(
+                    voRes.data.map((r: any) => ({
+                        id: r.id,
+                        organizationId: r.organization_id || activeOrg.id,
+                        projectId: r.project_id,
+                        code: r.code || 'VO-001',
+                        title: r.title || '',
+                        description: r.description || '',
+                        reasonCategory: r.reason_category || 'client_request',
+                        status: r.status || 'submitted',
+                        contractorAmount: Number(r.contractor_amount || 0),
+                        engineerAssessedAmount: Number(r.engineer_assessed_amount || 0),
+                        approvedAmount: Number(r.approved_amount || 0),
+                        scheduleImpactDays: Number(r.schedule_impact_days || 0),
+                        approvedTimeDays: Number(r.approved_time_days || 0),
+                        ballInCourt: r.ball_in_court || 'Client Representative',
+                        currentApprovalStep: r.current_approval_step || 2,
+                        linkedRfiId: r.linked_rfi_id,
+                        createdAt: r.created_at,
+                    }))
+                );
+            }
+        };
+        void loadProjectGovernance();
+    }, [id, activeOrg.id]);
+
     // --- Smart Document Deliverable Verification ---
     useEffect(() => {
         if (!project || projectTasks.length === 0 || appUsageLogs.length === 0) return;
 
-        // Find recent export logs (e.g., within the last 5 minutes to avoid processing old ones on every load)
         const recentExportLogs = appUsageLogs.filter(log =>
             log.activeWindow.startsWith('Deliverable Exported:') &&
             (new Date().getTime() - new Date(log.timestamp).getTime() < 5 * 60 * 1000)
@@ -40,7 +112,6 @@ export const ProjectDetails: React.FC = () => {
 
         if (recentExportLogs.length === 0) return;
 
-        // For each log, try to find a relevant task that is NOT done
         recentExportLogs.forEach(log => {
             const fileName = log.activeWindow.replace('Deliverable Exported: ', '').trim();
             let fileExt = '';
@@ -48,11 +119,7 @@ export const ProjectDetails: React.FC = () => {
                 fileExt = fileName.split('.').pop()?.toLowerCase() || '';
             }
 
-            // We need a heuristic to match a file export to a task.
-            // Simple heuristic: if a task title mentions "PDF", "DWG", "Revit", "Export", "Deliverable"
-            // and the exported file matches the type.
             const pendingTasks = projectTasks.filter(t => t.status !== 'completed');
-
             let taskToComplete: Task | undefined;
 
             for (const task of pendingTasks) {
@@ -65,24 +132,20 @@ export const ProjectDetails: React.FC = () => {
                 if (fileExt === 'dwg' && (titleLower.includes('dwg') || titleLower.includes('autocad') || descLower.includes('dwg'))) {
                     taskToComplete = task; break;
                 }
-                if (fileExt === 'rvt' && (titleLower.includes('rvt') || titleLower.includes('revit') || descLower.includes('revit'))) {
+                if (fileExt === 'rvt' && (titleLower.includes('rvt') || titleLower.includes('revit') || descLower.includes('rvt'))) {
                     taskToComplete = task; break;
                 }
-                // Generic catch-all if task is explicitly named "Export Deliverable"
                 if (titleLower.includes('export deliverable') || titleLower.includes('final submission')) {
                     taskToComplete = task; break;
                 }
             }
 
             if (taskToComplete) {
-                // To prevent infinite loops if the hook runs again before state updates,
-                // we should check if we already processed it (in a robust app, we'd mark the log as processed).
-                // Here, we just rely on the 'done' status check above and optimistic updates.
                 console.log(`Smart Verification: Completing task "${taskToComplete.title}" based on export: ${fileName}`);
                 updateTask({ ...taskToComplete, status: 'completed' });
                 addNotification({
                     id: crypto.randomUUID(),
-                    engineerId: currentEngineerId || '', // Notify the person looking at the page, or ideally the assigned engineer
+                    engineerId: currentEngineerId || '',
                     message: `Smart Scanner verified deliverable "${fileName}" and auto-completed task: "${taskToComplete.title}"`,
                     isRead: false
                 });
@@ -184,6 +247,73 @@ export const ProjectDetails: React.FC = () => {
         return <div className="p-8 text-center text-[#192631]/60">Project not found</div>;
     }
 
+    const fiveGateEval = evaluateAecFiveGate(project, projectMilestones, paymentApps, variationOrders);
+
+    const handleSimulateClientRevision = async (milestone: Milestone) => {
+        const nextRev = (milestone.revisionCount ?? 0) + 1;
+        const maxRev = milestone.maxRevisions ?? project.allowedRevisionRounds ?? 2;
+
+        if (nextRev > maxRev) {
+            const autoVo = buildAutoVariationOrder({
+                project,
+                milestone,
+                existingVoCount: variationOrders.length,
+                estimatedHours: 24,
+            });
+            await supabase.from('variation_orders').insert({
+                id: autoVo.id,
+                organization_id: activeOrg.id,
+                project_id: autoVo.projectId,
+                code: autoVo.code,
+                title: autoVo.title,
+                description: autoVo.description,
+                reason_category: autoVo.reasonCategory,
+                status: autoVo.status,
+                contractor_amount: autoVo.contractorAmount,
+                engineer_assessed_amount: autoVo.engineerAssessedAmount,
+                approved_amount: autoVo.approvedAmount,
+                schedule_impact_days: autoVo.scheduleImpactDays,
+                approved_time_days: autoVo.approvedTimeDays,
+                ball_in_court: autoVo.ballInCourt,
+                current_approval_step: autoVo.currentApprovalStep,
+                created_at: autoVo.createdAt,
+            });
+            setVariationOrders(prev => [autoVo, ...prev]);
+            await updateMilestone({
+                ...milestone,
+                revisionCount: nextRev,
+                clientStatus: 'revision',
+                isFrozenByVo: true,
+            });
+            toast.error(`Revision #${nextRev} exceeds contractual quota (${maxRev}). Auto-generated ${autoVo.code} & froze stage!`);
+        } else {
+            await updateMilestone({
+                ...milestone,
+                revisionCount: nextRev,
+                clientStatus: 'revision',
+            });
+            toast.success(`Logged Client Revision Round ${nextRev}/${maxRev} for ${milestone.name}`);
+        }
+    };
+
+    const handleConfirmBaselineOverride = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!overridingMilestone) return;
+        const check = validateBaselineDateOverride(role, overrideReason, overridingMilestone.targetDate, overrideNewDate);
+        if (!check.valid) {
+            toast.error(check.error || 'Override validation failed');
+            return;
+        }
+        await updateMilestone({
+            ...overridingMilestone,
+            targetDate: overrideNewDate,
+        });
+        toast.success(`Baseline Target Date overridden with audit log: "${overrideReason.trim()}"`);
+        setOverridingMilestone(null);
+        setOverrideReason('');
+        setOverrideNewDate('');
+    };
+
     const handleAddMilestone = (e: React.FormEvent) => {
         e.preventDefault();
         if (!milestoneName.trim()) return;
@@ -262,7 +392,6 @@ export const ProjectDetails: React.FC = () => {
         }
     };
 
-    // New function to handle task status update
     const updateTaskStatus = (taskId: string, newStatus: Task['status']) => {
         const taskToUpdate = tasks.find(t => t.id === taskId);
         if (taskToUpdate) {
@@ -273,7 +402,6 @@ export const ProjectDetails: React.FC = () => {
     // --- Drag and Drop Handlers ---
     const handleDragStart = (e: React.DragEvent, taskId: string) => {
         e.dataTransfer.setData('text/plain', taskId);
-        // Optional: add a class for styling while dragging
         if (e.currentTarget instanceof HTMLElement) {
             e.currentTarget.classList.add('opacity-50');
         }
@@ -286,7 +414,7 @@ export const ProjectDetails: React.FC = () => {
     };
 
     const handleDragOver = (e: React.DragEvent) => {
-        e.preventDefault(); // Required to allow dropping
+        e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
     };
 
@@ -297,7 +425,6 @@ export const ProjectDetails: React.FC = () => {
 
         const taskToUpdate = tasks.find(t => t.id === taskId);
         if (taskToUpdate && (taskToUpdate.status !== newStatus || taskToUpdate.milestoneId !== targetMilestoneId)) {
-            // Update the task status and potentially the milestone if dragged across milestones
             updateTask({ ...taskToUpdate, status: newStatus, milestoneId: targetMilestoneId });
             
             if (taskToUpdate.engineerId && taskToUpdate.engineerId !== currentEngineerId) {
@@ -316,7 +443,6 @@ export const ProjectDetails: React.FC = () => {
         if (!reportRef.current) return;
         setIsGeneratingReport(true);
         try {
-            // Give a micro tick for React to render just in case
             await new Promise(r => setTimeout(r, 100));
             const canvas = await html2canvas(reportRef.current, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
             const imgData = canvas.toDataURL('image/png');
@@ -331,8 +457,6 @@ export const ProjectDetails: React.FC = () => {
             setIsGeneratingReport(false);
         }
     };
-
-
 
     return (
         <motion.div
@@ -368,7 +492,7 @@ export const ProjectDetails: React.FC = () => {
                         <button
                             onClick={handleGenerateReport}
                             disabled={isGeneratingReport}
-                            className={`flex items-center justify-center space-x-3 bg-white/5 hover:bg-white/10 text-white px-6 py-4 rounded-2xl transition-all duration-300 border border-white/5 shadow-xl font-bold uppercase tracking-widest text-[11px] ${isGeneratingReport ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            className={`flex items-center justify-center space-x-3 bg-[#192631] hover:bg-[#e04b2a] text-white px-6 py-4 rounded-2xl transition-all duration-300 border border-[#192631]/10 shadow-xl font-bold uppercase tracking-widest text-[11px] ${isGeneratingReport ? 'opacity-50 cursor-not-allowed' : ''}`}
                         >
                             <FileText className="w-4 h-4" />
                             <span>{isGeneratingReport ? 'Compiling...' : 'Client Report'}</span>
@@ -434,6 +558,51 @@ export const ProjectDetails: React.FC = () => {
                             {burnRate > 100 && <span className="text-[10px] font-bold uppercase tracking-widest text-red-500 mb-1">Over Budget</span>}
                         </div>
                     </div>
+                </div>
+            </div>
+
+            {/* 5-Gate Scope-Creep & Phase-Lock Status Banner */}
+            <div className="p-6 rounded-[32px] bg-white/90 border border-[#192631]/12 mb-8 flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-sm">
+                <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-2xl bg-[#e04b2a]/10 border border-[#e04b2a]/25 flex items-center justify-center shrink-0">
+                        <ShieldCheck className="w-6 h-6 text-[#e04b2a]" />
+                    </div>
+                    <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="text-base font-black text-[#192631]">5-Gate Scope-Creep & Phase-Lock Engine</h3>
+                            <span
+                                className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-widest border ${
+                                    fiveGateEval.canReleaseFinalIfcPackage
+                                        ? 'bg-[#123524]/10 text-[#123524] border-[#123524]/25'
+                                        : 'bg-amber-500/10 text-amber-700 border-amber-500/30'
+                                }`}
+                            >
+                                {fiveGateEval.canReleaseFinalIfcPackage ? 'IFC Package Release Unlocked' : 'IFC Package Gated'}
+                            </span>
+                        </div>
+                        <p className="text-xs text-[#192631]/65 mt-1">
+                            {fiveGateEval.canReleaseFinalIfcPackage
+                                ? 'All RIBA stages approved, 0 pending Variation Orders, and all IPCs settled.'
+                                : `Gate Status: ${fiveGateEval.finalReleaseBlockReasons.join(' · ')}`}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2">
+                    <button
+                        type="button"
+                        onClick={() => navigate('/proposals')}
+                        className="px-4 py-2.5 rounded-xl bg-[#f5f5f5] hover:bg-[#e04b2a]/10 border border-[#192631]/12 text-[10px] font-black uppercase tracking-widest text-[#192631]"
+                    >
+                        Manage VO Shield
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => navigate('/boq')}
+                        className="px-4 py-2.5 rounded-xl bg-[#e04b2a] hover:bg-[#192631] text-white text-[10px] font-black uppercase tracking-widest"
+                    >
+                        BOQ & IPC Certificates
+                    </button>
                 </div>
             </div>
 
@@ -576,15 +745,15 @@ export const ProjectDetails: React.FC = () => {
                         
                         <div className="bg-[#e04b2a]/10 border border-[#e04b2a]/25 p-6 rounded-[32px] flex flex-col md:flex-row items-start md:items-center gap-6 relative overflow-hidden group">
                             <div className="w-12 h-12 bg-[#e04b2a]/10 rounded-2xl flex items-center justify-center border border-[#e04b2a]/25 shrink-0">
-                            <Info className="w-6 h-6 text-[#e04b2a]" />
+                                <Info className="w-6 h-6 text-[#e04b2a]" />
+                            </div>
+                            <div>
+                                <h3 className="text-[#192631] font-black text-lg mb-1">How System Works: Milestones & Active Tasks</h3>
+                                <p className="text-[#192631]/70 text-sm font-medium leading-relaxed">
+                                    <strong className="text-[#192631]/85">Milestones</strong> act as major deliverables or phases for the project. Create them first. Once created, you can add <strong className="text-[#192631]/85">Active Tasks</strong> directly under each milestone, assign them to engineers, and track their lifecycle (Queued, Executing, Verified) using the + and ✓ buttons.
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="text-[#192631] font-black text-lg mb-1">How System Works: Milestones & Active Tasks</h3>
-                            <p className="text-[#192631]/70 text-sm font-medium leading-relaxed">
-                                <strong className="text-[#192631]/85">Milestones</strong> act as major deliverables or phases for the project. Create them first. Once created, you can add <strong className="text-[#192631]/85">Active Tasks</strong> directly under each milestone, assign them to engineers, and track their lifecycle (Queued, Executing, Verified) using the + and ✓ buttons.
-                            </p>
-                        </div>
-                    </div>
                     </>
                 )}
 
@@ -603,22 +772,71 @@ export const ProjectDetails: React.FC = () => {
                     const completedTasks = mTasks.filter(t => t.status === 'completed');
 
                     const progressVal = mTasks.length > 0 ? Math.round((completedTasks.length / mTasks.length) * 100) : 0;
+                    const stageGate = fiveGateEval.stageUnlockMap[milestone.id];
 
                     return (
                         <div key={milestone.id} className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 overflow-hidden backdrop-blur-3xl shadow-2xl relative group">
-                            <div className="p-8 border-b border-[#192631]/10 bg-white/0 flex justify-between items-center relative z-10">
+                            <div className="p-8 border-b border-[#192631]/10 bg-white/0 flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 relative z-10">
                                 <div>
+                                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                                        {stageGate && (
+                                            <span
+                                                className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest border ${
+                                                    stageGate.canUnlockNextStage
+                                                        ? 'bg-[#123524]/10 text-[#123524] border-[#123524]/25'
+                                                        : 'bg-rose-500/10 text-rose-600 border-rose-500/30'
+                                                }`}
+                                            >
+                                                {stageGate.canUnlockNextStage ? <Unlock className="w-3 h-3" /> : <Lock className="w-3 h-3" />}
+                                                {stageGate.canUnlockNextStage ? 'Stage Active' : 'Stage Locked / Frozen'}
+                                            </span>
+                                        )}
+                                        <span className="px-2.5 py-0.5 rounded-full bg-[#192631]/5 border border-[#192631]/10 text-[9px] font-black text-[#192631]/75 uppercase tracking-widest">
+                                            Revisions: {milestone.revisionCount ?? 0}/{milestone.maxRevisions ?? 2}
+                                        </span>
+                                    </div>
                                     <h3 className="text-3xl font-black text-[#192631] tracking-tight mb-2 group-hover:text-[#e04b2a] transition-colors">{getLocalizedText(milestone.name, language)}</h3>
-                                    {milestone.targetDate && (
-                                        <div className="flex items-center gap-3">
+                                    {stageGate?.reason && (
+                                        <p className="text-xs font-bold text-rose-600 mb-2">{stageGate.reason}</p>
+                                    )}
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        {milestone.targetDate && (
                                             <div className="px-2 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded-md">
-                                                <p className="text-[10px] font-bold text-amber-500 uppercase tracking-widest flex items-center">
+                                                <p className="text-[10px] font-bold text-amber-600 uppercase tracking-widest flex items-center">
                                                     <AlertCircle className="w-3 h-3 mr-1.5" />
                                                     Deadline: {new Date(milestone.targetDate).toLocaleDateString()}
                                                 </p>
                                             </div>
-                                        </div>
-                                    )}
+                                        )}
+                                        {role === 'admin' && (
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setOverridingMilestone(milestone);
+                                                    setOverrideNewDate(milestone.targetDate || '');
+                                                }}
+                                                className="px-2.5 py-1 rounded-lg bg-[#192631]/5 hover:bg-[#192631]/10 border border-[#192631]/12 text-[9px] font-black uppercase tracking-widest text-[#192631] flex items-center gap-1"
+                                            >
+                                                <Calendar className="w-3 h-3 text-[#e04b2a]" />
+                                                Override Baseline Date
+                                            </button>
+                                        )}
+                                        <button
+                                            type="button"
+                                            onClick={() => handleSimulateClientRevision(milestone)}
+                                            className="px-2.5 py-1 rounded-lg bg-[#e04b2a]/10 hover:bg-[#e04b2a] text-[#e04b2a] hover:text-white border border-[#e04b2a]/30 text-[9px] font-black uppercase tracking-widest transition-all"
+                                        >
+                                            + Simulate Client Revision
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setQrStampMilestone(milestone)}
+                                            className="px-2.5 py-1 rounded-lg bg-[#123524]/10 hover:bg-[#123524] text-[#123524] hover:text-white border border-[#123524]/30 text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-1"
+                                        >
+                                            <QrCode className="w-3 h-3" />
+                                            QR Blueprint Stamp
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="text-right">
                                     <div className="text-4xl font-black text-[#192631] mb-1">{progressVal}%</div>
@@ -650,7 +868,6 @@ export const ProjectDetails: React.FC = () => {
                                         </div>
 
                                         <div className="space-y-4">
-                                            {/* Allow adding tasks only in the first column for UI simplicity */}
                                             {colIndex === 0 && isAddingTask === milestone.id && (
                                                 <div className="bg-[#1a1a1a]/60 p-5 rounded-[24px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-top-4 duration-300">
                                                     <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500/50 to-purple-500/50"></div>
@@ -744,7 +961,6 @@ export const ProjectDetails: React.FC = () => {
                                                         </button>
                                                     </div>
                                                     
-                                                    {/* Progress/Dependencies could go here in future */}
                                                     {task.engineerId && (
                                                         <div className="flex items-center gap-2 mb-3">
                                                             <div className="w-5 h-5 rounded-full bg-[#192631]/[0.05] flex items-center justify-center text-[8px] font-black text-[#192631] shrink-0">
@@ -783,7 +999,7 @@ export const ProjectDetails: React.FC = () => {
                                 ))}
                             </div>
                         </div>
-                    )
+                    );
                 })}
             </div>
 
@@ -806,25 +1022,21 @@ export const ProjectDetails: React.FC = () => {
                                 );
                             }
 
-                            // 1. Find min start and max due date across all tasks
                             const allStarts = scheduledTasks.map(t => new Date(t.startDate!).getTime());
                             const allDues = scheduledTasks.map(t => new Date(t.dueDate!).getTime());
 
-                            // 2. Expand to full weeks (Sunday to Saturday)
                             const minDate = new Date(Math.min(...allStarts));
-                            let maxDate = new Date(Math.max(...allDues));
+                            const maxDate = new Date(Math.max(...allDues));
 
-                            let gridStartDate = startOfWeek(minDate, { weekStartsOn: 0 }); // Sunday
-                            let gridEndDate = endOfWeek(maxDate, { weekStartsOn: 0 });   // Saturday
+                            const gridStartDate = startOfWeek(minDate, { weekStartsOn: 0 });
+                            let gridEndDate = endOfWeek(maxDate, { weekStartsOn: 0 });
 
-                            // 3. Enforce a minimum of 4 weeks (28 days) if the project timeline is very short
                             if (differenceInDays(gridEndDate, gridStartDate) < 27) {
                                 gridEndDate = endOfWeek(addDays(gridStartDate, 27), { weekStartsOn: 0 });
                             }
 
                             const daysInGrid = eachDayOfInterval({ start: gridStartDate, end: gridEndDate });
 
-                            // Group days into weeks for the header
                             const weeks = [];
                             for (let i = 0; i < daysInGrid.length; i += 7) {
                                 weeks.push(daysInGrid.slice(i, i + 7));
@@ -867,7 +1079,6 @@ export const ProjectDetails: React.FC = () => {
 
                                             return (
                                                 <React.Fragment key={task.id}>
-                                                    {/* Task Info Cell */}
                                                     <div className={`border-b border-r border-white/10 p-3 flex items-center justify-between gap-2 bg-white/[0.01] hover:bg-white/[0.05] transition-colors ${tIndex === scheduledTasks.length - 1 ? 'border-b-0' : ''}`}>
                                                         <div className="truncate flex-1">
                                                             <p className={`font-bold ${isOverdue ? 'text-red-700' : 'text-[#192631]'} truncate text-sm`} title={getLocalizedText(task.title, language)}>{getLocalizedText(task.title, language)}</p>
@@ -877,7 +1088,6 @@ export const ProjectDetails: React.FC = () => {
                                                         </div>
                                                     </div>
 
-                                                    {/* Grid Cells for this Task */}
                                                     {daysInGrid.map((day, dIndex) => {
                                                         const currentDay = startOfDay(day);
                                                         const isTaskDay = currentDay >= taskStart && currentDay <= taskDue;
@@ -995,7 +1205,6 @@ export const ProjectDetails: React.FC = () => {
 
                         return (
                             <div className="relative w-full h-full">
-                                {/* Fallback Background Message */}
                                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-[#1a1a1a]/40 backdrop-blur-3xl z-0">
                                     <div className="w-16 h-16 bg-[#192631]/[0.05] rounded-2xl flex items-center justify-center mb-6 border border-[#192631]/10 animate-pulse">
                                         <Folder className="w-8 h-8 text-[#192631]/60" />
@@ -1014,7 +1223,6 @@ export const ProjectDetails: React.FC = () => {
                                         Open in New Tab Instead
                                     </a>
                                 </div>
-                                {/* Iframe (sits above background) */}
                                 <iframe
                                     src={embedUrl}
                                     width="100%"
@@ -1104,6 +1312,103 @@ export const ProjectDetails: React.FC = () => {
                         </div>
                     )}
                 </motion.div>
+            )}
+
+            {/* Admin Baseline Date Override Modal */}
+            {overridingMilestone && (
+                <div className="fixed inset-0 z-50 bg-[#192631]/60 backdrop-blur-sm flex items-center justify-center p-4">
+                    <div className="bg-white border border-[#192631]/15 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl">
+                        <h3 className="text-lg font-black text-[#192631] flex items-center gap-2">
+                            <Calendar className="w-5 h-5 text-[#e04b2a]" />
+                            Admin Baseline Target Date Override
+                        </h3>
+                        <p className="text-xs text-[#192631]/65">
+                            Overriding baseline date for <strong className="text-[#192631]">{overridingMilestone.name}</strong>. Mandatory audit justification required.
+                        </p>
+                        <form onSubmit={handleConfirmBaselineOverride} className="space-y-4">
+                            <div>
+                                <label className="block text-[10px] font-black text-[#192631]/70 uppercase tracking-widest mb-1">
+                                    New Baseline Target Date
+                                </label>
+                                <input
+                                    type="date"
+                                    required
+                                    value={overrideNewDate}
+                                    onChange={e => setOverrideNewDate(e.target.value)}
+                                    className="w-full px-3.5 py-2.5 bg-[#f5f5f5] border border-[#192631]/15 rounded-xl text-[#192631] text-xs font-bold"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-[10px] font-black text-[#192631]/70 uppercase tracking-widest mb-1">
+                                    Audit Justification (Min 5 chars)
+                                </label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={overrideReason}
+                                    onChange={e => setOverrideReason(e.target.value)}
+                                    placeholder="e.g., Municipality NOC utility clearance delay (+14d)"
+                                    className="w-full px-3.5 py-2.5 bg-[#f5f5f5] border border-[#192631]/15 rounded-xl text-[#192631] text-xs"
+                                />
+                            </div>
+                            <div className="flex justify-end gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setOverridingMilestone(null)}
+                                    className="px-4 py-2 rounded-xl border border-[#192631]/15 text-[#192631]/70 text-xs font-bold"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="px-5 py-2 rounded-xl bg-[#e04b2a] hover:bg-[#192631] text-white text-xs font-black uppercase tracking-widest"
+                                >
+                                    Log Audit & Override
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {/* QR Blueprint Transmittal Stamp Modal */}
+            {qrStampMilestone && (
+                <div className="fixed inset-0 z-50 bg-[#192631]/60 backdrop-blur-sm flex items-center justify-center p-4">
+                    <div className="bg-white border border-[#192631]/15 rounded-3xl max-w-md w-full p-6 space-y-5 shadow-2xl text-center">
+                        <div className="flex items-center justify-between">
+                            <span className="px-3 py-1 rounded-full bg-[#123524]/10 border border-[#123524]/30 text-[#123524] text-[10px] font-black uppercase tracking-widest">
+                                Verified IFC Transmittal Stamp
+                            </span>
+                            <button
+                                type="button"
+                                onClick={() => setQrStampMilestone(null)}
+                                className="text-xs font-bold text-[#192631]/60 hover:text-[#192631]"
+                            >
+                                Close
+                            </button>
+                        </div>
+
+                        <div className="bg-[#f5f5f5] p-6 rounded-2xl inline-block mx-auto border-4 border-[#e04b2a]/30 shadow-inner">
+                            <QRCodeSVG
+                                value={`https://mitrixo-aec.app/verify/${project.id}/${qrStampMilestone.id}?rev=${qrStampMilestone.revisionCount ?? 0}`}
+                                size={180}
+                                level="H"
+                            />
+                        </div>
+
+                        <div className="space-y-1">
+                            <h4 className="text-lg font-black text-[#192631]">{project.name}</h4>
+                            <p className="text-xs font-bold text-[#e04b2a]">{qrStampMilestone.name}</p>
+                            <p className="text-[11px] text-[#192631]/65">
+                                Revision Round: <strong className="text-[#192631]">R{qrStampMilestone.revisionCount ?? 0}</strong> · Status:{' '}
+                                <strong className="text-[#123524] uppercase">{qrStampMilestone.clientStatus || 'Approved for Construction'}</strong>
+                            </p>
+                            <p className="text-[10px] text-[#192631]/50 pt-1">
+                                Scan QR on site blueprint to verify drawing revision currency in real time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             )}
         </motion.div>
     );

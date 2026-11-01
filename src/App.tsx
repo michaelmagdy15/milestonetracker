@@ -14,6 +14,7 @@ import { Entries } from './pages/Entries';
 import { Reports } from './pages/Reports';
 import { Attendance } from './pages/Attendance';
 import { BOQViewer } from './pages/BOQViewer';
+import { ProposalsAndVoHub } from './pages/ProposalsAndVoHub';
 import { Login } from './pages/Login';
 import { ResetPassword } from './pages/ResetPassword';
 import { ClientDashboard } from './pages/ClientDashboard';
@@ -122,6 +123,7 @@ function App() {
                           <Route path="/reports" element={<ProtectedRoute requireAdmin><Reports /></ProtectedRoute>} />
                           <Route path="/projects" element={<ProtectedRoute requireEngineerOrAdmin><Projects /></ProtectedRoute>} />
                           <Route path="/projects/:id" element={<ProjectDetails />} />
+                          <Route path="/proposals" element={<ProtectedRoute requireEngineerOrAdmin><ProposalsAndVoHub /></ProtectedRoute>} />
                           <Route path="/boq" element={<ProtectedRoute requireEngineerOrAdmin><BOQViewer /></ProtectedRoute>} />
                           <Route path="/submittals" element={<ProtectedRoute requireEngineerOrAdmin skipDataWait><DocumentControlHub /></ProtectedRoute>} />
                           <Route path="/variations-rfis" element={<ProtectedRoute requireEngineerOrAdmin><ContractingERP defaultTab="variations" /></ProtectedRoute>} />

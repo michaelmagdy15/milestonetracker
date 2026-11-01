@@ -3,6 +3,8 @@ import type { Organization } from '../types';
 import { supabase, DEFAULT_ORG_ID } from '../lib/supabase';
 import toast from 'react-hot-toast';
 
+export const DEC_ORG_ID = 'org-dec-portal';
+
 interface TenantContextType {
     activeOrg: Organization;
     organizations: Organization[];
@@ -13,7 +15,7 @@ interface TenantContextType {
     refreshOrganizations: () => Promise<void>;
 }
 
-const DEFAULT_ORG: Organization = {
+export const DEFAULT_ORG: Organization = {
     id: DEFAULT_ORG_ID,
     name: 'NEXUS CONTRACTING',
     slug: 'nexus-contracting',
@@ -30,6 +32,36 @@ const DEFAULT_ORG: Organization = {
     city: 'Cairo',
     country: 'Egypt',
     plan: 'Enterprise',
+};
+
+export const DEC_PORTAL_ORG: Organization = {
+    id: DEC_ORG_ID,
+    name: 'DEC MILESTONE PORTAL',
+    slug: 'dec-engineering-consultants',
+    tagline: 'Design & Engineering Consultants · Abu Dhabi & Cairo',
+    logoUrl: '/logo.png',
+    faviconUrl: '/logo.png',
+    primaryColor: '#f97316',
+    themeSurface: 'obsidian',
+    currency: 'AED',
+    branches: ['Abu Dhabi HQ', 'Cairo Engineering Center', 'Dubai Design Studio'],
+    email: 'michael@dec-consultants.ae',
+    phone: '+971 2 644 0900 / +20 100 555 0199',
+    address: 'Corniche Towers, Abu Dhabi & New Cairo',
+    city: 'Abu Dhabi / Cairo',
+    country: 'UAE & Egypt',
+    plan: 'Enterprise',
+};
+
+const ensureBuiltInOrgs = (list: Organization[]): Organization[] => {
+    const merged = [...list];
+    if (!merged.some(o => o.id === DEFAULT_ORG.id)) {
+        merged.unshift(DEFAULT_ORG);
+    }
+    if (!merged.some(o => o.id === DEC_PORTAL_ORG.id)) {
+        merged.push(DEC_PORTAL_ORG);
+    }
+    return merged;
 };
 
 const TenantContext = createContext<TenantContextType | undefined>(undefined);
@@ -91,7 +123,7 @@ const applyBrandThemeToDom = (org: Organization) => {
     const displayOrgName = org.name === 'Apex Contracting & Engineering' ? 'NEXUS CONTRACTING' : org.name;
     document.title = `${displayOrgName} — ${org.tagline || 'Contracting ERP & Milestone Platform'}`;
 
-    // Update favicon dynamically to the official Nexus Geometric N symbol on Squid Ink (#192631)
+    // Update favicon dynamically
     let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement | null;
     if (!link) {
         link = document.createElement('link');
@@ -108,7 +140,7 @@ const applyBrandThemeToDom = (org: Organization) => {
 };
 
 export const TenantProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [organizations, setOrganizations] = useState<Organization[]>([DEFAULT_ORG]);
+    const [organizations, setOrganizations] = useState<Organization[]>([DEFAULT_ORG, DEC_PORTAL_ORG]);
     const [activeOrgId, setActiveOrgId] = useState<string>(() => {
         if (typeof window !== 'undefined') {
             return localStorage.getItem('whitelabel_active_org_id') || DEFAULT_ORG_ID;
@@ -119,14 +151,13 @@ export const TenantProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const refreshOrganizations = useCallback(async () => {
         try {
             const { data } = await supabase.from('organizations').select('*');
-            if (data && data.length > 0) {
-                setOrganizations(data);
-                const storedId = localStorage.getItem('whitelabel_active_org_id');
-                if (storedId && data.some((o: Organization) => o.id === storedId)) {
-                    setActiveOrgId(storedId);
-                } else if (!data.some((o: Organization) => o.id === activeOrgId)) {
-                    setActiveOrgId(data[0].id);
-                }
+            const merged = ensureBuiltInOrgs(Array.isArray(data) ? data : []);
+            setOrganizations(merged);
+            const storedId = localStorage.getItem('whitelabel_active_org_id');
+            if (storedId && merged.some((o: Organization) => o.id === storedId)) {
+                setActiveOrgId(storedId);
+            } else if (!merged.some((o: Organization) => o.id === activeOrgId)) {
+                setActiveOrgId(merged[0].id);
             }
         } catch (err) {
             console.error('TenantContext: Error loading organizations:', err);
@@ -161,7 +192,6 @@ export const TenantProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             applyBrandThemeToDom(target);
             toast.success(`Switched workspace to ${target.name}`);
         }
-        // Trigger data refresh across tables
         window.dispatchEvent(new CustomEvent('whitelabel-org-switched', { detail: { orgId } }));
     };
 

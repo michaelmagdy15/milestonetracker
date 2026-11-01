@@ -20,6 +20,7 @@ import {
     Palette,
     HardHat,
     FileCheck2,
+    FileSignature,
     Truck,
     Receipt,
     GitBranch,
@@ -38,6 +39,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Logo } from './Logo';
 import { MailNotifier } from './MailNotifier';
+import { CommandPalette } from './CommandPalette';
 import { useAuth } from '../context/AuthContext';
 import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -153,6 +155,7 @@ const NavItem = ({
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
     const { role, signOut, user, engineerId } = useAuth();
     const { projects, engineers, tasks, entries, notifications, markNotificationRead, addNotification } = useData();
     const { language, setLanguage } = useLanguage();
@@ -171,6 +174,16 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     const navigate = useNavigate();
     const isAr = language === 'ar';
 
+    useEffect(() => {
+        const handleGlobalShortcut = (e: KeyboardEvent) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                setIsCommandPaletteOpen(prev => !prev);
+            }
+        };
+        window.addEventListener('keydown', handleGlobalShortcut);
+        return () => window.removeEventListener('keydown', handleGlobalShortcut);
+    }, []);
 
     // Sidebar collapsible sections state
     const [openSections, setOpenSections] = useState<Record<string, boolean>>({
@@ -438,13 +451,22 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                                     onClick={closeMobileIfOpen}
                                 />
                                 {role !== 'client' && (
-                                    <NavItem
-                                        to="/projects"
-                                        icon={FolderKanban}
-                                        label={isAr ? 'المشاريع (Projects)' : 'Projects'}
-                                        badge="77"
-                                        onClick={closeMobileIfOpen}
-                                    />
+                                    <>
+                                        <NavItem
+                                            to="/projects"
+                                            icon={FolderKanban}
+                                            label={isAr ? 'المشاريع (Projects)' : 'Projects'}
+                                            badge="77"
+                                            onClick={closeMobileIfOpen}
+                                        />
+                                        <NavItem
+                                            to="/proposals"
+                                            icon={FileSignature}
+                                            label={isAr ? 'عروض RIBA وبوابة الـ 5 مراحل' : 'RIBA Proposals & 5-Gate'}
+                                            badge="5-Gate"
+                                            onClick={closeMobileIfOpen}
+                                        />
+                                    </>
                                 )}
                                 {viewComplexity === 'full' && role !== 'client' && (
                                     <>
@@ -934,6 +956,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                                 }}
                                 onFocus={() => setIsSearchOpen(true)}
                             />
+                            <button
+                                type="button"
+                                onClick={() => setIsCommandPaletteOpen(true)}
+                                className="ms-2 px-1.5 py-0.5 rounded bg-[#192631]/5 hover:bg-[#e04b2a] hover:text-white text-[10px] font-black text-[#192631]/65 border border-[#192631]/10 transition-colors shrink-0"
+                                title="Open Universal Command Palette (Ctrl+K)"
+                            >
+                                Ctrl+K
+                            </button>
                         </div>
 
                         {isSearchOpen && searchQuery.trim() && (
@@ -1353,9 +1383,15 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 )}
             </main>
 
+            {/* Universal Ctrl+K Command Palette */}
+            <CommandPalette
+                isOpen={isCommandPaletteOpen}
+                onClose={() => setIsCommandPaletteOpen(false)}
+                onOpenProvisioner={() => navigate('/settings')}
+            />
+
             {/* Email Notifications & Permissions Prompt */}
             {role !== 'client' && <MailNotifier />}
         </div>
     );
 };
-

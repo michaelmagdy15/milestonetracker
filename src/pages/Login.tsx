@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import {
     supabase,
     registerContractingCompany,
+    PIERRE_OWNER_EMAIL,
+    PIERRE_OWNER_PASSWORD,
+    DEFAULT_ORG_ID,
 } from '../lib/supabase';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useTenant } from '../context/TenantContext';
+import { useTenant, DEC_ORG_ID } from '../context/TenantContext';
 import { motion } from 'framer-motion';
-import { Building2 } from 'lucide-react';
+import { Building2, Sparkles, Compass } from 'lucide-react';
 import clsx from 'clsx';
 import { Logo } from '../components/Logo';
 
@@ -15,11 +18,15 @@ const QUICK_COLORS = ['#e04b2a', '#192631', '#123524', '#ff7f50', '#000000'];
 
 export const Login: React.FC = () => {
     const { user, isLoadingAuth } = useAuth();
-    const { activeOrg, refreshOrganizations } = useTenant();
+    const { activeOrg, switchOrganization, refreshOrganizations } = useTenant();
 
     const [mode, setMode] = useState<'login' | 'register-company' | 'signup' | 'forgot-password'>('login');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState(
+        activeOrg.id === DEC_ORG_ID ? 'michael@dec.com' : PIERRE_OWNER_EMAIL
+    );
+    const [password, setPassword] = useState(
+        activeOrg.id === DEC_ORG_ID ? 'DEC@2026!' : PIERRE_OWNER_PASSWORD
+    );
     const [fullName, setFullName] = useState('');
 
     // Self-Serve Contracting Company Registration fields
@@ -44,6 +51,42 @@ export const Login: React.FC = () => {
     if (user && mode !== 'forgot-password') {
         return <Navigate to="/" replace />;
     }
+
+    const handleSelectPortal = (targetOrgId: string) => {
+        switchOrganization(targetOrgId);
+        setError(null);
+        setMessage(null);
+        setMode('login');
+        if (targetOrgId === DEC_ORG_ID) {
+            setEmail('michael@dec.com');
+            setPassword('DEC@2026!');
+        } else {
+            setEmail(PIERRE_OWNER_EMAIL);
+            setPassword(PIERRE_OWNER_PASSWORD);
+        }
+    };
+
+    const handleInstantPortalSignIn = async (targetOrgId: string) => {
+        setLoading(true);
+        setError(null);
+        switchOrganization(targetOrgId);
+        const loginEmail = targetOrgId === DEC_ORG_ID ? 'michael@dec.com' : PIERRE_OWNER_EMAIL;
+        const loginPassword = targetOrgId === DEC_ORG_ID ? 'DEC@2026!' : PIERRE_OWNER_PASSWORD;
+        setEmail(loginEmail);
+        setPassword(loginPassword);
+        try {
+            const { error: signInError } = await supabase.auth.signInWithPassword({
+                email: loginEmail,
+                password: loginPassword,
+            });
+            if (signInError) throw new Error(signInError.message);
+            localStorage.setItem('whitelabel_active_org_id', targetOrgId);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleAuth = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -101,6 +144,8 @@ export const Login: React.FC = () => {
         }
     };
 
+    const isDecActive = activeOrg.id === DEC_ORG_ID;
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#f5f5f5] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Ambient Glassmorphic Brand Orbs */}
@@ -109,9 +154,76 @@ export const Login: React.FC = () => {
                 <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] bg-[#192631]/10 blur-[120px] rounded-full"></div>
             </div>
 
-            <div className="max-w-lg w-full space-y-6 glass-card p-6 md:p-10 rounded-3xl relative z-10">
+            <div className="max-w-lg w-full space-y-5 glass-card p-6 md:p-10 rounded-3xl relative z-10">
+                {/* Dual Tenant Workspace Switcher (NEXUS Contracting + DEC Portal) */}
+                <div className="p-2 rounded-2xl bg-[#192631]/[0.04] border border-[#192631]/10 space-y-2">
+                    <div className="flex items-center justify-between px-2">
+                        <span className="text-[9px] font-black uppercase tracking-[0.18em] text-[#192631]/60">
+                            Select Active Tenant Portal
+                        </span>
+                        <span className="text-[9px] font-extrabold text-[#e04b2a] uppercase tracking-widest">
+                            Multi-Tenant Firebase CRM
+                        </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                        <button
+                            type="button"
+                            onClick={() => handleSelectPortal(DEFAULT_ORG_ID)}
+                            className={clsx(
+                                'flex flex-col items-start p-3 rounded-xl border text-left transition-all',
+                                !isDecActive
+                                    ? 'bg-white border-[#e04b2a] shadow-md ring-1 ring-[#e04b2a]/30'
+                                    : 'bg-white/50 border-[#192631]/10 hover:bg-white'
+                            )}
+                        >
+                            <div className="flex items-center justify-between w-full mb-1">
+                                <span className="text-[10px] font-black uppercase tracking-wider text-[#e04b2a] flex items-center gap-1">
+                                    <Building2 className="w-3.5 h-3.5" />
+                                    NEXUS ERP
+                                </span>
+                                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-[#192631]/5 text-[#192631]/70">
+                                    EGP
+                                </span>
+                            </div>
+                            <p className="text-xs font-extrabold text-[#192631] truncate w-full">
+                                NEXUS CONTRACTING
+                            </p>
+                            <p className="text-[10px] text-[#192631]/60 truncate w-full">
+                                Eng. Pierre Afifi · 77 Projects
+                            </p>
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => handleSelectPortal(DEC_ORG_ID)}
+                            className={clsx(
+                                'flex flex-col items-start p-3 rounded-xl border text-left transition-all',
+                                isDecActive
+                                    ? 'bg-white border-[#f97316] shadow-md ring-1 ring-[#f97316]/30'
+                                    : 'bg-white/50 border-[#192631]/10 hover:bg-white'
+                            )}
+                        >
+                            <div className="flex items-center justify-between w-full mb-1">
+                                <span className="text-[10px] font-black uppercase tracking-wider text-[#f97316] flex items-center gap-1">
+                                    <Compass className="w-3.5 h-3.5" />
+                                    DEC PORTAL
+                                </span>
+                                <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-[#192631]/5 text-[#192631]/70">
+                                    AED / EGP
+                                </span>
+                            </div>
+                            <p className="text-xs font-extrabold text-[#192631] truncate w-full">
+                                DEC MILESTONE PORTAL
+                            </p>
+                            <p className="text-[10px] text-[#192631]/60 truncate w-full">
+                                Abu Dhabi & Cairo · RIBA 5-Gate
+                            </p>
+                        </button>
+                    </div>
+                </div>
+
                 <div className="flex flex-col items-center">
-                    <div className="mb-5">
+                    <div className="mb-4">
                         <Logo showText={true} darkText={true} variant="orange-symbol" />
                     </div>
                     <h2 className="text-center text-2xl md:text-3xl font-extrabold text-[#192631] tracking-tight">
@@ -123,9 +235,9 @@ export const Login: React.FC = () => {
                             ? `Join ${activeOrg.name}`
                             : 'Reset Access'}
                     </h2>
-                    <p className="mt-1.5 text-center text-xs md:text-sm text-[#192631]/70 font-medium">
+                    <p className="mt-1 text-center text-xs md:text-sm text-[#192631]/70 font-medium">
                         {mode === 'login'
-                            ? 'Eng. Pierre Afifi · Architecture & Turnkey Contracting'
+                            ? activeOrg.tagline || 'Eng. Pierre Afifi · Architecture & Turnkey Contracting'
                             : mode === 'register-company'
                             ? 'Set up a workspace for your contracting company in seconds'
                             : mode === 'signup'
@@ -325,7 +437,7 @@ export const Login: React.FC = () => {
                         </motion.div>
                     )}
 
-                    <div className="pt-2">
+                    <div className="pt-2 space-y-2.5">
                         <button
                             type="submit"
                             disabled={loading}
@@ -334,13 +446,36 @@ export const Login: React.FC = () => {
                             {loading
                                 ? 'Signing in...'
                                 : mode === 'login'
-                                ? 'Sign In to Workspace'
+                                ? `Sign In to ${isDecActive ? 'DEC Portal' : 'NEXUS Workspace'}`
                                 : mode === 'register-company'
                                 ? 'Create Company Workspace & Admin Account'
                                 : mode === 'signup'
                                 ? 'Create Team Account'
                                 : 'Send Reset Link'}
                         </button>
+
+                        {mode === 'login' && (
+                            <div className="grid grid-cols-2 gap-2 pt-1">
+                                <button
+                                    type="button"
+                                    disabled={loading}
+                                    onClick={() => handleInstantPortalSignIn(DEFAULT_ORG_ID)}
+                                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-[#e04b2a]/10 hover:bg-[#e04b2a] text-[#e04b2a] hover:text-white border border-[#e04b2a]/25 text-[10px] font-black uppercase tracking-wider transition-all"
+                                >
+                                    <Sparkles className="w-3.5 h-3.5" />
+                                    1-Click NEXUS Login
+                                </button>
+                                <button
+                                    type="button"
+                                    disabled={loading}
+                                    onClick={() => handleInstantPortalSignIn(DEC_ORG_ID)}
+                                    className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-[#123524]/10 hover:bg-[#123524] text-[#123524] hover:text-white border border-[#123524]/25 text-[10px] font-black uppercase tracking-wider transition-all"
+                                >
+                                    <Compass className="w-3.5 h-3.5" />
+                                    1-Click DEC Portal
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </form>
             </div>

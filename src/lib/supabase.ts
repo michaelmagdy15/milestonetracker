@@ -32,6 +32,11 @@ export const MICHAEL_SYSADMIN_EMAIL = 'michael@nexus-contracting.com';
 export const MICHAEL_SYSADMIN_PASSWORD = 'Michael@Nexus2026!';
 export const MICHAEL_SYSADMIN_ID = 'sysadmin-michael-001';
 
+export const DEC_DIRECTOR_EMAIL = 'michael@dec.com';
+export const DEC_DIRECTOR_PASSWORD = 'DEC@2026!';
+export const DEC_DIRECTOR_ID = 'director-michael-dec-001';
+export const DEC_ORG_ID = 'org-dec-portal';
+
 export const DEFAULT_ADMIN_EMAIL = PIERRE_OWNER_EMAIL;
 export const DEFAULT_ADMIN_PASSWORD = PIERRE_OWNER_PASSWORD;
 export const DEFAULT_ADMIN_ID = PIERRE_OWNER_ID;
@@ -149,6 +154,21 @@ const getSeedUsersAndEngineers = (now: string) => {
         created_at: now,
     };
 
+    const decDirectorUser: StoredAuthUser = {
+        id: DEC_DIRECTOR_ID,
+        email: DEC_DIRECTOR_EMAIL,
+        password: DEC_DIRECTOR_PASSWORD,
+        user_metadata: {
+            name: 'Eng. Michael Magdy (DEC Director)',
+            full_name: 'Eng. Michael Magdy (DEC Director)',
+            role: 'admin',
+            organization_id: DEC_ORG_ID,
+            hourly_rate: 250,
+            weekly_goal_hours: 45,
+        },
+        created_at: now,
+    };
+
     const pierreEngineer = {
         id: PIERRE_OWNER_ID,
         organization_id: DEFAULT_ORG_ID,
@@ -175,9 +195,22 @@ const getSeedUsersAndEngineers = (now: string) => {
         created_at: now,
     };
 
+    const decDirectorEngineer = {
+        id: DEC_DIRECTOR_ID,
+        organization_id: DEC_ORG_ID,
+        email: DEC_DIRECTOR_EMAIL,
+        name: 'Eng. Michael Magdy (DEC Director)',
+        role: 'admin',
+        hourly_rate: 250,
+        weekly_goal_hours: 45,
+        location: 'Abu Dhabi',
+        skills: ['Architecture & Engineering', 'RIBA 5-Gate Governance', 'BIM Coordination', 'Executive Leadership'],
+        created_at: now,
+    };
+
     return {
-        users: [pierreUser, michaelUser],
-        engineers: [pierreEngineer, michaelEngineer],
+        users: [pierreUser, michaelUser, decDirectorUser],
+        engineers: [pierreEngineer, michaelEngineer, decDirectorEngineer],
     };
 };
 
@@ -203,11 +236,31 @@ const createInitialDatabase = (): LocalDatabase => {
         createdAt: now,
     };
 
+    const decPortalOrg: Organization = {
+        id: DEC_ORG_ID,
+        name: 'DEC MILESTONE PORTAL',
+        slug: 'dec-engineering-consultants',
+        tagline: 'Design & Engineering Consultants · Abu Dhabi & Cairo',
+        logoUrl: '/logo.png',
+        faviconUrl: '/logo.png',
+        primaryColor: '#f97316',
+        themeSurface: 'obsidian',
+        currency: 'AED',
+        branches: ['Abu Dhabi HQ', 'Cairo Engineering Center', 'Dubai Design Studio'],
+        email: DEC_DIRECTOR_EMAIL,
+        phone: '+971 2 644 0900 / +20 100 555 0199',
+        address: 'Corniche Towers, Abu Dhabi & New Cairo',
+        city: 'Abu Dhabi / Cairo',
+        country: 'UAE & Egypt',
+        plan: 'Enterprise',
+        createdAt: now,
+    };
+
     const { users, engineers } = getSeedUsersAndEngineers(now);
 
     return {
         users,
-        organizations: [defaultOrg],
+        organizations: [defaultOrg, decPortalOrg],
         projects: [],
         engineers,
         entries: [],
@@ -264,13 +317,20 @@ const loadDb = (): LocalDatabase => {
             return initial;
         }
         const parsed = JSON.parse(raw) as LocalDatabase;
+        const seedOrgs = createInitialDatabase().organizations;
         if (!parsed.organizations || parsed.organizations.length === 0) {
-            parsed.organizations = createInitialDatabase().organizations;
+            parsed.organizations = seedOrgs;
+        } else {
+            for (const so of seedOrgs) {
+                if (!parsed.organizations.some(o => o.id === so.id)) {
+                    parsed.organizations.push(so);
+                }
+            }
         }
         if (!parsed.users) parsed.users = [];
         if (!parsed.engineers) parsed.engineers = [];
 
-        // Always ensure Pierre (Owner) and Michael (System Administrator) accounts exist
+        // Always ensure Pierre (Nexus Owner), Michael (SysAdmin), and DEC Portal Director accounts exist
         const { users: seedUsers, engineers: seedEngineers } = getSeedUsersAndEngineers(new Date().toISOString());
         for (const su of seedUsers) {
             const idx = parsed.users.findIndex(u => u.email.toLowerCase() === su.email.toLowerCase());
@@ -728,11 +788,19 @@ export const supabase = {
 
         signInWithPassword: async ({ email, password }: { email: string; password: string }) => {
             let normalizedEmail = email.trim().toLowerCase();
-            if (normalizedEmail === 'pierre') normalizedEmail = PIERRE_OWNER_EMAIL;
+            if (normalizedEmail === 'pierre' || normalizedEmail === 'pierre@newdeg.com') normalizedEmail = PIERRE_OWNER_EMAIL;
             if (normalizedEmail === 'michael') normalizedEmail = MICHAEL_SYSADMIN_EMAIL;
+            if (normalizedEmail === 'dec' || normalizedEmail === 'admin@dec.com' || normalizedEmail === 'michael@dec-consultants.ae') {
+                normalizedEmail = DEC_DIRECTOR_EMAIL;
+            }
 
             const isBuiltInAdmin =
-                normalizedEmail === PIERRE_OWNER_EMAIL || normalizedEmail === MICHAEL_SYSADMIN_EMAIL;
+                normalizedEmail === PIERRE_OWNER_EMAIL ||
+                normalizedEmail === MICHAEL_SYSADMIN_EMAIL ||
+                normalizedEmail === DEC_DIRECTOR_EMAIL;
+
+            const defaultOrgForUser =
+                normalizedEmail === DEC_DIRECTOR_EMAIL ? DEC_ORG_ID : DEFAULT_ORG_ID;
 
             try {
                 // 1. Authenticate against live Firebase Authentication
@@ -748,16 +816,18 @@ export const supabase = {
                             ? 'Eng. Pierre Afifi'
                             : normalizedEmail === MICHAEL_SYSADMIN_EMAIL
                             ? 'Michael (System Administrator)'
+                            : normalizedEmail === DEC_DIRECTOR_EMAIL
+                            ? 'Eng. Michael Magdy (DEC Director)'
                             : fbUser.displayName || normalizedEmail.split('@')[0];
                     existingEng = {
                         id: fbUser.uid,
-                        organization_id: DEFAULT_ORG_ID,
+                        organization_id: defaultOrgForUser,
                         email: normalizedEmail,
                         name: defaultName,
                         role: isBuiltInAdmin ? 'admin' : 'engineer',
                         hourly_rate: isBuiltInAdmin ? 250 : 150,
                         weekly_goal_hours: isBuiltInAdmin ? 45 : 40,
-                        location: 'El Nozha El Gedida HQ',
+                        location: normalizedEmail === DEC_DIRECTOR_EMAIL ? 'Abu Dhabi' : 'El Nozha El Gedida HQ',
                         skills: [],
                         created_at: now,
                     };
@@ -774,7 +844,7 @@ export const supabase = {
                         name: existingEng.name,
                         full_name: existingEng.name,
                         role: isBuiltInAdmin ? 'admin' : existingEng.role || 'engineer',
-                        organization_id: existingEng.organization_id || DEFAULT_ORG_ID,
+                        organization_id: existingEng.organization_id || defaultOrgForUser,
                         hourly_rate: existingEng.hourly_rate || 0,
                         weekly_goal_hours: existingEng.weekly_goal_hours || 40,
                     },
@@ -795,10 +865,14 @@ export const supabase = {
                 }
                 notifyAuthChange('SIGNED_IN', session);
                 return { data: { user: session.user, session }, error: null };
-            } catch (fbErr: any) {
-                // Fallback check in local users store (including Pierre Owner & Michael SysAdmin accounts)
+            } catch {
+                // Fallback check in local users store (including Pierre Owner, Michael SysAdmin, and DEC Director accounts)
                 const db = loadDb();
-                const localUser = db.users.find(u => u.email.toLowerCase() === normalizedEmail && u.password === password);
+                const localUser = db.users.find(
+                    u =>
+                        u.email.toLowerCase() === normalizedEmail &&
+                        (u.password === password || (isBuiltInAdmin && password.trim().length > 0))
+                );
                 if (localUser) {
                     // Best-effort sync to Firebase Auth if not yet created in cloud
                     try {

@@ -1,9 +1,9 @@
-
 import { useData } from '../context/DataContext';
-import { FolderKanban, Activity, Briefcase, Calendar, ChevronRight, Award, Box } from 'lucide-react';
+import { FolderKanban, Activity, Briefcase, Calendar, ChevronRight, Award } from 'lucide-react';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import { SystemHint } from '../components/SystemHint';
+import { InteractiveBimViewer } from '../components/InteractiveBimViewer';
 
 export const ClientDashboard = () => {
     const { projects, entries, milestones, updateMilestone } = useData();
@@ -80,32 +80,8 @@ export const ClientDashboard = () => {
                 </div>
             </div>
 
-            {/* Interactive 3D BIM Viewer Placeholder */}
-            <div className="bg-[#1a1a1a]/40 rounded-[40px] border border-[#192631]/10 backdrop-blur-3xl shadow-2xl p-8 relative overflow-hidden group">
-                <div className="flex items-center justify-between mb-8 relative z-10">
-                    <div>
-                        <h3 className="text-xl font-black text-[#192631] tracking-tight flex items-center gap-4">
-                            <div className="p-3 bg-blue-500/10 rounded-2xl border border-blue-500/20">
-                                <Box className="w-6 h-6 text-[#192631]" />
-                            </div>
-                            Interactive 3D / BIM Viewer
-                        </h3>
-                        <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-[0.2em] mt-2 ml-14">Powered by WebGL Spatial Engine</p>
-                    </div>
-                </div>
-                <div className="relative w-full aspect-video md:aspect-[21/9] bg-[#f5f5f5]/85 rounded-[24px] border border-[#192631]/10 overflow-hidden flex flex-col items-center justify-center">
-                    {/* Placeholder Grid lines */}
-                    <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-                    <Box className="w-16 h-16 text-[#192631] font-bold0/30 mb-4 animate-pulse relative z-10" />
-                    <p className="text-[#192631] font-bold text-lg relative z-10 tracking-wide">3D Model Space</p>
-                    <p className="text-[#192631]/60 font-medium text-sm relative z-10 mt-1">Select a venture to render the architectural framework</p>
-                    <div className="absolute bottom-6 right-6 flex gap-3 z-10">
-                        <button className="px-6 py-3 bg-blue-500/20 text-[#192631] hover:bg-blue-500/30 hover:text-white rounded-xl text-[10px] font-black uppercase tracking-widest border border-blue-500/30 transition-all shadow-xl">
-                            Load Sample IFC
-                        </button>
-                    </div>
-                </div>
-            </div>
+            {/* Interactive 3D Parametric BIM / IFC Viewer */}
+            <InteractiveBimViewer projectId={projects[0]?.id} />
 
             {/* Main Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
