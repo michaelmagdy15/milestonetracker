@@ -14,6 +14,8 @@ import {
     DollarSign,
     Smartphone,
     Layers,
+    Scale,
+    Tv,
 } from 'lucide-react';
 
 interface CommandPaletteProps {
@@ -50,6 +52,26 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     const q = query.trim().toLowerCase();
 
     const quickCommands = [
+        {
+            id: 'cmd-boardroom',
+            label: 'Launch Executive Boardroom Presentation Mode (TV Deck)',
+            category: 'Executive Pitch',
+            icon: Tv,
+            action: () => {
+                navigate('/boardroom');
+                onClose();
+            },
+        },
+        {
+            id: 'cmd-fidic',
+            label: 'Open FIDIC Delay & EOT Claim Engine (Clause 20.1)',
+            category: 'Legal Contract',
+            icon: Scale,
+            action: () => {
+                navigate('/fidic-claims');
+                onClose();
+            },
+        },
         {
             id: 'cmd-field-app',
             label: 'Open Field Companion Mobile App (GPS & Roll-Call)',

@@ -30,7 +30,9 @@ import {
     Sun,
     Moon,
     Smartphone,
-    Layers
+    Layers,
+    Scale,
+    Tv
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
@@ -247,6 +249,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         {role !== 'client' && <NavItem to="/proposals" icon={ShieldCheck} label="RIBA Proposals" />}
                         {role !== 'client' && <NavItem to="/disciplines" icon={Layers} label="Multi-Discipline" />}
                         {role !== 'client' && <NavItem to="/field-app" icon={Smartphone} label="Field Companion" />}
+                        {role !== 'client' && <NavItem to="/fidic-claims" icon={Scale} label="FIDIC Claims & EOT" />}
                         {role !== 'client' && <NavItem to="/boq" icon={Calculator} label="BOQ Viewer" />}
                         {role !== 'client' && <NavItem to="/meetings" icon={Calendar} label="Meetings" />}
                         {role === 'admin' && <NavItem to="/engineers" icon={Users} label="Engineers" />}
@@ -486,6 +489,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
                     {/* Desktop Controls (Workspace Switcher, Theme, Language & Notifications) */}
                     <div className="relative z-30 ml-4 hidden lg:flex items-center gap-3">
+                        <button
+                            onClick={() => navigate('/boardroom')}
+                            className="flex items-center gap-2 px-3.5 py-2 text-white font-mono font-bold text-xs uppercase bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 rounded-xl transition-all shadow-orange-glow border border-orange-400/30"
+                            title="Open TV / Presentation Boardroom Mode"
+                        >
+                            <Tv className="w-4 h-4" />
+                            <span>Boardroom Mode</span>
+                        </button>
                         <button
                             onClick={toggleTheme}
                             className="p-2.5 text-slate-400 hover:bg-white/5 hover:text-orange-400 rounded-xl transition-all border border-white/5 bg-[#1a1a1a]/50"

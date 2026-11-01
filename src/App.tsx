@@ -18,6 +18,8 @@ import { BOQViewer } from './pages/BOQViewer';
 import { ProposalsAndVoHub } from './pages/ProposalsAndVoHub';
 import { FieldCompanionApp } from './pages/FieldCompanionApp';
 import { MultiDisciplineHub } from './components/MultiDisciplineHub';
+import { FidicEotClaimGenerator } from './pages/FidicEotClaimGenerator';
+import { BoardroomPresentationMode } from './pages/BoardroomPresentationMode';
 import { Login } from './pages/Login';
 import { ResetPassword } from './pages/ResetPassword';
 import { ClientDashboard } from './pages/ClientDashboard';
@@ -107,6 +109,7 @@ function App() {
                     />
                     <Routes>
                       <Route path="/login" element={<Login />} />
+                      <Route path="/boardroom" element={<ProtectedRoute requireEngineerOrAdmin><BoardroomPresentationMode /></ProtectedRoute>} />
                       <Route path="/reset-password" element={<ResetPassword />} />
                       <Route path="/emails/callback" element={<ZohoCallbackRedirect />} />
 
@@ -123,6 +126,7 @@ function App() {
                               <Route path="/proposals" element={<ProtectedRoute requireEngineerOrAdmin><ProposalsAndVoHub /></ProtectedRoute>} />
                               <Route path="/disciplines" element={<ProtectedRoute requireEngineerOrAdmin><MultiDisciplineHub /></ProtectedRoute>} />
                               <Route path="/field-app" element={<ProtectedRoute requireEngineerOrAdmin><FieldCompanionApp /></ProtectedRoute>} />
+                              <Route path="/fidic-claims" element={<ProtectedRoute requireEngineerOrAdmin><FidicEotClaimGenerator /></ProtectedRoute>} />
                               <Route path="/boq" element={<ProtectedRoute requireEngineerOrAdmin><BOQViewer /></ProtectedRoute>} />
                               <Route path="/submittals" element={<ProtectedRoute requireEngineerOrAdmin skipDataWait><DocumentControlHub /></ProtectedRoute>} />
                               <Route path="/variations-rfis" element={<ProtectedRoute requireEngineerOrAdmin><ContractingERP defaultTab="variations" /></ProtectedRoute>} />
