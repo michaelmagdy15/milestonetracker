@@ -32,11 +32,12 @@ const DEFAULT_S_CURVE: SCurvePoint[] = [
 ];
 
 const DISCIPLINE_UTILIZATION = [
-    { discipline: 'Architectural & Concept', allocation: 92, target: 85, color: '#f3822d' },
-    { discipline: 'Civil & Structural', allocation: 96, target: 90, color: '#38bdf8' },
-    { discipline: 'MEP & Systems (BIM)', allocation: 78, target: 80, color: '#a855f7' },
-    { discipline: 'Interior Design & FF&E', allocation: 88, target: 85, color: '#ec4899' },
-    { discipline: 'Supervision & Quality (Site)', allocation: 94, target: 90, color: '#10b981' },
+    { discipline: 'Construction Supervision (316 Staff • 60% of MC)', allocation: 97, target: 90, color: '#10b981' },
+    { discipline: 'Water, WWTP & SWRO Desalination (42 Staff)', allocation: 95, target: 90, color: '#38bdf8' },
+    { discipline: 'Electromechanical, Power & SCADA (61 Staff)', allocation: 93, target: 85, color: '#f3822d' },
+    { discipline: 'Structural, Civil & Highway Roads (37 Staff)', allocation: 91, target: 85, color: '#a855f7' },
+    { discipline: 'Architecture, BIM 360 & Env. ESIA (39 Staff)', allocation: 89, target: 85, color: '#ec4899' },
+    { discipline: 'Project Mgmt, Tenders & Corporate (32 Staff)', allocation: 94, target: 88, color: '#eab308' },
 ];
 
 const CASHFLOW_FORECAST = [
@@ -55,7 +56,7 @@ const SUBMITTAL_METRICS = [
     { type: 'Work Inspection Req (WIR)', total: 312, codeA: 284, codeB: 22, codeC: 6, codeD: 0, avgDays: 1.1 },
 ];
 
-export const ExecutiveBiCharts: React.FC<{ selectedProjectName?: string }> = ({ selectedProjectName = 'Saadiyat Cultural Pavilion (Flagship)' }) => {
+export const ExecutiveBiCharts: React.FC<{ selectedProjectName?: string }> = ({ selectedProjectName = 'HCT Fujairah (MOID / DEC) & Toshka 395k-Acre Reclamation' }) => {
     const [activeTab, setActiveTab] = useState<'scurve' | 'cashflow' | 'disciplines' | 'submittals'>('scurve');
     const [hoveredPoint, setHoveredPoint] = useState<SCurvePoint | null>(null);
 

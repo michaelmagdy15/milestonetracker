@@ -1,8 +1,8 @@
 export interface EngineerScoreProfile {
     id: string;
     name: string;
-    discipline: 'Architecture' | 'Civil/Structural' | 'MEP/BIM' | 'Interior Design' | 'Project Management';
-    location: 'Design Studio (Office)' | 'Site Office (Geofenced)' | 'Hybrid HQ';
+    discipline: 'Water & SWRO' | 'Site Supervision (316)' | 'Electromechanical' | 'Civil/Structural' | 'BIM & Architecture' | 'Project Management';
+    location: 'Cairo HQ (Mohandiseen)' | 'Toshka / New Delta Site (GPS)' | 'UAE (Marafek / DEC)' | 'KSA (Riyadh / Waad El Shamal)';
     deepCadHours: number; // e.g. 36 hours this week
     cadTargetHours: number; // e.g. 40 hours target
     gpsAttendanceRate: number; // percentage, e.g. 98%
@@ -28,13 +28,13 @@ export interface EpiScoreResult {
 
 /**
  * Calculates 360° Engineer Performance Index (EPI).
- * Office Deep CAD weight: 35%
- * Field GPS & Surprise Roll-Call: 25%
- * Submittal Quality & Pass Rate: 25%
+ * Office Deep CAD / Hydraulic Modeling weight: 35%
+ * Field GPS & Surprise Roll-Call (تمام مفاجئ): 25%
+ * Submittal Quality & First-Time Pass Rate (NOPWASD/CAPW/NUCA/DEC): 25%
  * Daily Log & Milestone Execution: 15%
  */
 export function calculateEpiScore(profile: EngineerScoreProfile): EpiScoreResult {
-    // 1. CAD Score (capped at 100)
+    // 1. CAD / Hydraulic Model Score (capped at 100)
     const cadRatio = Math.min(1.2, profile.deepCadHours / Math.max(1, profile.cadTargetHours));
     const cadScore = Math.min(100, Math.round(cadRatio * 100));
 
@@ -75,73 +75,87 @@ export function calculateEpiScore(profile: EngineerScoreProfile): EpiScoreResult
 
 export const SAMPLE_ENGINEER_PROFILES: EngineerScoreProfile[] = [
     {
-        id: 'eng-1',
-        name: 'Eng. Michael Magdy',
-        discipline: 'Architecture',
-        location: 'Design Studio (Office)',
+        id: 'eng-4',
+        name: 'Eng. Ahmed Seera (Mega WWTP & Transmission Division)',
+        discipline: 'Water & SWRO',
+        location: 'Cairo HQ (Mohandiseen)',
+        deepCadHours: 43.0,
+        cadTargetHours: 40,
+        gpsAttendanceRate: 100,
+        rollCallComplianceRate: 100,
+        submittalFirstPassRate: 98,
+        dailyLogComplianceRate: 100,
+        activeMilestonesOnTrack: 14,
+        totalMilestones: 14,
+    },
+    {
+        id: 'eng-3',
+        name: 'Eng. Ahmed Abdel-Gawad (SWRO & Marafek UAE Division)',
+        discipline: 'Water & SWRO',
+        location: 'UAE (Marafek / DEC)',
+        deepCadHours: 42.0,
+        cadTargetHours: 40,
+        gpsAttendanceRate: 99,
+        rollCallComplianceRate: 98,
+        submittalFirstPassRate: 97,
+        dailyLogComplianceRate: 98,
+        activeMilestonesOnTrack: 11,
+        totalMilestones: 11,
+    },
+    {
+        id: 'eng-5',
+        name: 'Eng. Medhat Mabrouk (Electromechanical & SCADA Division — 61 Staff)',
+        discipline: 'Electromechanical',
+        location: 'Cairo HQ (Mohandiseen)',
+        deepCadHours: 41.5,
+        cadTargetHours: 40,
+        gpsAttendanceRate: 98,
+        rollCallComplianceRate: 96,
+        submittalFirstPassRate: 95,
+        dailyLogComplianceRate: 96,
+        activeMilestonesOnTrack: 9,
+        totalMilestones: 9,
+    },
+    {
+        id: 'eng-8',
+        name: 'Eng. Mohamed Saber (Construction Supervision Division — 316 Staff)',
+        discipline: 'Site Supervision (316)',
+        location: 'Toshka / New Delta Site (GPS)',
+        deepCadHours: 39.0,
+        cadTargetHours: 38,
+        gpsAttendanceRate: 97,
+        rollCallComplianceRate: 95,
+        submittalFirstPassRate: 93,
+        dailyLogComplianceRate: 95,
+        activeMilestonesOnTrack: 18,
+        totalMilestones: 19,
+    },
+    {
+        id: 'eng-7',
+        name: 'Eng. Michael Magdy (BIM 360, Architecture & Digital Twin — 41 Staff)',
+        discipline: 'BIM & Architecture',
+        location: 'UAE (Marafek / DEC)',
         deepCadHours: 42.5,
         cadTargetHours: 40,
         gpsAttendanceRate: 100,
         rollCallComplianceRate: 100,
         submittalFirstPassRate: 96,
-        dailyLogComplianceRate: 100,
-        activeMilestonesOnTrack: 6,
-        totalMilestones: 6,
-    },
-    {
-        id: 'eng-2',
-        name: 'Eng. Mohamed Saber',
-        discipline: 'Civil/Structural',
-        location: 'Site Office (Geofenced)',
-        deepCadHours: 37.0,
-        cadTargetHours: 35,
-        gpsAttendanceRate: 98,
-        rollCallComplianceRate: 95,
-        submittalFirstPassRate: 92,
-        dailyLogComplianceRate: 94,
+        dailyLogComplianceRate: 98,
         activeMilestonesOnTrack: 8,
         totalMilestones: 8,
     },
     {
-        id: 'eng-3',
-        name: 'Eng. Pierre Nabil',
-        discipline: 'Project Management',
-        location: 'Hybrid HQ',
-        deepCadHours: 38.0,
+        id: 'eng-9',
+        name: 'Eng. Tarek El-antably (Waad El Shamal 470km Pipeline & Roads — 37 Staff)',
+        discipline: 'Civil/Structural',
+        location: 'KSA (Riyadh / Waad El Shamal)',
+        deepCadHours: 37.5,
         cadTargetHours: 40,
-        gpsAttendanceRate: 96,
-        rollCallComplianceRate: 92,
-        submittalFirstPassRate: 94,
-        dailyLogComplianceRate: 90,
-        activeMilestonesOnTrack: 12,
-        totalMilestones: 13,
-    },
-    {
-        id: 'eng-4',
-        name: 'Eng. Farida Karim',
-        discipline: 'Interior Design',
-        location: 'Design Studio (Office)',
-        deepCadHours: 39.0,
-        cadTargetHours: 40,
-        gpsAttendanceRate: 95,
-        rollCallComplianceRate: 90,
+        gpsAttendanceRate: 94,
+        rollCallComplianceRate: 91,
         submittalFirstPassRate: 91,
         dailyLogComplianceRate: 92,
-        activeMilestonesOnTrack: 5,
-        totalMilestones: 5,
-    },
-    {
-        id: 'eng-5',
-        name: 'Eng. Tarek Shawky',
-        discipline: 'MEP/BIM',
-        location: 'Design Studio (Office)',
-        deepCadHours: 34.0,
-        cadTargetHours: 40,
-        gpsAttendanceRate: 90,
-        rollCallComplianceRate: 85,
-        submittalFirstPassRate: 88,
-        dailyLogComplianceRate: 85,
-        activeMilestonesOnTrack: 4,
-        totalMilestones: 5,
+        activeMilestonesOnTrack: 7,
+        totalMilestones: 8,
     },
 ];

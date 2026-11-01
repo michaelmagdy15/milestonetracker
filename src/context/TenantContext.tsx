@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 
 export { DEFAULT_ORG_ID };
 export const DEC_ORG_ID = 'org-dec-portal';
+export const MISR_CONSULT_ORG_ID = 'org-misr-consult';
 
 interface TenantContextType {
     activeOrg: Organization;
@@ -54,6 +55,30 @@ export const DEC_PORTAL_ORG: Organization = {
     plan: 'Enterprise',
 };
 
+export const MISR_CONSULT_ORG: Organization = {
+    id: MISR_CONSULT_ORG_ID,
+    name: 'MISR CONSULT (MC)',
+    slug: 'misr-consult',
+    tagline: 'Engineering House of Expertise #35 · Prof. Dr. Sameh Abdel-Gawad (40 Yrs)',
+    logoUrl: '/mc-logo.svg',
+    faviconUrl: '/mc-logo.svg',
+    primaryColor: '#22c55e',
+    themeSurface: 'obsidian',
+    currency: 'EGP',
+    branches: [
+        '72 Gamet El Dewal Str, Mohandiseen HQ (Giza)',
+        'Marafek Consult (Abu Dhabi & Fujairah UAE)',
+        'Riyadh & Jeddah Engineering Office (KSA)',
+        'Toshka, New Delta & Bahr Al-Baqar Supervision Sites',
+    ],
+    email: 'info@misrconsult.com',
+    phone: '(+202) 37620366 - 37620377 - 37499521',
+    address: '72 Gamet El Dewal Str, Mohandiseen, Giza, Egypt',
+    city: 'Giza / Cairo / Abu Dhabi / Riyadh',
+    country: 'Egypt, KSA & UAE (13 Countries)',
+    plan: 'Enterprise',
+};
+
 const ensureBuiltInOrgs = (list: Organization[]): Organization[] => {
     const merged = [...list];
     if (!merged.some(o => o.id === DEFAULT_ORG.id)) {
@@ -61,6 +86,9 @@ const ensureBuiltInOrgs = (list: Organization[]): Organization[] => {
     }
     if (!merged.some(o => o.id === DEC_PORTAL_ORG.id)) {
         merged.push(DEC_PORTAL_ORG);
+    }
+    if (!merged.some(o => o.id === MISR_CONSULT_ORG.id)) {
+        merged.push(MISR_CONSULT_ORG);
     }
     return merged;
 };
@@ -136,12 +164,16 @@ const applyBrandThemeToDom = (org: Organization) => {
 };
 
 export const TenantProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [organizations, setOrganizations] = useState<Organization[]>([DEFAULT_ORG, DEC_PORTAL_ORG]);
+    const [organizations, setOrganizations] = useState<Organization[]>([
+        DEFAULT_ORG,
+        DEC_PORTAL_ORG,
+        MISR_CONSULT_ORG,
+    ]);
     const [activeOrgId, setActiveOrgId] = useState<string>(() => {
         if (typeof window !== 'undefined') {
-            return localStorage.getItem('whitelabel_active_org_id') || DEFAULT_ORG_ID;
+            return localStorage.getItem('whitelabel_active_org_id') || MISR_CONSULT_ORG_ID;
         }
-        return DEFAULT_ORG_ID;
+        return MISR_CONSULT_ORG_ID;
     });
 
     const refreshOrganizations = useCallback(async () => {
@@ -153,7 +185,7 @@ export const TenantProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             if (storedId && merged.some((o: Organization) => o.id === storedId)) {
                 setActiveOrgId(storedId);
             } else if (!merged.some((o: Organization) => o.id === activeOrgId)) {
-                setActiveOrgId(merged[0].id);
+                setActiveOrgId(MISR_CONSULT_ORG_ID);
             }
         } catch (err) {
             console.error('TenantContext: Error loading organizations:', err);
@@ -174,7 +206,7 @@ export const TenantProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         };
     }, [refreshOrganizations]);
 
-    const activeOrg = organizations.find(o => o.id === activeOrgId) || organizations[0] || DEFAULT_ORG;
+    const activeOrg = organizations.find(o => o.id === activeOrgId) || MISR_CONSULT_ORG;
 
     useEffect(() => {
         applyBrandThemeToDom(activeOrg);

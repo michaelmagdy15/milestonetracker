@@ -5,29 +5,41 @@ import {
     PIERRE_OWNER_EMAIL,
     PIERRE_OWNER_PASSWORD,
     DEFAULT_ORG_ID,
+    MISR_CONSULT_EMAIL,
+    MISR_CONSULT_PASSWORD,
 } from '../lib/supabase';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useTenant, DEC_ORG_ID } from '../context/TenantContext';
+import { useTenant, DEC_ORG_ID, MISR_CONSULT_ORG_ID } from '../context/TenantContext';
 import { motion } from 'framer-motion';
-import { Building2, Compass, Sparkles } from 'lucide-react';
+import { Building2, Compass, Sparkles, Droplets } from 'lucide-react';
 import clsx from 'clsx';
 import logo from '../assets/logo.png';
 
-const QUICK_COLORS = ['#f3822d', '#e04b2a', '#192631', '#123524', '#ff7f50'];
+const QUICK_COLORS = ['#f3822d', '#22c55e', '#e04b2a', '#192631', '#123524'];
 
 export const Login: React.FC = () => {
     const { user, isLoadingAuth } = useAuth();
     const { activeOrg, switchOrganization, refreshOrganizations } = useTenant();
 
     const isDecSelected = activeOrg.id === DEC_ORG_ID;
+    const isMisrConsultSelected = activeOrg.id === MISR_CONSULT_ORG_ID;
+    const isNexusSelected = !isDecSelected && !isMisrConsultSelected;
 
     const [mode, setMode] = useState<'login' | 'register-company' | 'signup' | 'forgot-password'>('login');
     const [email, setEmail] = useState(
-        isDecSelected ? 'michael@dec.com' : PIERRE_OWNER_EMAIL
+        isMisrConsultSelected
+            ? MISR_CONSULT_EMAIL
+            : isDecSelected
+            ? 'michael@dec.com'
+            : PIERRE_OWNER_EMAIL
     );
     const [password, setPassword] = useState(
-        isDecSelected ? 'DEC@2026!' : PIERRE_OWNER_PASSWORD
+        isMisrConsultSelected
+            ? MISR_CONSULT_PASSWORD
+            : isDecSelected
+            ? 'DEC@2026!'
+            : PIERRE_OWNER_PASSWORD
     );
     const [fullName, setFullName] = useState('');
 
@@ -36,7 +48,7 @@ export const Login: React.FC = () => {
     const tagline = 'Architecture, Turnkey Contracting & ERP Platform';
     const [primaryColor, setPrimaryColor] = useState('#f3822d');
     const [currency, setCurrency] = useState('EGP');
-    const [branchesInput, setBranchesInput] = useState('El Nozha El Gedida HQ, New Cairo, Madinaty');
+    const [branchesInput, setBranchesInput] = useState('72 Gamet El Dewal Str Mohandiseen HQ, Abu Dhabi, Riyadh');
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -59,7 +71,10 @@ export const Login: React.FC = () => {
         setError(null);
         setMessage(null);
         setMode('login');
-        if (targetOrgId === DEC_ORG_ID) {
+        if (targetOrgId === MISR_CONSULT_ORG_ID) {
+            setEmail(MISR_CONSULT_EMAIL);
+            setPassword(MISR_CONSULT_PASSWORD);
+        } else if (targetOrgId === DEC_ORG_ID) {
             setEmail('michael@dec.com');
             setPassword('DEC@2026!');
         } else {
@@ -72,8 +87,18 @@ export const Login: React.FC = () => {
         setLoading(true);
         setError(null);
         switchOrganization(targetOrgId);
-        const loginEmail = targetOrgId === DEC_ORG_ID ? 'michael@dec.com' : PIERRE_OWNER_EMAIL;
-        const loginPassword = targetOrgId === DEC_ORG_ID ? 'DEC@2026!' : PIERRE_OWNER_PASSWORD;
+        const loginEmail =
+            targetOrgId === MISR_CONSULT_ORG_ID
+                ? MISR_CONSULT_EMAIL
+                : targetOrgId === DEC_ORG_ID
+                ? 'michael@dec.com'
+                : PIERRE_OWNER_EMAIL;
+        const loginPassword =
+            targetOrgId === MISR_CONSULT_ORG_ID
+                ? MISR_CONSULT_PASSWORD
+                : targetOrgId === DEC_ORG_ID
+                ? 'DEC@2026!'
+                : PIERRE_OWNER_PASSWORD;
         setEmail(loginEmail);
         setPassword(loginPassword);
         try {
@@ -103,6 +128,7 @@ export const Login: React.FC = () => {
                     password,
                 });
                 if (signInError) throw new Error(signInError.message);
+                localStorage.setItem('whitelabel_active_org_id', activeOrg.id);
             } else if (mode === 'register-company') {
                 if (!companyName.trim()) throw new Error('Company Name is required');
                 const branches = branchesInput
@@ -151,17 +177,36 @@ export const Login: React.FC = () => {
             {/* Background elements (Exact e1a8d80 Spec) */}
             <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-500/20 blur-[120px] rounded-full"></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 blur-[120px] rounded-full"></div>
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-500/15 blur-[120px] rounded-full"></div>
             </div>
 
-            <div className="max-w-md w-full space-y-6 md:space-y-8 bg-[#1a1a1a]/40 backdrop-blur-2xl p-6 md:p-10 rounded-2xl md:rounded-[32px] border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10 transition-all duration-500 hover:border-white/10">
+            <div className="max-w-lg w-full space-y-6 md:space-y-8 bg-[#1a1a1a]/40 backdrop-blur-2xl p-6 md:p-10 rounded-2xl md:rounded-[32px] border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10 transition-all duration-500 hover:border-white/10">
                 <div className="flex flex-col items-center">
-                    <div className="w-24 h-24 mb-6 relative flex items-center justify-center">
-                        <div className="absolute inset-0 bg-orange-500/20 blur-2xl rounded-full"></div>
-                        {isDecSelected ? (
-                            <img src={logo} alt="DEC Logo" className="w-full h-full object-contain relative z-10 animate-pulse-slow" />
+                    <div className="w-56 h-24 mb-4 relative flex items-center justify-center">
+                        <div
+                            className={clsx(
+                                'absolute inset-0 blur-2xl rounded-full',
+                                isMisrConsultSelected ? 'bg-emerald-500/20' : 'bg-orange-500/20'
+                            )}
+                        ></div>
+                        {isMisrConsultSelected ? (
+                            <img
+                                src="/mc-logo.svg"
+                                alt="Misr Consult Logo"
+                                className="w-full h-full object-contain relative z-10 animate-pulse-slow"
+                            />
+                        ) : isDecSelected ? (
+                            <img
+                                src={logo}
+                                alt="DEC Logo"
+                                className="w-28 h-24 object-contain relative z-10 animate-pulse-slow"
+                            />
                         ) : (
-                            <img src="/nexus-symbol.svg" alt="NEXUS Logo" className="w-20 h-20 object-contain relative z-10 animate-pulse-slow" />
+                            <img
+                                src="/nexus-symbol.svg"
+                                alt="NEXUS Logo"
+                                className="w-20 h-20 object-contain relative z-10 animate-pulse-slow"
+                            />
                         )}
                     </div>
                     <h2 className="text-center text-3xl font-extrabold text-white tracking-tight">
@@ -173,10 +218,12 @@ export const Login: React.FC = () => {
                             ? 'Create Account'
                             : 'Reset Access'}
                     </h2>
-                    <p className="mt-2 text-center text-sm text-slate-400 font-medium">
+                    <p className="mt-2 text-center text-xs md:text-sm text-slate-400 font-medium">
                         {mode === 'login'
-                            ? isDecSelected
-                                ? 'DEC Engineering Consultant Tracker'
+                            ? isMisrConsultSelected
+                                ? 'Misr Consult (MC) — House of Expertise #35 · Prof. Dr. Sameh Abdel-Gawad'
+                                : isDecSelected
+                                ? 'DEC Engineering Consultant Milestone Tracker'
                                 : 'NEXUS Turnkey Contracting & ERP Suite'
                             : mode === 'register-company'
                             ? 'Provision a new white-label AEC tenant'
@@ -186,36 +233,50 @@ export const Login: React.FC = () => {
                     </p>
                 </div>
 
-                {/* Dual-Tenant Switcher (DEC Portal vs NEXUS Contracting) */}
+                {/* Tri-Tenant Firm Switcher (DEC Portal | Misr Consult | NEXUS ERP) */}
                 {mode === 'login' && (
-                    <div className="grid grid-cols-2 gap-2 p-1.5 bg-white/5 rounded-2xl border border-white/5">
+                    <div className="grid grid-cols-3 gap-1.5 p-1.5 bg-white/5 rounded-2xl border border-white/5">
                         <button
                             type="button"
                             onClick={() => handleSelectPortal(DEC_ORG_ID)}
                             onDoubleClick={() => handleInstantPortalSignIn(DEC_ORG_ID)}
                             className={clsx(
-                                'flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all',
+                                'flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all',
                                 isDecSelected
                                     ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30 shadow-orange-glow'
                                     : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
                             )}
                         >
-                            <Compass className="w-3.5 h-3.5" />
-                            <span>DEC Portal</span>
+                            <Compass className="w-3.5 h-3.5 shrink-0" />
+                            <span className="truncate">DEC Portal</span>
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => handleSelectPortal(MISR_CONSULT_ORG_ID)}
+                            onDoubleClick={() => handleInstantPortalSignIn(MISR_CONSULT_ORG_ID)}
+                            className={clsx(
+                                'flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all',
+                                isMisrConsultSelected
+                                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-[0_0_20px_rgba(34,197,94,0.2)]'
+                                    : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
+                            )}
+                        >
+                            <Droplets className="w-3.5 h-3.5 shrink-0" />
+                            <span className="truncate">Misr Consult</span>
                         </button>
                         <button
                             type="button"
                             onClick={() => handleSelectPortal(DEFAULT_ORG_ID)}
                             onDoubleClick={() => handleInstantPortalSignIn(DEFAULT_ORG_ID)}
                             className={clsx(
-                                'flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all',
-                                !isDecSelected
+                                'flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all',
+                                isNexusSelected
                                     ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30 shadow-orange-glow'
                                     : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
                             )}
                         >
-                            <Building2 className="w-3.5 h-3.5" />
-                            <span>NEXUS ERP</span>
+                            <Building2 className="w-3.5 h-3.5 shrink-0" />
+                            <span className="truncate">NEXUS ERP</span>
                         </button>
                     </div>
                 )}
@@ -233,7 +294,7 @@ export const Login: React.FC = () => {
                                         required
                                         value={companyName}
                                         onChange={e => setCompanyName(e.target.value)}
-                                        placeholder="e.g., Horizon Contracting & Architecture"
+                                        placeholder="e.g., Misr Consult — House of Expertise"
                                         className="appearance-none relative block w-full px-4 py-3 bg-white/5 border border-white/5 placeholder-slate-600 text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all duration-300 sm:text-sm font-medium"
                                     />
                                 </div>
@@ -301,7 +362,7 @@ export const Login: React.FC = () => {
                                     type="text"
                                     required
                                     className="appearance-none relative block w-full px-4 py-3 bg-white/5 border border-white/5 placeholder-slate-600 text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all duration-300 sm:text-sm font-medium"
-                                    placeholder="Eng. Michael Magdy"
+                                    placeholder="Prof. Dr. Sameh Abdel-Gawad"
                                     value={fullName}
                                     onChange={(e) => setFullName(e.target.value)}
                                 />
@@ -322,7 +383,7 @@ export const Login: React.FC = () => {
                                 autoComplete="email"
                                 required
                                 className="appearance-none relative block w-full px-4 py-3 bg-white/5 border border-white/5 placeholder-slate-600 text-white rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:bg-white/10 transition-all duration-300 sm:text-sm font-medium"
-                                placeholder="michael@dec.com"
+                                placeholder="sameh@misrconsult.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
@@ -390,7 +451,12 @@ export const Login: React.FC = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-bold rounded-2xl text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:ring-offset-[#0f0f0f] disabled:opacity-50 transition-all duration-300 shadow-xl shadow-orange-600/20 hover:shadow-orange-600/40 hover:-translate-y-0.5 active:translate-y-0"
+                            className={clsx(
+                                'group relative w-full flex justify-center py-4 px-4 border border-transparent text-sm font-bold rounded-2xl text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0f0f0f] disabled:opacity-50 transition-all duration-300 shadow-xl hover:-translate-y-0.5 active:translate-y-0',
+                                isMisrConsultSelected
+                                    ? 'bg-emerald-600 hover:bg-emerald-500 focus:ring-emerald-500 shadow-emerald-600/20 hover:shadow-emerald-600/40'
+                                    : 'bg-orange-600 hover:bg-orange-500 focus:ring-orange-500 shadow-orange-600/20 hover:shadow-orange-600/40'
+                            )}
                         >
                             {loading ? (
                                 <span className="flex items-center">
@@ -417,7 +483,13 @@ export const Login: React.FC = () => {
                                     Processing...
                                 </span>
                             ) : mode === 'login' ? (
-                                `Sign In to ${isDecSelected ? 'DEC Portal' : 'NEXUS ERP'}`
+                                `Sign In to ${
+                                    isMisrConsultSelected
+                                        ? 'Misr Consult (MC)'
+                                        : isDecSelected
+                                        ? 'DEC Portal'
+                                        : 'NEXUS ERP'
+                                }`
                             ) : mode === 'register-company' ? (
                                 'Launch Contracting Workspace'
                             ) : mode === 'signup' ? (

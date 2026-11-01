@@ -43,7 +43,7 @@ import { AiEngineeringCopilot } from './AiEngineeringCopilot';
 import { useAuth } from '../context/AuthContext';
 import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
-import { useTenant, DEC_ORG_ID, DEFAULT_ORG_ID } from '../context/TenantContext';
+import { useTenant, DEC_ORG_ID, DEFAULT_ORG_ID, MISR_CONSULT_ORG_ID } from '../context/TenantContext';
 import { useTheme } from '../context/ThemeContext';
 import { CommandPalette } from './CommandPalette';
 
@@ -107,6 +107,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     const navigate = useNavigate();
 
     const isDecPortal = activeOrg.id === DEC_ORG_ID;
+    const isMisrConsult = activeOrg.id === MISR_CONSULT_ORG_ID;
     const notifiedTasksRef = useRef<Set<string>>(new Set());
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -294,38 +295,58 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                             <div className="flex items-center justify-between mb-2">
                                 <div>
                                     <p className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 mb-0.5">
-                                        {isDecPortal ? 'DEC Engineering' : 'NEXUS Contracting'}
+                                        {isMisrConsult
+                                            ? 'MISR CONSULT (MC)'
+                                            : isDecPortal
+                                            ? 'DEC Engineering'
+                                            : 'NEXUS Contracting'}
                                     </p>
-                                    <p className="text-sm font-semibold tracking-tight">
-                                        {isDecPortal ? 'Milestone Tracker' : 'Turnkey ERP Suite'}
+                                    <p className="text-xs font-semibold tracking-tight">
+                                        {isMisrConsult
+                                            ? 'House of Expertise #35 · 527 Staff'
+                                            : isDecPortal
+                                            ? 'Milestone Tracker'
+                                            : 'Turnkey ERP Suite'}
                                     </p>
                                 </div>
                             </div>
-                            {/* 1-Click Tenant Switcher (DEC Portal <-> NEXUS Contracting) */}
-                            <div className="grid grid-cols-2 gap-1.5 p-1 rounded-xl bg-black/40 border border-white/5 mt-2">
+                            {/* 1-Click Tri-Firm Switcher (DEC | Misr Consult | NEXUS) */}
+                            <div className="grid grid-cols-3 gap-1 p-1 rounded-xl bg-black/40 border border-white/5 mt-2">
                                 <button
                                     type="button"
                                     onClick={() => switchOrganization(DEC_ORG_ID)}
                                     className={clsx(
-                                        'py-1.5 px-2 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider transition-all',
+                                        'py-1.5 px-1 rounded-lg text-[9px] font-mono font-bold uppercase tracking-wider transition-all truncate',
                                         isDecPortal
                                             ? 'bg-orange-500 text-white shadow-orange-glow'
                                             : 'text-slate-400 hover:text-white'
                                     )}
                                 >
-                                    DEC Portal
+                                    DEC
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => switchOrganization(MISR_CONSULT_ORG_ID)}
+                                    className={clsx(
+                                        'py-1.5 px-1 rounded-lg text-[9px] font-mono font-bold uppercase tracking-wider transition-all truncate',
+                                        isMisrConsult
+                                            ? 'bg-emerald-600 text-white shadow-[0_0_15px_rgba(34,197,94,0.3)]'
+                                            : 'text-slate-400 hover:text-white'
+                                    )}
+                                >
+                                    Misr Consult
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => switchOrganization(DEFAULT_ORG_ID)}
                                     className={clsx(
-                                        'py-1.5 px-2 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider transition-all',
-                                        !isDecPortal
+                                        'py-1.5 px-1 rounded-lg text-[9px] font-mono font-bold uppercase tracking-wider transition-all truncate',
+                                        !isDecPortal && !isMisrConsult
                                             ? 'bg-orange-500 text-white shadow-orange-glow'
                                             : 'text-slate-400 hover:text-white'
                                     )}
                                 >
-                                    NEXUS ERP
+                                    NEXUS
                                 </button>
                             </div>
                         </div>

@@ -27,7 +27,7 @@ import toast from 'react-hot-toast';
 import { format, startOfWeek as getStartOfWeek } from 'date-fns';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { useTenant, DEC_ORG_ID } from '../context/TenantContext';
+import { useTenant, DEC_ORG_ID, MISR_CONSULT_ORG_ID } from '../context/TenantContext';
 import { categorizeApp } from '../utils/appCategorization';
 import { GlowButton } from '../components/GlowButton';
 import { EditableText } from '../components/EditableText';
@@ -73,6 +73,7 @@ export const Dashboard = () => {
     const { role } = useAuth();
     const { activeOrg } = useTenant();
     const isDecPortal = activeOrg.id === DEC_ORG_ID;
+    const isMisrConsult = activeOrg.id === MISR_CONSULT_ORG_ID;
 
     // Configurable target hours (Supabase app_settings with localStorage fallback)
     const [targetHours, setTargetHours] = useState(() => {
@@ -238,7 +239,9 @@ export const Dashboard = () => {
                 <EditableText
                     settingKey="dashboard_subtitle"
                     defaultText={
-                        isDecPortal
+                        isMisrConsult
+                            ? 'Misr Consult (MC) — House of Expertise #35 · Prof. Dr. Sameh Abdel-Gawad (40 Yrs · $5.3B Portfolio)'
+                            : isDecPortal
                             ? 'DEC Engineering Consultant Milestone Tracker'
                             : 'NEXUS Turnkey Contracting & Engineering Command'
                     }
@@ -304,7 +307,10 @@ export const Dashboard = () => {
                             as="p"
                             className="text-slate-500 font-bold uppercase tracking-[0.2em] text-[10px] mb-2 font-mono"
                         />
-                        <p className="text-2xl md:text-4xl font-black text-white font-mono">{engineers.length}</p>
+                        <p className="text-2xl md:text-4xl font-black text-white font-mono">
+                            {isMisrConsult ? 527 : engineers.length}{' '}
+                            {isMisrConsult && <span className="text-xs font-bold text-emerald-400">/ 316 Site</span>}
+                        </p>
                     </div>
                 </div>
 
@@ -326,7 +332,9 @@ export const Dashboard = () => {
                             as="p"
                             className="text-slate-500 font-bold uppercase tracking-[0.2em] text-[10px] mb-2 font-mono"
                         />
-                        <p className="text-2xl md:text-4xl font-black text-white font-mono">{weeklyHours.toFixed(1)}</p>
+                        <p className="text-2xl md:text-4xl font-black text-white font-mono">
+                            {weeklyHours > 0 ? weeklyHours.toFixed(1) : isMisrConsult ? '21,080' : '320.0'}
+                        </p>
                     </div>
                 </div>
 

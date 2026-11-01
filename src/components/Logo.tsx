@@ -57,6 +57,26 @@ export const Logo: React.FC<{
         isDarkTheme = true;
     }
 
+    const isMisrConsult =
+        activeOrg.id === 'org-misr-consult' ||
+        activeOrg.slug === 'misr-consult' ||
+        activeOrg.name.toUpperCase().includes('MISR');
+
+    if (isMisrConsult) {
+        return (
+            <div className={clsx('flex items-center justify-center p-1', className)}>
+                <img
+                    src="/mc-logo.svg"
+                    alt="Misr Consult — Engineering House of Expertise #35"
+                    className={clsx(
+                        'h-auto w-auto object-contain select-none',
+                        collapsed ? 'max-h-10' : 'max-h-24'
+                    )}
+                />
+            </div>
+        );
+    }
+
     const isDecPortal =
         activeOrg.id === 'org-dec-portal' ||
         activeOrg.slug === 'dec-engineering-consultants' ||
@@ -80,7 +100,8 @@ export const Logo: React.FC<{
     if (
         activeOrg.logoUrl &&
         !activeOrg.logoUrl.includes('nexus-default') &&
-        !activeOrg.logoUrl.includes('/logo.png')
+        !activeOrg.logoUrl.includes('/logo.png') &&
+        !activeOrg.logoUrl.includes('/mc-logo.svg')
     ) {
         return (
             <div className={clsx('flex items-center gap-2 shrink-0 p-2', className)}>

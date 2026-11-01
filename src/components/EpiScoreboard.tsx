@@ -41,7 +41,7 @@ export const EpiScoreboard: React.FC = () => {
 
                 {/* Filter */}
                 <div className="flex items-center gap-1.5 p-1 bg-black/40 border border-white/5 rounded-xl self-start md:self-auto">
-                    {['All', 'Architecture', 'Civil', 'MEP', 'Interior'].map(disc => (
+                    {['All', 'Water & SWRO', 'Site Supervision', 'Electromechanical', 'BIM & Architecture', 'Civil'].map(disc => (
                         <button
                             key={disc}
                             onClick={() => setSelectedDiscipline(disc)}

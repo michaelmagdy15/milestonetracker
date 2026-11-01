@@ -234,7 +234,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const config = TABLE_CONFIGS[tableName];
         const setter = setterMap[tableName];
         const activeOrgId = localStorage.getItem('whitelabel_active_org_id') || 'org-default';
-        const isCoreWorkspace = activeOrgId === 'org-default' || activeOrgId === 'org-dec-portal';
+        const isCoreWorkspace = activeOrgId === 'org-default' || activeOrgId === 'org-dec-portal' || activeOrgId === 'org-misr-consult';
         const filterByTenant = (rows: any[]) =>
             rows.filter(r => !r.organization_id || r.organization_id === activeOrgId || (isCoreWorkspace && (r.organization_id === 'org-default' || r.organization_id === 'org-dec-portal')));
         
@@ -276,11 +276,13 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 if (error) { console.error(`Error fetching ${tableName}:`, error); return; }
                 if (data) {
                     const rows = filterByTenant(data).map(config.mapper);
-                    if (rows.length === 0) {
-                        if (tableName === 'projects') setter(FLAGSHIP_PROJECTS);
-                        else if (tableName === 'engineers') setter(FLAGSHIP_ENGINEERS);
-                        else if (tableName === 'milestones') setter(FLAGSHIP_MILESTONES);
-                        else setter([]);
+                    if (tableName === 'projects' && rows.length === 0) {
+                        setter(FLAGSHIP_PROJECTS);
+                    } else if (tableName === 'engineers' && rows.length <= 3) {
+                        const existingIds = new Set(rows.map((r: any) => r.id));
+                        setter([...rows, ...FLAGSHIP_ENGINEERS.filter(e => !existingIds.has(e.id))]);
+                    } else if (tableName === 'milestones' && rows.length === 0) {
+                        setter(FLAGSHIP_MILESTONES);
                     } else {
                         setter(rows);
                     }

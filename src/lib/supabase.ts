@@ -37,6 +37,11 @@ export const DEC_DIRECTOR_PASSWORD = 'DEC@2026!';
 export const DEC_DIRECTOR_ID = 'director-michael-dec-001';
 export const DEC_ORG_ID = 'org-dec-portal';
 
+export const MISR_CONSULT_EMAIL = 'sameh@misrconsult.com';
+export const MISR_CONSULT_PASSWORD = 'MC@2026!';
+export const MISR_CONSULT_DIRECTOR_ID = 'chairman-sameh-mc-001';
+export const MISR_CONSULT_ORG_ID = 'org-misr-consult';
+
 export const DEFAULT_ADMIN_EMAIL = PIERRE_OWNER_EMAIL;
 export const DEFAULT_ADMIN_PASSWORD = PIERRE_OWNER_PASSWORD;
 export const DEFAULT_ADMIN_ID = PIERRE_OWNER_ID;
@@ -208,9 +213,37 @@ const getSeedUsersAndEngineers = (now: string) => {
         created_at: now,
     };
 
+    const misrConsultUser: StoredAuthUser = {
+        id: MISR_CONSULT_DIRECTOR_ID,
+        email: MISR_CONSULT_EMAIL,
+        password: MISR_CONSULT_PASSWORD,
+        user_metadata: {
+            name: 'Prof. Dr. Sameh Abdel-Gawad (MC Chairman)',
+            full_name: 'Prof. Dr. Sameh Abdel-Gawad (MC Chairman)',
+            role: 'admin',
+            organization_id: MISR_CONSULT_ORG_ID,
+            hourly_rate: 2500,
+            weekly_goal_hours: 40,
+        },
+        created_at: now,
+    };
+
+    const misrConsultEngineer = {
+        id: MISR_CONSULT_DIRECTOR_ID,
+        organization_id: MISR_CONSULT_ORG_ID,
+        email: MISR_CONSULT_EMAIL,
+        name: 'Prof. Dr. Sameh Abdel-Gawad (MC Chairman)',
+        role: 'admin',
+        hourly_rate: 2500,
+        weekly_goal_hours: 40,
+        location: '72 Gamet El Dewal Str, Mohandiseen HQ',
+        skills: ['Environmental Hydraulics', 'House of Expertise #35', 'Desalination & WWTP', 'GM Marafek Consult UAE'],
+        created_at: now,
+    };
+
     return {
-        users: [pierreUser, michaelUser, decDirectorUser],
-        engineers: [pierreEngineer, michaelEngineer, decDirectorEngineer],
+        users: [pierreUser, michaelUser, decDirectorUser, misrConsultUser],
+        engineers: [pierreEngineer, michaelEngineer, decDirectorEngineer, misrConsultEngineer],
     };
 };
 
@@ -260,7 +293,34 @@ const createInitialDatabase = (): LocalDatabase => {
 
     return {
         users,
-        organizations: [defaultOrg, decPortalOrg],
+        organizations: [
+            defaultOrg,
+            decPortalOrg,
+            {
+                id: MISR_CONSULT_ORG_ID,
+                name: 'MISR CONSULT (MC)',
+                slug: 'misr-consult',
+                tagline: 'Engineering House of Expertise #35 · Prof. Dr. Sameh Abdel-Gawad (40 Yrs)',
+                logoUrl: '/mc-logo.svg',
+                faviconUrl: '/mc-logo.svg',
+                primaryColor: '#22c55e',
+                themeSurface: 'obsidian',
+                currency: 'EGP',
+                branches: [
+                    '72 Gamet El Dewal Str, Mohandiseen HQ (Giza)',
+                    'Marafek Consult (Abu Dhabi & Fujairah UAE)',
+                    'Riyadh & Jeddah Engineering Office (KSA)',
+                    'Toshka, New Delta & Bahr Al-Baqar Supervision Sites',
+                ],
+                email: 'info@misrconsult.com',
+                phone: '(+202) 37620366 - 37620377 - 37499521',
+                address: '72 Gamet El Dewal Str, Mohandiseen, Giza, Egypt',
+                city: 'Giza / Cairo / Abu Dhabi / Riyadh',
+                country: 'Egypt, KSA & UAE (13 Countries)',
+                plan: 'Enterprise',
+                createdAt: now,
+            },
+        ],
         projects: [],
         engineers,
         entries: [],
@@ -797,10 +857,15 @@ export const supabase = {
             const isBuiltInAdmin =
                 normalizedEmail === PIERRE_OWNER_EMAIL ||
                 normalizedEmail === MICHAEL_SYSADMIN_EMAIL ||
-                normalizedEmail === DEC_DIRECTOR_EMAIL;
+                normalizedEmail === DEC_DIRECTOR_EMAIL ||
+                normalizedEmail === MISR_CONSULT_EMAIL;
 
             const defaultOrgForUser =
-                normalizedEmail === DEC_DIRECTOR_EMAIL ? DEC_ORG_ID : DEFAULT_ORG_ID;
+                normalizedEmail === DEC_DIRECTOR_EMAIL
+                    ? DEC_ORG_ID
+                    : normalizedEmail === MISR_CONSULT_EMAIL
+                    ? MISR_CONSULT_ORG_ID
+                    : DEFAULT_ORG_ID;
 
             try {
                 // 1. Authenticate against live Firebase Authentication
