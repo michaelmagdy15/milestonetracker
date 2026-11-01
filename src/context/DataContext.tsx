@@ -3,6 +3,7 @@ import type { Project, Engineer, LogEntry, AttendanceRecord, Milestone, Task, Le
 import { supabase } from '../lib/supabase';
 import { useAuth } from './AuthContext';
 import toast from 'react-hot-toast';
+import { FLAGSHIP_PROJECTS, FLAGSHIP_ENGINEERS, FLAGSHIP_MILESTONES } from '../data/flagshipSeedData';
 
 interface DataContextType {
     projects: Project[];
@@ -273,7 +274,17 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 // Standard tables
                 const { data, error } = await supabase.from(tableName).select('*').order(config.orderBy, { ascending: config.ascending }).limit(1000);
                 if (error) { console.error(`Error fetching ${tableName}:`, error); return; }
-                if (data) setter(filterByTenant(data).map(config.mapper));
+                if (data) {
+                    const rows = filterByTenant(data).map(config.mapper);
+                    if (rows.length === 0) {
+                        if (tableName === 'projects') setter(FLAGSHIP_PROJECTS);
+                        else if (tableName === 'engineers') setter(FLAGSHIP_ENGINEERS);
+                        else if (tableName === 'milestones') setter(FLAGSHIP_MILESTONES);
+                        else setter([]);
+                    } else {
+                        setter(rows);
+                    }
+                }
             }
         } catch (err) {
             console.error(`Exception fetching ${tableName}:`, err);

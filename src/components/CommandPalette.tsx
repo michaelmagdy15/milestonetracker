@@ -12,6 +12,8 @@ import {
     ArrowRight,
     Sparkles,
     DollarSign,
+    Smartphone,
+    Layers,
 } from 'lucide-react';
 
 interface CommandPaletteProps {
@@ -48,6 +50,26 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     const q = query.trim().toLowerCase();
 
     const quickCommands = [
+        {
+            id: 'cmd-field-app',
+            label: 'Open Field Companion Mobile App (GPS & Roll-Call)',
+            category: 'Site Engineering',
+            icon: Smartphone,
+            action: () => {
+                navigate('/field-app');
+                onClose();
+            },
+        },
+        {
+            id: 'cmd-disciplines',
+            label: 'Open Multi-Discipline Hub (Arch MDL, FF&E, Civil Pour)',
+            category: 'Engineering Hub',
+            icon: Layers,
+            action: () => {
+                navigate('/disciplines');
+                onClose();
+            },
+        },
         {
             id: 'cmd-proposals',
             label: 'Open RIBA Stage 1–5 Fee Proposals & 5-Gate VO Shield',

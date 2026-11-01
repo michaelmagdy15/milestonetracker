@@ -28,12 +28,15 @@ import {
     ChevronDown,
     Command,
     Sun,
-    Moon
+    Moon,
+    Smartphone,
+    Layers
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Logo } from './Logo';
 import { MailNotifier } from './MailNotifier';
+import { AiEngineeringCopilot } from './AiEngineeringCopilot';
 import { useAuth } from '../context/AuthContext';
 import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -242,6 +245,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         <NavItem to="/" icon={LayoutDashboard} label="Dashboard" />
                         {role !== 'client' && <NavItem to="/projects" icon={FolderKanban} label="Projects" />}
                         {role !== 'client' && <NavItem to="/proposals" icon={ShieldCheck} label="RIBA Proposals" />}
+                        {role !== 'client' && <NavItem to="/disciplines" icon={Layers} label="Multi-Discipline" />}
+                        {role !== 'client' && <NavItem to="/field-app" icon={Smartphone} label="Field Companion" />}
                         {role !== 'client' && <NavItem to="/boq" icon={Calculator} label="BOQ Viewer" />}
                         {role !== 'client' && <NavItem to="/meetings" icon={Calendar} label="Meetings" />}
                         {role === 'admin' && <NavItem to="/engineers" icon={Users} label="Engineers" />}
@@ -564,6 +569,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 onClose={() => setIsCommandPaletteOpen(false)}
                 onOpenProvisioner={() => navigate('/branding')}
             />
+
+            {/* AI Engineering Copilot (Local Ollama / Zero Credit) */}
+            <AiEngineeringCopilot />
 
             {/* Email Notifications & Permissions Prompt */}
             {role !== 'client' && <MailNotifier />}

@@ -33,6 +33,8 @@ import { GlowButton } from '../components/GlowButton';
 import { EditableText } from '../components/EditableText';
 import { LiveOperationsMonitor } from '../components/LiveOperationsMonitor';
 import { SystemHint } from '../components/SystemHint';
+import { ExecutiveBiCharts } from '../components/ExecutiveBiCharts';
+import { EpiScoreboard } from '../components/EpiScoreboard';
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -478,6 +480,16 @@ export const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+            </motion.div>
+
+            {/* Executive BI & Earned Value Charts */}
+            <motion.div variants={itemVariants}>
+                <ExecutiveBiCharts selectedProjectName={projects[0]?.name || 'Saadiyat Cultural Pavilion (Flagship)'} />
+            </motion.div>
+
+            {/* 360° Engineer Performance Index (EPI) Scoreboard */}
+            <motion.div variants={itemVariants}>
+                <EpiScoreboard />
             </motion.div>
 
             {/* Live Operations Central Monitor (Exact e1a8d80 Component) */}
