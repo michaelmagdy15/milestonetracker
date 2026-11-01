@@ -91,30 +91,30 @@ export const ExecutiveBiCharts: React.FC<{ selectedProjectName?: string }> = ({ 
             />
 
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-white/5 pb-5">
-                <div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                        <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shadow-orange-glow">
+            <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-6 border-b border-white/5 pb-5">
+                <div className="min-w-0">
+                    <div className="flex items-center flex-wrap gap-2 mb-1.5">
+                        <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shadow-orange-glow shrink-0">
                             <TrendingUp className="w-4 h-4" />
                         </div>
-                        <h2 className="text-xl md:text-2xl font-black text-white tracking-tight">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-black text-white tracking-tight">
                             Executive BI & Project Intelligence
                         </h2>
-                        <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+                        <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1 whitespace-nowrap">
                             <Activity className="w-3 h-3" /> Live Feed
                         </span>
                     </div>
-                    <p className="text-xs text-slate-400 font-mono">
+                    <p className="text-xs text-slate-400 font-mono leading-relaxed break-words">
                         Active Scope: <span className="text-orange-400 font-semibold">{selectedProjectName}</span> • Real-Time EVM & Operational Telemetry
                     </p>
                 </div>
 
                 {/* Tab Navigation */}
-                <div className="flex items-center gap-1.5 p-1 bg-black/40 border border-white/5 rounded-xl self-start md:self-auto overflow-x-auto max-w-full">
+                <div className="flex items-center gap-1.5 p-1.5 bg-black/40 border border-white/5 rounded-xl overflow-x-auto max-w-full no-scrollbar shrink-0">
                     <button
                         onClick={() => setActiveTab('scurve')}
                         className={clsx(
-                            'px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 whitespace-nowrap',
+                            'px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0',
                             activeTab === 'scurve'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -125,7 +125,7 @@ export const ExecutiveBiCharts: React.FC<{ selectedProjectName?: string }> = ({ 
                     <button
                         onClick={() => setActiveTab('cashflow')}
                         className={clsx(
-                            'px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 whitespace-nowrap',
+                            'px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0',
                             activeTab === 'cashflow'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -136,7 +136,7 @@ export const ExecutiveBiCharts: React.FC<{ selectedProjectName?: string }> = ({ 
                     <button
                         onClick={() => setActiveTab('disciplines')}
                         className={clsx(
-                            'px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 whitespace-nowrap',
+                            'px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0',
                             activeTab === 'disciplines'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -147,7 +147,7 @@ export const ExecutiveBiCharts: React.FC<{ selectedProjectName?: string }> = ({ 
                     <button
                         onClick={() => setActiveTab('submittals')}
                         className={clsx(
-                            'px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 whitespace-nowrap',
+                            'px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 whitespace-nowrap shrink-0',
                             activeTab === 'submittals'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -225,26 +225,26 @@ export const ExecutiveBiCharts: React.FC<{ selectedProjectName?: string }> = ({ 
                     </div>
 
                     {/* Interactive SVG S-Curve */}
-                    <div className="relative bg-black/50 border border-white/5 rounded-2xl p-4 overflow-hidden">
-                        <div className="flex items-center justify-between mb-3 text-xs font-mono">
-                            <div className="flex items-center gap-4">
-                                <span className="flex items-center gap-1.5 text-slate-400">
+                    <div className="relative bg-black/50 border border-white/5 rounded-2xl p-3 sm:p-4 overflow-hidden">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 text-xs font-mono">
+                            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                                <span className="flex items-center gap-1.5 text-slate-400 text-[11px] sm:text-xs">
                                     <span className="w-3 h-0.5 bg-slate-500 border-t border-dashed border-slate-300"></span> Planned Value (PV Baseline)
                                 </span>
-                                <span className="flex items-center gap-1.5 text-orange-400 font-semibold">
+                                <span className="flex items-center gap-1.5 text-orange-400 font-semibold text-[11px] sm:text-xs">
                                     <span className="w-3 h-1 bg-orange-500 rounded-full"></span> Earned Value (EV Live)
                                 </span>
-                                <span className="flex items-center gap-1.5 text-cyan-400 font-semibold">
+                                <span className="flex items-center gap-1.5 text-cyan-400 font-semibold text-[11px] sm:text-xs">
                                     <span className="w-3 h-1 bg-cyan-400 rounded-full"></span> Actual Cost (AC)
                                 </span>
                             </div>
-                            <span className="text-slate-500 text-[11px]">Hover nodes for details</span>
+                            <span className="text-slate-500 text-[10px] sm:text-[11px]">Tap or hover nodes for details</span>
                         </div>
 
-                        <div className="w-full overflow-x-auto">
+                        <div className="w-full overflow-x-auto no-scrollbar">
                             <svg
                                 viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-                                className="w-full h-48 md:h-64 select-none"
+                                className="min-w-[480px] w-full h-48 md:h-64 select-none"
                             >
                                 {/* Grid Lines */}
                                 {[0, 25, 50, 75, 100].map(val => (
@@ -428,11 +428,11 @@ export const ExecutiveBiCharts: React.FC<{ selectedProjectName?: string }> = ({ 
                     <div className="space-y-3.5">
                         {DISCIPLINE_UTILIZATION.map((item) => (
                             <div key={item.discipline} className="p-3.5 rounded-2xl bg-black/40 border border-white/5 space-y-2">
-                                <div className="flex items-center justify-between text-xs font-mono">
-                                    <span className="text-white font-bold">{item.discipline}</span>
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-slate-500">Target: {item.target}%</span>
-                                        <span className="font-bold text-white px-2 py-0.5 rounded-lg bg-white/5 border border-white/10" style={{ color: item.color }}>
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-xs font-mono">
+                                    <span className="text-white font-bold break-words">{item.discipline}</span>
+                                    <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                                        <span className="text-slate-500 text-[11px]">Target: {item.target}%</span>
+                                        <span className="font-bold text-white px-2 py-0.5 rounded-lg bg-white/5 border border-white/10 whitespace-nowrap" style={{ color: item.color }}>
                                             {item.allocation}% Utilized
                                         </span>
                                     </div>

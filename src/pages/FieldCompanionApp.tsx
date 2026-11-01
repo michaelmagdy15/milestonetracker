@@ -137,25 +137,25 @@ export const FieldCompanionApp: React.FC = () => {
     return (
         <div className="space-y-6">
             {/* Header info */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <div className="flex items-center gap-2 mb-1">
-                        <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shadow-orange-glow">
+            <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+                <div className="min-w-0">
+                    <div className="flex items-center flex-wrap gap-2 mb-1">
+                        <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shadow-orange-glow shrink-0">
                             <Smartphone className="w-4 h-4" />
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
                             Field Companion Mobile Suite
                         </h1>
-                        <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 whitespace-nowrap">
                             v2.4 Field OS
                         </span>
                     </div>
-                    <p className="text-xs text-slate-400 font-mono">
+                    <p className="text-xs text-slate-400 font-mono leading-relaxed">
                         Engineered for Resident Civil, MEP & Fit-Out Site Engineers. High-contrast site visibility, offline sync, geofencing & QR verification.
                     </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                     <button
                         onClick={triggerSurpriseRollCall}
                         className="px-3 py-2 rounded-xl text-xs font-mono font-bold bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1.5 transition-all"

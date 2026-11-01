@@ -50,16 +50,16 @@ export const LiveOperationsMonitor = () => {
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" style={{ background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.03), transparent)' }} />
             
             <div className="relative z-10">
-                <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 md:mb-8 border-b border-white/5 pb-5">
                     <div>
-                        <h3 className="text-xl font-black text-white tracking-tight flex items-center gap-3 mb-2">
-                            <Activity className="w-6 h-6 text-emerald-400 animate-pulse" />
+                        <h3 className="text-lg sm:text-xl font-black text-white tracking-tight flex items-center gap-3 mb-1.5">
+                            <Activity className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400 animate-pulse shrink-0" />
                             Live Operations Central
                         </h3>
                         <p className="text-xs text-slate-500 font-medium">Real-time presence and active application monitoring via WebSockets.</p>
                     </div>
-                    <div className="flex flex-col items-end">
-                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20 font-mono flex items-center gap-2">
+                    <div className="flex items-center sm:flex-col sm:items-end shrink-0">
+                        <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20 font-mono flex items-center gap-2 whitespace-nowrap">
                             <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping shadow-[0_0_10px_rgba(52,211,153,0.8)]"></div>
                             {onlineCount} Online
                         </span>
@@ -82,41 +82,41 @@ export const LiveOperationsMonitor = () => {
                                         : 'bg-white/5 border-white/5 opacity-60 hover:opacity-100'
                                     }`}
                                 >
-                                    <div className="flex items-start justify-between mb-3">
-                                        <div className="flex items-center gap-3">
-                                            <div className="relative">
+                                    <div className="flex items-start justify-between gap-2 mb-3">
+                                        <div className="flex items-center gap-3 min-w-0 flex-1">
+                                            <div className="relative shrink-0">
                                                 <div className="w-10 h-10 rounded-xl bg-[#2a2a2a] flex items-center justify-center text-white font-black text-sm border border-white/10">
                                                     {eng.name.charAt(0)}
                                                 </div>
                                                 <div className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-[#1a1a1a] ${isOnline ? 'bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,0.8)]' : 'bg-slate-600'}`}></div>
                                             </div>
-                                            <div>
-                                                <h4 className="text-sm font-black text-white truncate max-w-[120px]">{eng.name}</h4>
-                                                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{eng.role || 'Engineer'}</p>
+                                            <div className="min-w-0 flex-1">
+                                                <h4 className="text-sm font-black text-white truncate">{eng.name}</h4>
+                                                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider truncate">{eng.role || 'Engineer'}</p>
                                             </div>
                                         </div>
-                                        <div className="text-right">
+                                        <div className="text-right shrink-0">
                                             {eng.latestLog ? (
-                                                <p className="text-[10px] font-mono text-slate-400 flex items-center justify-end gap-1">
-                                                    <Clock className="w-3 h-3" />
+                                                <p className="text-[10px] font-mono text-slate-400 flex items-center justify-end gap-1 whitespace-nowrap">
+                                                    <Clock className="w-3 h-3 shrink-0" />
                                                     {formatDistanceToNow(new Date(eng.latestLog.timestamp), { addSuffix: true })}
                                                 </p>
                                             ) : (
-                                                <p className="text-[10px] font-mono text-slate-600">No data</p>
+                                                <p className="text-[10px] font-mono text-slate-600 whitespace-nowrap">No data</p>
                                             )}
                                         </div>
                                     </div>
 
                                     <div className="space-y-2 mt-4">
                                         <div className="flex items-center gap-2 bg-black/40 p-2 rounded-lg border border-white/5">
-                                            <Monitor className={`w-3.5 h-3.5 ${isOnline ? 'text-emerald-400' : 'text-slate-500'}`} />
+                                            <Monitor className={`w-3.5 h-3.5 shrink-0 ${isOnline ? 'text-emerald-400' : 'text-slate-500'}`} />
                                             <p className="text-xs text-slate-300 truncate font-medium flex-1">
                                                 {eng.latestLog ? eng.latestLog.activeWindow : 'Offline'}
                                             </p>
                                         </div>
                                         
                                         <div className="flex items-center gap-2 bg-black/40 p-2 rounded-lg border border-white/5 mt-1">
-                                            <Target className="w-3.5 h-3.5 text-orange-400" />
+                                            <Target className="w-3.5 h-3.5 text-orange-400 shrink-0" />
                                             <p className="text-xs text-slate-400 truncate italic">
                                                 {eng.currentTask ? eng.currentTask.taskDescription : 'No active milestone tracking'}
                                             </p>

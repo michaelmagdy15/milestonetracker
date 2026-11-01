@@ -375,39 +375,46 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             {/* Main Content */}
             <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative z-10">
                 {/* Mobile Header */}
-                <div className="lg:hidden bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 p-4 flex items-center justify-between sticky top-0 z-40">
-                    <div className="flex items-center">
+                <div className="lg:hidden bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 px-3 py-2.5 sm:p-4 flex items-center justify-between gap-2 sticky top-0 z-40">
+                    <div className="flex items-center min-w-0 max-w-[140px] sm:max-w-[200px]">
                         <Logo className="scale-75 origin-left opacity-90 brightness-150" />
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                        <button
+                            onClick={() => navigate('/boardroom')}
+                            className="p-2 text-orange-400 hover:bg-orange-500/10 rounded-lg border border-orange-500/20"
+                            title="Boardroom Presentation Mode"
+                        >
+                            <Tv className="w-4 h-4 sm:w-5 sm:h-5" />
+                        </button>
                         <button
                             onClick={() => setIsCommandPaletteOpen(true)}
                             className="p-2 text-slate-400 hover:bg-white/5 hover:text-white rounded-lg border border-white/5"
                             title="Command Palette (Ctrl+K)"
                         >
-                            <Command className="w-5 h-5" />
+                            <Command className="w-4 h-4 sm:w-5 sm:h-5" />
                         </button>
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 p-2 px-3 text-slate-400 font-bold text-xs uppercase hover:bg-white/5 hover:text-white rounded-lg transition-colors border border-white/5"
+                            className="flex items-center gap-1.5 p-2 px-2.5 text-slate-400 font-bold text-xs uppercase hover:bg-white/5 hover:text-white rounded-lg transition-colors border border-white/5"
                         >
-                            <Globe className="w-4 h-4" />
+                            <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                             {language === 'en' ? 'EN' : 'AR'}
                         </button>
                         <button
                             onClick={() => setIsNotifOpen(!isNotifOpen)}
-                            className="relative p-2 text-slate-500 hover:bg-slate-100 rounded-lg"
+                            className="relative p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg"
                         >
-                            <Bell className="w-6 h-6" />
+                            <Bell className="w-5 h-5 sm:w-6 sm:h-6" />
                             {unreadCount > 0 && (
-                                <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-black"></span>
                             )}
                         </button>
                         <button
                             onClick={() => setIsMobileMenuOpen(true)}
-                            className="p-2 text-slate-500 hover:bg-slate-100 rounded-lg"
+                            className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg"
                         >
-                            <Menu className="w-6 h-6" />
+                            <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
                         </button>
                     </div>
                 </div>
@@ -585,7 +592,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     </div>
                 </div>
 
-                <div className="w-full h-full p-3 md:p-6 lg:p-8 overflow-y-auto">
+                <div className="w-full h-full p-3 sm:p-5 md:p-6 lg:p-8 overflow-y-auto overflow-x-hidden">
                     {children}
                 </div>
             </main>

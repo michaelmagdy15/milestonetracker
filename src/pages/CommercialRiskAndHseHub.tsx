@@ -133,26 +133,26 @@ export const CommercialRiskAndHseHub: React.FC = () => {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5 pb-5">
-                <div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                        <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shadow-orange-glow">
+            <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-white/5 pb-5">
+                <div className="min-w-0">
+                    <div className="flex items-center flex-wrap gap-2 mb-1.5">
+                        <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shadow-orange-glow shrink-0">
                             <ShieldAlert className="w-4 h-4" />
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
                             Commercial Risk, HSE & BIM Coordination
                         </h1>
-                        <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                        <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-0.5 rounded-full bg-orange-500/10 text-orange-400 border border-orange-500/20 whitespace-nowrap">
                             Enterprise Tier
                         </span>
                     </div>
-                    <p className="text-xs text-slate-400 font-mono">
+                    <p className="text-xs text-slate-400 font-mono leading-relaxed">
                         FIDIC 13.8 Material Inflation Simulator, Digital Permit to Work (PTW), Subcontractor Retention Escrow, and 48-Hour BIM Clash SLA.
                     </p>
                 </div>
 
                 {/* Tab Navigation */}
-                <div className="flex items-center gap-1.5 p-1 bg-black/40 border border-white/5 rounded-xl self-start md:self-auto overflow-x-auto">
+                <div className="flex items-center gap-1.5 p-1.5 bg-black/40 border border-white/5 rounded-xl overflow-x-auto max-w-full no-scrollbar shrink-0">
                     <button
                         onClick={() => setActiveTab('inflation')}
                         className={clsx(

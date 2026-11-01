@@ -173,14 +173,14 @@ export const Login: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="min-h-screen flex items-center justify-center bg-[#0f0f0f] py-6 sm:py-12 px-3 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Background elements (Exact e1a8d80 Spec) */}
             <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-orange-500/20 blur-[120px] rounded-full"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-500/15 blur-[120px] rounded-full"></div>
             </div>
 
-            <div className="max-w-lg w-full space-y-6 md:space-y-8 bg-[#1a1a1a]/40 backdrop-blur-2xl p-6 md:p-10 rounded-2xl md:rounded-[32px] border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10 transition-all duration-500 hover:border-white/10">
+            <div className="max-w-lg w-full space-y-5 md:space-y-8 bg-[#1a1a1a]/40 backdrop-blur-2xl p-4 sm:p-6 md:p-10 rounded-2xl md:rounded-[32px] border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10 transition-all duration-500 hover:border-white/10">
                 <div className="flex flex-col items-center">
                     <div className="w-56 h-24 mb-4 relative flex items-center justify-center">
                         <div
@@ -235,19 +235,19 @@ export const Login: React.FC = () => {
 
                 {/* Tri-Tenant Firm Switcher (DEC Portal | Misr Consult | NEXUS ERP) */}
                 {mode === 'login' && (
-                    <div className="grid grid-cols-3 gap-1.5 p-1.5 bg-white/5 rounded-2xl border border-white/5">
+                    <div className="grid grid-cols-3 gap-1 sm:gap-1.5 p-1 sm:p-1.5 bg-white/5 rounded-2xl border border-white/5">
                         <button
                             type="button"
                             onClick={() => handleSelectPortal(DEC_ORG_ID)}
                             onDoubleClick={() => handleInstantPortalSignIn(DEC_ORG_ID)}
                             className={clsx(
-                                'flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all',
+                                'flex items-center justify-center gap-1 sm:gap-1.5 py-2 sm:py-2.5 px-1.5 sm:px-2 rounded-xl text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider transition-all',
                                 isDecSelected
                                     ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30 shadow-orange-glow'
                                     : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
                             )}
                         >
-                            <Compass className="w-3.5 h-3.5 shrink-0" />
+                            <Compass className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
                             <span className="truncate">DEC Portal</span>
                         </button>
                         <button
@@ -255,13 +255,13 @@ export const Login: React.FC = () => {
                             onClick={() => handleSelectPortal(MISR_CONSULT_ORG_ID)}
                             onDoubleClick={() => handleInstantPortalSignIn(MISR_CONSULT_ORG_ID)}
                             className={clsx(
-                                'flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all',
+                                'flex items-center justify-center gap-1 sm:gap-1.5 py-2 sm:py-2.5 px-1.5 sm:px-2 rounded-xl text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider transition-all',
                                 isMisrConsultSelected
                                     ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-[0_0_20px_rgba(34,197,94,0.2)]'
                                     : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
                             )}
                         >
-                            <Droplets className="w-3.5 h-3.5 shrink-0" />
+                            <Droplets className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
                             <span className="truncate">Misr Consult</span>
                         </button>
                         <button
@@ -269,13 +269,13 @@ export const Login: React.FC = () => {
                             onClick={() => handleSelectPortal(DEFAULT_ORG_ID)}
                             onDoubleClick={() => handleInstantPortalSignIn(DEFAULT_ORG_ID)}
                             className={clsx(
-                                'flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl text-[11px] font-mono font-bold uppercase tracking-wider transition-all',
+                                'flex items-center justify-center gap-1 sm:gap-1.5 py-2 sm:py-2.5 px-1.5 sm:px-2 rounded-xl text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider transition-all',
                                 isNexusSelected
                                     ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30 shadow-orange-glow'
                                     : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
                             )}
                         >
-                            <Building2 className="w-3.5 h-3.5 shrink-0" />
+                            <Building2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
                             <span className="truncate">NEXUS ERP</span>
                         </button>
                     </div>

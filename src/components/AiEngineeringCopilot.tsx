@@ -206,15 +206,15 @@ Based on standard FIDIC Red Book and RIBA Stage 3/4 guidelines:
     return (
         <>
             {/* Floating Trigger Badge (Bottom Right) */}
-            <div className="fixed bottom-6 right-6 z-40">
+            <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40">
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="relative p-3.5 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2 group border border-orange-400/40"
+                    className="relative p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2 group border border-orange-400/40"
                     title="Open AI Engineering Copilot"
                 >
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl blur opacity-50 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
                     <div className="relative flex items-center gap-2">
-                        <Sparkles className="w-5 h-5 text-white" />
+                        <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                         <span className="font-mono text-xs font-black uppercase tracking-wider hidden sm:inline">
                             AI Copilot
                         </span>
@@ -230,54 +230,54 @@ Based on standard FIDIC Red Book and RIBA Stage 3/4 guidelines:
                 <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-end">
                     <div className="w-full max-w-xl h-full bg-[#121212] border-l border-white/10 flex flex-col shadow-2xl relative animate-in slide-in-from-right duration-300">
                         {/* Drawer Header */}
-                        <div className="p-5 border-b border-white/10 flex items-center justify-between bg-black/40">
-                            <div className="flex items-center gap-2.5">
-                                <div className="w-9 h-9 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center shadow-orange-glow">
-                                    <Bot className="w-5 h-5" />
+                        <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-black/40">
+                            <div className="flex items-center gap-2.5 min-w-0">
+                                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center shadow-orange-glow shrink-0">
+                                    <Bot className="w-4 h-4 sm:w-5 sm:h-5" />
                                 </div>
-                                <div>
-                                    <h3 className="text-base font-black text-white font-mono flex items-center gap-2">
+                                <div className="min-w-0">
+                                    <h3 className="text-sm sm:text-base font-black text-white font-mono flex items-center gap-2 truncate">
                                         AEC Engineering Copilot
                                     </h3>
-                                    <span className="text-[10px] text-slate-400 font-mono block">
+                                    <span className="text-[10px] text-slate-400 font-mono block truncate">
                                         Bilingual MOM • WIR Snags • BOQ Audits • 0 Cloud Credits
                                     </span>
                                 </div>
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-white/5 transition-colors"
+                                className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-white/5 transition-colors shrink-0"
                             >
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
 
                         {/* Local Engine Bar */}
-                        <div className="px-5 py-2.5 bg-black/60 border-b border-white/5 flex items-center justify-between text-xs font-mono">
-                            <div className="flex items-center gap-2">
-                                <Cpu className="w-4 h-4 text-emerald-400" />
-                                <span className="text-slate-300 font-bold">Engine:</span>
+                        <div className="px-4 sm:px-5 py-2.5 bg-black/60 border-b border-white/5 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                            <div className="flex items-center gap-2 min-w-0">
+                                <Cpu className="w-4 h-4 text-emerald-400 shrink-0" />
+                                <span className="text-slate-300 font-bold shrink-0">Engine:</span>
                                 {isOllamaAvailable ? (
                                     <select
                                         value={selectedModel}
                                         onChange={(e) => setSelectedModel(e.target.value)}
-                                        className="bg-[#1a1a1a] text-orange-400 border border-orange-500/30 rounded-lg px-2 py-1 text-[11px] outline-none font-bold"
+                                        className="bg-[#1a1a1a] text-orange-400 border border-orange-500/30 rounded-lg px-2 py-1 text-[11px] outline-none font-bold max-w-[180px] truncate"
                                     >
                                         {localModels.map(m => (
                                             <option key={m} value={m}>{m} (Local)</option>
                                         ))}
                                     </select>
                                 ) : (
-                                    <span className="text-orange-400 font-bold">Heuristic Instant Studio AI (0 Credits)</span>
+                                    <span className="text-orange-400 font-bold text-[11px] truncate">Heuristic Instant Studio AI</span>
                                 )}
                             </div>
-                            <span className="text-[10px] text-emerald-400 font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                            <span className="text-[10px] text-emerald-400 font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">
                                 100% On-Premise / 0 Cost
                             </span>
                         </div>
 
                         {/* Tool Presets */}
-                        <div className="p-4 grid grid-cols-4 gap-1.5 border-b border-white/5 bg-[#161616]">
+                        <div className="p-3 sm:p-4 grid grid-cols-2 sm:grid-cols-4 gap-1.5 border-b border-white/5 bg-[#161616]">
                             <button
                                 onClick={() => handleSelectPreset('mom')}
                                 className={clsx(

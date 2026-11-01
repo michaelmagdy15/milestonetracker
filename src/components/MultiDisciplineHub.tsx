@@ -280,30 +280,30 @@ export const MultiDisciplineHub: React.FC = () => {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/5 pb-5">
-                <div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                        <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shadow-orange-glow">
+            <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 border-b border-white/5 pb-5">
+                <div className="min-w-0">
+                    <div className="flex items-center flex-wrap gap-2 mb-1.5">
+                        <div className="w-8 h-8 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shadow-orange-glow shrink-0">
                             <Layers className="w-4 h-4" />
                         </div>
-                        <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                        <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
                             Multi-Discipline Engineering Hub
                         </h1>
-                        <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold uppercase">
+                        <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold uppercase whitespace-nowrap">
                             House of Expertise #35 • 527 Staff
                         </span>
                     </div>
-                    <p className="text-xs text-slate-400 font-mono">
+                    <p className="text-xs text-slate-400 font-mono leading-relaxed">
                         Unified command for Water/SWRO Desalination, 8,000km Transmission Lines, BIM 360 (IFC LOD 400), Structural QA & Electromechanical SCADA.
                     </p>
                 </div>
 
                 {/* Discipline Selector Tabs */}
-                <div className="flex items-center gap-1.5 p-1.5 bg-[#141414] border border-white/5 rounded-2xl self-start overflow-x-auto max-w-full">
+                <div className="flex items-center gap-1.5 p-1.5 bg-[#141414] border border-white/5 rounded-2xl overflow-x-auto max-w-full no-scrollbar shrink-0">
                     <button
                         onClick={() => setDisciplineTab('water_infra')}
                         className={clsx(
-                            'px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 whitespace-nowrap',
+                            'px-3 sm:px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 whitespace-nowrap shrink-0',
                             disciplineTab === 'water_infra'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -314,7 +314,7 @@ export const MultiDisciplineHub: React.FC = () => {
                     <button
                         onClick={() => setDisciplineTab('architecture')}
                         className={clsx(
-                            'px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 whitespace-nowrap',
+                            'px-3 sm:px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 whitespace-nowrap shrink-0',
                             disciplineTab === 'architecture'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -325,7 +325,7 @@ export const MultiDisciplineHub: React.FC = () => {
                     <button
                         onClick={() => setDisciplineTab('civil')}
                         className={clsx(
-                            'px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 whitespace-nowrap',
+                            'px-3 sm:px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 whitespace-nowrap shrink-0',
                             disciplineTab === 'civil'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -336,7 +336,7 @@ export const MultiDisciplineHub: React.FC = () => {
                     <button
                         onClick={() => setDisciplineTab('interiors')}
                         className={clsx(
-                            'px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 whitespace-nowrap',
+                            'px-3 sm:px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all flex items-center gap-2 whitespace-nowrap shrink-0',
                             disciplineTab === 'interiors'
                                 ? 'bg-orange-500 text-white shadow-orange-glow'
                                 : 'text-slate-400 hover:text-white hover:bg-white/5'
