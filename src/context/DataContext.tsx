@@ -162,12 +162,12 @@ const TABLE_CONFIGS: Record<TableName, TableConfig> = {
 };
 
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [projects, setProjects] = useState<Project[]>([]);
+    const [projects, setProjects] = useState<Project[]>(FLAGSHIP_PROJECTS);
     const [projectPhases, setProjectPhases] = useState<ProjectPhase[]>([]);
-    const [engineers, setEngineers] = useState<Engineer[]>([]);
+    const [engineers, setEngineers] = useState<Engineer[]>(FLAGSHIP_ENGINEERS);
     const [entries, setEntries] = useState<LogEntry[]>([]);
     const [attendance, setAttendance] = useState<AttendanceRecord[]>([]);
-    const [milestones, setMilestones] = useState<Milestone[]>([]);
+    const [milestones, setMilestones] = useState<Milestone[]>(FLAGSHIP_MILESTONES);
     const [tasks, setTasks] = useState<Task[]>([]);
     const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>([]);
     const [notifications, setNotifications] = useState<Notification[]>([]);

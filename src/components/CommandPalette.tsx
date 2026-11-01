@@ -15,6 +15,7 @@ import {
     Smartphone,
     Layers,
     Scale,
+    ShieldAlert,
     Tv,
 } from 'lucide-react';
 
@@ -59,6 +60,16 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             icon: Tv,
             action: () => {
                 navigate('/boardroom');
+                onClose();
+            },
+        },
+        {
+            id: 'cmd-risk-hse',
+            label: 'Open Commercial Risk, HSE & BIM Coordination Hub',
+            category: 'Commercial & HSE',
+            icon: ShieldAlert,
+            action: () => {
+                navigate('/risk-hse');
                 onClose();
             },
         },

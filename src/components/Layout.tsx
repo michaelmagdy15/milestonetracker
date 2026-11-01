@@ -19,6 +19,7 @@ import {
     BookOpen,
     Globe,
     ShieldCheck,
+    ShieldAlert,
     FileCheck2,
     PackageCheck,
     HardHat,
@@ -250,6 +251,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         {role !== 'client' && <NavItem to="/disciplines" icon={Layers} label="Multi-Discipline" />}
                         {role !== 'client' && <NavItem to="/field-app" icon={Smartphone} label="Field Companion" />}
                         {role !== 'client' && <NavItem to="/fidic-claims" icon={Scale} label="FIDIC Claims & EOT" />}
+                        {role !== 'client' && <NavItem to="/risk-hse" icon={ShieldAlert} label="Risk, HSE & BIM" />}
                         {role !== 'client' && <NavItem to="/boq" icon={Calculator} label="BOQ Viewer" />}
                         {role !== 'client' && <NavItem to="/meetings" icon={Calendar} label="Meetings" />}
                         {role === 'admin' && <NavItem to="/engineers" icon={Users} label="Engineers" />}

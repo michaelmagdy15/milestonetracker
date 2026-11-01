@@ -20,6 +20,7 @@ import { FieldCompanionApp } from './pages/FieldCompanionApp';
 import { MultiDisciplineHub } from './components/MultiDisciplineHub';
 import { FidicEotClaimGenerator } from './pages/FidicEotClaimGenerator';
 import { BoardroomPresentationMode } from './pages/BoardroomPresentationMode';
+import { CommercialRiskAndHseHub } from './pages/CommercialRiskAndHseHub';
 import { Login } from './pages/Login';
 import { ResetPassword } from './pages/ResetPassword';
 import { ClientDashboard } from './pages/ClientDashboard';
@@ -127,6 +128,7 @@ function App() {
                               <Route path="/disciplines" element={<ProtectedRoute requireEngineerOrAdmin><MultiDisciplineHub /></ProtectedRoute>} />
                               <Route path="/field-app" element={<ProtectedRoute requireEngineerOrAdmin><FieldCompanionApp /></ProtectedRoute>} />
                               <Route path="/fidic-claims" element={<ProtectedRoute requireEngineerOrAdmin><FidicEotClaimGenerator /></ProtectedRoute>} />
+                              <Route path="/risk-hse" element={<ProtectedRoute requireEngineerOrAdmin><CommercialRiskAndHseHub /></ProtectedRoute>} />
                               <Route path="/boq" element={<ProtectedRoute requireEngineerOrAdmin><BOQViewer /></ProtectedRoute>} />
                               <Route path="/submittals" element={<ProtectedRoute requireEngineerOrAdmin skipDataWait><DocumentControlHub /></ProtectedRoute>} />
                               <Route path="/variations-rfis" element={<ProtectedRoute requireEngineerOrAdmin><ContractingERP defaultTab="variations" /></ProtectedRoute>} />
