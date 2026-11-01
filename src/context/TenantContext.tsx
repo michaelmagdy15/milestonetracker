@@ -115,11 +115,6 @@ const applyBrandThemeToDom = (org: Organization) => {
     root.style.setProperty('--brand-900', mixRgb(baseRgb, squidInk, 0.60));
     root.style.setProperty('--brand-950', mixRgb(baseRgb, squidInk, 0.76));
 
-    // Strictly apply Nexus Brand Guideline Light Mode (#f5f5f5 Light Gray + Glassmorphic surfaces)
-    root.classList.add('nexus-light-mode');
-    root.style.setProperty('--surface-bg', '#f5f5f5');
-    root.style.setProperty('--surface-card', 'rgba(255, 255, 255, 0.78)');
-
     // Update browser document title
     const displayOrgName = org.name === 'Apex Contracting & Engineering' ? 'NEXUS CONTRACTING' : org.name;
     document.title = `${displayOrgName} — ${org.tagline || 'Contracting ERP & Milestone Platform'}`;

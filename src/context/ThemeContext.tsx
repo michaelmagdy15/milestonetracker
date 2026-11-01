@@ -31,10 +31,27 @@ function getInitialTheme(activeOrgId?: string): Theme {
 function applyThemeToDom(theme: Theme) {
     if (typeof document === 'undefined') return;
     const root = document.documentElement;
+    root.classList.remove('nexus-light-mode');
     root.classList.toggle('dark', theme === 'dark');
     root.classList.toggle('light', theme === 'light');
     root.style.colorScheme = theme;
-    root.style.backgroundColor = theme === 'dark' ? '#0b0f19' : '#f8fafc';
+    if (theme === 'dark') {
+        root.style.backgroundColor = '#090d16';
+        root.style.setProperty('--surface-bg', '#090d16');
+        root.style.setProperty('--surface-card', '#111827');
+        root.style.setProperty('--surface-border', 'rgba(255, 255, 255, 0.08)');
+        root.style.setProperty('--text-primary', '#f8fafc');
+        root.style.setProperty('--text-secondary', '#cbd5e1');
+        root.style.setProperty('--text-muted', '#94a3b8');
+    } else {
+        root.style.backgroundColor = '#f8fafc';
+        root.style.setProperty('--surface-bg', '#f8fafc');
+        root.style.setProperty('--surface-card', '#ffffff');
+        root.style.setProperty('--surface-border', 'rgba(15, 23, 42, 0.09)');
+        root.style.setProperty('--text-primary', '#0f172a');
+        root.style.setProperty('--text-secondary', '#475569');
+        root.style.setProperty('--text-muted', '#64748b');
+    }
     localStorage.setItem(STORAGE_KEY, theme);
 }
 
@@ -42,8 +59,6 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const { activeOrg } = useTenant();
     const [theme, setThemeState] = useState<Theme>(() => getInitialTheme(activeOrg?.id));
 
-    // Automatically align default theme when switching between DEC Portal (dark) and Nexus (light)
-    // unless the user manually toggled the theme in the current session.
     useEffect(() => {
         const manual = localStorage.getItem(USER_OVERRIDE_KEY);
         if (manual !== 'true') {
@@ -54,7 +69,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     useEffect(() => {
         applyThemeToDom(theme);
-    }, [theme]);
+    }, [theme, activeOrg?.id]);
 
     const toggleTheme = () => {
         localStorage.setItem(USER_OVERRIDE_KEY, 'true');

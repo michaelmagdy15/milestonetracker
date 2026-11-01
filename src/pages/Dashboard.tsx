@@ -706,7 +706,7 @@ export const Dashboard = () => {
                                 <div
                                     key={step.stepNumber}
                                     onClick={() => navigate(step.route)}
-                                    className="p-3.5 rounded-xl bg-slate-50/80 dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800 hover:border-[#e04b2a] transition-all cursor-pointer flex flex-col justify-between group"
+                                    className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#0b0f19] border border-slate-200/80 dark:border-slate-800 hover:border-[#e04b2a] dark:hover:border-[#e04b2a] transition-all cursor-pointer flex flex-col justify-between group"
                                 >
                                     <div>
                                         <div className="flex items-center justify-between gap-2 mb-2">
@@ -740,7 +740,7 @@ export const Dashboard = () => {
                                     key={stage.id}
                                     type="button"
                                     onClick={() => navigate(stage.path)}
-                                    className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 hover:bg-[#192631] text-slate-800 dark:text-slate-200 hover:text-white border border-slate-200/70 dark:border-slate-800 transition-all text-start group"
+                                    className="p-2.5 rounded-xl bg-slate-50 dark:bg-[#0b0f19] hover:bg-[#e04b2a] dark:hover:bg-[#e04b2a] text-slate-800 dark:text-slate-200 hover:text-white border border-slate-200/70 dark:border-slate-800 transition-all text-start group"
                                 >
                                     <div className="flex items-center justify-between gap-1 mb-1">
                                         <span className="text-[10px] font-black text-[#e04b2a] font-mono">
