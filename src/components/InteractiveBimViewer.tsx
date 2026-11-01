@@ -134,17 +134,17 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
     };
 
     return (
-        <div className="bg-white/90 rounded-[32px] border border-[#192631]/12 shadow-xl p-6 lg:p-8 relative overflow-hidden">
+        <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl rounded-[32px] border border-white/10 shadow-xl p-6 lg:p-8 relative overflow-hidden">
             {/* Top Controls */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
                 <div>
-                    <h3 className="text-xl font-black text-[#192631] tracking-tight flex items-center gap-3">
-                        <div className="p-2.5 bg-[#e04b2a]/10 rounded-xl border border-[#e04b2a]/25">
-                            <Box className="w-5 h-5 text-[#e04b2a]" />
+                    <h3 className="text-xl font-black text-white tracking-tight flex items-center gap-3">
+                        <div className="p-2.5 bg-orange-500/10 rounded-xl border border-orange-500/25">
+                            <Box className="w-5 h-5 text-orange-400" />
                         </div>
                         Interactive 3D Parametric BIM / IFC Spatial Viewer
                     </h3>
-                    <p className="text-[#192631]/60 text-[10px] font-bold uppercase tracking-[0.2em] mt-1 ml-12">
+                    <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mt-1 ml-12">
                         Model: {activeProject?.name || 'Parametric High-Rise Core'} · IFC4 Spatial Twin
                     </p>
                 </div>
@@ -157,8 +157,8 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                             onClick={() => setLayers(prev => ({ ...prev, [layer]: !prev[layer] }))}
                             className={`px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all flex items-center gap-1.5 ${
                                 layers[layer]
-                                    ? 'bg-[#192631] text-white border-[#192631]'
-                                    : 'bg-[#f5f5f5] text-[#192631]/50 border-[#192631]/10'
+                                    ? 'bg-orange-500 text-white border-white/20'
+                                    : 'bg-white/5 text-slate-500 border-white/10'
                             }`}
                         >
                             <Layers className="w-3 h-3" />
@@ -169,7 +169,7 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                     <button
                         type="button"
                         onClick={() => setRotation(r => (r + 45) % 360)}
-                        className="p-2 rounded-xl bg-[#f5f5f5] border border-[#192631]/12 text-[#192631] hover:text-[#e04b2a]"
+                        className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:text-orange-400"
                         title="Rotate Isometric Orbit"
                     >
                         <RotateCw className="w-4 h-4" />
@@ -177,7 +177,7 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                     <button
                         type="button"
                         onClick={() => setZoom(z => Math.min(1.4, Number((z + 0.1).toFixed(1))))}
-                        className="p-2 rounded-xl bg-[#f5f5f5] border border-[#192631]/12 text-[#192631] hover:text-[#e04b2a]"
+                        className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:text-orange-400"
                         title="Zoom In"
                     >
                         <ZoomIn className="w-4 h-4" />
@@ -185,7 +185,7 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                     <button
                         type="button"
                         onClick={() => setZoom(z => Math.max(0.8, Number((z - 0.1).toFixed(1))))}
-                        className="p-2 rounded-xl bg-[#f5f5f5] border border-[#192631]/12 text-[#192631] hover:text-[#e04b2a]"
+                        className="p-2 rounded-xl bg-white/5 border border-white/10 text-white hover:text-orange-400"
                         title="Zoom Out"
                     >
                         <ZoomOut className="w-4 h-4" />
@@ -196,8 +196,8 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                         onClick={() => setPinMode(!pinMode)}
                         className={`px-3.5 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all flex items-center gap-1.5 ${
                             pinMode
-                                ? 'bg-[#e04b2a] text-white border-[#e04b2a] shadow-md'
-                                : 'bg-[#e04b2a]/10 text-[#e04b2a] border-[#e04b2a]/30 hover:bg-[#e04b2a]/20'
+                                ? 'bg-orange-500 text-white border-orange-500 shadow-md'
+                                : 'bg-orange-500/10 text-orange-400 border-orange-500/25 hover:bg-orange-500/10'
                         }`}
                     >
                         <MapPin className="w-3.5 h-3.5" />
@@ -210,7 +210,7 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                 {/* 3D Isometric SVG Viewport */}
                 <div
                     onClick={handleCanvasClick}
-                    className={`lg:col-span-2 relative aspect-video bg-[#192631] rounded-2xl border border-[#192631]/20 overflow-hidden flex items-center justify-center ${
+                    className={`lg:col-span-2 relative aspect-video bg-orange-500 rounded-2xl border border-white/10 overflow-hidden flex items-center justify-center ${
                         pinMode ? 'cursor-crosshair ring-2 ring-[#e04b2a]' : 'cursor-grab'
                     }`}
                 >
@@ -292,16 +292,16 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                                 className={`w-7 h-7 rounded-full flex items-center justify-center border-2 shadow-lg cursor-pointer transition-transform group-hover/pin:scale-125 ${
                                     pin.status === 'converted_to_vo'
                                         ? 'bg-emerald-500 border-white text-white'
-                                        : 'bg-[#e04b2a] border-white text-white animate-pulse'
+                                        : 'bg-orange-500 border-white text-white animate-pulse'
                                 }`}
                             >
                                 <MapPin className="w-3.5 h-3.5" />
                             </div>
-                            <div className="hidden group-hover/pin:block absolute left-8 top-0 w-60 p-3 rounded-xl bg-white border border-[#192631]/15 shadow-2xl text-left z-30">
-                                <p className="text-[9px] font-black text-[#e04b2a] uppercase tracking-widest">
+                            <div className="hidden group-hover/pin:block absolute left-8 top-0 w-60 p-3 rounded-xl bg-[#1a1a1a] border border-white/10 shadow-2xl text-left z-30">
+                                <p className="text-[9px] font-black text-orange-400 uppercase tracking-widest">
                                     {pin.elementCode} · {pin.discipline}
                                 </p>
-                                <p className="text-xs font-bold text-[#192631] mt-0.5">{pin.title}</p>
+                                <p className="text-xs font-bold text-white mt-0.5">{pin.title}</p>
                             </div>
                         </div>
                     ))}
@@ -315,16 +315,16 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
 
                 {/* Spatial Pins & Clash -> VO Action Feed */}
                 <div className="space-y-3 max-h-[360px] overflow-y-auto pr-1">
-                    <p className="text-[10px] font-black text-[#192631]/60 uppercase tracking-widest">
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
                         Spatial BIM Clashes & Client Revision Pins
                     </p>
 
                     {pendingCoords && (
                         <form
                             onSubmit={handleSavePin}
-                            className="p-4 rounded-2xl bg-[#e04b2a]/10 border border-[#e04b2a]/30 space-y-3"
+                            className="p-4 rounded-2xl bg-orange-500/10 border border-orange-500/25 space-y-3"
                         >
-                            <p className="text-[10px] font-black text-[#e04b2a] uppercase tracking-widest">
+                            <p className="text-[10px] font-black text-orange-400 uppercase tracking-widest">
                                 New Pin @ X:{pendingCoords.x}% Y:{pendingCoords.y}%
                             </p>
                             <input
@@ -333,13 +333,13 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                                 value={newPinTitle}
                                 onChange={e => setNewPinTitle(e.target.value)}
                                 placeholder="Describe clash or client revision..."
-                                className="w-full px-3 py-2 bg-white border border-[#192631]/15 rounded-xl text-xs text-[#192631]"
+                                className="w-full px-3 py-2 bg-[#1a1a1a] border border-white/10 rounded-xl text-xs text-white"
                             />
                             <div className="flex items-center gap-2">
                                 <select
                                     value={newPinDiscipline}
                                     onChange={e => setNewPinDiscipline(e.target.value as BimPin['discipline'])}
-                                    className="px-2.5 py-1.5 bg-white border border-[#192631]/15 rounded-lg text-[10px] text-[#192631] font-bold"
+                                    className="px-2.5 py-1.5 bg-[#1a1a1a] border border-white/10 rounded-lg text-[10px] text-white font-bold"
                                 >
                                     <option value="Clash">MEP/Struct Clash</option>
                                     <option value="Architecture">Architecture</option>
@@ -348,7 +348,7 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                                 </select>
                                 <button
                                     type="submit"
-                                    className="px-3 py-1.5 bg-[#e04b2a] text-white rounded-lg text-[10px] font-black uppercase tracking-widest"
+                                    className="px-3 py-1.5 bg-orange-500 text-white rounded-lg text-[10px] font-black uppercase tracking-widest"
                                 >
                                     Save Pin
                                 </button>
@@ -359,30 +359,30 @@ export const InteractiveBimViewer: React.FC<{ projectId?: string }> = ({ project
                     {projectPins.map(pin => (
                         <div
                             key={pin.id}
-                            className="p-4 rounded-2xl bg-[#f5f5f5] border border-[#192631]/10 space-y-2"
+                            className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2"
                         >
                             <div className="flex items-center justify-between">
-                                <span className="text-[10px] font-black text-[#e04b2a] uppercase tracking-widest">
+                                <span className="text-[10px] font-black text-orange-400 uppercase tracking-widest">
                                     {pin.elementCode}
                                 </span>
-                                <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded bg-[#192631]/10 text-[#192631]/75">
+                                <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded bg-white/5 text-slate-400">
                                     {pin.discipline}
                                 </span>
                             </div>
-                            <p className="text-xs font-bold text-[#192631] leading-snug">{pin.title}</p>
+                            <p className="text-xs font-bold text-white leading-snug">{pin.title}</p>
                             <div className="flex items-center justify-between pt-1">
-                                <span className="text-[10px] text-[#192631]/55">{pin.createdBy}</span>
+                                <span className="text-[10px] text-slate-500">{pin.createdBy}</span>
                                 {pin.status !== 'converted_to_vo' ? (
                                     <button
                                         type="button"
                                         onClick={() => handleConvertPinToVo(pin)}
-                                        className="px-2.5 py-1 rounded-lg bg-[#e04b2a]/15 hover:bg-[#e04b2a] text-[#e04b2a] hover:text-white border border-[#e04b2a]/30 text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-1"
+                                        className="px-2.5 py-1 rounded-lg bg-orange-500/10 hover:bg-orange-500 text-orange-400 hover:text-white border border-orange-500/25 text-[9px] font-black uppercase tracking-widest transition-all flex items-center gap-1"
                                     >
                                         <AlertTriangle className="w-3 h-3" />
                                         Convert to VO
                                     </button>
                                 ) : (
-                                    <span className="text-[9px] font-black text-[#123524] uppercase tracking-widest">
+                                    <span className="text-[9px] font-black text-emerald-400 uppercase tracking-widest">
                                         ✓ Converted to VO
                                     </span>
                                 )}

@@ -1365,15 +1365,15 @@ export const HrWhereaboutsHub: React.FC = () => {
     switch (status) {
       case 'within_geofence':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#123524]" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
             داخل النطاق الجغرافي ✅ Within 150m Geofence
           </span>
         );
       case 'fleet_route':
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-sky-500/15 text-[#192631] border border-sky-500/30">
-            <Truck className="w-3.5 h-3.5 text-[#192631]" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-sky-500/15 text-white border border-sky-500/30">
+            <Truck className="w-3.5 h-3.5 text-white" />
             مأمورية خارجية 🚗 Fleet Route
           </span>
         );
@@ -1388,46 +1388,46 @@ export const HrWhereaboutsHub: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]/90 text-[#192631] p-4 md:p-6 space-y-6 font-sans text-start">
+    <div className="min-h-screen bg-[#1a1a1a]/80 text-white p-4 md:p-6 space-y-6 font-sans text-start">
       {/* =====================================================================
           TOP HEADER BANNER
       ===================================================================== */}
-      <div className="bg-white/80 backdrop-blur-xl border border-[#192631]/10 rounded-2xl p-5 md:p-6 shadow-xl">
+      <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-6 shadow-xl">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
                 <Radar className="w-3.5 h-3.5 animate-pulse" />
                 Nexus Live GPS & HR Core
               </span>
-              <span className="text-xs text-[#192631]/70 font-mono">
+              <span className="text-xs text-slate-400 font-mono">
                 /whereabouts • /project-sites • /hr/surprise-check • /attendance (21→20) • /my-requests
               </span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-extrabold text-[#192631] tracking-tight">
+            <h1 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
               منظومة التواجد الجغرافي GPS، التمام المفاجئ، ودورة الرواتب (21 إلى 20)
             </h1>
-            <p className="text-sm text-[#192631]/85 max-w-4xl">
-              الرقابة الميدانية اللحظية لعدد <span className="text-[#123524] font-bold">16 موظف ومهندس ومشرف</span> عبر النطاقات الجغرافية للمشروعات (<span className="text-[#e04b2a] font-semibold">مقر النزهة، أزاد C096، مدينتي C063، ماونتن فيو C091، ومخازن الدائري</span>) مع الربط المباشر بدورة الرواتب الشهرية وعهد المواقع <span className="font-mono text-[#b45309]">RCB</span>.
+            <p className="text-sm text-slate-200 max-w-4xl">
+              الرقابة الميدانية اللحظية لعدد <span className="text-emerald-400 font-bold">16 موظف ومهندس ومشرف</span> عبر النطاقات الجغرافية للمشروعات (<span className="text-orange-400 font-semibold">مقر النزهة، أزاد C096، مدينتي C063، ماونتن فيو C091، ومخازن الدائري</span>) مع الربط المباشر بدورة الرواتب الشهرية وعهد المواقع <span className="font-mono text-[#b45309]">RCB</span>.
             </p>
           </div>
 
           {/* Quick KPI Pills */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 shrink-0">
-            <div className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3.5 py-2.5 text-center">
-              <div className="text-xs text-[#192631]/70">قوة العمل الفعالة</div>
-              <div className="text-xl font-extrabold text-[#192631] mt-0.5">{whereaboutsStats.total} موظف</div>
-              <div className="text-[11px] text-[#123524]">100% مربوط بالـ GPS</div>
+            <div className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3.5 py-2.5 text-center">
+              <div className="text-xs text-slate-400">قوة العمل الفعالة</div>
+              <div className="text-xl font-extrabold text-white mt-0.5">{whereaboutsStats.total} موظف</div>
+              <div className="text-[11px] text-emerald-400">100% مربوط بالـ GPS</div>
             </div>
             <div className="bg-emerald-950/30 border border-emerald-800/40 rounded-xl px-3.5 py-2.5 text-center">
-              <div className="text-xs text-[#123524]">داخل النطاق ✅</div>
-              <div className="text-xl font-extrabold text-[#123524] mt-0.5">{whereaboutsStats.within}</div>
-              <div className="text-[11px] text-[#123524]/80">Within Geofence</div>
+              <div className="text-xs text-emerald-400">داخل النطاق ✅</div>
+              <div className="text-xl font-extrabold text-emerald-400 mt-0.5">{whereaboutsStats.within}</div>
+              <div className="text-[11px] text-emerald-400/80">Within Geofence</div>
             </div>
             <div className="bg-sky-950/30 border border-sky-800/40 rounded-xl px-3.5 py-2.5 text-center">
-              <div className="text-xs text-[#192631]">مأمورية متحركة 🚗</div>
-              <div className="text-xl font-extrabold text-[#192631] mt-0.5">{whereaboutsStats.fleet}</div>
-              <div className="text-[11px] text-[#192631]/80">Fleet Route</div>
+              <div className="text-xs text-white">مأمورية متحركة 🚗</div>
+              <div className="text-xl font-extrabold text-white mt-0.5">{whereaboutsStats.fleet}</div>
+              <div className="text-[11px] text-slate-200">Fleet Route</div>
             </div>
             <div className="bg-amber-950/30 border border-amber-800/40 rounded-xl px-3.5 py-2.5 text-center">
               <div className="text-xs text-[#b45309]">تأخير / خارج النطاق ⏳</div>
@@ -1438,19 +1438,19 @@ export const HrWhereaboutsHub: React.FC = () => {
         </div>
 
         {/* Navigation Sub-Tabs */}
-        <div className="mt-6 pt-4 border-t border-[#192631]/10 flex flex-wrap gap-2">
+        <div className="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-2">
           <button
             type="button"
             onClick={() => setActiveTab('whereabouts')}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
               activeTab === 'whereabouts'
-                ? 'bg-[#e04b2a] text-[#192631] shadow-lg shadow-indigo-600/30'
-                : 'bg-white/80 backdrop-blur-md text-[#192631]/85 hover:bg-[#192631]/[0.05] border border-[#192631]/10'
+                ? 'bg-orange-500 text-white shadow-lg shadow-indigo-600/30'
+                : 'bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md text-slate-200 hover:bg-white/5 border border-white/10'
             }`}
           >
             <MapPin className="w-4 h-4" />
             <span>1. أين الموظفون الآن & مواقع المشروعات GPS</span>
-            <span className="px-2 py-0.5 text-xs rounded-full bg-[#f5f5f5]/85 text-indigo-200">16</span>
+            <span className="px-2 py-0.5 text-xs rounded-full bg-[#1a1a1a]/80 text-indigo-200">16</span>
           </button>
 
           <button
@@ -1459,12 +1459,12 @@ export const HrWhereaboutsHub: React.FC = () => {
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
               activeTab === 'surprise-check'
                 ? 'bg-rose-600 text-white shadow-lg shadow-rose-600/30'
-                : 'bg-white/80 backdrop-blur-md text-[#192631]/85 hover:bg-[#192631]/[0.05] border border-[#192631]/10'
+                : 'bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md text-slate-200 hover:bg-white/5 border border-white/10'
             }`}
           >
             <BellRing className="w-4 h-4" />
             <span>2. تمام حالي مفاجئ (/hr/surprise-check)</span>
-            <span className="px-2 py-0.5 text-xs rounded-full bg-[#f5f5f5]/85 text-red-700">10m Ping</span>
+            <span className="px-2 py-0.5 text-xs rounded-full bg-[#1a1a1a]/80 text-red-700">10m Ping</span>
           </button>
 
           <button
@@ -1473,12 +1473,12 @@ export const HrWhereaboutsHub: React.FC = () => {
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
               activeTab === 'payroll-cycle'
                 ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30'
-                : 'bg-white/80 backdrop-blur-md text-[#192631]/85 hover:bg-[#192631]/[0.05] border border-[#192631]/10'
+                : 'bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md text-slate-200 hover:bg-white/5 border border-white/10'
             }`}
           >
             <CalendarRange className="w-4 h-4" />
             <span>3. شيت الحضور والبصمة الشهري (دورة 21 إلى 20)</span>
-            <span className="px-2 py-0.5 text-xs rounded-full bg-[#f5f5f5]/85 text-[#123524]">21→20</span>
+            <span className="px-2 py-0.5 text-xs rounded-full bg-[#1a1a1a]/80 text-emerald-400">21→20</span>
           </button>
 
           <button
@@ -1487,12 +1487,12 @@ export const HrWhereaboutsHub: React.FC = () => {
             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
               activeTab === 'staff-requests'
                 ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
-                : 'bg-white/80 backdrop-blur-md text-[#192631]/85 hover:bg-[#192631]/[0.05] border border-[#192631]/10'
+                : 'bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md text-slate-200 hover:bg-white/5 border border-white/10'
             }`}
           >
             <Wallet className="w-4 h-4" />
             <span>4. طلبات الإجازات والسلف والعهد والقرارات الإدارية</span>
-            <span className="px-2 py-0.5 text-xs rounded-full bg-[#f5f5f5]/85 text-amber-100">
+            <span className="px-2 py-0.5 text-xs rounded-full bg-[#1a1a1a]/80 text-amber-100">
               {requestsList.length}
             </span>
           </button>
@@ -1505,16 +1505,16 @@ export const HrWhereaboutsHub: React.FC = () => {
       {activeTab === 'whereabouts' && (
         <div className="space-y-6">
           {/* Filter & Action Bar */}
-          <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-4 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+          <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl p-4 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2">
               <div className="relative min-w-[240px]">
-                <Search className="w-4 h-4 text-[#192631]/70 absolute right-3 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="بحث باسم الموظف، الكود، الوظيفة، أو الموقع..."
-                  className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl pr-9 pl-3 py-2 text-sm text-[#192631] placeholder-[#192631]/40 focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-[#1a1a1a]/80 border border-white/10 rounded-xl pr-9 pl-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
@@ -1522,7 +1522,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                 value={zoneFilter}
                 onChange={(e) => setZoneFilter(e.target.value)}
                 aria-label="تصفية حسب النطاق الجغرافي"
-                className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-sm text-[#192631] focus:outline-none focus:border-indigo-500"
+                className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
               >
                 <option value="ALL">جميع المواقع والنطاقات الجغرافية (All Zones)</option>
                 <option value="مقر الشركة بالنزهة">مقر الشركة بالنزهة</option>
@@ -1538,7 +1538,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
                 aria-label="تصفية حسب حالة النطاق الجغرافي"
-                className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-sm text-[#192631] focus:outline-none focus:border-indigo-500"
+                className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
               >
                 <option value="ALL">كل حالات التحقق الجغرافي</option>
                 <option value="within_geofence">داخل النطاق الجغرافي ✅ Within Geofence</option>
@@ -1551,7 +1551,7 @@ export const HrWhereaboutsHub: React.FC = () => {
               <button
                 type="button"
                 onClick={handleRefreshGpsPings}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#e04b2a]/20 hover:bg-[#e04b2a]/30 text-[#e04b2a] border border-[#e04b2a]/25 transition"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-orange-500/10 hover:bg-orange-500/10 text-orange-400 border border-orange-500/25 transition"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 تحديث إشارات الـ GPS اللحظية
@@ -1570,18 +1570,18 @@ export const HrWhereaboutsHub: React.FC = () => {
           {/* Interactive Geofence Radar Visualization + Live Selected Employee Telemetry */}
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
             {/* Visual Geofence Zones Overview */}
-            <div className="xl:col-span-2 bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 space-y-4">
+            <div className="xl:col-span-2 bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-bold text-[#192631] flex items-center gap-2">
-                    <Navigation className="w-5 h-5 text-[#e04b2a]" />
+                  <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                    <Navigation className="w-5 h-5 text-orange-400" />
                     خريطة التوزيع الجغرافي الحية للمشروعات والمقرات (Live Geofence Zones)
                   </h2>
-                  <p className="text-xs text-[#192631]/70 mt-0.5">
+                  <p className="text-xs text-slate-400 mt-0.5">
                     اضغط على أي موقع لتصفية المهندسين والمشرفين المتواجدين بداخله حالياً
                   </p>
                 </div>
-                <span className="text-xs font-mono text-[#123524] bg-[#123524]/10 border border-[#123524]/25 px-2.5 py-1 rounded-lg">
+                <span className="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 px-2.5 py-1 rounded-lg">
                   GPS Satellites: LOCKED (HDOP 0.8)
                 </span>
               </div>
@@ -1650,27 +1650,27 @@ export const HrWhereaboutsHub: React.FC = () => {
                       className={`text-start p-3.5 rounded-xl border transition-all ${
                         isSelected
                           ? 'bg-indigo-950/60 border-indigo-500 ring-1 ring-indigo-500/50'
-                          : 'bg-[#f5f5f5]/90 border-[#192631]/10 hover:border-[#192631]/10'
+                          : 'bg-[#1a1a1a]/80 border-white/10 hover:border-white/10'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-bold text-[#e04b2a] bg-[#e04b2a]/10 px-2 py-0.5 rounded">
+                        <span className="text-xs font-mono font-bold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">
                           {z.code}
                         </span>
-                        <span className="text-[11px] font-mono text-[#123524]">
+                        <span className="text-[11px] font-mono text-emerald-400">
                           نطاق {z.radius}
                         </span>
                       </div>
-                      <div className="mt-2 font-bold text-sm text-[#192631] flex items-center gap-1.5">
-                        <IconComp className="w-4 h-4 text-[#e04b2a] shrink-0" />
+                      <div className="mt-2 font-bold text-sm text-white flex items-center gap-1.5">
+                        <IconComp className="w-4 h-4 text-orange-400 shrink-0" />
                         <span className="truncate">{z.zone}</span>
                       </div>
-                      <div className="mt-1 text-[11px] text-[#192631]/70 font-mono">{z.coords}</div>
-                      <div className="mt-3 pt-2 border-t border-[#192631]/10 flex items-center justify-between text-xs">
-                        <span className="text-[#192631]/85">
-                          مسجل بالنطاق: <strong className="text-[#123524]">{activeInZone}</strong> / {zoneStaff.length}
+                      <div className="mt-1 text-[11px] text-slate-400 font-mono">{z.coords}</div>
+                      <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-xs">
+                        <span className="text-slate-200">
+                          مسجل بالنطاق: <strong className="text-emerald-400">{activeInZone}</strong> / {zoneStaff.length}
                         </span>
-                        <span className="text-[#e04b2a] hover:underline">عرض الموظفين ←</span>
+                        <span className="text-orange-400 hover:underline">عرض الموظفين ←</span>
                       </div>
                     </button>
                   );
@@ -1679,21 +1679,21 @@ export const HrWhereaboutsHub: React.FC = () => {
             </div>
 
             {/* Live Telemetry Inspector Card */}
-            <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 flex flex-col justify-between">
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl p-5 flex flex-col justify-between">
               {selectedStaffForInspect ? (
                 <div className="space-y-4">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <span className="text-xs font-mono text-[#e04b2a]">
+                      <span className="text-xs font-mono text-orange-400">
                         {selectedStaffForInspect.code} • {selectedStaffForInspect.department}
                       </span>
-                      <h3 className="text-lg font-extrabold text-[#192631] mt-0.5">
+                      <h3 className="text-lg font-extrabold text-white mt-0.5">
                         {selectedStaffForInspect.name}
                       </h3>
-                      <p className="text-xs text-[#192631]/70">{selectedStaffForInspect.role}</p>
+                      <p className="text-xs text-slate-400">{selectedStaffForInspect.role}</p>
                     </div>
                     <div className="text-start">
-                      <span className="inline-flex items-center gap-1 text-xs font-mono bg-[#f5f5f5]/90 px-2.5 py-1 rounded-lg border border-[#192631]/10 text-[#123524]">
+                      <span className="inline-flex items-center gap-1 text-xs font-mono bg-[#1a1a1a]/80 px-2.5 py-1 rounded-lg border border-white/10 text-emerald-400">
                         <BatteryCharging className="w-3.5 h-3.5" />
                         {selectedStaffForInspect.batteryLevel}%
                       </span>
@@ -1702,41 +1702,41 @@ export const HrWhereaboutsHub: React.FC = () => {
 
                   <div>{renderGeofenceBadge(selectedStaffForInspect.geofenceStatus)}</div>
 
-                  <div className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl p-3.5 space-y-2 text-xs">
+                  <div className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl p-3.5 space-y-2 text-xs">
                     <div className="flex justify-between">
-                      <span className="text-[#192631]/70">النطاق الجغرافي المخصص:</span>
-                      <span className="font-bold text-[#192631]">{selectedStaffForInspect.assignedZone}</span>
+                      <span className="text-slate-400">النطاق الجغرافي المخصص:</span>
+                      <span className="font-bold text-white">{selectedStaffForInspect.assignedZone}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#192631]/70">إحداثيات الـ GPS الحالية:</span>
-                      <span className="font-mono text-[#e04b2a]">
+                      <span className="text-slate-400">إحداثيات الـ GPS الحالية:</span>
+                      <span className="font-mono text-orange-400">
                         {selectedStaffForInspect.coordinates.lat.toFixed(4)},{' '}
                         {selectedStaffForInspect.coordinates.lng.toFixed(4)}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#192631]/70">المسافة عن مركز الموقع:</span>
-                      <span className="font-bold text-[#123524]">
+                      <span className="text-slate-400">المسافة عن مركز الموقع:</span>
+                      <span className="font-bold text-emerald-400">
                         {selectedStaffForInspect.geofenceStatus === 'fleet_route'
                           ? 'خط سير متحرك (Fleet GPS)'
                           : `${selectedStaffForInspect.distanceFromCenterMeters} متر (المسموح ${selectedStaffForInspect.allowedRadiusMeters}م)`}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#192631]/70">وقت البصمة / آخر اتصال:</span>
-                      <span className="text-[#192631]">
+                      <span className="text-slate-400">وقت البصمة / آخر اتصال:</span>
+                      <span className="text-white">
                         {selectedStaffForInspect.checkInTime} • {selectedStaffForInspect.lastPingTime}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-[#192631]/70">الجهاز المعتمد:</span>
-                      <span className="text-[#192631]/85 font-mono">{selectedStaffForInspect.deviceModel}</span>
+                      <span className="text-slate-400">الجهاز المعتمد:</span>
+                      <span className="text-slate-200 font-mono">{selectedStaffForInspect.deviceModel}</span>
                     </div>
                   </div>
 
                   <div className="bg-indigo-950/30 border border-indigo-800/40 rounded-xl p-3">
-                    <div className="text-[11px] text-[#e04b2a] font-semibold">المهمة الميدانية الجارية الآن:</div>
-                    <div className="text-xs text-[#192631] mt-1 leading-relaxed">
+                    <div className="text-[11px] text-orange-400 font-semibold">المهمة الميدانية الجارية الآن:</div>
+                    <div className="text-xs text-white mt-1 leading-relaxed">
                       {selectedStaffForInspect.activeTask}
                     </div>
                     {selectedStaffForInspect.rcbCustodyCode && (
@@ -1749,22 +1749,22 @@ export const HrWhereaboutsHub: React.FC = () => {
                 </div>
               ) : null}
 
-              <div className="mt-4 pt-3 border-t border-[#192631]/10 flex items-center justify-between text-xs text-[#192631]/70">
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
                 <span>بصمة الجهاز الموثقة (IMEI Bound)</span>
-                <span className="text-[#123524] font-semibold">مؤمن ضد Mock GPS ✓</span>
+                <span className="text-emerald-400 font-semibold">مؤمن ضد Mock GPS ✓</span>
               </div>
             </div>
           </div>
 
           {/* All 16 Staff Live Whereabouts Table */}
-          <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl overflow-hidden shadow-lg">
-            <div className="p-4 md:p-5 border-b border-[#192631]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+            <div className="p-4 md:p-5 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <h3 className="text-base md:text-lg font-bold text-[#192631] flex items-center gap-2">
-                  <Users className="w-5 h-5 text-[#123524]" />
+                <h3 className="text-base md:text-lg font-bold text-white flex items-center gap-2">
+                  <Users className="w-5 h-5 text-emerald-400" />
                   سجل التواجد اللحظي لجميع موظفي ومهندسي Nexus ({filteredStaff.length} من 16)
                 </h3>
-                <p className="text-xs text-[#192631]/70">
+                <p className="text-xs text-slate-400">
                   يتضمن حالة التحقق من النطاق الجغرافي (Within 150m/200m Geofence)، وقت البصمة، وحالة الجهاز
                 </p>
               </div>
@@ -1772,7 +1772,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setZoneFilter('ALL')}
-                  className="text-xs text-[#e04b2a] hover:text-[#e04b2a] font-bold"
+                  className="text-xs text-orange-400 hover:text-orange-400 font-bold"
                 >
                   إلغاء فلتر الموقع ({zoneFilter}) ✕
                 </button>
@@ -1781,7 +1781,7 @@ export const HrWhereaboutsHub: React.FC = () => {
 
             <div className="overflow-x-auto">
               <table className="w-full text-start text-sm">
-                <thead className="bg-[#f5f5f5]/90 text-[#192631]/70 text-xs uppercase border-b border-[#192631]/10">
+                <thead className="bg-[#1a1a1a]/80 text-slate-400 text-xs uppercase border-b border-white/10">
                   <tr>
                     <th className="py-3.5 px-4">الموظف / المهندس</th>
                     <th className="py-3.5 px-4">الموقع المخصص (Geofence Zone)</th>
@@ -1792,7 +1792,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                     <th className="py-3.5 px-4 text-center">فحص</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#192631]/10">
+                <tbody className="divide-y divide-white/5">
                   {filteredStaff.map((emp) => (
                     <tr
                       key={emp.id}
@@ -1800,25 +1800,25 @@ export const HrWhereaboutsHub: React.FC = () => {
                       className={`cursor-pointer transition-colors ${
                         selectedStaffForInspect?.id === emp.id
                           ? 'bg-indigo-950/30'
-                          : 'hover:bg-[#192631]/[0.05]'
+                          : 'hover:bg-white/5'
                       }`}
                     >
                       <td className="py-3.5 px-4">
-                        <div className="font-bold text-[#192631] flex items-center gap-2">
+                        <div className="font-bold text-white flex items-center gap-2">
                           <span>{emp.name}</span>
-                          <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-[#192631]/[0.05] text-[#192631]/85">
+                          <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-white/5 text-slate-200">
                             {emp.code}
                           </span>
                         </div>
-                        <div className="text-xs text-[#192631]/70 mt-0.5">{emp.role}</div>
+                        <div className="text-xs text-slate-400 mt-0.5">{emp.role}</div>
                       </td>
 
                       <td className="py-3.5 px-4">
-                        <div className="font-semibold text-[#192631]">{emp.assignedZone}</div>
-                        <div className="text-[11px] text-[#192631]/70 font-mono mt-0.5">
+                        <div className="font-semibold text-white">{emp.assignedZone}</div>
+                        <div className="text-[11px] text-slate-400 font-mono mt-0.5">
                           {emp.coordinates.lat.toFixed(4)}°N, {emp.coordinates.lng.toFixed(4)}°E
                           {emp.geofenceStatus !== 'fleet_route' && (
-                            <span className="mr-1.5 text-[#e04b2a]">
+                            <span className="mr-1.5 text-orange-400">
                               ({emp.distanceFromCenterMeters}م / {emp.allowedRadiusMeters}م)
                             </span>
                           )}
@@ -1828,17 +1828,17 @@ export const HrWhereaboutsHub: React.FC = () => {
                       <td className="py-3.5 px-4">{renderGeofenceBadge(emp.geofenceStatus)}</td>
 
                       <td className="py-3.5 px-4">
-                        <div className="font-semibold text-[#192631]">{emp.checkInTime}</div>
-                        <div className="text-[11px] text-[#192631]/70 mt-0.5">آخر إشارة: {emp.lastPingTime}</div>
+                        <div className="font-semibold text-white">{emp.checkInTime}</div>
+                        <div className="text-[11px] text-slate-400 mt-0.5">آخر إشارة: {emp.lastPingTime}</div>
                       </td>
 
                       <td className="py-3.5 px-4">
-                        <div className="flex items-center gap-2 text-xs text-[#192631]">
-                          <Smartphone className="w-3.5 h-3.5 text-[#192631]/70" />
+                        <div className="flex items-center gap-2 text-xs text-white">
+                          <Smartphone className="w-3.5 h-3.5 text-slate-400" />
                           <span>{emp.deviceModel}</span>
                         </div>
                         <div className="flex items-center gap-1.5 mt-1">
-                          <div className="w-16 h-1.5 bg-[#192631]/[0.05] rounded-full overflow-hidden">
+                          <div className="w-16 h-1.5 bg-white/5 rounded-full overflow-hidden">
                             <div
                               className={`h-full rounded-full ${
                                 emp.batteryLevel > 50
@@ -1850,12 +1850,12 @@ export const HrWhereaboutsHub: React.FC = () => {
                               style={{ width: `${emp.batteryLevel}%` }}
                             />
                           </div>
-                          <span className="text-[11px] font-mono text-[#192631]/70">{emp.batteryLevel}%</span>
+                          <span className="text-[11px] font-mono text-slate-400">{emp.batteryLevel}%</span>
                         </div>
                       </td>
 
                       <td className="py-3.5 px-4 max-w-xs">
-                        <div className="text-xs text-[#192631] line-clamp-2">{emp.activeTask}</div>
+                        <div className="text-xs text-white line-clamp-2">{emp.activeTask}</div>
                         {emp.rcbCustodyCode && (
                           <span className="mt-1 inline-block text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/15 text-[#b45309] border border-amber-500/30">
                             عهدة: {emp.rcbCustodyCode}
@@ -1870,7 +1870,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                             e.stopPropagation();
                             setSelectedStaffForInspect(emp);
                           }}
-                          className="p-1.5 rounded-lg bg-[#192631]/[0.05] hover:bg-[#e04b2a] text-[#192631]/85 hover:text-[#192631] transition"
+                          className="p-1.5 rounded-lg bg-white/5 hover:bg-orange-500 text-slate-200 hover:text-white transition"
                           title="عرض تفاصيل الـ GPS"
                         >
                           <Eye className="w-4 h-4" />
@@ -1884,25 +1884,25 @@ export const HrWhereaboutsHub: React.FC = () => {
           </div>
 
           {/* Interactive Project Sites GPS Geofence Configuration Table */}
-          <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl overflow-hidden shadow-lg">
-            <div className="p-4 md:p-5 border-b border-[#192631]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+            <div className="p-4 md:p-5 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <h3 className="text-base md:text-lg font-bold text-[#192631] flex items-center gap-2">
-                  <SlidersHorizontal className="w-5 h-5 text-[#e04b2a]" />
+                <h3 className="text-base md:text-lg font-bold text-white flex items-center gap-2">
+                  <SlidersHorizontal className="w-5 h-5 text-orange-400" />
                   جدول إعدادات النطاقات الجغرافية لمواقع المشروعات (Project Sites GPS Geofence Configuration)
                 </h3>
-                <p className="text-xs text-[#192631]/70">
+                <p className="text-xs text-slate-400">
                   إعدادات خطوط الطول والعرض (Latitude / Longitude) ونصف القطر المسموح به للتحقق من بصمة الـ GPS (150m / 200m)
                 </p>
               </div>
-              <span className="text-xs font-mono text-[#e04b2a] bg-indigo-950/60 border border-indigo-800/50 px-3 py-1 rounded-lg">
+              <span className="text-xs font-mono text-orange-400 bg-indigo-950/60 border border-indigo-800/50 px-3 py-1 rounded-lg">
                 /project-sites • 6 Active Geofences
               </span>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-start text-sm">
-                <thead className="bg-[#f5f5f5]/90 text-[#192631]/70 text-xs uppercase border-b border-[#192631]/10">
+                <thead className="bg-[#1a1a1a]/80 text-slate-400 text-xs uppercase border-b border-white/10">
                   <tr>
                     <th className="py-3 px-4">كود الموقع</th>
                     <th className="py-3 px-4">اسم الموقع / المشروع</th>
@@ -1914,26 +1914,26 @@ export const HrWhereaboutsHub: React.FC = () => {
                     <th className="py-3 px-4">شرط الصورة الحية</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#192631]/10">
+                <tbody className="divide-y divide-white/5">
                   {projectSites.map((site) => (
-                    <tr key={site.id} className="hover:bg-[#192631]/[0.05]">
-                      <td className="py-3.5 px-4 font-mono text-xs font-bold text-[#e04b2a]">
+                    <tr key={site.id} className="hover:bg-white/5">
+                      <td className="py-3.5 px-4 font-mono text-xs font-bold text-orange-400">
                         {site.siteCode}
                       </td>
-                      <td className="py-3.5 px-4 font-bold text-[#192631]">{site.siteName}</td>
+                      <td className="py-3.5 px-4 font-bold text-white">{site.siteName}</td>
                       <td className="py-3.5 px-4">
-                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#192631]/[0.05] text-[#192631]/85">
+                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-white/5 text-slate-200">
                           {site.category}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-xs text-[#123524]">
+                      <td className="py-3.5 px-4 font-mono text-xs text-emerald-400">
                         {site.latitude.toFixed(4)}° N
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-xs text-[#123524]">
+                      <td className="py-3.5 px-4 font-mono text-xs text-emerald-400">
                         {site.longitude.toFixed(4)}° E
                       </td>
                       <td className="py-3.5 px-4">
-                        <div className="inline-flex items-center gap-1 bg-[#f5f5f5]/90 p-1 rounded-lg border border-[#192631]/10">
+                        <div className="inline-flex items-center gap-1 bg-[#1a1a1a]/80 p-1 rounded-lg border border-white/10">
                           {([150, 200] as const).map((rad) => (
                             <button
                               key={rad}
@@ -1942,7 +1942,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                               className={`px-2.5 py-1 rounded text-xs font-mono font-bold transition ${
                                 site.allowedRadiusMeters === rad
                                   ? 'bg-emerald-600 text-white'
-                                  : 'text-[#192631]/70 hover:text-[#192631]'
+                                  : 'text-slate-400 hover:text-white'
                               }`}
                             >
                               {rad}m
@@ -1955,7 +1955,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                           {site.assignedEngineers.map((eng) => (
                             <span
                               key={eng}
-                              className="text-[11px] px-2 py-0.5 rounded-md bg-[#192631]/[0.05] text-[#192631] border border-[#192631]/10"
+                              className="text-[11px] px-2 py-0.5 rounded-md bg-white/5 text-white border border-white/10"
                             >
                               {eng}
                             </span>
@@ -1964,12 +1964,12 @@ export const HrWhereaboutsHub: React.FC = () => {
                       </td>
                       <td className="py-3.5 px-4">
                         {site.strictPhotoRequired ? (
-                          <span className="inline-flex items-center gap-1 text-xs text-[#123524] font-semibold">
+                          <span className="inline-flex items-center gap-1 text-xs text-emerald-400 font-semibold">
                             <Camera className="w-3.5 h-3.5" />
                             إجباري بالبصمة
                           </span>
                         ) : (
-                          <span className="text-xs text-[#192631]/70">GPS + Wi-Fi HQ</span>
+                          <span className="text-xs text-slate-400">GPS + Wi-Fi HQ</span>
                         )}
                       </td>
                     </tr>
@@ -1994,16 +1994,16 @@ export const HrWhereaboutsHub: React.FC = () => {
                   <Timer className="w-3.5 h-3.5" />
                   ميزة Nexus الحصرية • /hr/surprise-check
                 </div>
-                <h2 className="text-xl md:text-2xl font-extrabold text-[#192631]">
+                <h2 className="text-xl md:text-2xl font-extrabold text-white">
                   إطلاق تمام مفاجئ الآن (Surprise GPS & Live Photo Roll Call)
                 </h2>
-                <p className="text-sm text-[#192631]/85 leading-relaxed">
-                  يقوم المدير التنفيذي (<span className="text-[#192631] font-semibold">بيير صفوت</span>) أو مديرة الموارد البشرية (<span className="text-[#192631] font-semibold">ميرنا ماجد</span>) بإرسال إشعار فوري بمؤقت تنازلي مدته <span className="text-red-700 font-bold">10 دقائق فقط</span> لمهندسي ومشرفي المواقع المختارة لتأكيد الإحداثيات الحية والتقاط صورة فورية من داخل الموقع. في حالة عدم الاستجابة خلال المهلة يتم توقيع جزاء تلقائي في شيت الرواتب.
+                <p className="text-sm text-slate-200 leading-relaxed">
+                  يقوم المدير التنفيذي (<span className="text-white font-semibold">بيير صفوت</span>) أو مديرة الموارد البشرية (<span className="text-white font-semibold">ميرنا ماجد</span>) بإرسال إشعار فوري بمؤقت تنازلي مدته <span className="text-red-700 font-bold">10 دقائق فقط</span> لمهندسي ومشرفي المواقع المختارة لتأكيد الإحداثيات الحية والتقاط صورة فورية من داخل الموقع. في حالة عدم الاستجابة خلال المهلة يتم توقيع جزاء تلقائي في شيت الرواتب.
                 </p>
 
                 {/* Target Sites Checkboxes */}
                 <div className="pt-3">
-                  <div className="text-xs font-bold text-[#192631]/70 mb-2">
+                  <div className="text-xs font-bold text-slate-400 mb-2">
                     اختر المواقع المستهدفة بالتمام المفاجئ:
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -2023,7 +2023,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                           className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition ${
                             active
                               ? 'bg-rose-600/25 border-rose-500 text-red-700'
-                              : 'bg-[#f5f5f5]/90 border-[#192631]/10 text-[#192631]/70 hover:text-[#192631]'
+                              : 'bg-[#1a1a1a]/80 border-white/10 text-slate-400 hover:text-white'
                           }`}
                         >
                           {active ? '✓ ' : '+ '}
@@ -2044,7 +2044,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                   <Send className="w-5 h-5" />
                   <span>إرسال طلب تمام مفاجئ بالـ GPS والصورة الحية</span>
                 </button>
-                <span className="text-xs text-[#192631]/70 text-center sm:text-start">
+                <span className="text-xs text-slate-400 text-center sm:text-start">
                   Countdown: 10:00 Minutes • Live Camera Only (No Gallery Upload)
                 </span>
               </div>
@@ -2058,7 +2058,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                     10m
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-[#192631]">
+                    <div className="text-sm font-bold text-white">
                       تم إطلاق دفعة التمام المفاجئ رقم{' '}
                       <span className="font-mono text-red-700">{activeRollCallBanner.batchCode}</span> بنجاح!
                     </div>
@@ -2068,7 +2068,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <span className="px-3 py-1 rounded-lg bg-[#123524]/10 text-[#123524] border border-[#123524]/25 text-xs font-bold">
+                <span className="px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 text-xs font-bold">
                   جاري استقبال الإحداثيات والصور الحية...
                 </span>
               </div>
@@ -2076,25 +2076,25 @@ export const HrWhereaboutsHub: React.FC = () => {
           </div>
 
           {/* Historical Surprise Roll Call Logs Table */}
-          <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl overflow-hidden shadow-lg">
-            <div className="p-4 md:p-5 border-b border-[#192631]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-lg">
+            <div className="p-4 md:p-5 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <h3 className="text-base md:text-lg font-bold text-[#192631] flex items-center gap-2">
+                <h3 className="text-base md:text-lg font-bold text-white flex items-center gap-2">
                   <Clock className="w-5 h-5 text-red-700" />
                   سجل عمليات التمام المفاجئ وسرعة الاستجابة ودقة الـ GPS (Surprise Check Audit Log)
                 </h3>
-                <p className="text-xs text-[#192631]/70">
+                <p className="text-xs text-slate-400">
                   يوضح زمن الاستجابة بالدقائق (`2 mins`, 4 mins)، دقة التطابق الجغرافي، والجزاءات التلقائية للمتخلفين
                 </p>
               </div>
-              <span className="text-xs text-[#192631]/70">
-                إجمالي السجلات الموثقة: <strong className="text-[#192631]">{surpriseLogs.length}</strong>
+              <span className="text-xs text-slate-400">
+                إجمالي السجلات الموثقة: <strong className="text-white">{surpriseLogs.length}</strong>
               </span>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-start text-sm">
-                <thead className="bg-[#f5f5f5]/90 text-[#192631]/70 text-xs uppercase border-b border-[#192631]/10">
+                <thead className="bg-[#1a1a1a]/80 text-slate-400 text-xs uppercase border-b border-white/10">
                   <tr>
                     <th className="py-3.5 px-4">كود الدفعة والتوقيت</th>
                     <th className="py-3.5 px-4">المسؤول المطلق للتمام</th>
@@ -2106,21 +2106,21 @@ export const HrWhereaboutsHub: React.FC = () => {
                     <th className="py-3.5 px-4">الأثر الإداري / الجزاء التلقائي</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#192631]/10">
+                <tbody className="divide-y divide-white/5">
                   {surpriseLogs.map((log) => (
-                    <tr key={log.id} className="hover:bg-[#192631]/[0.05]">
+                    <tr key={log.id} className="hover:bg-white/5">
                       <td className="py-3.5 px-4">
                         <div className="font-mono text-xs font-bold text-red-700">{log.batchCode}</div>
-                        <div className="text-xs text-[#192631]/70 mt-0.5">{log.triggeredAt}</div>
+                        <div className="text-xs text-slate-400 mt-0.5">{log.triggeredAt}</div>
                       </td>
-                      <td className="py-3.5 px-4 text-xs text-[#192631]/85 font-semibold">
+                      <td className="py-3.5 px-4 text-xs text-slate-200 font-semibold">
                         {log.triggeredBy}
                       </td>
                       <td className="py-3.5 px-4">
-                        <div className="font-bold text-[#192631]">{log.employeeName}</div>
-                        <div className="text-xs text-[#192631]/70">{log.employeeRole}</div>
+                        <div className="font-bold text-white">{log.employeeName}</div>
+                        <div className="text-xs text-slate-400">{log.employeeRole}</div>
                       </td>
-                      <td className="py-3.5 px-4 text-xs font-semibold text-[#192631]">
+                      <td className="py-3.5 px-4 text-xs font-semibold text-white">
                         {log.siteZone}
                       </td>
                       <td className="py-3.5 px-4">
@@ -2128,7 +2128,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                           <span
                             className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg font-mono text-xs font-bold ${
                               log.responseTimeMinutes <= 5
-                                ? 'bg-[#123524]/10 text-[#123524] border border-[#123524]/25'
+                                ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/25'
                                 : 'bg-amber-500/15 text-[#b45309] border border-amber-500/30'
                             }`}
                           >
@@ -2143,11 +2143,11 @@ export const HrWhereaboutsHub: React.FC = () => {
                       <td className="py-3.5 px-4">
                         {log.gpsAccuracyMeters !== null ? (
                           <div className="space-y-0.5">
-                            <div className="text-xs font-mono text-[#123524]">
+                            <div className="text-xs font-mono text-emerald-400">
                               دقة {log.gpsAccuracyMeters}m من المركز
                             </div>
-                            <div className="text-[11px] text-[#192631]/70 flex items-center gap-1">
-                              <Camera className="w-3 h-3 text-[#e04b2a]" />
+                            <div className="text-[11px] text-slate-400 flex items-center gap-1">
+                              <Camera className="w-3 h-3 text-orange-400" />
                               صورة موقع حية موثقة
                             </div>
                           </div>
@@ -2157,7 +2157,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                       </td>
                       <td className="py-3.5 px-4">
                         {log.status === 'Verified' && (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-[#123524]/10 text-[#123524]">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400">
                             <CheckCircle2 className="w-3.5 h-3.5" /> مطابق تماماً
                           </span>
                         )}
@@ -2172,7 +2172,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                           </span>
                         )}
                       </td>
-                      <td className="py-3.5 px-4 text-xs font-semibold text-[#192631]">
+                      <td className="py-3.5 px-4 text-xs font-semibold text-white">
                         {log.penaltyApplied}
                       </td>
                     </tr>
@@ -2190,17 +2190,17 @@ export const HrWhereaboutsHub: React.FC = () => {
       {activeTab === 'payroll-cycle' && (
         <div className="space-y-6">
           {/* Cycle Rule Explanation & Summary Cards */}
-          <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 space-y-5">
+          <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl p-5 space-y-5">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25 mb-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 mb-2">
                   <CalendarRange className="w-3.5 h-3.5" />
                   قاعدة الرواتب المعتمدة في Nexus (من يوم 21 بالشهر السابق حتى يوم 20 بالشهر الحالي)
                 </div>
-                <h2 className="text-xl font-extrabold text-[#192631]">
+                <h2 className="text-xl font-extrabold text-white">
                   شيت البصمة والحضور الشهري (دورة {selectedCycleLabel})
                 </h2>
-                <p className="text-xs text-[#192631]/70 mt-1">
+                <p className="text-xs text-slate-400 mt-1">
                   يتم إغلاق البصمة وحساب الإضافي والغياب والسلف وعهد المواقع <span className="font-mono text-[#b45309]">RCB</span> يوم 20 من كل شهر ليتم الصرف المالي في موعده المحدد.
                 </p>
               </div>
@@ -2210,7 +2210,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                   value={selectedCycleLabel}
                   onChange={(e) => setSelectedCycleLabel(e.target.value)}
                   aria-label="اختيار دورة الرواتب 21 إلى 20"
-                  className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3.5 py-2 text-xs font-mono font-bold text-[#123524]"
+                  className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3.5 py-2 text-xs font-mono font-bold text-emerald-400"
                 >
                   <option value="21/09/2026 → 20/10/2026">دورة 21/09/2026 → 20/10/2026 (الجارية)</option>
                   <option value="21/08/2026 → 20/09/2026">دورة 21/08/2026 → 20/09/2026 (مغلقة)</option>
@@ -2218,13 +2218,13 @@ export const HrWhereaboutsHub: React.FC = () => {
                 </select>
 
                 <div className="relative">
-                  <Search className="w-3.5 h-3.5 text-[#192631]/70 absolute right-3 top-1/2 -translate-y-1/2" />
+                  <Search className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     value={payrollSearch}
                     onChange={(e) => setPayrollSearch(e.target.value)}
                     placeholder="بحث عن موظف في الشيت..."
-                    className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl pr-8 pl-3 py-2 text-xs text-[#192631] placeholder-[#192631]/40"
+                    className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl pr-8 pl-3 py-2 text-xs text-white placeholder-slate-500"
                   />
                 </div>
               </div>
@@ -2232,39 +2232,39 @@ export const HrWhereaboutsHub: React.FC = () => {
 
             {/* Financial Summary Bar */}
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
-              <div className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl p-3">
-                <div className="text-[11px] text-[#192631]/70">إجمالي الرواتب الأساسية</div>
-                <div className="text-base font-extrabold text-[#192631] mt-1 font-mono">
+              <div className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl p-3">
+                <div className="text-[11px] text-slate-400">إجمالي الرواتب الأساسية</div>
+                <div className="text-base font-extrabold text-white mt-1 font-mono">
                   {payrollSummary.totalBase.toLocaleString()} ج.م
                 </div>
               </div>
-              <div className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl p-3">
-                <div className="text-[11px] text-[#123524]">إضافي المواقع (Overtime)</div>
-                <div className="text-base font-extrabold text-[#123524] mt-1 font-mono">
+              <div className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl p-3">
+                <div className="text-[11px] text-emerald-400">إضافي المواقع (Overtime)</div>
+                <div className="text-base font-extrabold text-emerald-400 mt-1 font-mono">
                   +{payrollSummary.totalOvertime.toLocaleString()} ج.م
                 </div>
               </div>
-              <div className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl p-3">
-                <div className="text-[11px] text-[#e04b2a]">المكافآت والحوافز</div>
-                <div className="text-base font-extrabold text-[#e04b2a] mt-1 font-mono">
+              <div className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl p-3">
+                <div className="text-[11px] text-orange-400">المكافآت والحوافز</div>
+                <div className="text-base font-extrabold text-orange-400 mt-1 font-mono">
                   +{payrollSummary.totalBonuses.toLocaleString()} ج.م
                 </div>
               </div>
-              <div className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl p-3">
+              <div className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl p-3">
                 <div className="text-[11px] text-[#b45309]">استرداد سلف وعهد RCB</div>
                 <div className="text-base font-extrabold text-[#b45309] mt-1 font-mono">
                   -{payrollSummary.totalAdvancesAndRcb.toLocaleString()} ج.م
                 </div>
               </div>
-              <div className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl p-3">
+              <div className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl p-3">
                 <div className="text-[11px] text-red-700">خصم التأخير والجزاءات</div>
                 <div className="text-base font-extrabold text-red-700 mt-1 font-mono">
                   -{payrollSummary.totalPenaltiesAndLate.toLocaleString()} ج.م
                 </div>
               </div>
               <div className="bg-emerald-950/30 border border-emerald-700/50 rounded-xl p-3">
-                <div className="text-[11px] text-[#123524] font-bold">صافي الرواتب الجاهز للصرف</div>
-                <div className="text-base font-extrabold text-[#123524] mt-1 font-mono">
+                <div className="text-[11px] text-emerald-400 font-bold">صافي الرواتب الجاهز للصرف</div>
+                <div className="text-base font-extrabold text-emerald-400 mt-1 font-mono">
                   {payrollSummary.totalNetPayable.toLocaleString()} ج.م
                 </div>
               </div>
@@ -2272,10 +2272,10 @@ export const HrWhereaboutsHub: React.FC = () => {
           </div>
 
           {/* 21->20 Attendance & Payroll Sheet Table */}
-          <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl overflow-hidden shadow-lg">
+          <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden shadow-lg">
             <div className="overflow-x-auto">
               <table className="w-full text-start text-xs md:text-sm">
-                <thead className="bg-[#f5f5f5]/90 text-[#192631]/70 text-xs uppercase border-b border-[#192631]/10">
+                <thead className="bg-[#1a1a1a]/80 text-slate-400 text-xs uppercase border-b border-white/10">
                   <tr>
                     <th className="py-3.5 px-3">الموظف والموقع</th>
                     <th className="py-3.5 px-3">الراتب الأساسي</th>
@@ -2289,7 +2289,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                     <th className="py-3.5 px-3">جاهزية الصرف</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#192631]/10">
+                <tbody className="divide-y divide-white/5">
                   {filteredPayroll.map((rec) => {
                     const netSalary =
                       rec.baseSalaryEgp +
@@ -2300,27 +2300,27 @@ export const HrWhereaboutsHub: React.FC = () => {
                       rec.penaltiesEgp;
 
                     return (
-                      <tr key={rec.id} className="hover:bg-[#192631]/[0.05]">
+                      <tr key={rec.id} className="hover:bg-white/5">
                         <td className="py-3.5 px-3">
-                          <div className="font-bold text-[#192631]">{rec.name}</div>
-                          <div className="text-[11px] text-[#192631]/70">
+                          <div className="font-bold text-white">{rec.name}</div>
+                          <div className="text-[11px] text-slate-400">
                             {rec.empCode} • {rec.primarySite}
                           </div>
                         </td>
-                        <td className="py-3.5 px-3 font-mono font-bold text-[#192631]">
+                        <td className="py-3.5 px-3 font-mono font-bold text-white">
                           {rec.baseSalaryEgp.toLocaleString()} ج.م
                         </td>
                         <td className="py-3.5 px-3">
-                          <span className="font-mono font-bold text-[#123524]">
+                          <span className="font-mono font-bold text-emerald-400">
                             {rec.presentDays}
                           </span>{' '}
-                          / <span className="font-mono text-[#192631]/70">{rec.cycleWorkingDays} يوم</span>
+                          / <span className="font-mono text-slate-400">{rec.cycleWorkingDays} يوم</span>
                         </td>
                         <td className="py-3.5 px-3">
-                          <div className="font-mono text-[#123524] font-bold">
+                          <div className="font-mono text-emerald-400 font-bold">
                             {rec.siteOvertimeHours} ساعة
                           </div>
-                          <div className="text-[11px] font-mono text-[#192631]/70">
+                          <div className="text-[11px] font-mono text-slate-400">
                             +{rec.overtimeValueEgp.toLocaleString()} ج.م
                           </div>
                         </td>
@@ -2330,7 +2330,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                             {rec.lateDeductionEgp > 0 ? `-${rec.lateDeductionEgp} ج.م` : 'مسامحة'}
                           </div>
                         </td>
-                        <td className="py-3.5 px-3 font-mono text-[#e04b2a]">
+                        <td className="py-3.5 px-3 font-mono text-orange-400">
                           {rec.approvedLeaveDays} يوم
                         </td>
                         <td className="py-3.5 px-3">
@@ -2339,29 +2339,29 @@ export const HrWhereaboutsHub: React.FC = () => {
                               ? `-${rec.pettyCashAndAdvanceDeductionEgp.toLocaleString()} ج.م`
                               : '0 ج.م'}
                           </div>
-                          <div className="text-[10px] text-[#192631]/70 max-w-[160px] truncate">
+                          <div className="text-[10px] text-slate-400 max-w-[160px] truncate">
                             {rec.rcbSettlementStatus}
                           </div>
                         </td>
                         <td className="py-3.5 px-3">
                           <div className="flex flex-col gap-0.5 font-mono text-xs">
                             {rec.bonusesEgp > 0 && (
-                              <span className="text-[#123524]">+{rec.bonusesEgp.toLocaleString()} مكافأة</span>
+                              <span className="text-emerald-400">+{rec.bonusesEgp.toLocaleString()} مكافأة</span>
                             )}
                             {rec.penaltiesEgp > 0 && (
                               <span className="text-red-700">-{rec.penaltiesEgp.toLocaleString()} جزاء</span>
                             )}
                             {rec.bonusesEgp === 0 && rec.penaltiesEgp === 0 && (
-                              <span className="text-[#192631]/60">—</span>
+                              <span className="text-slate-400">—</span>
                             )}
                           </div>
                         </td>
-                        <td className="py-3.5 px-3 font-mono font-extrabold text-[#192631] text-sm">
+                        <td className="py-3.5 px-3 font-mono font-extrabold text-white text-sm">
                           {netSalary.toLocaleString()} ج.م
                         </td>
                         <td className="py-3.5 px-3">
                           {rec.readinessStatus === 'Ready for Disbursement' ? (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
                               <CheckCircle2 className="w-3 h-3" /> جاهز للصرف
                             </span>
                           ) : (
@@ -2374,7 +2374,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                               <button
                                 type="button"
                                 onClick={() => handleApprovePayrollRecord(rec.id)}
-                                className="px-2 py-1 rounded bg-[#e04b2a] hover:bg-[#c83e1f] text-[#192631] text-[10px] font-bold"
+                                className="px-2 py-1 rounded bg-orange-500 hover:bg-[#c83e1f] text-white text-[10px] font-bold"
                               >
                                 اعتماد
                               </button>
@@ -2397,26 +2397,26 @@ export const HrWhereaboutsHub: React.FC = () => {
       {activeTab === 'staff-requests' && (
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
           {/* Submit New Request / Directive Form */}
-          <div className="bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 space-y-4 h-fit">
+          <div className="bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl p-5 space-y-4 h-fit">
             <div>
-              <h2 className="text-lg font-extrabold text-[#192631] flex items-center gap-2">
+              <h2 className="text-lg font-extrabold text-white flex items-center gap-2">
                 <Plus className="w-5 h-5 text-[#b45309]" />
                 تسجيل طلب جديد / عهدة موقع RCB / قرار إداري
               </h2>
-              <p className="text-xs text-[#192631]/70 mt-1">
+              <p className="text-xs text-slate-400 mt-1">
                 يرتبط مباشرة بشيت رواتب دورة 21→20 ومنظومة تسويات عهد المواقع RCB
               </p>
             </div>
 
             <form onSubmit={handleCreateRequest} className="space-y-3.5 text-sm">
               <div>
-                <label className="block text-xs font-bold text-[#192631]/85 mb-1">
+                <label className="block text-xs font-bold text-slate-200 mb-1">
                   نوع الطلب أو القرار الإداري
                 </label>
                 <select
                   value={newReqCategory}
                   onChange={(e) => setNewReqCategory(e.target.value as RequestCategory)}
-                  className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2.5 text-[#192631] focus:outline-none focus:border-amber-500"
+                  className="w-full bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-amber-500"
                 >
                   <option value="petty_cash">طلب عهدة موقع نقدية (يرتبط بكود تسوية RCB)</option>
                   <option value="advance">طلب سلفة شخصية (تُخصم من راتب 21→20)</option>
@@ -2426,13 +2426,13 @@ export const HrWhereaboutsHub: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#192631]/85 mb-1">
+                <label className="block text-xs font-bold text-slate-200 mb-1">
                   الموظف / المهندس المعني
                 </label>
                 <select
                   value={newReqEmployee}
                   onChange={(e) => setNewReqEmployee(e.target.value)}
-                  className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2.5 text-[#192631] focus:outline-none focus:border-amber-500"
+                  className="w-full bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-amber-500"
                 >
                   {staffList.map((s) => (
                     <option key={s.id} value={s.name}>
@@ -2443,7 +2443,7 @@ export const HrWhereaboutsHub: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#192631]/85 mb-1">
+                <label className="block text-xs font-bold text-slate-200 mb-1">
                   عنوان الطلب / البند المختصر
                 </label>
                 <input
@@ -2452,7 +2452,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                   value={newReqTitle}
                   onChange={(e) => setNewReqTitle(e.target.value)}
                   placeholder="مثال: عهدة شراء خامات سباكة عاجلة لمشروع C096..."
-                  className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] placeholder-[#192631]/40"
+                  className="w-full bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2 text-white placeholder-slate-500"
                 />
               </div>
 
@@ -2467,7 +2467,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                       value={newReqAmount}
                       onChange={(e) => setNewReqAmount(e.target.value)}
                       placeholder="15000"
-                      className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
+                      className="w-full bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2 text-white font-mono"
                     />
                   </div>
                   <div>
@@ -2479,7 +2479,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                       value={newReqRcbCode}
                       onChange={(e) => setNewReqRcbCode(e.target.value)}
                       placeholder="RCB-C096-22"
-                      className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#b45309] font-mono"
+                      className="w-full bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2 text-[#b45309] font-mono"
                     />
                   </div>
                 </div>
@@ -2487,7 +2487,7 @@ export const HrWhereaboutsHub: React.FC = () => {
 
               {(newReqCategory === 'advance' || newReqCategory === 'directive') && (
                 <div>
-                  <label className="block text-xs font-bold text-[#192631]/85 mb-1">
+                  <label className="block text-xs font-bold text-slate-200 mb-1">
                     القيمة المالية (ج.م)
                   </label>
                   <input
@@ -2495,14 +2495,14 @@ export const HrWhereaboutsHub: React.FC = () => {
                     value={newReqAmount}
                     onChange={(e) => setNewReqAmount(e.target.value)}
                     placeholder="2000"
-                    className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
+                    className="w-full bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2 text-white font-mono"
                   />
                 </div>
               )}
 
               {newReqCategory === 'leave' && (
                 <div>
-                  <label className="block text-xs font-bold text-[#192631]/85 mb-1">
+                  <label className="block text-xs font-bold text-slate-200 mb-1">
                     عدد أيام الإجازة المطلوبة
                   </label>
                   <input
@@ -2511,13 +2511,13 @@ export const HrWhereaboutsHub: React.FC = () => {
                     max={14}
                     value={newReqLeaveDays}
                     onChange={(e) => setNewReqLeaveDays(e.target.value)}
-                    className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] font-mono"
+                    className="w-full bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2 text-white font-mono"
                   />
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-bold text-[#192631]/85 mb-1">
+                <label className="block text-xs font-bold text-slate-200 mb-1">
                   التفاصيل والمبررات الهندسية / الإدارية
                 </label>
                 <textarea
@@ -2525,7 +2525,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                   value={newReqDetails}
                   onChange={(e) => setNewReqDetails(e.target.value)}
                   placeholder="اكتب تفاصيل الصرف أو سبب الإجازة أو منطوق القرار الإداري..."
-                  className="w-full bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl px-3 py-2 text-[#192631] placeholder-[#192631]/40"
+                  className="w-full bg-[#1a1a1a]/80 border border-white/10 rounded-xl px-3 py-2 text-white placeholder-slate-500"
                 />
               </div>
 
@@ -2539,14 +2539,14 @@ export const HrWhereaboutsHub: React.FC = () => {
           </div>
 
           {/* Requests & Directives Feed */}
-          <div className="xl:col-span-2 bg-white/80 backdrop-blur-md border border-[#192631]/10 rounded-2xl p-5 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#192631]/10 pb-4">
+          <div className="xl:col-span-2 bg-[#1a1a1a]/60 backdrop-blur-2xl backdrop-blur-md border border-white/10 rounded-2xl p-5 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10 pb-4">
               <div>
-                <h3 className="text-lg font-bold text-[#192631] flex items-center gap-2">
+                <h3 className="text-lg font-bold text-white flex items-center gap-2">
                   <FileText className="w-5 h-5 text-[#b45309]" />
                   سجل طلبات الموظفين، العهد النقدية RCB، والقرارات الإدارية
                 </h3>
-                <p className="text-xs text-[#192631]/70">
+                <p className="text-xs text-slate-400">
                   اعتماد مباشر من الإدارة العليا (بيير صفوت) والموارد البشرية (ميرنا ماجد) والحسابات (ميلاد هارون)
                 </p>
               </div>
@@ -2566,7 +2566,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
                       requestCategoryFilter === tab.id
                         ? 'bg-amber-600 text-white'
-                        : 'bg-[#f5f5f5]/90 text-[#192631]/70 hover:text-[#192631] border border-[#192631]/10'
+                        : 'bg-[#1a1a1a]/80 text-slate-400 hover:text-white border border-white/10'
                     }`}
                   >
                     {tab.label}
@@ -2579,14 +2579,14 @@ export const HrWhereaboutsHub: React.FC = () => {
               {filteredRequests.map((req) => (
                 <div
                   key={req.id}
-                  className="bg-[#f5f5f5]/90 border border-[#192631]/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4"
+                  className="bg-[#1a1a1a]/80 border border-white/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4"
                 >
                   <div className="space-y-1.5">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-mono font-bold text-[#e04b2a] bg-[#e04b2a]/10 px-2 py-0.5 rounded">
+                      <span className="text-xs font-mono font-bold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded">
                         {req.reqCode}
                       </span>
-                      <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#192631]/[0.05] text-[#b45309]">
+                      <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-white/5 text-[#b45309]">
                         {req.categoryLabelAr}
                       </span>
                       {req.rcbCode && (
@@ -2595,33 +2595,33 @@ export const HrWhereaboutsHub: React.FC = () => {
                         </span>
                       )}
                       {req.amountEgp !== undefined && (
-                        <span className="text-xs font-mono font-extrabold text-[#123524]">
+                        <span className="text-xs font-mono font-extrabold text-emerald-400">
                           {req.amountEgp.toLocaleString()} ج.م
                         </span>
                       )}
                       {req.leaveDays !== undefined && (
-                        <span className="text-xs font-mono font-bold text-[#192631]">
+                        <span className="text-xs font-mono font-bold text-white">
                           {req.leaveDays} أيام إجازة
                         </span>
                       )}
                     </div>
 
-                    <h4 className="text-sm font-bold text-[#192631]">{req.title}</h4>
-                    <p className="text-xs text-[#192631]/85 leading-relaxed">{req.details}</p>
+                    <h4 className="text-sm font-bold text-white">{req.title}</h4>
+                    <p className="text-xs text-slate-200 leading-relaxed">{req.details}</p>
 
-                    <div className="flex flex-wrap items-center gap-3 pt-1 text-[11px] text-[#192631]/70">
-                      <span>مقدم الطلب: <strong className="text-[#192631]">{req.employeeName}</strong> ({req.employeeRole})</span>
+                    <div className="flex flex-wrap items-center gap-3 pt-1 text-[11px] text-slate-400">
+                      <span>مقدم الطلب: <strong className="text-white">{req.employeeName}</strong> ({req.employeeRole})</span>
                       <span>•</span>
                       <span>التوقيت: {req.dateSubmitted}</span>
                     </div>
-                    <div className="text-[11px] text-[#e04b2a]">
+                    <div className="text-[11px] text-orange-400">
                       ملاحظة الاعتماد: {req.approverNote}
                     </div>
                   </div>
 
                   <div className="flex flex-row md:flex-col items-center md:items-end justify-between gap-2 shrink-0">
                     {req.status === 'Approved' && (
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-[#123524]/10 text-[#123524] border border-[#123524]/25">
+                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
                         <CheckCircle2 className="w-3.5 h-3.5" /> معتمد ✅
                       </span>
                     )}
@@ -2631,7 +2631,7 @@ export const HrWhereaboutsHub: React.FC = () => {
                       </span>
                     )}
                     {req.status === 'Rejected' && (
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-[#192631]/[0.05] text-red-700">
+                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-white/5 text-red-700">
                         <XCircle className="w-3.5 h-3.5" /> مرفوض
                       </span>
                     )}

@@ -100,24 +100,24 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
     return (
         <div
-            className="fixed inset-0 z-[100] bg-[#192631]/60 backdrop-blur-sm flex items-start justify-center pt-20 p-4"
+            className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-sm flex items-start justify-center pt-20 p-4"
             onClick={onClose}
         >
             <div
-                className="bg-white border border-[#192631]/15 rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden"
+                className="bg-[#1a1a1a] border border-white/10 rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden"
                 onClick={e => e.stopPropagation()}
             >
-                <div className="p-4 border-b border-[#192631]/10 flex items-center gap-3">
-                    <Search className="w-5 h-5 text-[#e04b2a]" />
+                <div className="p-4 border-b border-white/10 flex items-center gap-3">
+                    <Search className="w-5 h-5 text-orange-400" />
                     <input
                         type="text"
                         autoFocus
                         value={query}
                         onChange={e => setQuery(e.target.value)}
                         placeholder="Type a command or search projects, engineers, RIBA proposals, workspaces... (Esc to close)"
-                        className="w-full bg-transparent text-sm text-[#192631] placeholder-[#192631]/45 focus:outline-none"
+                        className="w-full bg-transparent text-sm text-white placeholder-slate-500 focus:outline-none"
                     />
-                    <span className="px-2 py-0.5 rounded bg-[#f5f5f5] border border-[#192631]/10 text-[10px] font-black text-[#192631]/60">
+                    <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-black text-slate-400">
                         ESC
                     </span>
                 </div>
@@ -125,7 +125,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                 <div className="max-h-[65vh] overflow-y-auto p-3 space-y-4">
                     {quickCommands.length > 0 && (
                         <div>
-                            <p className="px-3 py-1 text-[10px] font-black text-[#192631]/55 uppercase tracking-widest">
+                            <p className="px-3 py-1 text-[10px] font-black text-slate-500 uppercase tracking-widest">
                                 Executive Actions
                             </p>
                             <div className="space-y-1 mt-1">
@@ -136,20 +136,20 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                                             key={cmd.id}
                                             type="button"
                                             onClick={cmd.action}
-                                            className="w-full flex items-center justify-between px-3 py-2.5 rounded-2xl hover:bg-[#e04b2a]/10 text-left group transition-all"
+                                            className="w-full flex items-center justify-between px-3 py-2.5 rounded-2xl hover:bg-orange-500/10 text-left group transition-all"
                                         >
                                             <div className="flex items-center gap-3">
-                                                <div className="p-2 rounded-xl bg-[#f5f5f5] text-[#e04b2a] border border-[#192631]/10">
+                                                <div className="p-2 rounded-xl bg-white/5 text-orange-400 border border-white/10">
                                                     <Icon className="w-4 h-4" />
                                                 </div>
                                                 <div>
-                                                    <p className="text-xs font-bold text-[#192631] group-hover:text-[#e04b2a]">
+                                                    <p className="text-xs font-bold text-white group-hover:text-orange-400">
                                                         {cmd.label}
                                                     </p>
-                                                    <p className="text-[10px] text-[#192631]/55">{cmd.category}</p>
+                                                    <p className="text-[10px] text-slate-500">{cmd.category}</p>
                                                 </div>
                                             </div>
-                                            <ArrowRight className="w-4 h-4 text-[#192631]/40 group-hover:text-[#e04b2a]" />
+                                            <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-orange-400" />
                                         </button>
                                     );
                                 })}
@@ -159,7 +159,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
                     {matchedProjects.length > 0 && (
                         <div>
-                            <p className="px-3 py-1 text-[10px] font-black text-[#192631]/55 uppercase tracking-widest">
+                            <p className="px-3 py-1 text-[10px] font-black text-slate-500 uppercase tracking-widest">
                                 Engineering Ventures ({matchedProjects.length})
                             </p>
                             <div className="space-y-1 mt-1">
@@ -171,18 +171,18 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                                             navigate(`/projects/${p.id}`);
                                             onClose();
                                         }}
-                                        className="w-full flex items-center justify-between px-3 py-2 rounded-2xl hover:bg-[#192631]/5 text-left"
+                                        className="w-full flex items-center justify-between px-3 py-2 rounded-2xl hover:bg-white/5 text-left"
                                     >
                                         <div className="flex items-center gap-3">
-                                            <FolderKanban className="w-4 h-4 text-[#123524]" />
+                                            <FolderKanban className="w-4 h-4 text-emerald-400" />
                                             <div>
-                                                <p className="text-xs font-bold text-[#192631]">{p.name}</p>
-                                                <p className="text-[10px] text-[#192631]/55">
+                                                <p className="text-xs font-bold text-white">{p.name}</p>
+                                                <p className="text-[10px] text-slate-500">
                                                     Phase: {p.phase || 'Concept Design'} · Budget: ${(p.budget || 0).toLocaleString()}
                                                 </p>
                                             </div>
                                         </div>
-                                        <ArrowRight className="w-3.5 h-3.5 text-[#192631]/40" />
+                                        <ArrowRight className="w-3.5 h-3.5 text-slate-500" />
                                     </button>
                                 ))}
                             </div>
@@ -191,7 +191,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
                     {matchedEngineers.length > 0 && (
                         <div>
-                            <p className="px-3 py-1 text-[10px] font-black text-[#192631]/55 uppercase tracking-widest">
+                            <p className="px-3 py-1 text-[10px] font-black text-slate-500 uppercase tracking-widest">
                                 Architects & Operatives
                             </p>
                             <div className="space-y-1 mt-1">
@@ -203,13 +203,13 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                                             navigate('/engineers');
                                             onClose();
                                         }}
-                                        className="w-full flex items-center justify-between px-3 py-2 rounded-2xl hover:bg-[#192631]/5 text-left"
+                                        className="w-full flex items-center justify-between px-3 py-2 rounded-2xl hover:bg-white/5 text-left"
                                     >
                                         <div className="flex items-center gap-3">
-                                            <Users className="w-4 h-4 text-[#e04b2a]" />
+                                            <Users className="w-4 h-4 text-orange-400" />
                                             <div>
-                                                <p className="text-xs font-bold text-[#192631]">{eng.name}</p>
-                                                <p className="text-[10px] text-[#192631]/55">
+                                                <p className="text-xs font-bold text-white">{eng.name}</p>
+                                                <p className="text-[10px] text-slate-500">
                                                     {eng.role} · {eng.location || 'Cairo'}
                                                 </p>
                                             </div>
@@ -222,7 +222,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
                     {organizations.length > 1 && (
                         <div>
-                            <p className="px-3 py-1 text-[10px] font-black text-[#192631]/55 uppercase tracking-widest">
+                            <p className="px-3 py-1 text-[10px] font-black text-slate-500 uppercase tracking-widest">
                                 Switch Tenant Firm Workspace
                             </p>
                             <div className="flex flex-wrap gap-2 px-3 pt-1">
@@ -234,9 +234,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                                             switchOrganization(org.id);
                                             onClose();
                                         }}
-                                        className="px-3 py-1.5 rounded-xl bg-[#f5f5f5] hover:bg-[#e04b2a]/10 border border-[#192631]/10 text-xs font-bold text-[#192631] flex items-center gap-2"
+                                        className="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-orange-500/10 border border-white/10 text-xs font-bold text-white flex items-center gap-2"
                                     >
-                                        <Sparkles className="w-3 h-3 text-[#e04b2a]" />
+                                        <Sparkles className="w-3 h-3 text-orange-400" />
                                         {org.name} ({org.currency})
                                     </button>
                                 ))}

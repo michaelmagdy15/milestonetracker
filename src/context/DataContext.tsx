@@ -233,8 +233,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const config = TABLE_CONFIGS[tableName];
         const setter = setterMap[tableName];
         const activeOrgId = localStorage.getItem('whitelabel_active_org_id') || 'org-default';
+        const isCoreWorkspace = activeOrgId === 'org-default' || activeOrgId === 'org-dec-portal';
         const filterByTenant = (rows: any[]) =>
-            rows.filter(r => !r.organization_id || r.organization_id === activeOrgId);
+            rows.filter(r => !r.organization_id || r.organization_id === activeOrgId || (isCoreWorkspace && (r.organization_id === 'org-default' || r.organization_id === 'org-dec-portal')));
         
         try {
             if (tableName === 'app_usage_log' || tableName === 'audit_log') {

@@ -25,7 +25,7 @@ function getInitialTheme(activeOrgId?: string): Theme {
     if (activeOrgId === DEC_ORG_ID) {
         return 'dark';
     }
-    return 'light';
+    return 'dark';
 }
 
 function applyThemeToDom(theme: Theme) {
@@ -36,13 +36,13 @@ function applyThemeToDom(theme: Theme) {
     root.classList.toggle('light', theme === 'light');
     root.style.colorScheme = theme;
     if (theme === 'dark') {
-        root.style.backgroundColor = '#090d16';
-        root.style.setProperty('--surface-bg', '#090d16');
-        root.style.setProperty('--surface-card', '#111827');
-        root.style.setProperty('--surface-border', 'rgba(255, 255, 255, 0.08)');
-        root.style.setProperty('--text-primary', '#f8fafc');
-        root.style.setProperty('--text-secondary', '#cbd5e1');
-        root.style.setProperty('--text-muted', '#94a3b8');
+        root.style.backgroundColor = '#0f0f0f';
+        root.style.setProperty('--surface-bg', '#0f0f0f');
+        root.style.setProperty('--surface-card', '#1a1a1a');
+        root.style.setProperty('--surface-border', 'rgba(255, 255, 255, 0.05)');
+        root.style.setProperty('--text-primary', '#f3f3f3');
+        root.style.setProperty('--text-secondary', '#999999');
+        root.style.setProperty('--text-muted', '#666666');
     } else {
         root.style.backgroundColor = '#f8fafc';
         root.style.setProperty('--surface-bg', '#f8fafc');
@@ -60,10 +60,8 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const [theme, setThemeState] = useState<Theme>(() => getInitialTheme(activeOrg?.id));
 
     useEffect(() => {
-        const manual = localStorage.getItem(USER_OVERRIDE_KEY);
-        if (manual !== 'true') {
-            const nextTheme: Theme = activeOrg?.id === DEC_ORG_ID ? 'dark' : 'light';
-            setThemeState(nextTheme);
+        if (activeOrg?.id === DEC_ORG_ID) {
+            setThemeState('dark');
         }
     }, [activeOrg?.id]);
 

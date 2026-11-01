@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import logoSrc from '../assets/logo.png';
 import { useTenant } from '../context/TenantContext';
 import { useTheme } from '../context/ThemeContext';
 
@@ -48,12 +49,12 @@ export const Logo: React.FC<{
     darkText?: boolean;
 }> = ({ className, showText = true, collapsed = false }) => {
     const { activeOrg } = useTenant();
-    let isDarkTheme = false;
+    let isDarkTheme = true;
     try {
         const themeCtx = useTheme();
         isDarkTheme = themeCtx.theme === 'dark';
     } catch {
-        isDarkTheme = false;
+        isDarkTheme = true;
     }
 
     const isDecPortal =
@@ -63,22 +64,15 @@ export const Logo: React.FC<{
 
     if (isDecPortal) {
         return (
-            <div className={clsx('inline-flex items-center gap-2.5 select-none shrink-0', className)}>
+            <div className={clsx('flex items-center justify-center p-2', className)}>
                 <img
-                    src="/logo.png"
-                    alt="DEC Milestone Portal"
-                    className="h-9 w-9 rounded-xl object-contain bg-[#192631] p-1 shadow-sm border border-white/10 shrink-0"
+                    src={logoSrc}
+                    alt="DEC Milestone Tracker"
+                    className={clsx(
+                        'h-auto w-auto object-contain',
+                        collapsed ? 'max-h-10' : 'max-h-20'
+                    )}
                 />
-                {showText && !collapsed && (
-                    <div className="flex flex-col leading-none">
-                        <span className={clsx('text-sm font-black tracking-tight', isDarkTheme ? 'text-white' : 'text-[#192631]')}>
-                            DEC <span className="text-[#f97316]">PORTAL</span>
-                        </span>
-                        <span className={clsx('text-[8px] font-bold uppercase tracking-[0.16em] mt-0.5', isDarkTheme ? 'text-slate-400' : 'text-[#192631]/60')}>
-                            Design & Engineering
-                        </span>
-                    </div>
-                )}
             </div>
         );
     }
@@ -89,11 +83,11 @@ export const Logo: React.FC<{
         !activeOrg.logoUrl.includes('/logo.png')
     ) {
         return (
-            <div className={clsx('flex items-center gap-2 shrink-0', className)}>
+            <div className={clsx('flex items-center gap-2 shrink-0 p-2', className)}>
                 <img
                     src={activeOrg.logoUrl}
                     alt={activeOrg.name}
-                    className={clsx('object-contain', collapsed ? 'h-8 w-8' : 'h-8 sm:h-9 w-auto max-w-[160px]')}
+                    className={clsx('object-contain', collapsed ? 'h-8 w-8' : 'h-12 w-auto max-w-[180px]')}
                 />
             </div>
         );
@@ -112,18 +106,20 @@ export const Logo: React.FC<{
     }
 
     return (
-        <div className={clsx('inline-flex items-center select-none shrink-0', className)}>
+        <div className={clsx('inline-flex items-center gap-3 select-none shrink-0 p-2', className)}>
             <img
-                src={isDarkTheme ? '/nexus-logo-dark.svg' : '/nexus-logo.svg'}
-                onError={(e) => {
-                    const target = e.currentTarget;
-                    if (target.src.includes('nexus-logo-dark.svg')) {
-                        target.src = '/nexus-logo.svg';
-                    }
-                }}
+                src="/nexus-symbol.svg"
                 alt="NEXUS Contracting"
-                className="h-8 sm:h-9 w-auto max-w-[155px] object-contain"
+                className="h-10 w-10 object-contain shrink-0"
             />
+            <div className="flex flex-col leading-none">
+                <span className={clsx('text-base font-black tracking-tight', isDarkTheme ? 'text-white' : 'text-[#192631]')}>
+                    NEXUS <span className="text-orange-500">ERP</span>
+                </span>
+                <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-400 mt-1">
+                    Contracting Suite
+                </span>
+            </div>
         </div>
     );
 };

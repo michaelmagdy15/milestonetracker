@@ -17,97 +17,72 @@ import {
     Calendar,
     Calculator,
     BookOpen,
-    Palette,
-    HardHat,
+    Globe,
+    ShieldCheck,
     FileCheck2,
-    FileSignature,
-    Truck,
+    PackageCheck,
+    HardHat,
     Receipt,
-    GitBranch,
-    ChevronLeft,
-    ChevronRight,
-    Sparkles,
-    Layers,
-    ArrowRight,
-    CheckCircle2,
-    Pin,
-    Eye,
+    GitPullRequestDraft,
+    Palette,
+    ChevronDown,
+    Command,
     Sun,
-    Moon,
-    Building2,
-    Wrench
+    Moon
 } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import { Logo } from './Logo';
 import { MailNotifier } from './MailNotifier';
-import { CommandPalette } from './CommandPalette';
 import { useAuth } from '../context/AuthContext';
 import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
-import { useTenant, DEFAULT_ORG_ID, DEC_ORG_ID } from '../context/TenantContext';
+import { useTenant, DEC_ORG_ID, DEFAULT_ORG_ID } from '../context/TenantContext';
 import { useTheme } from '../context/ThemeContext';
-import { useWorkflow, NEXUS_LIFECYCLE_STAGES } from '../context/WorkflowContext';
-import type { WorkflowPersona } from '../context/WorkflowContext';
-import { NEXUS_LIVE_PROJECTS } from '../data/nexusLiveSeedData';
+import { CommandPalette } from './CommandPalette';
 
-const STEP_CIRCLES = ['①', '②', '③', '④', '⑤', '⑥'];
-
-const NavItem = ({
-    to,
-    icon: Icon,
-    label,
-    badge,
-    collapsed,
-    onClick,
-}: {
-    to: string;
-    icon: React.ElementType;
-    label: string;
-    badge?: string;
-    stepBadge?: number;
-    collapsed?: boolean;
-    onClick?: () => void;
-}) => {
+const NavItem = ({ to, icon: Icon, label, badge }: { to: string; icon: React.ElementType; label: string; badge?: string }) => {
     const location = useLocation();
-    const isActive = location.pathname === to || (to !== '/' && location.pathname.startsWith(to + '/'));
+    const isActive = location.pathname === to || (to !== '/' && location.pathname.startsWith(to));
 
     return (
         <Link
             to={to}
-            onClick={onClick}
-            title={collapsed ? label : undefined}
             className={clsx(
-                'flex items-center rounded-xl transition-all duration-200 w-full h-10 px-2.5 relative border touch-manipulation select-none active:scale-[0.98]',
+                'flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-500 relative overflow-hidden group',
                 isActive
-                    ? 'bg-[#e04b2a] text-white font-bold shadow-md border-[#e04b2a] ring-1 ring-[#e04b2a]/30'
-                    : 'bg-slate-100/70 hover:bg-slate-200/70 text-slate-700 hover:text-slate-950 border-slate-200/70 dark:bg-slate-900/60 dark:hover:bg-slate-800/80 dark:text-slate-300 dark:hover:text-white dark:border-slate-800/70',
-                collapsed ? 'justify-center px-0' : 'justify-between'
+                    ? 'bg-orange-500/10 text-orange-400 border-orange-500/20 shadow-orange-glow'
+                    : 'bg-transparent border-transparent text-slate-400 hover:border-white/5 hover:text-white hover:bg-white/5'
             )}
         >
-            <div className={clsx('flex items-center min-w-0', collapsed ? 'justify-center' : 'gap-2.5')}>
-                <Icon className={clsx('w-4 h-4 shrink-0', isActive ? 'text-white' : 'text-current opacity-85')} />
-                {!collapsed && (
-                    <span className="text-xs font-semibold tracking-tight truncate">
-                        {label}
-                    </span>
-                )}
-            </div>
-            {!collapsed && badge && (
-                <span
-                    dir="ltr"
+            <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: 'linear-gradient(135deg, rgba(243, 130, 45, 0.05), transparent)' }}
+            />
+            <div className="flex items-center space-x-3 min-w-0 relative z-10">
+                <div
                     className={clsx(
-                        'text-[9px] font-black px-1.5 py-0.5 rounded-md shrink-0 ms-1.5',
+                        'p-2 rounded-lg transition-all duration-300 shrink-0',
                         isActive
-                            ? 'bg-white/20 text-white'
-                            : 'bg-slate-200/80 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
+                            ? 'bg-orange-500/20 text-orange-400 shadow-orange-glow'
+                            : 'bg-white/5 text-slate-400 group-hover:bg-white/10 group-hover:text-white'
+                    )}
+                >
+                    <Icon className="w-5 h-5" />
+                </div>
+                <span className="font-mono text-sm font-medium tracking-wide uppercase truncate">{label}</span>
+            </div>
+            {badge && (
+                <span
+                    className={clsx(
+                        'relative z-10 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border shrink-0 ml-2',
+                        isActive
+                            ? 'bg-orange-500/20 text-orange-300 border-orange-500/30'
+                            : 'bg-white/5 text-slate-400 border-white/10'
                     )}
                 >
                     {badge}
                 </span>
-            )}
-            {collapsed && badge && (
-                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#e04b2a] ring-2 ring-white dark:ring-slate-900" />
             )}
         </Link>
     );
@@ -115,54 +90,17 @@ const NavItem = ({
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isErpOpen, setIsErpOpen] = useState(false);
     const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
-    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => {
-        if (typeof window !== 'undefined' && window.innerWidth >= 768 && window.innerWidth < 1180) {
-            return true;
-        }
-        return localStorage.getItem('mitrixo_sidebar_collapsed') === 'true';
-    });
 
     const { role, signOut, user, engineerId } = useAuth();
     const { projects, engineers, tasks, entries, notifications, markNotificationRead, addNotification } = useData();
-    const { language, setLanguage } = useLanguage();
+    const { language, toggleLanguage } = useLanguage();
     const { activeOrg, switchOrganization } = useTenant();
     const { theme, toggleTheme } = useTheme();
-    const {
-        activeProjectCode,
-        setActiveProjectCode,
-        activeProject,
-        viewComplexity,
-        toggleViewComplexity,
-        activePersona,
-        setActivePersona,
-    } = useWorkflow();
-
-    const location = useLocation();
     const navigate = useNavigate();
-    const isAr = language === 'ar';
-    const isDecPortal = activeOrg.id === DEC_ORG_ID || activeOrg.name.toUpperCase().includes('DEC');
 
-    const toggleSidebarCollapse = () => {
-        setIsSidebarCollapsed(prev => {
-            const next = !prev;
-            localStorage.setItem('mitrixo_sidebar_collapsed', String(next));
-            return next;
-        });
-    };
-
-    useEffect(() => {
-        const handleGlobalShortcut = (e: KeyboardEvent) => {
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-                e.preventDefault();
-                setIsCommandPaletteOpen(prev => !prev);
-            }
-        };
-        window.addEventListener('keydown', handleGlobalShortcut);
-        return () => window.removeEventListener('keydown', handleGlobalShortcut);
-    }, []);
-
-    const [showMoreTools, setShowMoreTools] = useState(false);
+    const isDecPortal = activeOrg.id === DEC_ORG_ID;
     const notifiedTasksRef = useRef<Set<string>>(new Set());
 
     const [searchQuery, setSearchQuery] = useState('');
@@ -190,6 +128,18 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
+    // Universal Ctrl+K / Cmd+K shortcut
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                setIsCommandPaletteOpen(prev => !prev);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
     // Check for overdue tasks
     useEffect(() => {
         if (!engineerId || tasks.length === 0) return;
@@ -210,7 +160,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                                 isRead: false,
                                 createdAt: new Date().toISOString(),
                                 type: 'overdue_task',
-                                projectId: task.id,
+                                projectId: task.id
                             });
                         }
                     }
@@ -221,15 +171,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
     const searchResults = React.useMemo(() => {
         if (!searchQuery.trim()) return [];
+
         const q = searchQuery.toLowerCase();
-        const results: Array<{
-            type: string;
-            title: string;
-            subtitle?: string;
-            id: string;
-            url: string;
-            icon: React.ElementType;
-        }> = [];
+        const results: Array<{ type: string; title: string; subtitle?: string; id: string; url: string; icon: React.ElementType }> = [];
 
         projects.forEach(p => {
             if (p.name.toLowerCase().includes(q)) {
@@ -246,14 +190,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         tasks.forEach(t => {
             if (t.title.toLowerCase().includes(q) || t.description?.toLowerCase().includes(q)) {
                 const project = projects.find(p => p.id === t.projectId);
-                results.push({
-                    type: 'Task',
-                    title: t.title,
-                    subtitle: `In ${project?.name || 'Unknown'}`,
-                    id: t.id,
-                    url: `/projects/${t.projectId}`,
-                    icon: LayoutDashboard,
-                });
+                results.push({ type: 'Task', title: t.title, subtitle: `In ${project?.name || 'Unknown'}`, id: t.id, url: `/projects/${t.projectId}`, icon: LayoutDashboard });
             }
         });
 
@@ -265,7 +202,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     subtitle: `Log Entry`,
                     id: e.id,
                     url: `/entries`,
-                    icon: FileText,
+                    icon: FileText
                 });
             }
         });
@@ -273,662 +210,332 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         return results.slice(0, 8);
     }, [searchQuery, projects, engineers, tasks, entries]);
 
-    const activeStageIndex = NEXUS_LIFECYCLE_STAGES.findIndex(
-        stage => location.pathname === stage.path || location.pathname.startsWith(stage.path + '/')
-    );
-    const nextStage =
-        activeStageIndex >= 0 && activeStageIndex < NEXUS_LIFECYCLE_STAGES.length - 1
-            ? NEXUS_LIFECYCLE_STAGES[activeStageIndex + 1]
-            : undefined;
-
-    const closeMobileIfOpen = () => {
-        if (isMobileMenuOpen) setIsMobileMenuOpen(false);
-    };
-
-    useEffect(() => {
-        if (isMobileMenuOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [isMobileMenuOpen]);
-
-    const displayUserName = user?.email?.split('@')[0] || (isDecPortal ? 'Eng. Michael Magdy' : 'Eng. Pierre Afifi');
-
     return (
-        <div
-            dir={isAr ? 'rtl' : 'ltr'}
-            className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-[#f8fafc] dark:bg-[#0b0f19] font-sans text-slate-900 dark:text-slate-100 flex relative selection:bg-[#e04b2a]/20"
-        >
-            {/* Mitrixo Floating Role Preview Banner — visible when previewing non-CEO persona */}
-            {activePersona !== 'ceo' && (
-                <div className="fixed bottom-16 lg:bottom-5 left-1/2 -translate-x-1/2 z-[95] animate-in fade-in duration-200">
-                    <button
-                        type="button"
-                        onClick={() => setActivePersona('ceo')}
-                        className="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs rounded-full shadow-lg shadow-amber-500/30 transition-colors"
-                    >
-                        <Eye className="w-3.5 h-3.5" />
-                        <span>Previewing Role: {activePersona.toUpperCase()}</span>
-                        <span>·</span>
-                        <X className="w-3.5 h-3.5" />
-                        <span>Reset to CEO View</span>
-                    </button>
-                </div>
-            )}
+        <div className="min-h-screen bg-[#0f0f0f] font-sans text-dec-text flex relative selection:bg-orange-500/30">
+            {/* Subtle glow background matching 'Intelligence in Action' */}
+            <div
+                className="absolute inset-0 opacity-[0.02] pointer-events-none z-0"
+                style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.15) 1px, transparent 0)' }}
+            />
 
-            {/* Mobile Drawer Backdrop */}
-            {isMobileMenuOpen && (
-                <div
-                    aria-hidden="true"
-                    className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[90] lg:hidden transition-opacity"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                />
-            )}
-
-            {/* Mitrixo Collapsible Sidebar (w-64 expanded ↔ w-[68px] collapsed on desktop) */}
+            {/* Sidebar */}
             <aside
-                aria-label={isAr ? 'القائمة الجانبية' : 'Main Sidebar Navigation'}
                 className={clsx(
-                    'fixed inset-y-0 z-[100] h-[100dvh] max-h-[100dvh] lg:h-screen lg:max-h-screen bg-white dark:bg-[#111827] shadow-2xl lg:shadow-none transform transition-all duration-300 ease-out lg:translate-x-0 lg:sticky lg:top-0 lg:z-30 flex flex-col overflow-hidden pointer-events-auto shrink-0 sidebar-transition',
-                    isSidebarCollapsed ? 'w-[280px] lg:w-[68px]' : 'w-[280px] lg:w-64',
-                    isAr
-                        ? 'right-0 left-auto border-s border-slate-200/80 dark:border-slate-800/80'
-                        : 'left-0 right-auto border-e border-slate-200/80 dark:border-slate-800/80',
-                    isMobileMenuOpen
-                        ? 'translate-x-0'
-                        : isAr
-                        ? 'translate-x-full lg:translate-x-0'
-                        : '-translate-x-full lg:translate-x-0'
+                    'fixed inset-y-0 left-0 z-50 w-72 glass-morphism transform transition-all duration-500 ease-in-out lg:translate-x-0 lg:static lg:block h-full shadow-2xl',
+                    isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
                 )}
             >
-                {/* Sidebar Header: Brand Logo + 1-Click Dual-Tenant Switcher (DEC Portal ↔ Nexus ERP) */}
-                <div className="p-3 border-b border-slate-200/80 dark:border-slate-800/80 shrink-0 space-y-2.5">
-                    <div className={clsx('flex items-center', isSidebarCollapsed ? 'lg:justify-center justify-between' : 'justify-between')}>
-                        <div
-                            onClick={() => navigate('/')}
-                            className="cursor-pointer hover:opacity-90 transition-opacity"
-                        >
-                            <Logo collapsed={isSidebarCollapsed} />
+                <div className="h-full flex flex-col p-6 overflow-y-auto no-scrollbar">
+                    <div className="mb-6 flex items-center justify-between lg:justify-start space-x-3 shrink-0">
+                        <div className="flex items-center justify-center lg:justify-start w-full mb-4">
+                            <Logo />
                         </div>
                         <button
-                            type="button"
-                            aria-label="Close Sidebar"
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="lg:hidden inline-flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200"
+                            className="lg:hidden absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600"
                         >
-                            <X className="w-4 h-4" />
+                            <X className="w-6 h-6" />
                         </button>
                     </div>
 
-                    {/* 1-Click Tenant Switcher right at the top of the Sidebar */}
-                    {!isSidebarCollapsed ? (
-                        <div className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800">
-                            <button
-                                type="button"
-                                onClick={() => switchOrganization(DEC_ORG_ID)}
-                                className={clsx(
-                                    'py-1.5 px-2 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all truncate',
-                                    isDecPortal
-                                        ? 'bg-[#e04b2a] text-white shadow-sm'
-                                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                                )}
-                                title="Switch to DEC Milestone Portal"
-                            >
-                                DEC Portal
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => switchOrganization(DEFAULT_ORG_ID)}
-                                className={clsx(
-                                    'py-1.5 px-2 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all truncate',
-                                    !isDecPortal
-                                        ? 'bg-[#192631] text-white shadow-sm'
-                                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                                )}
-                                title="Switch to NEXUS Contracting ERP"
-                            >
-                                NEXUS ERP
-                            </button>
-                        </div>
-                    ) : (
-                        <button
-                            type="button"
-                            onClick={() => switchOrganization(isDecPortal ? DEFAULT_ORG_ID : DEC_ORG_ID)}
-                            title={isDecPortal ? 'Active: DEC Portal (Click for NEXUS)' : 'Active: NEXUS ERP (Click for DEC Portal)'}
-                            className="hidden lg:flex w-full h-8 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-[#e04b2a] hover:bg-[#e04b2a] hover:text-white transition-colors"
-                        >
-                            <Building2 className="w-4 h-4" />
-                        </button>
-                    )}
-                </div>
+                    <nav className="space-y-2 flex-1">
+                        <NavItem to="/" icon={LayoutDashboard} label="Dashboard" />
+                        {role !== 'client' && <NavItem to="/projects" icon={FolderKanban} label="Projects" />}
+                        {role !== 'client' && <NavItem to="/proposals" icon={ShieldCheck} label="RIBA Proposals" />}
+                        {role !== 'client' && <NavItem to="/boq" icon={Calculator} label="BOQ Viewer" />}
+                        {role !== 'client' && <NavItem to="/meetings" icon={Calendar} label="Meetings" />}
+                        {role === 'admin' && <NavItem to="/engineers" icon={Users} label="Engineers" />}
+                        {role !== 'client' && <NavItem to="/entries" icon={FileText} label="Daily Entries" />}
+                        {role !== 'client' && <NavItem to="/attendance" icon={CalendarCheck} label="Attendance" />}
+                        {role === 'admin' && <NavItem to="/financials" icon={DollarSign} label="Financials" />}
+                        {role === 'admin' && <NavItem to="/reports" icon={PieChart} label="Reports" />}
+                        {role !== 'client' && <NavItem to="/emails" icon={Mail} label="Emails" />}
 
-                {/* Scrollable Mitrixo Navigation Rail */}
-                <nav className="flex-1 overflow-y-auto p-2.5 space-y-3 no-scrollbar">
-                    {/* GROUP 1: OPERATIONS & 5-GATE */}
-                    <div className="space-y-1">
-                        {!isSidebarCollapsed && (
-                            <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-2.5 pt-1 pb-0.5">
-                                {isAr ? 'العمليات والمشاريع' : 'Operations'}
-                            </div>
-                        )}
-                        <NavItem
-                            to="/"
-                            icon={LayoutDashboard}
-                            label={isAr ? 'لوحة القيادة' : 'Dashboard'}
-                            collapsed={isSidebarCollapsed}
-                            onClick={closeMobileIfOpen}
-                        />
+                        {/* Expandable Turnkey Contracting & ERP Suite */}
                         {role !== 'client' && (
-                            <>
-                                <NavItem
-                                    to="/projects"
-                                    icon={FolderKanban}
-                                    label={isAr ? 'المشاريع (Projects)' : 'Projects'}
-                                    badge="77"
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
-                                <NavItem
-                                    to="/proposals"
-                                    icon={FileSignature}
-                                    label={isAr ? 'عروض RIBA والـ 5 بوابات' : 'RIBA Proposals & 5-Gate'}
-                                    badge="5-Gate"
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
-                            </>
+                            <div className="pt-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsErpOpen(!isErpOpen)}
+                                    className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/5 text-slate-400 hover:text-white transition-all font-mono text-xs uppercase tracking-wider"
+                                >
+                                    <span>Contracting & ERP</span>
+                                    <ChevronDown className={clsx('w-4 h-4 transition-transform', isErpOpen && 'rotate-180 text-orange-400')} />
+                                </button>
+                                {isErpOpen && (
+                                    <div className="mt-2 space-y-1.5 pl-2 border-l border-white/10">
+                                        <NavItem to="/submittals" icon={FileCheck2} label="Submittals" />
+                                        <NavItem to="/procurement" icon={PackageCheck} label="Procurement" />
+                                        <NavItem to="/subcontractors" icon={HardHat} label="Subcontractors" />
+                                        <NavItem to="/extracts" icon={Receipt} label="Client Extracts" />
+                                        <NavItem to="/variations" icon={GitPullRequestDraft} label="Variations & RFIs" />
+                                        {role === 'admin' && <NavItem to="/branding" icon={Palette} label="Branding Studio" />}
+                                    </div>
+                                )}
+                            </div>
                         )}
-                    </div>
 
-                    {role !== 'client' && (
-                        <>
-                            {/* GROUP 2: TECHNICAL OFFICE */}
-                            <div className="space-y-1">
-                                {!isSidebarCollapsed ? (
-                                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-2.5 pt-1 pb-0.5">
-                                        {isAr ? 'المكتب الفني' : 'Technical Office'}
-                                    </div>
-                                ) : (
-                                    <div className="border-t border-slate-200/60 dark:border-slate-800 my-1" />
-                                )}
-                                <NavItem
-                                    to="/boq"
-                                    icon={Calculator}
-                                    label={isAr ? '① المقايسة R02' : '① BOQ & Pricing'}
-                                    badge="839"
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
-                                <NavItem
-                                    to="/submittals"
-                                    icon={FileCheck2}
-                                    label={isAr ? '② الاعتمادات الفنية' : '② Submittals'}
-                                    badge="51"
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
-                                <NavItem
-                                    to="/variations-rfis"
-                                    icon={GitBranch}
-                                    label={isAr ? 'أوامر التغيير RFIs' : 'Variations & RFIs'}
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
+                        <NavItem to="/help" icon={BookOpen} label="Help Guide" />
+                        <NavItem to="/profile" icon={User} label="My Profile" />
+                    </nav>
+
+                    <div className="pt-6 border-t border-white/5 flex flex-col space-y-4 shrink-0 mt-6">
+                        <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] border border-white/5 rounded-2xl p-4 text-white shadow-xl">
+                            <div className="flex items-center justify-between mb-2">
+                                <div>
+                                    <p className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-40 mb-0.5">
+                                        {isDecPortal ? 'DEC Engineering' : 'NEXUS Contracting'}
+                                    </p>
+                                    <p className="text-sm font-semibold tracking-tight">
+                                        {isDecPortal ? 'Milestone Tracker' : 'Turnkey ERP Suite'}
+                                    </p>
+                                </div>
                             </div>
-
-                            {/* GROUP 3: SITE & PROCUREMENT */}
-                            <div className="space-y-1">
-                                {!isSidebarCollapsed ? (
-                                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-2.5 pt-1 pb-0.5">
-                                        {isAr ? 'الموقع والمشتريات' : 'Site & Procurement'}
-                                    </div>
-                                ) : (
-                                    <div className="border-t border-slate-200/60 dark:border-slate-800 my-1" />
-                                )}
-                                <NavItem
-                                    to="/procurement"
-                                    icon={Truck}
-                                    label={isAr ? '③ المشتريات والمخازن' : '③ Procurement'}
-                                    badge="4"
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
-                                <NavItem
-                                    to="/subcontractors"
-                                    icon={HardHat}
-                                    label={isAr ? '④ مقاولي الباطن' : '④ Subcontractors'}
-                                    badge="56"
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
-                                <NavItem
-                                    to="/engineers"
-                                    icon={Users}
-                                    label={isAr ? 'المهندسين والفرق' : 'Engineers'}
-                                    badge="16"
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
-                                <NavItem
-                                    to="/attendance"
-                                    icon={CalendarCheck}
-                                    label={isAr ? 'الحضور GPS' : 'Attendance & GPS'}
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
+                            {/* 1-Click Tenant Switcher (DEC Portal <-> NEXUS Contracting) */}
+                            <div className="grid grid-cols-2 gap-1.5 p-1 rounded-xl bg-black/40 border border-white/5 mt-2">
+                                <button
+                                    type="button"
+                                    onClick={() => switchOrganization(DEC_ORG_ID)}
+                                    className={clsx(
+                                        'py-1.5 px-2 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider transition-all',
+                                        isDecPortal
+                                            ? 'bg-orange-500 text-white shadow-orange-glow'
+                                            : 'text-slate-400 hover:text-white'
+                                    )}
+                                >
+                                    DEC Portal
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => switchOrganization(DEFAULT_ORG_ID)}
+                                    className={clsx(
+                                        'py-1.5 px-2 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider transition-all',
+                                        !isDecPortal
+                                            ? 'bg-orange-500 text-white shadow-orange-glow'
+                                            : 'text-slate-400 hover:text-white'
+                                    )}
+                                >
+                                    NEXUS ERP
+                                </button>
                             </div>
-
-                            {/* GROUP 4: FINANCE & MANAGEMENT */}
-                            <div className="space-y-1">
-                                {!isSidebarCollapsed ? (
-                                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-2.5 pt-1 pb-0.5">
-                                        {isAr ? 'المالية والإدارة' : 'Finance & Admin'}
-                                    </div>
-                                ) : (
-                                    <div className="border-t border-slate-200/60 dark:border-slate-800 my-1" />
-                                )}
-                                <NavItem
-                                    to="/extracts"
-                                    icon={Receipt}
-                                    label={isAr ? '⑤ المستخلصات والعملاء' : '⑤ Extracts & Ledger'}
-                                    badge="80"
-                                    collapsed={isSidebarCollapsed}
-                                    onClick={closeMobileIfOpen}
-                                />
-                                {role === 'admin' && (
-                                    <NavItem
-                                        to="/financials"
-                                        icon={DollarSign}
-                                        label={isAr ? '⑥ الخزينة والسيولة' : '⑥ Financials'}
-                                        badge="16"
-                                        collapsed={isSidebarCollapsed}
-                                        onClick={closeMobileIfOpen}
-                                    />
-                                )}
-                                {!isSidebarCollapsed && (
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowMoreTools(prev => !prev)}
-                                        className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-[11px] font-bold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-                                    >
-                                        <span className="flex items-center gap-2">
-                                            <Wrench className="w-3.5 h-3.5 text-[#e04b2a]" />
-                                            {isAr ? 'أدوات إضافية' : 'More Workspace Tools'}
-                                        </span>
-                                        <ChevronRight className={clsx('w-3.5 h-3.5 transition-transform', showMoreTools && 'rotate-90')} />
-                                    </button>
-                                )}
-                                {(showMoreTools || isSidebarCollapsed) && (
-                                    <div className="space-y-1 pt-0.5">
-                                        <NavItem
-                                            to="/entries"
-                                            icon={FileText}
-                                            label={isAr ? 'اليوميات' : 'Daily Entries'}
-                                            collapsed={isSidebarCollapsed}
-                                            onClick={closeMobileIfOpen}
-                                        />
-                                        <NavItem
-                                            to="/meetings"
-                                            icon={Calendar}
-                                            label={isAr ? 'الاجتماعات' : 'Meetings'}
-                                            collapsed={isSidebarCollapsed}
-                                            onClick={closeMobileIfOpen}
-                                        />
-                                        <NavItem
-                                            to="/emails"
-                                            icon={Mail}
-                                            label={isAr ? 'المراسلات' : 'Emails'}
-                                            collapsed={isSidebarCollapsed}
-                                            onClick={closeMobileIfOpen}
-                                        />
-                                        {role === 'admin' && (
-                                            <NavItem
-                                                to="/reports"
-                                                icon={PieChart}
-                                                label={isAr ? 'التقارير' : 'Reports'}
-                                                collapsed={isSidebarCollapsed}
-                                                onClick={closeMobileIfOpen}
-                                            />
-                                        )}
-                                        {role === 'admin' && (
-                                            <NavItem
-                                                to="/settings"
-                                                icon={Palette}
-                                                label={isAr ? 'إعدادات الهوية' : 'White-Label Studio'}
-                                                collapsed={isSidebarCollapsed}
-                                                onClick={closeMobileIfOpen}
-                                            />
-                                        )}
-                                        <NavItem
-                                            to="/help"
-                                            icon={BookOpen}
-                                            label={isAr ? 'دليل التشغيل' : 'Help Guide'}
-                                            collapsed={isSidebarCollapsed}
-                                            onClick={closeMobileIfOpen}
-                                        />
-                                        <NavItem
-                                            to="/profile"
-                                            icon={User}
-                                            label={isAr ? 'ملفي الشخصي' : 'My Profile'}
-                                            collapsed={isSidebarCollapsed}
-                                            onClick={closeMobileIfOpen}
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                        </>
-                    )}
-                </nav>
-
-                {/* Mitrixo-Style Sidebar Footer: Avatar + Role + Theme Toggle + Collapse Toggle + Sign Out */}
-                <div className="p-2.5 border-t border-slate-200/80 dark:border-slate-800/80 bg-slate-50/70 dark:bg-slate-900/50 flex flex-col gap-2 shrink-0">
-                    <div className={clsx('flex items-center', isSidebarCollapsed ? 'justify-center' : 'gap-2.5 px-1')}>
-                        <div
-                            onClick={() => navigate('/profile')}
-                            title="My Profile"
-                            className="w-8 h-8 rounded-full bg-[#e04b2a]/15 border border-[#e04b2a]/30 text-[#e04b2a] flex items-center justify-center font-black text-xs cursor-pointer shrink-0"
-                        >
-                            {displayUserName.charAt(0).toUpperCase()}
                         </div>
-                        {!isSidebarCollapsed && (
-                            <div className="min-w-0 flex-1">
-                                <p className="text-xs font-extrabold text-slate-900 dark:text-white truncate">
-                                    {displayUserName}
-                                </p>
-                                <p className="text-[10px] font-bold uppercase tracking-wider text-[#e04b2a] truncate">
-                                    {isDecPortal ? 'DEC Portal' : 'NEXUS ERP'} · {role || 'Admin'}
-                                </p>
+
+                        <div className="flex items-center justify-between p-2 rounded-xl bg-white/5 border border-white/5">
+                            <div className="flex flex-col min-w-0">
+                                <span className="font-bold text-white text-xs truncate uppercase tracking-wider">
+                                    {user?.email?.split('@')[0] || 'User'}
+                                </span>
+                                <span className="text-[10px] text-orange-400 font-bold uppercase tracking-widest mt-0.5">
+                                    {role || 'Engineer'}
+                                </span>
                             </div>
-                        )}
-                    </div>
-
-                    <div className={clsx('flex items-center justify-between border-t border-slate-200/60 dark:border-slate-800 pt-2', isSidebarCollapsed ? 'flex-col gap-1.5' : 'flex-row')}>
-                        <button
-                            type="button"
-                            onClick={toggleTheme}
-                            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors"
-                        >
-                            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4" />}
-                        </button>
-
-                        <button
-                            type="button"
-                            onClick={toggleSidebarCollapse}
-                            title={isSidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
-                            className="hidden lg:inline-flex items-center justify-center w-8 h-8 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-200/70 dark:hover:bg-slate-800 transition-colors"
-                        >
-                            {isSidebarCollapsed ? (
-                                isAr ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />
-                            ) : (
-                                isAr ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />
-                            )}
-                        </button>
-
-                        <button
-                            type="button"
-                            onClick={signOut}
-                            title={isAr ? 'تسجيل الخروج' : 'Sign Out'}
-                            className="inline-flex items-center justify-center w-8 h-8 rounded-lg text-rose-600 hover:bg-rose-500/10 transition-colors"
-                        >
-                            <LogOut className="w-4 h-4" />
-                        </button>
+                            <button
+                                onClick={signOut}
+                                className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-colors group"
+                                title="Sign Out"
+                            >
+                                <LogOut className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </aside>
 
-            {/* Main Content Pane */}
-            <main className="flex-1 flex flex-col min-w-0 max-w-full overflow-x-hidden relative z-10">
-                {/* Unified Mitrixo Top Header (Mobile + Desktop) */}
-                <header className="sticky top-0 z-40 h-16 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/95 dark:bg-[#111827]/95 backdrop-blur-xl px-3 sm:px-6 flex items-center justify-between gap-3 shrink-0 shadow-sm">
-                    {/* Left: Mobile Menu + Search Input (with Ctrl+K) */}
-                    <div className="flex items-center gap-3 flex-1 min-w-0">
+            {/* Main Content */}
+            <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative z-10">
+                {/* Mobile Header */}
+                <div className="lg:hidden bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 p-4 flex items-center justify-between sticky top-0 z-40">
+                    <div className="flex items-center">
+                        <Logo className="scale-75 origin-left opacity-90 brightness-150" />
+                    </div>
+                    <div className="flex items-center gap-2">
                         <button
-                            type="button"
-                            aria-label="Open menu"
-                            onClick={() => setIsMobileMenuOpen(true)}
-                            className="lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 shrink-0"
+                            onClick={() => setIsCommandPaletteOpen(true)}
+                            className="p-2 text-slate-400 hover:bg-white/5 hover:text-white rounded-lg border border-white/5"
+                            title="Command Palette (Ctrl+K)"
                         >
-                            <Menu className="w-5 h-5" />
+                            <Command className="w-5 h-5" />
                         </button>
+                        <button
+                            onClick={toggleLanguage}
+                            className="flex items-center gap-2 p-2 px-3 text-slate-400 font-bold text-xs uppercase hover:bg-white/5 hover:text-white rounded-lg transition-colors border border-white/5"
+                        >
+                            <Globe className="w-4 h-4" />
+                            {language === 'en' ? 'EN' : 'AR'}
+                        </button>
+                        <button
+                            onClick={() => setIsNotifOpen(!isNotifOpen)}
+                            className="relative p-2 text-slate-500 hover:bg-slate-100 rounded-lg"
+                        >
+                            <Bell className="w-6 h-6" />
+                            {unreadCount > 0 && (
+                                <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                            )}
+                        </button>
+                        <button
+                            onClick={() => setIsMobileMenuOpen(true)}
+                            className="p-2 text-slate-500 hover:bg-slate-100 rounded-lg"
+                        >
+                            <Menu className="w-6 h-6" />
+                        </button>
+                    </div>
+                </div>
 
-                        <div className="lg:hidden">
-                            <Logo showText={false} />
+                {/* Mobile Notifications Dropdown (Absolute overlay) */}
+                {isNotifOpen && (
+                    <div className="lg:hidden absolute top-16 right-4 left-4 bg-[#0B1121]/95 backdrop-blur-xl border border-slate-800 shadow-2xl rounded-2xl overflow-hidden z-50">
+                        <div className="p-4 border-b border-slate-800 bg-slate-800/30 flex justify-between items-center">
+                            <h3 className="font-semibold text-slate-200">Notifications</h3>
+                            <span className="text-xs font-medium text-slate-400 px-2 py-1 bg-slate-800/50 rounded-full border border-slate-700">
+                                {unreadCount} unread
+                            </span>
                         </div>
-
-                        {/* Universal Search Bar */}
-                        <div ref={searchRef} className="relative flex-1 max-w-md z-30">
-                            <div className="flex items-center w-full h-9 px-3 rounded-xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 focus-within:border-[#e04b2a] transition-all">
-                                <Search className="w-4 h-4 me-2 text-slate-400 shrink-0" />
-                                <input
-                                    type="text"
-                                    placeholder={
-                                        isAr
-                                            ? 'ابحث في المشاريع، المقايسة، الاعتمادات...'
-                                            : 'Search projects, BOQ, submittals, BIM...'
-                                    }
-                                    className="bg-transparent border-none w-full outline-none text-xs font-medium text-slate-900 dark:text-slate-100 placeholder-slate-400"
-                                    value={searchQuery}
-                                    onChange={e => {
-                                        setSearchQuery(e.target.value);
-                                        setIsSearchOpen(true);
-                                    }}
-                                    onFocus={() => setIsSearchOpen(true)}
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setIsCommandPaletteOpen(true)}
-                                    className="ms-1.5 px-1.5 py-0.5 rounded bg-white dark:bg-slate-800 hover:bg-[#e04b2a] hover:text-white text-[10px] font-black text-slate-500 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition-colors shrink-0"
-                                    title="Open Universal Command Palette (Ctrl+K)"
-                                >
-                                    Ctrl+K
-                                </button>
-                            </div>
-
-                            {isSearchOpen && searchQuery.trim() && (
-                                <div className="absolute top-11 start-0 w-full sm:w-96 bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
-                                    {searchResults.length === 0 ? (
-                                        <div className="p-4 text-center text-slate-500 text-xs">
-                                            No results found for "{searchQuery}"
-                                        </div>
-                                    ) : (
-                                        <div className="max-h-80 overflow-y-auto py-1.5 no-scrollbar">
-                                            {searchResults.map((result, idx) => {
-                                                const Icon = result.icon;
-                                                return (
-                                                    <button
-                                                        key={`${result.type}-${result.id}-${idx}`}
-                                                        onClick={() => {
-                                                            navigate(result.url);
-                                                            setIsSearchOpen(false);
-                                                            setSearchQuery('');
-                                                        }}
-                                                        className="w-full text-start px-3.5 py-2.5 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-3 transition-colors"
-                                                    >
-                                                        <div className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-[#e04b2a]">
-                                                            <Icon className="w-4 h-4" />
-                                                        </div>
-                                                        <div className="min-w-0 flex-1">
-                                                            <p className="font-bold text-slate-900 dark:text-white text-xs truncate">{result.title}</p>
-                                                            <p className="text-[11px] text-slate-500 truncate">
-                                                                <span className="text-[#e04b2a] font-semibold">{result.type}</span>
-                                                                {result.subtitle ? ` · ${result.subtitle}` : ''}
-                                                            </p>
-                                                        </div>
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
-                                    )}
-                                </div>
+                        <div className="max-h-[60vh] overflow-y-auto no-scrollbar">
+                            {myNotifications.length === 0 ? (
+                                <div className="p-8 text-center text-slate-500 text-sm">No new notifications</div>
+                            ) : (
+                                myNotifications.map(notif => (
+                                    <div
+                                        key={notif.id}
+                                        className={clsx(
+                                            'p-4 border-b border-slate-800/50 last:border-0 hover:bg-slate-800/50 transition-colors cursor-pointer',
+                                            !notif.isRead && 'bg-orange-500/10'
+                                        )}
+                                        onClick={() => {
+                                            if (!notif.isRead) markNotificationRead(notif.id);
+                                            setIsNotifOpen(false);
+                                        }}
+                                    >
+                                        <p className={clsx('text-sm', notif.isRead ? 'text-slate-400' : 'text-slate-200 font-medium')}>
+                                            {notif.message}
+                                        </p>
+                                        <p className="text-xs text-slate-500 mt-1">{new Date(notif.createdAt || '').toLocaleString()}</p>
+                                    </div>
+                                ))
                             )}
                         </div>
                     </div>
+                )}
 
-                    {/* Right: Active Project Pill + Role Preview + Theme Toggle + Language + Notifications */}
-                    <div className="flex items-center gap-2 shrink-0">
-                        {/* 1. Active Project Selector (Desktop) */}
-                        <div className="hidden xl:flex items-center gap-1.5 h-9 px-3 rounded-xl bg-slate-100/90 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800">
-                            <Pin className="w-3.5 h-3.5 text-[#e04b2a] shrink-0" />
-                            <select
-                                aria-label="Global Active Project Selector"
-                                value={activeProjectCode}
-                                onChange={e => setActiveProjectCode(e.target.value)}
-                                className="bg-transparent border-none text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none cursor-pointer max-w-[210px] truncate"
+                {/* Top Desktop Bar (Search & Notifications) */}
+                <div className="hidden lg:flex items-center justify-between p-8 pb-0">
+                    <div ref={searchRef} className="relative w-full max-w-lg z-30">
+                        <div className="glass-morphism px-5 py-3 rounded-2xl text-slate-400 flex items-center w-full shadow-2xl focus-within:border-orange-500/50 focus-within:bg-white/5 transition-all duration-300 group">
+                            <Search className="w-5 h-5 mr-3 text-slate-500 group-focus-within:text-orange-400 transition-colors" />
+                            <input
+                                type="text"
+                                placeholder="Search everything... (or press Ctrl+K)"
+                                className="bg-transparent w-full outline-none text-white placeholder-slate-600 text-sm font-mono"
+                                value={searchQuery}
+                                onChange={(e) => {
+                                    setSearchQuery(e.target.value);
+                                    setIsSearchOpen(true);
+                                }}
+                                onFocus={() => setIsSearchOpen(true)}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setIsCommandPaletteOpen(true)}
+                                className="ml-2 px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] font-mono text-slate-400 hover:text-orange-400 hover:border-orange-500/30 transition-colors shrink-0"
                             >
-                                <option value="ALL">
-                                    {isAr ? 'كل المشاريع (77 مشروع)' : 'All 77 Projects (Portfolio)'}
-                                </option>
-                                {NEXUS_LIVE_PROJECTS.map(proj => (
-                                    <option key={proj.id} value={proj.code}>
-                                        {proj.code} - {proj.clientName}
-                                    </option>
-                                ))}
-                            </select>
-                            {activeProject && (
-                                <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400">
-                                    {activeProject.completionPercent}%
-                                </span>
-                            )}
+                                Ctrl+K
+                            </button>
                         </div>
 
-                        {/* 2. Mitrixo Role Preview Selector */}
-                        <div className="hidden md:flex items-center gap-1.5 h-9 px-2.5 rounded-xl bg-slate-100/90 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800">
-                            <Eye className="w-3.5 h-3.5 text-[#e04b2a] shrink-0" />
-                            <select
-                                aria-label="Role Persona Quick Switcher"
-                                value={activePersona}
-                                onChange={e => setActivePersona(e.target.value as WorkflowPersona)}
-                                className="bg-transparent border-none text-xs font-bold text-slate-800 dark:text-slate-200 focus:outline-none cursor-pointer"
-                            >
-                                <option value="ceo">{isAr ? 'الإدارة (CEO)' : 'CEO View'}</option>
-                                <option value="technical">{isAr ? 'المكتب الفني' : 'Technical Office'}</option>
-                                <option value="accounting">{isAr ? 'الحسابات' : 'Accounting'}</option>
-                                <option value="logistics">{isAr ? 'المخازن' : 'Logistics'}</option>
-                            </select>
-                        </div>
+                        {isSearchOpen && searchQuery.trim() && (
+                            <div className="absolute top-14 left-0 w-full bg-[#0B1121]/95 backdrop-blur-xl rounded-xl shadow-2xl border border-slate-800 overflow-hidden">
+                                {searchResults.length === 0 ? (
+                                    <div className="p-4 text-center text-slate-500 text-sm">No results found for "{searchQuery}"</div>
+                                ) : (
+                                    <div className="max-h-96 overflow-y-auto py-2 no-scrollbar">
+                                        {searchResults.map((result, idx) => {
+                                            const Icon = result.icon;
+                                            return (
+                                                <button
+                                                    key={`${result.type}-${result.id}-${idx}`}
+                                                    onClick={() => {
+                                                        navigate(result.url);
+                                                        setIsSearchOpen(false);
+                                                        setSearchQuery('');
+                                                    }}
+                                                    className="w-full text-left px-4 py-3 hover:bg-slate-800/60 flex items-start transition-colors"
+                                                >
+                                                    <div className="bg-slate-800 p-2 rounded-lg mr-3 text-slate-400 border border-slate-700/50">
+                                                        <Icon className="w-4 h-4" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="font-medium text-slate-200 text-sm">{result.title}</p>
+                                                        <div className="flex items-center text-xs text-slate-500 mt-0.5">
+                                                            <span className="font-medium text-orange-400 mr-2">{result.type}</span>
+                                                            {result.subtitle && <span>• {result.subtitle}</span>}
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
 
-                        {/* 3. Guided vs Full ERP Mode Pill */}
+                    {/* Desktop Controls (Workspace Switcher, Theme, Language & Notifications) */}
+                    <div className="relative z-30 ml-4 hidden lg:flex items-center gap-3">
                         <button
-                            type="button"
-                            onClick={toggleViewComplexity}
-                            title="Toggle Guided / Full Mode"
-                            className={clsx(
-                                'hidden sm:inline-flex items-center gap-1.5 h-9 px-3 rounded-xl text-xs font-bold border transition-all',
-                                viewComplexity === 'guided'
-                                    ? 'bg-[#123524] text-white border-[#123524]'
-                                    : 'bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-800'
-                            )}
-                        >
-                            {viewComplexity === 'guided' ? (
-                                <>
-                                    <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                                    <span>{isAr ? 'الوضع الموجه' : 'Guided'}</span>
-                                </>
-                            ) : (
-                                <>
-                                    <Layers className="w-3.5 h-3.5 text-[#e04b2a]" />
-                                    <span>Full ERP</span>
-                                </>
-                            )}
-                        </button>
-
-                        {/* 4. Mitrixo Sun/Moon Theme Toggle */}
-                        <button
-                            type="button"
                             onClick={toggleTheme}
-                            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                            className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-[#e04b2a] transition-colors"
+                            className="p-2.5 text-slate-400 hover:bg-white/5 hover:text-orange-400 rounded-xl transition-all border border-white/5 bg-[#1a1a1a]/50"
+                            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to DEC Dark Mode'}
                         >
-                            {theme === 'dark' ? (
-                                <Sun className="w-4 h-4 text-amber-400" />
-                            ) : (
-                                <Moon className="w-4 h-4 text-slate-700" />
-                            )}
+                            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                         </button>
 
-                        {/* 5. Segmented Language Switcher */}
-                        <div
-                            dir="ltr"
-                            className="inline-flex items-center h-9 p-0.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800"
+                        <button
+                            onClick={toggleLanguage}
+                            className="flex items-center gap-2 px-4 py-2 text-slate-400 font-bold text-xs uppercase hover:bg-white/5 hover:text-white rounded-xl transition-all border border-white/5 bg-[#1a1a1a]/50"
                         >
-                            <button
-                                type="button"
-                                onClick={() => setLanguage('en')}
-                                className={clsx(
-                                    'px-2 h-7 rounded-lg text-[11px] font-black transition-all',
-                                    language === 'en'
-                                        ? 'bg-[#e04b2a] text-white shadow-sm'
-                                        : 'text-slate-600 dark:text-slate-400'
-                                )}
-                            >
-                                EN
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setLanguage('ar')}
-                                className={clsx(
-                                    'px-2 h-7 rounded-lg text-[11px] font-black transition-all',
-                                    language === 'ar'
-                                        ? 'bg-[#e04b2a] text-white shadow-sm'
-                                        : 'text-slate-600 dark:text-slate-400'
-                                )}
-                            >
-                                عربي
-                            </button>
-                        </div>
+                            <Globe className="w-4 h-4" />
+                            {language === 'en' ? 'English' : 'عربي'}
+                        </button>
 
-                        {/* 6. Notifications Bell */}
                         <div ref={notifRef} className="relative">
                             <button
-                                type="button"
                                 onClick={() => setIsNotifOpen(!isNotifOpen)}
-                                className="relative inline-flex items-center justify-center w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-[#e04b2a] transition-colors"
+                                className="relative p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-full transition-colors"
                             >
-                                <Bell className="w-4 h-4" />
+                                <Bell className="w-6 h-6" />
                                 {unreadCount > 0 && (
-                                    <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#e04b2a] rounded-full ring-2 ring-white dark:ring-slate-900" />
+                                    <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-slate-50"></span>
                                 )}
                             </button>
 
                             {isNotifOpen && (
-                                <div className="absolute top-11 end-0 w-80 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl rounded-2xl overflow-hidden z-50">
-                                    <div className="p-3.5 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
-                                        <h3 className="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">
-                                            {isAr ? 'الإشعارات' : 'Notifications'}
-                                        </h3>
-                                        <span className="text-[11px] font-bold text-[#e04b2a] px-2 py-0.5 bg-[#e04b2a]/10 rounded-full">
-                                            {unreadCount} {isAr ? 'غير مقروء' : 'unread'}
+                                <div className="absolute top-12 right-0 w-80 bg-[#0B1121]/95 backdrop-blur-xl border border-slate-800 shadow-2xl rounded-2xl overflow-hidden">
+                                    <div className="p-4 border-b border-slate-800 bg-slate-800/30 flex justify-between items-center">
+                                        <h3 className="font-semibold text-slate-200">Notifications</h3>
+                                        <span className="text-xs font-medium text-slate-400 px-2 py-1 bg-slate-800/50 rounded-full border border-slate-700">
+                                            {unreadCount} unread
                                         </span>
                                     </div>
-                                    <div className="max-h-80 overflow-y-auto no-scrollbar">
+                                    <div className="max-h-96 overflow-y-auto no-scrollbar">
                                         {myNotifications.length === 0 ? (
-                                            <div className="p-6 text-center text-slate-500 text-xs">
-                                                {isAr ? 'لا توجد إشعارات جديدة' : 'No new notifications'}
-                                            </div>
+                                            <div className="p-8 text-center text-slate-500 text-sm">No new notifications</div>
                                         ) : (
                                             myNotifications.map(notif => (
                                                 <div
                                                     key={notif.id}
                                                     className={clsx(
-                                                        'p-3.5 border-b border-slate-100 dark:border-slate-800 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors cursor-pointer',
-                                                        !notif.isRead && 'bg-[#e04b2a]/5'
+                                                        'p-4 border-b border-slate-800/50 last:border-0 hover:bg-slate-800/50 transition-colors cursor-pointer',
+                                                        !notif.isRead && 'bg-orange-500/10'
                                                     )}
                                                     onClick={() => {
                                                         if (!notif.isRead) markNotificationRead(notif.id);
                                                         setIsNotifOpen(false);
                                                     }}
                                                 >
-                                                    <p className={clsx('text-xs', notif.isRead ? 'text-slate-500' : 'text-slate-900 dark:text-white font-bold')}>
+                                                    <p className={clsx('text-sm', notif.isRead ? 'text-slate-400' : 'text-slate-200 font-medium')}>
                                                         {notif.message}
                                                     </p>
-                                                    <p className="text-[10px] text-slate-400 mt-1">
-                                                        {new Date(notif.createdAt || '').toLocaleString()}
-                                                    </p>
+                                                    <p className="text-xs text-slate-500 mt-1">{new Date(notif.createdAt || '').toLocaleString()}</p>
                                                 </div>
                                             ))
                                         )}
@@ -937,118 +544,29 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                             )}
                         </div>
                     </div>
-                </header>
-
-                {/* Contextual 6-Stage Step Bar — Shown ONLY on Stage 1–6 pages so the main Dashboard stays clean and uncluttered */}
-                {role !== 'client' && activeStageIndex >= 0 && (
-                    <div className="px-3 sm:px-6 pt-3 pb-1 shrink-0">
-                        <div className="mitrixo-card px-3 py-2 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar">
-                            <div className="flex items-center gap-1.5 min-w-max">
-                                <button
-                                    type="button"
-                                    onClick={() => navigate('/')}
-                                    className="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-[#e04b2a] hover:text-white transition-colors flex items-center gap-1.5"
-                                >
-                                    <LayoutDashboard className="w-3.5 h-3.5" />
-                                    <span>{isAr ? 'الرئيسية' : 'Hub'}</span>
-                                </button>
-                                <span className="text-slate-300 dark:text-slate-700">•</span>
-                                {NEXUS_LIFECYCLE_STAGES.map((stage, index) => {
-                                    const isCurrent = index === activeStageIndex;
-                                    const isCompleted = activeStageIndex > index;
-                                    const circleSymbol = STEP_CIRCLES[index] || `${stage.stepNumber}.`;
-                                    return (
-                                        <React.Fragment key={stage.id}>
-                                            <button
-                                                type="button"
-                                                onClick={() => navigate(stage.path)}
-                                                className={clsx(
-                                                    'px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 shrink-0',
-                                                    isCurrent
-                                                        ? 'bg-[#e04b2a] text-white shadow-sm'
-                                                        : isCompleted
-                                                        ? 'bg-[#123524] text-white'
-                                                        : 'bg-slate-100/80 dark:bg-slate-800/70 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
-                                                )}
-                                            >
-                                                {isCompleted ? (
-                                                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
-                                                ) : (
-                                                    <span>{circleSymbol}</span>
-                                                )}
-                                                <span className="whitespace-nowrap">{isAr ? stage.titleAr : stage.titleEn}</span>
-                                            </button>
-                                            {index < NEXUS_LIFECYCLE_STAGES.length - 1 && (
-                                                <span className="text-slate-300 dark:text-slate-700 text-[10px]">➔</span>
-                                            )}
-                                        </React.Fragment>
-                                    );
-                                })}
-                            </div>
-
-                            {nextStage && (
-                                <button
-                                    type="button"
-                                    onClick={() => navigate(nextStage.path)}
-                                    className="ms-2 shrink-0 flex items-center gap-1.5 px-3 py-1 rounded-lg bg-[#123524] text-white text-xs font-bold"
-                                >
-                                    <span>{isAr ? `التالي: ${nextStage.titleAr}` : `Next: ${nextStage.titleEn}`}</span>
-                                    <ArrowRight className={clsx('w-3.5 h-3.5', isAr && 'rotate-180')} />
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                )}
-
-                {/* Main Viewport Content */}
-                <div className="w-full flex-1 p-3 sm:p-5 lg:p-6 pb-24 lg:pb-8 overflow-y-auto overflow-x-hidden">
-                    {children}
                 </div>
 
-                {/* Mobile Bottom Tab Bar */}
-                {role !== 'client' && (
-                    <div className="lg:hidden fixed bottom-0 inset-x-0 z-[80] bg-white/95 dark:bg-[#111827]/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 px-2 pt-1.5 pb-[max(0.45rem,env(safe-area-inset-bottom))]">
-                        <div className="grid grid-cols-5 gap-1 max-w-md mx-auto">
-                            {[
-                                { path: '/', label: isAr ? 'الرئيسية' : 'Hub', icon: LayoutDashboard },
-                                { path: '/projects', label: isAr ? 'المشاريع' : 'Projects', icon: FolderKanban },
-                                { path: '/proposals', label: isAr ? 'العروض' : '5-Gate', icon: FileSignature },
-                                { path: '/boq', label: isAr ? 'المقايسة' : 'BOQ', icon: Calculator },
-                                { path: '/financials', label: isAr ? 'المالية' : 'Finance', icon: DollarSign },
-                            ].map(tab => {
-                                const Icon = tab.icon;
-                                const active = tab.path === '/' ? location.pathname === '/' : location.pathname.startsWith(tab.path);
-                                return (
-                                    <button
-                                        key={tab.path}
-                                        type="button"
-                                        onClick={() => {
-                                            closeMobileIfOpen();
-                                            navigate(tab.path);
-                                        }}
-                                        className={clsx(
-                                            'flex flex-col items-center justify-center py-1.5 rounded-xl transition-all',
-                                            active
-                                                ? 'text-[#e04b2a] bg-[#e04b2a]/10 font-black'
-                                                : 'text-slate-500 dark:text-slate-400 font-semibold'
-                                        )}
-                                    >
-                                        <Icon className="w-4 h-4 mb-0.5" />
-                                        <span className="text-[10px] leading-tight truncate">{tab.label}</span>
-                                    </button>
-                                );
-                            })}
-                        </div>
-                    </div>
-                )}
-
-                <MailNotifier />
-                <CommandPalette
-                    isOpen={isCommandPaletteOpen}
-                    onClose={() => setIsCommandPaletteOpen(false)}
-                    onOpenProvisioner={() => navigate('/settings')}
-                />
+                <div className="w-full h-full p-3 md:p-6 lg:p-8 overflow-y-auto">
+                    {children}
+                </div>
             </main>
+
+            {isMobileMenuOpen && (
+                <div
+                    className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                />
+            )}
+
+            {/* Universal Ctrl+K Command Palette */}
+            <CommandPalette
+                isOpen={isCommandPaletteOpen}
+                onClose={() => setIsCommandPaletteOpen(false)}
+                onOpenProvisioner={() => navigate('/branding')}
+            />
+
+            {/* Email Notifications & Permissions Prompt */}
+            {role !== 'client' && <MailNotifier />}
         </div>
     );
 };
