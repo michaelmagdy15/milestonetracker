@@ -67,6 +67,31 @@ export const BoardroomPresentationMode: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                    <a
+                        href="/DEC-MisrConsult-Executive-Pitch.pptx"
+                        download
+                        className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap"
+                        title="Download Presenton Editable 12-Slide PowerPoint Deck"
+                    >
+                        ⬇ <span className="hidden sm:inline">Pitch</span> PPTX
+                    </a>
+                    <a
+                        href="/DEC-MisrConsult-Executive-Pitch.pdf"
+                        download
+                        className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-sky-500/15 hover:bg-sky-500/25 text-sky-300 border border-sky-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap"
+                        title="Download Presenton 12-Slide PDF Deck"
+                    >
+                        ⬇ PDF
+                    </a>
+                    <a
+                        href="/pitch-deck.html"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap"
+                        title="Open Interactive 12-Slide Presenton Deck"
+                    >
+                        12-Slide Deck
+                    </a>
                     {/* Toggle Client Confidential View (hides internal contractor markup) */}
                     <button
                         onClick={() => setIsClientConfidentialMode(!isClientConfidentialMode)}
