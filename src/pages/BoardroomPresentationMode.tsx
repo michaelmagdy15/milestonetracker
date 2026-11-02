@@ -68,6 +68,15 @@ export const BoardroomPresentationMode: React.FC = () => {
 
                 <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                     <a
+                        href="/MisrConsult-Apple-Teaser.mp4"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-purple-500/15 hover:bg-purple-500/25 text-purple-300 border border-purple-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap"
+                        title="Watch 45s Apple-Style Commercial Teaser Video"
+                    >
+                        🎬 <span className="hidden sm:inline">45s</span> Teaser
+                    </a>
+                    <a
                         href="/DEC-MisrConsult-Executive-Pitch.pptx"
                         download
                         className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 text-xs font-mono font-bold flex items-center gap-1.5 transition-all whitespace-nowrap"
