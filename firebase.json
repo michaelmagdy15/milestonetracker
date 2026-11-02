@@ -13,6 +13,54 @@
     ],
     "rewrites": [
       {
+        "source": "/video",
+        "destination": "/video-player.html"
+      },
+      {
+        "source": "/VIDEO",
+        "destination": "/video-player.html"
+      },
+      {
+        "source": "/video2",
+        "destination": "/video2-player.html"
+      },
+      {
+        "source": "/VIDEO2",
+        "destination": "/video2-player.html"
+      },
+      {
+        "source": "/ppt",
+        "destination": "/pitch-deck.html"
+      },
+      {
+        "source": "/PPT",
+        "destination": "/pitch-deck.html"
+      },
+      {
+        "source": "/pbt",
+        "destination": "/pitch-deck.html"
+      },
+      {
+        "source": "/PBT",
+        "destination": "/pitch-deck.html"
+      },
+      {
+        "source": "/deck",
+        "destination": "/pitch-deck.html"
+      },
+      {
+        "source": "/pdf",
+        "destination": "/DEC-MisrConsult-Executive-Pitch-V3.pdf"
+      },
+      {
+        "source": "/PDF",
+        "destination": "/DEC-MisrConsult-Executive-Pitch-V3.pdf"
+      },
+      {
+        "source": "/Mitrixo-Echo-Reveal.mp4",
+        "destination": "/Mitrixo-Echo-V3.mp4"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

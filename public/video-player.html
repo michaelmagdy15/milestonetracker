@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mitrixo ECHO — Official Reveal Video</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #020617;
+      color: #f8fafc;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: rgba(2, 6, 23, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #1e293b;
+      padding: 12px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .badge {
+      background: #10b981;
+      color: #020617;
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .nav-btns { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .btn {
+      font-weight: 700;
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn-cyan { background: #38bdf8; color: #020617; }
+    .btn-amber { background: #f59e0b; color: #020617; }
+    .btn-emerald { background: #10b981; color: #020617; }
+    .btn-dark { background: #1e293b; color: #f8fafc; border: 1px solid #334155; }
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    video {
+      width: 100%;
+      max-width: 1440px;
+      max-height: 82vh;
+      border-radius: 14px;
+      border: 1px solid #1e293b;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="badge">MITRIXO ECHO // OFFICIAL REVEAL</span>
+      <strong style="font-size:14px;">The AI Operating System for Engineering Firms (1m 44s Keynote Teaser)</strong>
+    </div>
+    <div class="nav-btns">
+      <a class="btn btn-cyan" href="/video2">▶ Watch Detailed Walkthrough (/video2)</a>
+      <a class="btn btn-amber" href="/ppt">📊 Open Presentation &amp; PDF (/ppt)</a>
+      <a class="btn btn-dark" href="/Mitrixo-Echo-V3.mp4" download>⬇ Download MP4</a>
+      <a class="btn btn-emerald" href="/login">🚀 Open Live Platform</a>
+    </div>
+  </header>
+  <main>
+    <video src="/Mitrixo-Echo-V3.mp4" controls autoplay playsinline preload="auto"></video>
+  </main>
+</body>
+</html>

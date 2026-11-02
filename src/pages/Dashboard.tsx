@@ -35,6 +35,7 @@ import { LiveOperationsMonitor } from '../components/LiveOperationsMonitor';
 import { SystemHint } from '../components/SystemHint';
 import { ExecutiveBiCharts } from '../components/ExecutiveBiCharts';
 import { EpiScoreboard } from '../components/EpiScoreboard';
+import { ProjectHealthRadarCard } from '../components/ProjectHealthRadarCard';
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -488,6 +489,11 @@ export const Dashboard = () => {
                         </div>
                     </div>
                 </div>
+            </motion.div>
+
+            {/* Project Health Radar (ported from MitrixoGYM Retention Radar) */}
+            <motion.div variants={itemVariants}>
+                <ProjectHealthRadarCard />
             </motion.div>
 
             {/* Executive BI & Earned Value Charts */}

@@ -25,6 +25,23 @@ import clsx from 'clsx';
 import toast from 'react-hot-toast';
 import { useTenant, MISR_CONSULT_ORG_ID, DEC_ORG_ID } from '../context/TenantContext';
 import { useData } from '../context/DataContext';
+import { Html5Qrcode } from 'html5-qrcode';
+import { getDeviceFingerprint } from '../utils/deviceFingerprint';
+import { FIDIC_ESCALATION_TAG, fidicDaysRemaining } from '../utils/projectHealthRadar';
+
+const QR_READER_ELEMENT_ID = 'echo-qr-reader';
+const QR_FILE_READER_ELEMENT_ID = 'echo-qr-file-reader';
+
+/** Extracts a drawing sheet code + revision number from a scanned QR payload or a register file name. */
+function parseDrawingRef(text: string): { sheet: string; rev: number | null } {
+    const revMatch = text.match(/rev(?:ision)?[\s._-]*0*(\d+)/i);
+    const rev = revMatch ? Number(revMatch[1]) : null;
+    // Sheet = everything before the revision token, stripped of URL noise and separators
+    const beforeRev = revMatch ? text.slice(0, revMatch.index) : text;
+    const lastSegment = beforeRev.split(/[/?#=|]/).filter(Boolean).pop() || beforeRev;
+    const sheet = lastSegment.replace(/\.(pdf|dwf|dwg)$/i, '').replace(/[\s._-]+$/, '').trim().toUpperCase();
+    return { sheet, rev };
+}
 
 interface SiteLocation {
     id: string;
@@ -126,20 +143,27 @@ function computeDistanceMeters(lat1: number, lng1: number, lat2: number, lng2: n
 
 export const FieldCompanionApp: React.FC = () => {
     const { activeOrg } = useTenant();
-    const { projects, entries, addAttendance, addEntry, addNotification } = useData();
+    const { projects, entries, projectFiles, addAttendance, addEntry, addNotification } = useData();
 
     const availableSites = TENANT_SITES[activeOrg.id] || TENANT_SITES[MISR_CONSULT_ORG_ID];
     const [selectedSiteId, setSelectedSiteId] = useState<string>(availableSites[0].id);
+    // Boardroom/demo calibration: overrides the site datum without mutating the shared site table
+    const [siteOverride, setSiteOverride] = useState<{ lat: number; lng: number } | null>(null);
 
     useEffect(() => {
         const list = TENANT_SITES[activeOrg.id] || TENANT_SITES[MISR_CONSULT_ORG_ID];
         setSelectedSiteId(list[0].id);
     }, [activeOrg.id]);
 
-    const currentSite = availableSites.find(s => s.id === selectedSiteId) || availableSites[0];
+    useEffect(() => {
+        setSiteOverride(null);
+    }, [selectedSiteId]);
+
+    const baseSite = availableSites.find(s => s.id === selectedSiteId) || availableSites[0];
+    const currentSite: SiteLocation = siteOverride ? { ...baseSite, ...siteOverride } : baseSite;
+    const deviceFingerprint = getDeviceFingerprint();
 
     const [activeTab, setActiveTab] = useState<'gps' | 'qr' | 'snag' | 'boq' | 'aibim'>('gps');
-    const [showRevDiffModal, setShowRevDiffModal] = useState<boolean>(false);
     const [aiVisionVerified, setAiVisionVerified] = useState<boolean>(false);
     const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
     const [isPunchedIn, setIsPunchedIn] = useState<boolean>(false);
@@ -150,14 +174,15 @@ export const FieldCompanionApp: React.FC = () => {
     const [isFetchingGps, setIsFetchingGps] = useState<boolean>(false);
     const [gpsMode, setGpsMode] = useState<'hardware' | 'simulated_lock'>('simulated_lock');
 
-    // Compute distance from either real hardware GPS or site datum lock
-    const userDistance = liveCoords && gpsMode === 'hardware'
+    // Distance is only known once we have a real device GPS fix — no fabricated fallback distance
+    const userDistance: number | null = liveCoords && gpsMode === 'hardware'
         ? computeDistanceMeters(liveCoords.lat, liveCoords.lng, currentSite.lat, currentSite.lng)
-        : 24; // 24m inside perimeter when in site-lock / demo override
+        : null;
 
-    const gpsAccuracy = liveCoords && gpsMode === 'hardware'
+    const gpsAccuracy: number | null = liveCoords && gpsMode === 'hardware'
         ? Number(liveCoords.accuracy.toFixed(1))
-        : 3.2;
+        : null;
+    const insideGeofence = userDistance !== null && userDistance <= currentSite.radiusMeters;
 
     // Listen to real browser online/offline events
     useEffect(() => {
@@ -176,18 +201,19 @@ export const FieldCompanionApp: React.FC = () => {
     const [rollCallCountdown, setRollCallCountdown] = useState<number>(60);
     const [rollCallVerifiedCount, setRollCallVerifiedCount] = useState<number>(2);
 
-    // QR Blueprint Scanner + Real Camera Stream State
+    // QR Blueprint Scanner — real decoding via html5-qrcode (same library MitrixoGYM uses for member check-in)
+    type DrawingCheckStatus = 'CURRENT' | 'SUPERSEDED' | 'NOT_IN_REGISTER' | 'NO_REVISION';
     const [scannedDrawing, setScannedDrawing] = useState<{
+        raw: string;
         sheet: string;
-        rev: string;
-        title: string;
-        status: 'IFC Approved' | 'Superseded Warning' | 'Pending Consultant';
-        issuedDate: string;
+        scannedRev: number | null;
+        latestRev: number | null;
+        latestFileName: string | null;
+        status: DrawingCheckStatus;
     } | null>(null);
     const [isScanning, setIsScanning] = useState<boolean>(false);
     const [cameraStreamActive, setCameraStreamActive] = useState<boolean>(false);
-    const videoRef = useRef<HTMLVideoElement | null>(null);
-    const mediaStreamRef = useRef<MediaStream | null>(null);
+    const qrScannerRef = useRef<Html5Qrcode | null>(null);
     const qrFileInputRef = useRef<HTMLInputElement | null>(null);
 
     // Voice & Photo Snag Logger (Real Web Speech API + Real File Camera Input)
@@ -207,6 +233,7 @@ export const FieldCompanionApp: React.FC = () => {
         }
     });
     const speechRecognitionRef = useRef<any>(null);
+    const [dictationLang, setDictationLang] = useState<'en-US' | 'ar-EG'>('en-US');
     const snagPhotoInputRef = useRef<HTMLInputElement | null>(null);
 
     // BOQ Daily Slider Values (Tenant-aware labels)
@@ -215,14 +242,31 @@ export const FieldCompanionApp: React.FC = () => {
     const [pkg2Progress, setPkg2Progress] = useState<number>(85);
     const [pkg3Progress, setPkg3Progress] = useState<number>(54);
 
-    // Clean up camera stream on unmount or tab change
-    useEffect(() => {
-        if (activeTab !== 'qr' && mediaStreamRef.current) {
-            mediaStreamRef.current.getTracks().forEach(track => track.stop());
-            mediaStreamRef.current = null;
-            setCameraStreamActive(false);
+    // Claim-vs-verified progress guard inputs (subcontractor IPC claim vs. site-verified BOQ progress)
+    const [claimedPercent, setClaimedPercent] = useState<number>(85);
+    const [packageValue, setPackageValue] = useState<number>(isMisrConsult ? 6_200_000 : 1_500_000);
+
+    const stopQrCamera = async () => {
+        const scanner = qrScannerRef.current;
+        qrScannerRef.current = null;
+        setCameraStreamActive(false);
+        setIsScanning(false);
+        if (scanner) {
+            try {
+                if (scanner.isScanning) await scanner.stop();
+                scanner.clear();
+            } catch (err) {
+                console.warn('[FieldApp] QR camera stop failed:', err);
+            }
         }
+    };
+
+    // Stop the camera when leaving the QR tab or unmounting
+    useEffect(() => {
+        if (activeTab !== 'qr') void stopQrCamera();
+         
     }, [activeTab]);
+    useEffect(() => () => { void stopQrCamera(); }, []);  
 
     // Countdown for Roll-Call
     useEffect(() => {
@@ -239,37 +283,37 @@ export const FieldCompanionApp: React.FC = () => {
     // 1. REAL HARDWARE GPS ACQUISITION
     const acquireRealHardwareGps = () => {
         if (!('geolocation' in navigator)) {
-            toast.error('Geolocation API is not supported on this browser.');
+            toast.error('This browser does not support location. Punch-in needs a GPS-capable device.');
             return;
         }
         setIsFetchingGps(true);
-        toast('Acquiring real satellite/device GPS lock...', { icon: '🛰️' });
         navigator.geolocation.getCurrentPosition(
             (pos) => {
                 setIsFetchingGps(false);
                 const coords = {
                     lat: Number(pos.coords.latitude.toFixed(5)),
                     lng: Number(pos.coords.longitude.toFixed(5)),
-                    accuracy: pos.coords.accuracy || 8.5,
+                    accuracy: pos.coords.accuracy,
                 };
                 setLiveCoords(coords);
                 setGpsMode('hardware');
                 const dist = computeDistanceMeters(coords.lat, coords.lng, currentSite.lat, currentSite.lng);
-                toast.success(`Live Device GPS Locked: ${coords.lat}°N, ${coords.lng}°E (${dist.toLocaleString()}m to site)`);
+                toast.success(`GPS fix: ${dist.toLocaleString()} m from site (±${Math.round(coords.accuracy)} m)`);
             },
             (err) => {
                 setIsFetchingGps(false);
-                toast.error(`GPS Permission/Signal Info: ${err.message}. Using Site RTK Lock.`);
                 setGpsMode('simulated_lock');
+                console.error('[FieldApp] Geolocation failed:', err);
+                toast.error(`Could not read GPS: ${err.message}. Allow location access and try again.`);
             },
             { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
         );
     };
 
-    // Snap target site to current real phone location (for live boardroom demo anywhere!)
+    // Demo calibration: move the geofence datum to the phone's current position (state override only)
     const calibrateSiteToCurrentPhoneLocation = () => {
         if (!('geolocation' in navigator)) {
-            toast.error('Geolocation not available.');
+            toast.error('This browser does not support location.');
             return;
         }
         setIsFetchingGps(true);
@@ -279,37 +323,36 @@ export const FieldCompanionApp: React.FC = () => {
                 const coords = {
                     lat: Number(pos.coords.latitude.toFixed(5)),
                     lng: Number(pos.coords.longitude.toFixed(5)),
-                    accuracy: pos.coords.accuracy || 4.2,
+                    accuracy: pos.coords.accuracy,
                 };
-                currentSite.lat = coords.lat;
-                currentSite.lng = coords.lng;
+                setSiteOverride({ lat: coords.lat, lng: coords.lng });
                 setLiveCoords(coords);
                 setGpsMode('hardware');
-                toast.success('Geofence Calibrated to Current Meeting Room GPS! Distance is now 0m.');
+                toast.success('Demo mode: geofence moved to this room. Punch-ins will be tagged as calibrated.');
             },
-            () => {
+            (err) => {
                 setIsFetchingGps(false);
-                setGpsMode('simulated_lock');
-                toast.success('Calibrated to Site RTK Geofence Lock (24m).');
+                console.error('[FieldApp] Calibration geolocation failed:', err);
+                toast.error(`Could not read GPS: ${err.message}`);
             },
             { enableHighAccuracy: true, timeout: 8000 }
         );
     };
 
-    // Real Firestore / DataContext Attendance & Entry Logging on Punch-In
+    // Attendance + log entry on punch-in, bound to GPS fix and device fingerprint
     const handleGpsPunchIn = async () => {
-        if (userDistance > currentSite.radiusMeters) {
-            toast.error(
-                `Outside Site Geofence! You are ${userDistance.toLocaleString()}m away (Max allowed: ${currentSite.radiusMeters}m). Tap "Calibrate Here" to test in this room.`
-            );
+        if (userDistance === null || !liveCoords) {
+            toast.error('Read your phone GPS first — punch-in requires a real location fix.');
+            return;
+        }
+        if (!insideGeofence) {
+            toast.error(`Outside the site geofence: ${userDistance.toLocaleString()} m away (limit ${currentSite.radiusMeters} m).`);
             return;
         }
         const now = new Date();
         const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         const todayIso = now.toISOString().split('T')[0];
-
-        setIsPunchedIn(true);
-        setPunchTime(timeStr);
+        const calibratedTag = siteOverride ? ' [DEMO-CALIBRATED DATUM]' : '';
 
         try {
             await addAttendance({
@@ -325,8 +368,8 @@ export const FieldCompanionApp: React.FC = () => {
                 projectId: activeProjId,
                 engineerId: currentSite.engineerId,
                 date: todayIso,
-                taskDescription: `[RTK GPS VERIFIED PUNCH-IN] ${currentSite.name} (${liveCoords ? `${liveCoords.lat}°N, ${liveCoords.lng}°E` : `${currentSite.lat}°N, ${currentSite.lng}°E`}, ±${gpsAccuracy}m accuracy)`,
-                softwareUsed: ['DEC Field OS v2.4', 'RTK Geofence'],
+                taskDescription: `[RTK GPS VERIFIED PUNCH-IN] ${currentSite.name} (${liveCoords.lat}°N, ${liveCoords.lng}°E, ${userDistance} m from datum, ±${gpsAccuracy} m) · device ${deviceFingerprint.fingerprintId}${calibratedTag}`,
+                softwareUsed: ['ECHO Field OS', 'GPS Geofence'],
                 timeSpent: 0.5,
                 milestone: 'Site Supervision & QA',
                 entryType: 'normal',
@@ -335,15 +378,17 @@ export const FieldCompanionApp: React.FC = () => {
             await addNotification({
                 id: `notif-gps-${Date.now()}`,
                 engineerId: currentSite.engineerId,
-                message: `Geofenced Punch-In verified at ${currentSite.name} (${timeStr})`,
+                message: `Geofenced punch-in at ${currentSite.name} (${timeStr})`,
                 isRead: false,
                 createdAt: now.toISOString(),
             });
 
-            toast.success(`Live Attendance & Telemetry saved to Firestore at ${timeStr}!`);
+            setIsPunchedIn(true);
+            setPunchTime(timeStr);
+            toast.success(`Punched in at ${timeStr}`);
         } catch (err) {
-            console.error('Failed to persist punch-in:', err);
-            toast.success(`Verified On-Site at ${timeStr}!`);
+            console.error('[FieldApp] Failed to persist punch-in:', err);
+            toast.error('Punch-in was NOT saved. Check your connection and try again.');
         }
     };
 
@@ -354,9 +399,9 @@ export const FieldCompanionApp: React.FC = () => {
 
     const confirmRollCall = async () => {
         setShowRollCall(false);
-        setRollCallVerifiedCount(prev => prev + 1);
         const todayIso = new Date().toISOString().split('T')[0];
         const activeProjId = projects[0]?.id || currentSite.defaultProjectId;
+        const gpsNote = userDistance !== null ? `${userDistance} m from datum` : 'no GPS fix';
 
         try {
             await addEntry({
@@ -364,146 +409,166 @@ export const FieldCompanionApp: React.FC = () => {
                 projectId: activeProjId,
                 engineerId: currentSite.engineerId,
                 date: todayIso,
-                taskDescription: `[SURPRISE ROLL-CALL VERIFIED • تمام مفاجئ] Confirmed live GPS presence on ${currentSite.name} with ${rollCallCountdown}s remaining (+5 EPI pts).`,
-                softwareUsed: ['DEC Field OS v2.4', 'Anti-Spoof Roll-Call'],
+                taskDescription: `[SURPRISE ROLL-CALL VERIFIED • تمام مفاجئ] ${currentSite.name} · ${gpsNote} · ${rollCallCountdown}s remaining · device ${deviceFingerprint.fingerprintId}`,
+                softwareUsed: ['ECHO Field OS', 'Roll-Call'],
                 timeSpent: 0.25,
                 milestone: 'Site Supervision & QA',
                 entryType: 'normal',
             });
-        } catch (e) {
-            console.error(e);
+            setRollCallVerifiedCount(prev => prev + 1);
+            toast.success('Roll-call confirmed and logged.');
+        } catch (err) {
+            console.error('[FieldApp] Roll-call log failed:', err);
+            toast.error('Roll-call was NOT saved. Try again.');
         }
-        toast.success('Surprise Roll-Call (تمام مفاجئ) verified & persisted to Executive Dashboard! +5 EPI points.');
     };
 
-    // 2. REAL CAMERA STREAM & QR BLUEPRINT VERIFICATION
+    // 2. QR DRAWING CHECK — decode, then compare against the project's drawing register
+    const evaluateDrawingQr = async (decodedText: string) => {
+        const { sheet, rev } = parseDrawingRef(decodedText);
+        const matches = projectFiles
+            .map(f => ({ file: f, ref: parseDrawingRef(f.name) }))
+            .filter(m => sheet && m.ref.sheet && (m.ref.sheet.includes(sheet) || sheet.includes(m.ref.sheet)));
+        const latest = matches.reduce<{ file: typeof projectFiles[number]; ref: { sheet: string; rev: number | null } } | null>(
+            (best, m) => (m.ref.rev !== null && (best === null || (best.ref.rev ?? -1) < m.ref.rev) ? m : best),
+            null
+        );
+
+        let status: DrawingCheckStatus;
+        if (matches.length === 0) status = 'NOT_IN_REGISTER';
+        else if (rev === null || !latest || latest.ref.rev === null) status = 'NO_REVISION';
+        else status = rev < latest.ref.rev ? 'SUPERSEDED' : 'CURRENT';
+
+        const result = {
+            raw: decodedText,
+            sheet: sheet || decodedText.slice(0, 40),
+            scannedRev: rev,
+            latestRev: latest?.ref.rev ?? null,
+            latestFileName: latest?.file.name ?? null,
+            status,
+        };
+        setScannedDrawing(result);
+
+        const statusText: Record<DrawingCheckStatus, string> = {
+            CURRENT: 'CURRENT — matches latest register revision',
+            SUPERSEDED: `SUPERSEDED — register has Rev ${result.latestRev}`,
+            NOT_IN_REGISTER: 'NOT IN REGISTER — cannot verify',
+            NO_REVISION: 'NO REVISION — revision could not be read',
+        };
+        if (status === 'SUPERSEDED') toast.error(`STOP: ${result.sheet} Rev ${rev} is superseded by Rev ${result.latestRev}`);
+        else if (status === 'CURRENT') toast.success(`${result.sheet} Rev ${rev} is the current revision`);
+        else toast(statusText[status], { icon: '⚠️' });
+
+        const todayIso = new Date().toISOString().split('T')[0];
+        const activeProjId = projects[0]?.id || currentSite.defaultProjectId;
+        try {
+            await addEntry({
+                id: `log-qr-${Date.now()}`,
+                projectId: activeProjId,
+                engineerId: currentSite.engineerId,
+                date: todayIso,
+                taskDescription: `[QR DRAWING CHECK] ${result.sheet}${rev !== null ? ` Rev ${rev}` : ''}: ${statusText[status]}`,
+                softwareUsed: ['ECHO Field OS', 'QR Drawing Guard'],
+                timeSpent: 0.1,
+                milestone: 'IFC Drawing Control',
+                entryType: status === 'SUPERSEDED' ? 'rfi' : 'normal',
+            });
+        } catch (err) {
+            console.error('[FieldApp] QR check log failed:', err);
+            toast.error('Drawing check result was NOT saved to the log.');
+        }
+    };
+
     const startLiveCameraAndScan = async () => {
+        if (cameraStreamActive) {
+            await stopQrCamera();
+            return;
+        }
         setIsScanning(true);
         try {
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: 'environment' }
-                });
-                mediaStreamRef.current = stream;
-                setCameraStreamActive(true);
-                if (videoRef.current) {
-                    videoRef.current.srcObject = stream;
-                    await videoRef.current.play();
-                }
-            }
-        } catch {
-            // Camera permission declined or desktop without webcam — gracefully fall back to visual scan
+            const scanner = new Html5Qrcode(QR_READER_ELEMENT_ID);
+            qrScannerRef.current = scanner;
+            await scanner.start(
+                { facingMode: 'environment' },
+                { fps: 10, qrbox: { width: 200, height: 200 } },
+                (decodedText) => {
+                    void stopQrCamera();
+                    void evaluateDrawingQr(decodedText);
+                },
+                () => { /* per-frame "no QR found" — expected while aiming */ }
+            );
+            setCameraStreamActive(true);
+        } catch (err) {
+            console.error('[FieldApp] Could not start QR camera:', err);
+            toast.error('Camera unavailable. Allow camera access, or use "Snap QR Photo".');
+            await stopQrCamera();
         }
-
-        setTimeout(async () => {
-            setIsScanning(false);
-            const verifiedDoc = isMisrConsult
-                ? {
-                      sheet: 'MC-SWRO-2400-P04',
-                      rev: 'Rev 06 (IFC)',
-                      title: '2400mm GRP High-Pressure Transmission Pipeline & Thrust Block Detail',
-                      status: 'IFC Approved' as const,
-                      issuedDate: '01 Nov 2026',
-                  }
-                : {
-                      sheet: 'DEC-STR-B02-C12',
-                      rev: 'Rev 04 (IFC)',
-                      title: 'Basement 02 Foundation & Retaining Wall Reinforcement',
-                      status: 'IFC Approved' as const,
-                      issuedDate: '28 Oct 2026',
-                  };
-
-            setScannedDrawing(verifiedDoc);
-
-            // Log QR verification to real DataContext entries
-            const todayIso = new Date().toISOString().split('T')[0];
-            const activeProjId = projects[0]?.id || currentSite.defaultProjectId;
-            try {
-                await addEntry({
-                    id: `log-qr-${Date.now()}`,
-                    projectId: activeProjId,
-                    engineerId: currentSite.engineerId,
-                    date: todayIso,
-                    taskDescription: `[QR DRAWING VERIFIED] ${verifiedDoc.sheet} (${verifiedDoc.rev}) — ${verifiedDoc.title} confirmed IFC Approved on site.`,
-                    softwareUsed: ['QR Drawing Guard', 'BIM 360 CDE'],
-                    timeSpent: 0.25,
-                    milestone: 'IFC Drawing Control',
-                    entryType: 'normal',
-                });
-            } catch (e) {
-                console.error(e);
-            }
-
-            toast.success(`Drawing ${verifiedDoc.sheet} (${verifiedDoc.rev}) verified & logged!`);
-        }, 1600);
     };
 
-    // 3. REAL WEB SPEECH API VOICE DICTATION + REAL CAMERA PHOTO CAPTURE
+    const handleQrPhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        e.target.value = '';
+        if (!file) return;
+        setIsScanning(true);
+        const fileScanner = new Html5Qrcode(QR_FILE_READER_ELEMENT_ID);
+        try {
+            const decoded = await fileScanner.scanFile(file, false);
+            await evaluateDrawingQr(decoded);
+        } catch (err) {
+            console.error('[FieldApp] No QR found in photo:', err);
+            toast.error('No QR code found in that photo. Get closer to the title-block stamp and retry.');
+        } finally {
+            fileScanner.clear();
+            setIsScanning(false);
+        }
+    };
+
+    // 3. VOICE DICTATION (Web Speech API) — never injects placeholder text
     const toggleVoiceDictation = () => {
-        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        const SpeechRecognitionCtor = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
         if (isRecording) {
-            if (speechRecognitionRef.current) {
-                speechRecognitionRef.current.stop();
-            }
+            speechRecognitionRef.current?.stop();
             setIsRecording(false);
             return;
         }
 
-        if (SpeechRecognition) {
-            try {
-                const recognition = new SpeechRecognition();
-                recognition.lang = 'en-US';
-                recognition.continuous = false;
-                recognition.interimResults = true;
-
-                recognition.onstart = () => {
-                    setIsRecording(true);
-                    toast('Microphone active — speak your site inspection snag now...', { icon: '🎙️' });
-                };
-
-                recognition.onresult = (event: any) => {
-                    let transcript = '';
-                    for (let i = 0; i < event.results.length; i++) {
-                        transcript += event.results[i][0].transcript;
-                    }
-                    setSnagDescription(transcript);
-                };
-
-                recognition.onerror = () => {
-                    setIsRecording(false);
-                    // Fallback if mic is muted or blocked
-                    const fallbackText = isMisrConsult
-                        ? 'Hydrostatic pressure test on 2400mm GRP pipeline section KP 14+200 verified at 16.5 bar with zero leakage. Ready for backfilling.'
-                        : 'Reinforcement cover spacers on grid axis C-4 missing 50mm requirement. Instructed subcontractor to rectify before concrete pour.';
-                    setSnagDescription(fallbackText);
-                    toast.success('Voice memo transcribed to structured WIR notice!');
-                };
-
-                recognition.onend = () => {
-                    setIsRecording(false);
-                    toast.success('Live voice transcription complete!');
-                };
-
-                speechRecognitionRef.current = recognition;
-                recognition.start();
-                return;
-            } catch {
-                // Fall through to intelligent fallback
-            }
+        if (!SpeechRecognitionCtor) {
+            toast.error('Voice dictation is not supported in this browser. Use Chrome (Android/desktop) or Safari (iOS), or type the snag.');
+            return;
         }
 
-        // Fallback if browser does not expose SpeechRecognition
-        setIsRecording(true);
-        toast('Recording site audio memo...', { icon: '🎙️' });
-        setTimeout(() => {
+        try {
+            const recognition = new SpeechRecognitionCtor();
+            recognition.lang = dictationLang;
+            recognition.continuous = false;
+            recognition.interimResults = true;
+            const baseText = snagDescription.trim();
+
+            recognition.onstart = () => setIsRecording(true);
+            recognition.onresult = (event: any) => {
+                let transcript = '';
+                for (let i = 0; i < event.results.length; i++) {
+                    transcript += event.results[i][0].transcript;
+                }
+                setSnagDescription(baseText ? `${baseText} ${transcript}` : transcript);
+            };
+            recognition.onerror = (event: any) => {
+                setIsRecording(false);
+                console.error('[FieldApp] Speech recognition error:', event?.error);
+                toast.error(event?.error === 'not-allowed'
+                    ? 'Microphone access was blocked. Allow it in browser settings.'
+                    : `Dictation stopped: ${event?.error || 'unknown error'}`);
+            };
+            recognition.onend = () => setIsRecording(false);
+
+            speechRecognitionRef.current = recognition;
+            recognition.start();
+        } catch (err) {
             setIsRecording(false);
-            const fallbackText = isMisrConsult
-                ? 'Hydrostatic pressure test on 2400mm GRP pipeline section KP 14+200 verified at 16.5 bar with zero leakage. Ready for backfilling.'
-                : 'Reinforcement cover spacers on grid axis C-4 missing 50mm requirement. Instructed subcontractor to rectify before concrete pour.';
-            setSnagDescription(fallbackText);
-            toast.success('Voice transcription converted to structured WIR snag notice!');
-        }, 2000);
+            console.error('[FieldApp] Could not start dictation:', err);
+            toast.error('Could not start voice dictation.');
+        }
     };
 
     const handlePhotoCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -512,59 +577,84 @@ export const FieldCompanionApp: React.FC = () => {
         const reader = new FileReader();
         reader.onload = () => {
             setSnagPhotoDataUrl(reader.result as string);
-            toast.success(`Site photo attached (${file.name})`);
+            toast.success('Site photo attached');
+        };
+        reader.onerror = () => {
+            console.error('[FieldApp] Could not read photo:', reader.error);
+            toast.error('Could not read that photo.');
         };
         reader.readAsDataURL(file);
     };
 
+    const queueOffline = (description: string) => {
+        const updatedQueue = [
+            ...pendingOfflineQueue,
+            {
+                description,
+                photo: null, // photos are not queued in localStorage (size limits); re-attach after sync
+                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            },
+        ];
+        try {
+            localStorage.setItem('dec_field_offline_queue', JSON.stringify(updatedQueue));
+            setPendingOfflineQueue(updatedQueue);
+            toast('Saved on this phone. It will sync when you are back online.', { icon: '💾' });
+            return true;
+        } catch (err) {
+            console.error('[FieldApp] Offline queue write failed:', err);
+            toast.error('Phone storage is full — this snag was NOT saved.');
+            return false;
+        }
+    };
+
     const handleSubmitSnag = async () => {
         if (!snagDescription.trim()) {
-            toast.error('Please record voice or type a snag description first.');
+            toast.error('Dictate or type a snag description first.');
             return;
         }
         const todayIso = new Date().toISOString().split('T')[0];
         const activeProjId = projects[0]?.id || currentSite.defaultProjectId;
+        const description = `[FIELD WIR / SNAG] ${snagDescription.trim()}${snagPhotoDataUrl ? ' [Photo attached]' : ''}`;
 
         if (!isOnline) {
-            const updatedQueue = [
-                ...pendingOfflineQueue,
-                {
-                    description: snagDescription,
-                    photo: snagPhotoDataUrl,
-                    timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                }
-            ];
-            setPendingOfflineQueue(updatedQueue);
-            localStorage.setItem('dec_field_offline_queue', JSON.stringify(updatedQueue));
-            toast('Stored in Offline Indexed/LocalStorage Queue. Will sync when online.', { icon: '💾' });
-        } else {
-            try {
-                await addEntry({
-                    id: `log-snag-${Date.now()}`,
-                    projectId: activeProjId,
-                    engineerId: currentSite.engineerId,
-                    date: todayIso,
-                    taskDescription: `[FIELD WIR / SNAG] ${snagDescription}${snagPhotoDataUrl ? ' [📸 Geotagged Site Photo Attached]' : ''}`,
-                    softwareUsed: ['DEC Field OS v2.4', 'WIR Snag Logger'],
-                    timeSpent: 1.0,
-                    milestone: 'Site WIR Inspection',
-                    entryType: 'rfi',
-                });
-                toast.success('WIR Snag logged live to Firestore & Executive Dashboard!');
-            } catch (err) {
-                console.error(err);
-                toast.success('Site inspection notice logged!');
+            if (queueOffline(description)) {
+                setSnagDescription('');
+                setSnagPhotoDataUrl(null);
+            }
+            return;
+        }
+        try {
+            await addEntry({
+                id: `log-snag-${Date.now()}`,
+                projectId: activeProjId,
+                engineerId: currentSite.engineerId,
+                date: todayIso,
+                taskDescription: description,
+                softwareUsed: ['ECHO Field OS', 'WIR Snag Logger'],
+                timeSpent: 1.0,
+                milestone: 'Site WIR Inspection',
+                entryType: 'rfi',
+            });
+            toast.success('Snag logged');
+            setSnagDescription('');
+            setSnagPhotoDataUrl(null);
+        } catch (err) {
+            console.error('[FieldApp] Snag save failed:', err);
+            // Keep the text so nothing is lost; offer the offline queue
+            if (queueOffline(description)) {
+                setSnagDescription('');
+                setSnagPhotoDataUrl(null);
             }
         }
-        setSnagDescription('');
-        setSnagPhotoDataUrl(null);
     };
 
-    // 3B. FIELD-TO-FIDIC CLAUSE 20.1 28-DAY TIME-BAR ESCALATION BRIDGE
+    // 3B. FIELD-TO-FIDIC 20.1 BRIDGE — starts a real 28-day countdown from today's date
     const handleEscalateSnagToFidic = async () => {
-        const desc = snagDescription.trim() || (isMisrConsult
-            ? 'Unforeseen Subsurface Basalt Rock Layer & Dewatering Delay at KP 14+200'
-            : 'Delayed Client IFC Approval on Foundation Grid C-4');
+        const desc = snagDescription.trim();
+        if (!desc) {
+            toast.error('Describe the delay event first (what happened, where, who caused it).');
+            return;
+        }
         const todayIso = new Date().toISOString().split('T')[0];
         const activeProjId = projects[0]?.id || currentSite.defaultProjectId;
 
@@ -574,56 +664,63 @@ export const FieldCompanionApp: React.FC = () => {
                 projectId: activeProjId,
                 engineerId: currentSite.engineerId,
                 date: todayIso,
-                taskDescription: `[FIDIC CLAUSE 20.1 ESCALATED • 28-DAY RADAR LOCKED] ${desc} — Bilingual Notice of Claim queued (+14 Days EOT entitlement protected).`,
-                softwareUsed: ['Mitrixo ECHO Field OS', 'FIDIC 20.1 Claim Bridge'],
-                timeSpent: 1.0,
+                taskDescription: `${FIDIC_ESCALATION_TAG} • NOTICE DUE IN 28 DAYS] ${desc} — reported from ${currentSite.name}`,
+                softwareUsed: ['ECHO Field OS', 'FIDIC 20.1 Bridge'],
+                timeSpent: 0.5,
                 milestone: 'FIDIC 28-Day Claim Shield',
                 entryType: 'rfi',
             });
-            toast.success('Escalated to FIDIC Clause 20.1 Radar! 28-Day Time-Bar Notice initialized.');
+            toast.success('Delay event escalated. 28-day notice countdown started on the Project Health Radar.');
+            setSnagDescription('');
         } catch (err) {
-            console.error(err);
-            toast.success('Escalated to FIDIC 28-Day Claim Shield!');
+            console.error('[FieldApp] FIDIC escalation failed:', err);
+            toast.error('Escalation was NOT saved. The 28-day clock is still running — retry now.');
         }
-        setSnagDescription('');
     };
 
-    // 5. 360° AI REALITY CAPTURE VS. BIM IPC OVERBILLING GUARD (BUILDOTS / OPENSPACE EDGE)
-    const handleClampIpcToAiVerified = async () => {
+    // 5. CLAIM-vs-VERIFIED PROGRESS GUARD — subcontractor IPC claim vs. site-verified BOQ progress
+    const verifiedPercent = pkg1Progress;
+    const overclaimPercent = Math.max(0, claimedPercent - verifiedPercent);
+    const overclaimValue = Math.round((overclaimPercent / 100) * packageValue);
+    const currencyCode = isMisrConsult ? 'EGP' : activeOrg.currency || 'AED';
+
+    const handleClampIpcToVerified = async () => {
+        if (overclaimPercent === 0) {
+            toast('Claim does not exceed verified progress — nothing to clamp.', { icon: '✅' });
+            return;
+        }
         const todayIso = new Date().toISOString().split('T')[0];
         const activeProjId = projects[0]?.id || currentSite.defaultProjectId;
-        setAiVisionVerified(true);
-        setPkg1Progress(62); // Clamp from 85% claimed to 62% AI-verified
-
+        const pkgName = isMisrConsult ? '2400mm GRP Pipeline Laying' : 'Package 02 - Rebar Fixing';
         try {
             await addEntry({
-                id: `log-aibim-${Date.now()}`,
+                id: `log-ipcguard-${Date.now()}`,
                 projectId: activeProjId,
                 engineerId: currentSite.engineerId,
                 date: todayIso,
-                taskDescription: isMisrConsult
-                    ? `[AI 360° REALITY vs BIM AUDIT] Subcontractor claimed 85% on 2400mm GRP Pipeline; AI Vision verified 62% physical installation. Blocked 23% overbilling (EGP 1,420,000 protected).`
-                    : `[AI 360° REALITY vs BIM AUDIT] Subcontractor claimed 85% on MEP Rough-In; AI Vision verified 62% physical installation. Blocked 23% overbilling (AED 340,000 protected).`,
-                softwareUsed: ['Mitrixo ECHO AI Vision', '4D BIM IPC Guard'],
-                timeSpent: 1.0,
-                milestone: 'AI vs BIM IPC Audit',
+                taskDescription: `[IPC PROGRESS GUARD] ${pkgName}: claimed ${claimedPercent}% vs site-verified ${verifiedPercent}% → certify ${verifiedPercent}%, withhold ${overclaimPercent}% (${currencyCode} ${overclaimValue.toLocaleString()})`,
+                softwareUsed: ['ECHO Field OS', 'IPC Progress Guard'],
+                timeSpent: 0.5,
+                milestone: 'IPC Certification',
                 entryType: 'normal',
             });
-            toast.success('IPC Extract Clamped to 62% AI-Verified Progress! Overbilling blocked.');
-        } catch (e) {
-            console.error(e);
-            toast.success('IPC Extract Clamped to AI-Verified Progress!');
+            setAiVisionVerified(true);
+            toast.success(`Certification capped at ${verifiedPercent}%. ${currencyCode} ${overclaimValue.toLocaleString()} withheld.`);
+        } catch (err) {
+            console.error('[FieldApp] IPC guard log failed:', err);
+            toast.error('Certification note was NOT saved. Try again.');
         }
     };
 
     const handleSyncOffline = async () => {
         if (pendingOfflineQueue.length === 0) {
-            toast('All offline logs are already synchronized.', { icon: '✨' });
+            toast('Nothing waiting to sync.', { icon: '✨' });
             return;
         }
         const todayIso = new Date().toISOString().split('T')[0];
         const activeProjId = projects[0]?.id || currentSite.defaultProjectId;
 
+        const failed: typeof pendingOfflineQueue = [];
         for (const item of pendingOfflineQueue) {
             try {
                 await addEntry({
@@ -631,23 +728,36 @@ export const FieldCompanionApp: React.FC = () => {
                     projectId: activeProjId,
                     engineerId: currentSite.engineerId,
                     date: todayIso,
-                    taskDescription: `[OFFLINE QUEUE SYNCED @ ${item.timestamp}] ${item.description}`,
-                    softwareUsed: ['DEC Field OS Offline Sync'],
+                    taskDescription: `${item.description} (captured offline @ ${item.timestamp})`,
+                    softwareUsed: ['ECHO Field OS', 'Offline Sync'],
                     timeSpent: 1.0,
                     milestone: 'Site WIR Inspection',
                     entryType: 'rfi',
                 });
-            } catch (e) {
-                console.error(e);
+            } catch (err) {
+                console.error('[FieldApp] Offline item failed to sync:', err);
+                failed.push(item);
             }
         }
-        setPendingOfflineQueue([]);
-        localStorage.removeItem('dec_field_offline_queue');
-        setIsOnline(true);
-        toast.success(`Synchronized ${pendingOfflineQueue.length} offline site logs to Cloud Firestore!`);
+        setPendingOfflineQueue(failed);
+        try {
+            if (failed.length) localStorage.setItem('dec_field_offline_queue', JSON.stringify(failed));
+            else localStorage.removeItem('dec_field_offline_queue');
+        } catch (err) {
+            console.error('[FieldApp] Offline queue update failed:', err);
+        }
+        const synced = pendingOfflineQueue.length - failed.length;
+        if (failed.length) toast.error(`Synced ${synced}, ${failed.length} still waiting. Retry when signal improves.`);
+        else toast.success(`Synced ${synced} offline log${synced === 1 ? '' : 's'}.`);
     };
 
-    // 4. REAL BOQ DAILY PROGRESS PERSISTENCE
+    // Auto-sync the offline queue when the connection returns (MitrixoGYM outbox pattern)
+    useEffect(() => {
+        if (isOnline && pendingOfflineQueue.length > 0) void handleSyncOffline();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isOnline]);
+
+    // 4. BOQ DAILY PROGRESS
     const handleSaveBoqProgress = async () => {
         const todayIso = new Date().toISOString().split('T')[0];
         const activeProjId = projects[0]?.id || currentSite.defaultProjectId;
@@ -662,17 +772,25 @@ export const FieldCompanionApp: React.FC = () => {
                 engineerId: currentSite.engineerId,
                 date: todayIso,
                 taskDescription: summary,
-                softwareUsed: ['DEC Field OS v2.4', 'Earned Value BOQ Engine'],
+                softwareUsed: ['ECHO Field OS', 'BOQ Progress'],
                 timeSpent: 1.5,
                 milestone: 'BOQ Daily Execution',
                 entryType: 'normal',
             });
-            toast.success('Daily BOQ Progress saved to Firestore & Earned Value S-Curve!');
-        } catch (e) {
-            console.error(e);
-            toast.success('Daily BOQ Progress synced!');
+            toast.success('Daily BOQ progress saved');
+        } catch (err) {
+            console.error('[FieldApp] BOQ save failed:', err);
+            toast.error('BOQ progress was NOT saved. Try again.');
         }
     };
+
+    // Open FIDIC delay events with live countdown (feeds the radar strip in the Voice/FIDIC tab)
+    const openFidicEvents = entries
+        .filter(e => e.taskDescription?.startsWith(FIDIC_ESCALATION_TAG))
+        .map(e => ({ entry: e, daysLeft: fidicDaysRemaining(e.date) }))
+        .filter(x => x.daysLeft >= -7)
+        .sort((a, b) => a.daysLeft - b.daysLeft)
+        .slice(0, 3);
 
     // Recent field logs from real DataContext so user sees live proof immediately
     const recentFieldEntries = entries
@@ -684,7 +802,7 @@ export const FieldCompanionApp: React.FC = () => {
             e.taskDescription?.includes('[SURPRISE ROLL-CALL') ||
             e.taskDescription?.includes('[OFFLINE QUEUE') ||
             e.taskDescription?.includes('[FIDIC CLAUSE') ||
-            e.taskDescription?.includes('[AI 360°')
+            e.taskDescription?.includes('[IPC PROGRESS GUARD')
         )
         .slice(0, 5);
 
@@ -705,8 +823,9 @@ export const FieldCompanionApp: React.FC = () => {
                 accept="image/*"
                 capture="environment"
                 className="hidden"
-                onChange={() => startLiveCameraAndScan()}
+                onChange={handleQrPhoto}
             />
+            <div id={QR_FILE_READER_ELEMENT_ID} className="hidden" />
 
             {/* Header info */}
             <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
@@ -767,7 +886,7 @@ export const FieldCompanionApp: React.FC = () => {
                         )}
                     >
                         {isOnline ? <Wifi className="w-3.5 h-3.5" /> : <WifiOff className="w-3.5 h-3.5" />}
-                        {isOnline ? 'Online (Cloud Sync)' : 'Offline (Queue Mode)'}
+                        {isOnline ? 'Online' : 'Offline (simulated)'}
                     </button>
                 </div>
             </div>
@@ -862,61 +981,70 @@ export const FieldCompanionApp: React.FC = () => {
                                         <div>
                                             <h4 className="text-sm font-black text-white">Geofenced Site Perimeter</h4>
                                             <p className="text-[11px] text-slate-400 mt-1">
-                                                Boundary ({currentSite.radiusMeters}m):{' '}
-                                                <strong className={userDistance <= currentSite.radiusMeters ? 'text-emerald-400' : 'text-amber-400'}>
-                                                    {userDistance.toLocaleString()}m from site datum
-                                                </strong>
+                                                Boundary {currentSite.radiusMeters} m ·{' '}
+                                                {userDistance === null ? (
+                                                    <strong className="text-slate-300">no GPS fix yet</strong>
+                                                ) : (
+                                                    <strong className={insideGeofence ? 'text-emerald-400' : 'text-amber-400'}>
+                                                        {userDistance.toLocaleString()} m from site datum
+                                                    </strong>
+                                                )}
                                             </p>
                                         </div>
 
                                         <div className="p-2.5 rounded-xl bg-black/60 border border-white/5 text-[10px] text-left space-y-1.5">
-                                            <div className="flex justify-between">
-                                                <span className="text-slate-500">Target Datum:</span>
-                                                <span className="text-slate-300">{currentSite.lat}°N, {currentSite.lng}°E</span>
-                                            </div>
-                                            <div className="flex justify-between">
-                                                <span className="text-slate-500">Device GPS:</span>
-                                                <span className="text-cyan-400 font-bold">
-                                                    {liveCoords
-                                                        ? `${liveCoords.lat}°N, ${liveCoords.lng}°E (Live Hardware)`
-                                                        : `${currentSite.lat}°N, ${currentSite.lng}°E (RTK Lock)`}
+                                            <div className="flex justify-between gap-2">
+                                                <span className="text-slate-500">Site datum:</span>
+                                                <span className="text-slate-300 text-right">
+                                                    {currentSite.lat}°N, {currentSite.lng}°E{siteOverride ? ' (demo-calibrated)' : ''}
                                                 </span>
                                             </div>
-                                            <div className="flex justify-between">
-                                                <span className="text-slate-500">GPS Accuracy:</span>
-                                                <span className="text-emerald-400 font-bold">&plusmn; {gpsAccuracy}m</span>
+                                            <div className="flex justify-between gap-2">
+                                                <span className="text-slate-500">Phone GPS:</span>
+                                                <span className="text-cyan-400 font-bold text-right">
+                                                    {liveCoords ? `${liveCoords.lat}°N, ${liveCoords.lng}°E` : 'Not read yet'}
+                                                </span>
                                             </div>
-                                            <div className="flex justify-between">
-                                                <span className="text-slate-500">Anti-Spoofing Status:</span>
-                                                <span className="text-emerald-400 font-bold">Hardware Keystore Signed</span>
+                                            <div className="flex justify-between gap-2">
+                                                <span className="text-slate-500">GPS accuracy:</span>
+                                                <span className={clsx('font-bold', gpsAccuracy === null ? 'text-slate-400' : gpsAccuracy <= 25 ? 'text-emerald-400' : 'text-amber-400')}>
+                                                    {gpsAccuracy === null ? '—' : `±${gpsAccuracy} m`}
+                                                </span>
+                                            </div>
+                                            <div className="flex justify-between gap-2">
+                                                <span className="text-slate-500">Device ID:</span>
+                                                <span className="text-emerald-400 font-bold">{deviceFingerprint.fingerprintId}</span>
                                             </div>
                                         </div>
 
-                                        {/* Hardware GPS & Calibration Controls */}
                                         <div className="grid grid-cols-2 gap-2">
                                             <button
                                                 onClick={acquireRealHardwareGps}
+                                                disabled={isFetchingGps}
                                                 className="py-2 px-2 rounded-xl bg-white/5 hover:bg-white/10 text-cyan-300 border border-cyan-500/20 text-[10px] font-bold flex items-center justify-center gap-1"
                                             >
-                                                <Navigation className="w-3 h-3" /> Read Phone GPS
+                                                <Navigation className="w-3 h-3" /> {isFetchingGps ? 'Locating…' : 'Read Phone GPS'}
                                             </button>
                                             <button
                                                 onClick={calibrateSiteToCurrentPhoneLocation}
+                                                disabled={isFetchingGps}
+                                                title="Moves the geofence to where you stand. Punch-ins are tagged as demo-calibrated."
                                                 className="py-2 px-2 rounded-xl bg-white/5 hover:bg-white/10 text-emerald-300 border border-emerald-500/20 text-[10px] font-bold flex items-center justify-center gap-1"
                                             >
-                                                <MapPin className="w-3 h-3" /> Calibrate Here (0m)
+                                                <MapPin className="w-3 h-3" /> Demo: Calibrate Here
                                             </button>
                                         </div>
 
                                         {isPunchedIn ? (
                                             <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold text-center">
                                                 <CheckCircle2 className="w-4 h-4 mx-auto mb-1 text-emerald-400" />
-                                                Verified On Site Since {punchTime} (Synced to Firestore)
+                                                On site since {punchTime}
                                             </div>
                                         ) : (
                                             <button
                                                 onClick={handleGpsPunchIn}
-                                                className="w-full py-3 rounded-xl bg-orange-500 text-white font-bold text-xs shadow-orange-glow hover:bg-orange-600 transition-all flex items-center justify-center gap-1.5"
+                                                disabled={!insideGeofence}
+                                                className="w-full py-3 rounded-xl disabled:opacity-40 disabled:cursor-not-allowed bg-orange-500 text-white font-bold text-xs shadow-orange-glow hover:bg-orange-600 transition-all flex items-center justify-center gap-1.5"
                                             >
                                                 <CheckCircle2 className="w-3.5 h-3.5" /> PUNCH IN (SAVE TO CLOUD)
                                             </button>
@@ -943,28 +1071,17 @@ export const FieldCompanionApp: React.FC = () => {
                                 </div>
                             )}
 
-                            {/* TAB 2: QR BLUEPRINT VERIFIER (WITH LIVE CAMERA STREAM) */}
+                            {/* TAB 2: QR DRAWING CHECK (real decode + register revision check) */}
                             {activeTab === 'qr' && (
                                 <div className="space-y-4">
                                     <div className="p-4 rounded-2xl bg-[#161616] border border-white/5 text-center space-y-3">
-                                        <div className="relative w-52 h-52 mx-auto rounded-2xl bg-black/80 border-2 border-dashed border-orange-500/40 overflow-hidden flex flex-col items-center justify-center">
-                                            <video
-                                                ref={videoRef}
-                                                playsInline
-                                                muted
-                                                className={clsx(
-                                                    'absolute inset-0 w-full h-full object-cover',
-                                                    cameraStreamActive ? 'opacity-90' : 'hidden'
-                                                )}
-                                            />
-                                            {isScanning && (
-                                                <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_12px_#10b981] animate-bounce top-1/2 z-10"></div>
-                                            )}
+                                        <div className="relative w-56 h-56 mx-auto rounded-2xl bg-black/80 border-2 border-dashed border-orange-500/40 overflow-hidden flex flex-col items-center justify-center">
+                                            <div id={QR_READER_ELEMENT_ID} className={clsx('absolute inset-0 [&_video]:object-cover [&_video]:w-full [&_video]:h-full', !cameraStreamActive && 'hidden')} />
                                             {!cameraStreamActive && (
                                                 <>
                                                     <QrCode className="w-16 h-16 text-slate-600 mb-2" />
                                                     <span className="text-[10px] text-slate-400 px-3">
-                                                        Point rear camera at drawing title block QR stamp
+                                                        Scan the QR stamp on the drawing title block to check it is the current revision
                                                     </span>
                                                 </>
                                             )}
@@ -973,61 +1090,52 @@ export const FieldCompanionApp: React.FC = () => {
                                         <div className="grid grid-cols-2 gap-2">
                                             <button
                                                 onClick={startLiveCameraAndScan}
-                                                disabled={isScanning}
+                                                disabled={isScanning && !cameraStreamActive}
                                                 className="py-2.5 px-2 rounded-xl bg-orange-500 text-white font-bold text-[11px] shadow-orange-glow hover:bg-orange-600 transition-all flex items-center justify-center gap-1.5"
                                             >
                                                 <Camera className="w-3.5 h-3.5" />
-                                                {isScanning ? 'Scanning...' : 'Live Camera Scan'}
+                                                {cameraStreamActive ? 'Stop Camera' : 'Live Camera Scan'}
                                             </button>
                                             <button
                                                 onClick={() => qrFileInputRef.current?.click()}
+                                                disabled={isScanning}
                                                 className="py-2.5 px-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 font-bold text-[11px] transition-all flex items-center justify-center gap-1.5"
                                             >
                                                 <ImageIcon className="w-3.5 h-3.5" />
                                                 Snap QR Photo
                                             </button>
                                         </div>
+                                        <p className="text-[9px] text-slate-500">
+                                            Checked against {projectFiles.length} file{projectFiles.length === 1 ? '' : 's'} in the drawing register (name must include sheet code + "Rev NN").
+                                        </p>
                                     </div>
 
-                                    {scannedDrawing && (
-                                        <div className="p-4 rounded-2xl bg-black/60 border border-emerald-500/30 space-y-2">
-                                            <div className="flex items-center justify-between">
-                                                <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
-                                                    Verified Drawing (Logged to CDE)
-                                                </span>
-                                                <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                                                    {scannedDrawing.status}
-                                                </span>
-                                            </div>
-                                            <h4 className="text-white font-bold text-xs">
-                                                {scannedDrawing.sheet} ({scannedDrawing.rev})
-                                            </h4>
-                                            <p className="text-[11px] text-slate-300">{scannedDrawing.title}</p>
-                                            <div className="pt-2 border-t border-white/5 text-[10px] text-slate-400 flex justify-between items-center">
-                                                <span>Issued: {scannedDrawing.issuedDate}</span>
-                                                <button
-                                                    onClick={() => setShowRevDiffModal(!showRevDiffModal)}
-                                                    className="px-2 py-1 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 font-bold hover:bg-cyan-500/20"
-                                                >
-                                                    {showRevDiffModal ? 'Hide Rev Cloud Diff' : 'Compare vs Prior Rev'}
-                                                </button>
-                                            </div>
-                                            {showRevDiffModal && (
-                                                <div className="mt-2 p-2.5 rounded-xl bg-black/80 border border-cyan-500/30 space-y-1.5 text-[10px]">
-                                                    <div className="flex items-center justify-between text-cyan-300 font-bold">
-                                                        <span>AI REVISION CLOUD DIFF (DALUX / ACC EDGE)</span>
-                                                        <span className="text-amber-400">+2 Deltas</span>
-                                                    </div>
-                                                    <div className="p-1.5 rounded bg-red-500/10 border border-red-500/20 text-red-300">
-                                                        + ADDED (Red Cloud): Thrust Block Rebar increased Ø20 → Ø25mm (+1.8 Tons)
-                                                    </div>
-                                                    <div className="p-1.5 rounded bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
-                                                        - REMOVED (Blue Cloud): Bypass Valve Chamber relocated +12m East
-                                                    </div>
+                                    {scannedDrawing && (() => {
+                                        const tone = {
+                                            CURRENT: { box: 'border-emerald-500/40', text: 'text-emerald-400', label: 'CURRENT REVISION' },
+                                            SUPERSEDED: { box: 'border-red-500/60 bg-red-500/5', text: 'text-red-400', label: 'SUPERSEDED — DO NOT BUILD' },
+                                            NOT_IN_REGISTER: { box: 'border-amber-500/40', text: 'text-amber-400', label: 'NOT IN REGISTER' },
+                                            NO_REVISION: { box: 'border-amber-500/40', text: 'text-amber-400', label: 'REVISION UNREADABLE' },
+                                        }[scannedDrawing.status];
+                                        return (
+                                            <div className={clsx('p-4 rounded-2xl bg-black/60 border space-y-2', tone.box)}>
+                                                <div className="flex items-center justify-between gap-2">
+                                                    <span className={clsx('text-[10px] font-bold uppercase tracking-wider', tone.text)}>{tone.label}</span>
+                                                    {scannedDrawing.status === 'SUPERSEDED' && <ShieldAlert className="w-4 h-4 text-red-400" />}
                                                 </div>
-                                            )}
-                                        </div>
-                                    )}
+                                                <h4 className="text-white font-bold text-xs break-all">
+                                                    {scannedDrawing.sheet}
+                                                    {scannedDrawing.scannedRev !== null && ` · Rev ${scannedDrawing.scannedRev}`}
+                                                </h4>
+                                                {scannedDrawing.latestFileName && (
+                                                    <p className="text-[10px] text-slate-300 break-all">
+                                                        Latest in register: <span className="text-white font-bold">{scannedDrawing.latestFileName}</span>
+                                                    </p>
+                                                )}
+                                                <p className="text-[9px] text-slate-500 break-all">QR payload: {scannedDrawing.raw}</p>
+                                            </div>
+                                        );
+                                    })()}
                                 </div>
                             )}
 
@@ -1051,6 +1159,17 @@ export const FieldCompanionApp: React.FC = () => {
                                                 <Mic className="w-3 h-3" />
                                                 {isRecording ? 'Listening (Tap to Stop)...' : 'Live Voice Dictate'}
                                             </button>
+                                        </div>
+                                        <div className="flex gap-1 text-[9px]">
+                                            {(['en-US', 'ar-EG'] as const).map(lang => (
+                                                <button
+                                                    key={lang}
+                                                    onClick={() => setDictationLang(lang)}
+                                                    className={clsx('px-2 py-0.5 rounded-md border font-bold', dictationLang === lang ? 'bg-white/15 text-white border-white/30' : 'text-slate-500 border-white/10')}
+                                                >
+                                                    {lang === 'en-US' ? 'English' : 'العربية'}
+                                                </button>
+                                            ))}
                                         </div>
 
                                         <textarea
@@ -1114,67 +1233,76 @@ export const FieldCompanionApp: React.FC = () => {
                                                 className="w-full py-2 px-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold flex items-center justify-center gap-1.5 transition-all"
                                             >
                                                 <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
-                                                Escalate Delay to FIDIC Clause 20.1 (28-Day Claim Shield)
+                                                Escalate as Delay Event (starts FIDIC 20.1 28-day clock)
                                             </button>
+                                            {openFidicEvents.length > 0 && (
+                                                <div className="mt-2 space-y-1">
+                                                    {openFidicEvents.map(({ entry, daysLeft }) => (
+                                                        <div key={entry.id} className={clsx('p-1.5 rounded-lg border text-[9px] flex justify-between gap-2', daysLeft <= 7 ? 'border-red-500/40 text-red-300' : 'border-amber-500/30 text-amber-200')}>
+                                                            <span className="truncate">{entry.taskDescription.replace(/^\[[^\]]*\]\s*/, '')}</span>
+                                                            <span className="font-bold shrink-0">{daysLeft < 0 ? 'EXPIRED' : `${daysLeft}d left`}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
                             )}
 
-                            {/* TAB 5: 360° AI REALITY CAPTURE VS. BIM IPC GUARD (BUILDOTS / OPENSPACE EDGE) */}
+                            {/* TAB 5: IPC PROGRESS GUARD — claimed vs. site-verified progress */}
                             {activeTab === 'aibim' && (
                                 <div className="space-y-4">
                                     <div className="p-4 rounded-2xl bg-[#161616] border border-cyan-500/20 space-y-3">
-                                        <div className="flex items-center justify-between">
+                                        <div className="flex items-center justify-between gap-2">
                                             <span className="text-[10px] text-cyan-400 uppercase tracking-wider font-bold flex items-center gap-1">
-                                                <Sparkles className="w-3 h-3" /> 360° AI Vision vs. 4D BIM Audit
+                                                <Sparkles className="w-3 h-3" /> IPC Progress Guard
                                             </span>
-                                            <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-red-500/10 text-red-400 border border-red-500/20">
-                                                -23% Overbilling Detected
+                                            <span className={clsx('px-2 py-0.5 rounded-full text-[9px] font-bold border', overclaimPercent > 0 ? 'bg-red-500/10 text-red-400 border-red-500/20' : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20')}>
+                                                {overclaimPercent > 0 ? `+${overclaimPercent}% over-claimed` : 'Claim OK'}
                                             </span>
                                         </div>
-
                                         <p className="text-[10px] text-slate-400 leading-relaxed">
-                                            Compares 360° site camera walks against IFC4 BIM element quantities to block subcontractor IPC overbilling before certification.
+                                            Compares the subcontractor's IPC claim against the progress your engineer verified on site (BOQ tab), before you certify payment.
                                         </p>
 
-                                        <div className="grid grid-cols-2 gap-2 text-center">
-                                            <div className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/25">
-                                                <span className="text-[9px] text-red-300 uppercase block">Subcontractor Claimed</span>
-                                                <span className="text-lg font-black text-red-400">85%</span>
-                                                <span className="text-[9px] text-slate-400 block">IPC #08 Submission</span>
-                                            </div>
-                                            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25">
-                                                <span className="text-[9px] text-emerald-300 uppercase block">AI Vision + BIM Verified</span>
-                                                <span className="text-lg font-black text-emerald-400">62%</span>
-                                                <span className="text-[9px] text-slate-400 block">Physical Installed Qty</span>
-                                            </div>
+                                        <label className="block space-y-1">
+                                            <span className="text-[10px] text-slate-400">Subcontractor claimed: <strong className="text-red-300">{claimedPercent}%</strong></span>
+                                            <input type="range" min="0" max="100" value={claimedPercent} onChange={e => setClaimedPercent(Number(e.target.value))} className="w-full accent-red-500" />
+                                        </label>
+                                        <div className="text-[10px] text-slate-400">
+                                            Site-verified (from BOQ tab): <strong className="text-emerald-300">{verifiedPercent}%</strong>
                                         </div>
+                                        <label className="block space-y-1">
+                                            <span className="text-[10px] text-slate-400">Package value ({currencyCode})</span>
+                                            <input
+                                                type="number"
+                                                min={0}
+                                                value={packageValue}
+                                                onChange={e => setPackageValue(Math.max(0, Number(e.target.value) || 0))}
+                                                className="w-full p-2 rounded-lg bg-black/60 border border-white/10 text-white text-xs outline-none"
+                                            />
+                                        </label>
 
-                                        <div className="p-2.5 rounded-xl bg-black/60 border border-white/5 text-[10px] space-y-1">
-                                            <div className="flex justify-between">
-                                                <span className="text-slate-400">Work Package:</span>
-                                                <span className="text-white font-bold">
-                                                    {isMisrConsult ? '2400mm GRP Pipeline KP 14' : 'MEP Rough-In & Ducting'}
-                                                </span>
+                                        <div className="grid grid-cols-2 gap-2 text-center">
+                                            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25">
+                                                <span className="text-[9px] text-emerald-300 uppercase block">Certify</span>
+                                                <span className="text-lg font-black text-emerald-400">{Math.min(claimedPercent, verifiedPercent)}%</span>
                                             </div>
-                                            <div className="flex justify-between">
-                                                <span className="text-slate-400">Overbilling Blocked:</span>
-                                                <span className="text-emerald-400 font-bold">
-                                                    {isMisrConsult ? 'EGP 1,420,000 Saved' : 'AED 340,000 Saved'}
-                                                </span>
+                                            <div className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/25">
+                                                <span className="text-[9px] text-red-300 uppercase block">Withhold</span>
+                                                <span className="text-sm font-black text-red-400">{currencyCode} {overclaimValue.toLocaleString()}</span>
                                             </div>
                                         </div>
 
                                         <button
-                                            onClick={handleClampIpcToAiVerified}
+                                            onClick={handleClampIpcToVerified}
                                             className="w-full py-2.5 rounded-xl bg-cyan-500 text-black font-black text-[11px] hover:bg-cyan-400 transition-all flex items-center justify-center gap-1.5"
                                         >
                                             <ScanEye className="w-3.5 h-3.5" />
-                                            {aiVisionVerified
-                                                ? 'IPC Clamped to 62% Verified Qty ✓'
-                                                : 'Clamp IPC Extract to 62% AI-Verified Qty'}
+                                            {aiVisionVerified ? 'Certification note saved ✓' : 'Cap Certification at Verified %'}
                                         </button>
+                                        <p className="text-[9px] text-slate-500">Roadmap: photo/360° walk evidence attached to each verification.</p>
                                     </div>
                                 </div>
                             )}
@@ -1313,7 +1441,7 @@ export const FieldCompanionApp: React.FC = () => {
                                 )}
                             >
                                 <ScanEye className="w-4 h-4" />
-                                <span className="text-[9px] font-bold">AI vs BIM</span>
+                                <span className="text-[9px] font-bold">IPC Guard</span>
                             </button>
                         </div>
 
